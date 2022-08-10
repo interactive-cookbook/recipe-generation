@@ -5,6 +5,7 @@ from penman import surface
 from collections import defaultdict
 
 
+# TODO add documentation
 def get_graph_pairs(action_graph_dir, amr_graph_dir):
 
     graph_pairs = dict()
@@ -44,7 +45,7 @@ def inspect_amr_action_alignments(action_graph_dir, amr_graph_dir):
         count_action_nodes += len(list(action_graph['nodes'].keys()))
 
         # find all AMRs that are aligned to more than one action node
-        one2many_amrs_recipe, alignment_counts = get_one2many_amrs(action_graph, amr_graphs)
+        one2many_amrs_recipe, alignment_counts = get_one2many_amrs_and_counts(action_graph, amr_graphs)
         all_one2many_amrs.extend(one2many_amrs_recipe)
 
         # update how often an AMR is aligned to X action nodes
@@ -69,7 +70,7 @@ def inspect_amr_action_alignments(action_graph_dir, amr_graph_dir):
                 file.write(f'{re_name}\t{n}\n')
 
 
-def get_one2many_amrs(action_graph, amr_graphs):
+def get_one2many_amrs_and_counts(action_graph, amr_graphs):
 
     one_to_many_amrs = []
     action_nodes = list(action_graph['nodes'].keys())
@@ -91,6 +92,28 @@ def get_one2many_amrs(action_graph, amr_graphs):
         count_alignments[count] += 1
 
     return one_to_many_amrs, count_alignments
+
+
+def get_one2many_amrs_and_alignments(action_graph, amr_graphs):
+
+    one_to_many_amrs = []
+    action_nodes = list(action_graph['nodes'].keys())
+
+    for amr_graph in amr_graphs:
+
+        token_aligned_nodes = surface.alignments(amr_graph)
+        action_amr_alignments = []
+
+        for instance, alignment in token_aligned_nodes.items():
+            token_id = alignment.indices[0]
+            if str(token_id) in action_nodes:
+                amr_node = instance[0]
+                action_amr_alignments.append((amr_node, str(token_id)))
+
+        if len(action_amr_alignments) > 1:
+            one_to_many_amrs.append((amr_graph, action_amr_alignments))
+
+    return one_to_many_amrs
 
 
 def get_unaligned_action_nodes(action_graph, amr_graphs):
