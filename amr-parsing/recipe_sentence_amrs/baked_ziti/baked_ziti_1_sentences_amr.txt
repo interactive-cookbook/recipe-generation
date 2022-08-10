@@ -1,0 +1,117 @@
+# ::snt Preheat oven to .
+(z1 / preheat-01
+      :mode imperative
+      :ARG0 (z2 / you)
+      :ARG1 (z3 / oven))
+
+# ::snt Cook pasta according to directions , but cook the pasta more on the al dente side .
+(z1 / contrast-01
+      :ARG1 (z2 / cook-01
+            :mode imperative
+            :ARG0 (z3 / you)
+            :ARG1 (z4 / pasta)
+            :ARG1-of (z5 / conform-01
+                  :ARG2 (z6 / thing
+                        :ARG2-of (z7 / direct-01)))))
+
+# ::snt In a large bow , add drained pasta , sauce , grated parmesan , basil , oregano , garlic powder , onion powder , and salt & pepper ( to taste ) .
+(z1 / add-02
+      :mode imperative
+      :ARG0 (z2 / you)
+      :ARG1 (z3 / and
+            :op1 (z4 / pasta
+                  :ARG1-of (z5 / drain-01))
+            :op2 (z6 / sauce)
+            :op3 (z7 / parmesan
+                  :ARG1-of (z8 / grate-01))
+            :op4 (z9 / basil)
+            :op5 (z10 / oregano)
+            :op6 (z11 / powder
+                  :consist-of (z12 / garlic))
+            :op7 (z13 / powder
+                  :consist-of (z14 / onion))
+            :op8 (z15 / salt-and-pepper)
+            :op9 (z16 / taste-to-taste))
+      :manner (z17 / bow
+            :mod (z18 / large)))
+
+# ::snt Mix thoroughly and allow to set for 5 minutes .
+(z1 / and
+      :op1 (z2 / mix-01
+            :manner (z3 / thorough))
+      :op2 (z4 / allow-01
+            :ARG1 (z5 / set-01
+                  :duration (z6 / temporal-quantity
+                        :quant 5
+                        :unit (z7 / minute)))))
+
+# ::snt In large pyrex pan ( or dish of choice ) pour in your pasta mix .
+(z1 / pour-01
+      :mode imperative
+      :ARG0 (z2 / you)
+      :ARG1 (z3 / mix-01
+            :ARG1 (z4 / pasta
+                  :poss z2))
+      :location (z5 / or
+            :op1 (z6 / pan
+                  :mod (z7 / large)
+                  :mod (z8 / pyrex))
+            :op2 (z9 / dish
+                  :ARG1-of (z10 / choose-01
+                        :ARG0 z2))))
+
+# ::snt Cover the pasta with the shredded mozzarella cheese .
+(z1 / cover-02
+      :ARG1 (z2 / pasta)
+      :ARG2 (z3 / cheese
+            :mod (z4 / mozzarella)
+            :ARG1-of (z5 / shred-01)))
+
+# ::snt To add a little extra flavor , I like to sprinkle extra basil , oregano , and a little bit of parmesan on top of the mozzarella .
+(z1 / like-02
+      :ARG0 (z2 / i)
+      :ARG1 (z3 / sprinkle-01
+            :ARG0 z2
+            :ARG1 (z4 / and
+                  :op1 (z5 / basil
+                        :mod (z6 / extra))
+                  :op2 (z7 / oregano
+                        :mod z6)
+                  :op3 (z8 / parmesan
+                        :mod (z9 / bit
+                              :mod (z10 / little))))
+            :ARG2 (z11 / top
+                  :op1 (z12 / mozzarella))
+            :purpose (z13 / add-02
+                  :ARG0 z2
+                  :ARG1 (z14 / flavor
+                        :mod z6
+                        :mod (z15 / extra)))))
+
+# ::snt Bake in oven for approximately 20 minutes , or until a slight browning effect has happened .
+(z1 / bake-01
+      :mode imperative
+      :ARG0 (z2 / you)
+      :location (z3 / oven)
+      :duration (z4 / approximately
+            :op1 (z5 / temporal-quantity
+                  :quant 20
+                  :unit (z6 / minute)))
+      :time (z7 / until
+            :op1 (z8 / effect-03
+                  :ARG1 z1
+                  :ARG2 (z9 / brown-01
+                        :degree (z10 / slight)))))
+
+# ::snt It 's ready to serve with a side salad and some yummy garlic bread !
+(z1 / ready-02
+      :ARG1 (z2 / it)
+      :ARG2 (z3 / serve-02
+            :ARG1 z2
+            :accompanier (z4 / and
+                  :op1 (z5 / salad
+                        :mod (z6 / side))
+                  :op2 (z7 / bread
+                        :mod (z8 / garlic)
+                        :mod (z9 / yummy)
+                        :quant (z10 / some)))))

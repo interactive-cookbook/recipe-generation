@@ -1,0 +1,83 @@
+# ::snt Preheat the oven to 350 degrees .
+# ::alignments 1-1 3-1.3 4-1.4.r 5-1.4.1 5-1.4.2.r 6-1.4.2.r 6-1.4.2
+(z1 / preheat-01~e.1
+    :mode imperative
+    :arg0 (z2 / you)
+    :arg1 (z3 / oven~e.3)
+    :destination~e.3 (z4 / temperature-quantity
+                         :quant 350~e.5
+                         :scale~e.4,5 (z5 / fahrenheit~e.6)))
+
+# ::snt Boil the ziti until al dente and drain .
+# ::alignments 14-1 8-1.1 11-1.1.4 12-1.1.4.1 15-1.2
+(z1 / and~e.14
+    :op1 (z2 / boil-01~e.8
+             :mode imperative
+             :arg0 (z3 / you)
+             :arg1 (z4 / ziti)
+             :time (z5 / until~e.11
+                       :op1 (z6 / al~e.12
+                                :arg1 z4)))
+    :op2 (z7 / drain-01~e.15
+             :mode imperative
+             :arg0 z3))
+
+# ::snt In a skillet brown the onion and beef over medium .
+# ::alignments 20-1 23-1.3 22-1.3.1 24-1.3.2 17-1.4.r 19-1.4 26-1.5
+(z1 / brown-01~e.20
+    :mode imperative
+    :arg0 (z2 / you)
+    :arg1 (z3 / and~e.23
+              :op1 (z4 / onion~e.22)
+              :op2 (z5 / beef~e.24))
+    :location~e.0 (z6 / skillet~e.19)
+    :manner (z7 / medium~e.26))
+
+# ::snt Add the spaghetti sauce and simmer 15 minutes .
+# ::alignments 32-1 28-1.1 31-1.1.1 30-1.1.1.1 33-1.2 34-1.2.1.1 35-1.2.1.2
+(z1 / and~e.32
+    :op1 (z2 / add-02~e.28
+             :arg1 (z3 / sauce~e.31
+                       :mod (z4 / spaghetti~e.30)))
+    :op2 (z5 / simmer-01~e.33
+             :duration (z6 / temporal-quantity
+                           :quant 15~e.34
+                           :unit (z7 / minute~e.35))))
+
+# ::snt Layer 1/2 the ziti , provolone , sour cream , and 1/2 the sauce in the casserole dish .
+# ::alignments 37-1 47-1.1 42-1.1.2 45-1.1.3 44-1.1.3.1 48-1.1.4.1.1 50-1.1.4.1.2 54-1.2 53-1.2.1
+(z1 / layer-01~e.37
+    :arg1 (z2 / and~e.47
+              :op1 (z3 / ziti)
+              :op2 (z4 / provolone~e.42)
+              :op3 (z5 / cream~e.45
+                       :mod (z6 / sour~e.44))
+              :op4 (z7 / sauce
+                       :mod (z8 / product-of
+                                :op1 "1/2"~e.48
+                                :op2 (z9 / sauce~e.50))))
+    :arg2 (z10 / dish~e.54
+               :mod (z11 / casserole~e.53)))
+
+# ::snt Top with the rest of the ingredients and the Parmesan .
+# ::alignments 56-1 63-1.1 59-1.1.1 60-1.1.1.1.r 62-1.1.1.1 65-1.1.2.1.1
+(z1 / top-02~e.56
+    :arg2 (z2 / and~e.63
+              :op1 (z3 / rest~e.59
+                       :part-of~e.4 (z4 / ingredient~e.62))
+              :op2 (z5 / product
+                       :name (z6 / name
+                                 :op1 "parmesan"~e.65))))
+
+# ::snt Bake 30 minutes until the cheeses are melted .
+# ::alignments 67-1 68-1.3.1 69-1.3.2 70-1.4 74-1.4.1 72-1.4.1.1
+(z1 / bake-01~e.67
+    :mode imperative
+    :arg0 (z2 / you)
+    :duration (z3 / temporal-quantity
+                  :quant 30~e.68
+                  :unit (z4 / minute~e.69))
+    :time (z5 / until~e.70
+              :op1 (z6 / melt-01~e.74
+                       :arg1 (z7 / cheese~e.72))))
+
