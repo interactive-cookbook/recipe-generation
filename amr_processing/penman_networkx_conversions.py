@@ -3,16 +3,34 @@ from penman import surface
 import networkx as nx
 
 
-# TODO add documentation
-def penman2networkx(penman_graph: penman.Graph):
+"""
+Functions to convert a penman Graph object into a network x Graph object and 
+to convert a network x Graph object into a penman Graph object
+"""
 
-    nx_graph = nx.DiGraph()
 
+def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
+    """
+    Converts a penman Graph object into a networkX Graph object
+    :param penman_graph:
+    :return:
+    """
+    # extract all relevant information from AMR
     edges = penman_graph.edges()
     instances = penman_graph.instances()
     attributes = penman_graph.attributes()
     ep_data = penman_graph.epidata
+    sentence = penman_graph.metadata['snt']
+    unique_id = penman_graph.metadata['id']
 
+    # create the nx Graph object with the sentence and the graph id as graph attributes
+    nx_graph = nx.DiGraph()
+    nx_graph.graph['snt'] = sentence
+    nx_graph.graph['id'] = unique_id
+
+    # add all nodes and edges of the original AMR,
+    # Keep track of the epidata to be able to reconstruct token-node alignments
+    # Keep track of the type of node that gets added to correctly reconstruct a penman AMR
     for inst in instances:
         node_epi_data = ep_data[(inst.source, inst.role, inst.target)]
         nx_graph.add_nodes_from([(inst.source, {'label': inst.target, 'type': 'instance', 'epi': node_epi_data})])
@@ -23,16 +41,24 @@ def penman2networkx(penman_graph: penman.Graph):
 
     for a in attributes:
         nx_graph.add_nodes_from([(a.target, {'label': a.target, 'type': 'attribute'})])
-        edge_epi_data = ep_data[(a.source, a.role, a.target)]
+        edge_epi_data = ep_data[(a.source, a.role, a.target)]  # add epi data only for edge to avoid issues when converting back
         nx_graph.add_edges_from([(a.source, a.target, {'label': a.role, 'epi': edge_epi_data})])
 
     return nx_graph
 
 
-def networkx2penman(nx_graph: nx.Graph):
-
+def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
+    """
+    Converts a networkX Graph object into a penman Graph object
+    The networkX Graph object should have been originally derived from a penman Graph object
+    or should include the same graph, edge and node attributes
+    :param nx_graph:
+    :return:
+    """
     triples = []
     ep_data = dict()
+
+    # add the triples for all nodes
     for node, attr_dict in nx_graph.nodes.data():
         label = attr_dict['label']
         triple_type = attr_dict['type']
@@ -41,15 +67,18 @@ def networkx2penman(nx_graph: nx.Graph):
             triples.append((node, ':instance', label))
             node_epi_data = attr_dict['epi']
             ep_data[(node, ':instance', label)] = node_epi_data
+        # attributes are added as edges, otherwise they occur twice
         elif triple_type == 'attribute':
             continue
 
+    # add the triples for all edges
     for source, target, attr_dict in nx_graph.edges.data():
         role = attr_dict['label']
         edge_epi_data = attr_dict['epi']
         triples.append((source, role, target))
         ep_data[(source, role, target)] = edge_epi_data
 
+    # create penman graph from the triples and add the epidata
     penman_graph = penman.graph.Graph(triples)
     for trip, ep in ep_data.items():
         penman_graph.epidata[trip] = ep
