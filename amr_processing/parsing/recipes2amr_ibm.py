@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import torch.cuda
 from transition_amr_parser.parse import AMRParser
 import penman
 from penman.surface import Alignment
