@@ -1,0 +1,565 @@
+# ::snt # ::tok minutes before ready to eat , bring pot of water to boil for pasta .
+(b3 / bring-01~e.6
+    :purpose (b2 / boil-01~e.11
+                 :purpose (p / pasta~e.13)
+                 :ARG1 (p2 / pot~e.7
+                           :consist-of (w / water~e.9)))
+    :ARG0 (y / you~e.6)
+    :ARG1 p2
+    :mode imperative~e.14
+    :time (b / before~e.1
+             :quant (m2 / multiple~e.0
+                        :op1 (t / temporal-quantity~e.0
+                                :quant 1~e.0
+                                :unit (m / minute~e.0)))
+             :op1 (r / ready-02~e.2
+                     :ARG1 y
+                     :ARG2 (e / eat-01~e.4
+                              :ARG0 y))))
+
+# ::snt # ::tok Cook pasta according to directions , but cook the pasta more on the al dente side .
+(c2 / contrast-01~e.6
+    :ARG1 (c3 / cook-01~e.0
+              :ARG0 (y / you~e.0)
+              :ARG1 (p / pasta~e.1)
+              :ARG1-of (c / conform-01~e.2
+                          :ARG2 (d / direction~e.4))
+              :mode imperative~e.0)
+    :ARG2 (c4 / cook-01~e.7
+              :ARG0 y
+              :ARG1 p
+              :ARG1-of (h / have-quant-91~e.10
+                          :ARG3 (m / more~e.10))
+              :manner (s / side~e.15
+                         :mod (l / Al~e.14))
+              :mode imperative~e.16))
+
+# ::snt # ::tok Boil ziti or other pasta , i. e. rigatoni , penne , farfalle , rotini , following package directions , drain and place in a large bowl .
+(a2 / and~e.21
+    :op1 (b / boil-01~e.0
+            :ARG0 (y / you~e.0)
+            :ARG1 (o / or~e.2
+                     :op1 (z / ziti~e.1)
+                     :op2 (p2 / pasta~e.4
+                              :example (a / and~e.9
+                                          :op1 (r / rigatoni~e.8)
+                                          :op2 (p3 / penne~e.10)
+                                          :op3 (f / farfalle~e.12)
+                                          :op4 (r2 / rotini~e.14))
+                              :mod (o2 / other~e.3)))
+            :mode imperative~e.0)
+    :op2 (f2 / follow-02~e.16
+             :ARG0 y
+             :ARG1 (d / direction~e.18
+                      :mod (p / package-01~e.17))
+             :mode imperative~e.27)
+    :op3 (d2 / drain-01~e.20
+             :ARG0 y)
+    :op4 (p4 / place-01~e.22
+             :ARG0 y
+             :ARG2 (b2 / bowl~e.26
+                       :mod (l / large~e.25))
+             :mode imperative~e.27))
+
+# ::snt # ::tok Heat oil onion and garlic in large saucepan cook until tender .
+(a2 / and~e.11
+    :op1 (h / heat-01~e.0
+            :ARG1 (a / and~e.3
+                     :op1 (o / oil~e.1)
+                     :op2 (o2 / onion~e.2)
+                     :op3 (g / garlic~e.4))
+            :mode imperative~e.11)
+    :op2 (c / cook-01~e.8
+            :duration (u / until~e.9
+                         :op1 (t / tender-02~e.10
+                                 :ARG2 a))
+            :location (s / saucepan~e.7
+                         :mod (l / large~e.6))))
+
+# ::snt # ::tok Bake in preheated oven for 45 - 55 minutes for a large loaf pan ; 30 - 35 for smaller pans , or until toothpick inserted in the center comes out clean .
+(a2 / and~e.14
+    :op1 (b / bake-01~e.0
+            :purpose (p / pan~e.13
+                        :mod (l2 / loaf~e.12)
+                        :mod (l / large~e.11))
+            :ARG0 (y / you~e.0)
+            :duration (b3 / between~e.5
+                          :op1 (t / temporal-quantity~e.8
+                                  :quant 45~e.5
+                                  :unit (m / minute~e.8))
+                          :op2 (t2 / temporal-quantity~e.8
+                                   :quant 55~e.7
+                                   :unit (m2 / minute~e.8)))
+            :location (o / oven~e.3
+                         :ARG1-of (h2 / heat-01~e.2)))
+    :op2 (b2 / bake-01~e.0
+             :purpose (a / Pan~e.20
+                         :ARG1-of (h / have-degree-91~e.19
+                                     :ARG2 (s / small~e.19)
+                                     :ARG3 (m3 / more~e.19)))
+             :ARG0 y
+             :ARG2 (b4 / between~e.16
+                       :op1 (t3 / temporal-quantity~e.8
+                                :quant 30~e.15)
+                       :op2 35~e.17)
+             :duration t3)
+    :op3 (u / until~e.23
+            :op1 (c3 / come-out-09~e.29
+                     :ARG1 (t4 / toothpick~e.24
+                               :ARG1-of (i / insert-01~e.25
+                                           :ARG2 (c / center~e.28)))
+                     :ARG1-of (c2 / clean-04~e.31))))
+
+# ::snt # ::tok Break or cut the florets into small , regular pieces ( about 1 1/2 inch ) and put them in the steamer insert .
+(a2 / and~e.16
+    :op1 (o / or~e.1
+            :op1 (b / break-01~e.0
+                    :ARG0 (y / you~e.0)
+                    :ARG1 (w / wow~e.4)
+                    :mode imperative~e.0)
+            :op2 (c / cut-01~e.2
+                    :ARG0 y
+                    :ARG1 w
+                    :ARG3 (p / piece~e.9
+                             :ARG1-of (r / regular-03~e.8)
+                             :extent (a / about~e.11
+                                        :op1 (d / distance-quantity~e.14
+                                                :quant 1.5~e.13
+                                                :unit (i / inch~e.14)))
+                             :mod (s / small~e.6))
+                    :mode imperative~e.4))
+    :op2 (p2 / put-01~e.17
+             :ARG0 y
+             :ARG1 w
+             :ARG2 (i2 / insert-01~e.22
+                       :ARG2 (s2 / steamer~e.21))
+             :mode imperative~e.23))
+
+# ::snt # ::tok When the butter and sugar has reached the light and fluffy stage , add the egg mixture in three stages , mixing thoroughly and scraping down the sides as necessary .
+(a / add-02~e.13
+   :ARG0 (y / you~e.13)
+   :ARG1 (m / mix-01~e.16
+            :ARG3 (e / egg~e.15))
+   :manner (a3 / and~e.23
+               :op1 (m2 / mix-01~e.21
+                        :ARG0 m
+                        :manner (t / thorough~e.22))
+               :op2 (s / scrape-02~e.24
+                       :ARG0 y
+                       :ARG1 (s2 / side~e.27)
+                       :ARG2 (d / down~e.25)
+                       :manner (n / need-01~e.29
+                                  :ARG1 s)))
+   :mode imperative~e.13
+   :time (r / reach-01~e.6
+            :ARG0 (a2 / and~e.3
+                      :op1 (b / butter~e.2)
+                      :op2 (s5 / sugar~e.4))
+            :ARG1 (s3 / stage~e.11
+                      :ARG1-of (l2 / light-06~e.10)
+                      :ARG1-of (l / light-06~e.8)))
+   :time (s4 / stage~e.19
+             :quant 3~e.18))
+
+# ::snt # ::tok Sift together dry ingredients : flour , baking soda and salt , set this aside .
+(a2 / and~e.11
+    :op1 (s3 / sift-01~e.0
+             :ARG0 (y / you~e.0)
+             :ARG1 (i / ingredient~e.3
+                      :ARG1-of (d / dry-02~e.2)
+                      :example (a / and~e.9
+                                  :op1 (f / flour~e.5)
+                                  :op2 (s4 / soda~e.8
+                                           :ARG2-of (b / bake-01~e.7))
+                                  :op3 (s / salt~e.10)))
+             :manner (t2 / together~e.1)
+             :mode imperative~e.0)
+    :op2 (s2 / set-01~e.12
+             :ARG0 y
+             :ARG1 (t / this~e.13)
+             :ARG2 (a3 / aside~e.14)
+             :mode imperative~e.15))
+
+# ::snt # ::tok Place the cooled , roasted spices in a spice grinder or a powerful blender , such as a Vitamix , and process into a fine powder .
+(a / and~e.20
+   :op1 (p / place-01~e.0
+           :ARG0 (y / you~e.0)
+           :ARG2 (o / or~e.10
+                    :example (t2 / thing~e.13
+                                 :ARG0-of (b / blend-01~e.13)
+                                 :ARG1-of (p3 / powerful-02~e.12))
+                    :op1 (t / thing~e.11
+                            :ARG1-of (c / cool-01~e.2)
+                            :instrument-of (g / grind-01~e.9
+                                              :ARG1 (s / spice~e.8)))
+                    :op2 g)
+           :ARG2-of (r / recommend-01~e.5
+                       :ARG1 s))
+   :op2 (p4 / process-01~e.21
+            :ARG0 s
+            :ARG3 (p2 / powder~e.25
+                      :ARG1-of (f / fine-03~e.24)))
+   :rel (p5 / product~e.5
+            :name (n / name~e.5
+                     :op1 "Vitamix"~e.18))
+   :rel (r2 / roast-01~e.4))
+
+# ::snt # ::tok In my kitchen - aid mixer - I add the warm water , the salt , the sugar and olive oil and yeast and wait 5 minutes . (also issues with AMR in general)
+(m5 / multi-sentence~e.27
+    :snt1 (a5 / and~e.23
+              :op1 (a2 / add-02~e.8
+                       :ARG0 (i / i~e.7)
+                       :ARG1 (a4 / and~e.12
+                                 :op1 (w3 / water~e.11
+                                          :ARG1-of (w2 / warm-07~e.10))
+                                 :op2 (s / salt~e.14)
+                                 :op3 (s2 / sugar~e.17)
+                                 :op4 (o / oil~e.20
+                                         :mod (o2 / olive~e.19))
+                                 :op5 (y / yeast~e.22))
+                       :location (t2 / thing~e.5
+                                     :ARG0-of (a3 / aid-01~e.4)
+                                     :instrument-of (m4 / mix-01~e.5)
+                                     :poss (k / kitchen~e.2)
+                                     :poss i))
+              :op2 (w / wait-01~e.24
+                      :ARG1 i
+                      :duration (t / temporal-quantity~e.26
+                                   :quant 5~e.25
+                                   :unit (m3 / minute~e.26))))
+    :snt2 (i2 / issue-02~e.29
+              :ARG0 (m / malnourished-01~e.31
+                       :mod (a / acute~e.31))
+              :ARG1 (m2 / medicine~e.31)
+              :ARG1-of (g / general-02~e.33)))
+
+# ::snt # ::tok Once combined , either knead with your hands on a floured surface or with the dough hook for about 5 - 7 minutes .
+(b / bake-01~e.4
+   :ARG0 (y / you~e.4
+            :part (h / hand~e.7))
+   :duration (a / about~e.18
+                :op1 (b2 / between~e.19
+                         :op1 (t / temporal-quantity~e.22
+                                 :quant 5~e.19
+                                 :unit (m / minute~e.22))
+                         :op2 (t2 / temporal-quantity~e.22
+                                  :quant 7~e.21
+                                  :unit (m2 / minute~e.22))))
+   :instrument (o / or~e.12
+                  :op1 (s / surface~e.11
+                          :ARG1-of (f / fling-01~e.10))
+                  :op2 (h2 / hook~e.16
+                           :purpose (d / dough~e.15)))
+   :mode imperative~e.4
+   :time (c / combine-01~e.1
+            :ARG1 y))
+
+# ::snt # ::tok This recipe can be divided into 4 pieces to make smaller , thin crust pizzas , or can be divided in half to make 2 larger , medium - thick crust pizzas .
+(o / or~e.16
+   :op1 (p2 / possible-01~e.2
+            :ARG1 (d / divide-02~e.4
+                     :purpose (m / make-01~e.9
+                                 :ARG0 (r / recipe~e.1
+                                          :mod (t3 / this~e.0))
+                                 :ARG1 (t4 / tuesday~e.14
+                                           :ARG1-of (h2 / have-degree-91~e.10
+                                                        :ARG2 (s / small~e.10)
+                                                        :ARG3 (m4 / more~e.10))
+                                           :mod (c / crust~e.13
+                                                   :ARG1-of (t2 / thin-03~e.12))))
+                     :ARG1 r
+                     :ARG2 (p / piece~e.7
+                              :quant 4~e.6)))
+   :op2 (p3 / possible-01~e.17
+            :ARG1 (d2 / divide-02~e.19
+                      :purpose (m2 / make-01~e.23
+                                   :ARG0 r
+                                   :ARG1 (t5 / tuesday~e.31
+                                             :quant 2~e.24
+                                             :ARG1-of (h3 / have-degree-91~e.25
+                                                          :ARG2 (l / large~e.25)
+                                                          :ARG3 (m5 / more~e.25))
+                                             :mod (c2 / crust~e.30
+                                                      :ARG1-of (t / thick-03~e.29
+                                                                  :mod (m3 / medium~e.27)))))
+                      :ARG1 r
+                      :ARG2 (h / half~e.21))))
+
+# ::snt # ::tok Heat a little oil in a deep - sided frying pan or heatproof casserole dish and brown chicken pieces all over .
+(a2 / and~e.15
+    :op1 (h / heat-01~e.0
+            :ARG1 (o / oil~e.3
+                     :quant (l / little~e.2))
+            :location (o2 / or~e.11
+                          :op1 (p / pan~e.10
+                                  :instrument-of (f / fry-01~e.9)
+                                  :part (s / sided~e.8
+                                           :ARG1-of (d / deep-02~e.6)))
+                          :op2 (d2 / dish~e.14
+                                   :ARG2-of (h2 / heat-01~e.12)
+                                   :mod (c / casserole~e.13))))
+    :op2 (h3 / heat-01~e.21
+             :ARG1 (p2 / piece~e.18
+                       :ARG1-of (f2 / fry-01~e.16)
+                       :part-of (c2 / chicken~e.17))
+             :location (a / all-over~e.20)))
+
+# ::snt # ::tok Combine chicken soup , soy sauce , the zest of one orange , and the juice of two oranges , and pour this liquid over the browned chicken pieces .
+(a2 / and~e.20
+    :op1 (c3 / combine-01~e.0
+             :ARG1 (a / and~e.3
+                      :op1 (s2 / soup~e.2
+                               :mod (c / chicken~e.1))
+                      :op2 (s / sauce~e.5
+                              :mod (s3 / soy~e.4))
+                      :op3 (z / zest~e.8
+                              :poss (o / orange~e.11
+                                       :quant 1~e.10))
+                      :op4 (j / juice~e.15
+                              :poss (o2 / orange~e.18
+                                        :quant 2~e.17))))
+    :op2 (p2 / pour-01~e.21
+             :ARG1 (l / liquid~e.23
+                      :mod (t / this~e.22))
+             :ARG2 (p / piece~e.28
+                      :ARG1-of (b / brown-01~e.26)
+                      :part-of (c2 / chicken~e.27))))
+
+# ::snt # ::tok Combine 1 tbsp of cornstarch and 1 tbsp of water and add to orange sauce .
+(a2 / and~e.5
+    :op1 (c / combine-01~e.0
+            :ARG1 (c2 / cornstarch~e.4
+                      :quant (m / mass-quantity~e.2
+                                :quant 1~e.1
+                                :unit (m3 / milligram~e.7)))
+            :ARG2 (w / water~e.9
+                     :quant (m2 / mass-quantity~e.7
+                                :quant 1~e.6
+                                :unit (m4 / milligram~e.7))))
+    :op2 (a / add-02~e.11
+            :ARG2 (s / sauce~e.14
+                     :mod (o / orange~e.13))))
+
+# ::snt # ::tok Add the dried chili peppers , tangerine peel , and star anise , and toast for about 20 seconds , being careful not to burn the aromatics .
+(a4 / and~e.13
+    :manner (c / care-04~e.21
+               :ARG0 (y / you~e.27)
+               :ARG0 y
+               :ARG1 (b / burn-01~e.24
+                        :ARG1 (e / enzyme~e.26)
+                        :mode essential~e.26
+                        :polarity -~e.22))
+    :op1 (a2 / add-02~e.0
+             :ARG0 y
+             :ARG1 (a3 / and~e.5
+                       :op1 (p2 / pepper~e.4
+                                :ARG1-of (d / dry-02~e.2)
+                                :mod (c2 / chili~e.3))
+                       :op2 (p / peel~e.7
+                               :mod (t / tangerine~e.6))
+                       :op3 (a5 / anise~e.11
+                                :mod (s2 / star~e.10))))
+    :op2 (t3 / toast-01~e.14
+             :duration (a / about~e.16
+                          :op1 (t2 / temporal-quantity~e.18
+                                   :quant 20~e.17
+                                   :unit (s / second~e.18)))))
+
+# ::snt # ::tok Bake for 30 minutes ( mini loaf pans ) or 45 - 55 for large loaf pan or until a toothpick inserted into the center comes out with just a few crumbs .
+(b / bake-01~e.0
+   :purpose (a / Pan~e.7
+               :mod (l2 / loaf~e.6)
+               :mod (m / mini~e.5))
+   :ARG0 (y / you~e.0)
+   :duration (o / or~e.9
+                :op1 (t / temporal-quantity~e.3
+                        :quant 30~e.2
+                        :unit (m2 / minute~e.3))
+                :op2 (b2 / between~e.10
+                         :purpose (p / pan~e.16
+                                     :mod (l3 / loaf~e.15)
+                                     :mod (l / large~e.14))
+                         :op1 (t2 / temporal-quantity~e.10
+                                  :quant 45~e.10
+                                  :unit (m3 / minute~e.3))
+                         :op2 (t3 / temporal-quantity~e.12
+                                  :quant 55~e.12))
+                :op3 (u / until~e.18
+                        :op1 (c2 / come-out-09~e.25
+                                 :ARG1 (t4 / toothpick~e.20
+                                           :ARG1-of (i / insert-01~e.21
+                                                       :ARG2 (c / center~e.24)))
+                                 :accompanier (c3 / crumb~e.31
+                                                  :quant (f / few~e.30
+                                                            :mod (j / just~e.28)))))))
+
+# ::snt # ::tok Add all the ingredients except the cilantro and tortilla strips to the slow cooker and mix . (also issues with AMR in general)
+(m2 / multi-sentence~e.16
+    :snt1 (a5 / and~e.14
+              :op1 (a2 / add-02~e.0
+                       :ARG0 (y / you~e.0)
+                       :ARG1 (i / ingredient~e.3
+                                :ARG2-of (e / except-01~e.4
+                                            :ARG1 (a4 / and~e.7
+                                                      :op1 (c / cilantro~e.6)
+                                                      :op2 (s2 / strip-01~e.9
+                                                               :ARG1 (t2 / tortilla~e.8))))
+                                :mod (a3 / all~e.1))
+                       :ARG2 (t / thing~e.13
+                                :instrument-of (c2 / cook-01~e.13
+                                                   :ARG1-of (s / slow-01~e.12)))
+                       :mode imperative~e.0)
+              :op2 (m / mix-01~e.15
+                      :ARG0 y))
+    :snt2 (i2 / issue-02~e.18
+              :ARG0 (p / product~e.20
+                       :name (n / name~e.20
+                                :op1 "AMR"~e.20))
+              :ARG1-of (g / general-02~e.22)
+              :mod (a / "(also"~e.17)))
+
+# ::snt # ::tok Remove the chicken from the slow cooker and shred with a fork ( or place the chicken into your stand mixer with the paddle attachment and mix on low speed until it is shredded ) . (also issues with AMR in general)
+(m3 / multi-sentence~e.35
+    :snt1 (o / or~e.13
+             :op1 (a2 / and~e.7
+                      :op1 (r / remove-01~e.0
+                              :ARG0 (y / you~e.0)
+                              :ARG1 (c / chicken~e.2)
+                              :ARG2 (t / thing~e.6
+                                       :ARG0-of (c2 / cook-01~e.6
+                                                    :ARG1-of (s3 / slow-05~e.5)))
+                              :mode imperative~e.0)
+                      :op2 (s / shred-01~e.8
+                              :ARG0 y
+                              :ARG1 c
+                              :instrument (f / fork~e.11)))
+             :op2 (a3 / and~e.25
+                      :op1 (p2 / place-01~e.14
+                               :ARG0 y
+                               :ARG1 c
+                               :ARG2 (t2 / thing~e.20
+                                         :instrument (a4 / attachment~e.24
+                                                         :mod (p / paddle~e.23))
+                                         :instrument-of (m / mix-01~e.20
+                                                           :mod (s5 / stand~e.19)))
+                               :mode imperative~e.36)
+                      :op2 (m2 / mix-01~e.26
+                               :ARG0 y
+                               :ARG1 c
+                               :duration (u / until~e.30
+                                            :op1 (s2 / shred-01~e.33
+                                                     :ARG1 c))
+                               :manner (s4 / speed-01~e.29
+                                           :ARG1-of (l / low-04~e.28))
+                               :mode imperative~e.36)))
+    :snt2 (i / issue-02~e.37
+             :ARG0 (p3 / product~e.39
+                       :name (n / name~e.39
+                                :op1 "AMR"~e.39))
+             :ARG1-of (g / general-02~e.41)
+             :mod (a / "(also"~e.36)))
+
+# ::snt # ::tok Once shredded , return the chicken back to the slow cooker , and add the black beans , pinto beans , corn , and lime juice , continuing to cook on low heat until the beans have heated through .
+(a2 / and~e.12
+    :op1 (r / return-02~e.3
+            :ARG1 (c / chicken~e.5)
+            :ARG2 (c4 / cooker~e.10
+                      :ARG1-of (s2 / slow-01~e.9)))
+    :op2 (a / add-02~e.13
+            :ARG1 (a3 / and~e.20
+                      :op1 (b / bean~e.16
+                              :ARG1-of (b3 / black-04~e.15))
+                      :op2 (b2 / bean~e.19
+                               :mod (p / pinto~e.18))
+                      :op3 (c5 / corn~e.21)
+                      :op4 (j / juice~e.25
+                              :source (l / lime~e.24))))
+    :op3 (c2 / continue-01~e.27
+             :ARG1 (c3 / cook-01~e.29
+                       :manner (h / heat~e.32
+                                  :ARG1-of (l2 / low-04~e.31))
+                       :time (u / until~e.33
+                                :op1 (h2 / heat-01~e.37
+                                         :ARG1 b
+                                         :mod (t / through~e.38)))))
+    :time (s / shred-01~e.1
+             :ARG1 c))
+
+# ::snt # ::tok Add onion , garlic , chili powder , cumin , paprika , coriander and season with salt and pepper to taste .
+(a2 / and~e.2
+    :op1 (a / add-02~e.0
+            :ARG1 (a3 / and~e.13
+                      :op1 (o / onion~e.1)
+                      :op2 (g / garlic~e.3)
+                      :op3 (p3 / powder-01~e.6
+                               :ARG1 (c / chili~e.5))
+                      :op4 (c3 / cumin~e.8)
+                      :op5 (p / paprika~e.10)
+                      :op6 (c2 / coriander~e.12))
+            :mode imperative~e.14)
+    :op2 (s2 / season-01~e.14
+             :purpose (t / taste-01~e.20
+                         :ARG1 s2)
+             :manner (a4 / and~e.17
+                         :op1 (s / salt~e.16)
+                         :op2 (p2 / pepper~e.18))))
+
+# ::snt # ::tok Cook for 3 - 4 hours on high heat or 6 - 8 hours on low heat , until the chicken is cooked through and shreds easily .
+(c2 / cook-01~e.0
+    :ARG0 (y / you~e.0)
+    :duration (o / or~e.9
+                 :op1 (h / heat~e.8
+                         :ARG1-of (h3 / high-02~e.7))
+                 :op2 (b2 / between~e.10
+                          :op1 (t3 / temporal-quantity~e.13
+                                   :quant 6~e.10
+                                   :unit (h6 / hour~e.13))
+                          :op2 (t4 / temporal-quantity~e.13
+                                   :quant 8~e.12
+                                   :unit h6)
+                          :prep-on (h2 / heat~e.16
+                                       :ARG1-of (l / low-04~e.15))))
+    :mode imperative~e.0
+    :rel (b / between~e.2
+            :op1 (t / temporal-quantity~e.5
+                    :quant 3~e.2
+                    :unit (h4 / hour~e.5))
+            :op2 (t2 / temporal-quantity~e.5
+                     :quant 4~e.4
+                     :unit (h5 / hour~e.5)))
+    :time (u / until~e.18
+             :op1 (a / and~e.24
+                     :op1 (c3 / cook-01~e.22
+                              :ARG1 (c / chicken~e.20)
+                              :manner (t5 / through~e.23))
+                     :op2 (s / shred-01~e.25
+                             :ARG1 c
+                             :ARG1-of (e / easy-05~e.26)))))
+
+# ::snt # ::tok To serve the soup , lay out all toppings in bowls and allow everyone to add garnishes to their soup as they see fit .
+(a4 / and~e.11
+    :purpose (s2 / serve-02~e.1
+                 :ARG0 (y / you~e.5)
+                 :ARG1 (s3 / soup~e.3))
+    :op1 (l / lay-01~e.5
+            :ARG0 y
+            :ARG2 (b / bowl-01~e.10
+                     :ARG1 (d / dish~e.16
+                              :mod (a2 / all~e.7)
+                              :mod a2))
+            :mode imperative~e.24)
+    :op2 (a3 / allow-01~e.12
+             :ARG0 y
+             :ARG1 (a / add-02~e.15
+                      :ARG0 (e / everyone~e.13)
+                      :ARG1 (d2 / dish~e.16
+                                :ARG1-of (p / prepare-01~e.16))
+                      :ARG2 s3
+                      :manner (s / see-01~e.22
+                                 :ARG0 e
+                                 :ARG1 a
+                                 :ARG2 (f / fit-06~e.23)))
+             :mode imperative~e.24)
+    :rel (c / continent~e.8
+            :name (n / name~e.8)))
+
