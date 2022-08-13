@@ -1,45 +1,43 @@
 import penman
-from penman import Graph
 from typing import List, Dict
 
 
-def read_aligned_amr_file(recipe_amr_file: str) -> List[Graph]:
+def read_aligned_amr_file(recipe_amr_file: str) -> List[penman.Graph]:
     """
     Reads a file with the sentence level AMRs for one recipe
     Node to token alignments included
     :param recipe_amr_file: .txt file with the instruction AMRs
     :return: a list of all AMRs as penman Graph objects with
-             sentence (snt) and unique ids (id) as metadata
+             complete metadata
     """
     graphs = []
 
     with open(recipe_amr_file, "r", encoding="utf-8") as amrs:
         current_amr_str = ""
-        current_sent = ""
-        current_id = ""
+        current_meta_data = dict()
+
         for line in amrs:
             if line == '\n':
                 current_amr = penman.decode(current_amr_str)
-                current_amr.metadata['snt'] = current_sent
-                current_amr.metadata['id'] = current_id
+                for meta_k, meta_v in current_meta_data.items():
+                    current_amr.metadata[meta_k] = meta_v
                 graphs.append(current_amr)
                 current_amr_str = ""
+                current_meta_data = dict()
 
             # add the meta data
             elif line[0] == '#':
                 meta_type = line.strip().split(' ')[1]
                 meta_values = line.strip().split()[2:]
-                if meta_type == '::snt':
-                    current_sent = ' '.join(meta_values)
-                elif meta_type == '::id':
-                    current_id = ' '.join(meta_values)
+                meta_key = meta_type[2:]
+                current_meta_data[meta_key] = ' '.join(meta_values)
             else:
                 current_amr_str += line.strip() + ' '
 
         if current_amr_str != "":
             current_amr = penman.decode(current_amr_str)
-            current_amr.metadata['snt'] = current_sent
-            current_amr.metadata['id'] = current_id
+            for meta_k, meta_v in current_meta_data.items():
+                current_amr.metadata[meta_k] = meta_v
             graphs.append(current_amr)
 
     return graphs
