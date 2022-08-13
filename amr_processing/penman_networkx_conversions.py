@@ -20,20 +20,21 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
     instances = penman_graph.instances()
     attributes = penman_graph.attributes()
     ep_data = penman_graph.epidata
-    sentence = penman_graph.metadata['snt']
-    unique_id = penman_graph.metadata['id']
 
-    # create the nx Graph object with the sentence and the graph id as graph attributes
+    # create the nx Graph object
     nx_graph = nx.DiGraph()
-    nx_graph.graph['snt'] = sentence
-    nx_graph.graph['id'] = unique_id
+
+    for meta_key, meta_value in penman_graph.metadata.items():
+        nx_graph.graph[meta_key] = meta_value
+
 
     # add all nodes and edges of the original AMR,
     # Keep track of the epidata to be able to reconstruct token-node alignments
     # Keep track of the type of node that gets added to correctly reconstruct a penman AMR
     for inst in instances:
         node_epi_data = ep_data[(inst.source, inst.role, inst.target)]
-        nx_graph.add_nodes_from([(inst.source, {'label': inst.target, 'type': 'instance', 'epi': node_epi_data})])
+        nx_graph.add_nodes_from([(inst.source,
+                                  {'label': inst.target, 'type': 'instance', 'epi': node_epi_data})])
 
     for e in edges:
         edge_epi_data = ep_data[(e.source, e.role, e.target)]
@@ -83,18 +84,26 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
     for trip, ep in ep_data.items():
         penman_graph.epidata[trip] = ep
 
+    # add metadata
+    for graph_attr, attr_val in nx_graph.graph.items():
+        penman_graph.metadata[graph_attr] = attr_val
+
     return penman_graph
 
 
 if __name__=="__main__":
     pstr3 = '(z1 / sprinkle-01~e.11 :mode imperative :arg0 (z2 / you) :arg1 (z3 / beef~e.12) :arg2 (z4 / and~e.21 :op1 (z5 / salt~e.16 :mod (z6 / sea~e.15)) :op2 (z7 / pepper~e.18) :op3 (z8 / oregano~e.20) :op4 (z9 / basil~e.22)) :arg1-of (z10 / liberal-02~e.13) :time~e.9 (z11 / brown-01~e.10))'
     pen_graph = penman.decode(pstr3)
+    pen_graph.metadata['snt'] = 'Sprinkle and so on .'
+    pen_graph.metadata['id'] = 'test_name'
     nx_gr = penman2networkx(pen_graph)
-    p = nx.drawing.nx_pydot.to_pydot(nx_gr)
+    print(nx_gr.graph)
+    #p = nx.drawing.nx_pydot.to_pydot(nx_gr)
     #print(p)
-    for n in nx_gr.edges():
-        print(n)
-        print(nx_gr.get_edge_data(n[0], n[1]))
+    #for n in nx_gr.edges():
+        #print(n)
+        #print(nx_gr.get_edge_data(n[0], n[1]))
 
     new_p = networkx2penman(nx_gr)
+    print(new_p.metadata)
     #(new_p.epidata)
