@@ -1,13 +1,23 @@
+import networkx as nx
+import penman
+
 from read_graphs import read_aligned_amr_file, read_action_graph
 import os
-import penman
 from penman import surface
 from collections import defaultdict
+from typing import Dict, List
 
 
-# TODO add documentation
-def get_graph_pairs(action_graph_dir, amr_graph_dir):
-
+def get_graph_pairs(action_graph_dir, amr_graph_dir) -> Dict[str: Dict]:
+    """
+    Reads all action graphs and AMR graphs and pairs the corresponding graphs with each other
+    :param action_graph_dir: parent directory with the action graph files
+    :param amr_graph_dir: parent directory with the files with the token-node aligned sentence-level amrs
+    :return: dictionary with one subdict per recipe, each containing the action graph and the
+            sentence-level AMRs for the recipe
+            {recipe1: {'action': action_graph, 'amrs': [amr_isntr1, amr_instr2, ...]}, recipe2: {}}
+            The action graphs are networkX.Graph objects, the amr graphs are penman.Graph objects
+    """
     graph_pairs = dict()
 
     for dish in os.listdir(action_graph_dir):
@@ -18,17 +28,22 @@ def get_graph_pairs(action_graph_dir, amr_graph_dir):
             recipe_name = recipe.split('.')[:-1]
             recipe_name = '.'.join(recipe_name)
             corresponding_amr = recipe_name + '_sentences_amr.txt'
-            amr_graph = read_aligned_amr_file('/'.join([amr_graph_dir, dish, 'amrs', corresponding_amr]))
+            amr_graphs = read_aligned_amr_file('/'.join([amr_graph_dir, dish, 'amrs', corresponding_amr]))
 
             graph_pairs[recipe_name] = dict()
             graph_pairs[recipe_name]['action'] = ac_graph
-            graph_pairs[recipe_name]['amr'] = amr_graph
+            graph_pairs[recipe_name]['amrs'] = amr_graphs
 
     return graph_pairs
 
 
 def inspect_amr_action_alignments(action_graph_dir, amr_graph_dir):
+    """
 
+    :param action_graph_dir: parent directory with the action graph files
+    :param amr_graph_dir: parent directory with the files with the token-node aligned sentence-level amrs
+    :return:
+    """
     graph_pairs = get_graph_pairs(action_graph_dir, amr_graph_dir)
     all_one2many_amrs = []
     graphs_with_missing_alignments = dict()
@@ -40,9 +55,9 @@ def inspect_amr_action_alignments(action_graph_dir, amr_graph_dir):
     for recipe_name in graph_pairs.keys():
 
         action_graph = graph_pairs[recipe_name]['action']
-        amr_graphs = graph_pairs[recipe_name]['amr']
+        amr_graphs = graph_pairs[recipe_name]['amrs']
         count_instructions += len(amr_graphs)
-        count_action_nodes += len(list(action_graph['nodes'].keys()))
+        count_action_nodes += len(action_graph.nodes)
 
         # find all AMRs that are aligned to more than one action node
         one2many_amrs_recipe, alignment_counts = get_one2many_amrs_and_counts(action_graph, amr_graphs)
@@ -70,11 +85,21 @@ def inspect_amr_action_alignments(action_graph_dir, amr_graph_dir):
                 file.write(f'{re_name}\t{n}\n')
 
 
-def get_one2many_amrs_and_counts(action_graph, amr_graphs):
-
+def get_one2many_amrs_and_counts(action_graph: nx.Graph, amr_graphs: List[penman.Graph]) -> (List[penman.Graph], Dict):
+    """
+    Finds all amr gaphs in 'amr_graphs' that are aligned to more than one node in the action_graph
+    :param action_graph: networkx.Graph recipe action graph
+    :param amr_graphs: list of penman.Graph AMRs for the individual instructions of the recipe
+    :return: list of all AMRs that are aligned to more than one action node
+            dictionary with the counts how often an AMR is aligned to X action nodes
+            e.g. {0: 3, 1: 6, ...} would mean that 3 AMRs are not aligned to any action node,
+                                    6 AMRs are aligned to 1 action node
+    """
     one_to_many_amrs = []
-    action_nodes = list(action_graph['nodes'].keys())
+    action_nodes = list(action_graph.nodes)
     count_alignments = defaultdict(int)
+
+    action_nodes_already_covered = []
 
     for amr_graph in amr_graphs:
         count = 0
@@ -85,7 +110,9 @@ def get_one2many_amrs_and_counts(action_graph, amr_graphs):
 
             # IMPORTANT! token ids in the recipe graphs are strings but surface.alignments give ints
             if str(token_id) in action_nodes:                   # check if aligned token is an action node
-                count += 1
+                if str(token_id) not in action_nodes_already_covered:       # don't count alignments multiple times for structbart alignments
+                    count += 1
+                    action_nodes_already_covered.append(str(token_id))
 
         if count > 1:
             one_to_many_amrs.append(amr_graph)
@@ -94,10 +121,18 @@ def get_one2many_amrs_and_counts(action_graph, amr_graphs):
     return one_to_many_amrs, count_alignments
 
 
-def get_one2many_amrs_and_alignments(action_graph, amr_graphs):
+def get_one2many_amrs_and_alignments(action_graph: nx.Graph,
+                                     amr_graphs: List[penman.Graph]) -> List[(penman.Graph, List)]:
+    """
 
+    :param action_graph: networkx.Graph recipe action graph
+    :param amr_graphs: list of penman.Graph AMRs for the individual instructions of the recipe
+    :return: returns a list of amr graphs aligned to more than one action node paired with
+             the list of the action_node - amr_node alignments
+             [(amr_graph, [(amr_node1, action_node1), (amr_node2, action_node2)), ...]
+    """
     one_to_many_amrs = []
-    action_nodes = list(action_graph['nodes'].keys())
+    action_nodes = list(action_graph.nodes)
 
     for amr_graph in amr_graphs:
 
@@ -116,8 +151,14 @@ def get_one2many_amrs_and_alignments(action_graph, amr_graphs):
     return one_to_many_amrs
 
 
-def get_unaligned_action_nodes(action_graph, amr_graphs):
-
+def get_unaligned_action_nodes(action_graph: nx.Graph, amr_graphs: List[penman.Graph]) -> List:
+    """
+    Finds all nodes in the recipe action_graph that are not aligned to any node in one of the
+    AMRs for the recipe instructions
+    :param action_graph: networkx.Graph recipe action graph
+    :param amr_graphs: list of penman.Graph AMRs for the individual instructions of the recipe
+    :return: returns a list of the unaligned action nodes
+    """
     amr_node_aligned_tokens = []
 
     for amr_graph in amr_graphs:
@@ -128,9 +169,9 @@ def get_unaligned_action_nodes(action_graph, amr_graphs):
 
     non_aligned_action_nodes = []
 
-    for action_node in action_graph['nodes'].keys():
+    for action_node in list(action_graph.nodes):
         if action_node not in amr_node_aligned_tokens:
-            multi_token_ids = action_graph['nodes'][action_node]['ids']
+            multi_token_ids = nx.get_node_attributes(action_graph, 'ids')[action_node]
             found_alignment = False
             for mt_id in multi_token_ids:
                 if mt_id in amr_node_aligned_tokens:
@@ -144,5 +185,5 @@ def get_unaligned_action_nodes(action_graph, amr_graphs):
 
 if __name__=="__main__":
 
-    inspect_amr_action_alignments('../Corpora/Mapped_Ara/new_ara_data_new_action_graphs',
-                                  './aligned_recipe_amrs')
+    inspect_amr_action_alignments('../../Corpora/Mapped_Ara/new_ara_data_new_action_graphs',
+                                  './aligned_recipe_amrs_ibm')

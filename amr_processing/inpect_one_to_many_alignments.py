@@ -1,19 +1,28 @@
-import collections
-
 import networkx as nx
-import penman
 from prelim_inspection_amr_action_alignments import get_one2many_amrs_and_alignments, get_graph_pairs
 from penman_networkx_conversions import penman2networkx
 from collections import defaultdict, Counter
+from typing import List, Dict, Tuple
 
 
-# TODO documentation!!!
-
-def get_paths_between_actions(amr_graph: nx.Graph, aligned_nodes, all_paths=False):
-
+# TODO documentation
+# TODO Adapt Code for finding and anaylyzing path patterns
+def get_paths_between_actions(amr_graph: nx.Graph, aligned_nodes, all_paths=False) -> Dict[Tuple: List[List[Tuple]]]:
+    """
+    For each pair of nodes in a sentence-level AMR that are aligned to an action node
+    Find all paths / all paths of shortes length between the two nodes
+    :param amr_graph: one sentence-level networX.Graph AMR graph that has alignments to several action nodes
+    :param aligned_nodes: list of the pairs of nodes of the AMR and aligned action nodes
+    :param all_paths: if set to True then all paths between two nodes get extracted, otherwise only the shortest paths
+    :return: dictionary
+            keys: all pairings of AMR nodes that have an alignment to an action node
+            values: list of all (shortest) paths between the nodes,
+                    paths are edges -> list of tuples of the nodes ,
+                    e.g. path from node1 to node3 could be: [(node1, node2), (node2, node3)]
+    """
     path_dict = dict()
 
-    relevant_amr_nodes = [pair[0] for pair in aligned_nodes]
+    relevant_amr_nodes = [pair[0] for pair in aligned_nodes]    # the AMR nodes
     amr_node_pairs = []
     for i, node in enumerate(relevant_amr_nodes):
         i2 = i + 1
@@ -43,8 +52,13 @@ def get_paths_between_actions(amr_graph: nx.Graph, aligned_nodes, all_paths=Fals
     return path_dict
 
 
-def get_labelled_paths(amr_graph: nx.Graph, path_var_dict):
+def get_labelled_paths(amr_graph: nx.Graph, path_var_dict) -> Dict:
+    """
 
+    :param amr_graph:
+    :param path_var_dict:
+    :return:
+    """
     labelled_paths = defaultdict(list)
 
     for node_pair, all_paths in path_var_dict.items():
@@ -64,8 +78,16 @@ def get_labelled_paths(amr_graph: nx.Graph, path_var_dict):
     return dict(labelled_paths)
 
 
-def extract_relevant_paths(action_graph_dir, amr_graph_dir):
-
+def extract_relevant_paths(action_graph_dir, amr_graph_dir) -> (List[Dict], List[Dict]):
+    """
+    For all action graphs and corresponding sentence level AMRs
+        Finds all AMRs that are aligned to more than one action node
+        Extracts the paths between the nodes in one AMR that are aligned to different action nodes
+    :param action_graph_dir: parent directory with the action graph files
+    :param amr_graph_dir: parent directory with the files with the token-node aligned sentence-level amrs
+    :return: list of
+             list of
+    """
     all_paths_vars = []
     all_paths_labels = []
 
@@ -77,7 +99,7 @@ def extract_relevant_paths(action_graph_dir, amr_graph_dir):
     for recipe_name in amr_ac_graph_pairs.keys():
 
         one2many_current_recipe = get_one2many_amrs_and_alignments(amr_ac_graph_pairs[recipe_name]['action'],
-                                                                   amr_ac_graph_pairs[recipe_name]['amr'])
+                                                                   amr_ac_graph_pairs[recipe_name]['amrs'])
 
         for (penman_amr, alignments) in one2many_current_recipe:
             nx_amr = penman2networkx(penman_amr)
@@ -91,7 +113,12 @@ def extract_relevant_paths(action_graph_dir, amr_graph_dir):
 
 
 def inspect_paths_between_nodes(action_graph_dir, amr_graph_dir):
+    """
 
+    :param action_graph_dir: parent directory with the action graph files
+    :param amr_graph_dir: parent directory with the files with the token-node aligned sentence-level amrs
+    :return:
+    """
     relevant_paths_vars, relevant_paths_labels = extract_relevant_paths(action_graph_dir, amr_graph_dir)
 
     all_path_patterns = list()
@@ -100,13 +127,17 @@ def inspect_paths_between_nodes(action_graph_dir, amr_graph_dir):
         for node_pair, node_path in amr_paths.items():
             all_path_patterns.append(node_path)
 
-    analyze_paths(all_path_patterns)
+    #analyze_paths(all_path_patterns)
 
-    #print_counts(relevant_paths_labels, all_path_patterns)
+    print_and_write(relevant_paths_labels, all_path_patterns)
 
 
 def analyze_paths(path_pattern_list):
+    """
 
+    :param path_pattern_list:
+    :return:
+    """
     pattern_counts_node_level = defaultdict(int)
     pattern_counts_total = defaultdict(int)
     pattern_counts_node_level_num_removed = defaultdict(int)
@@ -175,7 +206,6 @@ def analyze_paths(path_pattern_list):
             file.write(f'{pattern}\t{count}\n')
 
 
-
 def print_and_write(relevant_paths_labels, all_path_patterns):
     """
     Only for getting some counts and the file with the paths
@@ -214,5 +244,5 @@ if __name__=="__main__":
     """
 
     inspect_paths_between_nodes('../Corpora/Mapped_Ara/new_ara_data_new_action_graphs',
-                                './aligned_recipe_amrs')
+                                './aligned_recipe_amrs_spring')
 
