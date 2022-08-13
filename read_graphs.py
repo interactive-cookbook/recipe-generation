@@ -1,4 +1,5 @@
 import penman
+import networkx as nx
 from typing import List, Dict
 
 
@@ -43,19 +44,14 @@ def read_aligned_amr_file(recipe_amr_file: str) -> List[penman.Graph]:
     return graphs
 
 
-def read_action_graph(recipe_action_file: str) -> Dict[str, Dict]:
+def read_action_graph(recipe_action_file: str) -> nx.Graph:
     """
     Read in a file with the action graph of a recipe
     :param recipe_action_file: the .conllu file for the recipe
-    :return: dictionary with the nodes and edges of the action graph
-            'nodes': a dictionary with an item for each node in the graph
-                        key: the id of the first token of this node (i.e. with B-A label)
-                            'label': all tokens belonging to this node
-                            'ids': the token ids of all tokens
-            'edges: a list of tuples, (source_node_id, target_node_id) for all edges
+    :return: a networkX graph of the action graph
     """
-    node_dict = dict()
-    edge_list = []
+
+    action_graph = nx.DiGraph()
 
     with open(recipe_action_file, "r", encoding="utf-8") as grf:
         complete_token = ""
@@ -71,28 +67,28 @@ def read_action_graph(recipe_action_file: str) -> Dict[str, Dict]:
 
             if label == "O":
                 if complete_token != "":
-                    node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+                    action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
                     complete_token = ""
                     complete_ids = []
 
             elif label[0] == "B":
                 if complete_token != "":
-                    node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+                    action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
 
                 complete_token = token
                 complete_ids = [id]
                 prev_id = id
                 if edge != "0":
-                    edge_list.append((id, edge))
+                    action_graph.add_edges_from([(id, edge)])
 
             elif label[0] == "I":
                 complete_token += " " + token
                 complete_ids.append(id)
 
         if complete_token != "":
-            node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+            action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
 
-    return {'nodes': node_dict, 'edges': edge_list}
+    return action_graph
 
 
 if __name__=="__main__":
