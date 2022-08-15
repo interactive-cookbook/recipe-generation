@@ -3,22 +3,20 @@ import networkx as nx
 import penman.surface
 from penman_networkx_conversions import penman2networkx, networkx2penman
 from read_graphs import read_aligned_amr_file
-from typing import List
+from typing import List, Tuple
 
 """
 Script to check for unaligned AMR nodes and for AMRs including cycles 
 """
 
 
-def get_amrs_complete_corpus(corpus_dir) -> (List[penman.Graph], List[nx.Graph]):
+def get_penman_amrs_complete_corpus(corpus_dir) -> List[penman.Graph]:
     """
-    Creates the penman and network X graphs for all individual sentence level AMRs
+    Creates the penman graphs for all individual sentence level AMRs
     in the subdirectories of the corpus_dir
     :param corpus_dir:
-    :return: returns a list of all AMRs as penman Graph objects and a list of all AMRs as
-             network x Graph objects; graphs at equal list indices correspond
+    :return: returns a list of all AMRs as penman Graph objects
     """
-    amr_graphs_nx = []
     amr_graphs_pen = []
 
     for dish in os.listdir(corpus_dir):
@@ -26,21 +24,39 @@ def get_amrs_complete_corpus(corpus_dir) -> (List[penman.Graph], List[nx.Graph])
             pen_amrs = read_aligned_amr_file('/'.join([corpus_dir, dish, 'amrs', recipe]))
 
             for gr in pen_amrs:
-                amr_graphs_nx.append(penman2networkx(gr))
                 amr_graphs_pen.append(gr)
 
-    return amr_graphs_pen, amr_graphs_nx
+    return amr_graphs_pen
 
 
-def check_cycles(corpus_dir: str) -> (List[penman.Graph], int):
+def get_nx_amrs_complete_corpus(corpus_dir) -> List[nx.Graph]:
+    """
+    Creates the network X graphs for all individual sentence level AMRs
+    in the subdirectories of the corpus_dir
+    :param corpus_dir:
+    :return: returns a list of all AMRs as network x Graph objects
+    """
+    amr_graphs_nx = []
+
+    for dish in os.listdir(corpus_dir):
+        for recipe in os.listdir('/'.join([corpus_dir, dish, 'amrs'])):
+            pen_amrs = read_aligned_amr_file('/'.join([corpus_dir, dish, 'amrs', recipe]))
+
+            for gr in pen_amrs:
+                amr_graphs_nx.append(penman2networkx(gr))
+
+    return amr_graphs_nx
+
+
+def check_cycles(corpus_dir: str) -> Tuple[List[nx.Graph], int]:
     """
     Finds all amr graphs containing cycles in all AMR files in the subdirectories of corpus_dir
     and counts them
     :param corpus_dir:
-    :return: list of all penman.Graph AMRs that contain a cycle
+    :return: list of all networkx.Graph AMRs that contain a cycle
              and the number of cycles
     """
-    _, amr_graphs_nx = get_amrs_complete_corpus(corpus_dir)
+    amr_graphs_nx = get_nx_amrs_complete_corpus(corpus_dir)
 
     # check for cycles in the created AMR graphs
     cyclic_graphs = []
@@ -55,7 +71,7 @@ def check_cycles(corpus_dir: str) -> (List[penman.Graph], int):
     return cyclic_graphs, number_of_cycles
 
 
-def check_unaligned_nodes(corpus_dir) -> (List[penman.Graph], int):
+def check_unaligned_nodes(corpus_dir) -> Tuple[List[penman.Graph], List[penman.Triple]]:
     """
     Finds all sentence level AMRs in the subdirectories of the corpus_dir where not all nodes of the
     AMR are aligned to a token
@@ -63,7 +79,7 @@ def check_unaligned_nodes(corpus_dir) -> (List[penman.Graph], int):
     :return: returns a list of all penman.Graph AMRs with unaligned nodes
             and the number of unaligned nodes in the corpus
     """
-    amr_graphs_pen, _ = get_amrs_complete_corpus(corpus_dir)
+    amr_graphs_pen = get_penman_amrs_complete_corpus(corpus_dir)
 
     # check for nodes that do not have an alignment
     graphs_with_missing_alignments = []
@@ -126,7 +142,7 @@ def remove_cycle(cyclic_amr_graph: nx.Graph) -> nx.Graph:
         If :op involved -> delete :op
     If number of nodes in the cycle is larger than 2 then a special rule is hardcoded for the two
     cases that occur in the ARA corpus
-    :param amr_graph: a nx.Graph AMR with cycles
+    :param cyclic_amr_graph: a nx.Graph AMR with cycles
     :return: an acyclic version of the input AMR
     """
     cycles = nx.simple_cycles(cyclic_amr_graph)
@@ -175,8 +191,8 @@ def remove_cycle(cyclic_amr_graph: nx.Graph) -> nx.Graph:
 
 if __name__=="__main__":
 
-    get_cyclic_graphs('./aligned_recipe_amrs_ibm', './cyclic_graphs.txt')
-    #graphs_missing_align, unaligned = check_unaligned_nodes('./aligned_recipe_amrs_ibm')
+    #get_cyclic_graphs('./aligned_recipe_amrs_ibm', './cyclic_graphs.txt')
+    graphs_missing_align, unaligned = check_unaligned_nodes('./aligned_recipe_amrs_ibm')
     #print(f'Number of cycles: {numb_of_cycles}')
 
     # Number of cycles: 30

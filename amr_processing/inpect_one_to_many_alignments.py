@@ -5,9 +5,13 @@ from collections import defaultdict, Counter
 from typing import List, Dict, Tuple
 
 
-# TODO documentation
-# TODO Adapt Code for finding and anaylyzing path patterns
-def get_paths_between_actions(amr_graph: nx.Graph, aligned_nodes, all_paths=False) -> Dict[Tuple: List[List[Tuple]]]:
+"""
+Old Version 
+"""
+
+
+# TODO remove from repository
+def get_paths_between_actions(amr_graph: nx.Graph, aligned_nodes, all_paths=False) -> Dict[Tuple, List[List[Tuple]]]:
     """
     For each pair of nodes in a sentence-level AMR that are aligned to an action node
     Find all paths / all paths of shortes length between the two nodes

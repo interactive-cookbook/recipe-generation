@@ -20,30 +20,46 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
     instances = penman_graph.instances()
     attributes = penman_graph.attributes()
     ep_data = penman_graph.epidata
+    alignments = surface.alignments(penman_graph)
 
     # create the nx Graph object
     nx_graph = nx.DiGraph()
+    nx_graph.graph['graph'] = dict()
 
     for meta_key, meta_value in penman_graph.metadata.items():
         nx_graph.graph[meta_key] = meta_value
-
+        if meta_key == 'id':
+            nx_graph.name = meta_value      # give the networkx graph the graph id as name
+        if meta_key == 'snt':
+            nx_graph.graph['graph']['label'] = meta_value       # needed for including the sentence in the dot files for pictures
 
     # add all nodes and edges of the original AMR,
     # Keep track of the epidata to be able to reconstruct token-node alignments
     # Keep track of the type of node that gets added to correctly reconstruct a penman AMR
+    # Remove colon at beginning of role labels, i.e. :ARG1 -> ARG1
     for inst in instances:
         node_epi_data = ep_data[(inst.source, inst.role, inst.target)]
+        try:
+            aligned_token = alignments[(inst.source, inst.role, inst.target)].indices[0]
+        except KeyError:
+            aligned_token = 0
         nx_graph.add_nodes_from([(inst.source,
-                                  {'label': inst.target, 'type': 'instance', 'epi': node_epi_data})])
+                                  {'label': inst.target, 'type': 'instance', 'epi': node_epi_data, 'alignment': str(aligned_token)})])
 
     for e in edges:
         edge_epi_data = ep_data[(e.source, e.role, e.target)]
-        nx_graph.add_edges_from([(e.source, e.target, {'label': e.role, 'epi': edge_epi_data})])
+        role_label = e.role[1:] if e.role[0] == ':' else e.role
+        nx_graph.add_edges_from([(e.source, e.target, {'label': role_label, 'type': 'edge', 'epi': edge_epi_data})])
 
     for a in attributes:
-        nx_graph.add_nodes_from([(a.target, {'label': a.target, 'type': 'attribute'})])
+        try:
+            aligned_token = alignments[(a.source, a.role, a.target)].indices[0]
+        except KeyError:
+            aligned_token = 0
+        nx_graph.add_nodes_from([(a.target, {'label': a.target, 'type': 'attribute', 'alignment': str(aligned_token)})])
         edge_epi_data = ep_data[(a.source, a.role, a.target)]  # add epi data only for edge to avoid issues when converting back
-        nx_graph.add_edges_from([(a.source, a.target, {'label': a.role, 'epi': edge_epi_data})])
+        role_label = a.role[1:] if a.role[0] == ':' else a.role
+        nx_graph.add_edges_from([(a.source, a.target, {'label': role_label, 'type': 'attribute_edge', 'epi': edge_epi_data})])
 
     return nx_graph
 
@@ -75,6 +91,7 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
     # add the triples for all edges
     for source, target, attr_dict in nx_graph.edges.data():
         role = attr_dict['label']
+        role = role if role[0] == ':' else ':' + role       # add colons back for correct penman processing
         edge_epi_data = attr_dict['epi']
         triples.append((source, role, target))
         ep_data[(source, role, target)] = edge_epi_data
@@ -86,7 +103,8 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
 
     # add metadata
     for graph_attr, attr_val in nx_graph.graph.items():
-        penman_graph.metadata[graph_attr] = attr_val
+        if graph_attr != 'graph':       # skip the subdict that is only for the visualization
+            penman_graph.metadata[graph_attr] = attr_val
 
     return penman_graph
 
@@ -98,6 +116,7 @@ if __name__=="__main__":
     pen_graph.metadata['id'] = 'test_name'
     nx_gr = penman2networkx(pen_graph)
     print(nx_gr.graph)
+    print(list(nx_gr.nodes))
     #p = nx.drawing.nx_pydot.to_pydot(nx_gr)
     #print(p)
     #for n in nx_gr.edges():
@@ -106,4 +125,5 @@ if __name__=="__main__":
 
     new_p = networkx2penman(nx_gr)
     print(new_p.metadata)
-    #(new_p.epidata)
+    print(new_p.epidata)
+    print(new_p.triples)
