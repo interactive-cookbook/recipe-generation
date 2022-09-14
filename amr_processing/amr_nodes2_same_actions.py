@@ -7,6 +7,29 @@ import operator
 import penman
 
 
+def get_multi_times_aligned_amr_nodes(action_graph_dir: str, amr_graph_dir: str, ignore: bool):
+
+    amr_ac_graph_pairs = get_graph_pairs(action_graph_dir, amr_graph_dir)
+
+    with open('./amrs_with_multi_aligned_nodes.txt', 'w', encoding='utf-8') as file:
+
+        for recipe_name in amr_ac_graph_pairs.keys():
+
+            action_graph = amr_ac_graph_pairs[recipe_name]['action']
+            amr_graphs = amr_ac_graph_pairs[recipe_name]['amrs']
+
+            # For each action node, find all AMR nodes that are aligned to it
+            for amr in amr_graphs:
+                aligned_nodes = find_aligned_amr_nodes_single_amr(action_graph, amr, ignore, False)
+
+                for action_node, amr_nodes in aligned_nodes.items():
+                    if len(amr_nodes) > 1:
+                        pen_amr = networkx2penman(amr)
+                        pen_amr.metadata['alignments'] = ', '.join(amr_nodes)
+                        pen_str = penman.encode(pen_amr)
+                        file.write(f'{pen_str}\n\n')
+
+
 def inspect_action2multiple_amr_node_labels(action_graph_dir: str, amr_graph_dir: str, ignore: bool) -> Dict[str, int]:
     """
     Extract the labels of all AMR nodes that are aligned to the same action node and count how often
@@ -44,7 +67,7 @@ def inspect_action2multiple_amr_node_labels(action_graph_dir: str, amr_graph_dir
     return multi_times_aligned_amr_nodes
 
 
-def get_amr2same_action_overview(action_graph_dir: str, amr_graph_dir: str, ignore: bool) -> None:
+def get_amr2same_action_overview_count(action_graph_dir: str, amr_graph_dir: str, ignore: bool) -> None:
     """
     Create an overview over the labels of nodes that are aligned to the same action node
     :param action_graph_dir:
@@ -58,6 +81,23 @@ def get_amr2same_action_overview(action_graph_dir: str, amr_graph_dir: str, igno
     with open('./amr_nodes_aligned_to_same_action_node.csv', 'w', encoding='utf-8') as out:
         for (node_label, count) in amr_nodes_sorted_by_freq:
             out.write(f'{node_label}\t{count}\n')
+
+
+def get_amr2same_action_overview_per_action(action_graph_dir: str, amr_graph_dir: str, ignore: bool):
+
+    amr_ac_graph_pairs = get_graph_pairs(action_graph_dir, amr_graph_dir)
+
+    with open('amr2same_action_patterns.txt', 'w', encoding='utf-8') as file:
+
+        for recipe_name in amr_ac_graph_pairs.keys():
+            action_graph = amr_ac_graph_pairs[recipe_name]['action']
+            amr_graphs = amr_ac_graph_pairs[recipe_name]['amrs']
+
+            aligned_nodes = find_aligned_amr_nodes(action_graph, amr_graphs, ignore, True)
+
+            for action_node, aligned_amr_nodes in aligned_nodes.items():
+                if len(aligned_amr_nodes) > 1:
+                    file.write(f'{recipe_name}\t{action_node}\t{aligned_amr_nodes}\n')
 
 
 def find_aligned_amr_nodes(action_graph: nx.Graph, amr_graphs: List[nx.Graph], ignore=False, labels=True) -> Dict:
@@ -145,6 +185,7 @@ def check_connectivity(action_graph_dir: str, amr_graph_dir: str, ignore: bool):
         amr_graphs = amr_ac_graph_pairs[recipe_name]['amrs']
 
         for amr in amr_graphs:
+
             aligned_nodes = find_aligned_amr_nodes_single_amr(action_graph, amr, ignore, False)
 
             for action_node, amr_nodes in aligned_nodes.items():
@@ -168,13 +209,22 @@ def check_connectivity(action_graph_dir: str, amr_graph_dir: str, ignore: bool):
     print(f'Connected: {connected_groups}')
     print(f'Unconnected: {unconnected_groups}')
 
-    for amr in amrs_with_unconnected_groups:
-        print(amr)
-
 
 if __name__=="__main__":
-    check_connectivity('../../Corpora/Mapped_Ara/new_ara_data_new_action_graphs',
-                                            './aligned_recipe_amrs_ibm', True)
+    """
+    check_connectivity('../../Corpora/Ara_Punctuation/new_ara_data_new_action_graphs',
+                       './recipe_amrs_sentences',
+                       True)
+    
+
+    inspect_action2multiple_amr_node_labels('../../Corpora/Ara_Punctuation/new_ara_data_new_action_graphs',
+                                            './recipe_amrs_sentences',
+                                            True)
+    """
+
+    get_multi_times_aligned_amr_nodes('../../Corpora/Ara_Punctuation/new_ara_data_new_action_graphs',
+                                      './recipe_amrs_sentences',
+                                      True)
 
     # ignore=False
     #Connected: 1579
