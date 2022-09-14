@@ -1,9 +1,61 @@
-from read_graphs import read_action_graph
 import networkx as nx
 from networkx import DiGraph
 import os
 from typing import Dict
 from collections import Counter
+
+
+# TODO: make working with the new read_action_graph method
+def read_action_graph(recipe_action_file: str) -> Dict[str, Dict]:
+    """
+    Read in a file with the action graph of a recipe
+    :param recipe_action_file: the .conllu file for the recipe
+    :return: dictionary with the nodes and edges of the action graph
+            'nodes': a dictionary with an item for each node in the graph
+                        key: the id of the first token of this node (i.e. with B-A label)
+                            'label': all tokens belonging to this node
+                            'ids': the token ids of all tokens
+            'edges: a list of tuples, (source_node_id, target_node_id) for all edges
+    """
+    node_dict = dict()
+    edge_list = []
+
+    with open(recipe_action_file, "r", encoding="utf-8") as grf:
+        complete_token = ""
+        complete_ids = []
+        prev_id = 0
+        for line in grf:
+            columns = line.strip().split()
+            id = columns[0]
+            token = columns[1]
+            label = columns[4]
+            edge = columns[6]
+            edge_label = columns[7]
+
+            if label == "O":
+                if complete_token != "":
+                    node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+                    complete_token = ""
+                    complete_ids = []
+
+            elif label[0] == "B":
+                if complete_token != "":
+                    node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+
+                complete_token = token
+                complete_ids = [id]
+                prev_id = id
+                if edge != "0":
+                    edge_list.append((id, edge))
+
+            elif label[0] == "I":
+                complete_token += " " + token
+                complete_ids.append(id)
+
+        if complete_token != "":
+            node_dict[prev_id] = {"label": complete_token, "ids": complete_ids}
+
+    return {'nodes': node_dict, 'edges': edge_list}
 
 
 def conllu2graph(recipe_file: str) -> DiGraph:
@@ -179,5 +231,5 @@ def count_lost_nodes(corpus_dir):
 
 if __name__=="__main__":
 
-    count_lost_nodes('../../Corpora/Mapped_Ara/new_ara_data_new_action_graphs')
+    count_lost_nodes('../../Corpora/Ara_Punctuation/new_ara_data_new_action_graphs')
 
