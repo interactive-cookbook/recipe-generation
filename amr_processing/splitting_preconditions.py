@@ -7,7 +7,7 @@ from .helpers import remove_role_numbering_edge
 
 
 # TODO: rename function
-def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: list):
+def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: list) -> List[Dict]:
     """
     Cluster all AMR nodes that are aligned to an action node and should not get split because either
     - they belong to the same action node or
@@ -17,7 +17,10 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
     one considered for splitting and alignments
     :param sentence_amr:
     :param all_action_nodes:
-    :return:
+    :return: list of dictionaries; one dictionary per action node cluster covered by the input AMR
+             one key-value pair per action node of the cluster
+             key: ID of the action node
+             value: list of main corresponding AMR node(s)
     """
 
     alignments = defaultdict(list)
@@ -49,7 +52,6 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
             affected_action_nodes.add(action1)
             affected_action_nodes.add(action2)
 
-    # TODO continue with function
     action_node_clusters = cluster_node_pairs(pairs_to_keep_together)
 
     # add all nodes that are not part of a cluster yet as a single-node cluster
@@ -103,7 +105,7 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
 
             else:
                 # consider predicate nodes first
-                predicate_reg = r'[a-zA-Z]*-[0-9]*$'
+                predicate_reg = r'[a-zA-Z]+-[0-9]+$'
                 predicate_candidates = []
                 for cand in candidates:
                     label = nx.get_node_attributes(amr_graph, 'label')[cand]
@@ -116,6 +118,8 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
                 # else keep all of them to find the appropriate ones for the paths later on
                 else:
                     main_amr_nodes[action_node] = candidates
+                    #print(amr_graph.name)
+                    #print(candidates)
 
     return main_amr_nodes
 

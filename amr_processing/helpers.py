@@ -55,3 +55,60 @@ def remove_role_numbering_edge(edge_label: str) -> str:
             cleaned_label = 'ARG'
 
     return cleaned_label
+
+
+def find_direction_changes(path: List[str]) -> List:
+    """
+    Find the indices of all edge pairs on the input path where the direction of the edges changes
+    e.g if path is ["op", "op-of", "ARG-of"] then the only direction change is at (0,1)
+    Special case: "consist" and "part" edges are treated as edges in the opposite direction
+    :param path: list of edge labels such that
+                 all edges where the label ends with '-of' go in the same direction
+                 and all edges without '-of' suffix go in the same (opposite) direction
+    :return: list of pairs for the direction change positions
+    """
+    changes = []
+    special_labels = ['consist', 'part', 'consist-of', 'part-of']
+
+    if path[0] in special_labels:
+        prev_dir = 'forward' if path[0].endswith('-of') else 'backward'
+    else:
+        prev_dir = 'backward' if path[0].endswith('-of') else 'forward'
+
+    for i, edge in enumerate(path):
+        if edge in special_labels:
+            current_dir = 'forward' if edge.endswith('-of') else 'backward'
+        else:
+            current_dir = 'backward' if edge.endswith('-of') else 'forward'
+        if current_dir != prev_dir:
+            changes.append([i-1, i])
+        prev_dir = current_dir
+
+    return changes
+
+
+def count_direction_changes(path: List[str]) -> int:
+    """
+    Count how often the edges on the input path change their direction
+    Special case: "consist" and "part" edges are treated as edges in the opposite direction
+    :param path: list of edge labels such that
+                 all edges where the label ends with '-of' go in the same direction
+                 and all edges without '-of' suffix go in the same (opposite) direction
+    :return:
+    """
+    changing_positions = find_direction_changes(path)
+    return len(changing_positions)
+
+
+def includes_node_from_list(subgraph: nx.graph, node_list: list):
+    """
+
+    :param subgraph:
+    :param node_list:
+    :return:
+    """
+    graph_nodes = nx.nodes(subgraph)
+    for ac_node in node_list:
+        if ac_node in graph_nodes:
+            return True
+    return False

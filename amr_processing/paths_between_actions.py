@@ -32,7 +32,7 @@ def find_shortest_path(graph: nx.Graph, node1, node2):
     return shortest_paths
 
 
-def get_all_paths(graph: nx.Graph, node1, node2):
+def get_all_paths(graph: nx.Graph, node1, node2) -> List:
     """
     Finds all paths between two nodes in a graph
     :param graph: networkx graph
@@ -51,18 +51,6 @@ def get_all_paths(graph: nx.Graph, node1, node2):
     paths.sort(key=len)
 
     return paths
-
-
-def pair_all_nodes(node_list: List) -> List[Tuple]:
-    """
-    Create all pairings of the nodes in node_list ignoring ordering,
-    e.g. if node_list = [1,2,3] then node_pairs = [(1,2), (1,3), (2,3)]
-    :param node_list: list of nodes
-    :return: list of node pairs
-    """
-    node_pairs = list(combinations(node_list, 1))
-
-    return node_pairs
 
 
 def pair_clustered_nodes(node_clusters: List[List]) -> List[Tuple]:
@@ -100,7 +88,7 @@ def pair_closest_clustered_nodes(graph: nx.Graph, node_clusters: List[List]):
 
     node_list = []
     for cluster in node_clusters:
-        node_list.extend(node_list)
+        node_list.extend(cluster)
 
     for cluster in node_clusters:
         for node in cluster:
