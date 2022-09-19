@@ -1,8 +1,10 @@
 from graph_processing.graph_pairs import get_graph_pairs
-from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_amr_dir
+from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir
 from amr_processing.helpers import count_aligned_actions
 from amr_processing.splitting_preconditions import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
+from amr_processing.penman_networkx_conversions import networkx2penman
+import penman
 from collections import defaultdict
 
 
@@ -53,23 +55,56 @@ def split_recipe_amrs():
             amrs_to_split_after_clustering += 1
             clusters_per_amr[len(action_clusters)] += 1
 
+            #if amr_graph.name == 'baked_ziti_0_instr5':
+                #print("here")
+
             # split the AMR
             separated_amrs = split_amr(amr_graph, action_clusters)
+            print(len(separated_amrs))
 
-            # create the pairings of the amr nodes to split
+            # post processsing: i.e. new sentence ID and alignment attribute and add a main action node
+            for new_id, sep_amr in enumerate(separated_amrs):
+                # update graph name / instruction ID
+                new_name = sep_amr.graph['id'] + f'_{new_id}'
+                sep_amr.graph['id'] = new_name
+                sep_amr.name = new_name
+                sep_amr.graph['name'] = new_name
 
-            # split
+                # update action node aligned amr nodes
+                new_alignments = []
+                for orig_al in amr_graph.graph['alignments'].split(','):
+                    if orig_al in sep_amr.nodes:
+                        new_alignments.append(orig_al)
+                sep_amr.graph['alignments'] = ','.join(new_alignments)
 
-            # post processsing: i.e. variable naming, new sentence ID etc
+                # update root node
+                for ac_cluster in action_clusters:
+                    pass
 
-            # need to sort them
+                graph_pairs[recipe]['split_amrs'].append(sep_amr)
+
             # save AMR to file
+            save_split_amrs(recipe, graph_pairs[recipe]['split_amrs'])
 
     print(amrs_to_split_before_clustering)
     print(actions_per_amr)
     print(amrs_to_split_after_clustering)
     clusters_per_amr[1] += actions_per_amr[1]
     print(clusters_per_amr)
+
+
+def save_split_amrs(recipe_name, amr_list):
+    dish_name = recipe_name.split('_')[:-1]
+    dish_name = '_'.join(dish_name)
+    dish_dir = str(get_new_dish_dir(dish_name))
+
+    with open(f'{dish_dir}/{recipe_name}_instructions_amr.txt', 'w', encoding='utf-8') as new_file:
+        for instr_amr in amr_list:
+            penman_amr = networkx2penman(instr_amr)
+            amr_string = penman.encode(penman_amr)
+            new_file.write(f'{amr_string}\n\n')
+
+    pass
 
 
 if __name__=='__main__':
