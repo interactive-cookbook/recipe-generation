@@ -2,7 +2,7 @@ import networkx as nx
 from collections import defaultdict
 from typing import Dict, List
 import re
-from .paths_between_actions import pair_clustered_nodes, find_shortest_path, get_path_triples
+from .paths_between_actions import pair_clustered_nodes, find_shortest_path, get_triples_path_list
 from .helpers import remove_role_numbering_edge
 
 
@@ -41,6 +41,9 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
     # list of action node pairs that should be kept together
     pairs_to_keep_together = []
     affected_action_nodes = set()
+
+    #if sentence_amr.name == 'baked_ziti_0_instr5':
+        #print("here")
 
     for node_pair in amr_node_pairs:
         # check the split conditions to identify action node pairs that should not get separated
@@ -90,6 +93,7 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
         if len(aligned_amr_nodes) == 1:
             main_amr_nodes[action_node] = [aligned_amr_nodes[0]]
         else:
+            # TODO: simplify: you and imperative can also be removed with the regular expression
             candidates = []
             for node in aligned_amr_nodes:
                 label = nx.get_node_attributes(amr_graph, 'label')[node]
@@ -149,7 +153,7 @@ def check_split_condition(amr_graph: nx.Graph, node1, node2) -> bool:
     :return:
     """
     connecting_paths = find_shortest_path(amr_graph, node1, node2)
-    labelled_path_triples = get_path_triples(amr_graph, connecting_paths)
+    labelled_path_triples = get_triples_path_list(amr_graph, connecting_paths)
     node1_lab = nx.get_node_attributes(amr_graph, 'label')[node1]
     node2_lab = nx.get_node_attributes(amr_graph, 'label')[node2]
 
@@ -225,7 +229,12 @@ def conditions_fixing_tagger(labelled_path) -> bool:
     :return:
     """
     if len(labelled_path) > 1:
-        return False
+        e1 = labelled_path[0][1]
+        e2 = labelled_path[1][1]
+        if [e1, e2] == ['direction', 'op1'] or [e1, e2] == ['op1-of', 'direction-of']:
+            return True
+        else:
+            return False
     node1_lab = labelled_path[0][0]
     edge_label = labelled_path[0][1]
     node2_lab = labelled_path[0][2]

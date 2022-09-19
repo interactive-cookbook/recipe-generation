@@ -157,7 +157,7 @@ def get_labelled_path(amr_graph: nx.Graph, unlabelled_paths) -> List[List]:
     return labelled_paths
 
 
-def get_path_triples(amr_graph: nx.Graph, unlabelled_paths) -> List[List]:
+def get_triples_path_list(amr_graph: nx.Graph, unlabelled_paths) -> List[List]:
     """
         Converts paths where edges are represented by a list of node pairs into paths where edges are represented by
         a list of triples of the label of node1, edge label and label of node2
@@ -170,26 +170,42 @@ def get_path_triples(amr_graph: nx.Graph, unlabelled_paths) -> List[List]:
     labelled_paths = []
 
     for path in unlabelled_paths:
-        labelled_triples = []
 
-        for edge in path:
-            node1 = edge[0]
-            node2 = edge[1]
-            node1_lab = nx.get_node_attributes(amr_graph, 'label')[node1]
-            node2_lab = nx.get_node_attributes(amr_graph, 'label')[node2]
-
-            attributes = amr_graph.get_edge_data(node1, node2)  # get the label for the edge
-
-            if attributes:
-                edge_label = attributes['label']
-            # if there does not exist the edge from the path in the directed AMR, check the opposite edge direction
-            # and add '-of' to the label
-            else:
-                attributes = amr_graph.get_edge_data(node2, node1)
-                edge_label = attributes['label'] + '-of'
-
-            labelled_triples.append((node1_lab, edge_label, node2_lab))
-
+        labelled_triples = get_triples_single_path(amr_graph, path)
         labelled_paths.append(labelled_triples)
 
     return labelled_paths
+
+
+def get_triples_single_path(amr_graph: nx.Graph, unlabelled_path: List) -> List:
+    """
+        Converts a path where edges are represented by a list of node pairs into a path where edges are represented by
+        a list of triples of the label of node1, edge label and label of node2
+        e.g. original path: [('a', 's'), ('s', 'y')]
+             created path: [('and', 'op1', 'stir-01), ('stir-01, 'ARG1', 'you')]
+        :param amr_graph: network x graph of the amr
+        :param unlabelled_path: a path, i.e. list of node pairs
+        :return: corresponding labelled path, i.e. list of node and edge labels
+        """
+
+    labelled_triples = []
+
+    for edge in unlabelled_path:
+        node1 = edge[0]
+        node2 = edge[1]
+        node1_lab = nx.get_node_attributes(amr_graph, 'label')[node1]
+        node2_lab = nx.get_node_attributes(amr_graph, 'label')[node2]
+
+        attributes = amr_graph.get_edge_data(node1, node2)  # get the label for the edge
+
+        if attributes:
+            edge_label = attributes['label']
+        # if there does not exist the edge from the path in the directed AMR, check the opposite edge direction
+        # and add '-of' to the label
+        else:
+            attributes = amr_graph.get_edge_data(node2, node1)
+            edge_label = attributes['label'] + '-of'
+
+        labelled_triples.append((node1_lab, edge_label, node2_lab))
+
+    return labelled_triples

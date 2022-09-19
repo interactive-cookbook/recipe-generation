@@ -33,6 +33,9 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
         if meta_key == 'snt':
             nx_graph.graph['graph']['label'] = meta_value       # needed for including the sentence in the dot files for pictures
 
+    # add information about root node
+    nx_graph.graph['root'] = penman_graph.top
+
     # add all nodes and edges of the original AMR,
     # Keep track of the epidata to be able to reconstruct token-node alignments
     # Keep track of the type of node that gets added to correctly reconstruct a penman AMR
@@ -105,6 +108,9 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
     for graph_attr, attr_val in nx_graph.graph.items():
         if graph_attr != 'graph':       # skip the subdict that is only for the visualization
             penman_graph.metadata[graph_attr] = attr_val
+
+    # set root node
+    penman_graph.top = nx_graph.graph['root']
 
     return penman_graph
 

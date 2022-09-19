@@ -1,7 +1,7 @@
 import networkx as nx
 from typing import List, Dict
-from paths_between_actions import pair_clustered_nodes, get_all_paths, get_path_triples
-from helpers import find_direction_changes, includes_node_from_list
+from .paths_between_actions import pair_clustered_nodes, get_all_paths, get_triples_single_path
+from .helpers import find_direction_changes, includes_node_from_list
 
 
 def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict]) -> List[nx.Graph]:
@@ -46,43 +46,50 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict]) -> List[nx.Gra
         else:
             non_action_sugraphs.append(comp_gr)
 
-    shared_subgraphs = create_shared_subgraphs(non_action_sugraphs, removed_nodes)
+    shared_subgraphs = add_removed_nodes(non_action_sugraphs, removed_nodes, amr_graph)
+    action_subgraphs_w_meeting_nodes = add_removed_nodes(action_subgraphs, removed_nodes, amr_graph)
+
+    final_split_amrs = []
+
+    for ac_sg in action_subgraphs_w_meeting_nodes:
+        final_action_amr = ac_sg.copy()
+        ac_sg_nodes = set(ac_sg.nodes)
+        for sh_sg in shared_subgraphs:
+            sh_sg_nodes = set(sh_sg.nodes)
+            if ac_sg_nodes.intersection(sh_sg_nodes):
+                final_action_amr = nx.compose(final_action_amr, sh_sg)
+
+        final_split_amrs.append(final_action_amr)
+
+    return final_split_amrs
 
 
-    # add subgraphs back to the components, adapt variable naming, sentence ID / graph name etc.
-
-    pass
-
-
-def create_shared_subgraphs(non_action_subgraphs: List[nx.Graph], removed_nodes: dict):
+def add_removed_nodes(sub_graphs: List[nx.Graph], removed_nodes: dict, original_amr: nx.Graph):
     """
 
-    :param non_action_subgraphs:
+    :param sub_graphs:
     :param removed_nodes:
+    :param original_amr:
     :return:
     """
-    # TODO write function to combine removed nodes and left-over sugraphs
-    shared_subgraphs = []
+    new_subgraphs = []
+    removed_nodes_list = list(removed_nodes.keys())
 
-    for node in removed_nodes.keys():
-        for edge in removed_nodes[node]:
-            continue
+    for sub_gr in sub_graphs:
+        new_subg = sub_gr.copy()
+        for rm_node in removed_nodes_list:
+            for rm_edge in removed_nodes[rm_node]:
+                if rm_edge[0] in sub_gr.nodes or rm_edge[1] in sub_gr.nodes:
+                    # if the removed node not in the graph yet then add it with its original attributes
+                    if rm_node not in new_subg.nodes:
+                        rm_node_attributes = original_amr.nodes(data=True)[rm_node]
+                        new_subg.add_nodes_from([(rm_node, rm_node_attributes)])
+                    # add the original edge(s) back
+                    new_subg.add_edges_from([rm_edge])
 
+        new_subgraphs.append(new_subg)
 
-
-def add_shared_subgraphs(action_subgraphs: List[nx.Graph],
-                    non_action_subgraphs: List[nx.Graph],
-                    removed_nodes: dict) -> List[nx.Graph]:
-    """
-
-    :param action_subgraphs:
-    :param non_action_subgraphs:
-    :param removed_nodes:
-    :return:
-    """
-    # TODO: write function to add shared arguments / subgraphs back to the separated action subgraphs
-
-    pass
+    return new_subgraphs
 
 
 def remove_meeting_nodes(amr_graph: nx.Graph, node_pairs: list, action_amr_nodes: list):
@@ -126,9 +133,10 @@ def remove_meeting_nodes(amr_graph: nx.Graph, node_pairs: list, action_amr_nodes
 
                 if meeting_node in action_amr_nodes:
                     print('Warning! Main action node gets removed!')
+                    return None, None, None
 
-                incoming_edges = manipulated_amr.in_edges(nbunch=meeting_node, data=True)
-                outgoing_edges = manipulated_amr.out_edges(nbunch=meeting_node, data=True)
+                incoming_edges = list(manipulated_amr.in_edges(nbunch=meeting_node, data=True))
+                outgoing_edges = list(manipulated_amr.out_edges(nbunch=meeting_node, data=True))
                 removed_nodes[meeting_node] = incoming_edges + outgoing_edges
 
                 manipulated_amr.remove_node(meeting_node)
@@ -155,7 +163,7 @@ def find_meeting_node(amr_graph, path):
     :return:
     """
 
-    path_triples = get_path_triples(amr_graph, path)
+    path_triples = get_triples_single_path(amr_graph, path)
 
     path_edges = [trip[1] for trip in path_triples]
     direction_changes = find_direction_changes(path_edges)
