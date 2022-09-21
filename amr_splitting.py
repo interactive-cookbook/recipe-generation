@@ -3,7 +3,7 @@ import networkx as nx
 from graph_processing.graph_pairs import get_graph_pairs
 from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir
 from amr_processing.helpers import count_aligned_actions, find_highest_node
-from amr_processing.splitting_preconditions import cluster_action_aligned_amr_nodes
+from amr_processing.splitting_preconditions2 import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
 from amr_processing.splitting_algorithm2 import split_amr2
 from amr_processing.penman_networkx_conversions import networkx2penman
@@ -31,9 +31,14 @@ def split_recipe_amrs(version=1):
         action_graph = graph_pairs[recipe]['action']
         sentence_amrs = graph_pairs[recipe]['amrs']
         action_graph_nodes = list(action_graph.nodes)
+        action_graph_node_data = list(action_graph.nodes(data=True))
 
         # for each amr graph
         for amr_graph in sentence_amrs:
+
+            #if amr_graph.name != 'baked_ziti_10_instr14':
+                #continue
+
             # check number of action nodes covered by the AMR
             assert action_graph_nodes != []
             num_aligned_actions = count_aligned_actions(amr_graph, action_graph_nodes)
@@ -49,7 +54,7 @@ def split_recipe_amrs(version=1):
 
             # go on with splitting process / decision if num_aligned_actions > 1
             # decide which action node pairs to keep together, which ones to split
-            action_clusters = cluster_action_aligned_amr_nodes(amr_graph, action_graph_nodes)
+            action_clusters = cluster_action_aligned_amr_nodes(amr_graph, action_graph_nodes, action_graph_node_data)
 
             # if clustering of amr nodes and action nodes leaves only one cluster then it will not get split
             if len(action_clusters) == 1:
