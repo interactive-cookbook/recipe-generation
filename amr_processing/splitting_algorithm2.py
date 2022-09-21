@@ -74,11 +74,11 @@ def remove_meeting_edges(amr_graph: nx.Graph, node_pairs: list):
 
         for con_path in connecting_paths:
 
-            meeting_edge = find_meeting_edge(manipulated_amr, con_path)
+            return_type, meeting_edge = find_meeting_edge(manipulated_amr, con_path)
 
             # if there is a meeting node found than save all information that is relevant
             # for this node (i.e. data and edges) and remove the node from the manipulated AMR
-            if meeting_edge:
+            if meeting_edge and return_type == 'edge':
 
                 edge_attributes = manipulated_amr.edges(data=True)
                 meeting_edge_data = None
@@ -93,6 +93,12 @@ def remove_meeting_edges(amr_graph: nx.Graph, node_pairs: list):
                 undirected_manipulated_amr.remove_edge(meeting_edge[0], meeting_edge[1])
 
                 # break the loop in order to recompute the paths again for the new resulting graph
+                graph_changed = True
+                break
+
+            elif meeting_edge and return_type == 'node':
+                manipulated_amr.remove_node(meeting_edge)
+                undirected_manipulated_amr.remove_node(meeting_edge)
                 graph_changed = True
                 break
 
@@ -118,20 +124,35 @@ def find_meeting_edge(amr_graph, path):
     path_edges = [trip[1] for trip in path_triples]
     direction_changes = find_direction_changes(path_edges)
 
+    if len(direction_changes) == 0:
+        path_nodes = [trip[0] for trip in path_triples]
+        path_nodes.append(path_triples[-1][-1])
+        if 'before' in path_nodes:
+            node_ind = path_nodes.index('before')
+        elif 'after' in path_nodes:
+            node_ind = path_nodes.index('after')
+        else:
+            return None, None
+
+        relevant_node = path[node_ind][0]
+        return 'node', relevant_node
+
+    elif len(direction_changes) == 1:
+        relevant_position = direction_changes[0]
+        relevant_edge1 = path[relevant_position[0]]     # edge to meeting node
+        relevant_edge2 = path[relevant_position[1]]     # edge from meeting node
+
+        assert relevant_edge1[1] == relevant_edge2[0]   # meeting node
+
+        # in order to remove the edge, the direction needs to match the original direction
+        # i.e. direction on the connection path is different from original direction then swap edge
+        relevant_edge2_label = path_edges[relevant_position[1]]
+        if relevant_edge2_label.endswith('-of'):
+            relevant_edge2 = tuple(reversed(relevant_edge2))
+
+        return 'edge', relevant_edge2
+
     # TODO: decide how to deal with these cases
-    if len(direction_changes) != 1:
-        return None
+    elif len(direction_changes) > 1:
+        return None, None
 
-    relevant_position = direction_changes[0]
-    relevant_edge1 = path[relevant_position[0]]     # edge to meeting node
-    relevant_edge2 = path[relevant_position[1]]     # edge from meeting node
-
-    assert relevant_edge1[1] == relevant_edge2[0]   # meeting node
-
-    # in order to remove the edge, the direction needs to match the original direction
-    # i.e. direction on the connection path is different from original direction then swap edge
-    relevant_edge2_label = path_edges[relevant_position[1]]
-    if relevant_edge2_label.endswith('-of'):
-        relevant_edge2 = tuple(reversed(relevant_edge2))
-
-    return relevant_edge2

@@ -1,7 +1,7 @@
 import networkx as nx
 from typing import List, Dict
 from .paths_between_actions import pair_clustered_nodes, get_all_paths, get_triples_single_path
-from .helpers import find_direction_changes, includes_node_from_list
+from .helpers import find_direction_changes, includes_node_from_list, cluster_dict2list
 
 
 def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict]) -> List[nx.Graph]:
@@ -11,15 +11,7 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict]) -> List[nx.Gra
     :param action_clusters:
     :return:
     """
-    main_action_amr_nodes = []
-    amr_clusters = []
-    for cluster in action_clusters:
-        corresponding_amr_nodes = cluster.values()
-        flattened_amr_nodes = []
-        for amr_list in corresponding_amr_nodes:
-            flattened_amr_nodes.extend(amr_list)
-        amr_clusters.append(flattened_amr_nodes)
-        main_action_amr_nodes.extend(flattened_amr_nodes)
+    amr_clusters, main_action_amr_nodes = cluster_dict2list(action_clusters)
 
     # pair the action nodes from different clusters
     node_pairs = pair_clustered_nodes(amr_clusters)
@@ -168,14 +160,29 @@ def find_meeting_node(amr_graph, path):
     path_edges = [trip[1] for trip in path_triples]
     direction_changes = find_direction_changes(path_edges)
 
+    if len(direction_changes) == 0:
+        path_nodes = [trip[0] for trip in path_triples]
+        path_nodes.append(path_triples[-1][-1])
+        if 'before' in path_nodes:
+            node_ind = path_nodes.index('before')
+        elif 'after' in path_nodes:
+            node_ind = path_nodes.index('after')
+        else:
+            return None
+
+        relevant_node = path[node_ind][0]
+        return relevant_node
+
+    elif len(direction_changes) == 1:
+        relevant_position = direction_changes[0]
+        relevant_edge1 = path[relevant_position[0]]
+        relevant_edge2 = path[relevant_position[1]]
+
+        assert relevant_edge1[1] == relevant_edge2[0]
+
+        return relevant_edge1[1]
+
     # TODO: decide how to deal with these cases
-    if len(direction_changes) != 1:
+    else:
         return None
 
-    relevant_position = direction_changes[0]
-    relevant_edge1 = path[relevant_position[0]]
-    relevant_edge2 = path[relevant_position[1]]
-
-    assert relevant_edge1[1] == relevant_edge2[0]
-
-    return relevant_edge1[1]
