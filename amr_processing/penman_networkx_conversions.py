@@ -59,10 +59,15 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
             aligned_token = alignments[(a.source, a.role, a.target)].indices[0]
         except KeyError:
             aligned_token = 0
-        nx_graph.add_nodes_from([(a.target, {'label': a.target, 'type': 'attribute', 'alignment': str(aligned_token)})])
-        edge_epi_data = ep_data[(a.source, a.role, a.target)]  # add epi data only for edge to avoid issues when converting back
+        epi_data = ep_data[(a.source, a.role, a.target)]
         role_label = a.role[1:] if a.role[0] == ':' else a.role
-        nx_graph.add_edges_from([(a.source, a.target, {'label': role_label, 'type': 'attribute_edge', 'epi': edge_epi_data})])
+
+        corresponding_node = a.source
+        corr_node_attr = nx_graph.nodes(data=True)[corresponding_node]
+        #corr_node_attr['label'] += f' |{role_label} {a.target}|'
+        corr_node_attr['attr'] = {'source': a.source, 'label': role_label, 'target': a.target,
+                                  'epi': epi_data}
+        nx_graph.add_nodes_from([(corresponding_node, corr_node_attr)])
 
     return nx_graph
 
@@ -84,12 +89,23 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
         triple_type = attr_dict['type']
 
         if triple_type == 'instance':
+
+            # if node has attributes add them also back into the graph
+            try:
+                corr_attribute_data = attr_dict['attr']
+                attr_role = corr_attribute_data['label']
+                attr_role = attr_role if attr_role[0] == ':' else ':' + attr_role
+                attr_triple = (corr_attribute_data['source'], attr_role, corr_attribute_data['target'])
+                triples.append(attr_triple)
+                ep_data[attr_triple] = corr_attribute_data['epi']
+
+                # remove the attribute from the label
+                #label = label.split(' ')[0]
+            except KeyError:
+                pass
             triples.append((node, ':instance', label))
             node_epi_data = attr_dict['epi']
             ep_data[(node, ':instance', label)] = node_epi_data
-        # attributes are added as edges, otherwise they occur twice
-        elif triple_type == 'attribute':
-            continue
 
     # add the triples for all edges
     for source, target, attr_dict in nx_graph.edges.data():
