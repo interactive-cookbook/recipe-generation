@@ -25,29 +25,27 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
     """
 
     alignments = defaultdict(list)
-    # TODO: does not work as hoped -> change
-    """
-    tag_I2B = dict()
-    for (action_node, node_data) in action_nodes_data:
-        ids = node_data['ids']
-        for t_id in ids:
-            tag_I2B[t_id] = action_node
-    """
+
+    # non-separating cases that can be judged from looking only at the root node
+    root_node_amr = sentence_amr.graph['root']
+    root_label = nx.get_node_attributes(sentence_amr, 'label')[root_node_amr]
+    if root_label == 'or':
+        return [{'one': 'dummy'}]      # dummy element, just needs to be of length 1 so no splitting will happen
+    for e in sentence_amr.out_edges(root_node_amr):
+        e_label = nx.get_edge_attributes(sentence_amr, 'label')[e]
+        if e_label == 'condition':
+            return [{'one': 'dummy'}]
 
     for amr_node in list(sentence_amr.nodes):
         token_id = nx.get_node_attributes(sentence_amr, 'alignment')[amr_node]
         if token_id in all_action_nodes:
             alignments[token_id].append(amr_node)
-        #if token_id in tag_I2B.keys():
-            #main_ac_node = tag_I2B[token_id]
-            #alignments[main_ac_node].append(amr_node)
 
     main_amr_node_per_action = get_main_amr_node_per_action(alignments, sentence_amr)
     amr2action_node = get_amr2action_dict(main_amr_node_per_action)
 
     # do all pairings and decide which action nodes actually constitute only one single action
     relevant_amr_nodes = list(main_amr_node_per_action.values())
-    # TODO: check whether considering all possible pairings leads to expected behavior
     amr_node_pairs = pair_clustered_nodes(relevant_amr_nodes)
 
     # list of action node pairs that should be kept together
