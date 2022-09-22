@@ -22,6 +22,7 @@ def split_recipe_amrs(version=1):
     amrs_to_split_after_clustering = 0
     actions_per_amr = defaultdict(int)
     clusters_per_amr = defaultdict(int)
+    total_number_amrs = 0
 
     # for recipe amr graph
     for recipe in graph_pairs.keys():
@@ -36,7 +37,7 @@ def split_recipe_amrs(version=1):
         # for each amr graph
         for amr_graph in sentence_amrs:
 
-            #if amr_graph.name != 'baked_ziti_10_instr14':
+            #if amr_graph.name != 'baked_ziti_1_instr3':
                 #continue
 
             # check number of action nodes covered by the AMR
@@ -90,7 +91,7 @@ def split_recipe_amrs(version=1):
                 for orig_al in amr_graph.graph['alignments'].split(', '):
                     if orig_al in sep_amr.nodes:
                         new_alignments.append(orig_al)
-                sep_amr.graph['alignments'] = ','.join(new_alignments)
+                sep_amr.graph['alignments'] = ', '.join(new_alignments)
 
                 # update root node
                 if sep_amr.graph['root'] not in sep_amr.nodes:
@@ -116,12 +117,14 @@ def split_recipe_amrs(version=1):
 
         # save AMR to file
         save_split_amrs(recipe, graph_pairs[recipe]['split_amrs'])
+        total_number_amrs += len(graph_pairs[recipe]['split_amrs'])
 
     print(amrs_to_split_before_clustering)
     print(actions_per_amr)
     print(amrs_to_split_after_clustering)
     clusters_per_amr[1] += actions_per_amr[1]
     print(clusters_per_amr)
+    print(total_number_amrs)
 
 
 def save_split_amrs(recipe_name, amr_list):
