@@ -6,6 +6,7 @@ from amr_processing.helpers import count_aligned_actions, find_highest_node
 from amr_processing.splitting_preconditions2 import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
 from amr_processing.splitting_algorithm2 import split_amr2
+from amr_processing.splitting_algorithm3 import split_amr3
 from amr_processing.penman_networkx_conversions import networkx2penman
 import penman
 from collections import defaultdict
@@ -72,9 +73,10 @@ def split_recipe_amrs(version=1):
             # split the AMR
             if version == 1:
                 separated_amrs = split_amr(amr_graph, action_clusters)
-            else:
+            elif version == 2:
                 separated_amrs = split_amr2(amr_graph, action_clusters)
-            #print(len(separated_amrs))
+            else:
+                separated_amrs = split_amr3(amr_graph, action_clusters)
 
             # post processsing: i.e. new sentence ID and alignment attribute and add a main action node
             for new_id, sep_amr in enumerate(separated_amrs):
