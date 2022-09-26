@@ -1,8 +1,7 @@
-import networkx as nx
-
 from graph_processing.graph_pairs import get_graph_pairs
 from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir
-from amr_processing.helpers import count_aligned_actions, find_highest_node
+from amr_processing.helpers import count_aligned_actions
+from amr_processing.post_processing_splitting import postprocess_split_amrs
 from amr_processing.splitting_preconditions2 import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
 from amr_processing.splitting_algorithm2 import split_amr2
@@ -12,7 +11,7 @@ import penman
 from collections import defaultdict
 
 
-def split_recipe_amrs(version=1):
+def split_recipe_amrs(version=3):
 
     # read amrs and action graphs
     ara_corpus = ARA_DIR
@@ -67,9 +66,6 @@ def split_recipe_amrs(version=1):
             amrs_to_split_after_clustering += 1
             clusters_per_amr[len(action_clusters)] += 1
 
-            #if amr_graph.name == 'waffles_0_instr5':
-                #print("here")
-
             # split the AMR
             if version == 1:
                 separated_amrs = split_amr(amr_graph, action_clusters)
@@ -79,43 +75,8 @@ def split_recipe_amrs(version=1):
                 separated_amrs = split_amr3(amr_graph, action_clusters)
 
             # post processsing: i.e. new sentence ID and alignment attribute and add a main action node
-            for new_id, sep_amr in enumerate(separated_amrs):
-                # update graph name / instruction ID
-                new_name = sep_amr.graph['id'] + f'_{new_id}'
-                #if new_name == 'baked_ziti_0_instr9_1':
-                    #print("here")
-                sep_amr.graph['id'] = new_name
-                sep_amr.name = new_name
-                sep_amr.graph['name'] = new_name
-
-                # update action node aligned amr nodes
-                new_alignments = []
-                for orig_al in amr_graph.graph['alignments'].split(', '):
-                    if orig_al in sep_amr.nodes:
-                        new_alignments.append(orig_al)
-                sep_amr.graph['alignments'] = ', '.join(new_alignments)
-
-                # update root node
-                if sep_amr.graph['root'] not in sep_amr.nodes:
-                    for ac_cluster in action_clusters:
-                        action_nodes = []
-                        for ac_node, amr_nodes in ac_cluster.items():
-                            for amr_n in amr_nodes:
-                                if amr_n in sep_amr.nodes:
-                                    action_nodes.append(ac_node)
-                        action_nodes.sort()
-
-                        # if node cluster is for other separated amr continue
-                        if not action_nodes:
-                            continue
-
-                        # find the top node
-                        highest_action_node = find_highest_node(action_nodes, action_graph)
-                        main_amr_nodes = ac_cluster[highest_action_node]
-                        sep_amr.graph['root'] = main_amr_nodes[0]
-                        break
-
-                graph_pairs[recipe]['split_amrs'].append(sep_amr)
+            post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
+            graph_pairs[recipe]['split_amrs'] = post_processed_amrs
 
         # save AMR to file
         save_split_amrs(recipe, graph_pairs[recipe]['split_amrs'])
@@ -145,6 +106,5 @@ def save_split_amrs(recipe_name, amr_list):
             new_file.write(f'{amr_string}\n\n')
 
 
-
 if __name__=='__main__':
-    split_recipe_amrs(2)
+    split_recipe_amrs(3)
