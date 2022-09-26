@@ -39,7 +39,33 @@ def split_amr3(amr_graph: nx.DiGraph, action_clusters: List[Dict]) -> List[nx.Gr
 
         final_split_amrs.append(subgraph_current_cluster)
 
+    lost_nodes = check_for_lost_nodes(amr_graph, final_split_amrs)
+    if lost_nodes:
+        print(f'AMR graph {amr_graph.name} was not separable without losing nodes.')
+        final_split_amrs = [amr_graph]
+
     return final_split_amrs
+
+
+def check_for_lost_nodes(original_amr: nx.Graph, separated_amrs: List[nx.Graph]):
+
+    original_nodes = original_amr.nodes
+    covered_nodes = []
+    for sep_amr in separated_amrs:
+        covered_nodes.extend(sep_amr.nodes)
+
+    lost_nodes = set(original_nodes) - set(covered_nodes)
+    unexpected_lost_nodes = []
+    for node in lost_nodes:
+        node_label = nx.get_node_attributes(original_amr, 'label')[node]
+        if node_label != 'before' and node_label != 'after':
+            unexpected_lost_nodes.append(node)
+
+    if unexpected_lost_nodes:
+        return True
+    else:
+        return False
+
 
 
 def remove_meeting_edges(amr_graph: nx.Graph, node_pairs: list):
