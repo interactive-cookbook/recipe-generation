@@ -29,7 +29,7 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
     # non-separating cases that can be judged from looking only at the root node
     root_node_amr = sentence_amr.graph['root']
     root_label = nx.get_node_attributes(sentence_amr, 'label')[root_node_amr]
-    if root_label == 'or':
+    if root_label == 'or' or root_label == 'slash':
         return [{'one': 'dummy'}]      # dummy element, just needs to be of length 1 so no splitting will happen
     for e in sentence_amr.out_edges(root_node_amr):
         e_label = nx.get_edge_attributes(sentence_amr, 'label')[e]
@@ -131,8 +131,6 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
                 # else keep all of them to find the appropriate ones for the paths later on
                 else:
                     main_amr_nodes[action_node] = candidates
-                    #print(amr_graph.name)
-                    #print(candidates)
 
     return main_amr_nodes
 
@@ -218,7 +216,7 @@ def check_split_condition(amr_graph: nx.Graph, node1, node2) -> bool:
 
             # keep disjunctions together
             if (edge1_cleaned == 'op' and edge2_cleaned == 'op-of') or (edge1_cleaned == 'op-of' and edge2_cleaned == 'op'):
-                if intermediate_node == 'or':
+                if intermediate_node == 'or' or intermediate_node == 'slash':
                     to_split = False
                     break
 
