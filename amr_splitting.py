@@ -75,8 +75,10 @@ def split_recipe_amrs(version=3):
                 separated_amrs = split_amr3(amr_graph, action_clusters)
 
             # post processsing: i.e. new sentence ID and alignment attribute and add a main action node
+            # TODO only some AMRs get saved but not all of them
+            # TODO check loops again
             post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
-            graph_pairs[recipe]['split_amrs'] = post_processed_amrs
+            graph_pairs[recipe]['split_amrs'].extend(post_processed_amrs)
 
         # save AMR to file
         save_split_amrs(recipe, graph_pairs[recipe]['split_amrs'])
