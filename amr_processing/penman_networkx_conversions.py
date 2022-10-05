@@ -64,9 +64,12 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
 
         corresponding_node = a.source
         corr_node_attr = nx_graph.nodes(data=True)[corresponding_node]
-        #corr_node_attr['label'] += f' |{role_label} {a.target}|'
-        corr_node_attr['attr'] = {'source': a.source, 'label': role_label, 'target': a.target,
-                                  'epi': epi_data}
+        try:
+            corr_node_attr['attr'].append({'source': a.source, 'label': role_label, 'target': a.target,
+                                           'epi': epi_data})
+        except KeyError:
+            corr_node_attr['attr'] = [{'source': a.source, 'label': role_label, 'target': a.target,
+                                       'epi': epi_data}]
         nx_graph.add_nodes_from([(corresponding_node, corr_node_attr)])
 
     return nx_graph
@@ -93,14 +96,13 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
             # if node has attributes add them also back into the graph
             try:
                 corr_attribute_data = attr_dict['attr']
-                attr_role = corr_attribute_data['label']
-                attr_role = attr_role if attr_role[0] == ':' else ':' + attr_role
-                attr_triple = (corr_attribute_data['source'], attr_role, corr_attribute_data['target'])
-                triples.append(attr_triple)
-                ep_data[attr_triple] = corr_attribute_data['epi']
+                for attribute in corr_attribute_data:
+                    attr_role = attribute['label']
+                    attr_role = attr_role if attr_role[0] == ':' else ':' + attr_role
+                    attr_triple = (attribute['source'], attr_role, attribute['target'])
+                    triples.append(attr_triple)
+                    ep_data[attr_triple] = attribute['epi']
 
-                # remove the attribute from the label
-                #label = label.split(' ')[0]
             except KeyError:
                 pass
             triples.append((node, ':instance', label))
