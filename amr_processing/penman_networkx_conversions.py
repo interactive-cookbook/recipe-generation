@@ -120,7 +120,12 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
     # create penman graph from the triples and add the epidata
     penman_graph = penman.graph.Graph(triples)
     for trip, ep in ep_data.items():
-        penman_graph.epidata[trip] = ep
+        new_ep_data = []
+        # new_ep_data = ep
+        for ep_d in ep:
+            if not isinstance(ep_d, penman.layout.LayoutMarker):
+                new_ep_data.append(ep_d)
+        penman_graph.epidata[trip] = new_ep_data
 
     # add metadata
     for graph_attr, attr_val in nx_graph.graph.items():
