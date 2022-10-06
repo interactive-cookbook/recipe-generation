@@ -1,5 +1,5 @@
 import networkx as nx
-from typing import List
+from typing import List, Dict, Tuple
 
 
 def count_aligned_actions(sentence_amr: nx.Graph, action_nodes: list) -> int:
@@ -57,7 +57,7 @@ def remove_role_numbering_edge(edge_label: str) -> str:
     return cleaned_label
 
 
-def find_direction_changes(path: List[str]) -> List:
+def find_direction_changes(path: List[str]) -> List[List]:
     """
     Find the indices of all edge pairs on the input path where the direction of the edges changes
     e.g if path is ["op", "op-of", "ARG-of"] then the only direction change is at (0,1)
@@ -100,15 +100,79 @@ def count_direction_changes(path: List[str]) -> int:
     return len(changing_positions)
 
 
-def includes_node_from_list(subgraph: nx.graph, node_list: list):
+def includes_node_from_list(subgraph: nx.graph, node_list: list) -> bool:
     """
-
-    :param subgraph:
-    :param node_list:
-    :return:
+    Checks whether the input (sub)graph includes at least one node from the input list
+    :param subgraph: networkX (sub) graph
+    :param node_list: list of nodes to compare graph nodes to
+    :return: True if at least one of the nodes in node_list is a node of subgraph
     """
     graph_nodes = nx.nodes(subgraph)
     for ac_node in node_list:
         if ac_node in graph_nodes:
             return True
     return False
+
+
+def includes_all_nodes_from_list(subgraph: nx.graph, node_list: list) -> bool:
+    """
+    Checks whether the input (sub)graph includes all nodes from the input list
+    :param subgraph: networkX (sub) graph
+    :param node_list: list of nodes to compare graph nodes to
+    :return: True if all nodes in node_list is a node of subgraph
+    """
+    graph_nodes = nx.nodes(subgraph)
+    for node in node_list:
+        if node not in graph_nodes:
+            return False
+    return True
+
+
+def find_highest_node(node_list, graph: nx.Graph):
+    """
+    Determine which of the nodes in node_list is the 'highest' node in the input
+    AMR graph,
+    e.g. if there is a path from node1 to node2 in the graph, then node1 is higher
+         if there is a path from node2 to node1, then node2 is higher
+    Comparisons start by treating the first element of node_list as the highest until a higher
+    one is found
+    -> if there is no path connecting two nodes nothing changes; but should in practice not happen
+    for the use cases of this function
+    :param node_list:
+    :param graph:
+    :return:
+    """
+    current_highest_node = node_list[0]
+    for node in node_list:
+        if node != current_highest_node:
+            if nx.all_simple_paths(graph, node, current_highest_node):
+                current_highest_node = node
+
+    return current_highest_node
+
+
+def cluster_dict2list(action_clusters: List[Dict]) -> Tuple[List[List], List]:
+    """
+    Extract only the main action aligned AMR nodes for all action clusters
+    :param action_clusters: list of dictionaries;
+             one dictionary per action node cluster covered by a specific AMR
+             one key-value pair per action node of the cluster
+             key: ID of the action node
+             value: list of main corresponding AMR node(s)
+    :return: (amr_node_clusters, main_action_amr_nodes)
+            amr_node_clusters: a list with one sublist per cluster; containing all AMR nodes of that cluster
+            main_action_amr_nodes: a flattened version of amr_node_clusters, i.e. list of all AMR nodes of the cluster
+    """
+    main_action_amr_nodes = []
+    amr_node_clusters = []
+
+    for cluster in action_clusters:
+        corresponding_amr_nodes = cluster.values()
+        flattened_amr_nodes = []
+        for amr_list in corresponding_amr_nodes:
+            flattened_amr_nodes.extend(amr_list)
+        amr_node_clusters.append(flattened_amr_nodes)
+        main_action_amr_nodes.extend(flattened_amr_nodes)
+
+    return amr_node_clusters, main_action_amr_nodes
+
