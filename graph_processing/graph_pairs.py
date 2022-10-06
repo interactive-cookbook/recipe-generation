@@ -1,8 +1,13 @@
 import networkx as nx
 import os
-from .read_graphs import read_aligned_amr_file, read_action_graph
-from typing import Dict, List, Tuple
-from amr_processing.penman_networkx_conversions import penman2networkx, networkx2penman
+from .read_graphs import read_aligned_amr_file
+from .recipe_graph import read_graph_from_conllu
+from typing import Dict
+from amr_processing.penman_networkx_conversions import penman2networkx
+
+"""
+Function to pair each action recipe graph with all aligned AMR graphs 
+"""
 
 
 def get_graph_pairs(action_graph_dir, amr_graph_dir) -> Dict:
@@ -12,7 +17,7 @@ def get_graph_pairs(action_graph_dir, amr_graph_dir) -> Dict:
     :param amr_graph_dir: parent directory with the files with the token-node aligned sentence-level amrs
     :return: dictionary with one subdict per recipe, each containing the action graph and the
             sentence-level AMRs for the recipe
-            {recipe1: {'action': action_graph, 'amrs': [amr_isntr1, amr_instr2, ...]}, recipe2: {}}
+            {recipe1: {'action': action_graph, 'amrs': [amr_instr1, amr_instr2, ...]}, recipe2: {}}
             The action graphs and the amr graphs are networkX.Graph objects
             Each AMR graph gets a new graph (i.e. metadata) attribute 'alignments' with the node variables
             of all nodes aligned to an action node, as a string, e.g. "z1, n, t"
@@ -25,7 +30,7 @@ def get_graph_pairs(action_graph_dir, amr_graph_dir) -> Dict:
     for dish in os.listdir(action_graph_dir):
         for recipe in os.listdir('/'.join([action_graph_dir, dish, 'recipes'])):
 
-            ac_graph = read_action_graph('/'.join([action_graph_dir, dish, 'recipes', recipe]))
+            ac_graph = read_graph_from_conllu('/'.join([action_graph_dir, dish, 'recipes', recipe]), False)
             action_nodes = list(ac_graph.nodes)
 
             recipe_name = recipe.split('.')[:-1]
