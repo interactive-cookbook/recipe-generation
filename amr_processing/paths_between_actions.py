@@ -1,6 +1,6 @@
 import networkx as nx
 from itertools import product, combinations
-from typing import List, Dict, Tuple
+from typing import List, Tuple
 
 
 def find_shortest_path(graph: nx.Graph, node1, node2):
@@ -14,7 +14,7 @@ def find_shortest_path(graph: nx.Graph, node1, node2):
                     e.g. path from node1 to node3 could be: [(node1, node2), (node2, node3)]
     """
 
-    # needs to be a undirected graph to find all paths
+    # needs to be an undirected graph to find all paths
     if isinstance(graph, nx.DiGraph):
         graph = graph.to_undirected()
 
@@ -67,6 +67,26 @@ def pair_clustered_nodes(node_clusters: List[List]) -> List[Tuple]:
     for cl_pair in cluster_pairs:
         cluster_node_pairs = list(product(cl_pair[0], cl_pair[1]))
         node_pairs.extend(cluster_node_pairs)
+
+    return node_pairs
+
+
+def pair_nodes_from_cluster(cluster_to_pair: List, all_clusters: List[List]) -> List[Tuple]:
+    """
+    Pairs all nodes from a specific cluster with all nodes from all other clusters
+    Example:
+    cluster_to_pair = [1, 2]
+    all_clusters = [[1,2], [3,4], [5]]
+    then returns: [(1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5)]
+    :param cluster_to_pair: list of all nodes of the cluster to compute the pairings for
+    :param all_clusters: list of all clusters
+    :return:
+    """
+    node_pairs = []
+    for cluster in all_clusters:
+        if cluster != cluster_to_pair:
+            pairings = list(product(cluster_to_pair, cluster))
+            node_pairs.extend(pairings)
 
     return node_pairs
 
