@@ -52,7 +52,9 @@ def read_amr_file(recipe_amrs):
 
 def create_recipe_amr(recipe_amrs, output_file):
     """
-
+    Take all amrs corresponding to a specific recipe, shift the alignments to reflect
+    the sequential numbering of tokens in the complete recipe and not per sentence,
+    and write all modified amrs into the output file
     :param recipe_amrs:
     :param output_file:
     :return:
