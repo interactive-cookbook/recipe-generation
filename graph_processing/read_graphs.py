@@ -1,11 +1,15 @@
 import penman
-import networkx as nx
-from typing import List, Dict
+from typing import List
+
+"""
+Function to read the AMRs produced by the Struct-BART parser, i.e. including node-token alignments
+Creates a list of penman graph objects 
+"""
 
 
 def read_aligned_amr_file(recipe_amr_file: str) -> List[penman.Graph]:
     """
-    Reads a file with the sentence level AMRs for one recipe
+    Reads a file with the sentence or action level AMRs for one recipe
     Node to token alignments included
     :param recipe_amr_file: .txt file with the instruction AMRs
     :return: a list of all AMRs as penman Graph objects with
@@ -43,56 +47,3 @@ def read_aligned_amr_file(recipe_amr_file: str) -> List[penman.Graph]:
 
     return graphs
 
-
-def read_action_graph(recipe_action_file: str) -> nx.Graph:
-    """
-    Read in a file with the action graph of a recipe
-    :param recipe_action_file: the .conllu file for the recipe
-    :return: a networkX graph of the action graph
-    """
-
-    action_graph = nx.DiGraph()
-
-    with open(recipe_action_file, "r", encoding="utf-8") as grf:
-        complete_token = ""
-        complete_ids = []
-        prev_id = 0
-        for line in grf:
-            columns = line.strip().split()
-            id = columns[0]
-            token = columns[1]
-            label = columns[4]
-            edge = columns[6]
-            edge_label = columns[7]
-
-            if label == "O":
-                if complete_token != "":
-                    action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
-                    complete_token = ""
-                    complete_ids = []
-
-            elif label[0] == "B":
-                if complete_token != "":
-                    action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
-
-                complete_token = token
-                complete_ids = [id]
-                prev_id = id
-                if edge != "0":
-                    action_graph.add_edges_from([(id, edge)])
-
-            elif label[0] == "I":
-                complete_token += " " + token
-                complete_ids.append(id)
-
-        if complete_token != "":
-            action_graph.add_nodes_from([(prev_id, {"label": complete_token, "ids": complete_ids})])
-
-    return action_graph
-
-
-if __name__=="__main__":
-    graph = read_action_graph('./test.conllu')
-
-    for g in graph['nodes']:
-        print(g)
