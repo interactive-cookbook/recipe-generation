@@ -53,3 +53,4 @@ Then run the `amr_splitting.py` script. It will run the AMR splitting algorithm 
 Additionally, two logging files will be created in the (automatically created) `logs` folder. 
 * non_separable_amrs.txt: lists the names of all AMRs that were not separable
 * splitting_log.txt: additional information about the dataset, e.g. number of AMRs before splitting, number of AMRs after splitting, ...
+Each log file gets the date and time, at which it was created, as a unique prefix to avoid overwriting. 
