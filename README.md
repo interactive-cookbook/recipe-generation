@@ -3,7 +3,7 @@
 
 ## AMR Graphs
 
-In order to read an AMR graph in penman notation from a file or write it to a file, the [penman library](https://github.com/goodmami/penman/) is used. The main part of the project, however, works with [networkX](https://networkx.org/documentation/stable/index.html) graph objects. The conversions between penman and networkX graphs of the AMRs are done using the functions from the (conversion script)[https://github.com/interactive-cookbook/recipe-generation/blob/main/amr_processing/penman_networkx_conversions.py]. 
+In order to read an AMR graph in penman notation from a file or write it to a file, the [penman library](https://github.com/goodmami/penman/) is used. The main part of the project, however, works with [networkX](https://networkx.org/documentation/stable/index.html) graph objects. The conversions between penman and networkX graphs of the AMRs are done using the functions from the [conversion script](https://github.com/interactive-cookbook/recipe-generation/blob/main/amr_processing/penman_networkx_conversions.py). 
 The networkX AMR graphs have the following attributes:
 
 
