@@ -26,4 +26,8 @@ The directory specified as `input_path` needs to contain one subdirectory per di
 
 **Shift token IDs in alignment information**
 
+The node-token alignments produced by the parser start at 0 for each first token of each individually parsed instruction. In order to shift the alignments such that they matcht the token IDs in the recipe / action graphs (i.e. start at 1 and continue counting over the sentence boundaries), adapt the `non_shifted_dir` and `output_dir` variables in the main function of the `shifted_node_token_alignments.py` script and run the script.
+
 **Fix cycles**
+
+Although AMRs are noncyclic graphs, the parser produces some cyclic AMRs. So the last step before being able to run use the AMR graphs in the splitting and generation steps is to remove the cycles by running the `cyclic_amrs.py` script. The paths need to be specified in the main function (`cyclic_amr_dir` and `output_dir`)
