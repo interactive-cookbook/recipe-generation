@@ -135,5 +135,7 @@ def create_alignments_corpus(corpus_dir, new_corpus_dir):
 
 if __name__=="__main__":
 
-    create_alignments_corpus('../aligned_recipe_amrs_ibm_not_shifted',
-                             '../aligned_recipe_amrs_ibm')
+    non_shifted_dir = "./aligned_cyclic_recipe_amrs_ara2"
+    output_dir = "./aligned_cyclic_shifted_recipe_amrs_ara2"
+
+    create_alignments_corpus(non_shifted_dir, output_dir)

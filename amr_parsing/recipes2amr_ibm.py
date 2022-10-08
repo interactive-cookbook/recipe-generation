@@ -5,7 +5,7 @@ import penman
 from penman.surface import Alignment
 
 
-checkpoint_path = "../../../transition-amr-parser-master/transition-amr-parser-master/DATA/AMR3.0/models/amr3.0-structured-bart-large-neur-al-sampling5/seed42/checkpoint.pt"
+checkpoint_path = "../../transition-amr-parser-master/transition-amr-parser-master/DATA/AMR3.0/models/amr3.0-structured-bart-large-neur-al-sampling5/seed42/checkpoint.pt"
 
 
 def get_sentences(recipe_text_file):
@@ -104,10 +104,12 @@ def parse_recipe_corpus_ibm(corpus_dir, graph_dir):
 
 
 if __name__=="__main__":
-    """
-    parse_recipe_corpus_ibm("../../../Corpora/Ara_Punctuation/amr_input_data",
-                            "../aligned_recipe_amrs_ibm_not_shifted")"""
 
+    input_path = "../../Corpora/Microsoft_corpus/amr_parser_input_ara2"
+    output_path = "./aligned_cyclic_recipe_amrs_ara2"
+
+    parse_recipe_corpus_ibm(input_path, output_path)
+    """
     tokens = ["Stir", "in", "the", "salt", "and", "season", "with", "pepper", "to", "taste", "."]
     parse_model = AMRParser.from_checkpoint(checkpoint_path)
     annotations, decoding_data = parse_model.parse_sentence(tokens)
@@ -117,4 +119,4 @@ if __name__=="__main__":
     print(pen_amr.epidata)
     print(amr)
     print(amr.to_penman())
-
+    """
