@@ -128,19 +128,18 @@ def includes_all_nodes_from_list(subgraph: nx.graph, node_list: list) -> bool:
     return True
 
 
-def find_highest_node(node_list, graph: nx.Graph):
+def find_highest_node(node_list: list, graph: nx.Graph):
     """
-    Determine which of the nodes in node_list is the 'highest' node in the input
-    AMR graph,
+    Determine which of the nodes in node_list is the 'highest' node in the input graph,
     e.g. if there is a path from node1 to node2 in the graph, then node1 is higher
          if there is a path from node2 to node1, then node2 is higher
     Comparisons start by treating the first element of node_list as the highest until a higher
     one is found
     -> if there is no path connecting two nodes nothing changes; but should in practice not happen
     for the use cases of this function
-    :param node_list:
-    :param graph:
-    :return:
+    :param node_list: list of action nodes
+    :param graph: action graph
+    :return: the name of the highest node
     """
     current_highest_node = node_list[0]
     for node in node_list:
