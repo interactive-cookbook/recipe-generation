@@ -98,18 +98,12 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
         if len(aligned_amr_nodes) == 1:
             main_amr_nodes[action_node] = [aligned_amr_nodes[0]]
         else:
-            candidates = []
-            for node in aligned_amr_nodes:
-                label = nx.get_node_attributes(amr_graph, 'label')[node]
-                if label != 'you':
-                    candidates.append(node)
+            candidates = aligned_amr_nodes.copy()
+
+            assert len(candidates) != 0
+
             if len(candidates) == 1:
                 main_amr_nodes[action_node] = [candidates[0]]
-            elif len(candidates) == 0:
-                # should never happen if parsed correctly but occurred for one instruction homemade_pizza_dough_8_instr5
-                # where the verb was not represented in the AMR but aligned to 'you' and 'imperative' only
-                # so just choose one of them
-                main_amr_nodes[action_node] = [aligned_amr_nodes[0]]
 
             else:
                 # consider predicate nodes first
@@ -279,9 +273,8 @@ def conditions_fixing_tagger(labelled_path) -> bool:
 def check_path_of_interest(path_edges: list, path_nodes: list, path_nodes_unlabelled, graph: networkx.Graph) -> bool:
     """
     Check whether the path between two nodes fulfills the conditions for not splitting it
-    Pre-condition: the input path needs to fulfill the condition that the path of edges starts with
-                    a time, duration, instrument, manner or purpose edge; i.e. the first edge needs to
-                    have one of those labels or the last edge needs to have one of those labels + '-of'
+    Pre-condition: the input path needs to fulfill the condition that the path of edges includes
+                    a time, duration, instrument, manner or purpose edge (in any direction)
     :param path_edges: list of the edge labels of a path between two nodes
     :param path_nodes: list of the node labels of the same path
     :param path_nodes_unlabelled: list of the nodes (variable) of the same path
