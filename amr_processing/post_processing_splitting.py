@@ -98,6 +98,11 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
     if orig_root_node not in sep_graph.nodes:
         return sep_graph
 
+    # only remove if it has not parent nodes
+    incoming_edges = sep_graph.in_edges(orig_root_node)
+    if len(incoming_edges):
+        return sep_graph
+
     else:
         edges_removed = []
         while True:
