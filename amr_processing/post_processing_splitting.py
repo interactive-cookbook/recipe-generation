@@ -51,6 +51,7 @@ def update_name(sep_graph: nx.Graph, new_instr_id: int) -> nx.Graph:
     :param new_instr_id: new name of the graph / id of the instruction
     :return: the graph with the updated name
     """
+    sep_graph.graph['snt_id'] = sep_graph.graph['id']
     new_name = sep_graph.graph['id'] + f'_{new_instr_id}'
     sep_graph.graph['id'] = new_name
     sep_graph.name = new_name
