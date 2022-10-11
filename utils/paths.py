@@ -6,9 +6,12 @@ from pathlib import Path
 PROJ_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJ_DIR / Path('data')
 ARA_DIR = DATA_DIR / Path('ara1.1')
+#DATA_DIR = PROJ_DIR / Path('data_ara2')
+#ARA_DIR = DATA_DIR / Path('ara2.0')
 SENT_AMR_DIR = DATA_DIR / Path('recipe_amrs_sentences')
 ACTION_AMR_DIR = DATA_DIR / Path('recipe_amrs_actions')
-COREF_DIR = DATA_DIR / Path('coref-data')
+RAW_COREF_DIR = DATA_DIR / Path('coref_data_raw')
+JOINED_COREF_DIR = DATA_DIR / Path('coref_data_joined')
 
 # Directory for storing the logged information about e.g. non-separable AMRs
 LOG_DIR = PROJ_DIR / Path('logs')
