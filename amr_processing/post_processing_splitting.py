@@ -99,7 +99,7 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
     if orig_root_node not in sep_graph.nodes:
         return sep_graph
 
-    # only remove if it has not parent nodes
+    # only remove if it has no parent nodes
     incoming_edges = sep_graph.in_edges(orig_root_node)
     if len(incoming_edges):
         return sep_graph
@@ -110,7 +110,7 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
             current_root = sep_graph.graph['root']
             current_root_label = nx.get_node_attributes(sep_graph, 'label')[current_root]
 
-            if current_root_label not in ['and', 'before', 'after']:
+            if current_root_label not in ['and', 'before', 'after', 'multi-sentence']:
                 break
 
             root_out_edges = list(sep_graph.edges(current_root, data=True))

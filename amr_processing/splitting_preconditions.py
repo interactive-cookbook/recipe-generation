@@ -4,7 +4,7 @@ from collections import defaultdict
 from typing import Dict, List
 import re
 from .paths_between_actions import pair_clustered_nodes, get_triples_path_list, get_all_paths
-from .helpers import remove_role_numbering_edge, count_direction_changes
+from .helpers import remove_role_numbering_edge, count_direction_changes, remove_role_numbering_paths
 
 
 def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: list) -> List[Dict]:
@@ -119,13 +119,17 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
                     main_amr_nodes[action_node] = [predicate_candidates[0]]
                 # else keep all of them to find the appropriate ones for the paths later on
                 # but already remove 'you' because we know this can never be the correct one
+                # same for imperative; should actually never get a node but could happen is parser makes a mistake
                 else:
                     filtered_candidates = []
                     for cand in candidates:
                         label = nx.get_node_attributes(amr_graph, 'label')[cand]
-                        if label != 'you':
+                        if label != 'you' and label != 'imperative':
                             filtered_candidates.append(cand)
-                    main_amr_nodes[action_node] = filtered_candidates
+                    if filtered_candidates:
+                        main_amr_nodes[action_node] = filtered_candidates
+                    else:
+                        main_amr_nodes[action_node] = candidates
 
     return main_amr_nodes
 
@@ -241,38 +245,64 @@ def conditions_fixing_tagger(labelled_path) -> bool:
     :return:
     """
     # TODO: think about making a list of prepositions that should not get split from their action node
-    if len(labelled_path) > 1:
+    labelled_edges = [trip[1] for trip in labelled_path]
+    dir_changes = count_direction_changes(labelled_edges)
+
+    keep_together = False
+
+    if dir_changes > 0:
+        return False
+
+    if len(labelled_path) == 1:
+        node1_lab = labelled_path[0][0]
+        edge_label = labelled_path[0][1]
+        node2_lab = labelled_path[0][2]
+        prepositions_to_ignore = ['off', 'out', 'in', 'down', 'up']
+
+        if (node1_lab == 'let-01' and edge_label == 'ARG1') or (node2_lab == 'let-01' and edge_label == 'ARG1-of'):
+            keep_together = True
+        elif (node1_lab == 'allow-01' and edge_label == 'ARG1') or (node2_lab == 'allow-01' and edge_label == 'ARG1-of'):
+            keep_together = True
+        elif (node1_lab == 'start-01' and edge_label == 'ARG1') or (node2_lab == 'start-01' and edge_label == 'ARG1-of'):
+            keep_together = True
+        elif (node1_lab == 'finish-01' and edge_label == 'ARG1') or (node2_lab == 'finish-01' and edge_label == 'ARG1-of'):
+            keep_together = True
+        elif (node1_lab == 'continue-01' and edge_label == 'ARG1') or (node2_lab == 'continue-01' and edge_label == 'ARG1-of'):
+            keep_together = True
+        elif (node1_lab == 'give-01' and edge_label == 'ARG1' and node2_lab == 'stir-01') or (node2_lab == 'give-01' and edge_label == 'ARG1-of' and node1_lab == 'stir-01'):
+            keep_together = True
+        elif (node1_lab == 'bring-01' and edge_label == 'ARG2' and node2_lab == 'boil-01') or (node2_lab == 'bring-01' and edge_label == 'ARG2-of' and node1_lab == 'boil-01'):
+            keep_together = True
+        elif (node1_lab == 'use-01' and edge_label == 'ARG2') or (node2_lab == 'use-01' and edge_label == 'ARG2-of'):
+            keep_together = True
+        elif edge_label == 'direction' or edge_label == 'direction-of':
+            keep_together = True
+        elif (node1_lab == 'stir-01' and node2_lab == 'fry-01') or (node2_lab == 'stir-01' and node1_lab == 'fry-01'):
+            keep_together = True
+        elif node1_lab in prepositions_to_ignore or node2_lab in prepositions_to_ignore:
+            keep_together = True
+        elif remove_role_numbering_edge(edge_label) == 'ARG' or remove_role_numbering_edge(edge_label) == 'ARG-of':
+            keep_together = True
+            print(labelled_path)
+
+    else:
+        cleaned_labelled_path = remove_role_numbering_paths(labelled_edges)
+        involved_edges = set(cleaned_labelled_path)
+        if len(involved_edges) == 2 and cleaned_labelled_path[0] == 'ARG':
+            if 'op' in cleaned_labelled_path:
+                keep_together = True
+                print(labelled_path)
+
+        elif len(involved_edges) == 2 and cleaned_labelled_path[-1] == 'ARG-of':
+            if 'op-of' in cleaned_labelled_path:
+                keep_together = True
+                print(labelled_path)
+
+    if len(labelled_path) > 1 and not keep_together:
         e1 = labelled_path[0][1]
         e2 = labelled_path[1][1]
         if [e1, e2] == ['direction', 'op1'] or [e1, e2] == ['op1-of', 'direction-of']:
-            return True
-        else:
-            return False
-
-    node1_lab = labelled_path[0][0]
-    edge_label = labelled_path[0][1]
-    node2_lab = labelled_path[0][2]
-    prepositions_to_ignore = ['off', 'out', 'in', 'down', 'up']
-
-    keep_together = False
-    if (node1_lab == 'let-01' and edge_label == 'ARG1') or (node2_lab == 'let-01' and edge_label == 'ARG1-of'):
-        keep_together = True
-    elif (node1_lab == 'allow-01' and edge_label == 'ARG1') or (node2_lab == 'allow-01' and edge_label == 'ARG1-of'):
-        keep_together = True
-    elif (node1_lab == 'start-01' and edge_label == 'ARG1') or (node2_lab == 'start-01' and edge_label == 'ARG1-of'):
-        keep_together = True
-    elif (node1_lab == 'give-01' and edge_label == 'ARG1' and node2_lab == 'stir-01') or (node2_lab == 'give-01' and edge_label == 'ARG1-of' and node1_lab == 'stir-01'):
-        keep_together = True
-    elif (node1_lab == 'bring-01' and edge_label == 'ARG2' and node2_lab == 'boil-01') or (node2_lab == 'bring-01' and edge_label == 'ARG2-of' and node1_lab == 'boil-01'):
-        keep_together = True
-    elif (node1_lab == 'use-01' and edge_label == 'ARG2') or (node2_lab == 'use-01' and edge_label == 'ARG2-of'):
-        keep_together = True
-    elif edge_label == 'direction' or edge_label == 'direction-of':
-        keep_together = True
-    elif (node1_lab == 'stir-01' and node2_lab == 'fry-01') or (node2_lab == 'stir-01' and node1_lab == 'fry-01'):
-        keep_together = True
-    elif node1_lab in prepositions_to_ignore or node2_lab in prepositions_to_ignore:
-        keep_together = True
+            keep_together = True
 
     return keep_together
 
