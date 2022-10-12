@@ -118,8 +118,14 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
                 if len(predicate_candidates) == 1:
                     main_amr_nodes[action_node] = [predicate_candidates[0]]
                 # else keep all of them to find the appropriate ones for the paths later on
+                # but already remove 'you' because we know this can never be the correct one
                 else:
-                    main_amr_nodes[action_node] = candidates
+                    filtered_candidates = []
+                    for cand in candidates:
+                        label = nx.get_node_attributes(amr_graph, 'label')[cand]
+                        if label != 'you':
+                            filtered_candidates.append(cand)
+                    main_amr_nodes[action_node] = filtered_candidates
 
     return main_amr_nodes
 
@@ -184,6 +190,7 @@ def check_split_condition(amr_graph: nx.Graph, node1, node2) -> bool:
 
         # keep two action together if the path between consists only of a time, purpose, manner, duration, or
         # instrument edge and an arbitrary number of 'opX' edges;
+        # TODO: I think I do not limit the path to opX edges anymore
         # except if time relation is "before" or "after" then split
         edges_of_interest = {'time', 'purpose', 'manner', 'duration', 'instrument',
                                      'time-of', 'purpose-of', 'manner-of', 'duration-of', 'instrument-of'}
@@ -286,21 +293,34 @@ def check_path_of_interest(path_edges: list, path_nodes: list, path_nodes_unlabe
         return False
 
     # In order to be kept together, the two nodes should be reachable from each other when considering(!) the directions
+    # or should share a parent "and" node
+    split_path = True
     dir_changes = count_direction_changes(path_edges)
-    if dir_changes != 0:
-        return True
 
-    if 'before' in path_nodes or 'after' in path_nodes:     # split actions if time relation is before or after
-        try:
-            get_node_ind = path_nodes.index('before')
-        except ValueError:
-            get_node_ind = path_nodes.index('after')
-        node_var = path_nodes_unlabelled[get_node_ind]
-        if graph.degree[node_var] > 2:
-            return False
-        return True
+    if dir_changes == 0:
+        if 'before' in path_nodes or 'after' in path_nodes:     # split actions if time relation is before or after
+            try:
+                get_node_ind = path_nodes.index('before')
+            except ValueError:
+                get_node_ind = path_nodes.index('after')
+            node_var = path_nodes_unlabelled[get_node_ind]
+            if graph.degree[node_var] > 2:
+                split_path = False
+            else:
+                split_path = True
+        else:
+            split_path = False
 
-    return False
+    elif dir_changes == 1:
+        if 'and' in path_nodes and path_edges[0].endswith('-of'):
+            #split_path = False
+            split_path = True
+        else:
+            split_path = True
+    else:
+        split_path = True
+
+    return split_path
 
 
 def cluster_node_pairs(node_pairs: List) -> List:
