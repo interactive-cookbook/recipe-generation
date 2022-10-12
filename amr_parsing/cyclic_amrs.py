@@ -92,11 +92,19 @@ def remove_cycle(cyclic_amr_graph: nx.Graph) -> nx.Graph:
 
     for cycle in cycles:
 
+        fixed = False
+
+        if len(cycle) == 1:
+            node = cycle[0]
+            acyclic_amr_graph.remove_edge(node, node)
+            fixed = True
+
         if len(cycle) == 2:
             node1 = cycle[0]
             node2 = cycle[1]
             edge1 = acyclic_amr_graph.get_edge_data(node1, node2)['label']
             edge2 = acyclic_amr_graph.get_edge_data(node2, node1)['label']
+            fixed = True
 
             # Apply rules to eliminate cycle
             if edge1 == 'quant':
@@ -115,16 +123,44 @@ def remove_cycle(cyclic_amr_graph: nx.Graph) -> nx.Graph:
                 acyclic_amr_graph.remove_edge(node1, node2)
             elif edge2.find('op') != -1:
                 acyclic_amr_graph.remove_edge(node2, node1)
+            else:
+                fixed = False
 
         # for the 2 longer cycles remove the incoming ARG1 edge of the heat node
-        else:
+        if not fixed:
+            graph_root = acyclic_amr_graph.graph['root']
+            current_shortest_length = 100
+            current_closest_node = ""
+
             for ind, node in enumerate(cycle):
-                label = nx.get_node_attributes(acyclic_amr_graph, 'label')[node]
-                if label == 'heat':
-                    parent = cycle[ind - 1]
-                    edge = acyclic_amr_graph.get_edge_data(parent, node)['label']
-                    assert edge == 'ARG1'
-                    acyclic_amr_graph.remove_edge(parent, node)
+                if node == graph_root:
+                    current_shortest_length = 0
+                    current_closest_node = node
+                else:
+                    paths = nx.all_simple_paths(acyclic_amr_graph, graph_root, node)
+                    paths = list(paths)
+                    paths.sort(key=len)
+                    if len(paths[0]) < current_shortest_length:
+                        current_shortest_length = len(paths[0])
+                        current_closest_node = node
+
+            # find all incoming edges of the current closest node and remove the one that belongs to the cycle
+            incoming_edges = acyclic_amr_graph.in_edges(current_closest_node)
+            edge_to_remove = None
+            for in_edge in incoming_edges:
+                if in_edge[0] in cycle and in_edge[1] in cycle:
+                    edge_to_remove = in_edge
+                    break
+            acyclic_amr_graph.remove_edge(edge_to_remove[0], edge_to_remove[1])
+
+            """
+            label = nx.get_node_attributes(acyclic_amr_graph, 'label')[node]
+            if label == 'heat':
+                parent = cycle[ind - 1]
+                edge = acyclic_amr_graph.get_edge_data(parent, node)['label']
+                assert edge == 'ARG1'
+                acyclic_amr_graph.remove_edge(parent, node)
+            """
 
     return acyclic_amr_graph
 
@@ -156,7 +192,9 @@ def fix_cyclic_amrs(amr_corpus_dir, fixed_amr_corpus_dir):
                     if len(list(cycles)) > 0:
                         nx_graph = remove_cycle(nx_graph)
                         count_fixes += 1
-
+                    cycles = nx.simple_cycles(nx_graph)
+                    if len(list(cycles)) > 0:
+                        print(f'Did not work for {nx_graph.name}')
                     pen_gr = networkx2penman(nx_graph)
                     pen_str = penman.encode(pen_gr)
                     new_file.write(f'{pen_str}\n\n')
