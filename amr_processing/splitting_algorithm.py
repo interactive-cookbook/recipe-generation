@@ -1,7 +1,10 @@
 import networkx as nx
 from typing import List, Dict, Tuple
+
+import networkx.exception
+
 from .paths_between_actions import get_all_paths, get_triples_single_path, pair_nodes_from_cluster
-from .helpers import find_direction_changes, includes_node_from_list, includes_all_nodes_from_list, cluster_dict2list
+from .helpers import find_direction_changes, includes_node_from_list, includes_all_nodes_from_list, cluster_dict2list, remove_role_numbering_edge
 
 
 def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> List[nx.Graph]:
@@ -21,6 +24,8 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
 
     for current_cluster in amr_clusters:
         cluster_pairings = pair_nodes_from_cluster(cluster_to_pair=current_cluster, all_clusters=amr_clusters)
+        if amr_graph.name == 'how_to_roast_garlic_10_instr6':
+            print("HERE")
         manipulated_amr, undirected_manipulated_amr, fallback = separate_current_cluster(amr_graph=amr_graph,
                                                                                          node_pairs=cluster_pairings)
         if fallback:
@@ -50,7 +55,7 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
             out_file.write(f'AMR graph {amr_graph.name} was not separable without losing nodes.\n')
         final_split_amrs = [amr_graph]
 
-    if any_fallback:
+    elif any_fallback:
         with open(log_path, 'a', encoding='utf-8') as out_file:
             out_file.write(f'AMR graph {amr_graph.name} was separated with the fallback rules.\n')
 
@@ -108,7 +113,12 @@ def separate_current_cluster(amr_graph: nx.Graph, node_pairs: list):
         # consider all paths that connect two action nodes
         connecting_paths = []
         for (node1, node2) in node_pairs:
-            paths_current_pair = get_all_paths(undirected_manipulated_amr, node1, node2)
+            try:
+                paths_current_pair = get_all_paths(undirected_manipulated_amr, node1, node2)
+            except networkx.exception.NodeNotFound:
+                print(f'one of the following nodes is no longer part of the AMR {amr_graph.name} although being an action node: '
+                      f'{node1} or {node2}')
+                return None, None, None
             connecting_paths.extend(paths_current_pair)
 
         # if there are no paths left between any pair of action nodes from different clusters
@@ -195,21 +205,37 @@ def find_edge_to_remove(amr_graph: nx.Graph, path) -> Tuple:
         return 'node', ('dummy', 'dummy'), relevant_node
 
     elif len(direction_changes) == 1:
+
+        path_nodes = [trip[0] for trip in path_triples]
+        path_nodes.append(path_triples[-1][-1])
+
         relevant_position = direction_changes[0]
-        relevant_edge1 = path[relevant_position[0]]     # edge to meeting node
-        relevant_edge2 = path[relevant_position[1]]     # edge from meeting node
-
-        assert relevant_edge1[1] == relevant_edge2[0]   # meeting node
-
-        # in order to remove the edge, the direction needs to match the original direction
-        # i.e. direction on the connection path is different from original direction then swap edge
+        relevant_edge1 = path[relevant_position[0]]  # edge to meeting node
+        relevant_edge2 = path[relevant_position[1]]  # edge from meeting node
+        relevant_edge1_label = path_edges[relevant_position[0]]
         relevant_edge2_label = path_edges[relevant_position[1]]
-        if relevant_edge2_label.endswith('-of'):
-            relevant_edge2 = tuple(reversed(relevant_edge2))
 
-        return 'edge', relevant_edge2, relevant_edge1[1]
+        assert relevant_edge1[1] == relevant_edge2[0]  # meeting node
+        meeting_node = relevant_edge2[0]
+        meeting_node_label = nx.get_node_attributes(amr_graph, 'label')[meeting_node]
 
-    # TODO: decide how to deal with these cases
+        if 'before' in path_nodes and meeting_node_label == 'and' and relevant_edge1_label.endswith('-of'):
+            node_ind = path_nodes.index('before')
+            relevant_node = path[node_ind][0]
+            return 'node', ('dummy', 'dummy'), relevant_node
+        elif 'after' in path_nodes and meeting_node_label == 'and' and relevant_edge1_label.endswith('-of'):
+            node_ind = path_nodes.index('after')
+            relevant_node = path[node_ind][0]
+            return 'node', ('dummy', 'dummy'), relevant_node
+
+        else:
+            # in order to remove the edge, the direction needs to match the original direction
+            # i.e. direction on the connection path is different from original direction then swap edge
+            if relevant_edge2_label.endswith('-of'):
+                relevant_edge2 = tuple(reversed(relevant_edge2))
+
+            return 'edge', relevant_edge2, relevant_edge1[1]
+
     elif len(direction_changes) > 1:
         return None, None, None
 
@@ -237,17 +263,42 @@ def find_edge_to_remove_fallback(amr_graph: nx.Graph, path) -> Tuple:
         return None, None, None
 
     else:
+
         # look at first meeting node
-        relevant_position = direction_changes[0]
-        relevant_edge1 = path[relevant_position[0]]     # edge to meeting node
-        relevant_edge2 = path[relevant_position[1]]     # edge from meeting node
+        position_first_meeting_node = direction_changes[0]
+        relevant_edge1 = path[position_first_meeting_node[0]]     # edge to meeting node
+        relevant_edge2 = path[position_first_meeting_node[1]]     # edge from meeting node
 
         assert relevant_edge1[1] == relevant_edge2[0]   # meeting node
 
-        # in order to remove the edge, the direction needs to match the original direction
-        # i.e. direction on the connection path is different from original direction then swap edge
-        relevant_edge2_label = path_edges[relevant_position[1]]
-        if relevant_edge2_label.endswith('-of'):
-            relevant_edge2 = tuple(reversed(relevant_edge2))
+        first_meeting_node = relevant_edge1[1]
+        first_meeting_node_label = nx.get_node_attributes(amr_graph, 'label')[first_meeting_node]
+        relevant_edge1_label = path_edges[position_first_meeting_node[0]]
 
-        return 'edge', relevant_edge2, relevant_edge1[1]
+        # remove the outgoing edge of the last meeting node
+        if first_meeting_node_label == 'and' and relevant_edge1_label.endswith('-of'):
+
+            position_last_meeting_node = direction_changes[-1]
+            last_m_n_edge1 = path[position_last_meeting_node[0]]
+            last_m_n_edge2 = path[position_last_meeting_node[1]]
+            last_meeting_node = last_m_n_edge1[1]
+
+            edge_to_remove_label = path_edges[position_last_meeting_node[1]]
+            if edge_to_remove_label.endswith('of'):
+                edge_to_remove = tuple(reversed(last_m_n_edge2))
+            else:
+                edge_to_remove = last_m_n_edge2
+
+            return 'edge', edge_to_remove, last_meeting_node
+
+        # remove the outgoing edge of the first meeting node
+        else:
+            # in order to remove the edge, the direction needs to match the original direction
+            # i.e. direction on the connection path is different from original direction then swap edge
+            edge_to_remove_label = path_edges[position_first_meeting_node[1]]
+            if edge_to_remove_label.endswith('-of'):
+                edge_to_remove = tuple(reversed(relevant_edge2))
+            else:
+                edge_to_remove = relevant_edge2
+
+            return 'edge', edge_to_remove, first_meeting_node

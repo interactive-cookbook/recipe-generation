@@ -28,7 +28,7 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
     # non-separating cases that can be judged from looking only at the root node
     root_node_amr = sentence_amr.graph['root']
     root_label = nx.get_node_attributes(sentence_amr, 'label')[root_node_amr]
-    if root_label == 'or' or root_label == 'slash' or root_label == 'possible-01':
+    if root_label == 'or' or root_label == 'slash' or root_label == 'possible-01' or root_label == 'have-condition-91':
         return [{'one': 'dummy'}]      # dummy element, just needs to be of length 1 so no splitting will happen
     for e in sentence_amr.out_edges(root_node_amr):
         e_label = nx.get_edge_attributes(sentence_amr, 'label')[e]
