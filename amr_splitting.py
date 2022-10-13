@@ -54,10 +54,6 @@ def split_recipe_amrs():
         # for each amr graph
         for amr_graph in sentence_amrs:
 
-            if amr_graph.name == 'cobb_salad_10_instr4':
-                print("HERE")
-            print(f'Processing graph for {amr_graph.name}')
-
             # check number of action nodes covered by the AMR
             assert action_graph_nodes != []
 
