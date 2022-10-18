@@ -1,5 +1,7 @@
 from typing import List, Dict
 import networkx as nx
+import penman.surface
+
 from amr_processing.helpers import find_highest_node, remove_role_numbering_edge
 
 
@@ -62,10 +64,12 @@ def update_name(sep_graph: nx.Graph, new_instr_id: int) -> nx.Graph:
 
 def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
     """
-    Update the alignment information of a separated action-level amr
-    such that it includes all nodes in the alignment information
+    1. Update the alignment information of a separated action-level amr
+    such that it includes all nodes in the action alignment information
     that were aligned nodes in the original AMR and are still part of the
     separated AMR
+    2. Update the token alignment of 'you' for predicates in imperative mode if the predicate token to which
+    'you' was aligned is no longer present
     :param sep_graph: one of the separated action-level amr
     :param orig_graph: the corresponding original sentence-level amr
     :return: the graph with the updated alignment information
@@ -75,6 +79,35 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
         if orig_al in sep_graph.nodes:
             new_alignments.append(orig_al)
     sep_graph.graph['alignments'] = ', '.join(new_alignments)
+
+    for node in sep_graph.nodes():
+        node_data = sep_graph.nodes(data=True)[node]
+        aligned_token = node_data['alignment']
+        node_label = node_data['label']
+        if node_label == 'you':
+            incoming_edges = sep_graph.in_edges(node)
+            for in_edge in incoming_edges:
+                edge_label = nx.get_edge_attributes(sep_graph, 'label')[in_edge]
+                if edge_label == 'ARG0':
+                    corresponding_predicate_node = in_edge[0]
+                    predicate_node_data = sep_graph.nodes(data=True)[corresponding_predicate_node]
+                    predicate_token = predicate_node_data['alignment']
+                    try:
+                        attr_data = predicate_node_data['attr']
+                        imperative = False
+                        for a in attr_data:
+                            if a['target'] == 'imperative':
+                                imperative = True
+                    except KeyError:
+                        # this means the node has no imperative attribute -> not clear whether
+                        break
+                    if aligned_token != predicate_token and imperative:
+                        new_aligned_token = predicate_token
+                        node_data['alignment'] = new_aligned_token
+                        int_alignment = int(new_aligned_token)
+                        new_pen_alignment = penman.surface.Alignment((int_alignment,), prefix='e.')
+                        node_data['epi'][0] = new_pen_alignment
+                        sep_graph.add_nodes_from([(node, node_data)])
 
     return sep_graph
 
