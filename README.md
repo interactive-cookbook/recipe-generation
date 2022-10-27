@@ -16,11 +16,14 @@ The [networkX library](https://networkx.org/documentation/stable/index.html):
 The [penman library](https://github.com/goodmami/penman/):
 * `pip install penman`
 
+Other libraries:<br>
+* bs4 
+
 ## AMR parsing 
 
 As an intermediate representation of the recipe texts, I use Abstract Meaning Representations (AMR). 
 
-See the [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing) for more details on creating the AMR representations of a recipe corpus. 
+See the [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing) for more details on creating the AMR representations of a recipe corpus and requirements. 
 
 ## AMR Splitting 
 
