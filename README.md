@@ -17,7 +17,7 @@ The [penman library](https://github.com/goodmami/penman/):
 * `pip install penman`
 
 Other libraries:<br>
-* bs4 
+* bs4 (only for reading the multisentence-amr xml files)
 
 ## AMR parsing 
 
