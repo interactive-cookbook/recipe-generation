@@ -129,68 +129,118 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
     """
     orig_root_node = sep_graph.graph['root']
 
-    if orig_root_node not in sep_graph.nodes:
-        return sep_graph
+    if orig_root_node in sep_graph.nodes:
+        assert orig_root_node == sep_graph.graph['root']
 
-    # only remove if it has no parent nodes
-    incoming_edges = sep_graph.in_edges(orig_root_node)
-    if len(incoming_edges):
-        return sep_graph
+        # only remove if it has no parent nodes
+        incoming_edges = sep_graph.in_edges(orig_root_node)
+        if len(incoming_edges) == 0:
 
-    else:
-        edges_removed = []
-        while True:
-            current_root = sep_graph.graph['root']
-            current_root_label = nx.get_node_attributes(sep_graph, 'label')[current_root]
+            edges_removed = []
+            while True:
+                current_root = sep_graph.graph['root']
+                node_to_remove, edges_to_remove, new_root = _remove_left_over_nodes(relevant_node=current_root, sep_graph=sep_graph)
 
-            if current_root_label not in ['and', 'before', 'after', 'multi-sentence']:
-                break
-
-            root_out_edges = list(sep_graph.edges(current_root, data=True))
-            if len(root_out_edges) == 1:
-                only_edge = root_out_edges[0]
-                only_edge = (only_edge[0], only_edge[1])
-                new_root = only_edge[1]
-                sep_graph.remove_node(current_root)
-                sep_graph.graph['root'] = new_root
-
-            elif current_root_label == 'and':
-                # check whether there is exactly one op edge and no rel edges
-                child_edge_labels = []
-                op_edges = []
-                for out_edge in root_out_edges:
-                    lab = out_edge[2]['label']
-                    non_numbered_lab = remove_role_numbering_edge(lab)
-                    if non_numbered_lab == 'op':
-                        op_edges.append(out_edge)
-                    else:
-                        child_edge_labels.append(lab)
-
-                if 'rel' in child_edge_labels or len(op_edges) != 1:
+                if not node_to_remove:
                     break
-                else:
-                    for out_edge in root_out_edges:
-                        if out_edge not in op_edges:
-                            edges_removed.append(out_edge)
-                            # print(out_edge[2]['label'])
 
-                    only_op_edge = op_edges[0]
-                    new_root = only_op_edge[1]
-                    sep_graph.remove_node(current_root)
-                    sep_graph.graph['root'] = new_root
+                #print(sep_graph.name)
+                sep_graph.remove_node(node_to_remove)
+                sep_graph.graph['root'] = new_root
+                if edges_to_remove:
+                    edges_removed.extend(edges_to_remove)
 
-            else:
+            if edges_removed:
+                current_root = sep_graph.graph['root']
+                for e_rem in edges_removed:
+                    new_edge = list(e_rem)
+                    new_edge[0] = current_root
+                    new_edge = tuple(new_edge)
+                    sep_graph.add_edges_from([new_edge])
+
+    # Check whether there are more nodes left that
+    relevant_nodes = []
+    for current_node in sep_graph.nodes():
+        current_node_label = nx.get_node_attributes(sep_graph, 'label')[current_node]
+        incoming_edges = sep_graph.in_edges(current_node)
+        if len(incoming_edges) == 0 and current_node_label in ['and', 'before', 'after', 'multi-sentence']:
+            relevant_nodes.append(current_node)
+
+    # for each of these nodes go down the graph and remove left-over nodes until reaching
+    # a node that should stay, then continue with the next node;
+    # not very frequent that any other nodes get removed here
+    for rel_node in relevant_nodes:
+        edges_removed = []
+        new_rel_node = rel_node
+        while True:
+            node_to_remove, edges_to_remove, relevant_child = _remove_left_over_nodes(relevant_node=new_rel_node, sep_graph=sep_graph)
+            if not node_to_remove:
                 break
+            print(sep_graph.name)
+            sep_graph.remove_node(node_to_remove)
+            new_rel_node = relevant_child
+            if edges_to_remove:
+                edges_removed.extend(edges_to_remove)
 
+        # very unlikely that this will occur; 0 times true for ARA 1 and ARA 2
         if edges_removed:
-            current_root = sep_graph.graph['root']
             for e_rem in edges_removed:
                 new_edge = list(e_rem)
-                new_edge[0] = current_root
+                new_edge[0] = new_rel_node
                 new_edge = tuple(new_edge)
-                sep_graph.add_edges_from([new_edge])
+                sep_graph.add_edges_from(new_edge)
 
-        return sep_graph
+    return sep_graph
+
+
+def _remove_left_over_nodes(relevant_node, sep_graph: nx.Graph):
+    """
+
+    :param relevant_node:
+    :param sep_graph:
+    :return: node to remove
+             removed edges
+             new root / direct child to continue with
+    """
+    relevant_node_label = nx.get_node_attributes(sep_graph, 'label')[relevant_node]
+    out_edges = list(sep_graph.edges(relevant_node, data=True))
+
+    if relevant_node_label not in ['and', 'before', 'after', 'multi-sentence']:
+        return None, None, None
+
+    if len(out_edges) == 1:
+        only_edge = out_edges[0]
+        only_edge = (only_edge[0], only_edge[1])
+        new_root = only_edge[1]
+        return relevant_node, None, new_root
+
+    elif relevant_node_label == 'and':
+        # check whether there is exactly one op edge and no rel edges
+        child_edge_labels = []
+        op_edges = []
+        for out_edge in out_edges:
+            lab = out_edge[2]['label']
+            non_numbered_lab = remove_role_numbering_edge(lab)
+            if non_numbered_lab == 'op':
+                op_edges.append(out_edge)
+            else:
+                child_edge_labels.append(lab)
+
+        if 'rel' in child_edge_labels or len(op_edges) != 1:
+            return None, None, None
+        else:
+            edges_removed = []
+            for out_edge in out_edges:
+                if out_edge not in op_edges:
+                    edges_removed.append(out_edge)
+                    # print(out_edge[2]['label'])
+
+            only_op_edge = op_edges[0]
+            new_root = only_op_edge[1]
+            return relevant_node, edges_removed, new_root
+
+    else:
+        return None, None, None
 
 
 def update_root_node(sep_graph: nx.Graph, action_graph: nx.Graph, action_clusters: List[Dict]) -> nx.Graph:
@@ -222,6 +272,8 @@ def update_root_node(sep_graph: nx.Graph, action_graph: nx.Graph, action_cluster
             highest_action_node = find_highest_node(action_nodes, action_graph)
             main_amr_nodes = ac_cluster[highest_action_node]
             sep_graph.graph['root'] = main_amr_nodes[0]
+            # should never happen that more than one action cluster is related to an AMR
+            # which was split (if it wasn't, the original root would still be part of the graph)
             break
 
     return sep_graph
