@@ -1,5 +1,8 @@
 import networkx as nx
 from typing import List, Dict, Tuple
+import re
+import penman
+from penman import surface
 
 
 def count_aligned_actions(sentence_amr: nx.Graph, action_nodes: list) -> int:
@@ -144,10 +147,36 @@ def find_highest_node(node_list: list, graph: nx.Graph):
     current_highest_node = node_list[0]
     for node in node_list:
         if node != current_highest_node:
-            if nx.all_simple_paths(graph, node, current_highest_node):
+            # Make it a list! Otherwise nx.all_simple_paths returns a generator that is always(!) True
+            p = list(nx.all_simple_paths(graph, node, current_highest_node))
+            if p:
                 current_highest_node = node
 
     return current_highest_node
+
+
+def find_new_root(node_list: list, graph: nx.Graph):
+    """
+    Find the node that is an appropriate new root for the AMR
+    the new root node should be either from node_list or the lowest common
+    ancestor of two nodes
+    Method does no work perfect if len(node_list) is larger than 2 because
+    only pairwise comparisons, but this case never occurred in ARA 1 and ARA 2
+    :param node_list:
+    :param graph:
+    :return:
+    """
+
+    current_new_root = node_list[0]
+    for node in node_list[1:]:
+        n1 = current_new_root
+        n2 = node
+        g = graph.copy()
+        common_anc = nx.lowest_common_ancestor(g, n1, n2)
+        if common_anc:
+            current_new_root = common_anc
+
+    return current_new_root
 
 
 def cluster_dict2list(action_clusters: List[Dict]) -> Tuple[List[List], List]:
@@ -175,3 +204,83 @@ def cluster_dict2list(action_clusters: List[Dict]) -> Tuple[List[List], List]:
 
     return amr_node_clusters, main_action_amr_nodes
 
+
+def post_process_imperative(amr_graph: nx.Graph):
+    """
+    Post processing step to correct amrs where the parser missed an imperative
+    An attribute :mode imperative and a new node and edge :ARG0 you are added to all
+    nodes that fulfill the following conditions:
+    1a. is the root node, is a predicate node (a frame) and is aligned to an action node
+    1b. or is a direct child of the root node connected with an :opX edge, is a predicate node (a frame)
+        and is aligned to an action node
+    2. the node does not have an :ARG0 argument and does not have an imperative argument
+       (if the imperative argument is there but no ARG0 argument, then only the ARG0 gets added)
+    Both, the imperative attributes as well as the ARG0 you nodes get the predicate token as the
+    aligned token
+    :param amr_graph: an action-level AMR graph
+    :return: the modified action-level AMR graph
+    """
+    nodes_to_extend = []
+
+    root_node = amr_graph.graph['root']
+    root_label = nx.get_node_attributes(amr_graph, 'label')[root_node]
+    action_nodes = amr_graph.graph['alignments'].split(', ')
+    predicate_reg = r'[a-zA-Z]+-[0-9]+$'
+
+    if re.search(predicate_reg, root_label) and root_node in action_nodes:
+        nodes_to_extend.append(root_node)
+    elif root_label in ['and', 'or']:
+        for edge in amr_graph.edges(root_node):
+            edge_label = nx.get_edge_attributes(amr_graph, 'label')[edge]
+            child_node = edge[1]
+            child_label = nx.get_node_attributes(amr_graph, 'label')[child_node]
+            if edge_label.startswith('op') and child_node in action_nodes and re.search(predicate_reg, child_label):
+                nodes_to_extend.append(child_node)
+
+    for node in nodes_to_extend:
+        has_subj = False
+        has_imp = False
+        # check whether predicate has an imperative attribute
+        try:
+            attr_data = nx.get_node_attributes(amr_graph, 'attr')[node]
+            for a in attr_data:
+                role_lab = a['label']
+                attr_lab = a['target']
+                if role_lab == 'mode' and attr_lab == 'imperative':
+                    has_imp = True
+        except KeyError:
+            pass
+
+        # check whether predicate has an ARG0 arguments
+        child_edges = amr_graph.edges(node)
+        for ce in child_edges:
+            edge_label = nx.get_edge_attributes(amr_graph, 'label')[ce]
+            if edge_label == 'ARG0':
+                has_subj = True
+
+        if not has_subj:
+            # create unique variable name
+            node_var = 'y'
+            num = 1
+            while node_var in amr_graph.nodes():
+                node_var += str(num)
+                num += 1
+            # add the new 'you' ARG0 node with appropriate alignment information
+            aligned_token = nx.get_node_attributes(amr_graph, 'alignment')[node]
+            int_alignment = int(aligned_token)
+            new_pen_alignment = penman.surface.Alignment((int_alignment,), prefix='e.')
+            amr_graph.add_nodes_from([(node_var, {'label': 'you', 'type': 'instance', 'epi': [new_pen_alignment],
+                                       'alignment': aligned_token})])
+            amr_graph.add_edge(node, node_var, label='ARG0', epi=[])
+
+            # if also no imperative marker add it
+            if not has_imp:
+                predicate_data = amr_graph.nodes(data=True)[node]
+                try:
+                    predicate_data['attr'].append({'source': node, 'label': 'mode', 'target': 'imperative',
+                                                   'epi': [new_pen_alignment], 'alignment': aligned_token})
+                except KeyError:
+                    predicate_data['attr'] = [{'source': node, 'label': 'mode', 'target': 'imperative',
+                                                   'epi': [new_pen_alignment], 'alignment': aligned_token}]
+
+    return amr_graph

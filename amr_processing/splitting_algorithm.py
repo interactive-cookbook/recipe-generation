@@ -24,8 +24,7 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
 
     for current_cluster in amr_clusters:
         cluster_pairings = pair_nodes_from_cluster(cluster_to_pair=current_cluster, all_clusters=amr_clusters)
-        if amr_graph.name == 'how_to_roast_garlic_10_instr6':
-            print("HERE")
+
         manipulated_amr, undirected_manipulated_amr, fallback = separate_current_cluster(amr_graph=amr_graph,
                                                                                          node_pairs=cluster_pairings)
         if fallback:

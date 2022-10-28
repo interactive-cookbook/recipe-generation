@@ -119,7 +119,7 @@ def get_main_amr_node_per_action(action_amr_alignments: Dict[str, List], amr_gra
                     main_amr_nodes[action_node] = [predicate_candidates[0]]
                 # else keep all of them to find the appropriate ones for the paths later on
                 # but already remove 'you' because we know this can never be the correct one
-                # same for imperative; should actually never get a node but could happen is parser makes a mistake
+                # same for imperative; should actually never get a node but could happen if parser makes a mistake
                 else:
                     filtered_candidates = []
                     for cand in candidates:
@@ -193,8 +193,7 @@ def check_split_condition(amr_graph: nx.Graph, node1, node2) -> bool:
             break
 
         # keep two action together if the path between consists only of a time, purpose, manner, duration, or
-        # instrument edge and an arbitrary number of 'opX' edges;
-        # TODO: I think I do not limit the path to opX edges anymore
+        # instrument edge
         # except if time relation is "before" or "after" then split
         edges_of_interest = {'time', 'purpose', 'manner', 'duration', 'instrument',
                                      'time-of', 'purpose-of', 'manner-of', 'duration-of', 'instrument-of'}
@@ -283,20 +282,21 @@ def conditions_fixing_tagger(labelled_path) -> bool:
             keep_together = True
         elif remove_role_numbering_edge(edge_label) == 'ARG' or remove_role_numbering_edge(edge_label) == 'ARG-of':
             keep_together = True
-            print(labelled_path)
+            #print(labelled_path)
 
+    # Allow also variants of the cases above where an 'and' node come between
     else:
         cleaned_labelled_path = remove_role_numbering_paths(labelled_edges)
         involved_edges = set(cleaned_labelled_path)
         if len(involved_edges) == 2 and cleaned_labelled_path[0] == 'ARG':
             if 'op' in cleaned_labelled_path:
                 keep_together = True
-                print(labelled_path)
+                #print(labelled_path)
 
         elif len(involved_edges) == 2 and cleaned_labelled_path[-1] == 'ARG-of':
             if 'op-of' in cleaned_labelled_path:
                 keep_together = True
-                print(labelled_path)
+                #print(labelled_path)
 
     if len(labelled_path) > 1 and not keep_together:
         e1 = labelled_path[0][1]

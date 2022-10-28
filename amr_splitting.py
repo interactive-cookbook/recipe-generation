@@ -4,13 +4,12 @@ from collections import defaultdict
 from typing import List
 from graph_processing.graph_pairs import get_graph_pairs
 from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir, get_splitting_log_path, get_non_sep_log_path
-from amr_processing.helpers import count_aligned_actions
+from amr_processing.helpers import count_aligned_actions, post_process_imperative
 from amr_processing.post_processing_splitting import postprocess_split_amrs
 from amr_processing.splitting_preconditions import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
 from amr_processing.penman_networkx_conversions import networkx2penman
-import warnings
-warnings.simplefilter('error')
+
 
 """
 Main script to create the action-level AMR corpus from a sentence-level AMR corpus 
@@ -90,6 +89,11 @@ def split_recipe_amrs():
             post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
             graph_pairs[recipe]['split_amrs'].extend(post_processed_amrs)
 
+        # take care of imperative and implicit 'you'
+        modified_split_amrs = []
+        for sep_amr in graph_pairs[recipe]['split_amrs']:
+            modified_split_amrs.append(post_process_imperative(sep_amr))
+        graph_pairs[recipe]['split_amrs'] = modified_split_amrs
         # save AMR to file
         save_split_amrs(recipe, graph_pairs[recipe]['split_amrs'])
         total_number_amrs += len(graph_pairs[recipe]['split_amrs'])

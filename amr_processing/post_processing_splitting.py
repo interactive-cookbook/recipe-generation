@@ -2,7 +2,7 @@ from typing import List, Dict
 import networkx as nx
 import penman.surface
 
-from amr_processing.helpers import find_highest_node, remove_role_numbering_edge
+from amr_processing.helpers import find_highest_node, remove_role_numbering_edge, find_new_root
 
 
 def postprocess_split_amrs(separated_amrs: List,
@@ -99,7 +99,7 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
                             if a['target'] == 'imperative':
                                 imperative = True
                     except KeyError:
-                        # this means the node has no imperative attribute -> not clear whether
+                        # this means the node has no imperative attribute -> not clear whether 'you' was implicit
                         break
                     if aligned_token != predicate_token and imperative:
                         new_aligned_token = predicate_token
@@ -114,21 +114,26 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
 
 def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
     """
-    Remove left-over 'and' nodes with only one conjunct and 'before' and 'after' nodes that do not make
-    sense anymore
-    If the root node of the action-level AMR is labelled 'and', 'before' or 'after' then:
-        If the root node has only one child node, then remove the current root node and make the child node the new root
-        Elif If the root node has more child nodes and root label is 'and' and exactly one child is connected to the
-            root with an 'opX' edge and no child is connected with a 'rel' edge, then remove the root node, make the '
-            opX' child the new root and keep track of all other edges that would get lost
+    Remove left-over 'and' and 'multi-sentence' nodes with only one conjunct and 'before' and 'after' nodes that do not
+    make sense anymore
+    First starts with the root node:
+        If the root node of the action-level AMR is labelled 'and', 'before' or 'after' then:
+            If the root node has only one child node, then remove the current root node and make the child node the new root
+            Elif If the root node has more child nodes and root label is 'and' and exactly one child is connected to the
+                root with an 'opX' edge and no child is connected with a 'rel' edge, then remove the root node, make the '
+                opX' child the new root and keep track of all other edges that would get lost
+            Else Break
         Else Break
-    Else Break
-    Add back all child edges that would get lost to the new root node
+        Add back all child edges that would get lost to the new root node
+    If there are still 'and', 'before', 'after' nodes left over that have no parent nodes and fulfill
+    the same preconditions as in the root node case, then follow the same steps for removing nodes
+    and adding edges back but do NOT change the root node during the process
     :param sep_graph:
     :return:
     """
     orig_root_node = sep_graph.graph['root']
 
+    # start with root node
     if orig_root_node in sep_graph.nodes:
         assert orig_root_node == sep_graph.graph['root']
 
@@ -144,12 +149,12 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
                 if not node_to_remove:
                     break
 
-                #print(sep_graph.name)
                 sep_graph.remove_node(node_to_remove)
                 sep_graph.graph['root'] = new_root
                 if edges_to_remove:
                     edges_removed.extend(edges_to_remove)
 
+            # add the edges back
             if edges_removed:
                 current_root = sep_graph.graph['root']
                 for e_rem in edges_removed:
@@ -158,7 +163,7 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
                     new_edge = tuple(new_edge)
                     sep_graph.add_edges_from([new_edge])
 
-    # Check whether there are more nodes left that
+    # Check whether there are more nodes left that are now meaningless
     relevant_nodes = []
     for current_node in sep_graph.nodes():
         current_node_label = nx.get_node_attributes(sep_graph, 'label')[current_node]
@@ -176,7 +181,7 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
             node_to_remove, edges_to_remove, relevant_child = _remove_left_over_nodes(relevant_node=new_rel_node, sep_graph=sep_graph)
             if not node_to_remove:
                 break
-            print(sep_graph.name)
+
             sep_graph.remove_node(node_to_remove)
             new_rel_node = relevant_child
             if edges_to_remove:
@@ -195,12 +200,17 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
 
 def _remove_left_over_nodes(relevant_node, sep_graph: nx.Graph):
     """
-
-    :param relevant_node:
-    :param sep_graph:
-    :return: node to remove
-             removed edges
-             new root / direct child to continue with
+    Function to decide whether relevant_node is fulfills all conditions for being a "left-over" node
+    that should get removed from the graph
+    :param relevant_node: the node for which it gets checked whether it should be removed
+    :param sep_graph: the AMR graph
+    :return: a triple: (node_to_remove, removed_edges, node_to_continue_with)
+            (None, None, None) if no left-over nodes left
+            else:
+                node_to_remove: actually identical with relevant_node
+                removed_edges: the edges that get lost when removing node_to_remove and should be added back
+                node_to_continue_with: the child node of relevant_node that gets the new root node or
+                                       is simply the next node to check
     """
     relevant_node_label = nx.get_node_attributes(sep_graph, 'label')[relevant_node]
     out_edges = list(sep_graph.edges(relevant_node, data=True))
@@ -246,9 +256,10 @@ def _remove_left_over_nodes(relevant_node, sep_graph: nx.Graph):
 def update_root_node(sep_graph: nx.Graph, action_graph: nx.Graph, action_clusters: List[Dict]) -> nx.Graph:
     """
     Updates the root node of the action-level ARM
-    If the original root node is still included in the action-level AMR then no changes are made
-    Otherwise, the main amr node aligned to the highest action node in the action graph is chosen
-    from all action nodes in the corresponding cluster
+    If the current root node (either the original one or derived during removing left-over nodes)
+     is still included in the action-level AMR then no changes are made
+    Otherwise, among the main amr nodes for the corresponding action cluster, the amr node that is highest
+    in the AMR graph is chosen or a lowest_common_ancestor
     :param sep_graph: a separated action-level AMR graph
     :param action_graph: the action graph of the corresponding recipe
     :param action_clusters: list of the action-node/action-aligned amr-node clusters
@@ -258,20 +269,28 @@ def update_root_node(sep_graph: nx.Graph, action_graph: nx.Graph, action_cluster
     if current_root_node not in sep_graph.nodes:
         for ac_cluster in action_clusters:
             action_nodes = []
-            for ac_node, amr_nodes in ac_cluster.items():
-                for amr_n in amr_nodes:
+            amr_nodes = []
+            for ac_node, main_amr_nodes in ac_cluster.items():
+                for amr_n in main_amr_nodes:
                     if amr_n in sep_graph.nodes:
                         action_nodes.append(ac_node)
+                        amr_nodes.append(amr_n)
             action_nodes.sort()
 
             # if node cluster is for other separated amr continue
             if not action_nodes:
                 continue
 
-            # find the top node
-            highest_action_node = find_highest_node(action_nodes, action_graph)
-            main_amr_nodes = ac_cluster[highest_action_node]
-            sep_graph.graph['root'] = main_amr_nodes[0]
+            # find the top node: in ARA 1 only 2 graphs with len(action_nodes) > 1, 5 graphs for ARA 2
+            new_root_node = find_new_root(amr_nodes, sep_graph)
+            # The following 4 lines were the first attempt to find the appropriate root node but
+            # most times both led to the same node but if not the find_new_root method was better
+            #highest_action_node = find_highest_node(action_nodes, action_graph)
+            #main_amr_nodes_cluster = ac_cluster[highest_action_node]
+            #if main_amr_nodes_cluster[0] != new_root_node:
+                #print(sep_graph.name)
+
+            sep_graph.graph['root'] = new_root_node
             # should never happen that more than one action cluster is related to an AMR
             # which was split (if it wasn't, the original root would still be part of the graph)
             break
