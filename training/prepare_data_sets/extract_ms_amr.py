@@ -7,13 +7,18 @@ Code to
 the multisentence-amr xml files 
 """
 
-# TODO: document
-def get_doc_amrs(doc_amr_path):
+
+def get_doc_amrs(doc_amr_path) -> dict:
     """
     Get the AMR ids and their order for each document
     :param doc_amr_path: path to the folder with the ms-amr xml files
                         i.e. should be [some_path]/amr_annotation_3.0/data/multisentence/ms-amr-unsplit
-    :return:
+    :return: a dictionary with a sub dictionary for each file in the doc_amr_path folder
+             key: name of the file
+             value: dictionary with
+                     'ids': list of the amr/sentence ids that are part of the document
+                     'position': ordering information, such that int value x at position y means that the
+                                 sentence with the id at position y in 'ids' is the xth sentence in the document
     """
     documents = dict()
 
@@ -40,9 +45,16 @@ def get_doc_amrs(doc_amr_path):
 
 def write_corpus_files(ms_amr_mappings: dict, id_amr_mappings: dict):
     """
-
-    :param ms_amr_mappings:
-    :param id_amr_mappings:
+    Creates a file for each document for which the multi-sentence amr annotations exist and
+    writes the amrs in the correct order to it
+    :param ms_amr_mappings: a dictionary with a sub dictionary for each document of the multi-sentence amr corpus
+                            key: name of the file
+                            value: dictionary with
+                                    'ids': list of the amr/sentence ids that are part of the document
+                                    'position': ordering information, such that int value x at position y means that the
+                                            sentence with the id at position y in 'ids' is the xth sentence in the document
+    :param id_amr_mappings: a dictionary with all amr ids as keys and the complete string for the corresponding amr
+                            (including metadata) as value
     :return:
     """
     for document, doc_amrs in ms_amr_mappings.items():
@@ -64,7 +76,7 @@ def write_corpus_files(ms_amr_mappings: dict, id_amr_mappings: dict):
 def create_doc_amr_corpus(ms_amr_dir, all_amr_dir):
     """
     Creates a corpus of all amrs of the AMR 3.0 corpus for which multisentence annotations exist
-    
+
     :param ms_amr_dir: path to the folder with the ms-amr xml files
                         i.e. should be [some_path]/amr_annotation_3.0/data/multisentence/ms-amr-unsplit
     :param all_amr_dir: path to the folder with the complete AMR 3.0 graphs
