@@ -2,7 +2,7 @@ import networkx
 import penman
 from collections import defaultdict
 from typing import List
-from graph_processing.graph_pairs import get_graph_pairs
+from graph_processing.action_amr_graph_mappings import get_graph_pairs
 from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir, get_splitting_log_path, get_non_sep_log_path
 from amr_processing.helpers import count_aligned_actions, post_process_imperative
 from amr_processing.post_processing_splitting import postprocess_split_amrs
