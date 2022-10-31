@@ -86,8 +86,14 @@ def split_recipe_amrs():
             separated_amrs = split_amr(amr_graph, action_clusters, non_sep_log)
 
             # post processsing: i.e. new sentence ID and alignment attribute and add a main action node
-            post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
-            graph_pairs[recipe]['split_amrs'].extend(post_processed_amrs)
+            if len(separated_amrs) > 1:
+                post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
+                graph_pairs[recipe]['split_amrs'].extend(post_processed_amrs)
+            # if amr could not be split then not splitting post processing is needed
+            else:
+                amr_graph = separated_amrs[0]
+                amr_graph.graph['snt_id'] = amr_graph.graph['id']
+                graph_pairs[recipe]['split_amrs'].append(amr_graph)
 
         # take care of imperative and implicit 'you'
         modified_split_amrs = []
