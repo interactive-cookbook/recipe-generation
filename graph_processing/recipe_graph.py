@@ -24,7 +24,11 @@ def _read_graph_conllu(conllu_graph_file, token_ids):
         complete_token = ""
         prev_id = 0
         tags_dict = {}
+
         for line in grf:
+
+            if line == "\n" or line == "":
+                break
             columns = line.strip().split()
             id = columns[0]
             token = columns[1]
@@ -70,6 +74,8 @@ def _read_graph_conllu(conllu_graph_file, token_ids):
     # create dictionary with node as key and tag as value
     with open(conllu_graph_file, "r", encoding="utf-8") as grf:
         for line in grf:
+            if line == "\n" or line == "":
+                break
             columns = line.strip().split()
             id = columns[0]
             tag = columns[4]
@@ -103,7 +109,9 @@ def read_graph_from_conllu(conllu_graph_file, token_ids=True):
     G.add_nodes_from(nodes)
     G.add_edges_from(edges)
 
-    G_name = "G_" + str(conllu_graph_file)
+    conllu_graph_file_name = conllu_graph_file.split('/')[-1]    # remove path and keep only file name
+    conllu_graph_file_name = '.'.join(conllu_graph_file_name.split('.')[:-1])   # remove file ending .conllu
+    G_name = "G_" + str(conllu_graph_file_name)
 
     # attributes: key=node, value=dict("label":X, "tag":X, "origin":G_name, "alignment":node_aligned, "amr":corresponding_amr) # the attributes list will be expanded if needed
     nodes_attributes = collections.defaultdict(dict)
@@ -117,33 +125,10 @@ def read_graph_from_conllu(conllu_graph_file, token_ids=True):
 
     return G
 
-"""
-def write_graph_to_conllu(networkx_graph):
-    
-    #:param outdirectory: it is possible to either specify outdir or it gets automatically created
-    :param networkx_graph: path to graph file in NetworkX format
-    :return: an action/recipe graph file (so only the lines that contain the tagged tokens are included) in conllu format
-    
-    # outfile="x"
 
-    # Write action graph into CoNLL-U file
-    with open((outfile), "w", encoding="utf-8") as o:
-        # with open(networkx_graph, "r", encoding="utf-8") as g:
-        for node in G.nodes:
-            # print(node)
-            outfile = G.nodes[node]["origin"]  # sometimes it doesn't work, look at it further
-            id = node
-            token = G.nodes[node]["label"]
-            tag = G.nodes[node]["tag"]
-            line = [id, token, "_", "_", tag, "_"]
+if __name__=='__main__':
 
-            for edge in G.edges:
-                if edge[0] == node:
-                    line.append(edge[1])
-
-            o.write("\t".join(line))
-            o.write("\n")
-
-    print("NetworkX graph has been transformed in conllu format")
-
-"""
+    file_p1 = "../data/ara1.1/baked_ziti/recipes/baked_ziti_0.conllu"
+    file_p2 = "../data_ara2/ara2.0/bananas_foster/recipes/bananas_foster_0.conllu"
+    g1 = read_graph_from_conllu(file_p1)
+    g2 = read_graph_from_conllu(file_p2)
