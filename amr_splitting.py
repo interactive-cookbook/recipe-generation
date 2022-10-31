@@ -59,9 +59,9 @@ def split_recipe_amrs():
             num_aligned_actions = count_aligned_actions(amr_graph, action_graph_nodes)
             actions_per_amr[num_aligned_actions] += 1
 
-            if num_aligned_actions == 0:    # ignore AMRs / sentences without actions
-                continue
-            elif num_aligned_actions == 1:  # keep AMRs for one action unchanged
+            # keep AMRs not aligned to any action in order to be able to decide what to do with them
+            # keep AMRs for one action unchanged
+            if num_aligned_actions == 0 or num_aligned_actions == 1:
                 amr_graph.graph['snt_id'] = amr_graph.graph['id']
                 graph_pairs[recipe]['split_amrs'].append(amr_graph)
                 continue
