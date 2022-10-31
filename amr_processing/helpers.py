@@ -224,7 +224,7 @@ def post_process_imperative(amr_graph: nx.Graph):
 
     root_node = amr_graph.graph['root']
     root_label = nx.get_node_attributes(amr_graph, 'label')[root_node]
-    action_nodes = amr_graph.graph['alignments'].split(', ')
+    action_nodes = amr_graph.graph['alignments']
     predicate_reg = r'[a-zA-Z]+-[0-9]+$'
 
     if re.search(predicate_reg, root_label) and root_node in action_nodes:

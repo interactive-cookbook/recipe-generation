@@ -32,6 +32,8 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
             nx_graph.name = meta_value      # give the networkx graph the graph id as name
         if meta_key == 'snt':
             nx_graph.graph['graph']['label'] = meta_value       # needed for including the sentence in the dot files for pictures
+        if meta_key == 'alignments':
+            nx_graph.graph['alignments'] = meta_value.split(', ')
 
     # add information about root node
     nx_graph.graph['root'] = penman_graph.top
@@ -54,6 +56,7 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
         role_label = e.role[1:] if e.role[0] == ':' else e.role
         nx_graph.add_edges_from([(e.source, e.target, {'label': role_label, 'type': 'edge', 'epi': edge_epi_data})])
 
+    # add all attributes to the node to which they belong
     for a in attributes:
         try:
             aligned_token = alignments[(a.source, a.role, a.target)].indices[0]
@@ -66,10 +69,10 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
         corr_node_attr = nx_graph.nodes(data=True)[corresponding_node]
         try:
             corr_node_attr['attr'].append({'source': a.source, 'label': role_label, 'target': a.target,
-                                           'epi': epi_data})
+                                           'epi': epi_data, 'alignment': str(aligned_token)})
         except KeyError:
             corr_node_attr['attr'] = [{'source': a.source, 'label': role_label, 'target': a.target,
-                                       'epi': epi_data}]
+                                       'epi': epi_data, 'alignment': str(aligned_token)}]
         nx_graph.add_nodes_from([(corresponding_node, corr_node_attr)])
 
     return nx_graph
@@ -129,7 +132,9 @@ def networkx2penman(nx_graph: nx.Graph) -> penman.Graph:
 
     # add metadata
     for graph_attr, attr_val in nx_graph.graph.items():
-        if graph_attr != 'graph':       # skip the subdict that is only for the visualization
+        if graph_attr == 'alignments':
+            penman_graph.metadata[graph_attr] = ', '.join(attr_val)
+        elif graph_attr != 'graph':       # skip the subdict that is only for the visualization
             penman_graph.metadata[graph_attr] = attr_val
 
     # set root node

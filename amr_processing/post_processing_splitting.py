@@ -75,10 +75,10 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
     :return: the graph with the updated alignment information
     """
     new_alignments = []
-    for orig_al in orig_graph.graph['alignments'].split(', '):
+    for orig_al in orig_graph.graph['alignments']:
         if orig_al in sep_graph.nodes:
             new_alignments.append(orig_al)
-    sep_graph.graph['alignments'] = ', '.join(new_alignments)
+    sep_graph.graph['alignments'] = new_alignments
 
     for node in sep_graph.nodes():
         node_data = sep_graph.nodes(data=True)[node]
