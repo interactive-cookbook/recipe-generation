@@ -47,10 +47,9 @@ Folder structures should be
     ...
   |---recipe_amrs_sentences
      |---dish1
-        |---amrs
-           |---dish1_0_sentences_amr.txt
-           |---dish1_1_sentences_amr.txt
-           ...
+         |---dish1_0_sentences_amr.txt
+         |---dish1_1_sentences_amr.txt
+         ...
      |---dish2
      ...
 ```
