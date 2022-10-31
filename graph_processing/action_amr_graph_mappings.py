@@ -39,7 +39,7 @@ def get_graph_pairs(action_graph_dir, amr_graph_dir) -> Dict:
             recipe_name = recipe.split('.')[:-1]
             recipe_name = '.'.join(recipe_name)
             corresponding_amr = recipe_name + '_sentences_amr.txt'
-            amr_graphs = read_aligned_amr_file('/'.join([amr_graph_dir, dish, 'amrs', corresponding_amr]))
+            amr_graphs = read_aligned_amr_file('/'.join([amr_graph_dir, dish, corresponding_amr]))
 
             nx_amr_graphs = []
 
