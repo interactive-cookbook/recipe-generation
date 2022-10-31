@@ -33,7 +33,11 @@ def penman2networkx(penman_graph: penman.Graph) -> nx.Graph:
         if meta_key == 'snt':
             nx_graph.graph['graph']['label'] = meta_value       # needed for including the sentence in the dot files for pictures
         if meta_key == 'alignments':
-            nx_graph.graph['alignments'] = meta_value.split(', ')
+            aligned_nodes = meta_value.split(', ')  # if no alignment, then result is ['']
+            if len(aligned_nodes) == 1 and aligned_nodes[0] == '':
+                nx_graph.graph['alignments'] = []   # add emtpy list instead to avoid errors later on
+            else:
+                nx_graph.graph['alignments'] = meta_value.split(', ')
 
     # add information about root node
     nx_graph.graph['root'] = penman_graph.top
