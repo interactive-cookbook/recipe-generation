@@ -178,13 +178,12 @@ def fix_cyclic_amrs(amr_corpus_dir, fixed_amr_corpus_dir):
 
     for dish in os.listdir(amr_corpus_dir):
         Path('/'.join([fixed_amr_corpus_dir, dish])).mkdir(exist_ok=True, parents=True)
-        Path('/'.join([fixed_amr_corpus_dir, dish, 'amrs'])).mkdir(exist_ok=True, parents=True)
 
-        for recipe in os.listdir('/'.join([amr_corpus_dir, dish, 'amrs'])):
+        for recipe in os.listdir('/'.join([amr_corpus_dir, dish])):
 
-            with open('/'.join([fixed_amr_corpus_dir, dish, 'amrs', recipe]), 'w', encoding='utf-8') as new_file:
+            with open('/'.join([fixed_amr_corpus_dir, dish, recipe]), 'w', encoding='utf-8') as new_file:
 
-                pen_amrs = read_aligned_amr_file('/'.join([amr_corpus_dir, dish, 'amrs', recipe]))
+                pen_amrs = read_aligned_amr_file('/'.join([amr_corpus_dir, dish, recipe]))
 
                 for gr in pen_amrs:
                     nx_graph = penman2networkx(gr)

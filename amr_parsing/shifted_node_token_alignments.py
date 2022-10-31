@@ -127,10 +127,9 @@ def create_alignments_corpus(corpus_dir, new_corpus_dir):
     Path(new_corpus_dir).mkdir(exist_ok=True, parents=True)
     for dish in os.listdir(corpus_dir):
         Path('/'.join([new_corpus_dir, dish])).mkdir(exist_ok=True, parents=True)
-        Path('/'.join([new_corpus_dir, dish, 'amrs'])).mkdir(exist_ok=True, parents=True)
         for recipe in os.listdir('/'.join([corpus_dir, dish])):
 
-            create_recipe_amr('/'.join([corpus_dir, dish, recipe]), '/'.join([new_corpus_dir, dish, 'amrs', recipe]))
+            create_recipe_amr('/'.join([corpus_dir, dish, recipe]), '/'.join([new_corpus_dir, dish, recipe]))
 
 
 if __name__=="__main__":
