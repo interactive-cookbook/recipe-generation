@@ -1,5 +1,6 @@
 import networkx as nx
 from typing import List, Dict, Tuple
+from copy import deepcopy
 
 import networkx.exception
 
@@ -36,7 +37,7 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
             return [amr_graph]
 
         components = nx.connected_components(undirected_manipulated_amr)
-        component_subgraphs = [nx.subgraph(manipulated_amr, comp_nodes) for comp_nodes in components]
+        component_subgraphs = [nx.subgraph(manipulated_amr, comp_nodes).copy() for comp_nodes in components]
 
         other_cluster_nodes = [pair[1] for pair in cluster_pairings]
         subgraph_current_cluster = None
@@ -100,7 +101,8 @@ def separate_current_cluster(amr_graph: nx.Graph, node_pairs: list):
              undirected_manipulated_amr: same as manipulated_amr but undirected
              fallback: whether fallback rules were used to split the graph
     """
-    manipulated_amr = nx.Graph.copy(amr_graph)
+    #manipulated_amr = nx.Graph.copy(amr_graph)
+    manipulated_amr = deepcopy(amr_graph)
     undirected_manipulated_amr = amr_graph.to_undirected()
     removed_edges = dict()
     meeting_nodes = []

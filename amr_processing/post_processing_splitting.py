@@ -1,6 +1,7 @@
 from typing import List, Dict
 import networkx as nx
 import penman.surface
+from copy import deepcopy
 
 from amr_processing.helpers import find_highest_node, remove_role_numbering_edge, find_new_root
 
@@ -29,15 +30,15 @@ def postprocess_split_amrs(separated_amrs: List,
     post_sep_amrs = []
 
     for new_id, sep_amr in enumerate(separated_amrs):
-        new_sep_amr = sep_amr.copy()
+        new_sep_amr0 = deepcopy(sep_amr)
 
-        new_sep_amr = update_name(sep_graph=new_sep_amr, new_instr_id=new_id)
+        new_sep_amr1 = update_name(sep_graph=new_sep_amr0, new_instr_id=new_id)
 
-        new_sep_amr = update_alignments(sep_graph=new_sep_amr, orig_graph=original_amr)
+        new_sep_amr2 = update_alignments(sep_graph=new_sep_amr1, orig_graph=original_amr)
 
-        new_sep_amr = remove_left_over_nodes(sep_graph=new_sep_amr)
+        new_sep_amr3 = remove_left_over_nodes(sep_graph=new_sep_amr2)
 
-        new_sep_amr = update_root_node(sep_graph=new_sep_amr, action_graph=action_graph, action_clusters=action_clusters)
+        new_sep_amr = update_root_node(sep_graph=new_sep_amr3, action_graph=action_graph, action_clusters=action_clusters)
 
         post_sep_amrs.append(new_sep_amr)
 
@@ -74,8 +75,10 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
     :param orig_graph: the corresponding original sentence-level amr
     :return: the graph with the updated alignment information
     """
+
     new_alignments = []
-    for orig_al in orig_graph.graph['alignments']:
+    original_alignments = orig_graph.graph['alignments']
+    for orig_al in original_alignments:
         if orig_al in sep_graph.nodes:
             new_alignments.append(orig_al)
     sep_graph.graph['alignments'] = new_alignments
@@ -92,16 +95,21 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
                     corresponding_predicate_node = in_edge[0]
                     predicate_node_data = sep_graph.nodes(data=True)[corresponding_predicate_node]
                     predicate_token = predicate_node_data['alignment']
+
+                    implicit = False
                     try:
                         attr_data = predicate_node_data['attr']
-                        imperative = False
                         for a in attr_data:
                             if a['target'] == 'imperative':
-                                imperative = True
+                                implicit = True
                     except KeyError:
                         # this means the node has no imperative attribute -> not clear whether 'you' was implicit
-                        break
-                    if aligned_token != predicate_token and imperative:
+                        # but if it was in the original alignments then it was aligned to an action node and did not
+                        # have an explicit token
+                        if node in original_alignments:
+                            implicit = True
+
+                    if aligned_token != predicate_token and implicit:
                         new_aligned_token = predicate_token
                         node_data['alignment'] = new_aligned_token
                         int_alignment = int(new_aligned_token)
