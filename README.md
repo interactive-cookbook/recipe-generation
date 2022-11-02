@@ -21,6 +21,7 @@ The [penman library](https://github.com/goodmami/penman/):
 * `conda install -c huggingface transformers` (was successful)
 
 Other libraries:<br>
+* nltk
 * bs4 (only for reading the multisentence-amr xml files)
 
 ## AMR parsing 
