@@ -2,6 +2,7 @@ import os
 
 import torch
 from torch.utils.data import Dataset
+from transformers import PreTrainedTokenizer
 
 
 # Taken from amrlib code
@@ -17,25 +18,29 @@ class AMRDataset(Dataset):
         return len(self.encodings['input_ids'])
 
 
-# Taken from amrlib code
-class T2TDataCollator:
-    def __call__(self, batch):
-        input_ids = torch.stack([example['input_ids'] for example in batch])
-        lm_labels = torch.stack([example['tagret_ids'] for example in batch])
-        lm_labels[lm_labels[:, :] == 0] = -100
-        attention_mask = torch.stack([example['attention_mask'] for example in batch])
-        decoder_attention_mask = torch.stack([example['target_attention_mask'] for example in batch])
-
-        collated_data = {'input_ids': input_ids, 'attention_mask': attention_mask,
-                         'labels': lm_labels, 'decoder_attention_mask': decoder_attention_mask}
-
-        return collated_data
-
-
-def build_dataset(tokenizer, data_path, context_len: int, linearization: str = 'penman'):
+def build_dataset(tokenizer: PreTrainedTokenizer, data_path, context_len: int, linearization: str = 'penman') -> Dataset:
 
     data_set_entries = read_data_set(data_path, context_len, linearization)
-    # TODO concatenate 'graph' and 'context' elements and add special token between them
+    # TODO maybe change special token
+    contextualized_input = [f'{c} <GRAPH> {g}' for (c, g) in zip(data_set_entries['context'], data_set_entries['graph'])]
+    input_seqs = ['%s' % cont_gr for cont_gr in contextualized_input]
+    target_seqs = ['%s' % sent for sent in data_set_entries['sent']]
+
+    # Encode input and target using tokenizer
+    # original code had also truncation = True and max_length = X TODO: decide what to do
+    input_encodings = tokenizer.batch_encode_plus(input_seqs,
+                                                  padding=True,
+                                                  return_overflowing_tokens=True)
+    target_encodings = tokenizer.batch_encode_plus(target_seqs,
+                                                   padding=True,
+                                                   return_overflowing_tokens=True)
+    encodings = {'input_ids': torch.LongTensor(input_encodings['input_ids']),
+                 'attention_mask': torch.LongTensor(input_encodings['attention_mask']),
+                 'target_ids': torch.LongTensor(target_encodings['input_ids']),
+                 'target_attention_mask': torch.LongTensor(target_encodings['attention_mask'])}
+
+    data_set = AMRDataset(encodings, data_set_entries['sent'])
+    return data_set
 
 
 def read_data_set(data_path, context_len: int, linearization:str = 'penman'):
