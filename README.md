@@ -20,6 +20,9 @@ The [penman library](https://github.com/goodmami/penman/):
 * `pip install transformers` (resulted in an error for me on Windows 10, python 3.6 anaconda environment)
 * `conda install -c huggingface transformers` (was successful)
 
+[Sentence Piece](https://github.com/google/sentencepiece#installation)
+* `pip install sentencepiece`
+
 Other libraries:<br>
 * nltk
 * bs4 (only for reading the multisentence-amr xml files)
