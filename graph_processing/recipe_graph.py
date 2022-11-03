@@ -1,4 +1,5 @@
 import networkx as nx
+import os
 
 
 # still need to organize the functions in a class
@@ -109,7 +110,7 @@ def read_graph_from_conllu(conllu_graph_file, token_ids=True):
     G.add_nodes_from(nodes)
     G.add_edges_from(edges)
 
-    conllu_graph_file_name = conllu_graph_file.split('/')[-1]    # remove path and keep only file name
+    conllu_graph_file_name = conllu_graph_file.split(os.sep)[-1]    # remove path and keep only file name
     conllu_graph_file_name = '.'.join(conllu_graph_file_name.split('.')[:-1])   # remove file ending .conllu
     G_name = "G_" + str(conllu_graph_file_name)
 
