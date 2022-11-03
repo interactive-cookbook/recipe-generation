@@ -34,7 +34,7 @@ def postprocess_split_amrs(separated_amrs: List,
 
         new_sep_amr1 = update_name(sep_graph=new_sep_amr0, new_instr_id=new_id)
 
-        new_sep_amr2 = update_alignments(sep_graph=new_sep_amr1, orig_graph=original_amr)
+        new_sep_amr2 = update_alignments(sep_graph=new_sep_amr1, orig_graph=original_amr, action_clusters=action_clusters)
 
         new_sep_amr3 = remove_left_over_nodes(sep_graph=new_sep_amr2)
 
@@ -63,7 +63,7 @@ def update_name(sep_graph: nx.Graph, new_instr_id: int) -> nx.Graph:
     return sep_graph
 
 
-def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
+def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph, action_clusters: List[dict]) -> nx.Graph:
     """
     1. Update the alignment information of a separated action-level amr
     such that it includes all nodes in the action alignment information
@@ -75,13 +75,20 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph) -> nx.Graph:
     :param orig_graph: the corresponding original sentence-level amr
     :return: the graph with the updated alignment information
     """
+    main_action_aligned_nodes = []
+    for cl in action_clusters:
+        for v in cl.values():
+            main_action_aligned_nodes.extend(v)
 
     new_alignments = []
     original_alignments = orig_graph.graph['alignments']
     for orig_al in original_alignments:
-        if orig_al in sep_graph.nodes:
+        if orig_al in sep_graph.nodes and orig_al in main_action_aligned_nodes:
             new_alignments.append(orig_al)
+        #if orig_al in sep_graph.nodes and orig_al not in main_action_aligned_nodes:
+            #print("here")
     sep_graph.graph['alignments'] = new_alignments
+    assert new_alignments != []
 
     for node in sep_graph.nodes():
         node_data = sep_graph.nodes(data=True)[node]
