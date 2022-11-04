@@ -1,12 +1,14 @@
 # recipe-generation
 
-This repository contains the code for the master thesis project of generating new recipe texts based on information from two recipes for the same dish. 
+This repository contains the code for the master thesis project of generating new recipe texts based on information from two recipes for the same dish. <br>
+The code for training the generation model by fine-tuning t5 for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.
 
 The work is still in progress. 
 The currently implement steps of the planned pipeline are
 * parsing each recipe sentence by sentence into AMR graphs
 * separating the AMR graphs into sub-graphs in order to get one AMR per action in the corresponding action graph for the recipe 
-
+* extracting approximated gold instructions for the split action-level amr graphs
+* creating multi-sentence amr files from the amr 3.0 corpus, such thath each file contains all amrs from one document
 
 ## Requirements 
 The [networkX library](https://networkx.org/documentation/stable/index.html):
