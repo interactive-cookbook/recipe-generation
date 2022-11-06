@@ -17,11 +17,13 @@ Functions to create gold instructions for the split AMRs using a simple string-m
 """
 
 
-def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, shift_value: int, version: int) -> str:
+def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_split_amrs: List[nx.Graph],
+                         shift_value: int, version: int) -> str:
     """
-
+    Create the gold sentence for split_amr graph
     :param split_amr: the action-level amr
     :param sentence_amr: the corresponding sentence-level amr
+    :param other_split_amrs: list of the other split amrs that were obtained from the same sentence-level amr
     :param shift_value: the value for shifting the sentence-level token indices to document-level token indices
     :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
                     1: do not add any unaligned tokens
@@ -29,12 +31,15 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, shift_valu
                     3: add contiguous spans of unaligned tokens if span boundary adjacent to an aligned token
     :return: the substring of the original sentence that was extracted as the gold instruction for the split_amr
     """
+
     original_sentence = split_amr.graph['snt']
     orig_snt_tokenized = original_sentence.split(' ')
+    tagged_snt = nltk.pos_tag(orig_snt_tokenized)
 
     modified_snt_tokenized = []
     stemmer = PorterStemmer()       # a bit better than simply removing -ed
     modified_inds = []
+    modified_inds_others = []       # the indices of action tokens that get stemmed in any other split amr
 
     inds_to_add = set()     # the sentence-level indices of the tokens to use for the new instruction sentence
     potential_tokens = []   # a list of sentence-level indices of tokens that might be used for the new instructions
@@ -45,20 +50,21 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, shift_valu
         shifted_token_ind = token_ind + shift_value
 
         # check whether the token has an alignment to any node in the amr and if yes, whether it corresponds to an action
-        in_current_amr, is_action = token_has_alignment(str(shifted_token_ind), split_amr)
+        in_current_amr, is_action, is_root = token_has_alignment(str(shifted_token_ind), split_amr)
         # check whether the token had an alignment in original AMR or is not represented in AMR in general
-        in_orig_amr, _ = token_has_alignment(str(shifted_token_ind), sentence_amr)
+        in_orig_amr, _, _ = token_has_alignment(str(shifted_token_ind), sentence_amr)
 
         # Remove -ed ending from actions that are participles, e.g. "shredded cheese" should become "shred cheese"
+        # only do this if it is the root
         if is_action:
-            token, pos_tag = nltk.pos_tag(orig_snt_tokenized)[token_ind]
-            # decide whether to keep VBG, 0 occurrences in ARA 1
-            if pos_tag == 'JJ' or pos_tag == 'VBN' or pos_tag == 'VBG':
-                if token.endswith('ed'):
-                    modified_inds.append(token_ind)
-                    orig_token = token
-                    token = stemmer.stem(token)
-                    # print(f'{orig_token} ({pos_tag}) became {token}')
+            _, pos_tag = tagged_snt[token_ind]
+            if pos_tag == 'JJ' or pos_tag == 'VBN' or pos_tag == 'VBG' or pos_tag == 'VBD' or pos_tag == 'NN':
+                if token.endswith('ed') or token.endswith('ing'):
+                    if is_root:
+                        modified_inds.append(token_ind)
+                        orig_token = token
+                        token = stemmer.stem(token)
+                        # print(f'{orig_token} ({pos_tag}) became {token}')
 
         modified_snt_tokenized.append(token)
 
@@ -70,34 +76,49 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, shift_valu
         if in_current_amr:
             inds_to_add.add(token_ind)
         elif not in_current_amr and in_orig_amr:
-            continue
+            pass
         else:
             potential_tokens.append(token_ind)
 
+        # Check whether the token would have been modified for another AMR:
+        for other_amr in other_split_amrs:
+            in_other_amr, is_action_other, is_root_other = token_has_alignment(str(shifted_token_ind), other_amr)
+            if in_other_amr and is_action_other and is_root_other:
+                _, pos_tag = tagged_snt[token_ind]
+                if pos_tag == 'JJ' or pos_tag == 'VBN' or pos_tag == 'VBG' or pos_tag == 'VBD' or pos_tag == 'NN':
+                    if token.endswith('ed') or token.endswith('ing'):
+                        modified_inds_others.append(token_ind)
+
     assert len(modified_inds) < 2
+
+    if split_amr.graph['id'] == 'cauliflower_mash_5_instr4_0':
+        print("here")
 
     # add only direct adjacent tokens
     if version == 2:
-        unmodified_inds_to_add = inds_to_add.copy()
+        inds_to_add_unchanged = inds_to_add.copy()
         for pt_ind in potential_tokens:
-            if pt_ind + 1 in unmodified_inds_to_add or pt_ind - 1 in unmodified_inds_to_add:
-                # do not add prepositions or determiners back that preceed a now modified action, in order
-                # to avoid instructions such as "with shred mozzarella cheese ."
-                if pt_ind + 1 not in modified_inds:
-                    inds_to_add.add(pt_ind)
+            tagging_pair = tagged_snt[pt_ind]
+            pt_pos_tag = tagging_pair[1]
+            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add_unchanged, modified_inds, modified_inds_others)
+            if add_pt:
+                inds_to_add.add(pt_ind)
 
     # Add the unaligned tokens if they are adjacent to tokens that get added
     # do this in both directions to be able to add e.g. 'In a' at the beginning of an instruction
     elif version == 3:
         for pt_ind in potential_tokens:
-            if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
-                if pt_ind + 1 not in modified_inds:
-                    inds_to_add.add(pt_ind)
+            tagging_pair = tagged_snt[pt_ind]
+            pt_pos_tag = tagging_pair[1]
+            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add, modified_inds, modified_inds_others)
+            if add_pt:
+                inds_to_add.add(pt_ind)
         potential_tokens.reverse()
         for pt_ind in potential_tokens:
-            if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
-                if pt_ind + 1 not in modified_inds:
-                    inds_to_add.add(pt_ind)
+            _, pt_pos_tag = tagged_snt[pt_ind]
+            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add, modified_inds, modified_inds_others)
+            if add_pt:
+                inds_to_add.add(pt_ind)
 
     assert len(modified_snt_tokenized) == len(orig_snt_tokenized)   # I only want to convert the one main action to imperative form
 
@@ -119,11 +140,53 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, shift_valu
         new_gold_sent.append('.')
 
     new_gold_sent = ' '.join(new_gold_sent)
+    if new_gold_sent[0].isalpha():
+        new_gold_sent = new_gold_sent[0].upper() + new_gold_sent[1:]
     #print(new_gold_sent)
+    with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
+        f.write(f'{split_amr.graph["id"]}\t{new_gold_sent}\n')
     return new_gold_sent
 
 
-def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool):
+def unaligned_tokens_forward(pt_ind: int, pt_pos_tag: str, inds_to_add: set, modified_inds: list, modified_inds_others: list):
+
+    to_add = False
+    if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
+        # do not add prepositions or determiners back that preceed a now modified action, if that action is included
+        # in order to avoid instructions such as "with shred mozzarella cheese ."
+        # but add prepositions or determiners back that preceed a now modified action, if the action is not included
+        # in order to add e.g. "with" to "Top with [shredded] mozzarella cheese"
+        # do not add tokens with tag 'IN' if the next token is not added
+        # do not add tokens with tag 'CC' if either previous or next token are node added
+        # do not add tokens with tag 'DT' if next token is not added
+        if pt_pos_tag == 'CC' and not (pt_ind + 1 in inds_to_add and pt_ind - 1 in inds_to_add):
+            to_add = False
+        elif pt_pos_tag == 'IN' and not (pt_ind + 1 in inds_to_add):
+            if pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
+                to_add = True
+            else:
+                to_add = False
+        elif pt_pos_tag == 'DT' and not (pt_ind + 1 in inds_to_add):
+            if pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
+                to_add = True
+            else:
+                to_add = False
+        elif pt_ind + 1 in modified_inds and pt_ind + 1 in inds_to_add:
+            to_add = False
+        elif pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
+            to_add = True
+        else:
+            to_add = True
+
+    # for cases such as [Preposition Determiner ParticipleAction Noun], e.g. "with the shredded mozzarella"
+    elif pt_ind + 2 in inds_to_add and pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
+        if pt_pos_tag == 'DT' or pt_pos_tag == ',':
+            to_add = True
+
+    return to_add
+
+
+def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool, bool):
     """
     Determines whether a specific token is aligned to any node in a graph
     :param token_index: the (document-level) index of the token
@@ -131,13 +194,15 @@ def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool):
     :return: tuple(has_alignment, is action)
             has_alignment: True if the token is aligned to one of the amr nodes, False otherwise
             is_action: True if the token is an action, i.e. belongs to an action-aligned amr node; False otherwise
-                        If not action alignment data is available then False is returned
+                        If no action alignment data is available then False is returned
+            is_root: True if the token is the root of the amr; False otherwise
     """
     try:
         action_aligned_nodes = graph.graph['alignments']
     except KeyError:
         action_aligned_nodes = []       # the files of the original graphs do not contain the 'alignments' meta data
 
+    is_root = False
     has_alignment = False
     is_action = False
     for node, node_attributes in graph.nodes(data=True):
@@ -145,6 +210,8 @@ def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool):
             has_alignment = True
             if node in action_aligned_nodes:
                 is_action = True
+            if node == graph.graph['root']:
+                is_root = True
         try:
             amr_node_attr = node_attributes['attr']
             for attr_dict in amr_node_attr:
@@ -154,13 +221,14 @@ def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool):
         except KeyError:
             continue
 
-    return has_alignment, is_action
+    return has_alignment, is_action, is_root
 
 
 def create_gold_recipe(recipe_amrs: List[nx.Graph],
                        orig_amrs: Dict,
                        action_graph: nx.Graph,
                        version: int,
+                       text_only: bool,
                        order_ac_graph: bool = False):
     """
 
@@ -173,12 +241,19 @@ def create_gold_recipe(recipe_amrs: List[nx.Graph],
                            if False, then the main order of the original recipe is kept and only the split amrs
                            derived from the same sentence-level AMR are ordered based on the action graph
     :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
+    :param text_only:
     :return: list of the action-level amr with 'snt' attribute updated to the newly generated gold instructions
              and ordered as specified by order_ac_graph
     """
 
     orig_instr2amr = defaultdict(list)  # key: n, value: [gr1, gr2] means that gr1 and gr2 are from the original instruction
                                         # at the nth position in the original recipe
+    for amr in recipe_amrs:
+        original_id = amr.graph['snt_id']
+        original_position = original_id.split('instr')[-1]
+        original_position = int(original_position)
+        orig_instr2amr[original_position].append(amr)
+
     # needed to be able to shift the per-sentence token ids to the document-level token ids
     shift_value = 0
     prev_sent_len = 1
@@ -199,13 +274,15 @@ def create_gold_recipe(recipe_amrs: List[nx.Graph],
         else:
             orig_snt_amr = orig_amrs[original_id]
             assert original_sentence == orig_snt_amr.graph['snt']
-            gold_sentence = create_gold_sentence(amr, orig_snt_amr, shift_value, version)
+            # also get other AMRs derived from the current original AMR
+            orig_amr_pos = int(original_id.split('instr')[-1])
+            others = [gr for gr in orig_instr2amr[orig_amr_pos] if gr != amr]
+
+            gold_sentence = create_gold_sentence(amr, orig_snt_amr, others, shift_value, version)
+            if text_only:
+                gold_sentence += '\t was changed'
         # change sentence metadata
         amr.graph['snt'] = gold_sentence
-
-        original_position = original_id.split('instr')[-1]
-        original_position = int(original_position)
-        orig_instr2amr[original_position].append(amr)
 
         prev_sent_len = len(original_sentence.split(' '))
 
@@ -278,7 +355,7 @@ def create_gold_corpus(action_amr_corpus: str,
     :param text_only: if set to True then files only containing the generated sentences (but not the AMRs) are created
     :return:
     """
-
+    count = 0
     Path(gold_corpus_dir).mkdir(exist_ok=True, parents=True)
 
     for dish in os.listdir(action_amr_corpus):
@@ -307,7 +384,7 @@ def create_gold_corpus(action_amr_corpus: str,
             recipe_action_graph = read_graph_from_conllu(action_graph_path)
 
             # create the gold instructions for the action-level AMRs of the current recipe
-            new_ordered_recipe_amrs = create_gold_recipe(recipe_amrs, orig_amrs, recipe_action_graph, version)
+            new_ordered_recipe_amrs = create_gold_recipe(recipe_amrs, orig_amrs, recipe_action_graph, version, text_only)
 
             # Create the new output files
             if text_only:
@@ -316,15 +393,24 @@ def create_gold_corpus(action_amr_corpus: str,
                     for amr_gr in new_ordered_recipe_amrs:
                         new_sent = amr_gr.graph['snt']
                         f.write(f'{new_sent}\n')
+                        count += 1
             else:
                 with open(os.path.join(gold_corpus_dir, dish, f'{recipe_name}_gold.txt'), 'w', encoding='utf-8') as f:
                     for amr_gr in new_ordered_recipe_amrs:
                         penman_amr_gr = networkx2penman(amr_gr)
                         amr_str = penman.encode(penman_amr_gr)
                         f.write(f'{amr_str}\n\n')
+                        count += 1
+    print(count)
 
 
 
 
 if __name__=='__main__':
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_2', 2, True)
     create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
+
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_3', 3)
+
+
