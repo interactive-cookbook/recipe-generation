@@ -1,0 +1,8 @@
+{
+    "model_name_or_path": "./model/generation_model",
+    "tokenizer_name_or_path": "./model/generation_model",
+    "device": "cpu",
+    "batch_size": 4,
+    "num_beams": 1,
+    "num_ret_seq": 1
+  }
