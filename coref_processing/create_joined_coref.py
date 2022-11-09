@@ -2,18 +2,48 @@ import json
 import os
 from pathlib import Path
 import networkx as nx
-from typing import List
+from typing import List, Tuple, Dict
 from collections import defaultdict
 from utils.paths import RAW_COREF_DIR, ACTION_AMR_DIR, JOINED_COREF_DIR
 from graph_processing.read_graphs import read_aligned_amr_file
 from amr_processing.penman_networkx_conversions import penman2networkx
 
+"""
+Functions to create .jsonlines files with the combined information from the coreference files, the coreference 
+information about previously shared amr nodes and then node variables of the amr nodes aligned to tokens from 
+the coref clusters
+
+Example: 
+If text-based coreference file is: {"text": ["Preheat", "oven", "to", ...], "sentence_map": [...], 
+                                    "clusters": [[[4, 4], [11, 12], [81, 82]], [[84, 87], [114, 115]]]
+                                    }
+Then the created joined coref file includes one entry for each cluster with the shifted token IDs (and only one ID if only one token)
+the corresponding tokens in the sentence and the amr_nodes information which has the same list structure as 
+"tokens" but for each token it includes a list of [the amr node label, the amr node variable, the ID of the amr graph]
+{"coref-rel-0": {"token_ids": [[5], [12, 13], [82, 83]], 
+                 "tokens": [["pasta"], ["the", "pasta"], ["the", "pasta"]], 
+                 "amr_nodes": [[[["pasta", "p", "baked_ziti_1_instr1"]]], [[["pasta", "p", "baked_ziti_1_instr5_0"]]]]}}
+{"coref-rel-1": {"token_ids": [[85, 86, 87, 88], [115, 116]], 
+                 "tokens": [["the", "shredded", "mozzarella", "cheese"], ["the", "mozzarella"]], 
+                 "amr_nodes": [[[["shred-01", "s", "baked_ziti_1_instr5_1"]], [["mozzarella", "m", "baked_ziti_1_instr5_0"], ["mozzarella", "m", "baked_ziti_1_instr5_1"]], [["cheese", "c", "baked_ziti_1_instr5_0"], ["cheese", "c", "baked_ziti_1_instr5_1"]]], [[["mozzarella", "m", "baked_ziti_1_instr6"]]]]}}
+
+Additionally, for each node in the original sentence-level AMRs that occurs now in more than one action-level AMR an
+entry of the following format is added:
+{"split-rel-0": {"token_id": 28,            # ID of the token aligned to the node in the original sentence
+                "variable": "p2",           # the amr node, i.e. its variable name
+                "concept": "pasta",         # the label / concept of the AMR node
+                "token": "pasta",           # the token itself
+                "amr_ids": ["baked_ziti_1_instr2_1", "baked_ziti_1_instr2_0"]   # list of the IDs of all AMRs in which it occurs
+                }
+}
+"""
+
 
 def read_coref_file(coref_file: str):
     """
-
-    :param coref_file:
-    :return:
+    Read a coreference .jsonlines file
+    :param coref_file: path to the coref file
+    :return: dictionary with the information from the file
     """
     coref_dict = dict()
     with open(coref_file, "r", encoding="utf-8") as cf:
@@ -23,46 +53,66 @@ def read_coref_file(coref_file: str):
     return coref_dict
 
 
-def find_post_splitting_coref(recipe_action_amrs: List[nx.Graph], recipe_text: List[str], shift=True):
-
+def find_post_splitting_coref(recipe_action_amrs: List[nx.Graph], recipe_text: List[str], shift=True) -> Dict:
+    """
+    Extract the information about co-referring AMR nodes that does not original from co-references within the original
+    text but from separating the sentence-level amrs into action-level amrs
+    E.g. if the AMR for "Cut the onions and add to the sauce" gets split into the action-level AMRs
+    for "Cut the onions." and "Add the onions to the sauce." then a coreference for the two "onion" nodes in the
+    two AMRs should be created
+    :param recipe_action_amrs: list of the action-level amr graphs for the recipe
+    :param recipe_text: list of the tokens of the recipe text
+    :param shift: whether token IDs in the recipe_coref_data dict start at 0 and therefore need to be shifted by 1
+    :return: a dictionary with amr node coreference clusters arising from the splitting
+             one subdict for each (enumerated) cluster, e.g.
+             {'split-rel-0': {'token_id': ID of the token in the text,
+                              'variable': the AMR node variable,
+                              'concept': the node label,
+                              'token': the token,
+                              'amr_ids': list of the action-level AMR IDs for the graphs in which that node occurs},
+              'split-rel-1': {...}}
+    """
     splitting_coref = defaultdict()
-    # group all graphs that come from the same original AMR
-    instruction_amr_mappings = defaultdict(list)
 
+    # group all graphs that come from the same original AMR; keys are the IDs of the sentence-level AMRs
+    instruction_amr_mappings = defaultdict(list)
     for action_amr in recipe_action_amrs:
         original_sentence_id = action_amr.graph['snt_id']
         instruction_amr_mappings[original_sentence_id].append(action_amr)
 
-    rel_id = 0
+    rel_id = 0      # name each "split"-coref-cluster by enumerating them
+    # loop over all original sentence-level IDs and the corresponding action-level AMRs
     for orig_instr, separated_amrs in instruction_amr_mappings.items():
 
-        if len(separated_amrs) == 1:
+        if len(separated_amrs) == 1:        # no splitting happened -> no additional coreferences created
             continue
 
-        nodes_to_corefer_ids = defaultdict(set)
+        nodes_to_corefer_ids = defaultdict(set)     # keeps track for each node that has coreferences, in which
+                                                    # AMRs the coreferring nodes occur
         nodes_to_corefer_data = dict()
         for sep_amr in separated_amrs:
             for sep_amr2 in separated_amrs:
                 if sep_amr.name != sep_amr2.name:
                     nodes1 = list(sep_amr.nodes)
                     nodes2 = list(sep_amr2.nodes)
-                    shared_nodes = set(nodes1) & set(nodes2)
+                    shared_nodes = set(nodes1) & set(nodes2)    # only shared nodes can have an identical original node
                     shared_nodes = list(shared_nodes)
                     for sh in shared_nodes:
 
-                        #assert sep_amr.nodes(data=True)[sh] == sep_amr2.nodes(data=True)[sh]
+                        # add the names of the AMRs in which the node occurs
                         nodes_to_corefer_ids[sh].add(sep_amr.name)
                         nodes_to_corefer_ids[sh].add(sep_amr2.name)
+                        # keep track of the data of the node, e.g. label, alignments, etc.
                         nodes_to_corefer_data[sh] = sep_amr.nodes(data=True)[sh]
 
         for shared_n in nodes_to_corefer_ids.keys():
-            rel_id_name = f'split-rel-{rel_id}'
+            rel_id_name = f'split-rel-{rel_id}'         # create a new coreference cluster
 
             node_var = shared_n
-            amr_ids = list(nodes_to_corefer_ids[shared_n])
+            amr_ids = list(nodes_to_corefer_ids[shared_n])      # list of amrs the node occurs in
 
             node_label = nodes_to_corefer_data[shared_n]['label']
-            token_id_str = nodes_to_corefer_data[shared_n]['alignment']
+            token_id_str = nodes_to_corefer_data[shared_n]['alignment']     # ID of the token aligned to the node
             token_id = int(token_id_str)
             if shift:
                 token = recipe_text[token_id-1]
@@ -77,31 +127,36 @@ def find_post_splitting_coref(recipe_action_amrs: List[nx.Graph], recipe_text: L
     return splitting_coref
 
 
-
-def map_coref_to_amr(recipe_coref_data: dict, recipe_action_amrs: List[nx.Graph], shift=True):
+def map_coref_to_amr(recipe_coref_data: dict, recipe_action_amrs: List[nx.Graph], shift=True) -> Tuple[Dict, Dict]:
     """
 
-    :param recipe_coref_data:
-    :param recipe_action_amrs:
-    :param shift:
+    :param recipe_coref_data: dict with the coreference information for a recipe; needs to include the following
+                                key, value information at least:
+                                "clusters": list with one sublist per cluster, each consisting of a sublist with the
+                                            token IDs of one mention
+                                "text": list of the tokens of the corresponding recipe
+    :param recipe_action_amrs: list of the action-level amr graphs for the recipe
+    :param shift: whether token IDs in the recipe_coref_data dict start at 0 and therefore need to be shifted by 1
     :return:
     """
 
-    coref_token_data = extract_relevant_cluster_data(recipe_coref_data, shift)
-    coref_splitting_data = find_post_splitting_coref(recipe_action_amrs,
-                                                     recipe_coref_data['text'],
-                                                     True)
+    coref_token_data: dict = extract_relevant_cluster_data(recipe_coref_data, shift)
+    coref_splitting_data: dict = find_post_splitting_coref(recipe_action_amrs, recipe_coref_data['text'], True)
 
     joined_coref_information = dict()
 
+    # add the information about the aligned AMR node(s) for all tokens in the text-based coreference clusters
     for coref_cluster, token_data in coref_token_data.items():
         cluster_corresponding_amr_nodes = []
+        # for each mention / token span in a coref cluster
         for span in token_data['token_ids']:
             span_corresponding_amr_nodes = []
+            # find the amr node aligned to each of the tokens
             for token_id in span:
-                token_corresponding_amr_nodes = []
+                token_corresponding_amr_nodes = []      # several AMR nodes can be aligned to the same token
                 for ac_amr in recipe_action_amrs:
                     node_attr_data = nx.get_node_attributes(ac_amr, 'alignment')
+                    # find the node whose alignment is identical with current token
                     for amr_node in ac_amr.nodes:
                         node_aligned_token = node_attr_data[amr_node]
                         if int(node_aligned_token) == token_id:
@@ -111,19 +166,21 @@ def map_coref_to_amr(recipe_coref_data: dict, recipe_action_amrs: List[nx.Graph]
                             node_var = amr_node
                             token_corresponding_amr_nodes.append((node_label, node_var, amr_id))
 
-                if token_corresponding_amr_nodes:
+                if token_corresponding_amr_nodes:   # some tokens do not have an aligned AMR node, so skip them
                     span_corresponding_amr_nodes.append(token_corresponding_amr_nodes.copy())
 
             if span_corresponding_amr_nodes:
                 cluster_corresponding_amr_nodes.append(span_corresponding_amr_nodes.copy())
 
+        # keep the information about coreference clusters represented by the token IDs and add the corresponding
+        # amr node information
         joined_coref_information[coref_cluster] = token_data.copy()
         joined_coref_information[coref_cluster]['amr_nodes'] = cluster_corresponding_amr_nodes.copy()
 
     return joined_coref_information, coref_splitting_data
 
 
-def extract_relevant_cluster_data(recipe_coref_data: dict, shift):
+def extract_relevant_cluster_data(recipe_coref_data: dict, shift: bool) -> dict:
     """
     Extract the potentially shifted token IDs and the corresponding tokens from the available
     coreference data and give each coreference cluster a name based on enumerating them
@@ -132,8 +189,12 @@ def extract_relevant_cluster_data(recipe_coref_data: dict, shift):
                                     {'token_ids' [[7, 8], [13]],
                                     'tokens': [['ground', 'beef'], ['beef']]}
                             }
-    :param recipe_coref_data:
-    :param shift:
+    :param recipe_coref_data: dict with the coreference information for a recipe; needs to include the following
+                                key, value information at least:
+                                "clusters": list with one sublist per cluster, each consisting of a sublist with the
+                                            token IDs of one mention
+                                "text": list of the tokens of the corresponding recipe
+    :param shift: whether token IDs in coref data need to be shifted by 1 to match ara token IDs
     :return: dictionary, one key per cluster, value is a dictionary itself with key 'token_ids' and 'tokens'
                     'token_ids': list of lists where each list corresponds to a token span
                                  with all token IDs of the tokens included in the span
@@ -167,7 +228,8 @@ def extract_relevant_cluster_data(recipe_coref_data: dict, shift):
 
 def create_coref_amr_files():
     """
-
+    For all recipes in ACTION_AMR_DIR
+    Requires
     :return:
     """
     Path(JOINED_COREF_DIR).mkdir(parents=True, exist_ok=True)
@@ -177,14 +239,16 @@ def create_coref_amr_files():
             file_name_tokens = recipe.split('_')
             recipe_name = '_'.join(file_name_tokens[:-2])
 
-            action_graphs_penman = read_aligned_amr_file(ACTION_AMR_DIR / dish / recipe)
-            action_graphs = []
-            for pen_gr in action_graphs_penman:
-                action_graphs.append(penman2networkx(pen_gr))
+            # read the AMR file and convert to networkX graphs
+            amr_graphs_penman = read_aligned_amr_file(ACTION_AMR_DIR / dish / recipe)
+            amr_graphs = []
+            for pen_gr in amr_graphs_penman:
+                amr_graphs.append(penman2networkx(pen_gr))
 
+            # find the corresponding coreference file
             corresponding_coref_file = recipe_name + '.jsonlines'
-            coref_data = read_coref_file(RAW_COREF_DIR / dish / corresponding_coref_file)
-            joined_coref_info, coref_from_splitting = map_coref_to_amr(coref_data, action_graphs)
+            coref_data: dict = read_coref_file(RAW_COREF_DIR / dish / corresponding_coref_file)
+            joined_coref_info, coref_from_splitting = map_coref_to_amr(coref_data, amr_graphs)
 
             with open(JOINED_COREF_DIR/ dish / f'{recipe_name}_joined.jsonlines', 'w', encoding='utf-8') as f:
 
@@ -196,8 +260,6 @@ def create_coref_amr_files():
                     json_line = {rel_id: value}
                     json.dump(json_line, f)
                     f.write('\n')
-
-
 
     """
 
@@ -213,8 +275,7 @@ def create_coref_amr_files():
     """
 
 
-
-if __name__=='__main__':
+if __name__ == '__main__':
     create_coref_amr_files()
 
 
