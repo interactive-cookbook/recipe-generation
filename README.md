@@ -72,4 +72,4 @@ This requires another subfolder of the data folder as described above which cont
 
 The paths to the action-level AMR graphs and to the coreference files is specified in utils/paths.py (ACTION_AMR_DIR and RAW_COREF_DIR). Also the path to the output folder that gets created and will contain the generated files is specified in the paths.py script (JOINED_COREF_DIR). 
 
-Details about the output format and information included can be found at the top of the [script]((https://github.com/interactive-cookbook/recipe-generation/blob/main/coref_processing/create_joined_coref.py)) itself. 
+Details about the output format and information included can be found at the top of the [script](https://github.com/interactive-cookbook/recipe-generation/blob/main/coref_processing/create_joined_coref.py) itself. 
