@@ -49,11 +49,12 @@ def generate(amr_graph: nx.DiGraph, context: str, generator: RecipeGenerator):
     return model_output
 
 
-def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, context_len: int = 1):
+def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, ordering: str = "df-lf", context_len: int = 1):
     """
     Generates a recipe for an action graph
     :param action_graph: an action graph (networkx object)
     :param generation_config: a .json file with the configuration parameters for the generation model to use
+    :param ordering: the ordering function to use, can be "top", "ids", "df" and "df-lf"
     :param context_len: the context length, i.e. how many previous sentences to consider
     :return:
     """
@@ -71,7 +72,16 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, contex
     sem_action_graph = add_semantic_representations(action_graph)
 
     # create an order of the action graphs
-    action_ordering = order_actions_df(sem_action_graph)
+    if ordering == "top":
+        action_ordering = order_actions_topological(sem_action_graph)
+    elif ordering == "ids":
+        action_ordering = order_actions_token_ids(sem_action_graph)
+    elif ordering == "df":
+        action_ordering = order_actions_df(sem_action_graph)
+    elif ordering == "df-lf":
+        action_ordering = order_actions_df_lf(sem_action_graph)
+    else:
+        raise ValueError('Ordering values can only be "top", "ids", "df" or "df-lf"')
 
     # loop through the ordered action nodes
     print("---------- Starting Generation ----------")
@@ -106,12 +116,44 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, contex
 if __name__=='__main__':
 
     #ac_graph = read_graph_from_conllu(Path('./data/ara1.1/chewy_chocolate_chip_cookies/recipes/chewy_chocolate_chip_cookies_1.conllu'))
-    ac_graph = read_graph_from_conllu(Path('./data/ara1.1/cauliflower_mash/recipes/cauliflower_mash_5.conllu'))
+    ac_graph = read_graph_from_conllu(Path('./data/ara1.1/orange_chicken/recipes/orange_chicken_6.conllu'))
 
     configuration_file = MODEL_DIR / Path('recipe_gen_config.json')
-    recipe = generate_recipe_ac_graph(action_graph=ac_graph,
-                             generation_config=configuration_file,
-                             context_len=1)
-    for s in recipe:
-        print(s)
+    with open("orange_chicken_6_gente.txt", "w", encoding="utf-8") as f:
+        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+                                          generation_config=configuration_file,
+                                          ordering="top",
+                                          context_len=1)
+        f.write("Topological Ordering: \n")
+        for s in recipe:
+            f.write(f'{s}\n')
+        f.write('\n')
+
+        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+                                          generation_config=configuration_file,
+                                          ordering="ids",
+                                          context_len=1)
+        f.write("Token ID Ordering: \n")
+        for s in recipe:
+            f.write(f'{s}\n')
+        f.write('\n')
+
+        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+                                          generation_config=configuration_file,
+                                          ordering="df",
+                                          context_len=1)
+        f.write("DF Ordering: \n")
+        for s in recipe:
+            f.write(f'{s}\n')
+        f.write('\n')
+
+        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+                                          generation_config=configuration_file,
+                                          ordering="df-lf",
+                                          context_len=1)
+        f.write("DF-LF Ordering: \n")
+        for s in recipe:
+            f.write(f'{s}\n')
+        f.write('\n')
+
 
