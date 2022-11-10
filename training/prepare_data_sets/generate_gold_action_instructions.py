@@ -1,16 +1,18 @@
-from typing import List, Dict
-import networkx as nx
 import os
-from graph_processing.recipe_graph import read_graph_from_conllu
-from graph_processing.read_graphs import read_aligned_amr_file
-from amr_processing.penman_networkx_conversions import penman2networkx, networkx2penman
-from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR
+import re
+from typing import List, Dict, Set
+import networkx as nx
+import penman
 from collections import Counter, defaultdict
 from pathlib import Path
 import nltk
 from nltk.stem import PorterStemmer
-from nltk.stem.snowball import SnowballStemmer
-import penman
+
+from graph_processing.recipe_graph import read_graph_from_conllu
+from graph_processing.read_graphs import read_aligned_amr_file
+from graph_processing.graph_traversal import order_actions_df_lf
+from amr_processing.penman_networkx_conversions import penman2networkx, networkx2penman
+from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR
 
 """
 Functions to create gold instructions for the split AMRs using a simple string-match and rule-based approach
@@ -41,6 +43,8 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_spli
     modified_inds = []
     modified_inds_others = []       # the indices of action tokens that get stemmed in any other split amr
 
+    action_root_inds = []           # token IDs of the tokens that are action aligned and root node of amr
+
     inds_to_add = set()     # the sentence-level indices of the tokens to use for the new instruction sentence
     potential_tokens = []   # a list of sentence-level indices of tokens that might be used for the new instructions
 
@@ -51,6 +55,9 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_spli
 
         # check whether the token has an alignment to any node in the amr and if yes, whether it corresponds to an action
         in_current_amr, is_action, is_root = token_has_alignment(str(shifted_token_ind), split_amr)
+        if is_action and is_root:
+            action_root_inds.append(token_ind)
+
         # check whether the token had an alignment in original AMR or is not represented in AMR in general
         in_orig_amr, _, _ = token_has_alignment(str(shifted_token_ind), sentence_amr)
 
@@ -123,18 +130,107 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_spli
     assert len(modified_snt_tokenized) == len(orig_snt_tokenized)   # I only want to convert the one main action to imperative form
 
     # add all chosen tokens in their original order
-    new_gold_sent = []
+    extracted_sent = []
     for tok_i in range(len(modified_snt_tokenized)):
         if tok_i in inds_to_add:
-            new_gold_sent.append(modified_snt_tokenized[tok_i])
+            extracted_sent.append(modified_snt_tokenized[tok_i])
 
-    # remove punctuation at sentence beginning, add / replace to get sentence final punctuation and
-    # remove lonely 'and' at sentence end
+    new_gold_sent = fix_sentence_order(extracted_sent, inds_to_add, tagged_snt, modified_inds, action_root_inds)
+    if new_gold_sent != extracted_sent:
+        print(f'{split_amr.graph["id"]}\t{new_gold_sent}')
+
+    # upper case sentence start and sentence final punctuation
+    new_gold_sent = fix_sentence_start_and_end(new_gold_sent)
+
+    with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
+        f.write(f'{split_amr.graph["id"]}\t{new_gold_sent}\n')
+
+    return new_gold_sent
+
+
+def fix_sentence_order(extracted_sent: List[str],
+                       original_token_ids: Set[int],
+                       orig_pos_tags: List[str],
+                       modified_action_inds: List[int],
+                       action_root_inds: List[int]) -> List[str]:
+    """
+
+    :param extracted_sent: list of the tokens of the extracted sentence
+    :param original_token_ids: set of the original indices of the tokens that are in extracted_sent
+    :param orig_pos_tags: the list of the (token, pos_tag) pairs of the original sentence
+    :param modified_action_inds: list of original indices of the tokens that were modified, i.e. actions that were
+                                 e.g. participles in the original sentence
+    :param action_root_inds: list of the original indices of the tokens that are action aligned and amr root
+    :return:
+    """
+
+    orig_token_ids = list(original_token_ids)
+    orig_token_ids.sort()
+
+    extracted_pos_tags = []
+    for orig_id in orig_token_ids:
+        extracted_pos_tags.append(orig_pos_tags[orig_id][1])
+    extracted_pos_seq = ' '.join(extracted_pos_tags)
+
+    # Potential POS-tag patterns:
+    # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
+    # above pattern repeated with CC between
+    # followed by VB, VBP or a modified token
+
+    pos_reg_full = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})* (VB|VBP){1}'
+    pos_reg_mod = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*'
+
+    verb_index = None
+
+    search_matching_pos = re.search(pos_reg_full, extracted_pos_seq)
+    if search_matching_pos:
+        matching_pos = search_matching_pos.group()
+        matching_pos_list = matching_pos.split(' ')
+        verb_index = len(matching_pos_list) - 1
+    else:
+        search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
+        if search_matching_pos_mod:
+            matching_pos = search_matching_pos_mod.group()
+            matching_pos_list = matching_pos.split(' ')
+            # last noun index is len(m_p_l) - 1 -> verb should be next
+            potential_verb_index = len(matching_pos_list)           # is relative to extracted sentence
+
+            if len(matching_pos_list) != len(extracted_pos_tags):    # otherwise potential_verb_index is out of index
+                # get corresponding index in the original sentence because modified_action_inds and
+                # action_root_inds are relative to orig sent
+                potential_verb_index_original = orig_token_ids[potential_verb_index]
+
+                if potential_verb_index_original in modified_action_inds:    # then it is an action verb but originally had different POS
+                    verb_index = potential_verb_index
+                elif potential_verb_index_original in action_root_inds and \
+                    (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[potential_verb_index] == "NNS"):
+                    verb_index = potential_verb_index
+
+    if not verb_index:
+        return extracted_sent
+
+    reordered_sent = extracted_sent.copy()
+    verb_token = reordered_sent.pop(verb_index)
+
+    reordered_sent.insert(0, verb_token)
+
+    return reordered_sent
+
+
+def fix_sentence_start_and_end(extracted_sent: List[str]) -> str:
+    """
+    Remove punctuation at the sentence beginning, adds / replaces end of sentence to get sentence final punctuation and
+    removes lonely 'and' at the end of the sentence
+    :param gen_sentence: list of tokenized sentence
+    :return:
+    """
+    new_gold_sent = extracted_sent.copy()
+
     if new_gold_sent[-1] == 'and':
         new_gold_sent = new_gold_sent[:-1]
-    if new_gold_sent[0] in [',', ';', '-', ')', '.']:        # maybe extend
+    if new_gold_sent[0] in [',', ';', '-', ')', '.']:  # maybe extend
         new_gold_sent = new_gold_sent[1:]
-    if new_gold_sent[-1] in [',', '-', '(', ';', ':']:      # maybe extend list
+    if new_gold_sent[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
         new_gold_sent = new_gold_sent[:-1]
     if new_gold_sent[-1] not in ['.', '!', '?']:
         new_gold_sent.append('.')
@@ -142,9 +238,7 @@ def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_spli
     new_gold_sent = ' '.join(new_gold_sent)
     if new_gold_sent[0].isalpha():
         new_gold_sent = new_gold_sent[0].upper() + new_gold_sent[1:]
-    #print(new_gold_sent)
-    with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
-        f.write(f'{split_amr.graph["id"]}\t{new_gold_sent}\n')
+
     return new_gold_sent
 
 
@@ -224,9 +318,9 @@ def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool, bool)
     return has_alignment, is_action, is_root
 
 
-def create_gold_recipe(recipe_amrs: List[nx.Graph],
+def create_gold_recipe(recipe_amrs: List[nx.DiGraph],
                        orig_amrs: Dict,
-                       action_graph: nx.Graph,
+                       action_graph: nx.DiGraph,
                        version: int,
                        text_only: bool,
                        order_ac_graph: bool = False):
@@ -310,15 +404,14 @@ def create_gold_recipe(recipe_amrs: List[nx.Graph],
     return ordered_amrs
 
 
-def order_amrs_based_on_action_graph(action_graph: nx.Graph, amrs_to_order: List[nx.Graph]) -> List[nx.Graph]:
+def order_amrs_based_on_action_graph(action_graph: nx.DiGraph, amrs_to_order: List[nx.DiGraph]) -> List[nx.DiGraph]:
     """
-    Order the amrs based on a topological sort for the corresponding action nodes in the action graph
+    Order the amrs based on the corresponding action nodes in the action graph
     :param action_graph: action graph (networkX Graph) to base ordering on
     :param amrs_to_order: list of AMR graphs (networkX Graph) that should be ordered
     :return: list of the same AMR graphs, ordered based on the action graph
     """
     ordered_amrs = []
-
     action_node2amr = dict()
     for amr in amrs_to_order:
         action_aligned_amr_nodes = amr.graph['alignments']
@@ -326,7 +419,8 @@ def order_amrs_based_on_action_graph(action_graph: nx.Graph, amrs_to_order: List
             action_node = nx.get_node_attributes(amr, 'alignment')[amr_node]
             action_node2amr[action_node] = amr
 
-    partially_sorted_action_nodes = list(nx.topological_sort(action_graph))
+    partially_sorted_action_nodes = order_actions_df_lf(action_graph)
+
     for ac_n in partially_sorted_action_nodes:
         if ac_n in action_node2amr.keys():
             amr_to_add = action_node2amr[ac_n]
@@ -408,9 +502,9 @@ def create_gold_corpus(action_amr_corpus: str,
 
 if __name__=='__main__':
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_2', 2, True)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_3', 3)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/test', 3)
 
 
