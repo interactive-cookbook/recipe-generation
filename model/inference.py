@@ -42,7 +42,7 @@ def _run_inference(inference_config:dict, generator_config: dict):
     generation_model = RecipeGenerator(generator_config)
 
     print("---------- Reading the Data ----------")
-    test_data_entries = read_data_set(test_path, context_len, generation_model.linearization)
+    test_data_entries = read_data_set(test_path, context_len)
     graphs = test_data_entries['graph']
     contexts = test_data_entries['context']
 
@@ -79,7 +79,6 @@ class RecipeGenerator:
         self.linearization = self.model.config.task_specific_params['translation_cond_amr_to_text'].get('linearization', 'penman')
         self.sep_token = self.model.config.task_specific_params['translation_cond_amr_to_text'].get('sep_token', '')
 
-    # TODO: need to change linearization if implemented
     def generate(self, contexts: List[str], graphs: List[str]) -> List[str]:
         """
         Generates sentences for context-graph input sequences using self.model and self.tokenizer
@@ -113,21 +112,31 @@ class RecipeGenerator:
         for batch in tqdm(dataloader):
             input_str = ['%s' % c_gr for c_gr in batch]
             # encode input
-            input_encodings = self.tokenizer.batch_encode_plus(input_str,
-                                                               padding=True,
-                                                               truncation=True,
-                                                               max_length=self.max_in_len,
-                                                               return_overflowing_tokens=True)
+            if self.max_in_len:
+                input_encodings = self.tokenizer.batch_encode_plus(input_str,
+                                                                   padding=True,
+                                                                   truncation=True,
+                                                                   max_length=self.max_in_len,
+                                                                   return_overflowing_tokens=True)
+            else:
+                input_encodings = self.tokenizer.batch_encode_plus(input_str, padding=True)
             input_ids = torch.LongTensor(input_encodings['input_ids']).to(self.device)
             attention_mask = torch.LongTensor(input_encodings['attention_mask']).to(self.device)
 
             # run inference
-            output = self.model.generate(input_ids=input_ids,
-                                         attention_mask=attention_mask,
-                                         max_length=self.max_out_len,
-                                         early_stopping=True,
-                                         num_beams=self.num_beams,
-                                         num_return_sequences=self.num_ret_seq)
+            if self.max_out_len:
+                output = self.model.generate(input_ids=input_ids,
+                                             attention_mask=attention_mask,
+                                             max_length=self.max_out_len,
+                                             early_stopping=True,
+                                             num_beams=self.num_beams,
+                                             num_return_sequences=self.num_ret_seq)
+            else:
+                output = self.model.generate(input_ids=input_ids,
+                                             attention_mask=attention_mask,
+                                             early_stopping=True,
+                                             num_beams=self.num_beams,
+                                             num_return_sequences=self.num_ret_seq)
 
             # decode the output
             decoded_output = [self.tokenizer.decode(out_ids, skip_special_tokens=True) for out_ids in output]
@@ -146,5 +155,5 @@ if __name__=='__main__':
 
     #generate_data_set('inference_configs/inference_debug.json')
     #generate_data_set('inference_configs/inference_t5_ms_amr_ara_no_context.json')
-    generate_data_set('inference_configs/inference_t5_ara1_orig_no_context.json')
+    generate_data_set('inference_configs/inference_t5_amr3_0.json')
 
