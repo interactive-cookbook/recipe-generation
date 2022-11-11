@@ -27,6 +27,10 @@ The [pytorch library](https://pytorch.org/get-started/locally/)
 [Sentence Piece](https://github.com/google/sentencepiece#installation)
 * `pip install sentencepiece`
 
+[Spacy](https://spacy.io/usage/models) library and model for english:
+* `pip install spacy`
+* `python -m spacy download en_core_web_sm`
+
 Other libraries:<br>
 * nltk
 * bs4 (only for reading the multisentence-amr xml files)
