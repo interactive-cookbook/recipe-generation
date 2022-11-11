@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 import nltk
 from nltk.stem import PorterStemmer
+import spacy
 
 from graph_processing.recipe_graph import read_graph_from_conllu
 from graph_processing.read_graphs import read_aligned_amr_file
@@ -26,7 +27,8 @@ class InstructionExtractor:
                  sentence_amr: nx.Graph,
                  other_split_amrs: List[nx.Graph],
                  shift_value: int,
-                 version: int):
+                 version: int,
+                 spacy_model):
         """
 
         :param split_amr: the action-level amr
@@ -37,6 +39,7 @@ class InstructionExtractor:
                     1: do not add any unaligned tokens
                     2: add unaligned token if directly adjacent to an aligned token
                     3: add contiguous spans of unaligned tokens if span boundary adjacent to an aligned token
+        :param spacy_model: already loaded spacy model for English to use for POS tagging
         """
         self.split_amr = split_amr                  # the action-level AMR
         self.sentence_amr = sentence_amr            # corresponding sentence-level AMR
@@ -44,11 +47,13 @@ class InstructionExtractor:
         self.shift_value = shift_value              # value to shift sentence-level to document-level token indices
         self.version = version                      # version for adding back unaligned tokens
 
+        self.pos_tagger = spacy_model
         self.stemmer = PorterStemmer()              # stemmer to use for converting participles to imperative verbs
 
         self.original_sentence: str = split_amr.graph['snt']                        # original sentence instruction
         self.orig_snt_tokenized: List[str] = self.original_sentence.split(' ')      # tokenized original sentence
-        self.orig_snt_tagged: List[Tuple[str, str]] = nltk.pos_tag(self.orig_snt_tokenized)   # tagged original sentence
+        #self.orig_snt_tagged: List[Tuple[str, str]] = nltk.pos_tag(self.orig_snt_tokenized)   # tagged original sentence
+        self.orig_snt_tagged = self.tag_sentence(self.original_sentence)
 
         self.modified_snt_tokenized: List[str] = []     # tokens of original sentence with modified actions replaced with stemmed version
         self.modified_inds: List[int] = []              # sentence-level indices of the tokens that are modified
@@ -58,6 +63,11 @@ class InstructionExtractor:
 
         self.inds_to_add: Set[int] = set()              # sentence-level indices of tokens that will make up the extracted instruction
         self.final_tokens: List[str] = []               # tokenized extracted instruction
+
+    def tag_sentence(self, sentence: str):
+        processed_sent = self.pos_tagger(sentence)
+        token_tag_pairs = [(token.text, token.tag_) for token in processed_sent]
+        return token_tag_pairs
 
     def create_gold_sentence(self):
         """
@@ -173,13 +183,14 @@ class InstructionExtractor:
         # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
         # above pattern repeated with CC between
         # followed by VB, VBP or a modified token
-        pos_reg_full = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*( ,| CC)? (VB|VBP){1}( |$)'
-        # TODO: decide what to do
-        pos_reg_full2 = r'^(PDT )?(DT |PRP$ )?(JJ )?(NN|NNS|NNP|NNPS)+(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS|NNP|NNPS)+)*( ,| CC)?( RB)? (VB|VBP){1}( |$)'
+        pos_reg_full = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(VB|VBP|VBD|VBZ){1}( |$)'
+        # TODO: decide what to do?
+        # If including RB then RB should be "then"
+        pos_reg_full2 = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(VB|VBP|VBD|VBZ){1}( |$)'
         # If verb was originally a participle (i.e. got stemmed for the extracted sentence) then the original
         # POS tag will not be VB or VBP, so check for NP-like pattern first and then check if the next token was
         # such a stemmed token
-        pos_reg_mod = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*( ,| CC)?'
+        pos_reg_mod = r'^(PDT )?(DT |PRP$ )?(JJ )?(NN |NNS |NNP |NNPS )+((, |CC ){1}(DT |PRP $)?(JJ )?(NN |NNS |NNP |NNPS )+)*(, |CC )?'
 
         verb_index = None
 
@@ -190,7 +201,8 @@ class InstructionExtractor:
             print(f'{search_matching_pos2}\t{self.orig_snt_tagged}\t{extracted_pos_seq}')
 
         if search_matching_pos:
-            matching_pos = search_matching_pos.group()
+            matching_pos = search_matching_pos.group()  # if emtpy space after last matching POS then this will cause issues
+            matching_pos = matching_pos.strip()
             matching_pos_list = matching_pos.split(' ')
 
             potential_verb_index = len(matching_pos_list) - 1       # is relative to extracted sentence
@@ -201,6 +213,7 @@ class InstructionExtractor:
             search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
             if search_matching_pos_mod:
                 matching_pos = search_matching_pos_mod.group()
+                matching_pos = matching_pos.strip()
                 matching_pos_list = matching_pos.split(' ')
                 # last noun index is len(m_p_l) - 1 -> verb should be next
                 potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
@@ -232,6 +245,8 @@ class InstructionExtractor:
         - "," "," -> remove one comma
         :return: returns nothing but modifies self.final_tokens directly
         """
+        if self.split_amr.graph['id'] == 'baked_ziti_0_instr12_1':
+            print("hr")
         punctuation_to_remove = []
         for t_ind, t in enumerate(self.final_tokens):
             if t == ',':
@@ -251,17 +266,23 @@ class InstructionExtractor:
         for punct_ind in punctuation_to_remove:
             self.final_tokens.pop(punct_ind)
 
-        if self.final_tokens[0] == '(' and self.final_tokens[-1] == ')':
-            self.final_tokens = self.final_tokens[1:-1]
-
-        if self.final_tokens[-1] == 'and':
-            self.final_tokens = self.final_tokens[:-1]
-        if self.final_tokens[0] in [',', ';', '-', ')', '.']:  # maybe extend
-            self.final_tokens = self.final_tokens[1:]
-        if self.final_tokens[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
-            self.final_tokens = self.final_tokens[:-1]
-        if self.final_tokens[-1] not in ['.', '!', '?']:
-            self.final_tokens.append('.')
+        while True:
+            if self.final_tokens[0] == '(' and self.final_tokens[-1] == ')':
+                self.final_tokens = self.final_tokens[1:-1]
+                continue
+            if self.final_tokens[-1] == 'and':
+                self.final_tokens = self.final_tokens[:-1]
+                continue
+            if self.final_tokens[0] in [',', ';', '-', ')', '.']:  # maybe extend
+                self.final_tokens = self.final_tokens[1:]
+                continue
+            if self.final_tokens[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
+                self.final_tokens = self.final_tokens[:-1]
+                continue
+            if self.final_tokens[-1] not in ['.', '!', '?']:
+                self.final_tokens.append('.')
+                continue
+            break
 
         if self.final_tokens[0][0].isalpha():
             self.final_tokens[0] = self.final_tokens[0][0].upper() + self.final_tokens[0][1:]
@@ -386,6 +407,7 @@ class RecipeExtractor:
                  recipe_amrs: List[nx.Graph],
                  orig_amrs: Dict,
                  action_graph: nx.DiGraph,
+                 spacy_model,
                  version: int = 3,
                  text_only: bool = False,
                  order_ac_graph: bool = False):
@@ -395,6 +417,7 @@ class RecipeExtractor:
         :param orig_amrs: dict with the corresponding sentence-level AMRs
                           keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
         :param action_graph: the action graph for the recipe
+        :param spacy_model:
         :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
         :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
                           sentence
@@ -409,6 +432,7 @@ class RecipeExtractor:
         self.version = version
         self.text_only = text_only
         self.order_ac_graph = order_ac_graph
+        self.spacy_model = spacy_model
 
         self.orig_pos2amr = defaultdict(list)       # key: n, value: [gr1, gr2] means that gr1 and gr2 are from the
                                                     # original instruction at the nth position in the original recipe
@@ -454,7 +478,8 @@ class RecipeExtractor:
                                                            sentence_amr=orig_snt_amr,
                                                            other_split_amrs=others,
                                                            shift_value=shift_value,
-                                                           version=self.version)
+                                                           version=self.version,
+                                                           spacy_model=self.spacy_model)
                 gold_sentence = instruction_creator.create_gold_sentence()
 
                 if self.text_only:
@@ -552,6 +577,7 @@ def create_gold_corpus(action_amr_corpus: str,
     """
     count = 0
     Path(gold_corpus_dir).mkdir(exist_ok=True, parents=True)
+    spacy_model = spacy.load('en_core_web_sm')
 
     for dish in os.listdir(action_amr_corpus):
         Path(os.path.join(gold_corpus_dir, dish)).mkdir(exist_ok=True, parents=True)
@@ -582,6 +608,7 @@ def create_gold_corpus(action_amr_corpus: str,
             gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs,
                                                   orig_amrs=orig_amrs,
                                                   action_graph=recipe_action_graph,
+                                                  spacy_model=spacy_model,
                                                   version=version,
                                                   text_only=text_only)
             new_ordered_recipe_amrs = gold_recipe_creator.create_gold_recipe()
