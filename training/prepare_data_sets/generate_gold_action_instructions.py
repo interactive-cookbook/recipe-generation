@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List, Dict, Set
+from typing import List, Dict, Set, Tuple
 import networkx as nx
 import penman
 from collections import Counter, defaultdict
@@ -19,422 +19,523 @@ Functions to create gold instructions for the split AMRs using a simple string-m
 """
 
 
-def create_gold_sentence(split_amr: nx.Graph, sentence_amr: nx.Graph, other_split_amrs: List[nx.Graph],
-                         shift_value: int, version: int) -> str:
-    """
-    Create the gold sentence for split_amr graph
-    :param split_amr: the action-level amr
-    :param sentence_amr: the corresponding sentence-level amr
-    :param other_split_amrs: list of the other split amrs that were obtained from the same sentence-level amr
-    :param shift_value: the value for shifting the sentence-level token indices to document-level token indices
-    :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
+class InstructionExtractor:
+
+    def __init__(self,
+                 split_amr: nx.Graph,
+                 sentence_amr: nx.Graph,
+                 other_split_amrs: List[nx.Graph],
+                 shift_value: int,
+                 version: int):
+        """
+
+        :param split_amr: the action-level amr
+        :param sentence_amr: the corresponding sentence-level amr
+        :param other_split_amrs: list of the other split amrs that were obtained from the same sentence-level amr
+        :param shift_value: the value for shifting the sentence-level token indices to document-level token indices
+        :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
                     1: do not add any unaligned tokens
                     2: add unaligned token if directly adjacent to an aligned token
                     3: add contiguous spans of unaligned tokens if span boundary adjacent to an aligned token
-    :return: the substring of the original sentence that was extracted as the gold instruction for the split_amr
-    """
+        """
+        self.split_amr = split_amr                  # the action-level AMR
+        self.sentence_amr = sentence_amr            # corresponding sentence-level AMR
+        self.other_split_amrs = other_split_amrs    # the other action-level AMRs from the same sentence-level AMR
+        self.shift_value = shift_value              # value to shift sentence-level to document-level token indices
+        self.version = version                      # version for adding back unaligned tokens
 
-    original_sentence = split_amr.graph['snt']
-    orig_snt_tokenized = original_sentence.split(' ')
-    tagged_snt = nltk.pos_tag(orig_snt_tokenized)
+        self.stemmer = PorterStemmer()              # stemmer to use for converting participles to imperative verbs
 
-    modified_snt_tokenized = []
-    stemmer = PorterStemmer()       # a bit better than simply removing -ed
-    modified_inds = []
-    modified_inds_others = []       # the indices of action tokens that get stemmed in any other split amr
+        self.original_sentence: str = split_amr.graph['snt']                        # original sentence instruction
+        self.orig_snt_tokenized: List[str] = self.original_sentence.split(' ')      # tokenized original sentence
+        self.orig_snt_tagged: List[Tuple[str, str]] = nltk.pos_tag(self.orig_snt_tokenized)   # tagged original sentence
 
-    action_root_inds = []           # token IDs of the tokens that are action aligned and root node of amr
+        self.modified_snt_tokenized: List[str] = []     # tokens of original sentence with modified actions replaced with stemmed version
+        self.modified_inds: List[int] = []              # sentence-level indices of the tokens that are modified
+        self.modified_inds_others: List[int] = []       # sentence-level indices of tokens modified for the other_split_amrs
+        self.action_root_inds: List[int] = []           # sentence-level indices of tokens that are actions and aligned to root in current split amr
+        self.potential_tokens: List[int] = []           # sentence-level indices of tokens that might be used for the new instructions
 
-    inds_to_add = set()     # the sentence-level indices of the tokens to use for the new instruction sentence
-    potential_tokens = []   # a list of sentence-level indices of tokens that might be used for the new instructions
+        self.inds_to_add: Set[int] = set()              # sentence-level indices of tokens that will make up the extracted instruction
+        self.final_tokens: List[str] = []               # tokenized extracted instruction
 
-    # Important! token IDs in the alignments were shifted to match the token IDs in the conllu files
-    # -> need to be re-shifted here
-    for token_ind, token in enumerate(orig_snt_tokenized):
-        shifted_token_ind = token_ind + shift_value
+    def create_gold_sentence(self):
+        """
+        Create the gold sentence for split_amr graph
+        :return: the substring of the original sentence that was extracted as the gold instruction for the split_amr
+        """
+        for token_ind, token in enumerate(self.orig_snt_tokenized):
+            # Important! token IDs in the alignments were shifted to match the token IDs in the conllu files
+            # -> need to be re-shifted here
+            shifted_token_ind = token_ind + self.shift_value
 
-        # check whether the token has an alignment to any node in the amr and if yes, whether it corresponds to an action
-        in_current_amr, is_action, is_root = token_has_alignment(str(shifted_token_ind), split_amr)
-        if is_action and is_root:
-            action_root_inds.append(token_ind)
+            # check whether the token has an alignment to any node in the amr and if yes, whether it corresponds to an action
+            in_current_amr, is_action, is_root = self.check_token_alignment(str(shifted_token_ind), self.split_amr)
+            if is_action and is_root:
+                self.action_root_inds.append(token_ind)
 
-        # check whether the token had an alignment in original AMR or is not represented in AMR in general
-        in_orig_amr, _, _ = token_has_alignment(str(shifted_token_ind), sentence_amr)
+            # check whether the token had an alignment in original AMR or is not represented in AMR in general
+            in_orig_amr, _, _ = self.check_token_alignment(str(shifted_token_ind), self.sentence_amr)
 
-        # Remove -ed ending from actions that are participles, e.g. "shredded cheese" should become "shred cheese"
-        # only do this if it is the root
-        if is_action:
-            _, pos_tag = tagged_snt[token_ind]
-            if pos_tag == 'JJ' or pos_tag == 'VBN' or pos_tag == 'VBG' or pos_tag == 'VBD' or pos_tag == 'NN':
-                if token.endswith('ed') or token.endswith('ing'):
-                    if is_root:
-                        modified_inds.append(token_ind)
-                        orig_token = token
-                        token = stemmer.stem(token)
-                        # print(f'{orig_token} ({pos_tag}) became {token}')
+            # potentially modify token: Remove -ed ending from actions that are participles, only if it is the root
+            #  e.g. "shredded cheese" should become "shred cheese"
+            if is_action and is_root:
+                token = self.fix_imperative_form(token_ind, True)
 
-        modified_snt_tokenized.append(token)
+            self.modified_snt_tokenized.append(token)
 
-        # if token is represented in current amr then add it to the sentence
-        # if token was in original amr but is not in current amr then it is either part of a different split amr
-        # or was removed during splitting, e.g. 'and', 'before' and should not be added
-        # if it was not in the original amr and is not in the current amr then the token is not represented in amr and
-        # how to deal with it will be decided in the next steps
+            # decide whether token should be added, should potentially be added or not be added
+            self.decide_token_relevance(token_ind, in_current_amr, in_orig_amr)
+
+            # Check whether the token would have been modified for another AMR:
+            for other_amr in self.other_split_amrs:
+                in_other_amr, is_action_other, is_root_other = self.check_token_alignment(str(shifted_token_ind), other_amr)
+                if in_other_amr and is_action_other and is_root_other:
+                    _ = self.fix_imperative_form(token_ind, False)
+
+        assert len(self.modified_inds) < 2          # only the main action node should be modified if at all
+        assert len(self.modified_snt_tokenized) == len(self.orig_snt_tokenized) # stemming should be the only change
+
+        # run the function that decides about adding back unaligned tokens and that adds their indices to
+        # self.inds_to_add if they should be added
+        self.add_unaligend_tokens()
+
+        # add the tokens chosen for the new instruction in their original order
+        for tok_ind in range(len(self.modified_snt_tokenized)):
+            if tok_ind in self.inds_to_add:
+                self.final_tokens.append(self.modified_snt_tokenized[tok_ind])
+
+        # Fix the sentence ordering for cases such as "a toothpick insert into the centre"
+        self.fix_sentence_order()
+
+        # Modify sentence to start with upper-case character and end with sentence-final punctuation
+        self.fix_sentence_start_and_end()
+
+        with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
+            f.write(f'{self.split_amr.graph["id"]}\t{" ".join(self.final_tokens)}\t{self.orig_snt_tagged}\n')
+
+        return ' '.join(self.final_tokens)
+
+    def fix_imperative_form(self, token_ind: int, current: bool) -> str:
+        """
+        Stems a token if its original POS tag is JJ, VBN, VBG, VBD or NN and the token ends with 'ed' or 'ing'
+        -> stems most of the actions verbs that were originally participles in order to get the imperative form
+        :param token_ind: sentence-level index of the token
+        :param current: whether the token_ind belongs to the current amr or another amr
+                        i.e. whether the token_ind gets added to self.modified_inds or self.modified_others
+        :return: the stemmed token if conditions are fulfilled, otherwise the original token
+        """
+        token, pos_tag = self.orig_snt_tagged[token_ind]
+        if pos_tag in ['JJ', 'VBN', 'VBG', 'VBD', 'NN'] and (token.endswith('ed') or token.endswith('ing')):
+            token = self.stemmer.stem(token)
+            if current:
+                self.modified_inds.append(token_ind)
+            else:
+                self.modified_inds_others.append(token_ind)
+        return token
+
+    def decide_token_relevance(self, token_ind, in_current_amr, in_orig_amr):
+        """
+        If token is represented in current amr then add it to the sentence, i.e. add to self.inds_to_add
+        If token was in original amr but is not in current amr then it is either part of a different split amr
+        or was removed during splitting, e.g. 'and', 'before' and should not be added
+        If it was not in the original amr and is not in the current amr then the token is not represented in amr and
+        how to deal with it will be decided in the next steps, i.e. add to self.potential_tokens
+        :param token_ind: sentence-level index of token to decide about
+        :param in_current_amr: whether token is represented in current action-level amr
+        :param in_orig_amr: whether token is represented in original sentence-level amr
+        :return: no return value but changes class attributes
+        """
         if in_current_amr:
-            inds_to_add.add(token_ind)
+            self.inds_to_add.add(token_ind)
         elif not in_current_amr and in_orig_amr:
             pass
         else:
-            potential_tokens.append(token_ind)
+            self.potential_tokens.append(token_ind)
 
-        # Check whether the token would have been modified for another AMR:
-        for other_amr in other_split_amrs:
-            in_other_amr, is_action_other, is_root_other = token_has_alignment(str(shifted_token_ind), other_amr)
-            if in_other_amr and is_action_other and is_root_other:
-                _, pos_tag = tagged_snt[token_ind]
-                if pos_tag == 'JJ' or pos_tag == 'VBN' or pos_tag == 'VBG' or pos_tag == 'VBD' or pos_tag == 'NN':
-                    if token.endswith('ed') or token.endswith('ing'):
-                        modified_inds_others.append(token_ind)
+    def fix_sentence_order(self):
+        """
+        Reorders self.final_tokens if an NP like phrase is at the beginning of the sentence, followed by a verb that
+        is an action and original root
+        Then the verb is moved to the sentence beginning because in imperative sentences the verb should
+        be before its direct object
+        :return:
+        """
+        orig_token_ids = list(self.inds_to_add)         # the original indices of the tokens in self.final_tokens
+        orig_token_ids.sort()                           # sort to get original token order
 
-    assert len(modified_inds) < 2
+        extracted_pos_tags = []                         # the POS tags corresponding to the tokens in self.final_tokens
+        for orig_id in orig_token_ids:
+            extracted_pos_tags.append(self.orig_snt_tagged[orig_id][1])
+        extracted_pos_seq = ' '.join(extracted_pos_tags)    # convert to string for re matching
 
-    if split_amr.graph['id'] == 'cauliflower_mash_5_instr4_0':
-        print("here")
+        # Potential POS-tag patterns:
+        # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
+        # above pattern repeated with CC between
+        # followed by VB, VBP or a modified token
+        pos_reg_full = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*( ,| CC)? (VB|VBP){1}( |$)'
+        # TODO: decide what to do
+        pos_reg_full2 = r'^(PDT )?(DT |PRP$ )?(JJ )?(NN|NNS|NNP|NNPS)+(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS|NNP|NNPS)+)*( ,| CC)?( RB)? (VB|VBP){1}( |$)'
+        # If verb was originally a participle (i.e. got stemmed for the extracted sentence) then the original
+        # POS tag will not be VB or VBP, so check for NP-like pattern first and then check if the next token was
+        # such a stemmed token
+        pos_reg_mod = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*( ,| CC)?'
 
-    # add only direct adjacent tokens
-    if version == 2:
-        inds_to_add_unchanged = inds_to_add.copy()
-        for pt_ind in potential_tokens:
-            tagging_pair = tagged_snt[pt_ind]
-            pt_pos_tag = tagging_pair[1]
-            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add_unchanged, modified_inds, modified_inds_others)
-            if add_pt:
-                inds_to_add.add(pt_ind)
+        verb_index = None
 
-    # Add the unaligned tokens if they are adjacent to tokens that get added
-    # do this in both directions to be able to add e.g. 'In a' at the beginning of an instruction
-    elif version == 3:
-        for pt_ind in potential_tokens:
-            tagging_pair = tagged_snt[pt_ind]
-            pt_pos_tag = tagging_pair[1]
-            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add, modified_inds, modified_inds_others)
-            if add_pt:
-                inds_to_add.add(pt_ind)
-        potential_tokens.reverse()
-        for pt_ind in potential_tokens:
-            _, pt_pos_tag = tagged_snt[pt_ind]
-            add_pt = unaligned_tokens_forward(pt_ind, pt_pos_tag, inds_to_add, modified_inds, modified_inds_others)
-            if add_pt:
-                inds_to_add.add(pt_ind)
+        search_matching_pos = re.search(pos_reg_full, extracted_pos_seq)
+        search_matching_pos2 = re.search(pos_reg_full2, extracted_pos_seq)
+        if search_matching_pos2 and not search_matching_pos:
+            matching_pos_list2 = search_matching_pos2.group().split(' ')
+            print(f'{search_matching_pos2}\t{self.orig_snt_tagged}\t{extracted_pos_seq}')
 
-    assert len(modified_snt_tokenized) == len(orig_snt_tokenized)   # I only want to convert the one main action to imperative form
-
-    # add all chosen tokens in their original order
-    extracted_sent = []
-    for tok_i in range(len(modified_snt_tokenized)):
-        if tok_i in inds_to_add:
-            extracted_sent.append(modified_snt_tokenized[tok_i])
-
-    new_gold_sent = fix_sentence_order(extracted_sent, inds_to_add, tagged_snt, modified_inds, action_root_inds)
-    if new_gold_sent != extracted_sent:
-        print(f'{split_amr.graph["id"]}\t{new_gold_sent}')
-
-    # upper case sentence start and sentence final punctuation
-    new_gold_sent = fix_sentence_start_and_end(new_gold_sent)
-
-    with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
-        f.write(f'{split_amr.graph["id"]}\t{new_gold_sent}\n')
-
-    return new_gold_sent
-
-
-def fix_sentence_order(extracted_sent: List[str],
-                       original_token_ids: Set[int],
-                       orig_pos_tags: List[str],
-                       modified_action_inds: List[int],
-                       action_root_inds: List[int]) -> List[str]:
-    """
-
-    :param extracted_sent: list of the tokens of the extracted sentence
-    :param original_token_ids: set of the original indices of the tokens that are in extracted_sent
-    :param orig_pos_tags: the list of the (token, pos_tag) pairs of the original sentence
-    :param modified_action_inds: list of original indices of the tokens that were modified, i.e. actions that were
-                                 e.g. participles in the original sentence
-    :param action_root_inds: list of the original indices of the tokens that are action aligned and amr root
-    :return:
-    """
-
-    orig_token_ids = list(original_token_ids)
-    orig_token_ids.sort()
-
-    extracted_pos_tags = []
-    for orig_id in orig_token_ids:
-        extracted_pos_tags.append(orig_pos_tags[orig_id][1])
-    extracted_pos_seq = ' '.join(extracted_pos_tags)
-
-    # Potential POS-tag patterns:
-    # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
-    # above pattern repeated with CC between
-    # followed by VB, VBP or a modified token
-
-    pos_reg_full = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})* (VB|VBP){1}'
-    pos_reg_mod = r'^(DT |PRP$ )?(JJ )?(NN|NNS){1}(( ,| CC){1} (DT |PRP $)?(JJ )?(NN|NNS){1})*'
-
-    verb_index = None
-
-    search_matching_pos = re.search(pos_reg_full, extracted_pos_seq)
-    if search_matching_pos:
-        matching_pos = search_matching_pos.group()
-        matching_pos_list = matching_pos.split(' ')
-        verb_index = len(matching_pos_list) - 1
-    else:
-        search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
-        if search_matching_pos_mod:
-            matching_pos = search_matching_pos_mod.group()
+        if search_matching_pos:
+            matching_pos = search_matching_pos.group()
             matching_pos_list = matching_pos.split(' ')
-            # last noun index is len(m_p_l) - 1 -> verb should be next
-            potential_verb_index = len(matching_pos_list)           # is relative to extracted sentence
 
-            if len(matching_pos_list) != len(extracted_pos_tags):    # otherwise potential_verb_index is out of index
-                # get corresponding index in the original sentence because modified_action_inds and
-                # action_root_inds are relative to orig sent
-                potential_verb_index_original = orig_token_ids[potential_verb_index]
-
-                if potential_verb_index_original in modified_action_inds:    # then it is an action verb but originally had different POS
-                    verb_index = potential_verb_index
-                elif potential_verb_index_original in action_root_inds and \
-                    (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[potential_verb_index] == "NNS"):
-                    verb_index = potential_verb_index
-
-    if not verb_index:
-        return extracted_sent
-
-    reordered_sent = extracted_sent.copy()
-    verb_token = reordered_sent.pop(verb_index)
-
-    reordered_sent.insert(0, verb_token)
-
-    return reordered_sent
-
-
-def fix_sentence_start_and_end(extracted_sent: List[str]) -> str:
-    """
-    Remove punctuation at the sentence beginning, adds / replaces end of sentence to get sentence final punctuation and
-    removes lonely 'and' at the end of the sentence
-    :param gen_sentence: list of tokenized sentence
-    :return:
-    """
-    new_gold_sent = extracted_sent.copy()
-
-    if new_gold_sent[-1] == 'and':
-        new_gold_sent = new_gold_sent[:-1]
-    if new_gold_sent[0] in [',', ';', '-', ')', '.']:  # maybe extend
-        new_gold_sent = new_gold_sent[1:]
-    if new_gold_sent[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
-        new_gold_sent = new_gold_sent[:-1]
-    if new_gold_sent[-1] not in ['.', '!', '?']:
-        new_gold_sent.append('.')
-
-    new_gold_sent = ' '.join(new_gold_sent)
-    if new_gold_sent[0].isalpha():
-        new_gold_sent = new_gold_sent[0].upper() + new_gold_sent[1:]
-
-    return new_gold_sent
-
-
-def unaligned_tokens_forward(pt_ind: int, pt_pos_tag: str, inds_to_add: set, modified_inds: list, modified_inds_others: list):
-
-    to_add = False
-    if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
-        # do not add prepositions or determiners back that preceed a now modified action, if that action is included
-        # in order to avoid instructions such as "with shred mozzarella cheese ."
-        # but add prepositions or determiners back that preceed a now modified action, if the action is not included
-        # in order to add e.g. "with" to "Top with [shredded] mozzarella cheese"
-        # do not add tokens with tag 'IN' if the next token is not added
-        # do not add tokens with tag 'CC' if either previous or next token are node added
-        # do not add tokens with tag 'DT' if next token is not added
-        if pt_pos_tag == 'CC' and not (pt_ind + 1 in inds_to_add and pt_ind - 1 in inds_to_add):
-            to_add = False
-        elif pt_pos_tag == 'IN' and not (pt_ind + 1 in inds_to_add):
-            if pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
-                to_add = True
-            else:
-                to_add = False
-        elif pt_pos_tag == 'DT' and not (pt_ind + 1 in inds_to_add):
-            if pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
-                to_add = True
-            else:
-                to_add = False
-        elif pt_ind + 1 in modified_inds and pt_ind + 1 in inds_to_add:
-            to_add = False
-        elif pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
-            to_add = True
+            potential_verb_index = len(matching_pos_list) - 1       # is relative to extracted sentence
+            potential_verb_index_original = orig_token_ids[potential_verb_index]    # relative to orig sentence
+            if potential_verb_index_original in self.action_root_inds:
+                verb_index = potential_verb_index
         else:
-            to_add = True
+            search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
+            if search_matching_pos_mod:
+                matching_pos = search_matching_pos_mod.group()
+                matching_pos_list = matching_pos.split(' ')
+                # last noun index is len(m_p_l) - 1 -> verb should be next
+                potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
 
-    # for cases such as [Preposition Determiner ParticipleAction Noun], e.g. "with the shredded mozzarella"
-    elif pt_ind + 2 in inds_to_add and pt_ind + 1 in modified_inds_others and pt_ind + 1 not in inds_to_add:
-        if pt_pos_tag == 'DT' or pt_pos_tag == ',':
-            to_add = True
+                if len(matching_pos_list) != len(extracted_pos_tags):  # otherwise potential_verb_index is out of index
+                    # get corresponding index in the original sentence because modified_action_inds and
+                    # action_root_inds are relative to orig sent
+                    potential_verb_index_original = orig_token_ids[potential_verb_index]
 
-    return to_add
+                    if potential_verb_index_original in self.modified_inds:  # then it is an action verb but originally had different POS
+                        verb_index = potential_verb_index
+                    elif potential_verb_index_original in self.action_root_inds and \
+                            (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
+                                potential_verb_index] == "NNS"):
+                        verb_index = potential_verb_index
 
+        if verb_index:
+            verb_token = self.final_tokens.pop(verb_index)
+            self.final_tokens.insert(0, verb_token)
+            #print(' '.join(self.final_tokens))
 
-def token_has_alignment(token_index: str, graph: nx.Graph) -> (bool, bool, bool):
-    """
-    Determines whether a specific token is aligned to any node in a graph
-    :param token_index: the (document-level) index of the token
-    :param graph: an amr graph
-    :return: tuple(has_alignment, is action)
-            has_alignment: True if the token is aligned to one of the amr nodes, False otherwise
-            is_action: True if the token is an action, i.e. belongs to an action-aligned amr node; False otherwise
-                        If no action alignment data is available then False is returned
-            is_root: True if the token is the root of the amr; False otherwise
-    """
-    try:
-        action_aligned_nodes = graph.graph['alignments']
-    except KeyError:
-        action_aligned_nodes = []       # the files of the original graphs do not contain the 'alignments' meta data
+    def fix_sentence_start_and_end(self):
+        """
+        Remove punctuation at the sentence beginning, adds / replaces end of sentence to get sentence final punctuation and
+        removes lonely 'and' at the end of the sentence
+        Additionally, fix other punctuation issues
+        - ( sentence ) -> remove brackets
+        - tokens () tokens -> remove brackets
+        - "," "," -> remove one comma
+        :return: returns nothing but modifies self.final_tokens directly
+        """
+        punctuation_to_remove = []
+        for t_ind, t in enumerate(self.final_tokens):
+            if t == ',':
+                try:
+                    next_token = self.final_tokens[t_ind + 1]
+                    if next_token == ',':
+                        punctuation_to_remove.append(t_ind)
+                except IndexError:
+                    break
+            elif t == '(':
+                try:
+                    next_token = self.final_tokens[t_ind + 1]
+                    if next_token == ')':
+                        punctuation_to_remove.append(t_ind)
+                except IndexError:
+                    punctuation_to_remove.append(t_ind)
+        for punct_ind in punctuation_to_remove:
+            self.final_tokens.pop(punct_ind)
 
-    is_root = False
-    has_alignment = False
-    is_action = False
-    for node, node_attributes in graph.nodes(data=True):
-        if node_attributes['alignment'] == token_index:
-            has_alignment = True
-            if node in action_aligned_nodes:
-                is_action = True
-            if node == graph.graph['root']:
-                is_root = True
+        if self.final_tokens[0] == '(' and self.final_tokens[-1] == ')':
+            self.final_tokens = self.final_tokens[1:-1]
+
+        if self.final_tokens[-1] == 'and':
+            self.final_tokens = self.final_tokens[:-1]
+        if self.final_tokens[0] in [',', ';', '-', ')', '.']:  # maybe extend
+            self.final_tokens = self.final_tokens[1:]
+        if self.final_tokens[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
+            self.final_tokens = self.final_tokens[:-1]
+        if self.final_tokens[-1] not in ['.', '!', '?']:
+            self.final_tokens.append('.')
+
+        if self.final_tokens[0][0].isalpha():
+            self.final_tokens[0] = self.final_tokens[0][0].upper() + self.final_tokens[0][1:]
+
+    def add_unaligend_tokens(self):
+        """
+        Add back tokens, i.e. add their ids to self.inds_to_add, under specific conditions
+        :return: returns nothing but changes self.ind_to_add
+        """
+        # add only direct adjacent tokens
+        if self.version == 2:
+            inds_to_add_unchanged = self.inds_to_add.copy()
+            for pt_ind in self.potential_tokens:
+                _, pt_pos_tag = self.orig_snt_tagged[pt_ind]
+                add_pt = self.decide_about_unaligned_token(pt_ind, pt_pos_tag, inds_to_add_unchanged)
+                if add_pt:
+                    self.inds_to_add.add(pt_ind)
+
+        # Add the unaligned tokens if they are adjacent to tokens that get added
+        # do this in both directions to be able to add e.g. 'In a' at the beginning of an instruction
+        elif self.version == 3:
+            for pt_ind in self.potential_tokens:
+                _, pt_pos_tag = self.orig_snt_tagged[pt_ind]
+                add_pt = self.decide_about_unaligned_token(pt_ind, pt_pos_tag, self.inds_to_add)
+                if add_pt:
+                    self.inds_to_add.add(pt_ind)
+
+            potential_tokens_rev = self.potential_tokens.copy()
+            potential_tokens_rev.reverse()
+            for pt_ind in self.potential_tokens:
+                _, pt_pos_tag = self.orig_snt_tagged[pt_ind]
+                add_pt = self.decide_about_unaligned_token(pt_ind, pt_pos_tag, self.inds_to_add)
+                if add_pt:
+                    self.inds_to_add.add(pt_ind)
+
+    def decide_about_unaligned_token(self, pt_ind, pt_pos_tag, inds_to_add) -> bool:
+        """
+        Decides for unaligned tokens whether to add them or node based on the following rules
+        - add only if token is adjacent to an added token
+        - do not add prepositions or determiners back that preceed a now modified action, if that action is included
+          in order to avoid instructions such as "with shred mozzarella cheese ."
+        - but add prepositions or determiners back that preceed a now modified action, if the action is not included
+          in order to add e.g. "with" to "Top with [shredded] mozzarella cheese"
+        - do not add tokens with tag 'IN' if the next token is not added
+        - do not add tokens with tag 'CC' if either previous or next token are node added
+        - do not add tokens with tag 'DT' if next token is not added
+        :param pt_ind: index of the unaligned token to decide about
+        :param pt_pos_tag: pos tag of the unaligned token
+        :param inds_to_add: the set of inds to add that should be considered for the decision
+        :return: whether to add the token or not
+        """
+        to_add = False
+        if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
+
+            if pt_pos_tag == 'CC' and not (pt_ind + 1 in inds_to_add and pt_ind - 1 in inds_to_add):
+                to_add = False
+            elif pt_pos_tag == 'IN' and not (pt_ind + 1 in inds_to_add):
+                if pt_ind + 1 in self.modified_inds_others and pt_ind + 1 not in inds_to_add:
+                    to_add = True
+                else:
+                    to_add = False
+            elif pt_pos_tag == 'DT' and not (pt_ind + 1 in inds_to_add):
+                if pt_ind + 1 in self.modified_inds_others and pt_ind + 1 not in inds_to_add:
+                    to_add = True
+                else:
+                    to_add = False
+            elif pt_ind + 1 in self.modified_inds and pt_ind + 1 in inds_to_add:
+                to_add = False
+            elif pt_ind + 1 in self.modified_inds_others and pt_ind + 1 not in inds_to_add:
+                to_add = True
+            else:
+                to_add = True
+
+        # for cases such as [Preposition Determiner ParticipleAction Noun], e.g. "with the shredded mozzarella"
+        elif pt_ind + 2 in inds_to_add and pt_ind + 1 in self.modified_inds_others and pt_ind + 1 not in inds_to_add:
+            if pt_pos_tag == 'DT' or pt_pos_tag == ',':
+                to_add = True
+
+        return to_add
+
+    def check_token_alignment(self, token_index: str, graph: nx.Graph) -> (bool, bool, bool):
+        """
+        Determines whether a specific token is aligned to any node in the input amr graph
+        :param token_index: the (document-level) index of the token
+        :param graph: an amr graph
+        :return: tuple(has_alignment, is action)
+                 has_alignment: True if the token is aligned to one of the amr nodes, False otherwise
+                 is_action: True if the token is an action, i.e. belongs to an action-aligned amr node; False otherwise
+                            If no action alignment data is available then False is returned
+                 is_root: True if the token is the root of the amr; False otherwise
+        """
         try:
-            amr_node_attr = node_attributes['attr']
-            for attr_dict in amr_node_attr:
-                if attr_dict['alignment'] == token_index and attr_dict['target'] != 'imperative':
-                    has_alignment = True
-                    # no need to check for is_action because amr attributes are no individual nodes
+            action_aligned_nodes = graph.graph['alignments']
         except KeyError:
-            continue
+            action_aligned_nodes = []  # the files of the original graphs do not contain the 'alignments' meta data
 
-    return has_alignment, is_action, is_root
+        is_root = False
+        has_alignment = False
+        is_action = False
+        for node, node_attributes in graph.nodes(data=True):
+            if node_attributes['alignment'] == token_index:
+                has_alignment = True
+                if node in action_aligned_nodes:
+                    is_action = True
+                if node == graph.graph['root']:
+                    is_root = True
+            try:
+                amr_node_attr = node_attributes['attr']
+                for attr_dict in amr_node_attr:
+                    if attr_dict['alignment'] == token_index and attr_dict['target'] != 'imperative':
+                        has_alignment = True
+                        # no need to check for is_action because amr attributes are no individual nodes
+            except KeyError:
+                continue
+
+        return has_alignment, is_action, is_root
 
 
-def create_gold_recipe(recipe_amrs: List[nx.DiGraph],
-                       orig_amrs: Dict,
-                       action_graph: nx.DiGraph,
-                       version: int,
-                       text_only: bool,
-                       order_ac_graph: bool = False):
-    """
+class RecipeExtractor:
 
-    :param recipe_amrs: list of the action-level amrs
-    :param orig_amrs: dict with the corresponding sentence-level AMRs
-                      keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
-    :param action_graph: the action graph for the recipe
-    :param order_ac_graph: if set to True then all action-level AMRs get ordered based on a topological order
-                           of the action graph nodes
-                           if False, then the main order of the original recipe is kept and only the split amrs
-                           derived from the same sentence-level AMR are ordered based on the action graph
-    :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
-    :param text_only:
-    :return: list of the action-level amr with 'snt' attribute updated to the newly generated gold instructions
-             and ordered as specified by order_ac_graph
-    """
+    def __init__(self,
+                 recipe_amrs: List[nx.Graph],
+                 orig_amrs: Dict,
+                 action_graph: nx.DiGraph,
+                 version: int = 3,
+                 text_only: bool = False,
+                 order_ac_graph: bool = False):
+        """
 
-    orig_instr2amr = defaultdict(list)  # key: n, value: [gr1, gr2] means that gr1 and gr2 are from the original instruction
-                                        # at the nth position in the original recipe
-    for amr in recipe_amrs:
-        original_id = amr.graph['snt_id']
-        original_position = original_id.split('instr')[-1]
-        original_position = int(original_position)
-        orig_instr2amr[original_position].append(amr)
+        :param recipe_amrs: list of the action-level amrs
+        :param orig_amrs: dict with the corresponding sentence-level AMRs
+                          keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
+        :param action_graph: the action graph for the recipe
+        :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
+        :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
+                          sentence
+        :param order_ac_graph: if set to True then all action-level AMRs get ordered based on a topological order
+                               of the action graph nodes
+                               if False, then the main order of the original recipe is kept and only the split amrs
+                               derived from the same sentence-level AMR are ordered based on the action graph
+        """
+        self.recipe_amrs = recipe_amrs
+        self.orig_amrs = orig_amrs
+        self.action_graph = action_graph
+        self.version = version
+        self.text_only = text_only
+        self.order_ac_graph = order_ac_graph
 
-    # needed to be able to shift the per-sentence token ids to the document-level token ids
-    shift_value = 0
-    prev_sent_len = 1
-    already_shifted = []
+        self.orig_pos2amr = defaultdict(list)       # key: n, value: [gr1, gr2] means that gr1 and gr2 are from the
+                                                    # original instruction at the nth position in the original recipe
+        self.group_amrs_by_orig_position()
 
-    for amr in recipe_amrs:
-        original_id = amr.graph['snt_id']
-        post_split_id = amr.graph['id']
-        original_sentence = amr.graph['snt']
+    def create_gold_recipe(self):
 
-        # only shift for new sentences, otherwise sentences for which AMRs were split contribute several times to the shift value
-        if original_id not in already_shifted:
-            shift_value += prev_sent_len
-            already_shifted.append(original_id)
+        self.create_gold_instructions()     # extracts the gold instructions for each amr and adds as new 'snt' metadata
+        self.create_instruction_order()     # brings the amrs into an appropriate order
 
-        if original_id == post_split_id:    # then the AMR was not split -> keep original instruction
-            gold_sentence = original_sentence
-        else:
-            orig_snt_amr = orig_amrs[original_id]
-            assert original_sentence == orig_snt_amr.graph['snt']
-            # also get other AMRs derived from the current original AMR
-            orig_amr_pos = int(original_id.split('instr')[-1])
-            others = [gr for gr in orig_instr2amr[orig_amr_pos] if gr != amr]
+        return self.recipe_amrs
 
-            gold_sentence = create_gold_sentence(amr, orig_snt_amr, others, shift_value, version)
-            if text_only:
-                gold_sentence += '\t was changed'
-        # change sentence metadata
-        amr.graph['snt'] = gold_sentence
+    def create_gold_instructions(self):
+        """
+        Creates for each amr in self.recipe_amrs and instruction based on the original instruction and the node-to-token
+        alignments and updates the 'snt' metadata of the amr graph object
+        :return:
+        """
+        shift_value = 0     # needed to be able to shift the per-sentence token ids to the document-level token ids
+        prev_sent_len = 1
+        already_shifted = []
 
-        prev_sent_len = len(original_sentence.split(' '))
+        for amr in self.recipe_amrs:
+            original_id = amr.graph['snt_id']
+            post_split_id = amr.graph['id']
+            original_sentence = amr.graph['snt']
 
-    ordered_amrs = []
+            # only shift for new sentences, otherwise sentences for which AMRs were split contribute several times to the shift value
+            if original_id not in already_shifted:
+                shift_value += prev_sent_len
+                already_shifted.append(original_id)
 
-    instr_amr_pairs = list(orig_instr2amr.items())
-
-    # order all amrs according to action graph
-    if order_ac_graph:
-        all_amrs = []
-        for pos, amrs in instr_amr_pairs:
-            all_amrs.extend(amrs)
-        ordered_sep_amrs = order_amrs_based_on_action_graph(action_graph, all_amrs)
-        ordered_amrs.extend(ordered_sep_amrs)
-    # keep original order of instructions and order separated amrs for the same instruction according to action graph
-    else:
-        instr_amr_pairs.sort(key=lambda x: x[0])
-        for pos, amrs in instr_amr_pairs:
-            if len(amrs) == 1:
-                ordered_amrs.extend(amrs)
+            if original_id == post_split_id:  # then the AMR was not split -> keep original instruction
+                gold_sentence = original_sentence
             else:
-                ordered_sep_amrs = order_amrs_based_on_action_graph(action_graph, amrs)
-                ordered_amrs.extend(ordered_sep_amrs)
+                orig_snt_amr = self.orig_amrs[original_id]
+                assert original_sentence == orig_snt_amr.graph['snt']
+                # also get other AMRs derived from the current original AMR
+                orig_amr_pos = int(original_id.split('instr')[-1])
+                others = [gr for gr in self.orig_pos2amr[orig_amr_pos] if gr != amr]
 
-    return ordered_amrs
+                instruction_creator = InstructionExtractor(split_amr=amr,
+                                                           sentence_amr=orig_snt_amr,
+                                                           other_split_amrs=others,
+                                                           shift_value=shift_value,
+                                                           version=self.version)
+                gold_sentence = instruction_creator.create_gold_sentence()
 
+                if self.text_only:
+                    gold_sentence += '\t was changed'
+            # change sentence metadata
+            amr.graph['snt'] = gold_sentence
+            prev_sent_len = len(original_sentence.split(' '))
 
-def order_amrs_based_on_action_graph(action_graph: nx.DiGraph, amrs_to_order: List[nx.DiGraph]) -> List[nx.DiGraph]:
-    """
-    Order the amrs based on the corresponding action nodes in the action graph
-    :param action_graph: action graph (networkX Graph) to base ordering on
-    :param amrs_to_order: list of AMR graphs (networkX Graph) that should be ordered
-    :return: list of the same AMR graphs, ordered based on the action graph
-    """
-    ordered_amrs = []
-    action_node2amr = dict()
-    for amr in amrs_to_order:
-        action_aligned_amr_nodes = amr.graph['alignments']
-        for amr_node in action_aligned_amr_nodes:
-            action_node = nx.get_node_attributes(amr, 'alignment')[amr_node]
-            action_node2amr[action_node] = amr
+    def create_instruction_order(self):
+        """
+        Re-orders the self.recipe_amrs
+        either according to the action graph or re-orders only the instructiosn that were split
+        :return:
+        """
+        ordered_amrs = []
 
-    partially_sorted_action_nodes = order_actions_df_lf(action_graph)
+        instr_amr_pairs = list(self.orig_pos2amr.items())
+        # order all amrs according to action graph
+        if self.order_ac_graph:
+            all_amrs = []
+            for pos, amrs in instr_amr_pairs:
+                all_amrs.extend(amrs)
+            ordered_sep_amrs = self.order_amrs(all_amrs)
+            ordered_amrs.extend(ordered_sep_amrs)
+        # keep original order of instructions and only order separated amrs for the same instruction relative to each
+        # other according to action graph
+        else:
+            instr_amr_pairs.sort(key=lambda x: x[0])
+            for pos, amrs in instr_amr_pairs:
+                if len(amrs) == 1:
+                    ordered_amrs.extend(amrs)
+                else:
+                    ordered_sep_amrs = self.order_amrs(amrs)
+                    ordered_amrs.extend(ordered_sep_amrs)
 
-    for ac_n in partially_sorted_action_nodes:
-        if ac_n in action_node2amr.keys():
-            amr_to_add = action_node2amr[ac_n]
-            if amr_to_add not in ordered_amrs:
-                ordered_amrs.append(amr_to_add)
+        self.recipe_amrs = ordered_amrs
 
-    return ordered_amrs
+    def order_amrs(self, amrs_to_order):
+        """
+        Order the amrs based on the corresponding action nodes in the action graph
+        Uses the function order_actions_df_lf from graph_processing.graph_traversal.py; could be replaced
+        with any other ordering / traversal function
+        :param amrs_to_order: list of AMR graphs (networdkX Graph) that should be ordered
+        :return: list of the same AMR graphs, ordered based on the action graph
+            """
+        ordered_amrs = []
+        action_node2amr = dict()
+        for amr in amrs_to_order:
+            action_aligned_amr_nodes = amr.graph['alignments']
+            for amr_node in action_aligned_amr_nodes:
+                action_node = nx.get_node_attributes(amr, 'alignment')[amr_node]
+                action_node2amr[action_node] = amr
+
+        partially_sorted_action_nodes = order_actions_df_lf(self.action_graph)
+
+        for ac_n in partially_sorted_action_nodes:
+            if ac_n in action_node2amr.keys():
+                amr_to_add = action_node2amr[ac_n]
+                if amr_to_add not in ordered_amrs:
+                    ordered_amrs.append(amr_to_add)
+
+        return ordered_amrs
+
+    def group_amrs_by_orig_position(self):
+        """
+        Group all amrs that come from the same original instruction and associate them  with the original position
+        of the instruction in the recipe
+        :return:
+        """
+        for amr in self.recipe_amrs:
+            original_id = amr.graph['snt_id']
+            original_position = original_id.split('instr')[-1]
+            original_position = int(original_position)
+            self.orig_pos2amr[original_position].append(amr)
 
 
 def create_gold_corpus(action_amr_corpus: str,
                        sentence_amr_corpus: str,
                        action_graph_corpus: str,
                        gold_corpus_dir: str,
-                       version: int,
+                       version: int = 3,
                        text_only: bool = False):
     """
 
@@ -478,7 +579,12 @@ def create_gold_corpus(action_amr_corpus: str,
             recipe_action_graph = read_graph_from_conllu(action_graph_path)
 
             # create the gold instructions for the action-level AMRs of the current recipe
-            new_ordered_recipe_amrs = create_gold_recipe(recipe_amrs, orig_amrs, recipe_action_graph, version, text_only)
+            gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs,
+                                                  orig_amrs=orig_amrs,
+                                                  action_graph=recipe_action_graph,
+                                                  version=version,
+                                                  text_only=text_only)
+            new_ordered_recipe_amrs = gold_recipe_creator.create_gold_recipe()
 
             # Create the new output files
             if text_only:
@@ -505,6 +611,7 @@ if __name__=='__main__':
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/test', 3)
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1', 3, True)
 
 
