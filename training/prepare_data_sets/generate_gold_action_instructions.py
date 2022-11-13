@@ -245,8 +245,6 @@ class InstructionExtractor:
         - "," "," -> remove one comma
         :return: returns nothing but modifies self.final_tokens directly
         """
-        if self.split_amr.graph['id'] == 'baked_ziti_0_instr12_1':
-            print("hr")
         punctuation_to_remove = []
         for t_ind, t in enumerate(self.final_tokens):
             if t == ',':
@@ -327,7 +325,7 @@ class InstructionExtractor:
         - but add prepositions or determiners back that preceed a now modified action, if the action is not included
           in order to add e.g. "with" to "Top with [shredded] mozzarella cheese"
         - do not add tokens with tag 'IN' if the next token is not added
-        - do not add tokens with tag 'CC' if either previous or next token are node added
+        - do not add tokens with tag 'CC' if either previous or next token are not added
         - do not add tokens with tag 'DT' if next token is not added
         :param pt_ind: index of the unaligned token to decide about
         :param pt_pos_tag: pos tag of the unaligned token
@@ -639,6 +637,6 @@ if __name__=='__main__':
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1', 3, True)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1_t', 3, True)
 
 
