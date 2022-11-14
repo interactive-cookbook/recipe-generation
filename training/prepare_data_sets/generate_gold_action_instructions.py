@@ -3,9 +3,8 @@ import re
 from typing import List, Dict, Set, Tuple
 import networkx as nx
 import penman
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
-import nltk
 from nltk.stem import PorterStemmer
 import spacy
 
@@ -81,6 +80,7 @@ class InstructionExtractor:
 
             # check whether the token has an alignment to any node in the amr and if yes, whether it corresponds to an action
             in_current_amr, is_action, is_root = self.check_token_alignment(str(shifted_token_ind), self.split_amr)
+
             if is_action and is_root:
                 self.action_root_inds.append(token_ind)
 
@@ -184,21 +184,20 @@ class InstructionExtractor:
         # above pattern repeated with CC between
         # followed by VB, VBP or a modified token
         pos_reg_full = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(VB|VBP|VBD|VBZ){1}( |$)'
-        # TODO: decide what to do?
-        # If including RB then RB should be "then"
-        pos_reg_full2 = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(VB|VBP|VBD|VBZ){1}( |$)'
+        # If including RB then RB should be "then", "immediately" or "now"
+        # allows an 'RB' token between the NP like object and the verb
+        pos_reg_full_rb = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(RB )*(VB|VBP|VBD|VBZ){1}( |$)'
         # If verb was originally a participle (i.e. got stemmed for the extracted sentence) then the original
         # POS tag will not be VB or VBP, so check for NP-like pattern first and then check if the next token was
         # such a stemmed token
         pos_reg_mod = r'^(PDT )?(DT |PRP$ )?(JJ )?(NN |NNS |NNP |NNPS )+((, |CC ){1}(DT |PRP $)?(JJ )?(NN |NNS |NNP |NNPS )+)*(, |CC )?'
 
         verb_index = None
+        rb_index = None
 
         search_matching_pos = re.search(pos_reg_full, extracted_pos_seq)
-        search_matching_pos2 = re.search(pos_reg_full2, extracted_pos_seq)
-        if search_matching_pos2 and not search_matching_pos:
-            matching_pos_list2 = search_matching_pos2.group().split(' ')
-            print(f'{search_matching_pos2}\t{self.orig_snt_tagged}\t{extracted_pos_seq}')
+        search_matching_pos_rb = re.search(pos_reg_full_rb, extracted_pos_seq)
+        search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
 
         if search_matching_pos:
             matching_pos = search_matching_pos.group()  # if emtpy space after last matching POS then this will cause issues
@@ -209,31 +208,51 @@ class InstructionExtractor:
             potential_verb_index_original = orig_token_ids[potential_verb_index]    # relative to orig sentence
             if potential_verb_index_original in self.action_root_inds:
                 verb_index = potential_verb_index
-        else:
-            search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
-            if search_matching_pos_mod:
-                matching_pos = search_matching_pos_mod.group()
-                matching_pos = matching_pos.strip()
-                matching_pos_list = matching_pos.split(' ')
-                # last noun index is len(m_p_l) - 1 -> verb should be next
-                potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
 
-                if len(matching_pos_list) != len(extracted_pos_tags):  # otherwise potential_verb_index is out of index
-                    # get corresponding index in the original sentence because modified_action_inds and
-                    # action_root_inds are relative to orig sent
-                    potential_verb_index_original = orig_token_ids[potential_verb_index]
+        elif search_matching_pos_rb:
+            matching_pos_list2 = search_matching_pos_rb.group()
+            matching_pos_list2 = matching_pos_list2.strip()
+            matching_pos_list2 = matching_pos_list2.split(' ')
 
-                    if potential_verb_index_original in self.modified_inds:  # then it is an action verb but originally had different POS
-                        verb_index = potential_verb_index
-                    elif potential_verb_index_original in self.action_root_inds and \
-                            (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
-                                potential_verb_index] == "NNS"):
-                        verb_index = potential_verb_index
+            if 'RB' in matching_pos_list2:
+                potential_rb_index = len(matching_pos_list2) - 2    # is relative to extracted sentence
+                potential_verb_index = len(matching_pos_list2) - 1  # is relative to extracted sentence
+                potential_verb_index_original = orig_token_ids[potential_verb_index]    # relative to orig sentence
+                rb_token = self.final_tokens[potential_rb_index]
+                # only re-order if the 'RB' token is a time attribute such as then, now, immediately
+                if (rb_token == 'then' or rb_token == 'immediately' or rb_token == 'now') and \
+                        potential_verb_index_original in self.action_root_inds:
+                    verb_index = potential_verb_index
+                    rb_index = potential_rb_index
 
-        if verb_index:
+        elif search_matching_pos_mod:
+            matching_pos = search_matching_pos_mod.group()
+            matching_pos = matching_pos.strip()
+            matching_pos_list = matching_pos.split(' ')
+            # last noun index is len(m_p_l) - 1 -> verb should be next
+            potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
+
+            if len(matching_pos_list) != len(extracted_pos_tags):  # otherwise potential_verb_index is out of index
+                # get corresponding index in the original sentence because modified_action_inds and
+                # action_root_inds are relative to orig sent
+                potential_verb_index_original = orig_token_ids[potential_verb_index]
+
+                if potential_verb_index_original in self.modified_inds:  # then it is an action verb but originally had different POS
+                    verb_index = potential_verb_index
+                elif potential_verb_index_original in self.action_root_inds and \
+                        (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
+                            potential_verb_index] == "NNS"):
+                    verb_index = potential_verb_index
+
+        if rb_index and verb_index:
+            # verb needs to be removed first because it follows rb token and otherwise indices change
+            verb_token = self.final_tokens.pop(verb_index)
+            rb_token = self.final_tokens.pop(rb_index)
+            self.final_tokens.insert(0, verb_token)
+            self.final_tokens.insert(0, rb_token)
+        elif verb_index:
             verb_token = self.final_tokens.pop(verb_index)
             self.final_tokens.insert(0, verb_token)
-            #print(' '.join(self.final_tokens))
 
     def fix_sentence_start_and_end(self):
         """
@@ -310,7 +329,7 @@ class InstructionExtractor:
 
             potential_tokens_rev = self.potential_tokens.copy()
             potential_tokens_rev.reverse()
-            for pt_ind in self.potential_tokens:
+            for pt_ind in potential_tokens_rev:
                 _, pt_pos_tag = self.orig_snt_tagged[pt_ind]
                 add_pt = self.decide_about_unaligned_token(pt_ind, pt_pos_tag, self.inds_to_add)
                 if add_pt:
@@ -332,6 +351,8 @@ class InstructionExtractor:
         :param inds_to_add: the set of inds to add that should be considered for the decision
         :return: whether to add the token or not
         """
+        #if self.split_amr.graph['id'] == 'bananas_foster_1_instr8_1':
+            #print("he")
         to_add = False
         if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
 
@@ -510,7 +531,12 @@ class RecipeExtractor:
                 if len(amrs) == 1:
                     ordered_amrs.extend(amrs)
                 else:
-                    ordered_sep_amrs = self.order_amrs(amrs)
+                    try:
+                        ordered_sep_amrs = self.order_amrs(amrs)
+                    except:
+                        ordered_sep_amrs = amrs
+                        print(f'Warning: found action graph with disconnected components or without end node. '
+                              f'Correct ordering cannot be ensured! {self.recipe_amrs[0].graph["id"]}')
                     ordered_amrs.extend(ordered_sep_amrs)
 
         self.recipe_amrs = ordered_amrs
@@ -637,6 +663,6 @@ if __name__=='__main__':
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1_t', 3, True)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1', 3, True)
 
 
