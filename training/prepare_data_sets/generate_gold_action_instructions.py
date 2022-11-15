@@ -183,21 +183,43 @@ class InstructionExtractor:
         # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
         # above pattern repeated with CC between
         # followed by VB, VBP or a modified token
-        pos_reg_full = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(VB|VBP|VBD|VBZ){1}( |$)'
+        pos_reg_full = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?' \
+                       r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )*?' \
+                       r'(VB|VBP|VBD|VBZ){1}( |$)'
         # If including RB then RB should be "then", "immediately" or "now"
         # allows an 'RB' token between the NP like object and the verb
-        pos_reg_full_rb = r'^(PDT )?(DT |PRP$ )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+((, |CC )*(DT |PRP $)?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )*(RB )*(VB|VBP|VBD|VBZ){1}( |$)'
+        pos_reg_full_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?' \
+                          r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )*?' \
+                          r'(RB )*?' \
+                          r'(VB|VBP|VBD|VBZ){1}( |$)'
         # If verb was originally a participle (i.e. got stemmed for the extracted sentence) then the original
         # POS tag will not be VB or VBP, so check for NP-like pattern first and then check if the next token was
         # such a stemmed token
-        pos_reg_mod = r'^(PDT )?(DT |PRP$ )?(JJ )?(NN |NNS |NNP |NNPS )+((, |CC ){1}(DT |PRP $)?(JJ )?(NN |NNS |NNP |NNPS )+)*(, |CC )?'
+        pos_reg_mod = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+?' \
+                      r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )?'
+        pos_reg_mod_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+?' \
+                      r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )?' \
+                      r'(RB )*?'
+        pos_reg_mod_greedy = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+' \
+                             r'((, |CC )*(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )?'
+        pos_reg_mod_greedy_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+' \
+                                r'((, |CC )*(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )?' \
+                                r'(RB )*'
 
         verb_index = None
         rb_index = None
 
+        if self.split_amr.graph['id'] == 'chocolate_glaze_6_instr1_3':
+            print("h")
+
         search_matching_pos = re.search(pos_reg_full, extracted_pos_seq)
         search_matching_pos_rb = re.search(pos_reg_full_rb, extracted_pos_seq)
+
         search_matching_pos_mod = re.search(pos_reg_mod, extracted_pos_seq)
+        search_matching_pos_mod_rb = re.search(pos_reg_mod_rb, extracted_pos_seq)
+
+        search_matching_pos_mod_greedy = re.search(pos_reg_mod_greedy, extracted_pos_seq)
+        search_matching_pos_mod_greedy_rb = re.search(pos_reg_mod_greedy_rb, extracted_pos_seq)
 
         if search_matching_pos:
             matching_pos = search_matching_pos.group()  # if emtpy space after last matching POS then this will cause issues
@@ -226,23 +248,64 @@ class InstructionExtractor:
                     rb_index = potential_rb_index
 
         elif search_matching_pos_mod:
+            assert search_matching_pos_mod_greedy
+            current_case = "non-greedy"
             matching_pos = search_matching_pos_mod.group()
-            matching_pos = matching_pos.strip()
-            matching_pos_list = matching_pos.split(' ')
-            # last noun index is len(m_p_l) - 1 -> verb should be next
-            potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
+            while current_case:
+                matching_pos = matching_pos.strip()
+                matching_pos_list = matching_pos.split(' ')
+                # last noun index is len(m_p_l) - 1 -> verb should be next
+                potential_verb_index = len(matching_pos_list)  # is relative to extracted sentence
 
-            if len(matching_pos_list) != len(extracted_pos_tags):  # otherwise potential_verb_index is out of index
-                # get corresponding index in the original sentence because modified_action_inds and
-                # action_root_inds are relative to orig sent
-                potential_verb_index_original = orig_token_ids[potential_verb_index]
+                if len(matching_pos_list) != len(extracted_pos_tags):  # otherwise potential_verb_index is out of index
+                    # get corresponding index in the original sentence because modified_action_inds and
+                    # action_root_inds are relative to orig sent
+                    potential_verb_index_original = orig_token_ids[potential_verb_index]
 
-                if potential_verb_index_original in self.modified_inds:  # then it is an action verb but originally had different POS
-                    verb_index = potential_verb_index
-                elif potential_verb_index_original in self.action_root_inds and \
-                        (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
-                            potential_verb_index] == "NNS"):
-                    verb_index = potential_verb_index
+                    if potential_verb_index_original in self.modified_inds:  # then it is an action verb but originally had different POS
+                        verb_index = potential_verb_index
+                    # If the verb got not modified (e.g. not the ending checked for) but is an action verb with POS tag NN or NNS
+                    elif potential_verb_index_original in self.action_root_inds and \
+                            (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
+                                potential_verb_index] == "NNS"):
+                        verb_index = potential_verb_index
+
+                if not verb_index and current_case == "non-greedy":      # no modified verb following the regex pattern -> try with greedy pattern
+                    matching_pos = search_matching_pos_mod_greedy.group()
+                    current_case = "greedy"
+                else:
+                    break
+
+        elif search_matching_pos_mod_rb:
+            assert search_matching_pos_mod_greedy_rb
+            current_case = "non-greedy"
+            matching_pos = search_matching_pos_mod_rb.group()
+            while current_case:
+                matching_pos = matching_pos.strip()
+                matching_pos_list = matching_pos.split(' ')
+
+                if 'RB' in matching_pos_list:
+                    potential_rb_index = len(matching_pos_list) - 1
+                    potential_verb_index = len(matching_pos_list)
+
+                    if len(matching_pos_list) != len(extracted_pos_tags):
+                        potential_verb_index_original = orig_token_ids[potential_verb_index]
+                        rb_token = self.final_tokens[potential_rb_index]
+                        if (rb_token == 'then' or rb_token == 'immediately' or rb_token == 'now'):
+                            if potential_verb_index_original in self.modified_inds:
+                                verb_index = potential_verb_index
+                                rb_index = potential_rb_index
+                            elif potential_verb_index_original in self.action_root_inds and \
+                                (extracted_pos_tags[potential_verb_index] == "NN" or extracted_pos_tags[
+                                potential_verb_index] == "NNS"):
+                                verb_index = potential_verb_index
+                                rb_index = potential_rb_index
+
+                if not verb_index and current_case == "non-greedy":
+                    matching_pos = search_matching_pos_mod_greedy_rb.group()
+                    current_case = "greedy"
+                else:
+                    break
 
         if rb_index and verb_index:
             # verb needs to be removed first because it follows rb token and otherwise indices change
@@ -265,6 +328,8 @@ class InstructionExtractor:
         :return: returns nothing but modifies self.final_tokens directly
         """
         punctuation_to_remove = []
+        brackets_open = []
+        brackets_closing = []
         for t_ind, t in enumerate(self.final_tokens):
             if t == ',':
                 try:
@@ -274,14 +339,24 @@ class InstructionExtractor:
                 except IndexError:
                     break
             elif t == '(':
-                try:
-                    next_token = self.final_tokens[t_ind + 1]
-                    if next_token == ')':
-                        punctuation_to_remove.append(t_ind)
-                except IndexError:
-                    punctuation_to_remove.append(t_ind)
-        for punct_ind in punctuation_to_remove:
-            self.final_tokens.pop(punct_ind)
+                brackets_open.append(t_ind)
+            elif t == ')':
+                brackets_closing.append(t_ind)
+        if brackets_open and not brackets_closing:
+            final_str = ' '.join(self.final_tokens)
+            if not ')' in final_str:
+                punctuation_to_remove.extend(brackets_open)
+        elif not brackets_open and brackets_closing:
+            final_str = ' '.join(self.final_tokens)
+            if not '(' in final_str:
+                punctuation_to_remove.extend(brackets_closing)
+        elif brackets_open and brackets_closing:
+            for bo in brackets_open:
+                if bo + 1 in brackets_closing:
+                    punctuation_to_remove.append(bo)
+                    punctuation_to_remove.append(bo + 1)
+
+        self.final_tokens = [ft for ind_ft, ft in enumerate(self.final_tokens) if ind_ft not in punctuation_to_remove]
 
         while True:
             if self.final_tokens[0] == '(' and self.final_tokens[-1] == ')':
@@ -379,6 +454,12 @@ class InstructionExtractor:
         elif pt_ind + 2 in inds_to_add and pt_ind + 1 in self.modified_inds_others and pt_ind + 1 not in inds_to_add:
             if pt_pos_tag == 'DT' or pt_pos_tag == ',':
                 to_add = True
+        # for cases such as [Determiner Adverb ParticipleAction Noun], e.g. "the slowly cooked mixture"
+        elif pt_ind + 3 in inds_to_add and pt_ind + 2 in self.modified_inds_others and pt_ind + 2 not in inds_to_add:
+            if pt_pos_tag == 'DT' or pt_pos_tag == ',':
+                to_add = True
+                #print(self.split_amr.graph['id'])
+                #print(self.orig_snt_tagged[pt_ind:pt_ind+4])
 
         return to_add
 
@@ -408,6 +489,7 @@ class InstructionExtractor:
                     is_action = True
                 if node == graph.graph['root']:
                     is_root = True
+
             try:
                 amr_node_attr = node_attributes['attr']
                 for attr_dict in amr_node_attr:
@@ -662,7 +744,7 @@ if __name__=='__main__':
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1', 3, True)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara2_amr_graphst', 3)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara2t', 3, True)
 
 
