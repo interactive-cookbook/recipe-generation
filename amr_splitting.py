@@ -2,10 +2,11 @@ import networkx
 import penman
 from collections import defaultdict
 from typing import List
+from copy import deepcopy
 from graph_processing.action_amr_graph_mappings import get_graph_pairs
 from utils.paths import ARA_DIR, SENT_AMR_DIR, get_new_dish_dir, get_splitting_log_path, get_non_sep_log_path
 from amr_processing.helpers import count_aligned_actions, post_process_imperative
-from amr_processing.post_processing_splitting import postprocess_split_amrs
+from amr_processing.post_processing_splitting import postprocess_split_amrs, update_alignments
 from amr_processing.splitting_preconditions import cluster_action_aligned_amr_nodes
 from amr_processing.splitting_algorithm import split_amr
 from amr_processing.penman_networkx_conversions import networkx2penman
@@ -73,10 +74,15 @@ def split_recipe_amrs():
             action_clusters = cluster_action_aligned_amr_nodes(amr_graph, action_graph_nodes)
 
             # if clustering of amr nodes and action nodes leaves only one cluster then it will not get split
+            # but only the main action node should be part of the alignment attribute
             if len(action_clusters) == 1:
                 clusters_per_amr[len(action_clusters)] += 1
-                amr_graph.graph['snt_id'] = amr_graph.graph['id']
-                graph_pairs[recipe]['split_amrs'].append(amr_graph)
+                amr_graph_cp = deepcopy(amr_graph)
+                new_amr_graph = update_alignments(sep_graph=amr_graph_cp,
+                                                  orig_graph=amr_graph,
+                                                  action_clusters=action_clusters)
+                new_amr_graph.graph['snt_id'] = amr_graph.graph['id']
+                graph_pairs[recipe]['split_amrs'].append(new_amr_graph)
                 continue
 
             amrs_to_split_after_clustering += 1
@@ -89,11 +95,16 @@ def split_recipe_amrs():
             if len(separated_amrs) > 1:
                 post_processed_amrs = postprocess_split_amrs(separated_amrs, amr_graph, action_graph, action_clusters)
                 graph_pairs[recipe]['split_amrs'].extend(post_processed_amrs)
-            # if amr could not be split then not splitting post processing is needed
+            # if amr could not be split then the only changes from the post processing that are needed
+            # are the alignment updates
             else:
                 amr_graph = separated_amrs[0]
-                amr_graph.graph['snt_id'] = amr_graph.graph['id']
-                graph_pairs[recipe]['split_amrs'].append(amr_graph)
+                amr_graph_cp = deepcopy(amr_graph)
+                new_amr_graph = update_alignments(sep_graph=amr_graph_cp,
+                                                  orig_graph=amr_graph,
+                                                  action_clusters=action_clusters)
+                new_amr_graph.graph['snt_id'] = amr_graph.graph['id']
+                graph_pairs[recipe]['split_amrs'].append(new_amr_graph)
 
         # take care of imperative and implicit 'you'
         modified_split_amrs = []
