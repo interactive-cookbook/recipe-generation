@@ -1,3 +1,5 @@
+import random
+
 import networkx as nx
 
 
@@ -7,7 +9,13 @@ def order_actions_topological(action_graph: nx.Graph):
     :param action_graph:
     :return: List of ordered nodes of action_graph
     """
-    ordered_actions = list(nx.topological_sort(action_graph))
+    try:
+        ordered_actions = list(nx.topological_sort(action_graph))
+    except nx.NetworkXError:
+        print(f'Warning: found action graph with disconnected components. Correct ordering of the disconnected'
+              f'components cannot be ensured!')
+        ordered_actions = list(action_graph.nodes)
+        ordered_actions.sort()
     return ordered_actions
 
 
@@ -48,36 +56,43 @@ def order_actions_token_ids(action_graph: nx.DiGraph):
     return covered_nodes
 
 
-def find_longest_path_start(candidate_nodes:list, end_node, graph:nx.DiGraph):
+def find_longest_path_start(candidate_nodes: list, end_node, graph: nx.DiGraph) -> list:
     """
-    Computes the path from each node in candidate_nodes to the end_node and returns the node from candidate_nodes
-    that has the longest path to the end_node
+    Computes the path from each node in candidate_nodes to the end_node and returns the nodes from candidate_nodes
+    that have the longest path to the end_node
     :param candidate_nodes:
     :param end_node:
     :param graph:
     :return:
     """
     current_max_len = 0
-    current_start= None
+    current_starts = []
     for cn in candidate_nodes:
         paths = list(nx.all_simple_paths(graph, cn, end_node))
         for p in paths:
             if len(p) > current_max_len:
                 current_max_len = len(p)
-                current_start = cn
+                current_starts = [cn]
+            elif len(p) == current_max_len:
+                current_starts.append(cn)
 
-    return current_start
+    current_starts.sort()
+
+    return current_starts
 
 
-def order_actions_df_lf(action_graph: nx.DiGraph):
+def order_actions_df_lf(action_graph: nx.DiGraph, tie_strategy=None):
     """
     Orders all nodes from the input graph in a the following way
     1. start with the node without parents that has the longest path to the 'end' node
     2. continue with the child node if a) child has no other parent nodes or b) all parent nodes are already covered
     3. If child node has other not yet covered parents, choose the node without parents which has the longest path to an
-       uncovered parent node
+       uncovered parent node;
     4. Continue 1. - 3. until all nodes are covered
     :param action_graph:
+    :param tie_strategy: strategy to use if two nodes have same longest path
+                        if tie_strategy is None then choose any node
+                        if tie_strategy = 'id' then choose the node with the smallest token ID
     :return: ordered list of all nodes of action_graph
     """
     all_nodes = set(action_graph.nodes)
@@ -92,7 +107,13 @@ def order_actions_df_lf(action_graph: nx.DiGraph):
             potential_starts.append(n)
 
     # find longest path
-    current_node = find_longest_path_start(potential_starts, 'end', action_graph)
+    longest_starts = find_longest_path_start(potential_starts, 'end', action_graph)
+    if tie_strategy == 'id':
+        current_node = longest_starts[0]
+    elif not tie_strategy:
+        current_node = random.choice(longest_starts)
+    else:
+        raise NotImplementedError
 
     potential_starts.remove(current_node)
     ordered_actions.append(current_node)
@@ -117,7 +138,13 @@ def order_actions_df_lf(action_graph: nx.DiGraph):
         for cp in child_parents:
             if cp not in covered_nodes:  # found a not yet covered parent
                 all_parents_covered = False
-                next_start_node = find_longest_path_start(potential_starts, child_node, action_graph)
+                potential_next_starts = find_longest_path_start(potential_starts, child_node, action_graph)
+                if tie_strategy == 'id':
+                    next_start_node = potential_next_starts[0]
+                elif not tie_strategy:
+                    next_start_node = random.choice(potential_next_starts)
+                else:
+                    raise NotImplementedError
                 assert next_start_node
                 potential_starts.remove(next_start_node)
                 current_node = next_start_node
@@ -131,6 +158,21 @@ def order_actions_df_lf(action_graph: nx.DiGraph):
             current_node = child_node
 
     return ordered_actions
+
+
+def order_actions_df_lf_id(action_graph: nx.DiGraph):
+    """
+    Orders all nodes from the input graph in a the following way
+    1. start with the node without parents that has the longest path to the 'end' node
+    2. continue with the child node if a) child has no other parent nodes or b) all parent nodes are already covered
+    3. If child node has other not yet covered parents, choose the node without parents which has the longest path to an
+       uncovered parent node; if two nodes have same longest path then choose the one with the smaller token ID
+    4. Continue 1. - 3. until all nodes are covered
+    :param action_graph:
+    :return: ordered list of all nodes of action_graph
+    """
+
+    return order_actions_df_lf(action_graph=action_graph, tie_strategy='id')
 
 
 def order_actions_df(action_graph: nx.DiGraph):
