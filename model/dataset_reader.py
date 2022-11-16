@@ -74,14 +74,23 @@ def build_dataset(tokenizer: PreTrainedTokenizer, data_path, context_len: int,
     else:
         target_encodings = tokenizer.batch_encode_plus(target_seqs, padding=True)
 
-    """
-    bi = set()
-    for i, (ie, te) in enumerate(
-            zip(input_encodings['num_truncated_tokens'], target_encodings['num_truncated_tokens'])):
-        if ie > 0 or te > 0:
-            bi.add(i)
-    num_trunc = len(bi)
-    """
+    indices_to_remove = set()
+    if max_in_length:
+        for ind, trunc in enumerate(input_encodings['num_truncated_tokens']):
+            if trunc > 0:
+                indices_to_remove.add(ind)
+    if max_out_length:
+        for ind, trunc in enumerate(target_encodings['num_truncated_tokens']):
+            if trunc > 0:
+                indices_to_remove.add(ind)
+
+    input_encodings['input_ids'] = [ie for ind, ie in enumerate(input_encodings['input_ids']) if ind not in indices_to_remove]
+    target_encodings['input_ids'] = [te for ind, te in enumerate(target_encodings['input_ids']) if ind not in indices_to_remove]
+    input_encodings['attention_mask'] = [ie for ind, ie in enumerate(input_encodings['attention_mask']) if ind not in indices_to_remove]
+    target_encodings['attention_mask'] = [te for ind, te in enumerate(target_encodings['attention_mask']) if ind not in indices_to_remove]
+
+    print(f'Removed {len(indices_to_remove)} truncated data instances.')
+
     encodings = {'input_ids': torch.LongTensor(input_encodings['input_ids']),
                  'attention_mask': torch.LongTensor(input_encodings['attention_mask']),
                  'target_ids': torch.LongTensor(target_encodings['input_ids']),
