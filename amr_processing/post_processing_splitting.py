@@ -73,6 +73,7 @@ def update_alignments(sep_graph: nx.Graph, orig_graph: nx.Graph, action_clusters
     'you' was aligned is no longer present
     :param sep_graph: one of the separated action-level amr
     :param orig_graph: the corresponding original sentence-level amr
+    :param action_clusters: list of the action-node/action-aligned amr-node clusters
     :return: the graph with the updated alignment information
     """
     main_action_aligned_nodes = []

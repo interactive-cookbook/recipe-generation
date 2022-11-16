@@ -25,22 +25,23 @@ def cluster_action_aligned_amr_nodes(sentence_amr: nx.Graph, all_action_nodes: l
 
     alignments = defaultdict(list)
 
-    # non-separating cases that can be judged from looking only at the root node
-    root_node_amr = sentence_amr.graph['root']
-    root_label = nx.get_node_attributes(sentence_amr, 'label')[root_node_amr]
-    if root_label == 'or' or root_label == 'slash' or root_label == 'possible-01' or root_label == 'have-condition-91':
-        return [{'one': 'dummy'}]      # dummy element, just needs to be of length 1 so no splitting will happen
-    for e in sentence_amr.out_edges(root_node_amr):
-        e_label = nx.get_edge_attributes(sentence_amr, 'label')[e]
-        if e_label == 'condition':
-            return [{'one': 'dummy'}]
-
     for amr_node in list(sentence_amr.nodes):
         token_id = nx.get_node_attributes(sentence_amr, 'alignment')[amr_node]
         if token_id in all_action_nodes:
             alignments[token_id].append(amr_node)
 
     main_amr_node_per_action = get_main_amr_node_per_action(alignments, sentence_amr)
+
+    # non-separating cases that can be judged from looking only at the root node
+    root_node_amr = sentence_amr.graph['root']
+    root_label = nx.get_node_attributes(sentence_amr, 'label')[root_node_amr]
+    if root_label == 'or' or root_label == 'slash' or root_label == 'possible-01' or root_label == 'have-condition-91':
+        return [main_amr_node_per_action]      # dummy element, just needs to be of length 1 so no splitting will happen
+    for e in sentence_amr.out_edges(root_node_amr):
+        e_label = nx.get_edge_attributes(sentence_amr, 'label')[e]
+        if e_label == 'condition':
+            return [main_amr_node_per_action]
+
     amr2action_node = get_amr2action_dict(main_amr_node_per_action)
 
     # do all pairings and decide which action nodes actually constitute only one single action
