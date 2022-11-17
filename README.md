@@ -77,6 +77,10 @@ Additionally, two logging files will be created in the (automatically created) `
 * splitting_log.txt: additional information about the dataset, e.g. number of AMRs before splitting, number of AMRs after splitting, ...<br>
 Each log file gets the date and time, at which it was created, as a unique prefix to avoid overwriting. 
 
+## Generating Recipe Texts
+
+
+
 ## Creating Joined Coref Files
 
 Information about coreference clusters, the corresponding AMR nodes and coreferences arising from the AMR splitting can be obtained by running the [coref_processing/create_joined_coref.py](https://github.com/interactive-cookbook/recipe-generation/blob/main/coref_processing/create_joined_coref.py) script.
