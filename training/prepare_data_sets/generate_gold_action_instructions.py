@@ -64,6 +64,12 @@ class InstructionExtractor:
         self.final_tokens: List[str] = []               # tokenized extracted instruction
 
     def tag_sentence(self, sentence: str):
+        """
+        Run the tagger loaded as self.tagger (here a spacy model) on the input sentence
+        Information about tagging scheme for english: https://spacy.io/models/en
+        :param sentence:
+        :return: a list of token - POS tag pairs
+        """
         processed_sent = self.pos_tagger(sentence)
         token_tag_pairs = [(token.text, token.tag_) for token in processed_sent]
         return token_tag_pairs
@@ -179,13 +185,9 @@ class InstructionExtractor:
             extracted_pos_tags.append(self.orig_snt_tagged[orig_id][1])
         extracted_pos_seq = ' '.join(extracted_pos_tags)    # convert to string for re matching
 
-        # Potential POS-tag patterns:
-        # DT / PRP$ (0 or 1) JJ (any) NN / NNS (one)
-        # above pattern repeated with CC between
-        # followed by VB, VBP or a modified token
-        # If including RB then RB should be "then", "immediately" or "now"
-        # allows an 'RB' token between the NP like object and the verb
-        pos_reg_full_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?' \
+        # POS pattern for NP-like phrases at the beginning the the POS sequence followed potentially by an adverb
+        # and then a verb
+        pos_reg_full = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?' \
                           r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )*?' \
                           r'(RB )*?' \
                           r'(VB|VBP|VBD|VBZ){1}( |$)'
@@ -194,20 +196,20 @@ class InstructionExtractor:
         # such a stemmed token
         # two versions for this: a greedy and a non-greedy one because I cannot use the POS of the verb as the ending
         # condition
-        pos_reg_mod_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+?' \
+        pos_reg_mod = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+?' \
                       r'((, |CC )*?(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+?)*?(, |CC )?' \
                       r'(RB )*?'
 
-        pos_reg_mod_greedy_rb = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+' \
-                                r'((, |CC )*(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )?' \
-                                r'(RB )*'
+        pos_reg_mod_greedy = r'^(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ )?(NN |NNS |NNP |NNPS )+' \
+                             r'((, |CC )*(PDT |PDT IN |DT IN )?(DT |PRP$ |CD )?(JJ |VBD |VBG )?(NN |NNS |NNP |NNPS )+)*(, |CC )?' \
+                             r'(RB )*'
 
         verb_index = None
         rb_index = None
 
-        search_matching_pos_rb = re.search(pos_reg_full_rb, extracted_pos_seq)
-        search_matching_pos_mod_rb = re.search(pos_reg_mod_rb, extracted_pos_seq)
-        search_matching_pos_mod_greedy_rb = re.search(pos_reg_mod_greedy_rb, extracted_pos_seq)
+        search_matching_pos_rb = re.search(pos_reg_full, extracted_pos_seq)
+        search_matching_pos_mod_rb = re.search(pos_reg_mod, extracted_pos_seq)
+        search_matching_pos_mod_greedy_rb = re.search(pos_reg_mod_greedy, extracted_pos_seq)
 
         if search_matching_pos_rb:
             matching_pos_list = search_matching_pos_rb.group()  # if emtpy space after last matching POS then this will cause issues
@@ -251,9 +253,12 @@ class InstructionExtractor:
                     if verb_index and 'RB' in matching_pos_list:
                         potential_rb_index = len(matching_pos_list) - 1
                         rb_token = self.final_tokens[potential_rb_index]
+                        # only re-order if the 'RB' token is a time attribute such as then, now, immediately
+
                         if rb_token == 'then' or rb_token == 'immediately' or rb_token == 'now':
                                 rb_index = potential_rb_index
 
+                # only if non-greedy does not find an appropriate pattern, check with greedy pattern next
                 if not verb_index and current_case == "non-greedy":
                     matching_pos = search_matching_pos_mod_greedy_rb.group()
                     current_case = "greedy"
@@ -277,6 +282,7 @@ class InstructionExtractor:
         Additionally, fix other punctuation issues
         - ( sentence ) -> remove brackets
         - tokens () tokens -> remove brackets
+        - remove brackets if only opening or only closing brackets in string
         - "," "," -> remove one comma
         :return: returns nothing but modifies self.final_tokens directly
         """
@@ -297,7 +303,7 @@ class InstructionExtractor:
                 brackets_closing.append(t_ind)
         if brackets_open and not brackets_closing:
             final_str = ' '.join(self.final_tokens)
-            if not ')' in final_str:
+            if not ')' in final_str:    # some brackets do not get tokenized correctly
                 punctuation_to_remove.extend(brackets_open)
         elif not brackets_open and brackets_closing:
             final_str = ' '.join(self.final_tokens)
@@ -697,7 +703,7 @@ if __name__=='__main__':
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara2_amr_graphst', 3)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara2t', 3, True)
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_arat', 3, True)
 
 
