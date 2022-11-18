@@ -14,15 +14,16 @@ The currently implement steps of the planned pipeline are
 
 ## Requirements 
 
-Tested with Python 3.6 and 3.7 and the library versions listed in brackets below. <br>
-Newer Python versions should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.<br>
+Tested with Python 3.6 and 3.7. (Newer Python versions should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.)<br>
 Note: If you do not need to run the AMR parser which requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)) then you can delete the amr_parsing folder or simply ignore the import error warnings when opening the repository e.g. as a PyCharm project. 
 
-The [networkX library](https://networkx.org/documentation/stable/index.html): (2.5.1; 2.6.3)
+Run `pip install -e .` in the main repository directory. This will enable successful import of all modules and functions within the repository. Additionally, this will already install some of the libraries listed below but not all of them (an updated requirements file will follow soon). 
+
+The [networkX library](https://networkx.org/documentation/stable/index.html): 
 * `pip install networkx[default]`
 * `pip install graphviz`
 
-The [penman library](https://github.com/goodmami/penman/): (1.0.0; 1.2.2)
+The [penman library](https://github.com/goodmami/penman/):
 * `pip install penman`
 
 The [pytorch library](https://pytorch.org/get-started/locally/) (1.10.1)
@@ -30,10 +31,10 @@ The [pytorch library](https://pytorch.org/get-started/locally/) (1.10.1)
 [Transformers](https://huggingface.co/docs/transformers/installation#install-with-conda) from Huggingface (version 3 will probably not work): (4.11.3)
 * `conda install -c huggingface transformers` (was successful)
 
-[Sentence Piece](https://github.com/google/sentencepiece#installation) (0.1.97)
+[Sentence Piece](https://github.com/google/sentencepiece#installation):
 * `pip install sentencepiece`
 
-[Spacy](https://spacy.io/usage/models) library and model for english (3.4.3):
+[Spacy](https://spacy.io/usage/models) library and model for english:
 * `pip install spacy`
 * `python -m spacy download en_core_web_sm`
 
