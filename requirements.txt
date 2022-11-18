@@ -1,0 +1,5 @@
+networkx[default]==2.5.1
+penman==1.0.0
+sentencepiece==0.1.97
+nltk==3.4.5
+spacy==3.4.3
