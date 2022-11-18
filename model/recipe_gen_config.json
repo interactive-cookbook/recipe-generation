@@ -4,5 +4,7 @@
     "device": "cpu",
     "batch_size": 4,
     "num_beams": 1,
-    "num_ret_seq": 1
+    "num_ret_seq": 1,
+	"max_in_len": 1024,
+	"max_out_len": 1024
   }
