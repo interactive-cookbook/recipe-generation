@@ -7,6 +7,7 @@ from collections import defaultdict
 from pathlib import Path
 from nltk.stem import PorterStemmer
 import spacy
+import argparse
 
 from graph_processing.recipe_graph import read_graph_from_conllu
 from graph_processing.read_graphs import read_aligned_amr_file
@@ -696,14 +697,24 @@ def create_gold_corpus(action_amr_corpus: str,
     print(count)
 
 
-
-
 if __name__=='__main__':
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_2', 2, True)
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_version_3', 3, True)
 
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amr_sentences_version_2', 2)
-    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara1_amr_graphs', 3)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_arat', 3, True)
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('--sep_dir', required=False)
+    arg_parser.add_argument('--orig_dir', required=False)
+    arg_parser.add_argument('--ara_dir', required=False)
+    arg_parser.add_argument('--out_dir', required=True)
+    arg_parser.add_argument('--text', required=False, action='store_true')
+
+    args = arg_parser.parse_args()
+
+    action_amr_dir = args.sep_dir if args.sep_dir else ACTION_AMR_DIR
+    sent_amr_dir = args.orig_dir if args.orig_dir else SENT_AMR_DIR
+    ara_dir = args.ara_dir if args.ara_dir else ARA_DIR
+    out_dir = args.out_dir
+    only_text = args.text
+    create_gold_corpus(action_amr_dir, sent_amr_dir, ara_dir, out_dir, 3, only_text)
+
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_aratest', 3, True)
 
 
