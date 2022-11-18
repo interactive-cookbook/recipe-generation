@@ -13,23 +13,27 @@ The currently implement steps of the planned pipeline are
 * generating a recipe text based on an action graph and the amr graphs corresponding to each action node
 
 ## Requirements 
-The [networkX library](https://networkx.org/documentation/stable/index.html):
+
+Tested with Python 3.6 and 3.7 and the library versions listed in brackets below. <br>
+Newer Python versions should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.<br>
+Note: If you do not need to run the AMR parser which requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)) then you can delete the amr_parsing folder or simply ignore the import error warnings when opening the repository e.g. as a PyCharm project. 
+
+The [networkX library](https://networkx.org/documentation/stable/index.html): (2.5.1; 2.6.3)
 * `pip install networkx[default]`
 * `pip install graphviz`
 
-The [penman library](https://github.com/goodmami/penman/):
+The [penman library](https://github.com/goodmami/penman/): (1.0.0; 1.2.2)
 * `pip install penman`
 
-The [pytorch library](https://pytorch.org/get-started/locally/)
+The [pytorch library](https://pytorch.org/get-started/locally/) (1.10.1)
 
-[Transformers](https://huggingface.co/docs/transformers/installation#install-with-conda) from Huggingface:
-* `pip install transformers` (resulted in an error for me on Windows 10, python 3.6 anaconda environment)
+[Transformers](https://huggingface.co/docs/transformers/installation#install-with-conda) from Huggingface (version 3 will probably not work): (4.11.3)
 * `conda install -c huggingface transformers` (was successful)
 
-[Sentence Piece](https://github.com/google/sentencepiece#installation)
+[Sentence Piece](https://github.com/google/sentencepiece#installation) (0.1.97)
 * `pip install sentencepiece`
 
-[Spacy](https://spacy.io/usage/models) library and model for english:
+[Spacy](https://spacy.io/usage/models) library and model for english (3.4.3):
 * `pip install spacy`
 * `python -m spacy download en_core_web_sm`
 
