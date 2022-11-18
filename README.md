@@ -84,6 +84,19 @@ Additionally, two logging files will be created in the (automatically created) `
 * splitting_log.txt: additional information about the dataset, e.g. number of AMRs before splitting, number of AMRs after splitting, ...<br>
 Each log file gets the date and time, at which it was created, as a unique prefix to avoid overwriting. 
 
+## Extracting Gold Instructions
+
+The separated AMRs that the splitting algorithm produces still include the original sentence corresponding to the original AMR as their '::snt'' meta data. In order to extract instructions for the separated action-level AMRs navigate to training/prepare_data_sets and run the following:
+
+`python generate_gold_action_instructions.py --sep_dir [sep_dir] --orig_dir [orig_dir] --ara_dir [ara_dir] --out_dir [out_dir] --text`<br>
+* `sep_dir`: optional; path to the parent directory with the separated action-level amrs, defaults to ACTION_AMR_DIR defined in utils/paths
+* `orig_dir`: optional; path to the parent directory with the original sentence-level amrs, defaults to SENT_AMR_DIR defined in utils/paths
+* `ara_dir`: optional; path to the parent directory of the ara corpus, defaults to ARA_DIR defined in utils/paths
+* `out_dir`: required; path for the directory where the amrs with their newly created instructions get saved to
+* `--text`: optional; include if only the sentences should be saved but without the actual amr graphs
+
+For more details about the extraction itself see the [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Gold-Split-Corpus).
+
 ## Generating Recipe Texts
 
 
