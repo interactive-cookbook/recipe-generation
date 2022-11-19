@@ -2,14 +2,15 @@ import networkx as nx
 import json
 import penman
 from pathlib import Path
+import argparse
 
 from graph_processing.action_amr_graph_mappings import add_semantic_representations
 from utils.paths import MODEL_DIR
 from model.inference import RecipeGenerator
 from amr_processing.penman_networkx_conversions import networkx2penman
 from graph_processing.recipe_graph import read_graph_from_conllu
-from graph_processing.graph_traversal import order_actions_df, order_actions_df_lf, order_actions_token_ids, \
-    order_actions_topological
+from graph_processing.graph_traversal import order_actions_pf, order_actions_pf_lf, order_actions_token_ids, \
+    order_actions_topological, order_actions_pf_lf_id
 
 """
 Functions to generate a recipe by traversing an action graph and generating a sentence
@@ -54,7 +55,7 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
     Generates a recipe for an action graph
     :param action_graph: an action graph (networkx object)
     :param generation_config: a .json file with the configuration parameters for the generation model to use
-    :param ordering: the ordering function to use, can be "top", "ids", "df" and "df-lf"
+    :param ordering: the ordering function to use, can be "top", "ids", "df", "df-lf" and "df-lf-id"
     :param context_len: the context length, i.e. how many previous sentences to consider
     :return:
     """
@@ -76,12 +77,14 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
         action_ordering = order_actions_topological(sem_action_graph)
     elif ordering == "ids":
         action_ordering = order_actions_token_ids(sem_action_graph)
-    elif ordering == "df":
-        action_ordering = order_actions_df(sem_action_graph)
-    elif ordering == "df-lf":
-        action_ordering = order_actions_df_lf(sem_action_graph)
+    elif ordering == "pf":
+        action_ordering = order_actions_pf(sem_action_graph)
+    elif ordering == "pf-lf":
+        action_ordering = order_actions_pf_lf(sem_action_graph)
+    elif ordering == "pf-lf-id":
+        action_ordering = order_actions_pf_lf_id(sem_action_graph)
     else:
-        raise ValueError('Ordering values can only be "top", "ids", "df" or "df-lf"')
+        raise ValueError('Ordering values can only be "top", "ids", "pf", "pf-lf" or "pf-lf-id"')
 
     # loop through the ordered action nodes
     print("---------- Starting Generation ----------")
@@ -108,52 +111,92 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
         already_realized_amrs.append(amr_id)
 
     print("---------- Finished Generation ----------")
-    print(action_ordering)
-    print(already_realized_amrs)
+    #print(action_ordering)
+    #print(already_realized_amrs)
     return generated_sentences
+
+
+def generate_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path, ordering_list: list,
+                                 ordering_names: dict, context_len: int, output_file):
+    """
+    Generates a recipe for an action graph using potentially different graph traversals and saves the text to a file
+    or prints them
+    :param ac_graph: an action graph (networkx object)
+    :param configuration_file: a .json file with the configuration parameters for the generation model to use
+    :param ordering_list: list with the names of the traversal / ordering functions to use
+    :param ordering_names: dictionary with names of the traversal functions to write into the result file
+    :param context_len: the context length, i.e. how many previous sentences to consider
+    :param output_file: path to file where results get saved or None if results should only get printed out
+    :return:
+    """
+    max_recipe_len = 0
+    recipes = dict()
+    for ord in ordering_list:
+        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+                                          generation_config=configuration_file,
+                                          ordering=ord,
+                                          context_len=context_len)
+        max_recipe_len = len(recipe) if len(recipe) > max_recipe_len else max_recipe_len
+        recipes[ord] = recipe
+
+    # write to output file
+    if out_file:
+        rows = [[] for m in range(max_recipe_len)]
+        with open(output_file, 'w', encoding='utf-8') as out:
+            header = []
+            for ord in ordering_list:
+                header.append(ordering_names[ord])
+                recipe_sents = recipes[ord]
+                for ind, sent in enumerate(recipe_sents):
+                    rows[ind].append(sent)
+
+            header_line = '\t'.join(header)
+            out.write(f'{header_line}\n')
+            for row in rows:
+                line = '\t'.join(row)
+                out.write(f'{line}\n')
+    # or print to command line
+    else:
+        for ord in ordering_list:
+            print(f'{ordering_names[ord]}:')
+            for sent in recipes[ord]:
+                print(sent)
+            print('\n')
 
 
 if __name__=='__main__':
 
-    #ac_graph = read_graph_from_conllu(Path('./data/ara1.1/chewy_chocolate_chip_cookies/recipes/chewy_chocolate_chip_cookies_1.conllu'))
-    ac_graph = read_graph_from_conllu(Path('./data/ara1.1/orange_chicken/recipes/orange_chicken_6.conllu'))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--file', required=True)
+    parser.add_argument('--cont', required=True)
+    parser.add_argument('--order', required=False)
+    parser.add_argument('--config', required=False)
+    parser.add_argument('--out', required=False)
+    args = parser.parse_args()
 
+    ac_graph_file = args.file
+    #ac_graph_file = './data/ara1.1/orange_chicken/recipes/orange_chicken_6.conllu'
+    ac_graph = read_graph_from_conllu(Path(ac_graph_file))
+    context_len = int(args.cont)
+    out_file = args.out if args.out else None
+    #out_file = 'test_gen_out.txt'
     configuration_file = MODEL_DIR / Path('recipe_gen_config.json')
-    with open("orange_chicken_6_gente.txt", "w", encoding="utf-8") as f:
-        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
-                                          generation_config=configuration_file,
-                                          ordering="top",
-                                          context_len=1)
-        f.write("Topological Ordering: \n")
-        for s in recipe:
-            f.write(f'{s}\n')
-        f.write('\n')
+    configuration_file = args.config if args.config else configuration_file
 
-        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
-                                          generation_config=configuration_file,
-                                          ordering="ids",
-                                          context_len=1)
-        f.write("Token ID Ordering: \n")
-        for s in recipe:
-            f.write(f'{s}\n')
-        f.write('\n')
+    ordering_names = {'top': 'NetworkX Topological Order', 'ids': 'Token ID Ordering', 'pf': 'Path-First Ordering',
+                      'pf-lf': 'Path-First Longest-First Ordering', 'pf-lf-id': 'Path-First Longest-First IDs Ordering'}
+    ordering = args.order if args.order else 'pf-lf-id'
+    #ordering = 'all'
+    if ordering == 'all':
+        ordering_list = ['top', 'ids', 'pf', 'pf-lf', 'pf-lf-id']
+        generate_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
+                                     ordering_list=ordering_list, ordering_names=ordering_names,
+                                     context_len=context_len, output_file=out_file)
+    else:
+        generate_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
+                                     ordering_list=[ordering], ordering_names=ordering_names,
+                                     context_len=context_len, output_file=out_file)
 
-        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
-                                          generation_config=configuration_file,
-                                          ordering="df",
-                                          context_len=1)
-        f.write("DF Ordering: \n")
-        for s in recipe:
-            f.write(f'{s}\n')
-        f.write('\n')
 
-        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
-                                          generation_config=configuration_file,
-                                          ordering="df-lf",
-                                          context_len=1)
-        f.write("DF-LF Ordering: \n")
-        for s in recipe:
-            f.write(f'{s}\n')
-        f.write('\n')
 
 
