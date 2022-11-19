@@ -81,7 +81,7 @@ def find_longest_path_start(candidate_nodes: list, end_node, graph: nx.DiGraph) 
     return current_starts
 
 
-def order_actions_df_lf(action_graph: nx.DiGraph, tie_strategy=None):
+def order_actions_pf_lf(action_graph: nx.DiGraph, tie_strategy=None):
     """
     Orders all nodes from the input graph in a the following way
     1. start with the node without parents that has the longest path to the 'end' node
@@ -160,7 +160,7 @@ def order_actions_df_lf(action_graph: nx.DiGraph, tie_strategy=None):
     return ordered_actions
 
 
-def order_actions_df_lf_id(action_graph: nx.DiGraph):
+def order_actions_pf_lf_id(action_graph: nx.DiGraph):
     """
     Orders all nodes from the input graph in a the following way
     1. start with the node without parents that has the longest path to the 'end' node
@@ -172,10 +172,10 @@ def order_actions_df_lf_id(action_graph: nx.DiGraph):
     :return: ordered list of all nodes of action_graph
     """
 
-    return order_actions_df_lf(action_graph=action_graph, tie_strategy='id')
+    return order_actions_pf_lf(action_graph=action_graph, tie_strategy='id')
 
 
-def order_actions_df(action_graph: nx.DiGraph):
+def order_actions_pf(action_graph: nx.DiGraph):
     """
     Orders all nodes from the input graph in a the following way
     1. start with a node without parents
