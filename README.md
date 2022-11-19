@@ -99,6 +99,17 @@ For more details about the extraction itself see the [wiki page](https://github.
 
 ## Generating Recipe Texts
 
+In order to generate a text based on an action graph, run <br>
+`python generate_recipe.py --file [action_graph_file] --cont [context_len] --order [ordering_version] --config [configuration_file] --out [output_file]`
+* `action_graph_file`: path to .conllu file with the action graph of the recipe
+* `context_len`: number of previously generated sentences to include as input to the generation model (should not be larger than the context_len the model was trained with)
+* `ordering_version`: optional; version of the traversing function to use, can be "top", "ids", "pf", "pf-lf" or "pf-lf-id" or "all" to generate a recipe text based on each ordering and save all of them (see [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Graph-Traversals) for details of the traversals); default is "pf-lf-id" 
+* `configuration_file`: optional; path to .json file with the configurations for the generation, defaults to ./model/recipe_gen_config.json
+* `output_file`: optional; the path to the file where the generated texts will be saved, each tab separated column will contain the recipe from one traversal, one sentence per line; if not provided then the generated texts will only be printed to the command line
+
+**configuration_file** <br>
+For more information about the configuration files for recipe generation see the [recipe-generation-model readme](https://github.com/interactive-cookbook/recipe-generation-model#run-prediction). For generating from an action graph, the configuration file only needs to include the "generator_args" parameter dict. <br>
+The specified "model_name_or_path" / "tokenizer_name_or_path need to point to a directory of a trained T5 based amr-to-text generation model which needs to include all the files saved when running the huggingface methods to save a model and a tokenizer. 
 
 
 ## Creating Joined Coref Files
