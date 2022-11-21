@@ -45,7 +45,10 @@ def generate(amr_graph: nx.DiGraph, context: str, generator: RecipeGenerator):
     # get input string format for amr graph
     amr_graph_str = prepare_input_amr_str(amr_graph)
     # generate function expects a list of contexts and list of amr graphs for handling batches
-    model_output = generator.generate([context], [amr_graph_str])
+    model_output, clip = generator.generate([context], [amr_graph_str])
+    if clip[0]:
+        print(f'Warning: input length exceeded the max_in_len specified and input got truncated. Please increase'
+              f'max_in_len or use shorter inputs')
 
     return model_output
 
@@ -140,7 +143,7 @@ def generate_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path,
         recipes[ord] = recipe
 
     # write to output file
-    if out_file:
+    if output_file:
         rows = [[] for m in range(max_recipe_len)]
         with open(output_file, 'w', encoding='utf-8') as out:
             header = []
