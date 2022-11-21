@@ -53,9 +53,6 @@ def build_dataset(tokenizer: PreTrainedTokenizer, data_path, context_len: int,
     target_seqs = ['%s' % sent for sent in data_set_entries['sent']]
 
     # Encode input and target using tokenizer
-    # original code had also truncation = True and max_length = X
-    # TODO: decide what to do -> does not work to have padding and return_overflowing_tokens but not max_length and truncation
-
     if max_in_length:
         input_encodings = tokenizer.batch_encode_plus(input_seqs,
                                                       padding=True,
@@ -84,10 +81,10 @@ def build_dataset(tokenizer: PreTrainedTokenizer, data_path, context_len: int,
             if trunc > 0:
                 indices_truncated.add(ind)
 
-    #input_encodings['input_ids'] = [ie for ind, ie in enumerate(input_encodings['input_ids']) if ind not in indices_truncated]
-    #target_encodings['input_ids'] = [te for ind, te in enumerate(target_encodings['input_ids']) if ind not in indices_truncated]
-    #input_encodings['attention_mask'] = [ie for ind, ie in enumerate(input_encodings['attention_mask']) if ind not in indices_truncated]
-    #target_encodings['attention_mask'] = [te for ind, te in enumerate(target_encodings['attention_mask']) if ind not in indices_truncated]
+    input_encodings['input_ids'] = [ie for ind, ie in enumerate(input_encodings['input_ids']) if ind not in indices_truncated]
+    target_encodings['input_ids'] = [te for ind, te in enumerate(target_encodings['input_ids']) if ind not in indices_truncated]
+    input_encodings['attention_mask'] = [ie for ind, ie in enumerate(input_encodings['attention_mask']) if ind not in indices_truncated]
+    target_encodings['attention_mask'] = [te for ind, te in enumerate(target_encodings['attention_mask']) if ind not in indices_truncated]
 
     print(f'{len(indices_truncated)} truncated data instances.')
 
