@@ -34,9 +34,14 @@ The [pytorch library](https://pytorch.org/get-started/locally/) (1.10.1)
 [Sentence Piece](https://github.com/google/sentencepiece#installation):
 * `pip install sentencepiece`
 
+Old version used spacy<br>
 [Spacy](https://spacy.io/usage/models) library and model for english:
 * `pip install spacy`
 * `python -m spacy download en_core_web_sm`
+
+New version uses stanza instead of spacy<br>
+[Stanza](https://stanfordnlp.github.io/stanza/installation_usage.html) pipeline for pos tagging (and dependency parsing):
+* `pip install stanza`
 
 Other libraries:<br>
 * nltk
