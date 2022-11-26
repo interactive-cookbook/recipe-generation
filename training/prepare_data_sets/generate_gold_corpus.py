@@ -5,13 +5,14 @@ import penman
 from collections import defaultdict
 from pathlib import Path
 import stanza
+import json
 import argparse
 
 from graph_processing.recipe_graph import read_graph_from_conllu
 from graph_processing.read_graphs import read_aligned_amr_file
 from graph_processing.graph_traversal import order_actions_pf_lf
 from amr_processing.penman_networkx_conversions import penman2networkx, networkx2penman
-from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR
+from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR, JOINED_COREF_DIR
 from generate_gold_action_instruction import InstructionExtractor
 
 """
@@ -25,7 +26,8 @@ class RecipeExtractor:
                  recipe_amrs: List[nx.Graph],
                  orig_amrs: Dict,
                  action_graph: nx.DiGraph,
-                 spacy_model,
+                 nlp_model,
+                 clusters,
                  version: int = 3,
                  text_only: bool = False,
                  order_ac_graph: bool = False):
@@ -35,7 +37,8 @@ class RecipeExtractor:
         :param orig_amrs: dict with the corresponding sentence-level AMRs
                           keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
         :param action_graph: the action graph for the recipe
-        :param spacy_model:
+        :param nlp_model:
+        :param clusters:
         :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
         :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
                           sentence
@@ -50,7 +53,11 @@ class RecipeExtractor:
         self.version = version
         self.text_only = text_only
         self.order_ac_graph = order_ac_graph
-        self.spacy_model = spacy_model
+        self.nlp_model = nlp_model
+        self.ident_clusters = clusters
+        self.instr_extractors: Dict[str, InstructionExtractor] = dict()
+
+        self.all_new_sentences = dict()
 
         self.orig_pos2amr = defaultdict(list)       # key: n, value: [gr1, gr2] means that gr1 and gr2 are from the
                                                     # original instruction at the nth position in the original recipe
@@ -60,8 +67,17 @@ class RecipeExtractor:
 
         self.create_gold_instructions()     # extracts the gold instructions for each amr and adds as new 'snt' metadata
         self.create_instruction_order()     # brings the amrs into an appropriate order
+        if self.ident_clusters:
+            self.create_coherent_dets()
+
+        self.log_new_sentences()
 
         return self.recipe_amrs
+
+    def log_new_sentences(self):
+        with open('./all_new_sentences_final.txt', 'a', encoding='utf-8') as f:
+            for sent_id, sentence in self.all_new_sentences.items():
+                f.write(f'{sent_id}\t{sentence}\n')
 
     def create_gold_instructions(self):
         """
@@ -94,11 +110,11 @@ class RecipeExtractor:
 
                 instruction_creator = InstructionExtractor(split_amr=amr, sentence_amr=orig_snt_amr,
                                                            other_split_amrs=others, shift_value=shift_value,
-                                                           version=self.version, nlp_model=self.spacy_model)
+                                                           version=self.version, nlp_model=self.nlp_model)
                 gold_sentence = instruction_creator.create_gold_sentence()
+                self.instr_extractors[post_split_id] = instruction_creator
 
-                if self.text_only:
-                    gold_sentence += '\t was changed'
+                self.all_new_sentences[post_split_id] = gold_sentence
             # change sentence metadata
             amr.graph['snt'] = gold_sentence
             prev_sent_len = len(original_sentence.split(' '))
@@ -175,11 +191,57 @@ class RecipeExtractor:
             original_position = int(original_position)
             self.orig_pos2amr[original_position].append(amr)
 
+    def create_coherent_dets(self):
+        """
+
+        :return:
+        """
+        ordered_amr_ids = [gr.graph['id'] for gr in self.recipe_amrs]
+        for cluster in self.ident_clusters:
+            involved_amr_ids = cluster['amr_ids']
+            relevant_ids_ordered = [amr_id for amr_id in ordered_amr_ids if amr_id in involved_amr_ids]
+            relevant_extractors = []
+            for amr_id in relevant_ids_ordered:
+                relevant_extractors.append(self.instr_extractors[amr_id])
+            orig_shared_token_id = cluster['token_id']       # is relative to document
+
+            found_indef = False
+
+            for extractor in relevant_extractors:
+                shared_token_id = orig_shared_token_id - extractor.shift_value   # needs to be shifted to match extractor ids
+                if shared_token_id in extractor.final_tokens_orig_inds:
+                    new_index = extractor.final_tokens_orig_inds.index(shared_token_id)
+                    potential_determiner_index = new_index - 1
+                    pos_tag = extractor.final_tokens_tags[potential_determiner_index]
+
+                    if pos_tag == 'DT':
+                        potential_determiner_token = extractor.final_tokens[potential_determiner_index]
+                        if potential_determiner_token.lower() in ['a', 'an'] and not found_indef:
+                            found_indef = True
+                        elif potential_determiner_token.lower() in ['a', 'an'] and found_indef:
+                            # in this case there was already a mention of the same entity in a previous sentence
+                            # with and indefinite determiner and now the definite one needs to be used
+                            if potential_determiner_index == 0: # should probably never happen, but still check ...
+                                def_det = 'The'
+                            else:
+                                def_det = 'the'
+
+                            new_sentence_tokens = extractor.final_tokens
+                            new_sentence_tokens[potential_determiner_index] = def_det   # changes also the extractor.final_tokens list!
+
+                            new_instruction = ' '.join(new_sentence_tokens)
+                            current_amr_id = extractor.split_amr.graph['id']
+                            current_amr_position = ordered_amr_ids.index(current_amr_id)
+                            current_graph = self.recipe_amrs[current_amr_position]
+                            current_graph.graph['snt'] = new_instruction
+                            self.all_new_sentences[current_amr_id] = new_instruction
+
 
 def create_gold_corpus(action_amr_corpus: str,
                        sentence_amr_corpus: str,
                        action_graph_corpus: str,
                        gold_corpus_dir: str,
+                       use_coref: bool,
                        version: int = 3,
                        text_only: bool = False):
     """
@@ -188,6 +250,7 @@ def create_gold_corpus(action_amr_corpus: str,
     :param sentence_amr_corpus: path to parent folder of the sentence-level AMR files
     :param action_graph_corpus: path to parent folder of the action-graph conllu files
     :param gold_corpus_dir: path to directory for the generated gold data set, gets created if not exists yet
+    :param use_coref:
     :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
                     1: do not add any unaligned tokens
                     2: add unaligned token if directly adjacent to an aligned token
@@ -227,13 +290,19 @@ def create_gold_corpus(action_amr_corpus: str,
             action_graph_path = os.path.join(action_graph_corpus, dish, 'recipes', action_graph_file)
             recipe_action_graph = read_graph_from_conllu(action_graph_path)
 
+            # get the corresponding coreference file if specified
+            if use_coref:
+                coref_file = recipe_name + '_joined.jsonlines'
+                coref_file_path = os.path.join(JOINED_COREF_DIR, dish, coref_file)
+                identity_clusters = read_joined_coref(coref_file_path)
+            else:
+                identity_clusters = None
+
             # create the gold instructions for the action-level AMRs of the current recipe
-            gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs,
-                                                  orig_amrs=orig_amrs,
-                                                  action_graph=recipe_action_graph,
-                                                  spacy_model=nlp_model,
-                                                  version=version,
-                                                  text_only=text_only)
+            gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs, orig_amrs=orig_amrs,
+                                                  action_graph=recipe_action_graph, nlp_model=nlp_model,
+                                                  version=version, text_only=text_only,
+                                                  clusters=identity_clusters)
             new_ordered_recipe_amrs = gold_recipe_creator.create_gold_recipe()
 
             # Create the new output files
@@ -254,6 +323,24 @@ def create_gold_corpus(action_amr_corpus: str,
     print(count)
 
 
+def read_joined_coref(recipe_coref_path):
+    """
+    Reads the split-rel clusters from the coref file
+    :return: a list of the split-rel cluster dicts
+            [{"token_id": id, "variable": v, "concept": c, "token": t, "amr_ids": [amrid1, amrid2, ...]},
+            ...]
+    """
+    split_clusters = []
+    with open(recipe_coref_path, 'r', encoding='utf-8') as cf:
+        for line in cf.readlines():
+            cluster = json.loads(line)
+            cluster_type = list(cluster.keys())[0]
+            if cluster_type.startswith('split-rel'):
+                split_clusters.append(cluster[cluster_type])
+
+    return split_clusters
+
+
 if __name__=='__main__':
 
     #arg_parser = argparse.ArgumentParser()
@@ -272,5 +359,5 @@ if __name__=='__main__':
     #only_text = args.text
     #create_gold_corpus(action_amr_dir, sent_amr_dir, ara_dir, out_dir, 3, only_text)
 
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_ara1', 3, True)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara_1_test_coref', True, 3, True)
 

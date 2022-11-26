@@ -133,7 +133,7 @@ class InstructionExtractor:
         # Modify sentence to start with upper-case character and end with sentence-final punctuation
         self.fix_sentence_start_and_end()
 
-        with open('./all_new_sentences.txt', 'a', encoding='utf-8') as f:
+        with open('./all_new_sentences_tags.txt', 'a', encoding='utf-8') as f:
             f.write(f'{self.split_amr.graph["id"]}\t{" ".join(self.final_tokens)}\t{self.orig_snt_tagged}\n')
 
         return ' '.join(self.final_tokens)
@@ -205,6 +205,12 @@ class InstructionExtractor:
             if self.final_tokens_tags[position_in_final_sentence - 1] == 'DT':# and position_in_final_sentence == 1:
                 mod_token = self.final_tokens.pop(position_in_final_sentence)
                 self.final_tokens.insert(0, mod_token)
+                # need to do the same ordering changes to self.final_tokens_tags and self.final_tokens_orig_inds
+                # because otherwise they will not match anymore!
+                tmp_tag = self.final_tokens_tags.pop(position_in_final_sentence)
+                self.final_tokens_tags.insert(0, tmp_tag)
+                tmp_orig_ind = self.final_tokens_orig_inds.pop(position_in_final_sentence)
+                self.final_tokens_orig_inds.insert(0, tmp_orig_ind)
 
 
     def fix_sentence_order(self):
@@ -243,9 +249,6 @@ class InstructionExtractor:
         search_matching_pos_rb = re.search(pos_reg_full, extracted_pos_seq)
         search_matching_pos_mod_rb = re.search(pos_reg_mod, extracted_pos_seq)
         search_matching_pos_mod_greedy_rb = re.search(pos_reg_mod_greedy, extracted_pos_seq)
-
-        if self.split_amr.graph['id'] == 'orange_chicken_1_instr2_1':
-            print("h")
 
         if search_matching_pos_rb:
             matching_pos_list = search_matching_pos_rb.group()  # if emtpy space after last matching POS then this will cause issues
@@ -307,9 +310,22 @@ class InstructionExtractor:
             rb_token = self.final_tokens.pop(rb_index)
             self.final_tokens.insert(0, verb_token)
             self.final_tokens.insert(0, rb_token)
+            tmp_tag_verb = self.final_tokens_tags.pop(verb_index)
+            tmp_tag_rb = self.final_tokens_tags.pop(rb_index)
+            self.final_tokens_tags.insert(0, tmp_tag_verb)
+            self.final_tokens_tags.insert(0, tmp_tag_rb)
+            tmp_orig_ind_verb = self.final_tokens_orig_inds.pop(verb_index)
+            tmp_orig_ind_rb = self.final_tokens_orig_inds.pop(rb_index)
+            self.final_tokens_orig_inds.insert(0, tmp_orig_ind_verb)
+            self.final_tokens_orig_inds.insert(0, tmp_orig_ind_rb)
+
         elif verb_index:
             verb_token = self.final_tokens.pop(verb_index)
             self.final_tokens.insert(0, verb_token)
+            tmp_tag_verb = self.final_tokens_tags.pop(verb_index)
+            self.final_tokens_tags.insert(0, tmp_tag_verb)
+            tmp_orig_ind_verb = self.final_tokens_orig_inds.pop(verb_index)
+            self.final_tokens_orig_inds.insert(0, tmp_orig_ind_verb)
 
 
     def fix_sentence_start_and_end(self):
@@ -353,22 +369,34 @@ class InstructionExtractor:
                     punctuation_to_remove.append(bo + 1)
 
         self.final_tokens = [ft for ind_ft, ft in enumerate(self.final_tokens) if ind_ft not in punctuation_to_remove]
+        self.final_tokens_tags = [ft for ind_ft, ft in enumerate(self.final_tokens_tags) if ind_ft not in punctuation_to_remove]
+        self.final_tokens_orig_inds = [ft for ind_ft, ft in enumerate(self.final_tokens_orig_inds) if ind_ft not in punctuation_to_remove]
 
         while True:
             if self.final_tokens[0] == '(' and self.final_tokens[-1] == ')':
                 self.final_tokens = self.final_tokens[1:-1]
+                self.final_tokens_tags = self.final_tokens_tags[1:-1]
+                self.final_tokens_orig_inds = self.final_tokens_orig_inds[1:-1]
                 continue
             if self.final_tokens[-1] == 'and':
                 self.final_tokens = self.final_tokens[:-1]
+                self.final_tokens_tags = self.final_tokens_tags[:-1]
+                self.final_tokens_orig_inds = self.final_tokens_orig_inds[:-1]
                 continue
-            if self.final_tokens[0] in [',', ';', '-', ')', '.']:  # maybe extend
+            if self.final_tokens[0] in [',', ';', '-', ')', '.']:
                 self.final_tokens = self.final_tokens[1:]
+                self.final_tokens_tags = self.final_tokens_tags[1:]
+                self.final_tokens_orig_inds = self.final_tokens_orig_inds[1:]
                 continue
-            if self.final_tokens[-1] in [',', '-', '(', ';', ':']:  # maybe extend list
+            if self.final_tokens[-1] in [',', '-', '(', ';', ':']:
                 self.final_tokens = self.final_tokens[:-1]
+                self.final_tokens_tags = self.final_tokens_tags[:-1]
+                self.final_tokens_orig_inds = self.final_tokens_orig_inds[:-1]
                 continue
             if self.final_tokens[-1] not in ['.', '!', '?']:
                 self.final_tokens.append('.')
+                self.final_tokens_tags.append('.')
+                self.final_tokens_orig_inds.append(-1)
                 continue
             break
 
@@ -427,8 +455,6 @@ class InstructionExtractor:
         :param inds_to_add: the set of inds to add that should be considered for the decision
         :return: whether to add the token or not
         """
-        if self.split_amr.graph['id'] == 'baked_ziti_10_instr5_1':
-            print("he")
         to_add = False
         if pt_ind + 1 in inds_to_add or pt_ind - 1 in inds_to_add:
 
