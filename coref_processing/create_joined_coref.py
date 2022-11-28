@@ -7,6 +7,7 @@ from collections import defaultdict
 from utils.paths import RAW_COREF_DIR, ACTION_AMR_DIR, JOINED_COREF_DIR
 from graph_processing.read_graphs import read_aligned_amr_file
 from amr_processing.penman_networkx_conversions import penman2networkx
+from coref_utils import get_coref_clusters_original, get_coref_clusters_extended
 
 """
 Functions to create .jsonlines files with the combined information from the coreference files, the coreference 
@@ -37,20 +38,6 @@ entry of the following format is added:
                 }
 }
 """
-
-
-def read_coref_file(coref_file: str):
-    """
-    Read a coreference .jsonlines file
-    :param coref_file: path to the coref file
-    :return: dictionary with the information from the file
-    """
-    coref_dict = dict()
-    with open(coref_file, "r", encoding="utf-8") as cf:
-        for line in cf:
-            coref_dict = json.loads(line)
-            break
-    return coref_dict
 
 
 def find_post_splitting_coref(recipe_action_amrs: List[nx.Graph], recipe_text: List[str], shift=True) -> Dict:
@@ -139,9 +126,9 @@ def map_coref_to_amr(recipe_coref_data: dict, recipe_action_amrs: List[nx.Graph]
     :param shift: whether token IDs in the recipe_coref_data dict start at 0 and therefore need to be shifted by 1
     :return:
     """
-
     coref_token_data: dict = extract_relevant_cluster_data(recipe_coref_data, shift)
-    coref_splitting_data: dict = find_post_splitting_coref(recipe_action_amrs, recipe_coref_data['text'], True)
+    recipe_text = recipe_coref_data['text']
+    coref_splitting_data: dict = find_post_splitting_coref(recipe_action_amrs, recipe_text, True)
 
     joined_coref_information = dict()
 
@@ -201,7 +188,7 @@ def extract_relevant_cluster_data(recipe_coref_data: dict, shift: bool) -> dict:
                     'tokens': the corresponding tokens from the text
 
     """
-    coref_clusters = recipe_coref_data['clusters']
+    coref_clusters = recipe_coref_data['predicted_clusters']
     recipe_text = recipe_coref_data['text']
 
     relevant_data = dict()
@@ -226,13 +213,21 @@ def extract_relevant_cluster_data(recipe_coref_data: dict, shift: bool) -> dict:
     return relevant_data
 
 
-def create_coref_amr_files():
+def create_coref_amr_files(coref_file_path, extended=False):
     """
     For all recipes in ACTION_AMR_DIR
     Requires
+    :param coref_file_path:
+    :param extended: whether the coreference information for the extended recipes, i.e. including the predicted
+                     explicit mentions, should be extracted or the coreference information about the original texts
     :return:
     """
     Path(JOINED_COREF_DIR).mkdir(parents=True, exist_ok=True)
+    if extended:
+        corpus_coreferences: dict = get_coref_clusters_extended(coref_file_path)
+    else:
+        corpus_coreferences: dict = get_coref_clusters_original(coref_file_path)
+
     for dish in os.listdir(ACTION_AMR_DIR):
         Path(JOINED_COREF_DIR / Path(dish)).mkdir(parents=True, exist_ok=True)
         for recipe in os.listdir(ACTION_AMR_DIR / dish):
@@ -245,9 +240,9 @@ def create_coref_amr_files():
             for pen_gr in amr_graphs_penman:
                 amr_graphs.append(penman2networkx(pen_gr))
 
-            # find the corresponding coreference file
-            corresponding_coref_file = recipe_name + '.jsonlines'
-            coref_data: dict = read_coref_file(RAW_COREF_DIR / dish / corresponding_coref_file)
+            # get the corresponding coreference data
+            coref_data = corpus_coreferences[recipe_name]
+
             joined_coref_info, coref_from_splitting = map_coref_to_amr(coref_data, amr_graphs)
 
             with open(JOINED_COREF_DIR/ dish / f'{recipe_name}_joined.jsonlines', 'w', encoding='utf-8') as f:
@@ -276,6 +271,6 @@ def create_coref_amr_files():
 
 
 if __name__ == '__main__':
-    create_coref_amr_files()
+    create_coref_amr_files('./ara_pronoun_pred.jsonlines', extended=False)
 
 
