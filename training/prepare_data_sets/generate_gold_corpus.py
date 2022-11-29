@@ -27,7 +27,8 @@ class RecipeExtractor:
                  orig_amrs: Dict,
                  action_graph: nx.DiGraph,
                  nlp_model,
-                 clusters,
+                 ident_clusters,
+                 coref_clusters,
                  version: int = 3,
                  text_only: bool = False,
                  order_ac_graph: bool = False):
@@ -38,7 +39,8 @@ class RecipeExtractor:
                           keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
         :param action_graph: the action graph for the recipe
         :param nlp_model:
-        :param clusters:
+        :param ident_clusters:
+        :param coref_clusters:
         :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
         :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
                           sentence
@@ -54,7 +56,8 @@ class RecipeExtractor:
         self.text_only = text_only
         self.order_ac_graph = order_ac_graph
         self.nlp_model = nlp_model
-        self.ident_clusters = clusters
+        self.ident_clusters = ident_clusters
+        self.coref_clusters = coref_clusters
         self.instr_extractors: Dict[str, InstructionExtractor] = dict()
 
         self.all_new_sentences = dict()
@@ -69,6 +72,8 @@ class RecipeExtractor:
         self.create_instruction_order()     # brings the amrs into an appropriate order
         if self.ident_clusters:
             self.create_coherent_dets()
+        if self.coref_clusters:
+            self.remove_redundant_mentions()
 
         self.log_new_sentences()
 
@@ -236,6 +241,77 @@ class RecipeExtractor:
                             current_graph.graph['snt'] = new_instruction
                             self.all_new_sentences[current_amr_id] = new_instruction
 
+    def remove_redundant_mentions(self):
+        """
+
+        :return:
+        """
+        ordered_amr_ids = [gr.graph['id'] for gr in self.recipe_amrs]
+        tokens_to_remove = defaultdict(set)
+        for cluster in self.coref_clusters:
+            token_spans = cluster['token_ids']
+
+            involved_amr_ids = set()
+            for node_span in cluster['amr_nodes']:
+                for node_occurrence in node_span:
+                    for node in node_occurrence:
+                        amr_id = node[2]
+                        involved_amr_ids.add(amr_id)
+
+            relevant_ids_ordered = [amr_id for amr_id in ordered_amr_ids if amr_id in involved_amr_ids]
+            # only change sentences that were split, otherwise there is also no InstructionExtractor object
+            relevant_ids_ordered = [amr_id for amr_id in relevant_ids_ordered if amr_id in self.all_new_sentences.keys()]
+            relevant_extractors = []
+            for amr_id in relevant_ids_ordered:
+                relevant_extractors.append(self.instr_extractors[amr_id])
+
+            # for each sentence which potentially includes redundant coreferences
+            for extractor in relevant_extractors:
+                extracted_sent_ids = [sent_id + extractor.shift_value for sent_id in extractor.final_tokens_orig_inds]
+                #if extractor.split_amr.graph['id'] == 'cauliflower_mash_3_instr1_1':
+                    #print("h")
+
+                successive_coref_token_spans = []
+                prev_span = []
+                for extr_token_id in extracted_sent_ids:
+                    flag = False
+                    for span in token_spans:
+                        if extr_token_id in span:
+                            if prev_span and not prev_span == span:
+                                # then the current token and the previous one are in the same coref cluster but belong
+                                # to different spans -> are two redundant mentions of acutally the same entitiy
+                                successive_coref_token_spans.append((prev_span, span))
+                                prev_span = span
+                            else:
+                                prev_span = span
+                            flag = True
+                            break
+                    if not flag:
+                        prev_span = []
+
+                tokens_to_remove_current = set()
+                for successive_pair in successive_coref_token_spans:
+                    span2 = [t_id for t_id in successive_pair[1] if t_id in extracted_sent_ids]
+                    # need to know at which index these token_ids are so the tokens can get removed
+                    span2_token_ids = [extracted_sent_ids.index(t_id) for t_id in span2]
+                    tokens_to_remove_current = tokens_to_remove_current.union(set(span2_token_ids))
+
+                tokens_to_remove[extractor.split_amr.graph['id']] = tokens_to_remove[extractor.split_amr.graph['id']].union(tokens_to_remove_current)
+
+        for instr_id, remove_tokens in tokens_to_remove.items():
+
+            current_amr_position = ordered_amr_ids.index(instr_id)
+            current_graph = self.recipe_amrs[current_amr_position]
+
+            old_instruction = current_graph.graph['snt'].split(' ')
+            new_instruction = []
+            for token_id, old_token in enumerate(old_instruction):
+                if token_id not in remove_tokens:
+                    new_instruction.append(old_token)
+            new_instruction = ' '.join(new_instruction)
+            current_graph.graph['snt'] = new_instruction
+            self.all_new_sentences[instr_id] = new_instruction
+
 
 def create_gold_corpus(action_amr_corpus: str,
                        sentence_amr_corpus: str,
@@ -294,15 +370,16 @@ def create_gold_corpus(action_amr_corpus: str,
             if use_coref:
                 coref_file = recipe_name + '_joined.jsonlines'
                 coref_file_path = os.path.join(JOINED_COREF_DIR, dish, coref_file)
-                identity_clusters = read_joined_coref(coref_file_path)
+                identity_clusters, coref_clusters = read_joined_coref(coref_file_path)
             else:
-                identity_clusters = None
-
+                identity_clusters, coref_clusters = None, None
+            if recipe_name == 'cauliflower_mash_3':
+                print("h")
             # create the gold instructions for the action-level AMRs of the current recipe
             gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs, orig_amrs=orig_amrs,
                                                   action_graph=recipe_action_graph, nlp_model=nlp_model,
-                                                  version=version, text_only=text_only,
-                                                  clusters=identity_clusters)
+                                                  ident_clusters=identity_clusters, coref_clusters= coref_clusters,
+                                                  version=version, text_only=text_only)
             new_ordered_recipe_amrs = gold_recipe_creator.create_gold_recipe()
 
             # Create the new output files
@@ -331,14 +408,17 @@ def read_joined_coref(recipe_coref_path):
             ...]
     """
     split_clusters = []
+    coref_clusters = []
     with open(recipe_coref_path, 'r', encoding='utf-8') as cf:
         for line in cf.readlines():
             cluster = json.loads(line)
             cluster_type = list(cluster.keys())[0]
             if cluster_type.startswith('split-rel'):
                 split_clusters.append(cluster[cluster_type])
+            else:
+                coref_clusters.append(cluster[cluster_type])
 
-    return split_clusters
+    return split_clusters, coref_clusters
 
 
 if __name__=='__main__':
@@ -359,5 +439,5 @@ if __name__=='__main__':
     #only_text = args.text
     #create_gold_corpus(action_amr_dir, sent_amr_dir, ara_dir, out_dir, 3, only_text)
 
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara_1_test_coref', True, 3, True)
+    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/ara_1_test_coref2', True, 3, True)
 

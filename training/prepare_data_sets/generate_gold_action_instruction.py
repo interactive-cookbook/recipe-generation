@@ -53,9 +53,12 @@ class InstructionExtractor:
         self.potential_tokens: List[int] = []           # sentence-level indices of tokens that might be used for the new instructions
 
         self.inds_to_add: Set[int] = set()              # sentence-level indices of tokens that will make up the extracted instruction
+
+        # self.final_tokens, self.final_tokens_tags and self.final_tokens_orig_inds are ordered such that elemnts at the
+        # same index in the 3 lists correspond to each other
         self.final_tokens: List[str] = []               # tokenized extracted instruction
-        self.final_tokens_tags = []
-        self.final_tokens_orig_inds = []
+        self.final_tokens_tags: List[str] = []                     # tags of the tokens in self.final tokens as tagged in the original sentence
+        self.final_tokens_orig_inds: List[int] = []                # original ids of the tokens in self.final_tokens, relative to sentence!
 
 
     def process_sentence(self, sentence:str):
