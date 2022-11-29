@@ -156,9 +156,10 @@ def save_split_amrs(recipe_name: str, amr_list: List[networkx.Graph]):
             penman_amr = networkx2penman(instr_amr)
             try:
                 amr_string = penman.encode(penman_amr)
+                new_file.write(f'{amr_string}\n\n')
             except:
-                print(f'{instr_amr.name} possible unconnected')
-            new_file.write(f'{amr_string}\n\n')
+                print(f'{instr_amr.name} possibly unconnected. Could not be added to file.')
+
 
 
 if __name__=='__main__':
