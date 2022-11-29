@@ -209,7 +209,7 @@ def remove_left_over_nodes(sep_graph: nx.Graph) -> nx.Graph:
                 new_edge = list(e_rem)
                 new_edge[0] = new_rel_node
                 new_edge = tuple(new_edge)
-                sep_graph.add_edges_from(new_edge)
+                sep_graph.add_edges_from([new_edge])
 
     return sep_graph
 
