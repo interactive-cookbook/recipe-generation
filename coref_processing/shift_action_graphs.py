@@ -56,4 +56,4 @@ def create_explicit_action_corpus(original_ara_dir, shifted_ara_dir, coref_file)
 
 if __name__=='__main__':
 
-    create_explicit_action_corpus('../data/ara1.1', '../data_ara1_explicit/ara1_exp', './ara_pronoun_pred.jsonlines')
+    create_explicit_action_corpus('../data/ara1.1', '../data_ara1_explicit/ara1_exp', './ara_pronoun_merged_pred.jsonlines')

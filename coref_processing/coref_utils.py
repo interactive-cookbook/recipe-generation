@@ -116,11 +116,11 @@ def get_recipe_clusters_original(coref_data: dict):
             # a mention
             while True:
                 if orig_start_id == '[MASK]' and not orig_end_id == '[MASK]':
-                    orig_start_id += 1
+                    orig_start_id = new2orig[new_start_id + 1]
                 elif orig_end_id == '[MASK]' and not orig_start_id == '[MASK]':
-                    orig_end_id -= 1
+                    orig_end_id = new2orig[new_end_id - 1]
                 elif orig_start_id == '[MASK]' and orig_end_id == '[MASK]':
-                    break       # then the complete mention was added
+                    break       # then the complete mention was newly added
                 else:
                     cleaned_cl.append([orig_start_id, orig_end_id])
                     break
