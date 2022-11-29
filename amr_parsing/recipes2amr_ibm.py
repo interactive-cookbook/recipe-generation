@@ -82,19 +82,19 @@ def parse_recipe_corpus_ibm(corpus_dir, graph_dir):
     # create directories and run parser on each recipe file
     Path(graph_dir).mkdir(exist_ok=True, parents=True)
     for dish in os.listdir(corpus_dir):
-        Path('/'.join([graph_dir, dish])).mkdir(exist_ok=True, parents=True)
-        for recipe in os.listdir('/'.join([corpus_dir, dish])):
+        Path(os.path.join(graph_dir, dish)).mkdir(exist_ok=True, parents=True)
+        for recipe in os.listdir(os.path.join(corpus_dir, dish)):
 
             # parse one recipe file
-            instruction_amrs = parse_recipe_ibm(parse_model, '/'.join([corpus_dir, dish, recipe]))
+            instruction_amrs = parse_recipe_ibm(parse_model, os.path.join(corpus_dir, dish, recipe))
 
             # get name for file with recipe amrs
             recipe_name = recipe.split('.')[:-1]
             recipe_name = '.'.join(recipe_name)
-            new_file_name = recipe_name + '_amr.txt'
+            new_file_name = recipe_name + '_sentences_amr.txt'
             # and name for creating a unique AMR ID
-            recipe_name_wo_suffix = recipe_name.split('_')[:-1]
-            recipe_name_wo_suffix = '_'.join(recipe_name_wo_suffix)
+            recipe_name_wo_suffix = recipe_name  #.split('_')[:-1]
+            #recipe_name_wo_suffix = '_'.join(recipe_name_wo_suffix)
 
             # write file
             with open('/'.join([graph_dir, dish, new_file_name]), "w", encoding="utf-8") as gr_file:
@@ -105,12 +105,13 @@ def parse_recipe_corpus_ibm(corpus_dir, graph_dir):
 
 if __name__=="__main__":
 
-    input_path = "../../Corpora/Microsoft_corpus/amr_parser_input_ara2"
-    output_path = "./aligned_cyclic_recipe_amrs_ara2"
+    input_path = "../data_ara1_explicit/recipe_texts_explicit"
+    output_path = "../data_ara1_explicit/explicit_sentence_amrs"
 
     parse_recipe_corpus_ibm(input_path, output_path)
     """
-    tokens = ["Stir", "in", "the", "salt", "and", "season", "with", "pepper", "to", "taste", "."]
+    #tokens = ["Stir", "in", "the", "salt", "and", "season", "with", "pepper", "to", "taste", "."]
+    tokens = ["2", "cups", "all-purpose", "flour"]
     parse_model = AMRParser.from_checkpoint(checkpoint_path)
     annotations, decoding_data = parse_model.parse_sentence(tokens)
     print(annotations)
@@ -120,3 +121,4 @@ if __name__=="__main__":
     print(amr)
     print(amr.to_penman())
     """
+

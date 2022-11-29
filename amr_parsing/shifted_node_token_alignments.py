@@ -134,7 +134,9 @@ def create_alignments_corpus(corpus_dir, new_corpus_dir):
 
 if __name__=="__main__":
 
-    non_shifted_dir = "./aligned_cyclic_recipe_amrs_ara2"
-    output_dir = "./aligned_cyclic_shifted_recipe_amrs_ara2"
+    #non_shifted_dir = "./aligned_cyclic_recipe_amrs_ara2"
+    #output_dir = "./aligned_cyclic_shifted_recipe_amrs_ara2"
+    non_shifted_dir = '../data_ara1_explicit/explicit_sentence_amrs'
+    output_dir = '../data_ara1_explicit/explicit_sentence_amrs_shifted'
 
     create_alignments_corpus(non_shifted_dir, output_dir)

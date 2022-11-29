@@ -203,8 +203,10 @@ def fix_cyclic_amrs(amr_corpus_dir, fixed_amr_corpus_dir):
 
 if __name__=="__main__":
 
-    cyclic_amr_dir = "./aligned_cyclic_shifted_recipe_amrs_ara2"
-    output_dir = "../data_ara2/recipe_amrs_sentences"
+    #cyclic_amr_dir = "./aligned_cyclic_shifted_recipe_amrs_ara2"
+    #output_dir = "../data_ara2/recipe_amrs_sentences"
+    cyclic_amr_dir = '../data_ara1_explicit/explicit_sentence_amrs_shifted'
+    output_dir = '../data_ara1_explicit/explicit_sentence_amrs_final'
     fix_cyclic_amrs(cyclic_amr_dir, output_dir)
 
     # Number of cycles in original ARA 1.1: 29
