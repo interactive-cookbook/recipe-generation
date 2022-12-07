@@ -6,6 +6,7 @@ with open('requirements.txt', 'r', encoding='utf-8') as r:
 setup(name='recipe_generation',
       packages=['graph_processing',
                 'amr_processing',
+                'coref_processing',
                 'utils'],
       install_requires=requirements
       )
