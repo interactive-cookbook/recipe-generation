@@ -1,26 +1,30 @@
 import os
 import stanza
 import re
-from typing import List
+from typing import List, Tuple, Dict
 import networkx as nx
 from pathlib import Path
+from nltk.stem import PorterStemmer
+from graph_processing.graph_traversal import order_actions_pf_lf_id
+from coref_processing.coref_utils import get_coref_clusters_extended, get_new_orig_id_mappings
 
 from graph_processing.recipe_graph import read_graph_from_conllu
 
 
-# TODO: add re-ordering
-
-def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir):
+def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file=''):
     """
 
     :param instruction_dir: path to directory with the original sentences,
                             each file should contain the sentences line by line
     :param ara_dir: path to ara directory with the action graphs
+    :param coref_file:
     :param output_dir: path to the output directory for the extracted instructions
     :return:
     """
     Path(output_dir).mkdir(exist_ok=True)
     nlp_model = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,lemma,depparse')
+
+    coref_data_corpus = get_coref_clusters_extended(coref_file) if coref_file != '' else None
 
     for dish in os.listdir(ara_dir):
         Path(os.path.join(output_dir, dish)).mkdir(exist_ok=True)
@@ -52,7 +56,10 @@ def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir):
                     sent_actions.append(corresponding_actions)
                     shift_index = shifted_ids[-1] + 1
 
-            separated_sentences = split_sentences(sentences, sent_ids, sent_actions, nlp_model)
+            recipe_coref_data = coref_data_corpus[recipe_name] if coref_data_corpus else None
+            if recipe_name == 'homemade_pizza_dough_2':
+                print("h")
+            separated_sentences = split_sentences(sentences, sent_ids, sent_actions, nlp_model, action_graph, recipe_coref_data)
             with open(os.path.join(Path(output_dir), dish, f'{recipe_name}_dep_text.txt'), 'w', encoding='utf-8') as out:
                 for sent in separated_sentences:
                     out.write(f'{sent}\n')
@@ -61,7 +68,9 @@ def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir):
 def split_sentences(sentences: List[List[str]],
                     sentence_ids: List[List[int]],
                     sentence_actions: List[List[str]],
-                    nlp_model):
+                    nlp_model,
+                    ac_graph: nx.DiGraph,
+                    coref_dict: dict) -> List[str]:
     """
 
     :param sentences: one sublist per sentence with the corresponding tokens
@@ -69,6 +78,8 @@ def split_sentences(sentences: List[List[str]],
                         i.e. the token sentences[0] has the token id sentence_ids[0] and so on
     :param sentence_actions: one sublist per sentence with the ids of the action tokens (strings)
     :param nlp_model: a loaded stanza model pipeline
+    :param ac_graph:
+    :param coref_dict:
     :return: list of the separated sentences
     """
     separated_sentences = []
@@ -76,9 +87,76 @@ def split_sentences(sentences: List[List[str]],
         if len(sentence_actions[instr_id]) <= 1:    # only one action -> not split
             separated_sentences.append(' '.join(instruction))
         else:   # more actions -> split
-            separated_sentences.extend(split_sentence(instruction, sentence_ids[instr_id], sentence_actions[instr_id],
-                                       nlp_model))
+            # first resolve within sentence coreference if present
+            if coref_dict:
+                extended_sent, extended_ids, extended_acs = add_implicit_coref_mentions(coref_dict, sentence_ids[instr_id], instruction, sentence_actions[instr_id])
+                sep_sents, actions = (split_sentence(extended_sent, extended_ids, list(extended_acs.values()), nlp_model))
+            else:
+                sep_sents, actions = (split_sentence(instruction, sentence_ids[instr_id], sentence_actions[instr_id], nlp_model))
+                extended_acs = {ac: ac for ac in actions}
+            sorted_ac_nodes = order_actions_pf_lf_id(ac_graph)
+            for ac_node in sorted_ac_nodes:
+                try:
+                    shifted_ac_node = extended_acs[ac_node]
+                except KeyError:
+                    continue
+                if shifted_ac_node in actions:
+                    ac_ind = actions.index(shifted_ac_node)
+                    sent = sep_sents[ac_ind]
+                    separated_sentences.append(sent)
     return separated_sentences
+
+
+def add_implicit_coref_mentions(coref_data: Dict[str, List], token_ids: List[int], sentence: List[str], actions: List[str]):
+
+    orig_id2new, new_id2orig = get_new_orig_id_mappings(coref_data['original_token_id'], coref_data['token_id'])
+
+    new_sentence = sentence.copy()
+    replacements = dict()
+    for cluster in coref_data['predicted_clusters']:
+        relevant_spans = []
+        mask = []
+        for span in cluster:
+            for token in range(span[0], span[1] + 1):
+                orig_id = new_id2orig[token]
+                if orig_id == '[MASK]':
+                    if new_id2orig[token-1]+1 in token_ids and new_id2orig[token+1]+1 in token_ids:
+                        mask.append(new_id2orig[token-1] + 1)   # the index in the original sentence where [MASK] is added
+                    elif (new_id2orig[token-1]+1 in token_ids and not new_id2orig[token+1]+1 in token_ids) or \
+                            (not new_id2orig[token - 1] + 1 in token_ids and new_id2orig[token + 1] + 1 in token_ids):
+                        print("happened")
+                    continue
+                if orig_id + 1 in token_ids:        # needs to be +1 because coref indices start at 0
+                    relevant_spans.append(span)     # gets only added if it was also originally in the sentence
+        if relevant_spans and mask:
+            # if both are non-empty then the sentence includes an explicit mention and an implicit argument
+            explicit_ids = relevant_spans[0]
+            explicit_tokens = [coref_data['text'][eid] for eid in range(explicit_ids[0], explicit_ids[1] + 1)]
+            for m in mask:
+                replacements[m] = explicit_tokens
+
+    shift_value = 0
+    sorted_replacements = list(replacements.items())
+    sorted_replacements.sort()                          # need to start from sentence beginning on
+
+    original_token_ids_str = [str(tid) for tid in token_ids]        # convert to string because actions are strings
+
+    for repl_ind, repl_tokens in sorted_replacements:
+        # IMPORTANT: repl_ind is relative to document!
+        sentence_level_repl_ind = token_ids.index(repl_ind) + shift_value
+        new_sentence = new_sentence[:sentence_level_repl_ind+1] + repl_tokens + new_sentence[sentence_level_repl_ind+1:]
+        original_token_ids_str = original_token_ids_str[:sentence_level_repl_ind + 1] + ['M' for rt in repl_tokens] + original_token_ids_str[sentence_level_repl_ind+1:]
+        shift_value += len(repl_tokens)
+
+    new_token_ids = [tid for tid in range(token_ids[0], token_ids[0] + len(new_sentence))]  # need to start at the same index as token_ids
+    assert len(new_token_ids) == len(new_sentence)
+    new_action_ids = dict()
+    for ac in actions:
+        new_sentence_level_id = original_token_ids_str.index(ac)
+        new_doc_level_ids = new_token_ids[new_sentence_level_id]
+        new_action_ids[ac] = (str(new_doc_level_ids))
+
+    return new_sentence, new_token_ids, new_action_ids
 
 
 def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], nlp_model):
@@ -125,8 +203,18 @@ def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], 
                 # fix imperative
                 if token_tag in ['JJ', 'VBN', 'VBG', 'VBD', 'NN']:
                     action_lemma = processed_token.lemma
+                    if action_lemma == token and token.endswith('ing') or token.endswith('ed'):
+                        action_lemma = PorterStemmer().stem(token)
                     action2tokens[ac].append((token_ind, action_lemma, token_tag))
                     modified_verb_inds.append(token_ind - shifting_value)
+                    try:
+                        parent_node = list(dep_graph.predecessors(token_ind))[0]
+                        if parent_node not in actions_int:
+                            parent_tag = nx.get_node_attributes(dep_graph, 'tag')[parent_node]
+                            parent_token = nx.get_node_attributes(dep_graph, 'token')[parent_node]
+                            action2tokens[ac].append((parent_node, parent_token, parent_tag))
+                    except IndexError:
+                        pass
                 else:
                     action2tokens[ac].append((token_ind, token, token_tag))
             else:
@@ -139,6 +227,7 @@ def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], 
                         action2tokens[ac].append((token_ind, token, token_tag))
 
     separated_sentences = []
+    corresponding_actions = []
     for ac, id_token_pairs in action2tokens.items():
         id_token_list = list(set(id_token_pairs))
         id_token_list.sort()        # list of tokens to include in their original order
@@ -150,10 +239,12 @@ def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], 
                                      extracted_token_tags,
                                      modified_verb_inds,
                                      sentence_level_action_inds)
+        re_ordered_sentence = fix_sentence_start_and_end(re_ordered_sentence)
         sentence = ' '.join(re_ordered_sentence)
         separated_sentences.append(sentence)
+        corresponding_actions.append(ac)
 
-    return separated_sentences
+    return separated_sentences, corresponding_actions
 
 
 def create_dependency_graph(processed_sentence, shifting_value) -> nx.DiGraph:
@@ -168,7 +259,7 @@ def create_dependency_graph(processed_sentence, shifting_value) -> nx.DiGraph:
     edges = []
     for token in processed_sentence:
         token_id = token.id + shifting_value - 1
-        nodes.append(token_id)
+        nodes.append((token_id, {'tag': token.xpos, 'token': token.text}))
         if token.head != 0:
             parent_id = token.head + shifting_value - 1
             edges.append((parent_id, token_id))
@@ -283,6 +374,66 @@ def fix_ordering(extracted_token_ids: List[int],
     return new_extracted_tokens
 
 
+def fix_sentence_start_and_end(sentence_tokens):
+    punctuation_to_remove = []
+    brackets_open = []
+    brackets_closing = []
+    for t_ind, t in enumerate(sentence_tokens):
+        if t == ',':
+            try:
+                next_token = sentence_tokens[t_ind + 1]
+                if next_token == ',':
+                    punctuation_to_remove.append(t_ind)
+            except IndexError:
+                break
+        elif t == '(':
+            brackets_open.append(t_ind)
+        elif t == ')':
+            brackets_closing.append(t_ind)
+    if brackets_open and not brackets_closing:
+        final_str = ' '.join(sentence_tokens)
+        if not ')' in final_str:  # some brackets do not get tokenized correctly
+            punctuation_to_remove.extend(brackets_open)
+    elif not brackets_open and brackets_closing:
+        final_str = ' '.join(sentence_tokens)
+        if not '(' in final_str:
+            punctuation_to_remove.extend(brackets_closing)
+    elif brackets_open and brackets_closing:
+        for bo in brackets_open:
+            if bo + 1 in brackets_closing:
+                punctuation_to_remove.append(bo)
+                punctuation_to_remove.append(bo + 1)
+
+    sentence_tokens = [ft for ind_ft, ft in enumerate(sentence_tokens) if ind_ft not in punctuation_to_remove]
+
+
+    while True:
+        if sentence_tokens[0] == '(' and sentence_tokens[-1] == ')':
+            sentence_tokens = sentence_tokens[1:-1]
+            continue
+        if sentence_tokens[-1] == 'and':
+            sentence_tokens = sentence_tokens[:-1]
+            continue
+        if sentence_tokens[0] in [',', ';', '-', ')', '.']:
+            sentence_tokens = sentence_tokens[1:]
+            continue
+        if sentence_tokens[-1] in [',', '-', '(', ';', ':']:
+            sentence_tokens = sentence_tokens[:-1]
+            continue
+        if sentence_tokens[-1] not in ['.', '!', '?']:
+            sentence_tokens.append('.')
+            continue
+        break
+
+    if sentence_tokens[0][0].isalpha():
+        sentence_tokens[0] = sentence_tokens[0][0].upper() + sentence_tokens[0][1:]
+
+    return sentence_tokens
+
+
 if __name__=='__main__':
 
-    create_dep_baseline_corpus('../../data/amr_input_data', '../../data/ara1.1', '../tuning_data_sets/dependency_baseline2')
+    create_dep_baseline_corpus('../../data/amr_input_data',
+                               '../../data/ara1.1',
+                               '../tuning_data_sets/dependency_baseline'
+                               )
