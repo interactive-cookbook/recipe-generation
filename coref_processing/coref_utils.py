@@ -47,9 +47,41 @@ def get_recipe_clusters_extended(coref_data: dict):
             for sent in value:
                 text.extend(sent)
             relevant_data['text'] = text        # add the list of all tokens
+        elif key == 'predicted_clusters':
+            value = remove_nested_clusters(coref_data)
         relevant_data[key] = value              # keep all other data unchanged
 
     return relevant_data
+
+
+def remove_nested_clusters(coref_data):
+    original_ids = coref_data['original_token_id']
+    new_ids = coref_data['token_id']
+    orig2new, new2orig = get_new_orig_id_mappings(original_ids, new_ids)
+
+    cleaned_clusters = []
+    mask_ids = [newid for newid in new2orig.keys() if new2orig[newid] == '[MASK]']
+
+    for cluster in coref_data['predicted_clusters']:
+        cleaned_cluster = []
+        for span in cluster:
+            tokens = [tid for tid in range(span[0], span[1] + 1)]
+            if tokens[0] == tokens[-1]:
+                cleaned_cluster.append(span)
+            elif tokens[0] in mask_ids:
+                cleaned_cluster.append([span[0]+1, span[-1]])
+            elif tokens[-1] in mask_ids:
+                cleaned_cluster.append([span[0], span[-1]-1])
+            elif tokens in mask_ids:        # then it cannot be removed that easily so remove span from cluster
+                continue
+            else:
+                cleaned_cluster.append(span)
+        cleaned_cluster = set([tuple(mention) for mention in cleaned_cluster])
+        cleaned_cluster = [list(mention) for mention in cleaned_cluster]
+        cleaned_cluster.sort()
+        cleaned_clusters.append(cleaned_cluster)
+
+    return cleaned_clusters
 
 
 def get_coref_clusters_original(coref_file_path):
