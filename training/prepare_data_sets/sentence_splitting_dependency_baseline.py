@@ -17,7 +17,7 @@ def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file=
     :param instruction_dir: path to directory with the original sentences,
                             each file should contain the sentences line by line
     :param ara_dir: path to ara directory with the action graphs
-    :param coref_file:
+    :param coref_file: path to the file with the implicit pronouns added (not explicit mentions!)
     :param output_dir: path to the output directory for the extracted instructions
     :return:
     """
@@ -57,8 +57,7 @@ def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file=
                     shift_index = shifted_ids[-1] + 1
 
             recipe_coref_data = coref_data_corpus[recipe_name] if coref_data_corpus else None
-            if recipe_name == 'homemade_pizza_dough_2':
-                print("h")
+
             separated_sentences = split_sentences(sentences, sent_ids, sent_actions, nlp_model, action_graph, recipe_coref_data)
             with open(os.path.join(Path(output_dir), dish, f'{recipe_name}_dep_text.txt'), 'w', encoding='utf-8') as out:
                 for sent in separated_sentences:
@@ -435,5 +434,6 @@ if __name__=='__main__':
 
     create_dep_baseline_corpus('../../data/amr_input_data',
                                '../../data/ara1.1',
-                               '../tuning_data_sets/dependency_baseline'
+                               '../tuning_data_sets/dependency_baseline_coref',
+                               '../../coref_processing/ara_pronoun_merged_pred.jsonlines'
                                )
