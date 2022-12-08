@@ -4,7 +4,6 @@ from pathlib import Path
 import networkx as nx
 from typing import List, Tuple, Dict
 from collections import defaultdict
-from utils.paths import ACTION_AMR_DIR, JOINED_COREF_DIR
 from graph_processing.read_graphs import read_aligned_amr_file
 from amr_processing.penman_networkx_conversions import penman2networkx
 from coref_utils import get_coref_clusters_original, get_coref_clusters_extended
@@ -213,7 +212,7 @@ def extract_relevant_cluster_data(recipe_coref_data: dict, shift: bool) -> dict:
     return relevant_data
 
 
-def create_coref_amr_files(coref_file_path, output_path,  extended=False):
+def create_coref_amr_files(action_amr_dir, coref_file_path, output_path,  extended=False):
     """
     For all recipes in ACTION_AMR_DIR
     Requires
@@ -230,14 +229,14 @@ def create_coref_amr_files(coref_file_path, output_path,  extended=False):
     else:
         corpus_coreferences: dict = get_coref_clusters_original(coref_file_path)
 
-    for dish in os.listdir(ACTION_AMR_DIR):
+    for dish in os.listdir(action_amr_dir):
         Path(output_path / Path(dish)).mkdir(parents=True, exist_ok=True)
-        for recipe in os.listdir(ACTION_AMR_DIR / dish):
+        for recipe in os.listdir(action_amr_dir / dish):
             file_name_tokens = recipe.split('_')
             recipe_name = '_'.join(file_name_tokens[:-2])
 
             # read the AMR file and convert to networkX graphs
-            amr_graphs_penman = read_aligned_amr_file(ACTION_AMR_DIR / dish / recipe)
+            amr_graphs_penman = read_aligned_amr_file(action_amr_dir / dish / recipe)
             amr_graphs = []
             for pen_gr in amr_graphs_penman:
                 amr_graphs.append(penman2networkx(pen_gr))
@@ -274,8 +273,7 @@ def create_coref_amr_files(coref_file_path, output_path,  extended=False):
 
 if __name__ == '__main__':
     #create_coref_amr_files('./ara_pronoun_merged_pred.jsonlines', JOINED_COREF_DIR, extended=False)
-    create_coref_amr_files('./ara_pronoun_merged_pred.jsonlines',
-                           '../data_ara1_explicit/coref_data_joined_ext',
-                           extended=True)
+    create_coref_amr_files(Path('../data_ara1_explicit/explicit_action_amrs'), './ara_explicit_merged_pred.jsonlines',
+                           '../data_ara1_explicit/coref_data_joined', extended=True)
 
 

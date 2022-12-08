@@ -27,4 +27,4 @@ def create_explicit_recipe_texts(coreference_file_path):
 
 if __name__=='__main__':
 
-    create_explicit_recipe_texts('./ara_pronoun_merged_pred.jsonlines')
+    create_explicit_recipe_texts('./ara_explicit_merged_pred.jsonlines')

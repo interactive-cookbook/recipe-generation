@@ -6,6 +6,8 @@ from coref_utils import get_coref_clusters_extended, get_new_orig_id_mappings
 def create_explicit_action_corpus(original_ara_dir, shifted_ara_dir, coref_file):
 
     coref_data_complete = get_coref_clusters_extended(coref_file)
+    original_ara_dir = Path(original_ara_dir)
+    shifted_ara_dir = Path(shifted_ara_dir)
 
     Path(shifted_ara_dir).mkdir(exist_ok=True, parents=True)
     for dish in os.listdir(original_ara_dir):
@@ -50,10 +52,10 @@ def create_explicit_action_corpus(original_ara_dir, shifted_ara_dir, coref_file)
 
             with open(os.path.join(shifted_dish_dir, recipe), 'w', encoding='utf-8') as new_ac:
                 for line in new_lines:
-                    line_str ='\t'.join(line)
+                    line_str = '\t'.join(line)
                     new_ac.write(f'{line_str}\n')
 
 
 if __name__=='__main__':
 
-    create_explicit_action_corpus('../data/ara1.1', '../data_ara1_explicit/ara1_exp', './ara_pronoun_merged_pred.jsonlines')
+    create_explicit_action_corpus('../data/ara1.1', '../data_ara1_explicit/ara1_exp', './ara_explicit_merged_pred.jsonlines')
