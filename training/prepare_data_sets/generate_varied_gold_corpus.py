@@ -1,4 +1,5 @@
 import os
+import random
 from typing import List, Dict, Tuple
 import networkx as nx
 import penman
@@ -7,6 +8,7 @@ from pathlib import Path
 import stanza
 import json
 import argparse
+from copy import deepcopy
 
 from graph_processing.recipe_graph import read_graph_from_conllu
 from graph_processing.read_graphs import read_aligned_amr_file
@@ -30,6 +32,7 @@ class VariedRecipeExtractor:
                  nlp_model,
                  ident_clusters,
                  coref_clusters,
+                 mention2pronoun,
                  version: int = 3,
                  text_only: bool = False,
                  order_ac_graph: bool = False):
@@ -42,6 +45,7 @@ class VariedRecipeExtractor:
         :param nlp_model:
         :param ident_clusters:
         :param coref_clusters:
+        :param mention2pronoun:
         :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
         :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
                           sentence
@@ -59,6 +63,7 @@ class VariedRecipeExtractor:
         self.nlp_model = nlp_model
         self.ident_clusters = ident_clusters
         self.coref_clusters = coref_clusters
+        self.mention2pronoun = mention2pronoun
         self.instr_extractors: Dict[str, InstructionExtractor] = dict()
 
         self.all_new_sentences = dict()
@@ -68,7 +73,8 @@ class VariedRecipeExtractor:
                                                     # original instruction at the nth position in the original recipe
         self.group_amrs_by_orig_position()
 
-        self.recipe_amr_pairs = []
+        self.recipe_amr_pairs: List[Tuple[nx.Graph, nx.Graph]] = []
+        self.recipe_amrs_varied: List[nx.Graph] = []
 
     def varied_gold_recipes(self):
 
@@ -77,8 +83,11 @@ class VariedRecipeExtractor:
         self.create_coherent_dets()
         self.remove_redundant_mentions()
         self.create_varied_pairs()
+        print(f'Original ordering: {len(self.recipe_amrs)}\n'
+              f'After varying: {len(self.recipe_amrs_varied)}\n'
+              f'New pairs: {len(self.recipe_amr_pairs)}')
 
-        return self.recipe_amrs, self.recipe_amr_pairs
+        return self.recipe_amrs_varied, self.recipe_amr_pairs
 
     def create_varied_pairs(self):
 
@@ -93,22 +102,94 @@ class VariedRecipeExtractor:
         for recipe_amr in self.recipe_amrs:
             amr_id = recipe_amr.graph['id']
             if not prev_amr:
-                prev_amr = amr_id
-                continue
+                self.recipe_amrs_varied.append(recipe_amr)
 
-            if prev_amr in amr2coref_amrs[amr_id]:      # coref case
-                self.make_implicit(prev_amr, amr_id)
-                self.find_pairing_amr(False, amr_id, amr2coref_amrs[amr_id])
+            elif prev_amr in amr2coref_amrs[amr_id]:      # coref case
+                implicit_amr = self.make_implicit(prev_amr, amr_id)
+                self.recipe_amrs_varied.append(implicit_amr)
+                other_version_prev_amr_id = self.find_pairing_amr(False, amr_id, amr2coref_amrs[amr_id])
+                if other_version_prev_amr_id:
+                    new_prev_amr = [gr for gr in self.recipe_amrs if gr.graph['id'] == other_version_prev_amr_id][0]
+                    self.recipe_amr_pairs.append((new_prev_amr, recipe_amr))
             else:                                       # non-coref case
-                self.find_pairing_amr(True, amr_id, amr2coref_amrs[amr_id])
+                self.recipe_amrs_varied.append(recipe_amr)
+                other_version_prev_amr_id = self.find_pairing_amr(True, amr_id, amr2coref_amrs[amr_id])
+                if other_version_prev_amr_id:
+                    new_prev_amr = [gr for gr in self.recipe_amrs if gr.graph['id'] == other_version_prev_amr_id][0]
+                    implicit_amr = self.make_implicit(other_version_prev_amr_id, amr_id)
+                    self.recipe_amr_pairs.append((new_prev_amr, implicit_amr))
+            prev_amr = amr_id
 
-            # TODO save results
+    def make_implicit(self, prev_amr_id: str, current_amr_id: str) -> nx.Graph:
 
-    def make_implicit(self, prev_amr_id, current_amr_id):
-        # TODO write function
-        pass
+        prev_amr_graph = [gr for gr in self.recipe_amrs if gr.graph['id'] == prev_amr_id][0]
+        prev_extractor = self.instr_extractors[prev_amr_id]
+        prev_instruction_tokens = prev_extractor.final_tokens
+        prev_instruction_orig_token_ids_sent = prev_extractor.final_tokens_orig_inds
+        prev_instruction_orig_token_ids_doc = [tid + prev_extractor.shift_value for tid in prev_instruction_orig_token_ids_sent]
+        prev_instruction_modified_inds = [tid + prev_extractor.shift_value for tid in prev_extractor.modified_inds]
 
-    def find_pairing_amr(self, coref: bool, current_amr_id: str, coref_amrs: set):
+        current_amr = deepcopy([gr for gr in self.recipe_amrs if gr.graph['id'] == current_amr_id][0])
+        current_extractor = self.instr_extractors[current_amr_id]
+        instruction_tokens = current_extractor.final_tokens
+        instruction_tags = current_extractor.final_tokens_tags
+        instruction_orig_token_ids_sent = current_extractor.final_tokens_orig_inds
+        instruction_orig_token_ids_doc = [tid + current_extractor.shift_value for tid in instruction_orig_token_ids_sent]
+        instruction_modified_inds = [tid + current_extractor.shift_value for tid in current_extractor.modified_inds]
+
+        # need to find the co-referring mention in the instructions
+        mention_prev_ids = []
+        mention_current_ids = []
+        for cluster in self.coref_clusters:
+            prev_span = []
+            current_span = []
+            for span in cluster['token_ids']:
+
+                overlapping_span_prev = []
+                overlapping_span_current = []
+                for token_id in span:
+
+                    if token_id in prev_instruction_orig_token_ids_doc and token_id not in prev_instruction_modified_inds:
+                        overlapping_span_prev.append(token_id)
+                    if token_id in instruction_orig_token_ids_doc and token_id not in instruction_modified_inds:
+                        overlapping_span_current.append(token_id)
+                if overlapping_span_prev:
+                    prev_span = overlapping_span_prev
+                if overlapping_span_current:
+                    current_span = overlapping_span_current
+
+            if prev_span and current_span:
+                mention_prev_ids = prev_span
+                mention_current_ids = current_span
+                break
+
+        if not mention_current_ids or not mention_prev_ids:
+            print(f'something went wrong')
+
+        try:
+            pronoun = self.mention2pronoun[str((mention_current_ids[0], mention_current_ids[-1]))]
+        except KeyError:
+            pronoun = 'it'
+        # IDs in mention_current_ids are relative to the original document length
+        mention_current_ids.sort()
+        start_ind = instruction_orig_token_ids_doc.index(mention_current_ids[0])
+        new_instruction_tokens = [token for (tid, token) in zip(instruction_orig_token_ids_doc, instruction_tokens) if tid not in mention_current_ids]
+        new_instruction_tokens.insert(start_ind, pronoun)
+        print(instruction_tokens)
+        print(new_instruction_tokens)
+        current_amr.graph['snt'] = ' '.join(new_instruction_tokens)
+
+        return current_amr
+
+
+    def find_pairing_amr(self, coref: bool, current_amr_id: str, coref_amrs: set) -> str:
+        """
+
+        :param coref:
+        :param current_amr_id:
+        :param coref_amrs:
+        :return:
+        """
         if coref:
             relevant_amr_ids = coref_amrs
         else:
@@ -116,9 +197,31 @@ class VariedRecipeExtractor:
             relevant_amr_ids = all_amr_ids - coref_amrs
 
         action_nodes = self.amr2ac_nodes[current_amr_id]
-        # TODO continue
+        appropriate_amr = ''
+
+        for rel_amr in relevant_amr_ids:
+            rel_ac_nodes = self.amr2ac_nodes[rel_amr]
+            appropriate = True
+            for rel_ac_n in rel_ac_nodes:
+                for ac_n in action_nodes:
+                    paths = list(nx.all_simple_paths(self.action_graph, source=ac_n, target=rel_ac_n))
+                    if paths != []:
+                        appropriate = False
+            if appropriate:
+                appropriate_amr = rel_amr
+                break
+
+        if not appropriate_amr:
+            appropriate_amr = random.choice(list(relevant_amr_ids)) if relevant_amr_ids else ''
+
+        return appropriate_amr
+
 
     def amr2action_mappings(self) -> Tuple[Dict, Dict]:
+        """
+
+        :return:
+        """
         ac_node2amr = dict()
         amr2ac_nodes = defaultdict(list)
         for amr in self.recipe_amrs:
@@ -127,26 +230,30 @@ class VariedRecipeExtractor:
             for amr_node in action_aligned_amr_nodes:
                 action_node = nx.get_node_attributes(amr, 'alignment')[amr_node]
                 ac_node2amr[action_node] = amr_id
-                amr2ac_nodes[amr_id].append(amr_node)
+                amr2ac_nodes[amr_id].append(action_node)
 
         return ac_node2amr, amr2ac_nodes
 
-    def find_coref_amrs(self) -> Dict[set]:
 
+    def find_coref_amrs(self) -> Dict[str, set]:
+        """
+
+        :return:
+        """
         amr2coref_amrs = defaultdict(set)
         for amr_graph in self.recipe_amrs:
             amr_id = amr_graph.graph['id']
             recipe_extractor = self.instr_extractors[amr_id]
-            included_tokens = recipe_extractor.final_tokens_orig_inds
+            included_tokens = [tid + recipe_extractor.shift_value for tid in recipe_extractor.final_tokens_orig_inds]
             for cluster in self.coref_clusters:
-                for token_span, node_span in zip(cluster['token_ids'], cluster['amr_nodes']):
+                for token_span in cluster['token_ids']:
                     for t_ind, token in enumerate(token_span):
                         if token in included_tokens:
-                            corresponding_amr_nodes = node_span[t_ind]
-                            for node in corresponding_amr_nodes:
-                                cor_amr_id = node[2]
-                                if amr_id != cor_amr_id:
-                                    amr2coref_amrs[amr_id].add(cor_amr_id)
+                            for amr_node_span in cluster['amr_nodes']:
+                                for nodes in amr_node_span:
+                                    for node in nodes:
+                                        if node[2] != amr_id:
+                                            amr2coref_amrs[amr_id].add(node[2])
 
         return amr2coref_amrs
 
@@ -179,7 +286,7 @@ class VariedRecipeExtractor:
                                                            version=self.version, nlp_model=self.nlp_model)
                 instruction_creator.final_tokens = instruction_creator.orig_snt_tokenized
                 instruction_creator.final_tokens_tags = [tag for (token, tag) in instruction_creator.orig_snt_tagged]
-                instruction_creator.final_tokens_orig_inds = [tid for tid in range(1, len(instruction_creator.final_tokens) + 1)]
+                instruction_creator.final_tokens_orig_inds = [tid for tid in range(0, len(instruction_creator.final_tokens))]
                 self.instr_extractors[post_split_id] = instruction_creator
             else:
                 orig_snt_amr = self.orig_amrs[original_id]
@@ -343,8 +450,6 @@ class VariedRecipeExtractor:
             # for each sentence which potentially includes redundant coreferences
             for extractor in relevant_extractors:
                 extracted_sent_ids = [sent_id + extractor.shift_value for sent_id in extractor.final_tokens_orig_inds]
-                #if extractor.split_amr.graph['id'] == 'cauliflower_mash_3_instr1_1':
-                    #print("h")
 
                 successive_coref_token_spans = []
                 prev_span = []
@@ -390,6 +495,8 @@ class VariedRecipeExtractor:
             counter = 0
             # remove tokens and update corresponding recipe extractor
             for rt in remove_tokens:
+                if current_extractor.final_tokens_orig_inds[rt - counter] in current_extractor.action_root_inds:
+                    continue
                 new_instruction.pop(rt - counter)
                 current_extractor.final_tokens.pop(rt - counter)
                 current_extractor.final_tokens_orig_inds.pop(rt - counter)
@@ -426,6 +533,8 @@ def create_varied_gold_corpus(action_amr_corpus: Path,
                         'lang': 'en',
                         'tokenize_pretokenized': True}
     nlp_model = stanza.Pipeline(**nlp_model_config)
+    with open('../../data_ara1_explicit/explicit_mention_to_pronoun.txt', 'r', encoding='utf-8') as f:
+        explicit2pronoun_dict = json.load(f)
 
     for dish in os.listdir(action_amr_corpus):
         Path(os.path.join(gold_corpus_dir, dish)).mkdir(exist_ok=True, parents=True)
@@ -456,13 +565,18 @@ def create_varied_gold_corpus(action_amr_corpus: Path,
             coref_file = recipe_name + '_joined.jsonlines'
             coref_file_path = os.path.join(coref_dir, dish, coref_file)
             identity_clusters, coref_clusters = read_joined_coref(coref_file_path)
-
+            if recipe_name == 'baked_ziti_1':
+                print('h')
             # create the gold instructions for the action-level AMRs of the current recipe
+            try:
+                ment2pro = explicit2pronoun_dict[recipe_name]
+            except KeyError:
+                ment2pro = dict()
             gold_recipe_creator = VariedRecipeExtractor(recipe_amrs=recipe_amrs, orig_amrs=orig_amrs,
                                                   action_graph=recipe_action_graph, nlp_model=nlp_model,
                                                   ident_clusters=identity_clusters, coref_clusters= coref_clusters,
-                                                  version=version)
-            new_ordered_recipe_amrs = gold_recipe_creator.varied_gold_recipes()
+                                                  version=version, mention2pronoun=ment2pro)
+            new_ordered_recipe_amrs, new_pairs = gold_recipe_creator.varied_gold_recipes()
 
             with open(os.path.join(gold_corpus_dir, dish, f'{recipe_name}_gold.txt'), 'w', encoding='utf-8') as f:
                 for amr_gr in new_ordered_recipe_amrs:
@@ -470,6 +584,17 @@ def create_varied_gold_corpus(action_amr_corpus: Path,
                     amr_str = penman.encode(penman_amr_gr)
                     f.write(f'{amr_str}\n\n')
                     count += 1
+
+            with open(os.path.join(str(gold_corpus_dir)+'_texts', dish, f'{recipe_name}_v1.txt'), 'w', encoding='utf-8') as f:
+                for amr_gr in new_ordered_recipe_amrs:
+                    f.write(f'{amr_gr.graph["snt"]}\n')
+
+            with open(os.path.join(str(gold_corpus_dir)+'_texts', dish, f'{recipe_name}_v2.txt'), 'w', encoding='utf-8') as f:
+                for pair in new_pairs:
+                    gr1 = pair[0].graph["snt"]
+                    gr2 = pair[1].graph["snt"]
+                    f.write(f'{gr1}\n{gr2}\n\n')
+
     print(count)
 
 

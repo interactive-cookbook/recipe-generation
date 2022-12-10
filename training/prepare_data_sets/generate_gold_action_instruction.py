@@ -399,7 +399,7 @@ class InstructionExtractor:
             if self.final_tokens[-1] not in ['.', '!', '?']:
                 self.final_tokens.append('.')
                 self.final_tokens_tags.append('.')
-                self.final_tokens_orig_inds.append(-1)
+                self.final_tokens_orig_inds.append(-200)        # assuming no sentence will have more tokens
                 continue
             break
 
