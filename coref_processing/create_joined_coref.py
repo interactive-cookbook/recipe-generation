@@ -152,8 +152,11 @@ def map_coref_to_amr(recipe_coref_data: dict, recipe_action_amrs: List[nx.Graph]
                             node_var = amr_node
                             token_corresponding_amr_nodes.append((node_label, node_var, amr_id))
 
-                if token_corresponding_amr_nodes:   # some tokens do not have an aligned AMR node, so skip them
-                    span_corresponding_amr_nodes.append(token_corresponding_amr_nodes.copy())
+                # some tokens do not have an aligned AMR node, but when skipping them we would lose information about
+                # which tokens those are
+                span_corresponding_amr_nodes.append(token_corresponding_amr_nodes.copy())
+                # some tokens do not have an aligned AMR node, but when skipping them we would lose information about
+                # which tokens those are
 
             if span_corresponding_amr_nodes:
                 cluster_corresponding_amr_nodes.append(span_corresponding_amr_nodes.copy())
@@ -275,5 +278,7 @@ if __name__ == '__main__':
     #create_coref_amr_files('./ara_pronoun_merged_pred.jsonlines', JOINED_COREF_DIR, extended=False)
     create_coref_amr_files(Path('../data_ara1_explicit/explicit_action_amrs'), './ara_explicit_merged_pred.jsonlines',
                            '../data_ara1_explicit/coref_data_joined', extended=True)
+    #create_coref_amr_files(Path('../data/recipe_amrs_actions'), './ara_pronoun_merged_pred.jsonlines',
+    #                       '../data/coref_data_joinedtest', extended=False)
 
 

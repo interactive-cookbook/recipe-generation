@@ -1,6 +1,6 @@
 import json
 from typing import Dict, List
-
+from collections import defaultdict
 from coref_utils import get_coref_clusters_extended
 
 
@@ -14,6 +14,7 @@ def make_mentions_explicit(coref_file, new_coref_file):
     """
     coref_data: Dict[str, Dict] = get_coref_clusters_extended(coref_file)
     new_coref_data = coref_data.copy()
+    mention2pronoun = defaultdict(dict)
 
     for recipe_name, data in coref_data.items():
         original_token_ids: List = data['original_token_id']
@@ -40,6 +41,7 @@ def make_mentions_explicit(coref_file, new_coref_file):
                     assert len(coref_clusters) == 1                     # a pronoun should never be part of 2 coref clusters!
                     coref_cluster = coref_clusters[0]
 
+                    pronoun_mention = pronoun_tokens[pronoun_token_ind]
                     new_mention = get_previous_mention(current_cluster=coref_cluster, current_token_id=pronoun_token_ind,
                                                        pronoun_tokens=pronoun_tokens, original_token_ids=original_token_ids)
 
@@ -48,6 +50,8 @@ def make_mentions_explicit(coref_file, new_coref_file):
                     new_sentences[target_sent_id].extend(new_mention)
                     new_tokens.extend(new_mention)
                     new_orig_ids.extend(['[MASK]' for i in range(len(new_mention))])
+
+                    mention2pronoun[recipe_name][str((len(new_tokens), len(new_tokens) + len(new_mention) - 1))] = pronoun_mention
 
                 # then not part of a coreference cluster and cannot be replaced
                 except KeyError:
@@ -79,6 +83,10 @@ def make_mentions_explicit(coref_file, new_coref_file):
         for recipe_name in new_coref_data.keys():
             json.dump(new_coref_data[recipe_name], f)
             f.write('\n')
+
+    with open('./explicit_mention_to_pronoun.txt', 'w', encoding='utf-8') as f:
+        json.dump(mention2pronoun, f)
+        f.write('\n')
 
 
 def shift_coref_clusters(original_clusters, new_spans):

@@ -115,9 +115,9 @@ def remove_nested_clusters(coref_data: Dict) -> List[List[List[int]]]:
             tokens = [tid for tid in range(span[0], span[1] + 1)]
             if tokens[0] == tokens[-1]:
                 cleaned_cluster.append(span)
-            elif tokens[0] in mask_ids:
+            elif tokens[0] in mask_ids and not tokens[-1] in mask_ids:
                 cleaned_cluster.append([span[0]+1, span[-1]])
-            elif tokens[-1] in mask_ids:
+            elif tokens[-1] in mask_ids and not tokens[0] in mask_ids:
                 cleaned_cluster.append([span[0], span[-1]-1])
             elif tokens in mask_ids:        # then it cannot be removed that easily so remove span from cluster
                 continue
