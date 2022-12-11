@@ -11,14 +11,19 @@ from coref_processing.coref_utils import get_coref_clusters_extended, get_new_or
 from graph_processing.recipe_graph import read_graph_from_conllu
 
 
-def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file=''):
+def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file: str = '', order_ac_graph: bool = False):
     """
 
     :param instruction_dir: path to directory with the original sentences,
                             each file should contain the sentences line by line
     :param ara_dir: path to ara directory with the action graphs
     :param coref_file: path to the file with the implicit pronouns added (not explicit mentions!)
+                        optional; if provided implicit arguments are filled with the corresponding explicit mention
+                        based on the information from the coreference file
     :param output_dir: path to the output directory for the extracted instructions
+    :param order_ac_graph: if set to True then the instructions are ordered based on the action graph following the
+                            pf-lf-id traversal; otherwise only the split instructions obtained from the same original
+                            instruction are ordered relative to each other based on the traversal
     :return:
     """
     Path(output_dir).mkdir(exist_ok=True)
@@ -58,7 +63,8 @@ def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file=
 
             recipe_coref_data = coref_data_corpus[recipe_name] if coref_data_corpus else None
 
-            separated_sentences = split_sentences(sentences, sent_ids, sent_actions, nlp_model, action_graph, recipe_coref_data)
+            separated_sentences = split_sentences(sentences, sent_ids, sent_actions, nlp_model, action_graph,
+                                                  recipe_coref_data, order_ac_graph)
             with open(os.path.join(Path(output_dir), dish, f'{recipe_name}_dep_text.txt'), 'w', encoding='utf-8') as out:
                 for sent in separated_sentences:
                     out.write(f'{sent}\n')
@@ -69,7 +75,8 @@ def split_sentences(sentences: List[List[str]],
                     sentence_actions: List[List[str]],
                     nlp_model,
                     ac_graph: nx.DiGraph,
-                    coref_dict: dict) -> List[str]:
+                    coref_dict: dict,
+                    order_ac_graph: bool = False) -> List[str]:
     """
 
     :param sentences: one sublist per sentence with the corresponding tokens
@@ -79,12 +86,23 @@ def split_sentences(sentences: List[List[str]],
     :param nlp_model: a loaded stanza model pipeline
     :param ac_graph:
     :param coref_dict:
+    :param order_ac_graph:
     :return: list of the separated sentences
     """
     separated_sentences = []
+    corresponding_actions = []
+    sorted_ac_nodes = order_actions_pf_lf_id(ac_graph)
+    orig2new_action = dict()
+
     for instr_id, instruction in enumerate(sentences):
         if len(sentence_actions[instr_id]) <= 1:    # only one action -> not split
             separated_sentences.append(' '.join(instruction))
+            try:
+                corr_action = sentence_actions[instr_id][0]
+            except IndexError:
+                corr_action = '-1'
+            corresponding_actions.append(corr_action)
+            orig2new_action[corr_action] = corr_action
         else:   # more actions -> split
             # first resolve within sentence coreference if present
             if coref_dict:
@@ -93,21 +111,53 @@ def split_sentences(sentences: List[List[str]],
             else:
                 sep_sents, actions = (split_sentence(instruction, sentence_ids[instr_id], sentence_actions[instr_id], nlp_model))
                 extended_acs = {ac: ac for ac in actions}
-            sorted_ac_nodes = order_actions_pf_lf_id(ac_graph)
-            for ac_node in sorted_ac_nodes:
-                try:
-                    shifted_ac_node = extended_acs[ac_node]
-                except KeyError:
-                    continue
-                if shifted_ac_node in actions:
-                    ac_ind = actions.index(shifted_ac_node)
-                    sent = sep_sents[ac_ind]
-                    separated_sentences.append(sent)
-    return separated_sentences
+
+            for old_ac, new_ac in extended_acs.items():
+                orig2new_action[old_ac] = new_ac
+
+            if not order_ac_graph:      # only order the separated sentences relative to each other
+                for ac_node in sorted_ac_nodes:
+                    try:
+                        shifted_ac_node = extended_acs[ac_node]     # avoids the need to shift the complete action graph
+                    except KeyError:
+                        continue
+                    if shifted_ac_node in actions:                  # only actions for the current sentence(s) are relevant
+                        ac_ind = actions.index(shifted_ac_node)
+                        sent = sep_sents[ac_ind]
+                        separated_sentences.append(sent)
+                        separated_sentences.append(shifted_ac_node)
+            else:           # all sentences should be re-ordered -> just add and re-order later
+                separated_sentences.extend(sep_sents)
+                corresponding_actions.extend(actions)
+
+    if order_ac_graph:
+        ordered_sep_sentences = []
+        for ac_node in sorted_ac_nodes:
+            if ac_node == 'end':
+                continue
+            shifted_ac_node = orig2new_action[ac_node]
+            sent_ind = corresponding_actions.index(shifted_ac_node)
+            ordered_sep_sentences.append(separated_sentences[sent_ind])
+    else:
+        ordered_sep_sentences = separated_sentences
+
+    return ordered_sep_sentences
 
 
-def add_implicit_coref_mentions(coref_data: Dict[str, List], token_ids: List[int], sentence: List[str], actions: List[str]):
+def add_implicit_coref_mentions(coref_data: Dict[str, List],
+                                token_ids: List[int],
+                                sentence: List[str],
+                                actions: List[str]) -> Tuple[List[str], List[int], Dict[str, str]]:
+    """
 
+    :param coref_data: a dictionary of the coreference data
+    :param token_ids: a list of the recipe-level token IDs (recipe-level IDs starting at 1)
+    :param sentence: list of the tokens
+    :param actions: list of the actions, i.e. action verb token IDs, occurring in the sentence
+    :return: new_sentence: list of the new tokens, i.e. the original sentence with the added mentions
+             new_token_ids: list of the IDs for the new tokens, starting with token_ids[0]
+             new_actions: dictionary, specifying for each original action token ID the corresponding new action token ID
+    """
     orig_id2new, new_id2orig = get_new_orig_id_mappings(coref_data['original_token_id'], coref_data['token_id'])
 
     new_sentence = sentence.copy()
@@ -158,14 +208,14 @@ def add_implicit_coref_mentions(coref_data: Dict[str, List], token_ids: List[int
     return new_sentence, new_token_ids, new_action_ids
 
 
-def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], nlp_model):
+def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], nlp_model) -> Tuple[List[str], List[str]]:
     """
 
     :param tokens: list of tokens of a sentence
     :param token_ids: list of the recipe-level token ids of the tokens in tokens
     :param actions: list of the action token ids (strings) of the sentence
     :param nlp_model: a loaded stanza model pipeline
-    :return:
+    :return: List of the separated sentences (already joined to string) and List of the corresponding actions
     """
     action2tokens = dict()
     processed_sentences = nlp_model(' '.join(tokens))
@@ -233,11 +283,14 @@ def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], 
         extracted_token_ids = [p[0] for p in id_token_list]
         extracted_tokens = [p[1] for p in id_token_list]
         extracted_token_tags = [p[2] for p in id_token_list]
+        # partially fix the sentence order, i.e. move actions that were participles to the sentence beginning if
+        # regular expression of POS tags is matched
         re_ordered_sentence = fix_ordering(extracted_token_ids,
                                      extracted_tokens,
                                      extracted_token_tags,
                                      modified_verb_inds,
                                      sentence_level_action_inds)
+        # fixes punctuation, adds sentence final punctuation if not present and capitalizes sentence start
         re_ordered_sentence = fix_sentence_start_and_end(re_ordered_sentence)
         sentence = ' '.join(re_ordered_sentence)
         separated_sentences.append(sentence)
@@ -274,7 +327,15 @@ def fix_ordering(extracted_token_ids: List[int],
                  extracted_tokens_tags: List[str],
                  modified_verb_inds: List[int],
                  snt_level_action_inds: List[int]) -> List[str]:
+    """
 
+    :param extracted_token_ids:
+    :param extracted_tokens:
+    :param extracted_tokens_tags:
+    :param modified_verb_inds:
+    :param snt_level_action_inds:
+    :return:
+    """
     orig_token_ids = extracted_token_ids  # the original indices of the tokens in self.final_tokens
     orig_token_ids.sort()  # sort to get original token order
     extracted_pos_seq = ' '.join(extracted_tokens_tags)  # convert to string for re matching
@@ -373,7 +434,12 @@ def fix_ordering(extracted_token_ids: List[int],
     return new_extracted_tokens
 
 
-def fix_sentence_start_and_end(sentence_tokens):
+def fix_sentence_start_and_end(sentence_tokens: List[str]) -> List[str]:
+    """
+
+    :param sentence_tokens:
+    :return:
+    """
     punctuation_to_remove = []
     brackets_open = []
     brackets_closing = []
@@ -432,8 +498,9 @@ def fix_sentence_start_and_end(sentence_tokens):
 
 if __name__=='__main__':
 
-    create_dep_baseline_corpus('../../data/amr_input_data',
-                               '../../data/ara1.1',
-                               '../tuning_data_sets/dependency_baseline_coref',
-                               '../../coref_processing/ara_pronoun_merged_pred.jsonlines'
+    create_dep_baseline_corpus(instruction_dir='../../data/amr_input_data',
+                               ara_dir='../../data/ara1.1',
+                               output_dir='../tuning_data_sets/dependency_baseline',
+                               coref_file='',
+                               order_ac_graph=True
                                )
