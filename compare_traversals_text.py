@@ -3,12 +3,16 @@ from pathlib import Path
 from itertools import combinations
 
 from graph_processing.recipe_graph import read_graph_from_conllu
-from generate_recipe import generate_different_orderings
+from generate_recipe import generate_recipe_different_orderings
 from utils.paths import MODEL_DIR, ARA_DIR
 
 
 def compare_texts_different_traversals(action_dir):
+    """
 
+    :param action_dir:
+    :return:
+    """
     configuration_file = MODEL_DIR / Path('recipe_gen_config_long.json')
     ordering_list = ['top', 'ids', 'pf', 'pf-lf', 'pf-lf-id']
     ordering_names = {'top': 'NetworkX Topological Order', 'ids': 'Token ID Ordering', 'pf': 'Path-First Ordering',
@@ -29,12 +33,12 @@ def compare_texts_different_traversals(action_dir):
             recipe_file = os.path.join(dish_dir, recipe)
             action_graph = read_graph_from_conllu(recipe_file)
 
-            generated_sentences, action_orderings = generate_different_orderings(ac_graph=action_graph,
-                                                                                 configuration_file=configuration_file,
-                                                                                 ordering_list=ordering_list,
-                                                                                 ordering_names=ordering_names,
-                                                                                 context_len=context_len,
-                                                                                 output_file=None)
+            generated_sentences, action_orderings = generate_recipe_different_orderings(ac_graph=action_graph,
+                                                                                        configuration_file=configuration_file,
+                                                                                        ordering_list=ordering_list,
+                                                                                        ordering_names=ordering_names,
+                                                                                        context_len=context_len,
+                                                                                        output_file=None)
 
             for (trav1, trav2) in traversal_combinations:
                 sentences_trav1 = generated_sentences[trav1]
@@ -60,7 +64,12 @@ def compare_texts_different_traversals(action_dir):
 
 
 def get_action_mappings(sentence_list, action_list):
+    """
 
+    :param sentence_list:
+    :param action_list:
+    :return:
+    """
     action2sentence = dict()
     action2prev = dict()
 
@@ -75,7 +84,12 @@ def get_action_mappings(sentence_list, action_list):
 
 
 def save_comparison_results(results: dict, output_file):
-
+    """
+    
+    :param results:
+    :param output_file:
+    :return:
+    """
     with open(output_file, 'w', encoding='utf-8') as out:
         for traversal_pair, traversal_counts in results.items():
             out.write(f'Comparing {traversal_pair[0]} vs. {traversal_pair[1]}:\n')

@@ -63,6 +63,8 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
     :return:
     """
     generated_sentences = []
+    realized_actions = []
+    amrid2realizedaction = dict()
     already_realized_amrs = []
 
     # load the model and instantiate inference class object
@@ -100,6 +102,7 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
         amr_id = sem_repr.graph['id']
         # skip already covered amr graphs
         if amr_id in already_realized_amrs:
+            amrid2realizedaction[amr_id].append(action_node)
             continue
 
         if context_len == 0:
@@ -111,15 +114,41 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph, generation_config, orderi
         gen_snt = generate(sem_repr, context, generator)
 
         generated_sentences.extend(gen_snt)
+        realized_actions.append(action_node)
         already_realized_amrs.append(amr_id)
+        amrid2realizedaction[amr_id] = [action_node]
 
     print("---------- Finished Generation ----------")
-    #print(action_ordering)
-    #print(already_realized_amrs)
-    return generated_sentences
+
+    ordered_actions = []
+    for amr_id in already_realized_amrs:
+        ordered_actions.append(amrid2realizedaction[amr_id])
+        assert realized_actions == [l[0] for l in amrid2realizedaction.values()]
+
+    return generated_sentences, ordered_actions
 
 
-def generate_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path, ordering_list: list,
+def generate_recipe_one_ordering(ac_graph: nx.DiGraph, configuration_file: Path, ordering: str,
+                             context_len: int, output_file):
+    """
+
+    :param ac_graph: an action graph (networkx object)
+    :param configuration_file: a .json file with the configuration parameters for the generation model to use
+    :param ordering: name of the traversal / ordering function to use
+    :param context_len: the context length, i.e. how many previous sentences to consider
+    :param output_file: path to file where results get saved
+    :return:
+    """
+    recipe, action_order = generate_recipe_ac_graph(action_graph=ac_graph,
+                                                    generation_config=configuration_file,
+                                                    ordering=ordering,
+                                                    context_len=context_len)
+    with open(output_file, 'w', encoding='utf-8') as out:
+        for sent in recipe:
+            out.write(f'{sent}\n')
+
+
+def generate_recipe_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path, ordering_list: list,
                                  ordering_names: dict, context_len: int, output_file):
     """
     Generates a recipe for an action graph using potentially different graph traversals and saves the text to a file
@@ -134,13 +163,15 @@ def generate_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path,
     """
     max_recipe_len = 0
     recipes = dict()
+    action_ordering = dict()
     for ord in ordering_list:
-        recipe = generate_recipe_ac_graph(action_graph=ac_graph,
+        recipe, action_order = generate_recipe_ac_graph(action_graph=ac_graph,
                                           generation_config=configuration_file,
                                           ordering=ord,
                                           context_len=context_len)
         max_recipe_len = len(recipe) if len(recipe) > max_recipe_len else max_recipe_len
         recipes[ord] = recipe
+        action_ordering[ord] = action_order
 
     # write to output file
     if output_file:
@@ -165,6 +196,8 @@ def generate_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path,
             for sent in recipes[ord]:
                 print(sent)
             print('\n')
+
+    return recipes, action_ordering
 
 
 if __name__=='__main__':
@@ -192,13 +225,13 @@ if __name__=='__main__':
     #ordering = 'all'
     if ordering == 'all':
         ordering_list = ['top', 'ids', 'pf', 'pf-lf', 'pf-lf-id']
-        generate_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
-                                     ordering_list=ordering_list, ordering_names=ordering_names,
-                                     context_len=context_len, output_file=out_file)
+        generate_recipe_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
+                                            ordering_list=ordering_list, ordering_names=ordering_names,
+                                            context_len=context_len, output_file=out_file)
     else:
-        generate_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
-                                     ordering_list=[ordering], ordering_names=ordering_names,
-                                     context_len=context_len, output_file=out_file)
+        generate_recipe_different_orderings(ac_graph=ac_graph, configuration_file=configuration_file,
+                                            ordering_list=[ordering], ordering_names=ordering_names,
+                                            context_len=context_len, output_file=out_file)
 
 
 
