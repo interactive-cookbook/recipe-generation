@@ -10,6 +10,75 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 
+def generate_data_set(config_file):
+    """
+    Generate text from a data set of AMRs
+    :param config_file: the json configuration file for generation
+    :return:
+    """
+    with open(config_file) as c:
+        config_args = json.load(c)
+
+    torch.cuda.empty_cache()
+
+    model = _run_inference(config_args['test_args'], config_args['generator_args'])
+    return model
+
+
+def _run_inference(inference_config:dict, generator_config: dict):
+    """
+    Runs inference on the complete test data set defined in the inference config dict and stores
+    the generated sentences as well as the references in the folder specified in the inference config dict
+    Inference is performed using an instantiation of the RecipeGenerator class, instantiated
+    with the parameters in the generator_config
+    :param inference_config: parameters related to the data set to generate from
+    :param generator_config: parameters for the model to use for generation
+    :return:
+    """
+    corpus_dir = inference_config['corpus_dir']
+    test_path = os.path.join(corpus_dir, inference_config['test_path'])
+    context_len = inference_config['context_len']
+
+    print("---------- Loading Model and Tokenizer ----------")
+    generation_model = RecipeGenerator(generator_config)
+
+    print("---------- Reading the Data ----------")
+    test_data_entries = read_data_set(test_path, context_len)
+    graphs = test_data_entries['graph']
+    contexts = test_data_entries['context']
+
+    print("---------- Starting generation ---------")
+    generated_text, _ = generation_model.generate(contexts, graphs)
+    print("---------- Finished generation ---------")
+
+    print("---------- Save output ----------")
+    model_path = os.path.join(Path(generator_config['model_name_or_path']))
+    model_checkpoint = generator_config.get('checkpoint', None)
+    model_name = str(model_path.split(os.sep)[-1])
+    if model_checkpoint:
+        model_name += f'_{model_checkpoint}'
+    output_path = os.path.join(Path('./output'), model_name, f'{context_len}_context')
+    Path(output_path).mkdir(exist_ok=True, parents=True)
+
+    with open(os.path.join(output_path, inference_config['output_file']), 'w', encoding='utf-8') as f:
+        for sentence in generated_text:
+            f.write(f'{sentence}\n')
+    ref_file = inference_config['output_file'][:-4] + '_reference.txt'
+    with open(os.path.join(output_path, ref_file), 'w', encoding='utf-8') as f:
+        for ref_snt in test_data_entries['sent']:
+            f.write(f'{ref_snt}\n')
+
+    save_contexts = inference_config.get('save_contexts', False)
+    if save_contexts:
+        context_file = inference_config['output_file'][:-4] + '_contexts.txt'
+        with open(os.path.join(output_path, context_file), 'w', encoding='utf-8') as f:
+            for context in contexts:
+                f.write(f'{context}\n')
+    print(f'Output files were saved to {output_path}')
+
+    return generation_model
+
+
 # Based on amrlib code: https://github.com/bjascob/amrlib/blob/master/amrlib/models/generate_t5/inference.py
 class RecipeGenerator:
     """
@@ -18,7 +87,12 @@ class RecipeGenerator:
     """
     def __init__(self, configuration: dict):
         self.task = 'translation_cond_amr_to_text'
-        self.model = T5ForConditionalGeneration.from_pretrained(configuration['model_name_or_path'])
+        self.model_checkpoint = configuration.get('checkpoint', None)
+        if self.model_checkpoint:
+            # TODO: make os independent
+            self.model = T5ForConditionalGeneration.from_pretrained(f'{configuration["model_name_or_path"]}/{self.model_checkpoint}')
+        else:
+            self.model = T5ForConditionalGeneration.from_pretrained(configuration['model_name_or_path'])
         self.tokenizer = T5Tokenizer.from_pretrained(configuration['tokenizer_name_or_path'])
         self.max_in_len = configuration.get('max_in_len', 1024)
         self.max_out_len = configuration.get('max_out_len', 1024)
@@ -104,7 +178,7 @@ class RecipeGenerator:
             # decode the output
             decoded_output = [self.tokenizer.decode(out_ids, skip_special_tokens=True) for out_ids in output]
             generated_sentences.extend(decoded_output)
-
+        print(f'Clipped: {len([c for c in clipped if c])}')
         return generated_sentences, clipped
 
 
