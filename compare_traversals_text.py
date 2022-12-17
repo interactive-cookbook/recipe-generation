@@ -7,13 +7,13 @@ from generate_recipe import generate_recipe_different_orderings
 from utils.paths import MODEL_DIR, ARA_DIR
 
 
-def compare_texts_different_traversals(action_dir):
+def compare_texts_different_traversals(action_dir, config_file):
     """
 
     :param action_dir:
     :return:
     """
-    configuration_file = MODEL_DIR / Path('recipe_gen_config_long.json')
+    configuration_file = MODEL_DIR / Path(config_file)
     ordering_list = ['top', 'ids', 'pf', 'pf-lf', 'pf-lf-id']
     ordering_names = {'top': 'NetworkX Topological Order', 'ids': 'Token ID Ordering', 'pf': 'Path-First Ordering',
                       'pf-lf': 'Path-First Longest-First Ordering', 'pf-lf-id': 'Path-First Longest-First IDs Ordering'}
@@ -85,7 +85,7 @@ def get_action_mappings(sentence_list, action_list):
 
 def save_comparison_results(results: dict, output_file):
     """
-    
+
     :param results:
     :param output_file:
     :return:
@@ -100,5 +100,5 @@ def save_comparison_results(results: dict, output_file):
 
 if __name__=='__main__':
 
-    results = compare_texts_different_traversals(ARA_DIR)
+    results = compare_texts_different_traversals(ARA_DIR, 'model_context_config.json')
     save_comparison_results(results, './traversal_comp_ara1.txt')

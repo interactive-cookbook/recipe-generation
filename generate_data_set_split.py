@@ -6,46 +6,65 @@ from graph_processing.recipe_graph import read_graph_from_conllu
 from typing import List, Union
 
 
-def generate_ara1(split_file, split_type, orderings=None):
+def generate_ara1(split_file, split_type, config_file, context_len, orderings=None, output_dir=None):
     """
 
     :param split_file:
+    :param config_file:
+    :param context_len:
     :param split_type:
     :param orderings:
+    :param output_dir:
     :return:
     """
     assert os.path.join(DATA_DIR).split(os.sep)[-1] == 'data'
     recipe_names = read_split_file_names(split_file, split_type)
 
-    generate_from_conllu_file(recipe_names, orderings)
+    generate_from_conllu_file(recipe_names=recipe_names,
+                              configuration_file=config_file,
+                              context_len=context_len,
+                              orderings=orderings,
+                              output_dir=output_dir)
 
 
-def generate_ara2(split_file, split_type, orderings=None):
+def generate_ara2(split_file, split_type, config_file, context_len, orderings=None, output_dir=None):
     """
 
     :param split_file:
+    :param config_file:
     :param split_type:
     :param orderings:
+    :param output_dir:
     :return:
     """
     assert os.path.join(DATA_DIR).split(os.sep)[-1] == 'data_ara2'
     recipe_names = read_split_file_names(split_file, split_type)
 
-    generate_from_conllu_file(recipe_names, orderings)
+    generate_from_conllu_file(recipe_names=recipe_names,
+                              configuration_file=config_file,
+                              context_len=context_len,
+                              orderings=orderings,
+                              output_dir=output_dir)
 
 
-def generate_ara1_explicit(split_file, split_type, orderings=None):
+def generate_ara1_explicit(split_file, split_type, config_file, context_len, orderings=None, output_dir=None):
     """
 
     :param split_file:
+    :param config_file:
     :param split_type:
     :param orderings:
+    :param output_dir:
     :return:
     """
     assert os.path.join(DATA_DIR).split(os.sep)[-1] == 'data_ara1_explicit'
     recipe_names = read_split_file_names(split_file, split_type)
 
-    generate_from_conllu_file(recipe_names, orderings)
+    generate_from_conllu_file(recipe_names=recipe_names,
+                              configuration_file=config_file,
+                              context_len=context_len,
+                              orderings=orderings,
+                              output_dir=output_dir)
 
 
 def read_split_file_names(split_file, split_type) -> List[str]:
@@ -67,14 +86,21 @@ def read_split_file_names(split_file, split_type) -> List[str]:
     return split_recipes
 
 
-def generate_from_conllu_file(recipe_names: List[str], orderings: Union[None, List] = None):
+def generate_from_conllu_file(recipe_names: List[str],
+                              configuration_file: Union[str, Path],
+                              context_len: int,
+                              orderings: Union[None, List] = None,
+                              output_dir: Union[str, Path] = None):
     """
 
     :param recipe_names:
+    :param configuration_file:
+    :param context_len:
     :param orderings:
+    :param output_dir:
     :return:
     """
-    configuration_file = MODEL_DIR / Path('recipe_gen_config.json')
+    configuration_file = MODEL_DIR / Path(configuration_file)
     all_possible_orderings = ['top', 'ids', 'pf', 'pf-lf', 'pf-lf-id']
     if not orderings:
         ordering_list = all_possible_orderings
@@ -83,7 +109,8 @@ def generate_from_conllu_file(recipe_names: List[str], orderings: Union[None, Li
         assert not [ord for ord in orderings if not ord in all_possible_orderings]
     ordering_names = {'top': 'NetworkX Topological Order', 'ids': 'Token ID Ordering', 'pf': 'Path-First Ordering',
                       'pf-lf': 'Path-First Longest-First Ordering', 'pf-lf-id': 'Path-First Longest-First IDs Ordering'}
-    context_len = 1
+
+
 
     for recipe_name in recipe_names:
         dish = recipe_name.split('_')[:-1]
@@ -91,7 +118,12 @@ def generate_from_conllu_file(recipe_names: List[str], orderings: Union[None, Li
         ac_graph_path = os.path.join(ARA_DIR, dish, 'recipes', recipe_name + '.conllu')
 
         action_graph = read_graph_from_conllu(ac_graph_path)
-        output_file = os.path.join(PROJ_DIR, 'output', recipe_name+'_generated.txt')
+        if output_dir:
+            output_dir = Path(output_dir)
+            output_dir.mkdir(exist_ok=True, parents=True)
+            output_file = os.path.join(PROJ_DIR, output_dir, recipe_name+'_generated.txt')
+        else:
+            output_file = os.path.join(PROJ_DIR, 'output', recipe_name+'_generated.txt')
 
         if len(ordering_list) > 1:
             generate_recipe_different_orderings(ac_graph=action_graph, configuration_file=configuration_file,
@@ -105,4 +137,25 @@ def generate_from_conllu_file(recipe_names: List[str], orderings: Union[None, Li
 
 if __name__=='__main__':
 
-    generate_ara1_explicit()
+    """
+    generate_ara1_explicit('./final_ara1_split.tsv',
+                            'test',
+                            'model_explicit_config.json',
+                            'context_len'=1
+                            ['pf-lf-id'],
+                            Path('output/output_explicit'))
+    """
+
+    generate_ara1(split_file='./final_ara1_split.tsv',
+                  split_type='test',
+                  config_file='model_no_context_config.json',
+                  context_len=0,
+                  orderings=['pf-lf-id'],
+                  output_dir=Path('output/output_no_context'))
+
+    generate_ara1(split_file='./final_ara1_split.tsv',
+                  split_type='test',
+                  config_file='model_context_config.json',
+                  context_len=1,
+                  orderings=['pf-lf-id'],
+                  output_dir=Path('output/output_context'))
