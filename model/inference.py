@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 from typing import List, Tuple
 from pathlib import Path
 from transformers import T5ForConditionalGeneration, T5Tokenizer
-from .dataset_reader import read_data_set, remove_token_alignments
+from dataset_reader import read_data_set, remove_token_alignments
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
@@ -25,7 +25,7 @@ def generate_data_set(config_file):
     return model
 
 
-def _run_inference(inference_config:dict, generator_config: dict):
+def _run_inference(inference_config: dict, generator_config: dict):
     """
     Runs inference on the complete test data set defined in the inference config dict and stores
     the generated sentences as well as the references in the folder specified in the inference config dict
@@ -89,8 +89,9 @@ class RecipeGenerator:
         self.task = 'translation_cond_amr_to_text'
         self.model_checkpoint = configuration.get('checkpoint', None)
         if self.model_checkpoint:
-            # TODO: make os independent
-            self.model = T5ForConditionalGeneration.from_pretrained(f'{configuration["model_name_or_path"]}/{self.model_checkpoint}')
+            #self.model = T5ForConditionalGeneration.from_pretrained(f'{configuration["model_name_or_path"]}/{self.model_checkpoint}')
+            self.model = T5ForConditionalGeneration.from_pretrained(os.path.join(configuration["model_name_or_path"],
+                                                                                 self.model_checkpoint))
         else:
             self.model = T5ForConditionalGeneration.from_pretrained(configuration['model_name_or_path'])
         self.tokenizer = T5Tokenizer.from_pretrained(configuration['tokenizer_name_or_path'])
