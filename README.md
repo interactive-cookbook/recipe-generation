@@ -1,16 +1,15 @@
 # recipe-generation
 
-This repository contains the code for the master thesis project of generating new recipe texts based on information from two recipes for the same dish. <br>
-The code for training the generation model by fine-tuning t5 for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.<br>
+This repository contains the code for the master thesis project of generating action-event level recipe instructions using AMR as an intermediate representation. <br>
+The code for training the generation model by fine-tuning T5 for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.<br>
 The [Wiki](https://github.com/interactive-cookbook/recipe-generation/wiki) contains more details about the algorithms implemented and AMR graphs structures and file format.
-
-The work is still in progress. 
-The currently implement steps of the planned pipeline are
-* parsing each recipe sentence by sentence into AMR graphs
-* separating the AMR graphs into sub-graphs in order to get one AMR per action in the corresponding action graph for the recipe 
-* extracting approximated gold instructions for the split action-level amr graphs
+ 
+The implemented steps of the overall pipeline are
+1. Parsing each recipe sentence by sentence into AMR graphs with recipe-level node-to-token alignments, see [AMR Parsing](https://github.com/interactive-cookbook/recipe-generation#amr-parsing)
+2. Separating the AMR graphs into sub-graphs in order to get one AMR per action-event in the corresponding action graph for the recipe, see [AMR Splitting](https://github.com/interactive-cookbook/recipe-generation#amr-splitting)
+* Extracting approximated gold instructions for the split action-level amr graphs as well as extracting action-level instructions based on dependency information only, see [Extraction](https://github.com/interactive-cookbook/recipe-generation#extracting-gold-instructions)
 * creating multi-sentence amr files from the amr 3.0 corpus, such thath each file contains all amrs from one document
-* generating a recipe text based on an action graph and the amr graphs corresponding to each action node
+* Generating a recipe text based on an action graph, the amr graphs corresponding to each action node and a graph traversal, see [Generating Recipe Texts](https://github.com/interactive-cookbook/recipe-generation#generating-recipe-texts)
 
 ## Requirements 
 
@@ -47,11 +46,9 @@ Other libraries:<br>
 * nltk
 * bs4 (only for reading the multisentence-amr xml files)
 
-## AMR parsing 
+## AMR Parsing 
 
-As an intermediate representation of the recipe texts, I use Abstract Meaning Representations (AMR). 
-
-See the [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing) for more details on creating the AMR representations of a recipe corpus and requirements. 
+See the [Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing) in the **amr_parsing** folder for more details on creating the AMR representations of a recipe corpus and the requirements. If a dataset of recipe AMRs with node-to-token alignments is already available, the **amr_parsing** subfolder can be excluded to avoid the need to install the dependencies for the parser. 
 
 ## AMR Splitting 
 
