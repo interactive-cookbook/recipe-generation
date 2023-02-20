@@ -111,8 +111,8 @@ In order to generate one action-event level recipe based on a (specific) action 
 
 In order to generate all action-event level recipes of a dataset split run <br>
 `python generate_data_set_split.py --split [split_file] --type [split_type] --cont [context_length] --order [ordering_version] --config [configuration_file] --out [output_directory]`
-* `split_file`:
-* `split_type`:
+* `split_file`: file with the assignments of the recipes to the different dataset splits
+* `split_type`: the name of the split to generate
 * `context_len`: number of previously generated sentences to include as input to the generation model (should not be larger than the context_len the model was trained with)
 * `ordering_version`: optional; version of the traversing function to use, default is "pf-lf-id" 
 * `configuration_file`: path to .json file with the configurations for the generation
@@ -125,6 +125,22 @@ Can be "top", "ids", "pf", "pf-lf" or "pf-lf-id", see [wiki page](https://github
 **configuration_file** <br>
 For more information about the configuration files for recipe generation see the [recipe-generation-model readme](https://github.com/interactive-cookbook/recipe-generation-model#run-prediction). For generating from an action graph, the configuration file only needs to include the "generator_args" parameter dict. <br>
 The specified "model_name_or_path" / "tokenizer_name_or_path need to point to a directory of a trained T5 based amr-to-text generation model which needs to include all the files saved when running the huggingface methods to save a model and a tokenizer. 
+
+**split_file** <br>
+The path to a .tsv file with the assignment of the recipes to different splits. 
+
+```
+train    baked_ziti_7
+train    garam_masala_8
+val      waffles_9
+test     cauliflower_mash_1
+...
+```
+
+It is also possible to pass a file that was obtained by running `create_recipe2split_assignment` from the recipe-generation-model repository (see the [Reproducible Split](https://github.com/interactive-cookbook/recipe-generation-model#ara-data-set) section). The script will take care of removing the leading path and removing the "\_gold.txt" suffix. 
+
+**split_type** <br>
+Should be "train", "val" or "test" if the split file has the format shown above, but can be set to any value that occurs in the first column of the split file. Then all recipes where the value in the first column is equal to `split_type` are chosen for generation
 
 
 ## Creating Joined Coref Files
