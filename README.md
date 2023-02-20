@@ -109,7 +109,7 @@ In order to generate a text based on an action graph, run <br>
 * `action_graph_file`: path to .conllu file with the action graph of the recipe
 * `context_len`: number of previously generated sentences to include as input to the generation model (should not be larger than the context_len the model was trained with)
 * `ordering_version`: optional; version of the traversing function to use, can be "top", "ids", "pf", "pf-lf" or "pf-lf-id" or "all" to generate a recipe text based on each ordering and save all of them (see [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Graph-Traversals) for details of the traversals); default is "pf-lf-id" 
-* `configuration_file`: optional; path to .json file with the configurations for the generation, defaults to ./model/recipe_gen_config.json
+* `configuration_file`: path to .json file with the configurations for the generation
 * `output_file`: optional; the path to the file where the generated texts will be saved, each tab separated column will contain the recipe from one traversal, one sentence per line; if not provided then the generated texts will only be printed to the command line
 
 **configuration_file** <br>
