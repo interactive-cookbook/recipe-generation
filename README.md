@@ -101,13 +101,26 @@ For more details about the extraction itself see the [wiki page](https://github.
 
 ## Generating Recipe Texts
 
-In order to generate a text based on an action graph, run <br>
+In order to generate one action-event level recipe based on a (specific) action graph, run <br>
 `python generate_recipe.py --file [action_graph_file] --cont [context_len] --order [ordering_version] --config [configuration_file] --out [output_file]`
 * `action_graph_file`: path to .conllu file with the action graph of the recipe
 * `context_len`: number of previously generated sentences to include as input to the generation model (should not be larger than the context_len the model was trained with)
-* `ordering_version`: optional; version of the traversing function to use, can be "top", "ids", "pf", "pf-lf" or "pf-lf-id" or "all" to generate a recipe text based on each ordering and save all of them (see [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Graph-Traversals) for details of the traversals); default is "pf-lf-id" 
+* `ordering_version`: optional; version of the traversing function to use, default is "pf-lf-id" 
 * `configuration_file`: path to .json file with the configurations for the generation
-* `output_file`: optional; the path to the file where the generated texts will be saved, each tab separated column will contain the recipe from one traversal, one sentence per line; if not provided then the generated texts will only be printed to the command line
+* `output_file`: optional; the path to the file where the generated texts will be saved, each tab separated column will contain the recipe from one traversal, one sentence per line, first line is a header; if not provided then the generated texts will only be printed to the command line
+
+In order to generate all action-event level recipes of a dataset split run <br>
+`python generate_data_set_split.py --split [split_file] --type [split_type] --cont [context_length] --order [ordering_version] --config [configuration_file] --out [output_directory]`
+* `split_file`:
+* `split_type`:
+* `context_len`: number of previously generated sentences to include as input to the generation model (should not be larger than the context_len the model was trained with)
+* `ordering_version`: optional; version of the traversing function to use, default is "pf-lf-id" 
+* `configuration_file`: path to .json file with the configurations for the generation
+* `output_dir`: optional; the path to the directory where the generated texts will be saved, if not provided it will default to a folder "output" in the main project directory; for each recipe specified in `split_file` one output file will be created (named [recipe_name]_generated.txt), one instruction per line; if `ordering_version` is "all" then the output file will contain one one column per traversal (tab separated) with a header line at the top
+
+
+**ordering_version** <br>
+Can be "top", "ids", "pf", "pf-lf" or "pf-lf-id", see [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Graph-Traversals) for details of the different traversals, or can be set to "all" to generate one recipe text for each ordering.
 
 **configuration_file** <br>
 For more information about the configuration files for recipe generation see the [recipe-generation-model readme](https://github.com/interactive-cookbook/recipe-generation-model#run-prediction). For generating from an action graph, the configuration file only needs to include the "generator_args" parameter dict. <br>
