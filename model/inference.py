@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 from typing import List, Tuple
 from pathlib import Path
 from transformers import T5ForConditionalGeneration, T5Tokenizer
-from dataset_reader import read_data_set, remove_token_alignments
+from model.dataset_reader import read_data_set, remove_token_alignments
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
