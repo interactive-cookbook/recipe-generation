@@ -104,8 +104,7 @@ def generate_recipe_ac_graph(action_graph: nx.DiGraph,
 
     # loop through the ordered action nodes
     print("---------- Starting Generation ----------")
-
-    for action_node in action_ordering:
+    for action_node in action_ordering[:-1]:
         # get semantic representation of action node
         sem_repr = nx.get_node_attributes(sem_action_graph, 'amr')[action_node]
         # skip unaligned action nodes
@@ -158,9 +157,14 @@ def generate_recipe_one_ordering(ac_graph: nx.DiGraph, configuration_file: Path,
                                                     generation_config=configuration_file,
                                                     ordering=ordering,
                                                     context_len=context_len)
-    with open(output_file, 'w', encoding='utf-8') as out:
+    if output_file:            
+        with open(output_file, 'w', encoding='utf-8') as out:
+            for sent in recipe:
+                out.write(f'{sent}\n')
+    else:
         for sent in recipe:
-            out.write(f'{sent}\n')
+            print(sent)
+
 
 
 def generate_recipe_different_orderings(ac_graph: nx.DiGraph, configuration_file: Path, ordering_list: list,
@@ -227,7 +231,7 @@ if __name__=='__main__':
     args = parser.parse_args()
 
     ac_graph_file = args.file
-    ac_graph = read_graph_from_conllu(Path(ac_graph_file))
+    ac_graph = read_graph_from_conllu(ac_graph_file)
     context_len = int(args.cont)
     out_file = args.out if args.out else None
     configuration_file = args.config
