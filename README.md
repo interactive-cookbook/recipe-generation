@@ -13,38 +13,25 @@ The implemented steps of the overall pipeline are
 
 ## Requirements 
 
-Tested with Python 3.6 and 3.7. (Newer Python versions should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.)<br>
+Tested with Python 3.6 and 3.7. (Python 3.9 should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.)<br>
 Note: If you do not need to run the AMR parser which requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)) then you can delete the amr_parsing folder or simply ignore the import error warnings when opening the repository e.g. as a PyCharm project. 
 
-Run `pip install -e .` in the main repository directory. This will enable successful import of all modules and functions within the repository. Additionally, this will already install some of the libraries listed below but not all of them (an updated requirements file will follow soon). 
+Run `pip install -e .` in the main repository directory. This will enable successful import of all modules and functions within the repository. Additionally, this will already install most of the dependencies with the following two exceptions:
 
-The [networkX library](https://networkx.org/documentation/stable/index.html): 
-* `pip install networkx[default]`
-* `pip install graphviz`
 
-The [penman library](https://github.com/goodmami/penman/):
-* `pip install penman`
+The [pytorch library](https://pytorch.org/get-started/locally/) (e.g. 1.10.1)
 
-The [pytorch library](https://pytorch.org/get-started/locally/) (1.10.1)
+[Transformers](https://huggingface.co/docs/transformers/installation#install-with-conda) from Huggingface (version 3 will probably not work): (e.g. 4.11.3). Depending on your OS and environment set up you can use one of these two commands for the installation.
+* `conda install -c huggingface transformers` 
+* `pip install transformers`
 
-[Transformers](https://huggingface.co/docs/transformers/installation#install-with-conda) from Huggingface (version 3 will probably not work): (4.11.3)
-* `conda install -c huggingface transformers` (was successful)
 
-[Sentence Piece](https://github.com/google/sentencepiece#installation):
-* `pip install sentencepiece`
-
-Old version used spacy<br>
+Spacy is only needed if the spacy tagger and dependency parser should be used for the gold extracted instruction. Otherwise stanza is used. <br>
 [Spacy](https://spacy.io/usage/models) library and model for english:
 * `pip install spacy`
 * `python -m spacy download en_core_web_sm`
 
-New version uses stanza instead of spacy<br>
-[Stanza](https://stanfordnlp.github.io/stanza/installation_usage.html) pipeline for pos tagging (and dependency parsing):
-* `pip install stanza`
 
-Other libraries:<br>
-* nltk
-* bs4 (only for reading the multisentence-amr xml files)
 
 ## AMR Parsing 
 
