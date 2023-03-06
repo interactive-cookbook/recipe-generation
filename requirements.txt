@@ -1,5 +1,7 @@
-networkx[default]==2.5.1
+beautifulsoup4==4.11.2
+networkx==2.5.1
+nltk==3.4.5
 penman==1.0.0
 sentencepiece==0.1.97
-nltk==3.4.5
 spacy==3.4.3
+stanza==1.4.2
