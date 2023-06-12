@@ -1,20 +1,19 @@
 # recipe-generation
 
-This repository contains the code for the master thesis project of generating action-event level recipe instructions using AMR as an intermediate representation. <br>
-The code for training the generation model by fine-tuning T5 for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.<br>
+This repository contains the code for the paper from "From Sentence to Action: Splitting AMR Graphs for Recipe Instructions", DMR 2023.<br>
+It contains the scripts to separate sentence-level AMR graphs into AMR graphs for individual action events and to generate action-event level recipe instructions for the obtained AMRs. <br>
+The code for training the generation model by fine-tuning a T5-based AMR-to-text model for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.<br>
 The [Wiki](https://github.com/interactive-cookbook/recipe-generation/wiki) contains more details about the algorithms implemented and AMR graphs structures and file format.
  
 The implemented steps of the overall pipeline are
 1. Parsing each recipe sentence by sentence into AMR graphs with recipe-level node-to-token alignments, see [AMR Parsing](https://github.com/interactive-cookbook/recipe-generation#amr-parsing)
 2. Separating the AMR graphs into sub-graphs in order to get one AMR per action-event in the corresponding action graph for the recipe, see [AMR Splitting](https://github.com/interactive-cookbook/recipe-generation#amr-splitting)
 * Extracting approximated gold instructions for the split action-level amr graphs as well as extracting action-level instructions based on dependency information only, see [Extraction](https://github.com/interactive-cookbook/recipe-generation#extracting-gold-instructions)
-* creating multi-sentence amr files from the amr 3.0 corpus, such thath each file contains all amrs from one document
 * Generating a recipe text based on an action graph, the amr graphs corresponding to each action node and a graph traversal, see [Generating Recipe Texts](https://github.com/interactive-cookbook/recipe-generation#generating-recipe-texts)
 
 ## Requirements 
 
-Tested with Python 3.6 and 3.7. (Python 3.9 should also work except possibly for the used AMR parser which was tested with Python 3.6-3.7 and which I did not test with a newer version.)<br>
-Note: If you do not need to run the AMR parser which requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)) then you can delete the amr_parsing folder or simply ignore the import error warnings when opening the repository e.g. as a PyCharm project. 
+Tested with Python 3.6 and newer versions. 
 
 Run `pip install -e .` in the main repository directory. This will enable successful import of all modules and functions within the repository. Additionally, this will already install most of the dependencies with the following two exceptions:
 
@@ -26,7 +25,10 @@ The [pytorch library](https://pytorch.org/get-started/locally/) (e.g. 1.10.1)
 * `pip install transformers`
 
 
-Spacy is only needed if the spacy tagger and dependency parser should be used for the gold extracted instruction. Otherwise stanza is used. <br>
+Note: Running the AMR parser requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)). 
+
+
+Spacy is only needed if the spacy tagger and dependency parser should be used for the gold extracted instruction. Otherwise stanza is used as default. <br>
 [Spacy](https://spacy.io/usage/models) library and model for english:
 * `pip install spacy`
 * `python -m spacy download en_core_web_sm`
