@@ -297,18 +297,12 @@ def update_root_node(sep_graph: nx.Graph, action_graph: nx.Graph, action_cluster
             if not action_nodes:
                 continue
 
-            # find the top node: in ARA 1 only 2 graphs with len(action_nodes) > 1, 5 graphs for ARA 2
+            # find the top node
             new_root_node = find_new_root(amr_nodes, sep_graph)
-            # The following 4 lines were the first attempt to find the appropriate root node but
-            # most times both led to the same node but if not the find_new_root method was better
-            #highest_action_node = find_highest_node(action_nodes, action_graph)
-            #main_amr_nodes_cluster = ac_cluster[highest_action_node]
-            #if main_amr_nodes_cluster[0] != new_root_node:
-                #print(sep_graph.name)
 
             sep_graph.graph['root'] = new_root_node
             # should never happen that more than one action cluster is related to an AMR
-            # which was split (if it wasn't, the original root would still be part of the graph)
+            # which was split (if it wasn't; the original root would still be part of the graph)
             break
 
     return sep_graph
