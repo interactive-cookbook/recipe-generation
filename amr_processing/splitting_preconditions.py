@@ -244,7 +244,7 @@ def conditions_fixing_tagger(labelled_path) -> bool:
                                 [(node1, edge1, node2), (node2, edge2, node3)]
     :return:
     """
-    # TODO: think about making a list of prepositions that should not get split from their action node
+
     labelled_edges = [trip[1] for trip in labelled_path]
     dir_changes = count_direction_changes(labelled_edges)
 
@@ -283,7 +283,6 @@ def conditions_fixing_tagger(labelled_path) -> bool:
             keep_together = True
         elif remove_role_numbering_edge(edge_label) == 'ARG' or remove_role_numbering_edge(edge_label) == 'ARG-of':
             keep_together = True
-            #print(labelled_path)
 
     # Allow also variants of the cases above where an 'and' node come between
     else:
@@ -292,12 +291,10 @@ def conditions_fixing_tagger(labelled_path) -> bool:
         if len(involved_edges) == 2 and cleaned_labelled_path[0] == 'ARG':
             if 'op' in cleaned_labelled_path:
                 keep_together = True
-                #print(labelled_path)
 
         elif len(involved_edges) == 2 and cleaned_labelled_path[-1] == 'ARG-of':
             if 'op-of' in cleaned_labelled_path:
                 keep_together = True
-                #print(labelled_path)
 
     if len(labelled_path) > 1 and not keep_together:
         e1 = labelled_path[0][1]
