@@ -1,14 +1,13 @@
 import networkx as nx
 import os
 
-
-# still need to organize the functions in a class
-# codebase taken from Katharina's work and adjusted/extended by Iris
-
+"""
+Functions to read a recipe / action graph from a file in conllu format and to create a networkX graph for it
+"""
 
 def _read_graph_conllu(conllu_graph_file, token_ids):
     """
-    Reads in a graph - either recipe graph or action graph - and extracts all nodes,
+    Reads in a graph - either a full recipe graph or action graph - and extracts all nodes,
     edges, the tag labels from the file
     :param conllu_graph_file: path to graph file in conllu format
     :param token_ids: whether the node labels should include the token ids
@@ -67,7 +66,7 @@ def _read_graph_conllu(conllu_graph_file, token_ids):
             node_tuples.append(node_tuple)
             complete_token = ""
 
-    # add 'end' node (should we add also the start node?)
+    # add 'end' node
     for child in children:
         if child not in parents:
             edge_list.append((child, "end", {"label": "end"}))
@@ -89,7 +88,7 @@ def _read_graph_conllu(conllu_graph_file, token_ids):
 
 def read_graph_from_conllu(conllu_graph_file, token_ids=True):
     """
-    Reads into a graph file - either recipe or action graph - in conllu format and transforms it into
+    Reads a graph file - either recipe or action graph - in conllu format and transforms it into
     a NetworkX object
     :param conllu_graph_file: path to graph file in conllu format
     :param token_ids: whether the node labels should include the token ids
@@ -114,15 +113,12 @@ def read_graph_from_conllu(conllu_graph_file, token_ids=True):
     conllu_graph_file_name = '.'.join(conllu_graph_file_name.split('.')[:-1])   # remove file ending .conllu
     G_name = "G_" + str(conllu_graph_file_name)
 
-    # attributes: key=node, value=dict("label":X, "tag":X, "origin":G_name, "alignment":node_aligned, "amr":corresponding_amr) # the attributes list will be expanded if needed
     nodes_attributes = collections.defaultdict(dict)
     for node_tuple in nodes:
         label = node_tuple[1]["label"]
         nodes_attributes[node_tuple[0]] = {"label": label, "tag": tags_dict[label],
-                                           "origin": G_name}  # "alignment":0, "amr":0}
+                                           "origin": G_name}
     nx.set_node_attributes(G, nodes_attributes)
-    # attributes can be accessed like this:
-    # print(G.nodes['1']['label'])
 
     return G
 

@@ -2,6 +2,9 @@ import random
 
 import networkx as nx
 
+"""
+Functions to order actions by traversing an action graph based on a heuristic
+"""
 
 def order_actions_topological(action_graph: nx.Graph):
     """
@@ -23,10 +26,11 @@ def order_actions_token_ids(action_graph: nx.DiGraph):
     """
     Order the nodes of an action graph by following the original order of actions
     as far as possible,
-    if the actions a1, a2, a3, a4 occur in this order in the original recipe
-    then
+    if the actions a1, a2, a3, a4 occur in this order in the original recipe but in the graph
+    a1 is parent of a4, a2 is parent of a4 and a4 is parent of a3 then the resulting order is
+    a1, a2, a3, a4
     :param action_graph:
-    :return:
+    :return: List of ordered nodes of action_grap
     """
     all_nodes = list(action_graph.nodes)
     remaining_nodes = all_nodes.copy()
@@ -60,10 +64,11 @@ def find_longest_path_start(candidate_nodes: list, end_node, graph: nx.DiGraph) 
     """
     Computes the path from each node in candidate_nodes to the end_node and returns the nodes from candidate_nodes
     that have the longest path to the end_node
-    :param candidate_nodes:
-    :param end_node:
+    :param candidate_nodes: list of nodes
+    :param end_node: the target end node
     :param graph:
-    :return:
+    :return: list with the node with longest path to end_node or all nodes with the max distance to the end_node if
+             several have the same longest path
     """
     current_max_len = 0
     current_starts = []
@@ -162,7 +167,7 @@ def order_actions_pf_lf(action_graph: nx.DiGraph, tie_strategy=None):
 
 def order_actions_pf_lf_id(action_graph: nx.DiGraph):
     """
-    Orders all nodes from the input graph in a the following way
+    Orders all nodes from the input graph in the following way
     1. start with the node without parents that has the longest path to the 'end' node
     2. continue with the child node if a) child has no other parent nodes or b) all parent nodes are already covered
     3. If child node has other not yet covered parents, choose the node without parents which has the longest path to an
@@ -177,7 +182,7 @@ def order_actions_pf_lf_id(action_graph: nx.DiGraph):
 
 def order_actions_pf(action_graph: nx.DiGraph):
     """
-    Orders all nodes from the input graph in a the following way
+    Orders all nodes from the input graph in the following way
     1. start with a node without parents
     2. continue with the child node if a) child has no other parent nodes or b) all parent nodes are already covered
     3. If child node has other not yet covered parents, choose a node without parents which has a path to an uncovered parent node

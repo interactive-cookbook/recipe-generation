@@ -113,7 +113,6 @@ def find_action_aligned_amr(action_node: str, amr_graphs: List[nx.Graph]):
             if aligned_token == action_node:
                 return amr
 
-    # TODO: decide what to do here
     print(f'Warning: no aligned AMR graph found for action node {action_node}')
     return None
 
