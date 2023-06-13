@@ -23,7 +23,9 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
     final_split_amrs = []
     any_fallback = False
 
+    # loop over the different action clusters
     for current_cluster in amr_clusters:
+        # pair nodes from current cluster with nodes from all other clusters
         cluster_pairings = pair_nodes_from_cluster(cluster_to_pair=current_cluster, all_clusters=amr_clusters)
 
         manipulated_amr, undirected_manipulated_amr, fallback = separate_current_cluster(amr_graph=amr_graph,
@@ -31,11 +33,13 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
         if fallback:
             any_fallback = True
 
+        # if not possible to separate the AMR for at least one action cluster then return original AMR and log information
         if not manipulated_amr:
             with open(log_path, 'a', encoding='utf-8') as out_file:
                 out_file.write(f'AMR graph {amr_graph.name} was not separable.\n')
             return [amr_graph]
 
+        # extract the component of the now disconnected AMR that belongs to the current action cluster
         components = nx.connected_components(undirected_manipulated_amr)
         component_subgraphs = [nx.subgraph(manipulated_amr, comp_nodes).copy() for comp_nodes in components]
 
@@ -49,12 +53,15 @@ def split_amr(amr_graph: nx.DiGraph, action_clusters: List[Dict], log_path) -> L
 
         final_split_amrs.append(subgraph_current_cluster)
 
+    # check whether splitting the AMR into A-AMRs resulted in lost nodes (except for 'before' and 'after' nodes)
+    # if yes, treat as non-separable
     lost_nodes = check_for_lost_nodes(amr_graph, final_split_amrs)
     if lost_nodes:
         with open(log_path, 'a', encoding='utf-8') as out_file:
             out_file.write(f'AMR graph {amr_graph.name} was not separable without losing nodes.\n')
         final_split_amrs = [amr_graph]
 
+    # log which AMRs where split using fallback rules
     elif any_fallback:
         with open(log_path, 'a', encoding='utf-8') as out_file:
             out_file.write(f'AMR graph {amr_graph.name} was separated with the fallback rules.\n')
@@ -182,9 +189,9 @@ def find_edge_to_remove(amr_graph: nx.Graph, path) -> Tuple:
     :param amr_graph: the amr graph
     :param path: path between two action nodes
     :return: a triple
-             'node', ('dummy', 'dummy'), node_to_remove if a 'before' or 'after' node should be removed
-             'edge', edge_to_remove, meeting_node if an edge fulfilling the splitting criteria was found
-             None, None, None if no node or edge to remove was found
+             'node', ('dummy', 'dummy'), node_to_remove     if a 'before' or 'after' node should be removed
+             'edge', edge_to_remove, meeting_node           if an edge fulfilling the splitting criteria was found
+             None, None, None                               if no node or edge to remove was found
     """
 
     path_triples = get_triples_single_path(amr_graph, path)
@@ -249,8 +256,8 @@ def find_edge_to_remove_fallback(amr_graph: nx.Graph, path) -> Tuple:
     :param amr_graph: the amr graph
     :param path: path between two action nodes
     :return: a triple
-             'edge', edge_to_remove, meeting_node if an edge fulfilling the fallback splitting criteria was found
-             None, None, None if no edge to remove was found
+             'edge', edge_to_remove, meeting_node       if an edge fulfilling the fallback splitting criteria was found
+             None, None, None                           if no edge to remove was found
     """
 
     path_triples = get_triples_single_path(amr_graph, path)
