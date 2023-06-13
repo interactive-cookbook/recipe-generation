@@ -6,6 +6,11 @@ from utils.paths import ARA_DIR
 
 
 def compare_traversals(action_dir):
+    """
+    Creates all versions of the action orderings (i.e. using the five different heuristics) for all action graphs in action_dir
+    and compares for each pair of ordering types how often a specific node is preceded by the same node in both orderings
+    :param action_dir:
+    """
 
     top_vs_id = {'equal': 0, 'non_equal': 0}
     top_vs_pf = {'equal': 0, 'non_equal': 0}
@@ -74,7 +79,13 @@ def compare_traversals(action_dir):
 
 
 def compare_traversals_pairwise(trav_1: List, trav_2: List) -> Tuple[int, int]:
-
+    """
+    Checks how often a specific node is preceded by the same node in both orderings
+    :param trav_1: list of ordered nodes
+    :param trav_2: list of ordered nodes
+    :return: number of nodes with same preceding node
+             number of nodes with different preceding node
+    """
     equal = 0
     non_equal = 0
 

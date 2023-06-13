@@ -5,9 +5,14 @@ from amr_processing.penman_networkx_conversions import networkx2penman
 import penman
 
 
-def amrs_with_alignments():
-
-    new_dir = Path('data/recipe_amrs_sentences_alignments_ara1')
+def amrs_with_alignments(output_dir):
+    """
+    Reads the S-AMRs and corresponding action graphs, extracts the action alignment information from the pairs
+    and saves the S-AMRs with the information which nodes are action-aligned as part of the metadata (similar as
+    is done for the A-AMRs created by the splitting algorithm)
+    :param output_dir: name of directory where the modified amrs get saved
+    """
+    new_dir = Path(f'data/{output_dir}')
     new_dir.mkdir(exist_ok=True, parents=True)
 
     # read amrs and action graphs
@@ -30,4 +35,4 @@ def amrs_with_alignments():
 
 
 if __name__=='__main__':
-    amrs_with_alignments()
+    amrs_with_alignments('recipe_amrs_sentences_alignments_ara1')

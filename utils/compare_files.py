@@ -1,3 +1,5 @@
+# Only debugging helpers; functions to compare two files line by line
+
 def compare_sent_by_sent(path1, path2):
     file1 = open(path1, 'r', encoding='utf-8')
     file2 = open(path2, 'r', encoding='utf-8')

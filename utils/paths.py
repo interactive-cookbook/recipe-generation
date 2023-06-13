@@ -1,17 +1,22 @@
 from datetime import datetime
 from pathlib import Path
 
+"""
+Definitions of paths to the main folders for reading and saving data and functions related to directories and file structue
+"""
 
 # PATHS THAT USUALLY DO NOT CHANGE
 PROJ_DIR = Path(__file__).resolve().parent.parent
+# main directory for the graph data
 DATA_DIR = PROJ_DIR / Path('data')
-ARA_DIR = DATA_DIR / Path('ara1.1')
+# subdirectories of the main data directory:
+ARA_DIR = DATA_DIR / Path('ara1.1')                 # directory with the action graphs (i.e. ARA corpus)
 #DATA_DIR = PROJ_DIR / Path('data_ara2')
 #ARA_DIR = DATA_DIR / Path('ara2.0')
-SENT_AMR_DIR = DATA_DIR / Path('recipe_amrs_sentences')
-ACTION_AMR_DIR = DATA_DIR / Path('recipe_amrs_actions')
-RAW_COREF_DIR = DATA_DIR / Path('coref_data_raw')
-JOINED_COREF_DIR = DATA_DIR / Path('coref_data_joined')
+SENT_AMR_DIR = DATA_DIR / Path('recipe_amrs_sentences')     # directory where the S-AMRs are located
+ACTION_AMR_DIR = DATA_DIR / Path('recipe_amrs_actions')     # directory where the A-AMRs get saved
+RAW_COREF_DIR = DATA_DIR / Path('coref_data_raw')           # directory with the raw coreference clusters
+JOINED_COREF_DIR = DATA_DIR / Path('coref_data_joined')     # directory where joined coreference information is stored / located
 
 # Directory for storing the logged information about e.g. non-separable AMRs
 LOG_DIR = PROJ_DIR / Path('logs')
