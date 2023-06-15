@@ -83,8 +83,9 @@ The separated AMRs that the splitting algorithm produces still include the origi
 * `sep_dir`: optional; path to the parent directory with the separated action-level amrs, defaults to ACTION_AMR_DIR defined in utils/paths
 * `orig_dir`: optional; path to the parent directory with the original sentence-level amrs, defaults to SENT_AMR_DIR defined in utils/paths
 * `ara_dir`: optional; path to the parent directory of the ara corpus, defaults to ARA_DIR defined in utils/paths
-* `out_dir`: required; path for the directory where the amrs with their newly created instructions get saved to
-* `--text`: optional; include if only the sentences should be saved but without the actual amr graphs
+* `output dir`: path to the directory where the generated instructions should be saved, gets created if it doesn't exist yet; will have the same folder structure as the A-AMR dir
+* `coref`: optional; whether to use coreference information in order to remove redundant actions; Requires prepared coreference files in the JOINED_COREF_DIR directory; defaults to False
+* `text`: optional; whether only the generated instructions should be save in output files or the A-AMRs together with the extracted gold instructions as part of the metadata; defaults to False 
 
 For more details about the extraction itself see the [wiki page](https://github.com/interactive-cookbook/recipe-generation/wiki/Gold-Split-Corpus).
 
