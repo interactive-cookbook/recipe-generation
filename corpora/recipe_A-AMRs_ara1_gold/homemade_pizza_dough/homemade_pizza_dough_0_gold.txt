@@ -1,0 +1,239 @@
+# ::id homemade_pizza_dough_0_instr0
+# ::name homemade_pizza_dough_0_instr0
+# ::snt In a large bowl , mix the water , salt , and yeast together .
+# ::root m
+# ::alignments m, y2
+# ::snt_id homemade_pizza_dough_0_instr0
+(m / mix-01~e.6
+   :mode imperative~e.15
+   :ARG0 (y2 / you~e.6)
+   :ARG1 (a / and~e.12
+            :op1 (w / water~e.8)
+            :op2 (s / salt~e.10)
+            :op3 (y / yeast~e.13))
+   :location (b / bowl~e.4
+                :mod (l / large~e.3))
+   :manner (t / together~e.14))
+
+# ::id homemade_pizza_dough_0_instr1
+# ::name homemade_pizza_dough_0_instr1
+# ::snt Stir in the flour until you have a shaggy dough .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id homemade_pizza_dough_0_instr1
+(s2 / stir-01~e.16
+    :mode imperative~e.16
+    :ARG0 (y / you~e.16)
+    :ARG1 (f / flour~e.19)
+    :time (u / until~e.20
+             :op1 (h / have-03~e.22
+                     :ARG0 y
+                     :ARG1 (d / dough~e.25
+                              :mod (s / shaggy~e.24)))))
+
+# ::id homemade_pizza_dough_0_instr2
+# ::name homemade_pizza_dough_0_instr2
+# ::snt Knead a few times with your hands - either on a flat surface or in the bowl ( your choice ! )
+# ::root o
+# ::alignments o, y, i
+# ::snt_id homemade_pizza_dough_0_instr2
+(o / okay-04~e.27
+   :mode extreme~e.27
+   :mode imperative~e.27
+   :ARG1 (y / you~e.27
+            :part h)
+   :frequency (f / few~e.29)
+   :instrument (h / hand~e.33)
+   :location (o2 / or~e.40
+                 :op1 (s / surface~e.39
+                         :ARG1-of (f2 / flat-06~e.38))
+                 :op2 (b / bowl~e.43)
+                 :ARG1-of (c / choose-01~e.46
+                             :ARG0 y))
+   :rel (i / imperative~e.27)
+   :ARG0 (y1 / you~e.27))
+
+# ::id homemade_pizza_dough_0_instr3
+# ::name homemade_pizza_dough_0_instr3
+# ::snt - until all the flour is incorporated .
+# ::root b
+# ::alignments
+# ::snt_id homemade_pizza_dough_0_instr3
+(b / be-temporally-at-91~e.50
+   :ARG2 (u / until~e.50
+            :op1 (i / incorporate-02~e.55
+                    :ARG1 (f / flour~e.53
+                             :mod (a / all~e.51)))))
+
+# ::id homemade_pizza_dough_0_instr4_1
+# ::name homemade_pizza_dough_0_instr4_1
+# ::snt Cover the bowl with plastic wrap .
+# ::root c
+# ::alignments c
+# ::snt_id homemade_pizza_dough_0_instr4
+(c / cover-02~e.57
+   :mode imperative~e.57
+   :ARG0 (y / you~e.57)
+   :ARG1 (b / bowl~e.59)
+   :ARG2 (w / wrap~e.62
+            :consist-of (p / plastic~e.61)))
+
+# ::id homemade_pizza_dough_0_instr4_0
+# ::name homemade_pizza_dough_0_instr4_0
+# ::snt Let the bowl it sit at least 2 hours or until doubled .
+# ::root l
+# ::alignments l, s, d
+# ::snt_id homemade_pizza_dough_0_instr4
+(l / let-01~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (s / sit-01~e.66
+            :ARG1 (b / bowl~e.59)
+            :duration (o / or~e.71
+                         :op1 (a2 / at-least~e.68
+                                  :op1 (t / temporal-quantity~e.70
+                                          :unit (h / hour~e.70)
+                                          :quant 2~e.69))
+                         :op2 (u / until~e.72
+                                 :op1 (d / double-01~e.73
+                                         :ARG1 b)))))
+
+# ::id homemade_pizza_dough_0_instr5_0
+# ::name homemade_pizza_dough_0_instr5_0
+# ::snt * I leaving for work in the morning .
+# ::root w2
+# ::alignments w2
+# ::snt_id homemade_pizza_dough_0_instr5
+(w2 / work-01~e.84
+    :ARG0 (i / i~e.76)
+    :ARG2-of (l / leave-11~e.82
+                :time (d / date-entity~e.87
+                         :dayperiod (m2 / morning~e.87))
+                :ARG0 i))
+
+# ::id homemade_pizza_dough_0_instr5_1
+# ::name homemade_pizza_dough_0_instr5_1
+# ::snt Often mix this up and let it sit on the counter all day until we get home around dinner time .
+# ::root a2
+# ::alignments s
+# ::snt_id homemade_pizza_dough_0_instr5
+(a2 / and~e.88
+    :frequency (o / often~e.77)
+    :op1 (m / mix-up-03~e.78
+            :ARG0 o
+            :ARG1 (t / this~e.79))
+    :op2 (l2 / let-01~e.89
+             :ARG1 (s / sit-01~e.91
+                      :ARG1 t
+                      :ARG2 (c / counter~e.94)
+                      :duration (d2 / day~e.96
+                                    :mod (a / all~e.95))
+                      :duration (u / until~e.97
+                                   :op1 (g / get-05~e.99
+                                           :ARG1 (w / we~e.98)
+                                           :ARG2 (h / home~e.100)
+                                           :time (a3 / around~e.101
+                                                     :op1 (d3 / dinner~e.102)))))))
+
+# ::id homemade_pizza_dough_0_instr6
+# ::name homemade_pizza_dough_0_instr6
+# ::snt The longer it sits , the better the flavor !
+# ::root c
+# ::alignments
+# ::snt_id homemade_pizza_dough_0_instr6
+(c / correlate-91~e.106
+   :ARG1 (m / more~e.106
+            :ARG3-of (h / have-degree-91~e.106
+                        :ARG1 (s / sit-01~e.108
+                                 :ARG1 (i / it~e.107)
+                                 :ARG1-of l)
+                        :ARG2 (l / long-03~e.106)))
+   :ARG2 (m2 / more~e.106
+             :ARG3-of (h2 / have-degree-91~e.111
+                          :ARG1 (f / flavor~e.113)
+                          :ARG2 (g / good-02~e.111
+                                   :ARG1 f))))
+
+# ::id homemade_pizza_dough_0_instr7
+# ::name homemade_pizza_dough_0_instr7
+# ::snt Once the dough has doubled and you 're ready to cook , cut the dough in half .
+# ::root c2
+# ::alignments c2, d
+# ::snt_id homemade_pizza_dough_0_instr7
+(c2 / cut-01~e.127
+    :mode imperative~e.127
+    :ARG0 (y / you~e.127)
+    :ARG1 (d2 / dough~e.129)
+    :manner (h / half~e.131)
+    :time (a / and~e.120
+             :op1 (d / double-01~e.119
+                     :ARG1 d2)
+             :op2 (r / ready-02~e.123
+                     :ARG1 y
+                     :ARG2 (c / cook-01~e.125
+                              :ARG0 y))))
+
+# ::id homemade_pizza_dough_0_instr8_1
+# ::name homemade_pizza_dough_0_instr8_1
+# ::snt Flour surface .
+# ::root b
+# ::alignments b
+# ::snt_id homemade_pizza_dough_0_instr8
+(b / bake-01~e.135
+   :mode imperative~e.135
+   :ARG2 (s / surface~e.136)
+   :ARG0 (y / you~e.135))
+
+# ::id homemade_pizza_dough_0_instr8_0
+# ::name homemade_pizza_dough_0_instr8_0
+# ::snt On a surface , roll out the dough until it 's about 1/4 of an inch thick .
+# ::root r
+# ::alignments r
+# ::snt_id homemade_pizza_dough_0_instr8
+(r / roll-01~e.138
+   :mode imperative~e.138
+   :ARG0 (y / you~e.138)
+   :ARG1 (d2 / dough~e.141)
+   :duration (u / until~e.142
+                :op1 (t / thick-03~e.150
+                        :ARG1 d2
+                        :ARG2 (a / about~e.145
+                                 :op1 (d / distance-quantity~e.149
+                                         :unit (i / inch~e.149)
+                                         :quant "1/4"~e.146))))
+   :location (s / surface~e.136))
+
+# ::id homemade_pizza_dough_0_instr9_0
+# ::name homemade_pizza_dough_0_instr9_0
+# ::snt Top with your favorite sauce and toppings .
+# ::root t5
+# ::alignments t5
+# ::snt_id homemade_pizza_dough_0_instr9
+(t5 / top~e.152
+    :ARG0 (y / you~e.154)
+    :ARG2 (a / and~e.157
+             :op1 (s / sauce~e.156
+                     :mod (f / favorite~e.155
+                             :poss y
+                             :mod-of t4))
+             :op2 (t4 / thing~e.158
+                      :ARG1-of (b2 / base-01~e.158))))
+
+# ::id homemade_pizza_dough_0_instr9_1
+# ::name homemade_pizza_dough_0_instr9_1
+# ::snt With your bake at 475 degrees for 12 - 15 minutes .
+# ::root b
+# ::alignments b
+# ::snt_id homemade_pizza_dough_0_instr9
+(b / bake-01~e.160
+   :ARG0 (y / you~e.154)
+   :duration (b3 / between~e.165
+                 :op1 (t2 / temporal-quantity~e.168
+                          :unit (m / minute~e.168)
+                          :quant 12~e.165)
+                 :op2 (t3 / temporal-quantity~e.168
+                          :unit (m2 / minute~e.168)
+                          :quant 15~e.167))
+   :location (t / temperature-quantity~e.169
+                :quant 475~e.162))
+

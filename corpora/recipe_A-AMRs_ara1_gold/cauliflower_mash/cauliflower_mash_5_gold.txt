@@ -1,0 +1,145 @@
+# ::id cauliflower_mash_5_instr0_0
+# ::name cauliflower_mash_5_instr0_0
+# ::snt Separate the cauliflower into florets .
+# ::root s
+# ::alignments s
+# ::snt_id cauliflower_mash_5_instr0
+(s / separate-01~e.1
+   :mode imperative~e.5
+   :ARG0 (y / you~e.1)
+   :ARG1 (c / cauliflower~e.3)
+   :ARG2 (p / poppy~e.5))
+
+# ::id cauliflower_mash_5_instr0_1
+# ::name cauliflower_mash_5_instr0_1
+# ::snt Chop the core finely .
+# ::root c2
+# ::alignments c2
+# ::snt_id cauliflower_mash_5_instr0
+(c2 / chop-up-03~e.7
+    :mode imperative~e.7
+    :ARG0 (y / you~e.7)
+    :ARG1 (c3 / core~e.9)
+    :ARG1-of (f / fine-03~e.10))
+
+# ::id cauliflower_mash_5_instr1_0
+# ::name cauliflower_mash_5_instr1_0
+# ::snt Bring about 1 cup of water to a simmer in a pot .
+# ::root b
+# ::alignments b
+# ::snt_id cauliflower_mash_5_instr1
+(b / bring-01~e.12
+   :ARG0 (y / you~e.12)
+   :ARG1 (w / water~e.17
+            :quant (a / about~e.13
+                      :op1 (v / volume-quantity~e.15
+                              :unit (c2 / cup~e.15)
+                              :quant 1~e.14)))
+   :ARG2 (s / simmer-01~e.20
+            :ARG1 w
+            :location (p / pot~e.23)))
+
+# ::id cauliflower_mash_5_instr1_1
+# ::name cauliflower_mash_5_instr1_1
+# ::snt Then add the cauliflower .
+# ::root a2
+# ::alignments a2
+# ::snt_id cauliflower_mash_5_instr1
+(a2 / add-02~e.26
+    :ARG0 (y / you~e.26)
+    :ARG1 (c / cauliflower~e.28)
+    :time (t / then~e.25))
+
+# ::id cauliflower_mash_5_instr2_0
+# ::name cauliflower_mash_5_instr2_0
+# ::snt Cover .
+# ::root c
+# ::alignments c
+# ::snt_id cauliflower_mash_5_instr2
+(c / cover-02~e.30
+   :mode imperative~e.30
+   :ARG0 (y / you~e.30))
+
+# ::id cauliflower_mash_5_instr2_1
+# ::name cauliflower_mash_5_instr2_1
+# ::snt Turn the heat to medium .
+# ::root t
+# ::alignments t
+# ::snt_id cauliflower_mash_5_instr2
+(t / turn-01~e.32
+   :mode imperative~e.37
+   :ARG0 (y / you~e.32)
+   :ARG1 (h / heat-01~e.34)
+   :ARG4 (m / medium~e.36))
+
+# ::id cauliflower_mash_5_instr3
+# ::name cauliflower_mash_5_instr3
+# ::snt Cook the cauliflower for 12 - 15 minutes or until very tender .
+# ::root c2
+# ::alignments c2, y
+# ::snt_id cauliflower_mash_5_instr3
+(c2 / cook-01~e.38
+    :mode imperative~e.38
+    :ARG0 (y / you~e.38)
+    :ARG1 (c / cauliflower~e.40)
+    :duration (o / or~e.46
+                 :op1 (b / between~e.42
+                         :op1 (t2 / temporal-quantity~e.45
+                                  :unit (m / minute~e.45)
+                                  :quant 12~e.42)
+                         :op2 (t / temporal-quantity~e.44
+                                 :unit (m2 / minute~e.45)
+                                 :quant 15~e.44))
+                 :op2 (u / until~e.47
+                         :op1 (t3 / tender-02~e.49
+                                  :ARG2 c
+                                  :degree (v / very~e.48)))))
+
+# ::id cauliflower_mash_5_instr4_0
+# ::name cauliflower_mash_5_instr4_0
+# ::snt Drain and all of the water ( the drier the cauliflower is , the better ! ) .
+# ::root m3
+# ::alignments d2
+# ::snt_id cauliflower_mash_5_instr4
+(m3 / multi-sentence~e.58
+    :snt1 (a2 / and~e.52
+              :op1 (d2 / drain-01~e.51
+                       :ARG0 (y / you~e.51)
+                       :ARG1 (w / water~e.57
+                                :mod (a / all~e.54))
+                       :mode imperative~e.51))
+    :snt2 (a3 / and~e.68
+              :op1 (m / more~e.60
+                      :ARG3-of (h / have-degree-91~e.60
+                                  :ARG1 (c / cauliflower~e.62)
+                                  :ARG2 (d3 / dry-02~e.60
+                                            :ARG1 m
+                                            :ARG1 c)))
+              :op2 (m2 / more~e.60
+                       :ARG3-of (h2 / have-degree-91~e.66
+                                    :ARG2 (g / good-02~e.66)))))
+
+# ::id cauliflower_mash_5_instr4_1
+# ::name cauliflower_mash_5_instr4_1
+# ::snt And discard all of the water ( the drier the cauliflower is , the better ! ) .
+# ::root m3
+# ::alignments d
+# ::snt_id cauliflower_mash_5_instr4
+(m3 / multi-sentence~e.58
+    :snt1 (a2 / and~e.52
+              :op2 (d / discard-01~e.53
+                      :ARG0 (y / you~e.53)
+                      :ARG1 (w / water~e.57
+                               :mod (a / all~e.54))
+                      :mode imperative~e.51))
+    :snt2 (a3 / and~e.68
+              :op1 (m / more~e.60
+                      :ARG3-of (h / have-degree-91~e.60
+                                  :ARG1 (c / cauliflower~e.62)
+                                  :ARG2 (d3 / dry-02~e.60
+                                            :ARG1 m
+                                            :ARG1 c)))
+              :op2 (m2 / more~e.60
+                       :ARG3-of (h2 / have-degree-91~e.66
+                                    :ARG2 (g / good-02~e.66)))))
+

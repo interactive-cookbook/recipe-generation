@@ -1,0 +1,216 @@
+# ::id garam_masala_1_instr0_0
+# ::name garam_masala_1_instr0_0
+# ::snt Heat a heavy skillet on a medium flame .
+# ::root h2
+# ::alignments h2
+# ::snt_id garam_masala_1_instr0
+(h2 / heat-01~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (s2 / skillet~e.4
+              :mod (h3 / heavy~e.3))
+    :prep-on (f2 / flame~e.8
+                 :mod (m2 / medium~e.7)))
+
+# ::id garam_masala_1_instr0_2
+# ::name garam_masala_1_instr0_2
+# ::snt Gently roast all ingredients except the dry ginger .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_1_instr0
+(r / roast-01~e.11
+   :mode imperative~e.11
+   :ARG1 (i / ingredient~e.13
+            :mod (a2 / all~e.12)
+            :ARG2-of (e / except-01~e.23
+                        :ARG1 (g2 / ginger~e.26
+                                  :ARG1-of (d2 / dry-08~e.25))))
+   :manner (g / gentle~e.10)
+   :ARG0 (y / you~e.11)
+   :ARG1-of (m / mean-01~e.14))
+
+# ::id garam_masala_1_instr0_3
+# ::name garam_masala_1_instr0_3
+# ::snt All ingredients except the dry ginger , until they turn a few shades darker .
+# ::root u
+# ::alignments t2
+# ::snt_id garam_masala_1_instr0
+(u / until~e.28
+   :op1 (t2 / turn-02~e.30
+            :ARG1 (i / ingredient~e.13
+                     :mod (a2 / all~e.12)
+                     :ARG2-of (e / except-01~e.23
+                                 :ARG1 (g2 / ginger~e.26
+                                           :ARG1-of (d2 / dry-08~e.25))))
+            :ARG2 (h / have-degree-91~e.34
+                     :ARG1 i
+                     :ARG2 (d / dark-02~e.34)
+                     :ARG3 (m3 / more~e.34
+                               :quant (s / shade~e.33
+                                         :quant (f / few~e.32))))))
+
+# ::id garam_masala_1_instr0_1
+# ::name garam_masala_1_instr0_1
+# ::snt Leave cardamom in its pods till later .
+# ::root l
+# ::alignments l
+# ::snt_id garam_masala_1_instr0
+(l / leave-12~e.15
+   :mode imperative~e.35
+   :ARG0 (y / you~e.15)
+   :ARG1 (c / cardamom~e.16)
+   :ARG2 (p / pod~e.19
+            :poss c)
+   :time (t / till~e.20
+            :op1 (a / after~e.21
+                    :op1 (n / now~e.21)))
+   :ARG2-of (m / mean-01~e.14))
+
+# ::id garam_masala_1_instr1
+# ::name garam_masala_1_instr1
+# ::snt Stir occasionally .
+# ::root s
+# ::alignments s, y
+# ::snt_id garam_masala_1_instr1
+(s / stir-01~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :frequency (o / occasional~e.37))
+
+# ::id garam_masala_1_instr2
+# ::name garam_masala_1_instr2
+# ::snt Do not be tempted to speed up the process by turning up the heat as the spices will burn on the outside and remain raw on the inside .
+# ::root t
+# ::alignments
+# ::snt_id garam_masala_1_instr2
+(t / tempt-01~e.42
+   :mode imperative~e.39
+   :polarity -~e.40
+   :ARG1 (y / you~e.39)
+   :ARG3 (s / speed-up-02~e.44
+            :ARG0 y
+            :ARG1 (p / process-02~e.47)
+            :manner (t2 / turn-up-15~e.49
+                        :ARG0 y
+                        :ARG1 (h / heat-01~e.52)))
+   :rel (e / enzyme~e.55)
+   :ARG1-of (c / cause-01~e.53
+               :ARG0 (a / and~e.61
+                        :op1 (b / burn-01~e.57
+                                :ARG1 (n / nut~e.55)
+                                :location (o / outside~e.60))
+                        :op2 (r2 / remain-01~e.62
+                                 :ARG1 n
+                                 :ARG3 (r / raw~e.63)
+                                 :location (i / inside~e.66)))))
+
+# ::id garam_masala_1_instr3_1
+# ::name garam_masala_1_instr3_1
+# ::snt When the spices are roasted turn off the heat .
+# ::root t
+# ::alignments t
+# ::snt_id garam_masala_1_instr3
+(t / turn-off-07~e.73
+   :mode imperative~e.82
+   :ARG0 (y / you~e.73)
+   :ARG1 (n / nut~e.70)
+   :ARG1 (h / heat-01~e.76)
+   :time (d / date-entity~e.70
+            :time (r / roast-01~e.72
+                     :ARG1 n)))
+
+# ::id garam_masala_1_instr3_0
+# ::name garam_masala_1_instr3_0
+# ::snt When the spices are roasted allow them to cool .
+# ::root a
+# ::alignments a, c
+# ::snt_id garam_masala_1_instr3
+(a / allow-01~e.78
+   :mode imperative~e.82
+   :ARG0 (y / you~e.78)
+   :ARG1 (c / cool-06~e.81
+            :ARG1 (n / nut~e.70))
+   :time (d / date-entity~e.70
+            :time (r / roast-01~e.72
+                     :ARG1 n)))
+
+# ::id garam_masala_1_instr4_2
+# ::name garam_masala_1_instr4_2
+# ::snt With all the other roast spices .
+# ::root r2
+# ::alignments r2
+# ::snt_id garam_masala_1_instr4
+(r2 / roast-01~e.101
+    :mode imperative~e.101
+    :ARG1 (n / nut~e.102
+             :mod (o / other~e.100)
+             :mod (a / all~e.98))
+    :ARG0 (y / you~e.101))
+
+# ::id garam_masala_1_instr4_0
+# ::name garam_masala_1_instr4_0
+# ::snt Once cooled , the cardamom seeds mix them back with all the other spices .
+# ::root m
+# ::alignments m, b
+# ::snt_id garam_masala_1_instr4
+(m / mix-01~e.94
+   :mode imperative~e.103
+   :ARG0 (y / you~e.94)
+   :ARG1 (s / seed~e.89
+            :mod (c / cardamom~e.88))
+   :ARG3 (n / nut~e.102
+            :mod (o / other~e.100)
+            :mod (a / all~e.98))
+   :manner (b / back~e.96)
+   :time (c2 / cool-01~e.84))
+
+# ::id garam_masala_1_instr4_1
+# ::name garam_masala_1_instr4_1
+# ::snt Once cooled , remove the cardamom seeds from their skins .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_1_instr4
+(r / remove-01~e.86
+   :mode imperative~e.86
+   :ARG0 (y / you~e.86)
+   :ARG1 (s / seed~e.89
+            :mod (c / cardamom~e.88)
+            :part s2)
+   :ARG2 (s2 / skin~e.92)
+   :time (c2 / cool-01~e.84))
+
+# ::id garam_masala_1_instr5
+# ::name garam_masala_1_instr5
+# ::snt Grind them all together , to a fine powder in a clean , dry coffee grinder .
+# ::root g
+# ::alignments g, y
+# ::snt_id garam_masala_1_instr5
+(g / grind-01~e.104
+   :mode imperative~e.104
+   :ARG0 (y / you~e.104)
+   :ARG1 (t / they~e.105
+            :mod (a / all~e.106))
+   :degree (t3 / together~e.107)
+   :instrument (t2 / thing~e.116
+                   :ARG1-of (c / clean-04~e.115)
+                   :ARG1-of (d / dry-08~e.117)
+                   :instrument-of (g2 / grind-01~e.119
+                                      :ARG1 (c2 / coffee~e.118)))
+   :rel (p / powder-01~e.112
+           :ARG1-of (f / fine-02~e.111)))
+
+# ::id garam_masala_1_instr6
+# ::name garam_masala_1_instr6
+# ::snt Store in an air - tight container in a cool , dark place .
+# ::root s
+# ::alignments s
+# ::snt_id garam_masala_1_instr6
+(s / store-01~e.121
+   :mode imperative~e.121
+   :location (c / container~e.127
+                :location (p / place~e.133
+                             :ARG1-of (d / dark-02~e.132)
+                             :ARG1-of (c2 / cool-01~e.130))
+                :ARG1-of (t / tight-05~e.126
+                            :ARG2 (a / air~e.124)))
+   :ARG0 (y / you~e.121))
+

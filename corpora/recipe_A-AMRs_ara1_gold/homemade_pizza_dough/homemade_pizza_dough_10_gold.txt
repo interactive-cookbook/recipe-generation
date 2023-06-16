@@ -1,0 +1,102 @@
+# ::id homemade_pizza_dough_10_instr0_0
+# ::name homemade_pizza_dough_10_instr0_0
+# ::snt In my kitchen - aid mixer - I add the warm water , the salt , the sugar and olive oil and yeast .
+# ::root a
+# ::alignments a
+# ::snt_id homemade_pizza_dough_10_instr0
+(a / add-02~e.9
+   :ARG0 (i / i~e.8)
+   :ARG1 (a3 / and~e.13
+             :op1 (w3 / water~e.12
+                      :ARG1-of (w2 / warm-07~e.11))
+             :op2 (s / salt~e.15)
+             :op3 (s2 / sugar~e.18)
+             :op4 (o / oil~e.21
+                     :mod (o2 / olive~e.20))
+             :op5 (y / yeast~e.23))
+   :location (t2 / thing~e.6
+                 :location (k / kitchen~e.3)
+                 :poss i
+                 :ARG0-of (a2 / aid-01~e.5)
+                 :instrument-of (m2 / mix-01~e.6)))
+
+# ::id homemade_pizza_dough_10_instr0_1
+# ::name homemade_pizza_dough_10_instr0_1
+# ::snt I wait 5 minutes .
+# ::root w
+# ::alignments w
+# ::snt_id homemade_pizza_dough_10_instr0
+(w / wait-01~e.25
+   :mode imperative~e.25
+   :ARG1 (i / i~e.8)
+   :duration (t / temporal-quantity~e.27
+                :unit (m / minute~e.27)
+                :quant 5~e.26)
+   :ARG0 (y / you~e.25))
+
+# ::id homemade_pizza_dough_10_instr1_0
+# ::name homemade_pizza_dough_10_instr1_0
+# ::snt Next add the flour .
+# ::root a
+# ::alignments a
+# ::snt_id homemade_pizza_dough_10_instr1
+(a / add-02~e.30
+   :mode imperative~e.30
+   :ARG1 (f / flour~e.32)
+   :time (n / next~e.29)
+   :ARG0 (y / you~e.30))
+
+# ::id homemade_pizza_dough_10_instr1_1
+# ::name homemade_pizza_dough_10_instr1_1
+# ::snt Next use the dough hook .
+# ::root u
+# ::alignments u
+# ::snt_id homemade_pizza_dough_10_instr1
+(u / use-01~e.34
+   :mode imperative~e.34
+   :ARG1 (h / hook~e.37
+            :purpose (d / dough~e.36))
+   :time (n / next~e.29)
+   :ARG0 (y / you~e.34))
+
+# ::id homemade_pizza_dough_10_instr1_2
+# ::name homemade_pizza_dough_10_instr1_2
+# ::snt Next , mix together for 5 - 6 minutes .
+# ::root m3
+# ::alignments m3
+# ::snt_id homemade_pizza_dough_10_instr1
+(m3 / mix-01~e.39
+    :mode imperative~e.39
+    :duration (b / between~e.42
+                 :op1 (t / temporal-quantity~e.45
+                         :unit (m / minute~e.45)
+                         :quant 5~e.42)
+                 :op2 (t2 / temporal-quantity~e.45
+                          :unit (m2 / minute~e.45)
+                          :quant 6~e.44))
+    :manner (t3 / together~e.40)
+    :time (n / next~e.29)
+    :ARG0 (y / you~e.39))
+
+# ::id homemade_pizza_dough_10_instr2
+# ::name homemade_pizza_dough_10_instr2
+# ::snt If it looks too sticky - add more flour a tablespoon at a time .
+# ::root a
+# ::alignments
+# ::snt_id homemade_pizza_dough_10_instr2
+(a / add-02~e.53
+   :mode imperative~e.53
+   :ARG0 (y / you~e.53)
+   :ARG1 (f / flour~e.55
+            :mod (m / more~e.54))
+   :condition (l / look-02~e.49
+                 :ARG0 (i / it~e.48)
+                 :ARG1 (s / sticky~e.51
+                          :ARG2-of (h / have-degree-91~e.50
+                                      :ARG1 i
+                                      :ARG3 (t2 / too~e.50))))
+   :frequency (r / rate-entity-91~e.61
+                 :ARG2 (t / tablespoon~e.57
+                          :mod (a2 / at-a-time~e.59)
+                          :quant 1~e.56)))
+

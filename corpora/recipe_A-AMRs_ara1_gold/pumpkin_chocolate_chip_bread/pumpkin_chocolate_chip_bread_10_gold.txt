@@ -1,0 +1,73 @@
+# ::id pumpkin_chocolate_chip_bread_10_instr0_1
+# ::name pumpkin_chocolate_chip_bread_10_instr0_1
+# ::snt Prepare a bread pan .
+# ::root p2
+# ::alignments p2
+# ::snt_id pumpkin_chocolate_chip_bread_10_instr0
+(p2 / prepare-01~e.6
+    :mode imperative~e.1
+    :ARG0 (y / you~e.6)
+    :ARG1 (p / pan~e.9
+             :purpose (b / bread~e.8)))
+
+# ::id pumpkin_chocolate_chip_bread_10_instr0_0
+# ::name pumpkin_chocolate_chip_bread_10_instr0_0
+# ::snt Preheat oven to 350 .
+# ::root h
+# ::alignments h
+# ::snt_id pumpkin_chocolate_chip_bread_10_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4))
+
+# ::id pumpkin_chocolate_chip_bread_10_instr1
+# ::name pumpkin_chocolate_chip_bread_10_instr1
+# ::snt In a medium mixing bowl , combine all ingredients .
+# ::root c
+# ::alignments c, y
+# ::snt_id pumpkin_chocolate_chip_bread_10_instr1
+(c / combine-01~e.17
+   :mode imperative~e.20
+   :ARG0 (y / you~e.17)
+   :ARG1 (i / ingredient~e.19
+            :mod (a / all~e.18))
+   :location (b / bowl~e.15
+                :purpose (m2 / mix-01~e.14)
+                :mod (m / medium~e.13)))
+
+# ::id pumpkin_chocolate_chip_bread_10_instr2
+# ::name pumpkin_chocolate_chip_bread_10_instr2
+# ::snt Place mixture into a greased bread pan .
+# ::root p2
+# ::alignments p2, y
+# ::snt_id pumpkin_chocolate_chip_bread_10_instr2
+(p2 / place-01~e.21
+    :mode imperative~e.28
+    :ARG0 (y / you~e.21)
+    :ARG1 (m / mixture~e.22)
+    :ARG2 (p / pan~e.27
+             :instrument-of (b / bake-01~e.25
+                               :ARG1 (b2 / bread~e.26))))
+
+# ::id pumpkin_chocolate_chip_bread_10_instr3
+# ::name pumpkin_chocolate_chip_bread_10_instr3
+# ::snt Bake at 350 for 45 - 55 minutes .
+# ::root b
+# ::alignments b, y
+# ::snt_id pumpkin_chocolate_chip_bread_10_instr3
+(b / bake-01~e.29
+   :mode imperative~e.37
+   :ARG0 (y / you~e.29)
+   :ARG1 (t3 / thing~e.37
+             :quant 350~e.31)
+   :duration (b2 / between~e.33
+                 :op1 (t / temporal-quantity~e.33
+                         :unit (m / minute~e.36)
+                         :quant 45~e.33)
+                 :op2 (t2 / temporal-quantity~e.36
+                          :unit (m2 / minute~e.36)
+                          :quant 55~e.35)))
+

@@ -1,0 +1,36 @@
+# ::id waffles_0_instr0
+# ::name waffles_0_instr0
+# ::snt Beat eggs .
+# ::root b
+# ::alignments b, y
+# ::snt_id waffles_0_instr0
+(b / beat-01~e.1
+   :mode imperative~e.3
+   :ARG0 (y / you~e.1)
+   :ARG1 (e / egg~e.2))
+
+# ::id waffles_0_instr1
+# ::name waffles_0_instr1
+# ::snt Mix in remaining ingredients .
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_0_instr1
+(m / mix-01~e.4
+   :mode imperative~e.8
+   :ARG0 (y / you~e.4)
+   :ARG1 (i / ingredient~e.7
+            :ARG1-of (r / remain-01~e.6)))
+
+# ::id waffles_0_instr2
+# ::name waffles_0_instr2
+# ::snt Cook on hot waffle iron .
+# ::root c
+# ::alignments c, y
+# ::snt_id waffles_0_instr2
+(c / cook-01~e.9
+   :mode imperative~e.9
+   :ARG0 (y / you~e.9)
+   :instrument (i / iron~e.13
+                  :mod (w / waffle~e.12)
+                  :ARG1-of (h / hot-05~e.11)))
+

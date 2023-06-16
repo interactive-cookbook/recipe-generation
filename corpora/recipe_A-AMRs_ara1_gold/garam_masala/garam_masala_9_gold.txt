@@ -1,0 +1,47 @@
+# ::id garam_masala_9_instr0
+# ::name garam_masala_9_instr0
+# ::snt Mix all ingredients together in a bowl .
+# ::root m
+# ::alignments m, y
+# ::snt_id garam_masala_9_instr0
+(m / mix-01~e.1
+   :mode imperative~e.8
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.3
+            :mod (a / all~e.2))
+   :location (b / bowl~e.7)
+   :manner (t / together~e.4))
+
+# ::id garam_masala_9_instr1_0
+# ::name garam_masala_9_instr1_0
+# ::snt Place the Garam Masala in an airtight container .
+# ::root p2
+# ::alignments p2
+# ::snt_id garam_masala_9_instr1
+(p2 / place-01~e.9
+    :mode imperative~e.25
+    :ARG0 (y / you~e.9)
+    :ARG1 (p3 / product~e.12
+              :name (n / name~e.11
+                       :op1 "Garam"~e.11
+                       :op2 "Masala"~e.12))
+    :ARG2 (c / container~e.16
+             :mod (a / airtight~e.15)))
+
+# ::id garam_masala_9_instr1_1
+# ::name garam_masala_9_instr1_1
+# ::snt The Garam Masala store in a cool , dry place .
+# ::root s
+# ::alignments s
+# ::snt_id garam_masala_9_instr1
+(s / store-01~e.18
+   :mode imperative~e.25
+   :ARG0 (y / you~e.18)
+   :ARG1 (p3 / product~e.12
+             :name (n / name~e.11
+                      :op1 "Garam"~e.11
+                      :op2 "Masala"~e.12))
+   :ARG2 (p / place~e.24
+            :ARG1-of (d / dry-02~e.23)
+            :ARG1-of (c2 / cool-01~e.21)))
+

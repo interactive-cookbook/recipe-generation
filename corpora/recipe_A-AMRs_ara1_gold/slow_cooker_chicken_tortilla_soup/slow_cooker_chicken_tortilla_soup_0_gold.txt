@@ -1,0 +1,90 @@
+# ::id slow_cooker_chicken_tortilla_soup_0_instr0_0
+# ::name slow_cooker_chicken_tortilla_soup_0_instr0_0
+# ::snt Add all the ingredients except the cilantro and tortilla strips to the slow cooker .
+# ::root a
+# ::alignments a
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr0
+(a / add-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.4
+            :mod (a2 / all~e.2)
+            :ARG2-of (e / except-01~e.5
+                        :ARG1 (a3 / and~e.8
+                                  :op1 (c / cilantro~e.7)
+                                  :op2 (s2 / strip-01~e.10
+                                           :ARG1 (t / tortilla~e.9)))))
+   :ARG2 (c2 / cooker~e.14
+             :ARG1-of (s / slow-01~e.13)))
+
+# ::id slow_cooker_chicken_tortilla_soup_0_instr0_1
+# ::name slow_cooker_chicken_tortilla_soup_0_instr0_1
+# ::snt Mix .
+# ::root m
+# ::alignments m
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr0
+(m / mix-01~e.16
+   :mode imperative~e.17
+   :ARG0 (y / you~e.16))
+
+# ::id slow_cooker_chicken_tortilla_soup_0_instr1_0
+# ::name slow_cooker_chicken_tortilla_soup_0_instr1_0
+# ::snt Cook on low for 6 hours .
+# ::root c2
+# ::alignments c2
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr1
+(c2 / cook-01~e.18
+    :mode imperative~e.18
+    :ARG0 (y / you~e.18)
+    :duration (t / temporal-quantity~e.23
+                 :unit (h / hour~e.23)
+                 :quant 6~e.22)
+    :manner (l / low-04~e.20))
+
+# ::id slow_cooker_chicken_tortilla_soup_0_instr1_1
+# ::name slow_cooker_chicken_tortilla_soup_0_instr1_1
+# ::snt Then shred the chicken .
+# ::root s
+# ::alignments s
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr1
+(s / shred-01~e.25
+   :mode imperative~e.34
+   :ARG0 (y / you~e.25)
+   :ARG1 (c / chicken~e.27)
+   :time (t3 / then~e.24))
+
+# ::id slow_cooker_chicken_tortilla_soup_0_instr1_2
+# ::name slow_cooker_chicken_tortilla_soup_0_instr1_2
+# ::snt Then cook an additional 20 minutes .
+# ::root c3
+# ::alignments c3
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr1
+(c3 / cook-01~e.29
+    :ARG0 (y / you~e.29)
+    :duration (t2 / temporal-quantity~e.33
+                  :mod (a / additional~e.31)
+                  :unit (m / minute~e.33)
+                  :quant 20~e.32)
+    :time (t3 / then~e.24))
+
+# ::id slow_cooker_chicken_tortilla_soup_0_instr2
+# ::name slow_cooker_chicken_tortilla_soup_0_instr2
+# ::snt Serve with cilantro , tortilla strips or your favorite toppings like sour cream and avocado .
+# ::root s
+# ::alignments s
+# ::snt_id slow_cooker_chicken_tortilla_soup_0_instr2
+(s / serve-02~e.35
+   :ARG0 (y / you~e.42)
+   :ARG2 (o / or~e.41
+            :mod (h / healthy~e.44)
+            :op1 (c / cilantro~e.37)
+            :op2 (s3 / strip-01~e.40
+                     :ARG1 (t / tortilla~e.39))
+            :op3 (h2 / helping~e.44
+                     :example (a / and~e.48
+                                 :op1 (c2 / cream~e.47
+                                          :mod (s2 / sour~e.46))
+                                 :op2 (a2 / avocado~e.49))
+                     :ARG1-of (f / favor-01~e.43
+                                 :ARG0 y))))
+

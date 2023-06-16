@@ -1,0 +1,245 @@
+# ::id blueberry_banana_bread_2_instr0
+# ::name blueberry_banana_bread_2_instr0
+# ::snt Preheat oven to 350 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id blueberry_banana_bread_2_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4))
+
+# ::id blueberry_banana_bread_2_instr1_0
+# ::name blueberry_banana_bread_2_instr1_0
+# ::snt Coat well with flour shaking the excess off .
+# ::root c
+# ::alignments c, s, o
+# ::snt_id blueberry_banana_bread_2_instr1
+(c / coat-01~e.15
+   :mode imperative~e.23
+   :ARG1 (y / you~e.19)
+   :ARG2 (f / flour~e.18)
+   :manner (w / well~e.16)
+   :manner (s / shake-01~e.19
+              :ARG0 y
+              :ARG1 (e / excess~e.21)
+              :mod (o / off~e.22))
+   :ARG0 (y1 / you~e.15))
+
+# ::id blueberry_banana_bread_2_instr1_1
+# ::name blueberry_banana_bread_2_instr1_1
+# ::snt Spray a loaf pan generously with Pam .
+# ::root s2
+# ::alignments s2
+# ::snt_id blueberry_banana_bread_2_instr1
+(s2 / spray-01~e.7
+    :mode imperative~e.7
+    :ARG0 (y / you~e.7)
+    :ARG1 (p / pan~e.10
+             :mod (l / loaf~e.9))
+    :instrument (p2 / product~e.13
+                    :name (n / name~e.13
+                             :op1 "Pam"~e.13))
+    :ARG2-of (g / generous-01~e.11))
+
+# ::id blueberry_banana_bread_2_instr2
+# ::name blueberry_banana_bread_2_instr2
+# ::snt Set aside .
+# ::root s
+# ::alignments s
+# ::snt_id blueberry_banana_bread_2_instr2
+(s / set-01~e.24
+   :mode imperative~e.24
+   :ARG2 (a / aside~e.25)
+   :ARG0 (y / you~e.24))
+
+# ::id blueberry_banana_bread_2_instr3_0
+# ::name blueberry_banana_bread_2_instr3_0
+# ::snt Mash the banana 's .
+# ::root m
+# ::alignments m
+# ::snt_id blueberry_banana_bread_2_instr3
+(m / mix-01~e.27
+   :mode imperative~e.27
+   :ARG0 (y / you~e.27)
+   :ARG1 (b / banana~e.29))
+
+# ::id blueberry_banana_bread_2_instr3_1
+# ::name blueberry_banana_bread_2_instr3_1
+# ::snt 's , put in your mixer .
+# ::root p
+# ::alignments p
+# ::snt_id blueberry_banana_bread_2_instr3
+(p / put-01~e.32
+   :mode imperative~e.44
+   :ARG0 (y / you~e.32)
+   :ARG2 (t / thing~e.35
+            :instrument-of (m2 / mix-01~e.35)))
+
+# ::id blueberry_banana_bread_2_instr3_2
+# ::name blueberry_banana_bread_2_instr3_2
+# ::snt Add the eggs , oil and buttermilk .
+# ::root a
+# ::alignments a
+# ::snt_id blueberry_banana_bread_2_instr3
+(a / add-02~e.37
+   :mode imperative~e.44
+   :ARG0 (y / you~e.37)
+   :ARG1 (a3 / and~e.40
+             :op1 (e / egg~e.39)
+             :op2 (o / oil~e.41)
+             :op3 (b2 / buttermilk~e.43)))
+
+# ::id blueberry_banana_bread_2_instr4
+# ::name blueberry_banana_bread_2_instr4
+# ::snt Using the paddle attachment gradually add dry ingredients but do n't over mix .
+# ::root a
+# ::alignments a, u
+# ::snt_id blueberry_banana_bread_2_instr4
+(a / add-02~e.50
+   :ARG0 (y / you~e.57)
+   :ARG1 (i / ingredient~e.52
+            :ARG1-of (d / dry-02~e.51))
+   :manner (g / gradual~e.49)
+   :manner (u / use-01~e.45
+              :ARG1 (a2 / attachment~e.48
+                        :instrument-of (p / paddle~e.47)))
+   :concession-of (m / mix-01~e.57
+                     :ARG0 y
+                     :degree (o / over~e.56)
+                     :mode imperative~e.54
+                     :polarity -~e.55))
+
+# ::id blueberry_banana_bread_2_instr5_0
+# ::name blueberry_banana_bread_2_instr5_0
+# ::snt Add the vanilla .
+# ::root a
+# ::alignments a
+# ::snt_id blueberry_banana_bread_2_instr5
+(a / add-02~e.59
+   :mode imperative~e.59
+   :ARG0 (y / you~e.59)
+   :ARG1 (v / vanilla~e.61))
+
+# ::id blueberry_banana_bread_2_instr5_1
+# ::name blueberry_banana_bread_2_instr5_1
+# ::snt Gently fold in the blueberries .
+# ::root f
+# ::alignments f
+# ::snt_id blueberry_banana_bread_2_instr5
+(f / fold-03~e.64
+   :mode imperative~e.59
+   :ARG0 (y / you~e.64)
+   :ARG2 (l / Blue~e.67)
+   :manner (g / gentle~e.63))
+
+# ::id blueberry_banana_bread_2_instr6_0
+# ::name blueberry_banana_bread_2_instr6_0
+# ::snt Bake for 40 minutes .
+# ::root b
+# ::alignments b
+# ::snt_id blueberry_banana_bread_2_instr6
+(b / bake-01~e.69
+   :mode imperative~e.73
+   :ARG0 (y / you~e.69)
+   :duration (t / temporal-quantity~e.71
+                :unit (m / minute~e.72)
+                :quant 40~e.71))
+
+# ::id blueberry_banana_bread_2_instr6_1
+# ::name blueberry_banana_bread_2_instr6_1
+# ::snt Then place a piece of foil over the top to prevent over browning .
+# ::root p2
+# ::alignments p2
+# ::snt_id blueberry_banana_bread_2_instr6
+(p2 / place-01~e.74
+    :mode imperative~e.86
+    :purpose (p3 / prevent-01~e.83
+                 :ARG1 (r / Brown~e.85
+                          :degree (o2 / over~e.84)))
+    :ARG0 (y / you~e.74)
+    :ARG1 (p / piece~e.76
+             :mod (f / foil~e.78))
+    :ARG2 (o / over~e.79
+             :op1 (t3 / top~e.81))
+    :time (t2 / then~e.73))
+
+# ::id blueberry_banana_bread_2_instr7_1
+# ::name blueberry_banana_bread_2_instr7_1
+# ::snt Bake another 15 - 20 minutes .
+# ::root b
+# ::alignments b
+# ::snt_id blueberry_banana_bread_2_instr7
+(b / bake-01~e.87
+   :mode imperative~e.94
+   :ARG0 (y / you~e.87)
+   :duration (b2 / between~e.89
+                 :mod (a3 / another~e.88)
+                 :op1 (t / temporal-quantity~e.89
+                         :unit (m2 / minute~e.92)
+                         :quant 15~e.89)
+                 :op2 (t2 / temporal-quantity~e.91
+                          :unit (m3 / minute~e.92)
+                          :quant 20~e.91)))
+
+# ::id blueberry_banana_bread_2_instr7_2
+# ::name blueberry_banana_bread_2_instr7_2
+# ::snt Remove from oven .
+# ::root r
+# ::alignments r
+# ::snt_id blueberry_banana_bread_2_instr7
+(r / remove-01~e.94
+   :mode imperative~e.98
+   :ARG0 (y / you~e.94)
+   :ARG2 (o / oven~e.96))
+
+# ::id blueberry_banana_bread_2_instr7_0
+# ::name blueberry_banana_bread_2_instr7_0
+# ::snt Let another minutes it sit with the foil over it for another 10 minutes to set the middle .
+# ::root l
+# ::alignments l, s2
+# ::snt_id blueberry_banana_bread_2_instr7
+(l / let-01~e.98
+   :mode imperative~e.98
+   :ARG0 (y / you~e.111)
+   :ARG1 (s2 / sit-01~e.100
+             :purpose (s / set-01~e.111
+                         :ARG0 y
+                         :ARG1 (m / middle~e.113))
+             :ARG1 (i / it~e.99)
+             :ARG2 (f / foil~e.103)
+             :ARG2 (o2 / over~e.104
+                       :op1 i)
+             :duration (t3 / temporal-quantity~e.109
+                           :mod (a3 / another~e.88)
+                           :unit (m3 / minute~e.92)
+                           :quant 10~e.108)))
+
+# ::id blueberry_banana_bread_2_instr8_0
+# ::name blueberry_banana_bread_2_instr8_0
+# ::snt Run around the edges with a kitchen knife .
+# ::root r
+# ::alignments r
+# ::snt_id blueberry_banana_bread_2_instr8
+(r / run-02~e.115
+   :mode imperative~e.131
+   :ARG0 (y / you~e.115)
+   :ARG1 (a / around~e.116
+            :op1 (e / edge~e.118))
+   :instrument (k2 / knife~e.122
+                   :mod (k / kitchen~e.121)))
+
+# ::id blueberry_banana_bread_2_instr8_1
+# ::name blueberry_banana_bread_2_instr8_1
+# ::snt Flip over on to a serving plate .
+# ::root f
+# ::alignments f
+# ::snt_id blueberry_banana_bread_2_instr8
+(f / flip-01~e.124
+   :ARG0 (y / you~e.124)
+   :destination (p / plate~e.130
+                   :ARG2-of (s / serve-02~e.129))
+   :direction (o / over~e.125))
+

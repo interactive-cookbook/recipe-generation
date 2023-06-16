@@ -1,0 +1,159 @@
+# ::id cauliflower_mash_4_instr0_1
+# ::name cauliflower_mash_4_instr0_1
+# ::snt Stems , break apart florets .
+# ::root a
+# ::alignments b
+# ::snt_id cauliflower_mash_4_instr0
+(a / and~e.7
+   :op1 (s2 / stem-01~e.2)
+   :op2 (b / break-01~e.8
+           :ARG0 (y / you~e.8)
+           :ARG1 (w / wow~e.10)
+           :mode imperative~e.8))
+
+# ::id cauliflower_mash_4_instr0_0
+# ::name cauliflower_mash_4_instr0_0
+# ::snt Separate stems from head of cauliflower .
+# ::root s
+# ::alignments s
+# ::snt_id cauliflower_mash_4_instr0
+(s / separate-01~e.1
+   :mode imperative~e.1
+   :ARG1 (s2 / stem-01~e.2)
+   :ARG2 (h / head~e.4
+            :part-of (c / cauliflower~e.6))
+   :ARG0 (y / you~e.1))
+
+# ::id cauliflower_mash_4_instr1
+# ::name cauliflower_mash_4_instr1
+# ::snt Bring water to a boil in pot .
+# ::root b2
+# ::alignments b2, y
+# ::snt_id cauliflower_mash_4_instr1
+(b2 / bring-01~e.12
+    :mode imperative~e.12
+    :ARG0 (y / you~e.12)
+    :ARG1 (w / water~e.13)
+    :ARG2 (b / boil-01~e.16
+             :ARG1 w)
+    :location (p / pot~e.18))
+
+# ::id cauliflower_mash_4_instr2_0
+# ::name cauliflower_mash_4_instr2_0
+# ::snt Add cauliflower .
+# ::root a
+# ::alignments a
+# ::snt_id cauliflower_mash_4_instr2
+(a / add-02~e.20
+   :mode imperative~e.20
+   :ARG0 (y / you~e.20)
+   :ARG1 (c / cauliflower~e.21))
+
+# ::id cauliflower_mash_4_instr2_1
+# ::name cauliflower_mash_4_instr2_1
+# ::snt Reduce to medium heat .
+# ::root r
+# ::alignments r
+# ::snt_id cauliflower_mash_4_instr2
+(r / reduce-01~e.23
+   :mode imperative~e.20
+   :ARG0 (y / you~e.23)
+   :ARG4 (h / heat-01~e.26
+            :mod (m / medium~e.25)))
+
+# ::id cauliflower_mash_4_instr2_2
+# ::name cauliflower_mash_4_instr2_2
+# ::snt Cover .
+# ::root c2
+# ::alignments c2
+# ::snt_id cauliflower_mash_4_instr2
+(c2 / cover-01~e.28
+    :mode imperative~e.29
+    :ARG0 (y / you~e.28))
+
+# ::id cauliflower_mash_4_instr3
+# ::name cauliflower_mash_4_instr3
+# ::snt Cook cauliflower until very tender - this can take anywhere between 15 - 25 minutes .
+# ::root c2
+# ::alignments c2, y
+# ::snt_id cauliflower_mash_4_instr3
+(c2 / cook-01~e.30
+    :mode imperative~e.30
+    :ARG0 (y / you~e.30)
+    :ARG1 (c / cauliflower~e.31)
+    :time (u / until~e.32
+             :op1 (t4 / tender-02~e.34
+                      :ARG1 c
+                      :degree (v / very~e.33)))
+    :ARG0-of (t / take-10~e.38
+                :ARG1 (b / between~e.40
+                         :op1 (t2 / temporal-quantity~e.44
+                                  :unit (m / minute~e.44)
+                                  :quant 15~e.41)
+                         :op2 (t3 / temporal-quantity~e.44
+                                  :unit (m2 / minute~e.44)
+                                  :quant 25~e.43))
+                :ARG1-of (p / possible-01~e.37)))
+
+# ::id cauliflower_mash_4_instr4_1
+# ::name cauliflower_mash_4_instr4_1
+# ::snt Drain water .
+# ::root d
+# ::alignments d
+# ::snt_id cauliflower_mash_4_instr4
+(d / drain-01~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (w / water~e.47))
+
+# ::id cauliflower_mash_4_instr4_0
+# ::name cauliflower_mash_4_instr4_0
+# ::snt Let cauliflower dry .
+# ::root l
+# ::alignments l, d2
+# ::snt_id cauliflower_mash_4_instr4
+(l / let-01~e.49
+   :mode imperative~e.46
+   :ARG0 (y / you~e.49)
+   :ARG1 (d2 / dry-02~e.51
+             :ARG1 (c / cauliflower~e.50)))
+
+# ::id cauliflower_mash_4_instr5_0
+# ::name cauliflower_mash_4_instr5_0
+# ::snt Add milk butter , sour cream , salt and pepper .
+# ::root a
+# ::alignments a
+# ::snt_id cauliflower_mash_4_instr5
+(a / add-02~e.53
+   :mode imperative~e.53
+   :ARG1 (a3 / and~e.62
+             :op1 (m / milk~e.54)
+             :op2 (b2 / butter~e.56)
+             :op3 (c / cream~e.59
+                     :mod (s2 / sour~e.58))
+             :op4 (s / salt~e.61)
+             :op5 (p / pepper~e.63))
+   :ARG0 (y / you~e.53))
+
+# ::id cauliflower_mash_4_instr5_1
+# ::name cauliflower_mash_4_instr5_1
+# ::snt Purée using an immersion blender .
+# ::root p2
+# ::alignments p2
+# ::snt_id cauliflower_mash_4_instr5
+(p2 / pure-02~e.65
+    :mode imperative~e.65
+    :instrument (b / blender~e.69
+                   :instrument-of (i / immigrate-01~e.68))
+    :ARG0 (y / you~e.65))
+
+# ::id cauliflower_mash_4_instr6
+# ::name cauliflower_mash_4_instr6
+# ::snt Top with green onions .
+# ::root t
+# ::alignments t
+# ::snt_id cauliflower_mash_4_instr6
+(t / top~e.71
+   :ARG2 (v / vegetable~e.74
+            :ARG1-of (g / green-02~e.73)))
+

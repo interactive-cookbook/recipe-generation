@@ -1,0 +1,200 @@
+# ::id pumpkin_chocolate_chip_bread_7_instr0_1
+# ::name pumpkin_chocolate_chip_bread_7_instr0_1
+# ::snt Preheat degrees , and grease a loaf pan .
+# ::root a
+# ::alignments o
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr0
+(a / and~e.7
+   :op2 (a2 / and~e.12
+            :op1 (y / you~e.1)
+            :op2 (p / pan~e.11
+                    :purpose (l / loaf~e.10)))
+   :rel (o / oil~e.8
+           :mode imperative~e.12))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr0_0
+# ::name pumpkin_chocolate_chip_bread_7_instr0_0
+# ::snt Preheat oven to 350 degrees , and a loaf pan .
+# ::root a
+# ::alignments h
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr0
+(a / and~e.7
+   :op1 (h / hot-05~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (o2 / oven~e.2)
+           :destination (t / temperature-quantity~e.4
+                           :quant 350~e.4)
+           :mode imperative~e.1)
+   :op2 (a2 / and~e.12
+            :op1 y
+            :op2 (p / pan~e.11
+                    :purpose (l / loaf~e.10))))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr1
+# ::name pumpkin_chocolate_chip_bread_7_instr1
+# ::snt In a large mixing bowl , add flour , oats , salt , cinnamon , pumpkin pie spice , and baking powder .
+# ::root a
+# ::alignments a
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr1
+(a / add-02~e.19
+   :mode imperative~e.19
+   :ARG1 (a2 / and~e.32
+             :op1 (f / flour~e.20)
+             :op2 (o / oat~e.22)
+             :op3 (s / salt~e.24)
+             :op4 (c / cinnamon~e.26)
+             :op5 (s2 / spice~e.30
+                      :mod (p / pie~e.29
+                              :mod (p3 / pumpkin~e.28)))
+             :op6 (p2 / powder~e.34
+                      :instrument-of (b / bake-01~e.33)))
+   :location (b2 / bowl~e.17
+                 :purpose (m / mix-01~e.16)
+                 :mod (l / large~e.15))
+   :ARG0 (y / you~e.19))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr2
+# ::name pumpkin_chocolate_chip_bread_7_instr2
+# ::snt Stir to combine .
+# ::root s
+# ::alignments s
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr2
+(s / stir-01~e.36
+   :mode imperative~e.36
+   :purpose (c / combine-01~e.38)
+   :ARG0 (y / you~e.36))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr3_0
+# ::name pumpkin_chocolate_chip_bread_7_instr3_0
+# ::snt In another mixing bowl , beat the eggs with an electric hand mixer .
+# ::root b
+# ::alignments b
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr3
+(b / beat-01~e.45
+   :mode imperative~e.58
+   :ARG0 (y / you~e.45)
+   :ARG1 (e / egg~e.47)
+   :instrument (m2 / mix-01~e.52
+                   :instrument (h / hand~e.51)
+                   :mod (e2 / electric~e.50))
+   :location (b2 / bowl~e.43
+                 :purpose (m / mix-01~e.42)
+                 :mod (a3 / another~e.41)))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr3_1
+# ::name pumpkin_chocolate_chip_bread_7_instr3_1
+# ::snt In another mixing bowl , then add the sugar .
+# ::root a
+# ::alignments a
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr3
+(a / add-02~e.55
+   :mode imperative~e.58
+   :ARG0 (y / you~e.55)
+   :ARG1 (s / sugar~e.57)
+   :time (t / then~e.54)
+   :location (b2 / bowl~e.43
+                 :purpose (m / mix-01~e.42)
+                 :mod (a3 / another~e.41)))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr4
+# ::name pumpkin_chocolate_chip_bread_7_instr4
+# ::snt Beat until well combined .
+# ::root b
+# ::alignments b, c
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr4
+(b / beat-03~e.59
+   :mode imperative~e.59
+   :time (u / until~e.60
+            :op1 (c / combine-01~e.62
+                    :ARG1-of (w / well-09~e.61)))
+   :ARG0 (y / you~e.59))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr5_0
+# ::name pumpkin_chocolate_chip_bread_7_instr5_0
+# ::snt Add the oil , yogurt , pumpkin , and vanilla .
+# ::root a
+# ::alignments a
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr5
+(a / add-02~e.64
+   :mode imperative~e.64
+   :ARG0 (y2 / you~e.64)
+   :ARG1 (a2 / and~e.72
+             :op1 (o / oil~e.66)
+             :op2 (y / yogurt~e.68)
+             :op3 (p / pumpkin~e.70)
+             :op4 (v / vanilla~e.73)))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr5_1
+# ::name pumpkin_chocolate_chip_bread_7_instr5_1
+# ::snt Beat the oil , yogurt , pumpkin , and vanilla to mix well .
+# ::root b
+# ::alignments b
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr5
+(b / beat-01~e.75
+   :mode imperative~e.79
+   :purpose (m / mix-01~e.77
+               :ARG0 y2
+               :ARG3 (a2 / and~e.72
+                         :op1 (o / oil~e.66)
+                         :op2 (y / yogurt~e.68)
+                         :op3 (p / pumpkin~e.70)
+                         :op4 (v / vanilla~e.73))
+               :ARG1-of (w / well-09~e.78))
+   :ARG0 (y2 / you~e.77))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr6
+# ::name pumpkin_chocolate_chip_bread_7_instr6
+# ::snt Fold the mini chips into the batter .
+# ::root f
+# ::alignments f, y
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr6
+(f / fuck-01~e.80
+   :mode imperative~e.80
+   :ARG0 (y / you~e.80)
+   :ARG1 (c / chip~e.83
+            :mod (m / mini~e.82))
+   :ARG2 (t / thing~e.87
+            :ARG2-of (b / batter-01~e.86)))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr7_1
+# ::name pumpkin_chocolate_chip_bread_7_instr7_1
+# ::snt Pour into the loaf pan .
+# ::root p2
+# ::alignments p2
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr7
+(p2 / pour-01~e.88
+    :mode imperative~e.88
+    :ARG0 (y / you~e.88)
+    :ARG2 (p / pan~e.92
+             :mod (l / loaf~e.91)))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr7_2
+# ::name pumpkin_chocolate_chip_bread_7_instr7_2
+# ::snt Insert a toothpick into the middle .
+# ::root i
+# ::alignments i
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr7
+(i / insert-01~e.103
+   :mode imperative~e.103
+   :ARG1 (t2 / toothpick~e.102)
+   :ARG2 (m / middle~e.106)
+   :ARG0 (y / you~e.103))
+
+# ::id pumpkin_chocolate_chip_bread_7_instr7_0
+# ::name pumpkin_chocolate_chip_bread_7_instr7_0
+# ::snt Bake for 1 hour , or until a toothpick comes out clean .
+# ::root b
+# ::alignments b, c2
+# ::snt_id pumpkin_chocolate_chip_bread_7_instr7
+(b / bake-01~e.94
+   :mode imperative~e.110
+   :ARG0 (y / you~e.94)
+   :duration (o / or~e.99
+                :op1 (t / temporal-quantity~e.97
+                        :unit (h / hour~e.97)
+                        :quant 1~e.96)
+                :op2 (u / until~e.100
+                        :op1 (c2 / come-out-09~e.107
+                                 :ARG1 (t2 / toothpick~e.102)
+                                 :ARG1-of (c / clean-04~e.109)))))
+

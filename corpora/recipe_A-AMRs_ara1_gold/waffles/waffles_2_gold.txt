@@ -1,0 +1,115 @@
+# ::id waffles_2_instr0
+# ::name waffles_2_instr0
+# ::snt Preheat your waffle iron .
+# ::root h
+# ::alignments h, y
+# ::snt_id waffles_2_instr0
+(h / hot-05~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / iron~e.4
+            :mod (w / waffle~e.3)
+            :poss y))
+
+# ::id waffles_2_instr1
+# ::name waffles_2_instr1
+# ::snt In a large bowl mix together the flour , salt , baking powder and sugar .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_2_instr1
+(m / mix-01~e.10
+   :mode imperative~e.10
+   :ARG1 (a / and~e.19
+            :op1 (f / flour~e.13)
+            :op2 (s / salt~e.15)
+            :op3 (p / powder-01~e.18
+                    :ARG1 (b / bake-01~e.17))
+            :op4 (s2 / sugar~e.20))
+   :manner (t / together~e.11)
+   :medium (b2 / bowl~e.9
+               :mod (l / large~e.8))
+   :ARG0 (y / you~e.10))
+
+# ::id waffles_2_instr2
+# ::name waffles_2_instr2
+# ::snt In another bowl beat the eggs .
+# ::root b
+# ::alignments b, y
+# ::snt_id waffles_2_instr2
+(b / beat-01~e.25
+   :mode imperative~e.28
+   :ARG0 (y / you~e.25)
+   :ARG1 (e / egg~e.27)
+   :location (b2 / bowl~e.24
+                 :mod (a / another~e.23)))
+
+# ::id waffles_2_instr3
+# ::name waffles_2_instr3
+# ::snt Add the milk , butter and vanilla to the eggs .
+# ::root a
+# ::alignments a, y
+# ::snt_id waffles_2_instr3
+(a / add-02~e.29
+   :mode imperative~e.29
+   :ARG0 (y / you~e.29)
+   :ARG1 (a2 / and~e.34
+             :op1 (m / milk~e.31)
+             :op2 (b / butter~e.33)
+             :op3 (v / vanilla~e.35))
+   :ARG2 (e / egg~e.38))
+
+# ::id waffles_2_instr4_0
+# ::name waffles_2_instr4_0
+# ::snt Pour the liquid into the flour mixture .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_2_instr4
+(p / pour-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (l / liquid~e.42)
+   :ARG2 (m / mix-01~e.46
+            :ARG1 (f / flour~e.45)))
+
+# ::id waffles_2_instr4_1
+# ::name waffles_2_instr4_1
+# ::snt Into the flour mixture beat until blended .
+# ::root b
+# ::alignments b
+# ::snt_id waffles_2_instr4
+(b / beat-01~e.48
+   :mode imperative~e.51
+   :ARG0 (y / you~e.48)
+   :duration (u / until~e.49
+                :op1 (b2 / blend-01~e.50
+                         :ARG1 (m / mix-01~e.46
+                                  :ARG1 (f / flour~e.45)))))
+
+# ::id waffles_2_instr5_0
+# ::name waffles_2_instr5_0
+# ::snt Ladle the batter into the waffle iron .
+# ::root b
+# ::alignments b
+# ::snt_id waffles_2_instr5
+(b / bake-01~e.52
+   :mode imperative~e.52
+   :ARG0 (y / you~e.52)
+   :ARG1 (b3 / batter-01~e.54)
+   :ARG2 (i / iron~e.58
+            :mod (w / waffle~e.57)))
+
+# ::id waffles_2_instr5_1
+# ::name waffles_2_instr5_1
+# ::snt Cook the batter until crisp and golden .
+# ::root c
+# ::alignments c
+# ::snt_id waffles_2_instr5
+(c / cook-01~e.60
+   :mode imperative~e.52
+   :ARG0 (y / you~e.60)
+   :duration (u / until~e.61
+                :op1 (a2 / and~e.63
+                         :op1 (b2 / bake-01~e.62
+                                  :ARG1 (b3 / batter-01~e.54))
+                         :op2 (g / gold~e.64))))
+

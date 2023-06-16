@@ -1,0 +1,343 @@
+# ::id baked_ziti_7_instr0_0
+# ::name baked_ziti_7_instr0_0
+# ::snt Preheat to 350 F. Cooked ziti pasta per package directions .
+# ::root a
+# ::alignments c
+# ::snt_id baked_ziti_7_instr0
+(a / and~e.12
+   :op1 (c / cook-01~e.6
+           :ARG1 (p2 / pasta~e.8
+                     :name (n / name~e.1
+                              :op1 "ziti"~e.7))
+           :manner (d / direction~e.11
+                      :mod (p / package~e.10))
+           :ARG0 (y / you~e.6)
+           :mode imperative~e.6)
+   :rel (t / temperature-quantity~e.1
+           :scale (f / fahrenheit~e.5)
+           :quant 350~e.4))
+
+# ::id baked_ziti_7_instr0_2
+# ::name baked_ziti_7_instr0_2
+# ::snt Preheat to 350 F. , drain .
+# ::root a
+# ::alignments d2
+# ::snt_id baked_ziti_7_instr0
+(a / and~e.12
+   :op3 (d2 / drain-01~e.13
+            :ARG0 (y / you~e.13)
+            :mode imperative~e.14)
+   :rel (t / temperature-quantity~e.1
+           :scale (f / fahrenheit~e.5)
+           :quant 350~e.4))
+
+# ::id baked_ziti_7_instr0_1
+# ::name baked_ziti_7_instr0_1
+# ::snt Preheat oven to 350 F. .
+# ::root a
+# ::alignments h
+# ::snt_id baked_ziti_7_instr0
+(a / and~e.12
+   :op2 (h / hot-05~e.1
+           :ARG1 (o / oven~e.2)
+           :ARG0 (y / you~e.1)
+           :mode imperative~e.1)
+   :rel (t / temperature-quantity~e.1
+           :scale (f / fahrenheit~e.5)
+           :quant 350~e.4))
+
+# ::id baked_ziti_7_instr1
+# ::name baked_ziti_7_instr1
+# ::snt Brown the ground beef until no longer pink , drain .
+# ::root a
+# ::alignments r, y
+# ::snt_id baked_ziti_7_instr1
+(a / and~e.25
+   :op1 (r / Brown~e.15
+           :ARG0 (y / you~e.15)
+           :ARG1 (b / beef~e.18
+                    :mod (g / ground~e.17))
+           :time (u / until~e.19
+                    :op1 (p / pink-04~e.22
+                            :ARG1 b
+                            :time (n / no-longer~e.21)))
+           :mode imperative~e.15)
+   :op2 (d / drain-01~e.24
+           :ARG0 y
+           :mode imperative~e.25))
+
+# ::id baked_ziti_7_instr2
+# ::name baked_ziti_7_instr2
+# ::snt Stir in the ricotta , parsley , egg , salt , pepper and 2 cups of the spaghetti sauce .
+# ::root s4
+# ::alignments s4, y
+# ::snt_id baked_ziti_7_instr2
+(s4 / stir-01~e.26
+    :mode imperative~e.26
+    :ARG0 (y / you~e.26)
+    :ARG1 (a / and~e.30
+             :op1 (r / ricotta~e.29)
+             :op2 (p / parsley~e.31)
+             :op3 (e / egg~e.33)
+             :op4 (s / salt~e.35)
+             :op5 (p2 / pepper~e.37)
+             :op6 (s2 / sauce~e.44
+                      :quant (v / volume-quantity~e.40
+                                :unit (c / cup~e.40)
+                                :quant 2~e.39)
+                      :mod (s3 / spaghetti~e.43))))
+
+# ::id baked_ziti_7_instr3_1
+# ::name baked_ziti_7_instr3_1
+# ::snt Cook ziti .
+# ::root c2
+# ::alignments c2
+# ::snt_id baked_ziti_7_instr3
+(c2 / cook-01~e.47
+    :mode imperative~e.47
+    :ARG1 (z / ziti~e.48)
+    :ARG0 (y / you~e.47))
+
+# ::id baked_ziti_7_instr3_0
+# ::name baked_ziti_7_instr3_0
+# ::snt Add ziti .
+# ::root a
+# ::alignments a
+# ::snt_id baked_ziti_7_instr3
+(a / add-02~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (z / ziti~e.48))
+
+# ::id baked_ziti_7_instr3_2
+# ::name baked_ziti_7_instr3_2
+# ::snt Toss ziti to coat .
+# ::root t
+# ::alignments t
+# ::snt_id baked_ziti_7_instr3
+(t / toss-01~e.50
+   :mode imperative~e.46
+   :purpose (c / coat-01~e.52
+               :ARG1 (z / ziti~e.48))
+   :ARG0 (y / you~e.50))
+
+# ::id baked_ziti_7_instr4_0
+# ::name baked_ziti_7_instr4_0
+# ::snt Put ziti mixture into a 13x9 baking pan .
+# ::root a
+# ::alignments p2
+# ::snt_id baked_ziti_7_instr4
+(a / and~e.62
+   :rel 13~e.59
+   :op1 (p2 / put-01~e.54
+            :ARG0 (y / you~e.54)
+            :ARG1 (m / mixture~e.56
+                     :consist-of (z / ziti~e.55))
+            :ARG2 (p / pan~e.61
+                     :mod (d2 / distance-quantity~e.59
+                              :quant 9~e.59)
+                     :instrument-of (b / bake-01~e.60))
+            :mode imperative~e.54)
+   :rel (d / distance-quantity~e.59
+           :unit (f / foot~e.59)
+           :quant 9~e.59))
+
+# ::id baked_ziti_7_instr4_1
+# ::name baked_ziti_7_instr4_1
+# ::snt Ziti mixture into a 13x9 and cover with the remaining 2 cups of spaghetti sauce .
+# ::root a
+# ::alignments c
+# ::snt_id baked_ziti_7_instr4
+(a / and~e.62
+   :rel 13~e.59
+   :op2 (c / cover-02~e.63
+           :ARG0 (y / you~e.63)
+           :ARG1 (m / mixture~e.56
+                    :consist-of (z / ziti~e.55))
+           :ARG2 (s / sauce~e.71
+                    :quant (v / volume-quantity~e.68
+                              :unit (c2 / cup~e.68)
+                              :quant 2~e.67)
+                    :mod (s2 / spaghetti~e.70)
+                    :ARG1-of (r / remain-01~e.66))
+           :mode imperative~e.72)
+   :rel (d / distance-quantity~e.59
+           :unit (f / foot~e.59)
+           :quant 9~e.59))
+
+# ::id baked_ziti_7_instr5
+# ::name baked_ziti_7_instr5
+# ::snt Sprinkle with mozzarella cheese .
+# ::root s
+# ::alignments s, y
+# ::snt_id baked_ziti_7_instr5
+(s / spray-01~e.73
+   :mode imperative~e.73
+   :ARG0 (y / you~e.73)
+   :ARG2 (c / cheese~e.76
+            :mod (m / mozzarella~e.75)))
+
+# ::id baked_ziti_7_instr6
+# ::name baked_ziti_7_instr6
+# ::snt Bake for 30 minutes or until cheese begins to brown .
+# ::root b
+# ::alignments b, b2
+# ::snt_id baked_ziti_7_instr6
+(b / bake-01~e.78
+   :mode imperative~e.88
+   :ARG0 (y / you~e.78)
+   :duration (o / or~e.82
+                :op1 (t / temporal-quantity~e.80
+                        :unit (m / minute~e.81)
+                        :quant 30~e.80)
+                :op2 (u / until~e.83
+                        :op1 (b2 / begin-01~e.85
+                                 :ARG1 (r / Brown~e.87
+                                          :domain (c / cheese~e.84))))))
+
+# ::id baked_ziti_7_instr7_0
+# ::name baked_ziti_7_instr7_0
+# ::snt Heat oil , onion and garlic in large saucepan .
+# ::root h
+# ::alignments h
+# ::snt_id baked_ziti_7_instr7
+(h / heat-01~e.89
+   :mode imperative~e.89
+   :ARG1 (a / and~e.93
+            :op1 (o / oil~e.90)
+            :op2 (o2 / onion~e.92)
+            :op3 (g / garlic~e.94))
+   :location (s / saucepan~e.97
+                :mod (l / large~e.96))
+   :ARG0 (y / you~e.89))
+
+# ::id baked_ziti_7_instr7_1
+# ::name baked_ziti_7_instr7_1
+# ::snt Oil , onion and garlic cook until tender .
+# ::root c
+# ::alignments c
+# ::snt_id baked_ziti_7_instr7
+(c / cook-01~e.99
+   :mode imperative~e.99
+   :duration (u / until~e.100
+                :op1 (t / tender-02~e.101
+                        :ARG2 (a / and~e.93
+                                 :op1 (o / oil~e.90)
+                                 :op2 (o2 / onion~e.92)
+                                 :op3 (g / garlic~e.94))))
+   :ARG0 (y / you~e.99))
+
+# ::id baked_ziti_7_instr8
+# ::name baked_ziti_7_instr8
+# ::snt Add water , tomato sauce and tomato paste to garlic and onion .
+# ::root a
+# ::alignments a, y
+# ::snt_id baked_ziti_7_instr8
+(a / add-02~e.103
+   :mode imperative~e.103
+   :ARG0 (y / you~e.103)
+   :ARG1 (a2 / and~e.108
+             :op1 (w / water~e.104)
+             :op2 (s / sauce~e.107
+                     :mod (t / tomato~e.106))
+             :op3 (p / paste~e.110
+                     :mod (t2 / tomato~e.109)))
+   :ARG2 (a3 / and~e.113
+             :op1 (g / garlic~e.112)
+             :op2 (o / onion~e.114)))
+
+# ::id baked_ziti_7_instr9
+# ::name baked_ziti_7_instr9
+# ::snt Mix well .
+# ::root m
+# ::alignments m, y
+# ::snt_id baked_ziti_7_instr9
+(m / mix-01~e.116
+   :mode imperative~e.118
+   :ARG0 (y / you~e.116)
+   :manner (w / well~e.117))
+
+# ::id baked_ziti_7_instr10
+# ::name baked_ziti_7_instr10
+# ::snt Add basil , garlic salt and pepper to taste .
+# ::root a
+# ::alignments a, y
+# ::snt_id baked_ziti_7_instr10
+(a / add-02~e.119
+   :mode imperative~e.119
+   :purpose (t / taste-02~e.127
+               :ARG1 a2)
+   :ARG0 (y / you~e.119)
+   :ARG1 (a2 / and~e.124
+             :op1 (b / basil~e.120)
+             :op2 (s / salt~e.123
+                     :mod (g / garlic~e.122))
+             :op3 (p / pepper~e.125)))
+
+# ::id baked_ziti_7_instr11
+# ::name baked_ziti_7_instr11
+# ::snt Bring to a boil .
+# ::root b2
+# ::alignments b2, y
+# ::snt_id baked_ziti_7_instr11
+(b2 / bring-01~e.129
+    :mode imperative~e.129
+    :ARG0 (y / you~e.129)
+    :ARG2 (b / boil-01~e.132))
+
+# ::id baked_ziti_7_instr12_0
+# ::name baked_ziti_7_instr12_0
+# ::snt Reduce heat .
+# ::root r
+# ::alignments r
+# ::snt_id baked_ziti_7_instr12
+(r / reduce-01~e.134
+   :mode imperative~e.137
+   :ARG0 (y / you~e.134)
+   :ARG1 (h / heat~e.135))
+
+# ::id baked_ziti_7_instr12_1
+# ::name baked_ziti_7_instr12_1
+# ::snt Simmer- 20 minutes or so .
+# ::root s
+# ::alignments s
+# ::snt_id baked_ziti_7_instr12
+(s / simmer-01~e.137
+   :mode imperative~e.140
+   :ARG0 (y / you~e.137)
+   :duration (o / or~e.140
+                :op1 (t / temporal-quantity~e.139
+                        :unit (m / minute~e.139)
+                        :quant 20~e.138)
+                :op2 (s2 / so~e.141)))
+
+# ::id baked_ziti_7_instr13
+# ::name baked_ziti_7_instr13
+# ::snt Makes enough sauce for two family size servings ( family size = 4 adults or 2 adults and 4 children with leftovers ) .
+# ::root m
+# ::alignments m
+# ::snt_id baked_ziti_7_instr13
+(m / make-01~e.143
+   :mode imperative~e.143
+   :ARG1 (s / sauce~e.145
+            :ARG1-of (h2 / have-quant-91~e.144
+                         :ARG3 (e / enough~e.144)
+                         :ARG6 (s2 / serve-02~e.150
+                                   :mod (s3 / size-01~e.149
+                                            :ARG1 (f / family~e.148)
+                                            :ARG1-of (e2 / equal-01~e.154
+                                                         :ARG2 (o / or~e.157
+                                                                  :op1 (a / adult~e.156
+                                                                          :quant 4~e.155)
+                                                                  :op2 (a3 / and~e.160
+                                                                           :op1 (a2 / adult~e.159
+                                                                                    :quant 2~e.158)
+                                                                           :op2 (c / child~e.162
+                                                                                   :ARG0-of (h / have-03~e.163
+                                                                                               :ARG1 (t / thing~e.164
+                                                                                                        :ARG1-of (l / left-19~e.164)))
+                                                                                   :quant 4~e.161)))))
+                                   :quant 2~e.147)))
+   :rel (f2 / family~e.152)
+   :ARG0 (y / you~e.143))
+

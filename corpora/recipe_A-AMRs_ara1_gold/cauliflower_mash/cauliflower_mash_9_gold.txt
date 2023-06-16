@@ -1,0 +1,206 @@
+# ::id cauliflower_mash_9_instr0
+# ::name cauliflower_mash_9_instr0
+# ::snt Boil Cauliflower until fork tender .
+# ::root b
+# ::alignments b, y
+# ::snt_id cauliflower_mash_9_instr0
+(b / boil-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (p / potato~e.2)
+   :time (u / until~e.3
+            :op1 (t / tender-02~e.5
+                    :ARG1 (f / fork~e.4))))
+
+# ::id cauliflower_mash_9_instr1
+# ::name cauliflower_mash_9_instr1
+# ::snt ( 10 - 15 mins )
+# ::root b
+# ::alignments
+# ::snt_id cauliflower_mash_9_instr1
+(b / between~e.8
+   :op1 (t / temporal-quantity~e.11
+           :unit (m / minute~e.11)
+           :quant 10~e.8)
+   :op2 (t2 / temporal-quantity~e.11
+            :unit (m2 / minute~e.11)
+            :quant 15~e.10))
+
+# ::id cauliflower_mash_9_instr2_0
+# ::name cauliflower_mash_9_instr2_0
+# ::snt Drain cauliflower .
+# ::root d
+# ::alignments d
+# ::snt_id cauliflower_mash_9_instr2
+(d / drain-01~e.13
+   :mode imperative~e.13
+   :ARG0 (y / you~e.13)
+   :ARG1 (c / cauliflower~e.14))
+
+# ::id cauliflower_mash_9_instr2_1
+# ::name cauliflower_mash_9_instr2_1
+# ::snt Put into food processor .
+# ::root p2
+# ::alignments p2
+# ::snt_id cauliflower_mash_9_instr2
+(p2 / put-01~e.16
+    :mode imperative~e.13
+    :ARG0 (y / you~e.16)
+    :ARG2 (t / thing~e.19
+             :ARG0-of (p / process-01~e.19
+                         :ARG1 (f / food~e.18))))
+
+# ::id cauliflower_mash_9_instr3_1
+# ::name cauliflower_mash_9_instr3_1
+# ::snt Shred cheese .
+# ::root s2
+# ::alignments s2
+# ::snt_id cauliflower_mash_9_instr3
+(s2 / shred-01~e.33
+    :mode imperative~e.33
+    :ARG1 (c2 / cheese~e.34)
+    :ARG0 (y / you~e.33))
+
+# ::id cauliflower_mash_9_instr3_0
+# ::name cauliflower_mash_9_instr3_0
+# ::snt Add sour cream , butter , parmesan cheese , 1/2 of the cheese mix , salt and pepper to food processor .
+# ::root a
+# ::alignments a
+# ::snt_id cauliflower_mash_9_instr3
+(a / add-02~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG1 (a2 / and~e.24
+             :op1 (c3 / cream~e.23
+                      :mod (s3 / sour~e.22))
+             :op2 (b / butter~e.25)
+             :op3 (c / cheese~e.28
+                     :mod (p / parmesan~e.27))
+             :op4 (m / mix-01~e.35
+                     :ARG1 (c2 / cheese~e.34)
+                     :ARG3 (p4 / product-of~e.30
+                               :op1 "1/2"~e.30))
+             :op5 (s / salt~e.37)
+             :op6 (p2 / pepper~e.39))
+   :ARG2 (t / thing~e.42
+            :ARG0-of (p3 / process-01~e.42
+                         :ARG1 (f / food~e.41))))
+
+# ::id cauliflower_mash_9_instr4_1
+# ::name cauliflower_mash_9_instr4_1
+# ::snt Turn on food processor until the mixture is finely mashed / mixed with no lumps .
+# ::root t2
+# ::alignments t2
+# ::snt_id cauliflower_mash_9_instr4
+(t2 / turn-on-13~e.44
+    :mode imperative~e.44
+    :ARG0 (y / you~e.44)
+    :ARG1 (t / thing~e.47
+             :ARG0-of (p / process-01~e.47
+                         :ARG1 (f2 / food~e.46)))
+    :duration (u / until~e.52
+                 :op1 (s2 / slash~e.58
+                          :accompanier (l / lump~e.62
+                                          :polarity -~e.61)
+                          :op1 (m2 / mix-01~e.57
+                                   :ARG1 (m / mix-01~e.54)
+                                   :manner (f / finely~e.56))
+                          :op2 (m3 / mix-01~e.59
+                                   :manner f))))
+
+# ::id cauliflower_mash_9_instr4_0
+# ::name cauliflower_mash_9_instr4_0
+# ::snt Grind / chop until the mixture is finely mashed / mixed with no lumps .
+# ::root s
+# ::alignments g, c
+# ::snt_id cauliflower_mash_9_instr4
+(s / slash~e.50
+   :op1 (g / grind-01~e.49
+           :ARG0 (y / you~e.51))
+   :op2 (c / chop-01~e.51
+           :ARG0 y)
+   :duration (u / until~e.52
+                :op1 (s2 / slash~e.58
+                         :accompanier (l / lump~e.62
+                                         :polarity -~e.61)
+                         :op1 (m2 / mix-01~e.57
+                                  :ARG1 (m / mix-01~e.54)
+                                  :manner (f / finely~e.56))
+                         :op2 (m3 / mix-01~e.59
+                                  :manner f))))
+
+# ::id cauliflower_mash_9_instr5
+# ::name cauliflower_mash_9_instr5
+# ::snt Add remaining cheese to the top of your cauliflower mash when done .
+# ::root a
+# ::alignments a, y
+# ::snt_id cauliflower_mash_9_instr5
+(a / add-02~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (c2 / cheese~e.66
+             :ARG1-of (r / remain-01~e.65))
+   :ARG2 (t / top~e.69
+            :part-of (m / mash~e.73
+                        :poss y
+                        :consist-of (c / cauliflower~e.72)))
+   :time (b / be-done-08~e.75
+            :ARG0 y))
+
+# ::id cauliflower_mash_9_instr6
+# ::name cauliflower_mash_9_instr6
+# ::snt * * If your mixture is too watery , add more parmesan or shredded cheese .
+# ::root a
+# ::alignments s
+# ::snt_id cauliflower_mash_9_instr6
+(a / add-02~e.86
+   :mode imperative~e.86
+   :ARG0 (y / you~e.80)
+   :ARG1 (o / or~e.89
+            :quant (m2 / more~e.87)
+            :op1 (p / parmesan~e.88)
+            :op2 (c / cheese~e.91
+                    :ARG1-of (s / shred-01~e.90)))
+   :condition (h / have-degree-91~e.83
+                 :ARG1 (m / mixture~e.81
+                          :poss y)
+                 :ARG2 (w / watery~e.84)
+                 :ARG3 (t / too~e.83)))
+
+# ::id cauliflower_mash_9_instr7
+# ::name cauliflower_mash_9_instr7
+# ::snt If the mixture is still a little bit lumpy , you can add a touch of heavy cream or sour cream , and blend again until mixture is smooth .
+# ::root p
+# ::alignments a, b2
+# ::snt_id cauliflower_mash_9_instr7
+(p / possible-01~e.104
+   :ARG1 (a3 / and~e.115
+             :op1 (a / add-02~e.105
+                     :ARG0 (y / you~e.103)
+                     :ARG1 (t / touch-01~e.107
+                              :ARG1 (o / or~e.111
+                                       :op1 (c / cream~e.110
+                                               :mod (h / heavy~e.109))
+                                       :op2 (c2 / cream~e.113
+                                                :mod (s2 / sour~e.112)))))
+             :op2 (b2 / blend-01~e.116
+                      :ARG0 y
+                      :ARG1 (m / mixture~e.95)
+                      :duration (u / until~e.118
+                                   :op1 (s / smooth-04~e.121
+                                           :ARG1 m))
+                      :mod (a2 / again~e.117)))
+   :condition (l2 / lump-01~e.101
+                  :ARG1 m
+                  :degree (b / bit~e.100
+                             :mod (l / little~e.99))
+                  :mod (s3 / still~e.97)))
+
+# ::id cauliflower_mash_9_instr8
+# ::name cauliflower_mash_9_instr8
+# ::snt * *
+# ::root a
+# ::alignments
+# ::snt_id cauliflower_mash_9_instr8
+(a / amr-unintelligible~e.124)
+

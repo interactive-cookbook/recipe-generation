@@ -1,0 +1,289 @@
+# ::id garam_masala_8_instr0
+# ::name garam_masala_8_instr0
+# ::snt 1
+# ::root n
+# ::alignments
+# ::snt_id garam_masala_8_instr0
+(n / number~e.1
+   :value 1~e.1)
+
+# ::id garam_masala_8_instr1_0
+# ::name garam_masala_8_instr1_0
+# ::snt Heat 10-inch nonstick skillet over medium heat .
+# ::root h
+# ::alignments h
+# ::snt_id garam_masala_8_instr1
+(h / heat-01~e.2
+   :mode imperative~e.9
+   :ARG0 (y / you~e.2)
+   :ARG1 (s / skillet~e.5
+            :ARG1-of (s2 / stick-01~e.4
+                         :polarity -~e.3))
+   :ARG2 (h2 / heat-01~e.8
+             :degree (m / medium~e.7)))
+
+# ::id garam_masala_8_instr1_1
+# ::name garam_masala_8_instr1_1
+# ::snt Heat cardamom pods .
+# ::root a
+# ::alignments a
+# ::snt_id garam_masala_8_instr1
+(a / add-02~e.10
+   :mode imperative~e.13
+   :ARG0 (y / you~e.10)
+   :ARG1 (p / pod~e.12
+            :consist-of (c / cardamom~e.11)))
+
+# ::id garam_masala_8_instr2
+# ::name garam_masala_8_instr2
+# ::snt Cook 5 minutes , stirring often .
+# ::root c
+# ::alignments c, s
+# ::snt_id garam_masala_8_instr2
+(c / cook-01~e.14
+   :mode imperative~e.14
+   :ARG0 (y / you~e.18)
+   :duration (t / temporal-quantity~e.16
+                :unit (m / minute~e.16)
+                :quant 5~e.15)
+   :manner (s / stir-01~e.18
+              :ARG0 y
+              :frequency (o / often~e.19)))
+
+# ::id garam_masala_8_instr3_0
+# ::name garam_masala_8_instr3_0
+# ::snt Remove from heat .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_8_instr3
+(r / remove-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG2 (h / heat~e.23))
+
+# ::id garam_masala_8_instr3_1
+# ::name garam_masala_8_instr3_1
+# ::snt Cool slightly .
+# ::root c
+# ::alignments c
+# ::snt_id garam_masala_8_instr3
+(c / cool-01~e.25
+   :mode imperative~e.27
+   :ARG0 (y / you~e.25)
+   :degree (s / slight~e.26))
+
+# ::id garam_masala_8_instr4_0
+# ::name garam_masala_8_instr4_0
+# ::snt Press each pod between your thumb and forefinger to crack open .
+# ::root p2
+# ::alignments p2
+# ::snt_id garam_masala_8_instr4
+(p2 / press-01~e.28
+    :mode imperative~e.39
+    :purpose (c / crack-02~e.37
+                :ARG1 p
+                :ARG2 (o / open-01~e.38
+                         :ARG1 p))
+    :ARG0 (y / you~e.28
+             :part (t / thumb~e.33)
+             :part (f / forefinger~e.35))
+    :ARG1 (p / pod~e.30
+             :mod (e / each~e.29))
+    :location (b / between~e.31
+                 :op1 t
+                 :op2 f))
+
+# ::id garam_masala_8_instr4_2
+# ::name garam_masala_8_instr4_2
+# ::snt Reserve seeds .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_8_instr4
+(r / reserve-01~e.43
+   :mode imperative~e.45
+   :ARG0 (y / you~e.43)
+   :ARG1 (s / seed~e.44))
+
+# ::id garam_masala_8_instr4_1
+# ::name garam_masala_8_instr4_1
+# ::snt Discard husks .
+# ::root d
+# ::alignments d
+# ::snt_id garam_masala_8_instr4
+(d / discard-01~e.40
+   :mode imperative~e.39
+   :ARG0 (y / you~e.40)
+   :ARG1 (h / husk-01~e.41))
+
+# ::id garam_masala_8_instr5
+# ::name garam_masala_8_instr5
+# ::snt 2
+# ::root n
+# ::alignments
+# ::snt_id garam_masala_8_instr5
+(n / number~e.46
+   :value 2~e.46)
+
+# ::id garam_masala_8_instr6
+# ::name garam_masala_8_instr6
+# ::snt Add remaining ingredients to skillet .
+# ::root a
+# ::alignments a, y
+# ::snt_id garam_masala_8_instr6
+(a / add-02~e.47
+   :mode imperative~e.47
+   :ARG0 (y / you~e.47)
+   :ARG1 (i / ingredient~e.49
+            :ARG1-of (r / remain-01~e.48))
+   :ARG2 (s / skillet~e.51))
+
+# ::id garam_masala_8_instr7
+# ::name garam_masala_8_instr7
+# ::snt Cook over medium heat 2 to 3 minutes , stirring frequently , until cumin seeds turn brown and mixture is very fragrant .
+# ::root c
+# ::alignments c, s2, t3
+# ::snt_id garam_masala_8_instr7
+(c / cook-01~e.53
+   :ARG0 (y / you~e.62)
+   :duration (b / between~e.57
+                :op1 (t / temporal-quantity~e.60
+                        :unit (m2 / minute~e.60)
+                        :quant 2~e.57)
+                :op2 (t2 / temporal-quantity~e.60
+                         :unit (m3 / minute~e.60)
+                         :quant 3~e.59))
+   :manner (h / heat~e.56
+              :mod (m / medium~e.55))
+   :manner (s2 / stir-01~e.62
+               :ARG0 y
+               :ARG1-of (f2 / frequent-02~e.63))
+   :time (u / until~e.65
+            :op1 (a / and~e.70
+                    :op1 (t3 / turn-02~e.68
+                             :ARG1 (s / seed~e.67
+                                      :mod (c2 / cumin~e.66))
+                             :ARG2 (b2 / brown~e.69))
+                    :op2 (f / fragrant~e.74
+                            :degree (v / very~e.73)
+                            :domain (m4 / mixture~e.71)))))
+
+# ::id garam_masala_8_instr8_0
+# ::name garam_masala_8_instr8_0
+# ::snt Transfer to glass dish .
+# ::root t
+# ::alignments t
+# ::snt_id garam_masala_8_instr8
+(t / transfer-01~e.76
+   :mode imperative~e.82
+   :ARG0 (y / you~e.76)
+   :ARG2 (d / dish~e.79
+            :consist-of (g / glass~e.78)))
+
+# ::id garam_masala_8_instr8_1
+# ::name garam_masala_8_instr8_1
+# ::snt Transfer cool .
+# ::root c
+# ::alignments c
+# ::snt_id garam_masala_8_instr8
+(c / cool-01~e.81
+   :mode imperative~e.82
+   :ARG1 (y / you~e.76)
+   :ARG0 (y1 / you~e.81))
+
+# ::id garam_masala_8_instr9
+# ::name garam_masala_8_instr9
+# ::snt 3
+# ::root n
+# ::alignments
+# ::snt_id garam_masala_8_instr9
+(n / number~e.83
+   :value 3~e.83)
+
+# ::id garam_masala_8_instr10_0
+# ::name garam_masala_8_instr10_0
+# ::snt In spice grinder or clean coffee grinder , place spice mixture and cardamom seeds .
+# ::root p
+# ::alignments p
+# ::snt_id garam_masala_8_instr10
+(p / place-01~e.92
+   :mode imperative~e.92
+   :ARG0 (y / you~e.92)
+   :ARG1 (a / and~e.95
+            :op1 (t / thing~e.95
+                    :ARG3-of (m / mix-01~e.94
+                                :ARG1 (s2 / spice~e.93)))
+            :op2 (s / seed~e.98
+                    :mod (c / cardamom~e.97)))
+   :location (o / or~e.87
+                :op1 (f / filter-02~e.90
+                        :ARG1 s2)
+                :op2 (f2 / filter-02~e.90
+                         :ARG1 (c3 / coffee~e.89)
+                         :ARG1-of (c2 / clean-01~e.88))))
+
+# ::id garam_masala_8_instr10_1
+# ::name garam_masala_8_instr10_1
+# ::snt Reserv cardamom seeds .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_8_instr10
+(r / reserve-01~e.96
+   :ARG1 (s / seed~e.98
+            :mod (c / cardamom~e.97))
+   :ARG0 (y / you~e.96))
+
+# ::id garam_masala_8_instr11
+# ::name garam_masala_8_instr11
+# ::snt Grind 30 to 40 seconds or until spices are finely ground .
+# ::root o
+# ::alignments b, i
+# ::snt_id garam_masala_8_instr11
+(o / or~e.105
+   :op1 (b / between~e.100
+           :op1 (t / temporal-quantity~e.104
+                   :unit (s / second~e.104)
+                   :quant 30~e.101)
+           :op2 (t2 / temporal-quantity~e.104
+                    :unit (s2 / second~e.104)
+                    :quant 40~e.103))
+   :op1 (d / date-entity~e.107
+           :quant b)
+   :op2 (u / until~e.106
+           :op1 (u2 / until~e.109
+                    :op1 (g / ground-02~e.110
+                            :ARG1 (e / enzyme~e.107
+                                     :ARG2-of (s3 / smoke-02~e.107)
+                                     :ARG1-of g2))
+                    :op2 (g2 / ground-02~e.110)))
+   :rel (i / imperative~e.100))
+
+# ::id garam_masala_8_instr12_1
+# ::name garam_masala_8_instr12_1
+# ::snt In tightly seal jar .
+# ::root s
+# ::alignments s
+# ::snt_id garam_masala_8_instr12
+(s / seal-01~e.115
+   :mode imperative~e.115
+   :ARG1 (j / jar~e.116)
+   :ARG0 (y / you~e.115)
+   :ARG1-of (t2 / tight-05~e.114))
+
+# ::id garam_masala_8_instr12_0
+# ::name garam_masala_8_instr12_0
+# ::snt Store jar away from heat and light up to 3 months .
+# ::root a
+# ::alignments s2
+# ::snt_id garam_masala_8_instr12
+(a / and~e.120
+   :op1 (s2 / store-01~e.112
+            :ARG0 (y / you~e.112)
+            :direction (a2 / away~e.117
+                           :op1 (h / heat-01~e.119))
+            :location (j / jar~e.116))
+   :op2 (l / light-04~e.121
+           :duration (u / up-to~e.122
+                        :op1 (t / temporal-quantity~e.125
+                                :unit (m / month~e.125)
+                                :quant 3~e.124))))
+

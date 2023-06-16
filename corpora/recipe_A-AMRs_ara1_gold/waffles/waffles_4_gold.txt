@@ -1,0 +1,141 @@
+# ::id waffles_4_instr0_1
+# ::name waffles_4_instr0_1
+# ::snt Add milk .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_4_instr0
+(a / add-02~e.4
+   :mode imperative~e.6
+   :ARG0 (y / you~e.4)
+   :ARG1 (m / milk~e.5))
+
+# ::id waffles_4_instr0_0
+# ::name waffles_4_instr0_0
+# ::snt Beat eggs .
+# ::root b
+# ::alignments b
+# ::snt_id waffles_4_instr0
+(b / beat-01~e.1
+   :mode imperative~e.6
+   :ARG0 (y / you~e.1)
+   :ARG1 (e / egg~e.2))
+
+# ::id waffles_4_instr1
+# ::name waffles_4_instr1
+# ::snt Sift flour , salt , baking powder and sugar into egg mixture .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id waffles_4_instr1
+(s2 / sift-01~e.7
+    :mode imperative~e.7
+    :ARG0 (y / you~e.7)
+    :ARG1 (a / and~e.14
+             :op1 (f / flour~e.8)
+             :op2 (s / salt~e.10)
+             :op3 (p / powder-01~e.13
+                     :ARG1 (b / bake-01~e.12))
+             :op4 (s3 / sugar~e.15))
+    :ARG2 (m / mixture~e.18
+             :consist-of (e / egg~e.17)))
+
+# ::id waffles_4_instr2
+# ::name waffles_4_instr2
+# ::snt Mix gently but do not over mix .
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_4_instr2
+(m / mix-01~e.20
+   :mode imperative~e.23
+   :ARG0 (y / you~e.20)
+   :manner (g / gentle~e.21)
+   :concession-of (m2 / mix-01~e.26
+                      :ARG0 y
+                      :ARG1-of (o / over-03~e.25)
+                      :polarity -~e.24))
+
+# ::id waffles_4_instr3
+# ::name waffles_4_instr3
+# ::snt Batter will be slightly lumpy .
+# ::root l
+# ::alignments
+# ::snt_id waffles_4_instr3
+(l / lump-01~e.32
+   :ARG1 B~e.28
+   :degree (s / slight~e.31))
+
+# ::id waffles_4_instr4_0
+# ::name waffles_4_instr4_0
+# ::snt Add oil .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_4_instr4
+(a / add-02~e.34
+   :mode imperative~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (o / oil~e.35))
+
+# ::id waffles_4_instr4_1
+# ::name waffles_4_instr4_1
+# ::snt Mix again .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_4_instr4
+(m / mix-01~e.37
+   :mode imperative~e.34
+   :ARG0 (y / you~e.37)
+   :mod (a2 / again~e.38))
+
+# ::id waffles_4_instr5_0
+# ::name waffles_4_instr5_0
+# ::snt Pour 1/4 cup of batter onto hot waffle iron .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_4_instr5
+(p / pour-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (b / batter-01~e.44
+            :quant (v / volume-quantity~e.42
+                      :unit (c2 / cup~e.42)
+                      :quant "1/4"~e.41))
+   :ARG2 (i / iron~e.48
+            :mod (w / waffle~e.47)
+            :ARG1-of (h / hot-05~e.46)))
+
+# ::id waffles_4_instr5_1
+# ::name waffles_4_instr5_1
+# ::snt Cook to a light golden brown .
+# ::root c
+# ::alignments c
+# ::snt_id waffles_4_instr5
+(c / cook-01~e.50
+   :mode imperative~e.56
+   :ARG0 (y / you~e.50)
+   :manner (b2 / brown~e.55
+               :ARG1-of (l / light-07~e.53)
+               :consist-of (g / gold~e.54)))
+
+# ::id waffles_4_instr6
+# ::name waffles_4_instr6
+# ::snt Repeat with remaining batter .
+# ::root r2
+# ::alignments r2
+# ::snt_id waffles_4_instr6
+(r2 / repeat-01~e.57
+    :mode imperative~e.57
+    :ARG1 (t / thing~e.61
+             :ARG1-of (r / remain-01~e.59)
+             :ARG2-of (b / batter-01~e.60))
+    :ARG0 (y / you~e.57))
+
+# ::id waffles_4_instr7
+# ::name waffles_4_instr7
+# ::snt Notes and S ...
+# ::root a
+# ::alignments
+# ::snt_id waffles_4_instr7
+(a / and~e.63
+   :op1 (n / note-01~e.62)
+   :op2 (s / string-entity~e.64
+           :value "S"~e.64))
+

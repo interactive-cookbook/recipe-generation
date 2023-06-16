@@ -1,0 +1,222 @@
+# ::id baked_ziti_2_instr0
+# ::name baked_ziti_2_instr0
+# ::snt Preheat oven to 350 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id baked_ziti_2_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4))
+
+# ::id baked_ziti_2_instr1
+# ::name baked_ziti_2_instr1
+# ::snt Spray a 9X13 pan with cooking spray .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id baked_ziti_2_instr1
+(s2 / spray-01~e.7
+    :mode imperative~e.14
+    :rel 13~e.9
+    :ARG0 (y / you~e.7)
+    :ARG1 (p / pan~e.10
+             :mod (d2 / distance-quantity~e.9
+                      :unit (f / foot~e.9)
+                      :unit (i / inch~e.9)
+                      :quant 9~e.9))
+    :ARG2 (s / spray~e.13
+             :instrument-of (c / cook-01~e.12))
+    :rel (d / distance-quantity~e.9
+            :quant 9~e.9))
+
+# ::id baked_ziti_2_instr2_1
+# ::name baked_ziti_2_instr2_1
+# ::snt Boil water .
+# ::root b
+# ::alignments b
+# ::snt_id baked_ziti_2_instr2
+(b / boil-01~e.18
+   :mode imperative~e.18
+   :ARG1 (w / water~e.19)
+   :ARG0 (y / you~e.18))
+
+# ::id baked_ziti_2_instr2_0
+# ::name baked_ziti_2_instr2_0
+# ::snt Cook ziti in water until al dente .
+# ::root c
+# ::alignments c
+# ::snt_id baked_ziti_2_instr2
+(c / cook-01~e.15
+   :mode imperative~e.15
+   :ARG0 (y / you~e.15)
+   :ARG1 (z / ziti~e.16)
+   :location (w / water~e.19)
+   :time (u / until~e.20
+            :op1 (d / dent-01~e.22
+                    :mod (l / Al~e.22))))
+
+# ::id baked_ziti_2_instr3
+# ::name baked_ziti_2_instr3
+# ::snt Drain
+# ::root d
+# ::alignments d
+# ::snt_id baked_ziti_2_instr3
+(d / drain-01~e.24
+   :mode imperative~e.24
+   :ARG0 (y / you~e.24))
+
+# ::id baked_ziti_2_instr4_1
+# ::name baked_ziti_2_instr4_1
+# ::snt Ground beef .
+# ::root g
+# ::alignments g
+# ::snt_id baked_ziti_2_instr4
+(g / ground-02~e.30
+   :mode imperative~e.30
+   :ARG2 (b / beef~e.31)
+   :ARG0 (y / you~e.30))
+
+# ::id baked_ziti_2_instr4_0
+# ::name baked_ziti_2_instr4_0
+# ::snt In a large skillet cook beef and onion .
+# ::root c
+# ::alignments c
+# ::snt_id baked_ziti_2_instr4
+(c / cook-01~e.29
+   :mode imperative~e.34
+   :ARG0 (y / you~e.29)
+   :ARG1 (a / and~e.32
+            :op1 (b / beef~e.31)
+            :op2 (o / onion~e.33))
+   :location (s / skillet~e.28
+                :mod (l / large~e.27)))
+
+# ::id baked_ziti_2_instr5_0
+# ::name baked_ziti_2_instr5_0
+# ::snt Add the tomato sauce .
+# ::root a2
+# ::alignments a2
+# ::snt_id baked_ziti_2_instr5
+(a2 / add-02~e.35
+    :mode imperative~e.35
+    :ARG0 (y / you~e.35)
+    :ARG1 (s / sauce~e.38
+             :mod (t2 / tomato~e.37)))
+
+# ::id baked_ziti_2_instr5_1
+# ::name baked_ziti_2_instr5_1
+# ::snt Simmer about 15 minutes .
+# ::root s2
+# ::alignments s2
+# ::snt_id baked_ziti_2_instr5
+(s2 / simmer-01~e.40
+    :mode imperative~e.40
+    :duration (a / about~e.41
+                 :op1 (t / temporal-quantity~e.43
+                         :unit (m / minute~e.43)
+                         :quant 15~e.42))
+    :ARG0 (y / you~e.40))
+
+# ::id baked_ziti_2_instr6
+# ::name baked_ziti_2_instr6
+# ::snt In the bottom of the baking dish add half the ziti .
+# ::root a
+# ::alignments a
+# ::snt_id baked_ziti_2_instr6
+(a / add-02~e.52
+   :mode imperative~e.52
+   :ARG1 (z / ziti~e.55
+            :quant (h / half~e.53))
+   :location (b2 / bottom~e.47
+                 :part-of (d / dish~e.51
+                             :purpose (b / bake-01~e.50)))
+   :ARG0 (y / you~e.52))
+
+# ::id baked_ziti_2_instr7
+# ::name baked_ziti_2_instr7
+# ::snt Cover with the provolone , sour cream and then ½ of the sauce mixture .
+# ::root c
+# ::alignments c, y
+# ::snt_id baked_ziti_2_instr7
+(c / cover-02~e.57
+   :mode imperative~e.57
+   :ARG0 (y / you~e.57)
+   :ARG2 (a / and~e.64
+            :op1 (p / provolone~e.60)
+            :op2 (c2 / cream~e.63
+                     :mod (s2 / sour~e.62))
+            :op3 (m2 / mixture~e.70
+                     :mod (t / then~e.65)
+                     :ARG1-of (i / include-91~e.66
+                                 :ARG2 (m / mix-01~e.70
+                                          :ARG1 (s / sauce~e.69)))
+                     :quant "1/2"~e.66)))
+
+# ::id baked_ziti_2_instr8_0
+# ::name baked_ziti_2_instr8_0
+# ::snt Add the remaining ziti , mozzarella , sauce mixture .
+# ::root a
+# ::alignments a
+# ::snt_id baked_ziti_2_instr8
+(a / add-02~e.72
+   :mode imperative~e.72
+   :ARG1 (a2 / and~e.76
+             :op1 (z / ziti~e.75)
+             :op2 (m2 / mozzarella~e.77)
+             :op3 (m / mix-01~e.80
+                     :ARG1 (s / sauce~e.79))
+             :ARG1-of (r / remain-01~e.74))
+   :ARG0 (y / you~e.72))
+
+# ::id baked_ziti_2_instr8_1
+# ::name baked_ziti_2_instr8_1
+# ::snt Then sprinkle the Parmesan cheese on top .
+# ::root s2
+# ::alignments s2
+# ::snt_id baked_ziti_2_instr8
+(s2 / sprinkle-01~e.83
+    :mode imperative~e.83
+    :ARG1 (c / cheese~e.86
+             :name (n / name~e.85
+                      :op1 "Parmesan"~e.85))
+    :ARG2 (t2 / top~e.88)
+    :time (t / then~e.82)
+    :ARG0 (y / you~e.83))
+
+# ::id baked_ziti_2_instr9_1
+# ::name baked_ziti_2_instr9_1
+# ::snt Preheat oven .
+# ::root h
+# ::alignments h
+# ::snt_id baked_ziti_2_instr9
+(h / heat-01~e.92
+   :mode imperative~e.92
+   :ARG1 (o / oven~e.93)
+   :ARG0 (y / you~e.92))
+
+# ::id baked_ziti_2_instr9_0
+# ::name baked_ziti_2_instr9_0
+# ::snt Bake in oven for 30 minutes .
+# ::root b
+# ::alignments b
+# ::snt_id baked_ziti_2_instr9
+(b / bake-01~e.90
+   :mode imperative~e.97
+   :ARG0 (y / you~e.90)
+   :duration (t / temporal-quantity~e.95
+                :unit (m / minute~e.96)
+                :quant 30~e.95)
+   :location (o / oven~e.93))
+
+# ::id baked_ziti_2_instr10
+# ::name baked_ziti_2_instr10
+# ::snt Enjoy !
+# ::root e
+# ::alignments
+# ::snt_id baked_ziti_2_instr10
+(e / enjoy-01~e.98
+   :mode expressive~e.99
+   :ARG0 (y / you~e.98))
+

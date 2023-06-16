@@ -1,0 +1,95 @@
+# ::id slow_cooker_chicken_tortilla_soup_7_instr0
+# ::name slow_cooker_chicken_tortilla_soup_7_instr0
+# ::snt Combine all soup ingredients ( not toppings ) into a slow cooker .
+# ::root c
+# ::alignments c, y
+# ::snt_id slow_cooker_chicken_tortilla_soup_7_instr0
+(c / combine-01~e.1
+   :mode imperative~e.13
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.4
+            :mod (s2 / soup~e.3)
+            :mod (a / all~e.2)
+            :ARG1-of (c2 / contrast-01~e.5
+                         :ARG2 (b / base-01~e.7
+                                  :polarity -~e.6)))
+   :ARG3 (t / thing~e.12
+            :ARG0-of (c3 / cook-01~e.12
+                         :ARG1-of (s / slow-01~e.11))))
+
+# ::id slow_cooker_chicken_tortilla_soup_7_instr1
+# ::name slow_cooker_chicken_tortilla_soup_7_instr1
+# ::snt Cook on high for 5 - 6 hours or on low for 8 hours .
+# ::root o
+# ::alignments c, y, c2
+# ::snt_id slow_cooker_chicken_tortilla_soup_7_instr1
+(o / or~e.22
+   :op1 (c / cook-01~e.14
+           :ARG0 (y / you~e.14)
+           :duration (b / between~e.18
+                        :op1 (t / temporal-quantity~e.21
+                                :unit (h2 / hour~e.21)
+                                :quant 5~e.18)
+                        :op2 (t2 / temporal-quantity~e.21
+                                 :unit (h3 / hour~e.21)
+                                 :quant 6~e.20))
+           :prep-on (h / high-02~e.16)
+           :mode imperative~e.14)
+   :op2 (c2 / cook-01~e.14
+            :ARG0 y
+            :duration (t3 / temporal-quantity~e.21
+                          :unit h3
+                          :quant 8~e.26)
+            :manner (l / low-04~e.24)
+            :mode imperative~e.28))
+
+# ::id slow_cooker_chicken_tortilla_soup_7_instr2_1
+# ::name slow_cooker_chicken_tortilla_soup_7_instr2_1
+# ::snt To serve the soup , toppings .
+# ::root a4
+# ::alignments s2
+# ::snt_id slow_cooker_chicken_tortilla_soup_7_instr2
+(a4 / and~e.40
+    :purpose (s2 / serve-02~e.30
+                 :ARG0 (y / you~e.30)
+                 :ARG1 (s3 / soup~e.32))
+    :rel (c / continent~e.37
+            :name (n / name~e.37)))
+
+# ::id slow_cooker_chicken_tortilla_soup_7_instr2_2
+# ::name slow_cooker_chicken_tortilla_soup_7_instr2_2
+# ::snt Lay out all toppings in bowls and garnishes .
+# ::root a4
+# ::alignments l
+# ::snt_id slow_cooker_chicken_tortilla_soup_7_instr2
+(a4 / and~e.40
+    :op1 (l / lay-01~e.34
+            :ARG0 (y / you~e.34)
+            :ARG2 (b / bowl-01~e.39
+                     :ARG1 (d / dish~e.45
+                              :mod (a2 / all~e.36)))
+            :mode imperative~e.53)
+    :rel (c / continent~e.37
+            :name (n / name~e.37)))
+
+# ::id slow_cooker_chicken_tortilla_soup_7_instr2_0
+# ::name slow_cooker_chicken_tortilla_soup_7_instr2_0
+# ::snt The soup , toppings and allow everyone to add garnishes to their soup as they see fit .
+# ::root a4
+# ::alignments a3, a
+# ::snt_id slow_cooker_chicken_tortilla_soup_7_instr2
+(a4 / and~e.40
+    :op2 (a3 / allow-01~e.41
+             :ARG0 (y / you~e.41)
+             :ARG1 (a / add-02~e.44
+                      :ARG0 (e / everyone~e.42)
+                      :ARG1 (d2 / dish~e.45
+                                :ARG1-of (p / prepare-01~e.45))
+                      :ARG2 (s3 / soup~e.32)
+                      :manner (s / see-01~e.51
+                                 :ARG0 e
+                                 :ARG2 (f / fit-06~e.52)))
+             :mode imperative~e.53)
+    :rel (c / continent~e.37
+            :name (n / name~e.37)))
+

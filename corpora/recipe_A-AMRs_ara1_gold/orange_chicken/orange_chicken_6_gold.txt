@@ -1,0 +1,193 @@
+# ::id orange_chicken_6_instr0_0
+# ::name orange_chicken_6_instr0_0
+# ::snt Add the soy sauce and egg to the chicken .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_6_instr0
+(a / add-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a2 / and~e.5
+             :op1 (s / sauce~e.4
+                     :mod (s2 / soy~e.3))
+             :op2 (e / egg~e.6))
+   :ARG2 (c / chicken~e.9))
+
+# ::id orange_chicken_6_instr0_1
+# ::name orange_chicken_6_instr0_1
+# ::snt Mix the soy sauce and egg to incorporate .
+# ::root m
+# ::alignments m
+# ::snt_id orange_chicken_6_instr0
+(m / mix-01~e.11
+   :mode imperative~e.14
+   :purpose (i / incorporate-02~e.13
+               :ARG0 y
+               :ARG1 a2)
+   :ARG0 (y / you~e.13)
+   :ARG3 (a2 / and~e.5
+             :op1 (s / sauce~e.4
+                     :mod (s2 / soy~e.3))
+             :op2 (e / egg~e.6)))
+
+# ::id orange_chicken_6_instr1_0
+# ::name orange_chicken_6_instr1_0
+# ::snt Add the cornstarch .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_6_instr1
+(a / add-02~e.15
+   :mode imperative~e.15
+   :ARG0 (y / you~e.15)
+   :ARG1 (c2 / cornstarch~e.17))
+
+# ::id orange_chicken_6_instr1_1
+# ::name orange_chicken_6_instr1_1
+# ::snt Mix the cornstarch to coat .
+# ::root m
+# ::alignments m
+# ::snt_id orange_chicken_6_instr1
+(m / mix-01~e.19
+   :mode imperative~e.22
+   :purpose (c / coat-01~e.21
+               :ARG1 (c2 / cornstarch~e.17))
+   :ARG0 (y / you~e.19))
+
+# ::id orange_chicken_6_instr2
+# ::name orange_chicken_6_instr2
+# ::snt Fry in vegetable oil on medium - high heat until chicken is golden brown .
+# ::root f
+# ::alignments f, y
+# ::snt_id orange_chicken_6_instr2
+(f / fry-01~e.23
+   :mode imperative~e.23
+   :ARG0 (y / you~e.23)
+   :ARG1 (o / oil~e.26
+            :source (v / vegetable~e.25))
+   :prep-on (h / heat~e.31
+               :ARG1-of (h2 / high-02~e.30
+                            :degree (m / medium~e.28)))
+   :time (u / until~e.32
+            :op1 (b / brown-01~e.36
+                    :ARG1 (c / chicken~e.33)
+                    :ARG3 (g / gold~e.35))))
+
+# ::id orange_chicken_6_instr3_1
+# ::name orange_chicken_6_instr3_1
+# ::snt Cook chicken .
+# ::root c2
+# ::alignments c2
+# ::snt_id orange_chicken_6_instr3
+(c2 / cook-01~e.39
+    :mode imperative~e.39
+    :ARG1 (c / chicken~e.40)
+    :ARG0 (y / you~e.39))
+
+# ::id orange_chicken_6_instr3_0
+# ::name orange_chicken_6_instr3_0
+# ::snt Place chicken on paper towel to drain the oil .
+# ::root p2
+# ::alignments p2, d
+# ::snt_id orange_chicken_6_instr3
+(p2 / place-01~e.38
+    :mode imperative~e.48
+    :purpose (d / drain-01~e.45
+                :ARG0 y
+                :ARG1 (o / oil~e.47))
+    :ARG0 (y / you~e.45)
+    :ARG1 (c / chicken~e.40)
+    :ARG2 (t / towel~e.43
+             :consist-of (p / paper~e.42)))
+
+# ::id orange_chicken_6_instr4
+# ::name orange_chicken_6_instr4
+# ::snt Combine all ingredients but green pepper .
+# ::root c
+# ::alignments c, y
+# ::snt_id orange_chicken_6_instr4
+(c / combine-01~e.49
+   :mode imperative~e.49
+   :ARG0 (y / you~e.49)
+   :ARG1 (i / ingredient~e.51
+            :mod (a / all~e.50)
+            :ARG2-of (e / except-01~e.52
+                        :ARG1 (p / pepper~e.54
+                                 :ARG1-of (g / green-02~e.53)))))
+
+# ::id orange_chicken_6_instr5
+# ::name orange_chicken_6_instr5
+# ::snt Cook green pepper on medium heat until soft .
+# ::root c
+# ::alignments c, y
+# ::snt_id orange_chicken_6_instr5
+(c / cook-01~e.56
+   :mode imperative~e.56
+   :ARG0 (y / you~e.56)
+   :ARG1 (p / pepper~e.58
+            :ARG1-of (g / green-02~e.57))
+   :prep-on (h / heat~e.61
+               :mod (m / medium~e.60))
+   :time (u / until~e.62
+            :op1 (s / soft-02~e.63
+                    :ARG1 p)))
+
+# ::id orange_chicken_6_instr6_1
+# ::name orange_chicken_6_instr6_1
+# ::snt Add sauce .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_6_instr6
+(a / add-02~e.65
+   :mode imperative~e.65
+   :ARG1 (s / sauce~e.66)
+   :ARG0 (y / you~e.65))
+
+# ::id orange_chicken_6_instr6_0
+# ::name orange_chicken_6_instr6_0
+# ::snt Cook sauce until sauce thickens .
+# ::root c
+# ::alignments c, t
+# ::snt_id orange_chicken_6_instr6
+(c / cook-01~e.68
+   :mode imperative~e.68
+   :time (u / until~e.69
+            :op1 (t / thicken-01~e.71
+                    :ARG1 (s / sauce~e.66)))
+   :ARG0 (y / you~e.68))
+
+# ::id orange_chicken_6_instr7_0
+# ::name orange_chicken_6_instr7_0
+# ::snt Add chicken .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_6_instr7
+(a / add-02~e.73
+   :mode imperative~e.73
+   :ARG0 (y / you~e.73)
+   :ARG1 (c / chicken~e.74))
+
+# ::id orange_chicken_6_instr7_1
+# ::name orange_chicken_6_instr7_1
+# ::snt Toss to coat .
+# ::root t
+# ::alignments t
+# ::snt_id orange_chicken_6_instr7
+(t / toss-01~e.76
+   :mode imperative~e.73
+   :purpose (c2 / coat-01~e.78
+                :ARG1 y)
+   :ARG0 (y / you~e.76))
+
+# ::id orange_chicken_6_instr8
+# ::name orange_chicken_6_instr8
+# ::snt Serve warm with rice .
+# ::root s
+# ::alignments s, y
+# ::snt_id orange_chicken_6_instr8
+(s / serve-02~e.80
+   :mode imperative~e.84
+   :ARG0 (y / you~e.80)
+   :ARG1 (t / thing~e.84
+            :ARG1-of (w / warm-07~e.81))
+   :ARG2 (r / rice~e.83))
+

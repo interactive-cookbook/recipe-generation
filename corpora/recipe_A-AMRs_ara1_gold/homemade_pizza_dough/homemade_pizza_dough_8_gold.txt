@@ -1,0 +1,189 @@
+# ::id homemade_pizza_dough_8_instr0_1
+# ::name homemade_pizza_dough_8_instr0_1
+# ::snt Use water , sugar and yeast .
+# ::root u
+# ::alignments u
+# ::snt_id homemade_pizza_dough_8_instr0
+(u / use-01~e.4
+   :mode imperative~e.4
+   :ARG1 (a / and~e.8
+            :op1 (w / water~e.5)
+            :op2 (s2 / sugar~e.7)
+            :op3 (y2 / yeast~e.9))
+   :ARG0 (y / you~e.4)
+   :ARG2-of (m / mean-01~e.3))
+
+# ::id homemade_pizza_dough_8_instr0_0
+# ::name homemade_pizza_dough_8_instr0_0
+# ::snt Proof yeast in a separate measuring cup .
+# ::root y
+# ::alignments p
+# ::snt_id homemade_pizza_dough_8_instr0
+(y / yeast~e.2
+   :location (c / cup~e.15
+                :purpose (m2 / measure-01~e.14)
+                :ARG1-of (s / separate-02~e.13))
+   :ARG0-of (p / prove-01~e.1))
+
+# ::id homemade_pizza_dough_8_instr1
+# ::name homemade_pizza_dough_8_instr1
+# ::snt * * see proofing tips and pictures below
+# ::root s
+# ::alignments
+# ::snt_id homemade_pizza_dough_8_instr1
+(s / see-01~e.19
+   :mode imperative~e.19
+   :ARG0 (y / you~e.19)
+   :ARG1 (a / and~e.22
+            :op1 (t / tip-05~e.21
+                    :ARG2 (p2 / prove-01~e.20))
+            :op2 (p / picture~e.23
+                    :location (b / below~e.24))))
+
+# ::id homemade_pizza_dough_8_instr2_1
+# ::name homemade_pizza_dough_8_instr2_1
+# ::snt Add yeast mixture .
+# ::root a
+# ::alignments a
+# ::snt_id homemade_pizza_dough_8_instr2
+(a / add-02~e.36
+   :mode imperative~e.39
+   :ARG0 (y2 / you~e.36)
+   :ARG1 (m3 / mixture~e.38
+             :consist-of (y / yeast~e.37)))
+
+# ::id homemade_pizza_dough_8_instr2_0
+# ::name homemade_pizza_dough_8_instr2_0
+# ::snt Combine all ingredients , minus flour into large mixing bowl .
+# ::root c
+# ::alignments c
+# ::snt_id homemade_pizza_dough_8_instr2
+(c / combine-01~e.25
+   :mode imperative~e.39
+   :ARG0 (y2 / you~e.25)
+   :ARG1 (i / ingredient~e.27
+            :mod (a2 / all~e.26)
+            :mod (m / minus~e.29
+                    :op1 (f / flour~e.30)))
+   :ARG3 (b / bowl~e.34
+            :mod (l / large~e.32)
+            :instrument-of (m2 / mix-01~e.33)))
+
+# ::id homemade_pizza_dough_8_instr3_0
+# ::name homemade_pizza_dough_8_instr3_0
+# ::snt Add flour .
+# ::root a
+# ::alignments a
+# ::snt_id homemade_pizza_dough_8_instr3
+(a / add-02~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (f / flour~e.41))
+
+# ::id homemade_pizza_dough_8_instr3_1
+# ::name homemade_pizza_dough_8_instr3_1
+# ::snt Work in with a fork .
+# ::root w
+# ::alignments w
+# ::snt_id homemade_pizza_dough_8_instr3
+(w / work-07~e.43
+   :mode imperative~e.40
+   :ARG0 (y / you~e.43)
+   :instrument (f2 / fork~e.47))
+
+# ::id homemade_pizza_dough_8_instr4_3
+# ::name homemade_pizza_dough_8_instr4_3
+# ::snt Once dough looks like the picture below , dough .
+# ::root a
+# ::alignments l
+# ::snt_id homemade_pizza_dough_8_instr4
+(a / and~e.59
+   :rel (r2 / resemble-01~e.52
+            :ARG2 (p / picture~e.54
+                     :location (b / below~e.55)))
+   :time (l / look-02~e.51
+            :ARG1 (d / dough~e.58)))
+
+# ::id homemade_pizza_dough_8_instr4_0
+# ::name homemade_pizza_dough_8_instr4_0
+# ::snt Like the picture below , remove dough .
+# ::root a
+# ::alignments r
+# ::snt_id homemade_pizza_dough_8_instr4
+(a / and~e.59
+   :op1 (r / remove-01~e.57
+           :ARG0 (y / you~e.57)
+           :ARG1 (d / dough~e.58)
+           :mode imperative~e.49)
+   :rel (r2 / resemble-01~e.52
+            :ARG2 (p / picture~e.54
+                     :location (b / below~e.55))))
+
+# ::id homemade_pizza_dough_8_instr4_2
+# ::name homemade_pizza_dough_8_instr4_2
+# ::snt Flour surface .
+# ::root f
+# ::alignments f
+# ::snt_id homemade_pizza_dough_8_instr4
+(f / fling-01~e.62
+   :mode imperative~e.62
+   :ARG1 (s / surface~e.63)
+   :ARG0 (y / you~e.62))
+
+# ::id homemade_pizza_dough_8_instr4_1
+# ::name homemade_pizza_dough_8_instr4_1
+# ::snt Like the picture below , dough and place on surface .
+# ::root a
+# ::alignments p2
+# ::snt_id homemade_pizza_dough_8_instr4
+(a / and~e.59
+   :op2 (p2 / place-01~e.60
+            :ARG0 (y / you~e.60)
+            :ARG1 (d / dough~e.58)
+            :ARG2 (s / surface~e.63)
+            :mode imperative~e.64)
+   :rel (r2 / resemble-01~e.52
+            :ARG2 (p / picture~e.54
+                     :location (b / below~e.55))))
+
+# ::id homemade_pizza_dough_8_instr5_1
+# ::name homemade_pizza_dough_8_instr5_1
+# ::snt Flour roller to .
+# ::root f2
+# ::alignments f2
+# ::snt_id homemade_pizza_dough_8_instr5
+(f2 / fling-01~e.70
+    :mode imperative~e.70
+    :ARG1 (r2 / roller~e.71)
+    :ARG0 (y / you~e.70))
+
+# ::id homemade_pizza_dough_8_instr5_0
+# ::name homemade_pizza_dough_8_instr5_0
+# ::snt Roll out with roller to fit onto pizza pan .
+# ::root r
+# ::alignments r, y
+# ::snt_id homemade_pizza_dough_8_instr5
+(r / roll-01~e.67
+   :mode imperative~e.65
+   :ARG0 (y / you~e.67)
+   :instrument (r2 / roller~e.71)
+   :purpose (f / fit-06~e.73
+               :ARG2 (p / pan~e.76
+                        :purpose (p2 / pizza~e.75))))
+
+# ::id homemade_pizza_dough_8_instr6
+# ::name homemade_pizza_dough_8_instr6
+# ::snt Bake at 400 degrees for about 15 minutes .
+# ::root b
+# ::alignments b, y
+# ::snt_id homemade_pizza_dough_8_instr6
+(b / bake-01~e.78
+   :mode imperative~e.86
+   :ARG0 (y / you~e.78)
+   :ARG3 (t / temperature-quantity~e.80
+            :quant 400~e.80)
+   :duration (a / about~e.83
+                :op1 (t2 / temporal-quantity~e.85
+                         :unit (m / minute~e.85)
+                         :quant 15~e.84)))
+

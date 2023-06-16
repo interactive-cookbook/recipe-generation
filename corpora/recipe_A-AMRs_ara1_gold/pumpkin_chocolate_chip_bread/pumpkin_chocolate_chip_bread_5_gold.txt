@@ -1,0 +1,196 @@
+# ::id pumpkin_chocolate_chip_bread_5_instr0
+# ::name pumpkin_chocolate_chip_bread_5_instr0
+# ::snt Mix all of the dry ingredients ( except the chocolate chips ) in a large bowl .
+# ::root m
+# ::alignments m, y
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr0
+(m / mix-01~e.1
+   :mode imperative~e.17
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.6
+            :mod (a / all~e.2)
+            :ARG1-of (d / dry-02~e.5)
+            :ARG2-of (e / except-01~e.8
+                        :ARG1 (c / chip~e.11
+                                 :mod (c2 / chocolate~e.10))))
+   :ARG2 (b / bowl~e.16
+            :mod (l / large~e.15)))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr1
+# ::name pumpkin_chocolate_chip_bread_5_instr1
+# ::snt Mix the wet ingredients in a medium
+# ::root m2
+# ::alignments m2, y
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr1
+(m2 / mix-01~e.18
+    :mode imperative~e.23
+    :ARG0 (y / you~e.18)
+    :ARG1 (i / ingredient~e.21
+             :ARG1-of (w / wet-01~e.20))
+    :ARG2 (m / medium~e.24))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr2
+# ::name pumpkin_chocolate_chip_bread_5_instr2
+# ::snt bowl .
+# ::root b
+# ::alignments
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr2
+(b / bowl~e.25)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr3
+# ::name pumpkin_chocolate_chip_bread_5_instr3
+# ::snt Mix the wet ingredients into the dry ingredients until combined .
+# ::root m
+# ::alignments m, y
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr3
+(m / mix-01~e.27
+   :mode imperative~e.37
+   :ARG0 (y / you~e.27)
+   :ARG1 (i / ingredient~e.30
+            :ARG1-of (w / wet-01~e.29))
+   :ARG2 (i2 / ingredient~e.34
+             :ARG1-of (d / dry-02~e.33)
+             :ARG2-of c)
+   :duration (c / combine-01~e.36))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr4_1
+# ::name pumpkin_chocolate_chip_bread_5_instr4_1
+# ::snt Toss the chocolate chips with flour .
+# ::root t2
+# ::alignments t2
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr4
+(t2 / toss-01~e.38
+    :mode imperative~e.38
+    :ARG1 (c / chip~e.41
+             :consist-of (c2 / chocolate~e.40))
+    :ARG2 (f / flour~e.43)
+    :ARG0 (y / you~e.38))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr4_0
+# ::name pumpkin_chocolate_chip_bread_5_instr4_0
+# ::snt Then stir the chocolate chips into the batter just until combined .
+# ::root s
+# ::alignments s, c3
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr4
+(s / stir-01~e.46
+   :mode imperative~e.46
+   :ARG2 (b / batter-01~e.49)
+   :duration (u / until~e.51
+                :mod (j / just~e.50)
+                :op1 (c3 / combine-01~e.52
+                         :ARG1 (c / chip~e.41
+                                  :consist-of (c2 / chocolate~e.40))
+                         :ARG2 b))
+   :time (t / then~e.45)
+   :ARG0 (y / you~e.46))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr5_2
+# ::name pumpkin_chocolate_chip_bread_5_instr5_2
+# ::snt Greas loaf pan .
+# ::root b
+# ::alignments b
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr5
+(b / bake-01~e.59
+   :mode imperative~e.59
+   :ARG2 (p / pan~e.63
+            :purpose (l / loaf~e.62))
+   :ARG0 (y / you~e.59))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr5_0
+# ::name pumpkin_chocolate_chip_bread_5_instr5_0
+# ::snt Scrape the batter loaf pan .
+# ::root s
+# ::alignments s
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr5
+(s / scrap-01~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG1 (b3 / batter~e.56)
+   :ARG3 (p / pan~e.63
+            :purpose (l / loaf~e.62)))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr5_1
+# ::name pumpkin_chocolate_chip_bread_5_instr5_1
+# ::snt Flour loaf pan .
+# ::root b2
+# ::alignments b2
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr5
+(b2 / bake-01~e.61
+    :mode imperative~e.61
+    :ARG2 (p / pan~e.63
+             :purpose (l / loaf~e.62))
+    :ARG0 (y / you~e.61))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr6_1
+# ::name pumpkin_chocolate_chip_bread_5_instr6_1
+# ::snt Insert a skewer in the center .
+# ::root i
+# ::alignments i
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr6
+(i / insert-01~e.80
+   :mode imperative~e.80
+   :ARG1 (s / skewer~e.79)
+   :ARG2 (c / center~e.83)
+   :ARG0 (y / you~e.80))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr6_0
+# ::name pumpkin_chocolate_chip_bread_5_instr6_0
+# ::snt Bake at 350 degrees for 1 hour and 20 minutes , or until a skewer comes out with very few moist crumbs attached .
+# ::root b
+# ::alignments b, c2
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr6
+(b / bake-01~e.65
+   :mode imperative~e.65
+   :rel 350~e.67
+   :ARG0 (y / you~e.65)
+   :ARG2 (t / temperature-quantity~e.92
+            :quant a)
+   :duration (a / and~e.72
+                :op1 (t2 / temporal-quantity~e.71
+                         :unit (h / hour~e.71))
+                :op2 (t3 / temporal-quantity~e.73
+                         :unit (m / minute~e.74)
+                         :quant 20~e.73))
+   :rel (f / few~e.88
+           :degree (v / very~e.87))
+   :time (u / until~e.77
+            :op1 (c2 / come-out-09~e.84
+                     :ARG1 (s / skewer~e.79)
+                     :manner (a2 / attach-01~e.91
+                                 :ARG1 (c3 / crumb~e.90
+                                           :ARG1-of (m2 / moist-02~e.89
+                                                        :degree v))
+                                 :ARG2 s))))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr7_1
+# ::name pumpkin_chocolate_chip_bread_5_instr7_1
+# ::snt Let cool in the pan for 15 minutes .
+# ::root l
+# ::alignments l
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr7
+(l / let-01~e.93
+   :mode imperative~e.93
+   :ARG0 (y / you~e.93)
+   :ARG1 (c2 / cool-01~e.94
+             :ARG1 y
+             :duration (t / temporal-quantity~e.99
+                          :unit (m / minute~e.100)
+                          :quant 15~e.99)
+             :location (p / pan~e.97)))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr7_0
+# ::name pumpkin_chocolate_chip_bread_5_instr7_0
+# ::snt Let then turn out onto a rack to cool completely .
+# ::root t3
+# ::alignments t3, c3
+# ::snt_id pumpkin_chocolate_chip_bread_5_instr7
+(t3 / turn-01~e.103
+    :mode imperative~e.111
+    :purpose (c3 / cool-01~e.109
+                 :ARG1 y
+                 :ARG1-of (c / complete-02~e.110))
+    :ARG1 (y / you~e.93)
+    :destination (r / rack~e.107)
+    :time (t2 / then~e.102)
+    :ARG0 (y1 / you~e.103))
+

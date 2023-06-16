@@ -1,0 +1,149 @@
+# ::id garam_masala_2_instr0
+# ::name garam_masala_2_instr0
+# ::snt Preheat a sauté pan on high .
+# ::root h
+# ::alignments h, y
+# ::snt_id garam_masala_2_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (p / pan~e.4
+            :instrument-of (s / saute-01~e.3))
+   :prep-on (h2 / high-02~e.6))
+
+# ::id garam_masala_2_instr1
+# ::name garam_masala_2_instr1
+# ::snt Once pan gets hot , reduce to low heat .
+# ::root r
+# ::alignments r, y
+# ::snt_id garam_masala_2_instr1
+(r / reduce-01~e.13
+   :mode imperative~e.17
+   :ARG0 (y / you~e.13)
+   :ARG4 (h / heat-01~e.16
+            :ARG1-of (l / low-04~e.15))
+   :time (h2 / hot-05~e.11
+             :ARG1 (p / pan~e.9)))
+
+# ::id garam_masala_2_instr2
+# ::name garam_masala_2_instr2
+# ::snt Add spices one at the time as listed above ( except ground nutmeg ) , stirring constantly until it releases aroma ( do not allow spices to brown ) .
+# ::root a2
+# ::alignments a2, y
+# ::snt_id garam_masala_2_instr2
+(a2 / add-02~e.18
+    :mode imperative~e.18
+    :ARG0 (y / you~e.18)
+    :ARG1 (t / temperature-quantity~e.19
+             :ARG2-of (e / except-01~e.28
+                         :ARG1 (n / nutmeg~e.30
+                                  :ARG2-of (g / ground-02~e.29)))
+             :quant 1~e.20)
+    :manner (s / stir-01~e.33
+               :ARG0 y
+               :duration (u / until~e.35
+                            :op1 (r2 / release-01~e.37
+                                     :ARG0 t
+                                     :ARG1 (a4 / aroma~e.38)))
+               :manner (c / constant~e.34)
+               :ARG1-of (m / mean-01~e.39
+                           :ARG2 (a3 / allow-01~e.42
+                                     :ARG0 y
+                                     :ARG1 (t3 / temperature-quantity~e.43)
+                                     :ARG2 (r / Brown~e.45)
+                                     :mode imperative~e.40
+                                     :polarity -~e.41)))
+    :time (t2 / temperature-quantity~e.19
+              :ARG1-of (l / list-01~e.25
+                          :location (a / above~e.26))))
+
+# ::id garam_masala_2_instr3_0
+# ::name garam_masala_2_instr3_0
+# ::snt Remove from heat .
+# ::root r
+# ::alignments r
+# ::snt_id garam_masala_2_instr3
+(r / remove-01~e.48
+   :mode imperative~e.48
+   :ARG0 (y / you~e.48)
+   :ARG2 (h / heat-01~e.50))
+
+# ::id garam_masala_2_instr3_1
+# ::name garam_masala_2_instr3_1
+# ::snt Stir in the nutmeg .
+# ::root s
+# ::alignments s
+# ::snt_id garam_masala_2_instr3
+(s / stir-01~e.52
+   :mode imperative~e.63
+   :ARG0 (y / you~e.52)
+   :ARG1 (n / nutmeg~e.55))
+
+# ::id garam_masala_2_instr3_2
+# ::name garam_masala_2_instr3_2
+# ::snt Transfer to a container to cool .
+# ::root t
+# ::alignments t
+# ::snt_id garam_masala_2_instr3
+(t / transfer-01~e.57
+   :mode imperative~e.63
+   :purpose (c2 / cool-01~e.62
+                :ARG1 y)
+   :ARG0 (y / you~e.57)
+   :ARG2 (c / container~e.60))
+
+# ::id garam_masala_2_instr4
+# ::name garam_masala_2_instr4
+# ::snt Use mortar and pestle or electric spice grinder to crush spices until they are reduced to a fine powder .
+# ::root u2
+# ::alignments u2, c
+# ::snt_id garam_masala_2_instr4
+(u2 / use-01~e.64
+    :mode imperative~e.64
+    :ARG0 (y / you~e.73)
+    :ARG1 (o / or~e.68
+             :op1 (a / and~e.66
+                     :op1 (m / mortar~e.65)
+                     :op2 (p / pestle~e.67))
+             :op2 (t / thing~e.74
+                     :mod (e / electric~e.69)
+                     :instrument-of (g / grind-01~e.71
+                                       :ARG1 (s / spice~e.70))))
+    :ARG2 (c / crush-01~e.73
+             :ARG0 y
+             :ARG1 (f2 / food~e.74)
+             :duration (u / until~e.75
+                          :op1 (r / reduce-01~e.78
+                                  :ARG1 f2
+                                  :ARG4 (p2 / powder~e.82
+                                            :ARG1-of (f / fine-03~e.81))))))
+
+# ::id garam_masala_2_instr5_0
+# ::name garam_masala_2_instr5_0
+# ::snt Sift the ground spices with a fine mesh sieve .
+# ::root s2
+# ::alignments s2
+# ::snt_id garam_masala_2_instr5
+(s2 / sift-01~e.84
+    :mode imperative~e.84
+    :ARG0 (y / you~e.84)
+    :ARG1 (t / teaspoon~e.87
+             :mod (g / ground~e.86))
+    :instrument (s / sieve~e.92
+                   :mod (m / mesh~e.91
+                           :ARG1-of (f / fine-03~e.90))))
+
+# ::id garam_masala_2_instr5_1
+# ::name garam_masala_2_instr5_1
+# ::snt Regrind any remaining big chunks .
+# ::root p
+# ::alignments p
+# ::snt_id garam_masala_2_instr5
+(p / process-01~e.94
+   :mode imperative~e.84
+   :ARG0 (y / you~e.94)
+   :ARG1 (c / chunk-01~e.98
+            :mod (b / big~e.97)
+            :mod (a2 / any~e.95)
+            :ARG1-of (r / remain-01~e.96)))
+

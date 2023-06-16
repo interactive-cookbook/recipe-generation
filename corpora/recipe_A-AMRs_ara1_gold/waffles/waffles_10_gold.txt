@@ -1,0 +1,42 @@
+# ::id waffles_10_instr0
+# ::name waffles_10_instr0
+# ::snt Sift flour & dry
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_10_instr0
+(m / mix-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.3
+            :op1 (f / flour~e.2)
+            :op2 (d / dry~e.4)))
+
+# ::id waffles_10_instr1
+# ::name waffles_10_instr1
+# ::snt Mix wet
+# ::root m
+# ::alignments m
+# ::snt_id waffles_10_instr1
+(m / mix-01~e.5
+   :mode imperative~e.6
+   :manner (w / wet-01~e.6)
+   :ARG0 (y / you~e.5))
+
+# ::id waffles_10_instr2
+# ::name waffles_10_instr2
+# ::snt Mis together
+# ::root m
+# ::alignments m
+# ::snt_id waffles_10_instr2
+(m / miscellaneous~e.7
+   :mod (t / together~e.8))
+
+# ::id waffles_10_instr3
+# ::name waffles_10_instr3
+# ::snt Fold in whites
+# ::root p
+# ::alignments
+# ::snt_id waffles_10_instr3
+(p / person~e.11
+   :ARG1-of (w / white-02~e.11))
+

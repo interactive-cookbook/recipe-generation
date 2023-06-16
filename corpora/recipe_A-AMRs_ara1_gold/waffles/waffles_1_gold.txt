@@ -1,0 +1,99 @@
+# ::id waffles_1_instr0_0
+# ::name waffles_1_instr0_0
+# ::snt Plug in .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_1_instr0
+(p / plug-in-03~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1))
+
+# ::id waffles_1_instr0_1
+# ::name waffles_1_instr0_1
+# ::snt Preheat waffle iron .
+# ::root r
+# ::alignments r
+# ::snt_id waffles_1_instr0
+(r / reheat-01~e.5
+   :mode imperative~e.8
+   :ARG0 (y / you~e.5)
+   :ARG1 (i / iron~e.7
+            :mod (w / waffle~e.6)))
+
+# ::id waffles_1_instr1
+# ::name waffles_1_instr1
+# ::snt Mix all ingredients together in a large bowl until smooth .
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_1_instr1
+(m / mix-01~e.9
+   :mode imperative~e.19
+   :ARG0 (y / you~e.9)
+   :ARG1 (i / ingredient~e.11
+            :mod (a / all~e.10))
+   :duration (u / until~e.17
+                :op1 (s / smooth-01~e.18
+                        :ARG1 i))
+   :instrument (b / bowl~e.16
+                  :mod (l / large~e.15))
+   :manner (t / together~e.12))
+
+# ::id waffles_1_instr2_0
+# ::name waffles_1_instr2_0
+# ::snt Fill scoop .
+# ::root f
+# ::alignments f
+# ::snt_id waffles_1_instr2
+(f / fill-01~e.20
+   :mode imperative~e.20
+   :ARG1 (s / scoop~e.21)
+   :ARG0 (y / you~e.20))
+
+# ::id waffles_1_instr2_1
+# ::name waffles_1_instr2_1
+# ::snt Provid scoop with waffle iron .
+# ::root p2
+# ::alignments p2
+# ::snt_id waffles_1_instr2
+(p2 / provide-01~e.22
+    :mode imperative~e.22
+    :ARG1 (s / scoop~e.21)
+    :ARG2 (i / iron~e.25
+             :mod (w / waffle~e.24))
+    :ARG0 (y / you~e.22))
+
+# ::id waffles_1_instr2_2
+# ::name waffles_1_instr2_2
+# ::snt Pour into top funnel .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_1_instr2
+(p / pour-01~e.28
+   :mode imperative~e.28
+   :ARG3 (f2 / funnel~e.31
+             :location (t / top~e.30))
+   :ARG0 (y / you~e.28))
+
+# ::id waffles_1_instr3
+# ::name waffles_1_instr3
+# ::snt If the batter does n't pour very easily , and an extra tablespoon or two of milk , and mix really well .
+# ::root h
+# ::alignments m2
+# ::snt_id waffles_1_instr3
+(h / have-condition-91~e.33
+   :rel 1~e.45
+   :ARG2 (a / and~e.51
+            :op1 (p / pour-01~e.38
+                    :ARG1 (b / batter-01~e.35)
+                    :ARG1-of (e / easy-05~e.40
+                                :degree (v / very~e.39))
+                    :polarity -~e.37)
+            :op2 (m / milk~e.49
+                    :quant (o / or~e.46
+                              :mod (e2 / extra~e.44)
+                              :op1 (t / tablespoon~e.45)
+                              :op2 2~e.47))
+            :op3 (m2 / mix-01~e.52
+                     :ARG1-of (g / good-02~e.54
+                                 :degree (r / really~e.53)))))
+

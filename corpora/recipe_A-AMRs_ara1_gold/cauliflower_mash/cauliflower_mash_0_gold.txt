@@ -1,0 +1,186 @@
+# ::id cauliflower_mash_0_instr0
+# ::name cauliflower_mash_0_instr0
+# ::snt Cut cauliflower .
+# ::root c2
+# ::alignments c2, y
+# ::snt_id cauliflower_mash_0_instr0
+(c2 / cut-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (c / cauliflower~e.2))
+
+# ::id cauliflower_mash_0_instr1
+# ::name cauliflower_mash_0_instr1
+# ::snt ( does n’t have to be in small florets , I leave mine big )
+# ::root c
+# ::alignments
+# ::snt_id cauliflower_mash_0_instr1
+(c / cause-01~e.13
+   :ARG0 (l / leave-14~e.15
+            :ARG0 (i / i~e.14)
+            :ARG1 (t2 / thing~e.16
+                      :mod (b2 / big~e.17)))
+   :ARG1 (o / obligate-01~e.7
+            :ARG1 (b / be-located-at-91~e.10
+                     :ARG1 (t / thing~e.16
+                              :poss i))
+            :polarity -~e.6)
+   :rel (s / small~e.11))
+
+# ::id cauliflower_mash_0_instr2
+# ::name cauliflower_mash_0_instr2
+# ::snt Place cauliflower in a pot of water .
+# ::root p
+# ::alignments p, y
+# ::snt_id cauliflower_mash_0_instr2
+(p / place-01~e.19
+   :mode imperative~e.26
+   :ARG0 (y / you~e.19)
+   :ARG1 (c / cauliflower~e.20)
+   :ARG2 (p2 / pot~e.23
+             :consist-of (w / water~e.25)))
+
+# ::id cauliflower_mash_0_instr3
+# ::name cauliflower_mash_0_instr3
+# ::snt Make sure it is fully immersed .
+# ::root e
+# ::alignments y
+# ::snt_id cauliflower_mash_0_instr3
+(e / ensure-01~e.28
+   :mode imperative~e.27
+   :ARG0 (y / you~e.27)
+   :ARG1 (i / immerse-01~e.32
+            :ARG2 (i2 / it~e.29)
+            :degree (f / full-09~e.31)))
+
+# ::id cauliflower_mash_0_instr4
+# ::name cauliflower_mash_0_instr4
+# ::snt Bring water to a boil .
+# ::root b2
+# ::alignments b2, y
+# ::snt_id cauliflower_mash_0_instr4
+(b2 / bring-01~e.34
+    :mode imperative~e.34
+    :ARG0 (y / you~e.34)
+    :ARG1 (w / water~e.35)
+    :ARG2 (b / boil-01~e.38
+             :ARG1 w))
+
+# ::id cauliflower_mash_0_instr5
+# ::name cauliflower_mash_0_instr5
+# ::snt Let cauliflower cook for about 15 minutes .
+# ::root l
+# ::alignments l, c2
+# ::snt_id cauliflower_mash_0_instr5
+(l / let-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (c2 / cook-01~e.42
+             :ARG1 (c / cauliflower~e.41))
+   :duration (a / about~e.44
+                :op1 (t / temporal-quantity~e.46
+                        :unit (m / minute~e.46)
+                        :quant 15~e.45)))
+
+# ::id cauliflower_mash_0_instr6
+# ::name cauliflower_mash_0_instr6
+# ::snt It should be very easy to poke through with a fork .
+# ::root p2
+# ::alignments
+# ::snt_id cauliflower_mash_0_instr6
+(p2 / probable~e.49
+    :domain (e / easy-05~e.52
+               :ARG1 (p / poke-01~e.54
+                        :instrument (f / fork~e.58)
+                        :mod (t / through~e.55))
+               :degree (v / very~e.51)))
+
+# ::id cauliflower_mash_0_instr7
+# ::name cauliflower_mash_0_instr7
+# ::snt Drain water from pot .
+# ::root d
+# ::alignments d, y
+# ::snt_id cauliflower_mash_0_instr7
+(d / draw-02~e.60
+   :mode imperative~e.60
+   :ARG0 (y / you~e.60)
+   :ARG1 (w / water~e.61)
+   :ARG2 (p / pot~e.63))
+
+# ::id cauliflower_mash_0_instr8_0
+# ::name cauliflower_mash_0_instr8_0
+# ::snt Leave cauliflower on low heat .
+# ::root l
+# ::alignments l
+# ::snt_id cauliflower_mash_0_instr8
+(l / leave-14~e.65
+   :mode imperative~e.65
+   :ARG0 (y / you~e.65)
+   :ARG1 (c / cauliflower~e.66)
+   :location (h / heat-01~e.69
+                :ARG1 c
+                :ARG1-of (l2 / low-04~e.68)))
+
+# ::id cauliflower_mash_0_instr8_1
+# ::name cauliflower_mash_0_instr8_1
+# ::snt Mash with a potato masher or spatula or fork .
+# ::root f2
+# ::alignments f2
+# ::snt_id cauliflower_mash_0_instr8
+(f2 / fry-01~e.72
+    :mode imperative~e.81
+    :ARG0 (y / you~e.72)
+    :instrument (o / or~e.77
+                   :op1 (s2 / stir-01~e.76
+                            :ARG1 (p / potato~e.75))
+                   :op2 (s / spatula~e.78)
+                   :op3 (f / fork~e.80)))
+
+# ::id cauliflower_mash_0_instr9
+# ::name cauliflower_mash_0_instr9
+# ::snt Add butter and seasoning .
+# ::root a
+# ::alignments a, y
+# ::snt_id cauliflower_mash_0_instr9
+(a / add-02~e.82
+   :mode imperative~e.82
+   :ARG0 (y / you~e.82)
+   :ARG1 (a2 / and~e.84
+             :op1 (b / butter~e.83)
+             :op2 (s / season-01~e.85)))
+
+# ::id cauliflower_mash_0_instr10
+# ::name cauliflower_mash_0_instr10
+# ::snt Mix well .
+# ::root m
+# ::alignments m, y
+# ::snt_id cauliflower_mash_0_instr10
+(m / mix-01~e.87
+   :mode imperative~e.89
+   :ARG0 (y / you~e.87)
+   :manner (w / well~e.88))
+
+# ::id cauliflower_mash_0_instr11
+# ::name cauliflower_mash_0_instr11
+# ::snt Serve hot .
+# ::root s
+# ::alignments s, y
+# ::snt_id cauliflower_mash_0_instr11
+(s / serve-02~e.90
+   :mode imperative~e.90
+   :ARG0 (y / you~e.90)
+   :ARG1-of (h / hot-05~e.91))
+
+# ::id cauliflower_mash_0_instr12
+# ::name cauliflower_mash_0_instr12
+# ::snt Or with eggs in the morning !
+# ::root o
+# ::alignments
+# ::snt_id cauliflower_mash_0_instr12
+(o / or~e.93
+   :op2 (a / accompany-01~e.94
+           :ARG1 (e / egg~e.95)
+           :time (d / date-entity~e.98
+                    :dayperiod (m / morning~e.98))
+           :mode expressive~e.99))
+

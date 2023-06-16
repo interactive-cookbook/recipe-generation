@@ -1,0 +1,297 @@
+# ::id orange_chicken_3_instr0
+# ::name orange_chicken_3_instr0
+# ::snt In a Wok or pot , heat oil to 360 degrees ( you want enough oil in the pot to cover the chicken ) .
+# ::root m
+# ::alignments
+# ::snt_id orange_chicken_3_instr0
+(m / multi-sentence~e.12
+   :snt1 (h2 / heat-01~e.7
+             :ARG1 (o / oil~e.8)
+             :destination (t / temperature-quantity~e.10
+                             :unit (d / degree~e.11)
+                             :quant 360~e.10)
+             :location (o3 / or~e.4
+                           :op2 (p / pot~e.5)
+                           :op1 W~e.3)
+             :mode imperative~e.12)
+   :snt2 (w / want-01~e.14
+            :ARG0 (y / you~e.13)
+            :ARG1 (o2 / oil~e.16
+                      :ARG1-of (h / have-quant-91~e.15
+                                  :ARG3 (e / enough~e.15)
+                                  :ARG6 (c2 / cover-02~e.21
+                                            :ARG1 (c / chicken~e.23)
+                                            :ARG2 o2)))
+            :location (p2 / pot~e.19)))
+
+# ::id orange_chicken_3_instr1_0
+# ::name orange_chicken_3_instr1_0
+# ::snt In a small bowl , add egg .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_3_instr1
+(a / add-02~e.31
+   :mode imperative~e.31
+   :ARG0 (y / you~e.31)
+   :ARG1 (e / egg~e.32)
+   :location (b2 / bowl~e.29
+                 :mod (s / small~e.28)))
+
+# ::id orange_chicken_3_instr1_1
+# ::name orange_chicken_3_instr1_1
+# ::snt Beat lightly .
+# ::root b
+# ::alignments b
+# ::snt_id orange_chicken_3_instr1
+(b / beat-01~e.34
+   :mode imperative~e.36
+   :ARG0 (y / you~e.34)
+   :manner (l / light-06~e.35))
+
+# ::id orange_chicken_3_instr2
+# ::name orange_chicken_3_instr2
+# ::snt In a second small bowl add Â½ cup of cornstarch .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_3_instr2
+(a / add-02~e.42
+   :mode imperative~e.42
+   :ARG1 (c / cornstarch~e.46
+            :quant (v / volume-quantity~e.44
+                      :unit (c2 / cup~e.44)
+                      :quant 1~e.43))
+   :location (b / bowl~e.41
+                :mod (s / small~e.40)
+                :ord (o / ordinal-entity~e.39
+                        :value 2~e.39))
+   :ARG0 (y / you~e.42))
+
+# ::id orange_chicken_3_instr3_1
+# ::name orange_chicken_3_instr3_1
+# ::snt Into the beaten egg .
+# ::root b
+# ::alignments b
+# ::snt_id orange_chicken_3_instr3
+(b / beat-01~e.52
+   :mode imperative~e.52
+   :ARG1 (e / egg~e.53)
+   :ARG0 (y / you~e.52))
+
+# ::id orange_chicken_3_instr3_0
+# ::name orange_chicken_3_instr3_0
+# ::snt Dip chicken egg then into the cornstarch .
+# ::root a
+# ::alignments d
+# ::snt_id orange_chicken_3_instr3
+(a / and~e.58
+   :op1 (d / dip-02~e.48
+           :ARG0 (y / you~e.48)
+           :ARG1 (c / chicken~e.49)
+           :ARG2 (e / egg~e.53)
+           :op1-of a2
+           :mode imperative~e.48)
+   :op2 (a2 / and~e.58
+            :op2 (c3 / cornstarch~e.57
+                     :time (t / then~e.54))))
+
+# ::id orange_chicken_3_instr3_2
+# ::name orange_chicken_3_instr3_2
+# ::snt Chicken fry until golden brown and cooked through .
+# ::root f
+# ::alignments f
+# ::snt_id orange_chicken_3_instr3
+(f / fry-01~e.59
+   :mode imperative~e.48
+   :ARG0 (y / you~e.59)
+   :duration (a3 / and~e.63
+                 :op1 (b2 / brown-01~e.62
+                          :ARG1 (g / gold~e.61))
+                 :op2 (c2 / cook-01~e.64
+                          :ARG1 (c / chicken~e.49)
+                          :mod (t2 / through~e.65))))
+
+# ::id orange_chicken_3_instr4
+# ::name orange_chicken_3_instr4
+# ::snt * Times will very depending on the size of chicken .
+# ::root d
+# ::alignments
+# ::snt_id orange_chicken_3_instr4
+(d / depend-01~e.71
+   :ARG0 (t / time~e.68)
+   :ARG1 (s / size~e.74
+            :poss (c / chicken~e.76))
+   :degree (v / very~e.70))
+
+# ::id orange_chicken_3_instr5_1
+# ::name orange_chicken_3_instr5_1
+# ::snt Remove chicken from oil .
+# ::root r
+# ::alignments r
+# ::snt_id orange_chicken_3_instr5
+(r / remove-01~e.78
+   :mode imperative~e.78
+   :ARG0 (y / you~e.78)
+   :ARG1 (c / chicken~e.79)
+   :ARG2 (o / oil~e.81))
+
+# ::id orange_chicken_3_instr5_0
+# ::name orange_chicken_3_instr5_0
+# ::snt Allow chicken to drain on a plate .
+# ::root a
+# ::alignments a, d
+# ::snt_id orange_chicken_3_instr5
+(a / allow-01~e.83
+   :mode imperative~e.93
+   :ARG0 (y / you~e.83)
+   :ARG1 (d / drain-01~e.85
+            :ARG1 (c / chicken~e.79)
+            :ARG2 (p3 / plate~e.88)))
+
+# ::id orange_chicken_3_instr5_2
+# ::name orange_chicken_3_instr5_2
+# ::snt On a plate line with paper towels .
+# ::root l
+# ::alignments l
+# ::snt_id orange_chicken_3_instr5
+(l / line-01~e.89
+   :mode imperative~e.89
+   :ARG1 (p3 / plate~e.88)
+   :ARG2 (p2 / paper~e.92
+             :mod (p / paper~e.91))
+   :ARG0 (y / you~e.89))
+
+# ::id orange_chicken_3_instr6
+# ::name orange_chicken_3_instr6
+# ::snt In a small pot combine orange juice , soy sauce , rice vinegar , sugar and sriracha .
+# ::root c
+# ::alignments c
+# ::snt_id orange_chicken_3_instr6
+(c / combine-01~e.98
+   :mode imperative~e.98
+   :ARG1 (a / and~e.101
+            :op1 (j / juice~e.100
+                    :source (o / orange~e.99))
+            :op2 (s / sauce~e.103
+                    :mod (s3 / soy~e.102))
+            :op3 (v / vinegar~e.106
+                    :mod (r / rice~e.105))
+            :op4 (s5 / sugar~e.108)
+            :op5 (s4 / sriracha~e.110))
+   :location (p / pot~e.97
+                :mod (s2 / small~e.96))
+   :ARG0 (y / you~e.98))
+
+# ::id orange_chicken_3_instr7_0
+# ::name orange_chicken_3_instr7_0
+# ::snt Bring to a boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id orange_chicken_3_instr7
+(b2 / bring-01~e.112
+    :mode imperative~e.112
+    :ARG0 (y / you~e.112)
+    :ARG2 (b / boil-01~e.115))
+
+# ::id orange_chicken_3_instr7_1
+# ::name orange_chicken_3_instr7_1
+# ::snt Reduce heat to medium low .
+# ::root r
+# ::alignments r
+# ::snt_id orange_chicken_3_instr7
+(r / reduce-01~e.117
+   :mode imperative~e.122
+   :ARG0 (y / you~e.117)
+   :ARG1 (h / heat~e.118)
+   :ARG4 (l / low-04~e.121
+            :mod (m / medium~e.120)))
+
+# ::id orange_chicken_3_instr8_0
+# ::name orange_chicken_3_instr8_0
+# ::snt Combine 1 tbsp of cornstarch 1 tbsp of water .
+# ::root c
+# ::alignments c
+# ::snt_id orange_chicken_3_instr8
+(c / combine-01~e.123
+   :mode imperative~e.123
+   :ARG1 (c2 / cornstarch~e.127
+             :quant (m / mass-quantity~e.125
+                       :unit (m3 / milligram~e.130)
+                       :quant 1~e.124))
+   :ARG2 (w / water~e.132
+            :quant (m2 / mass-quantity~e.130
+                       :unit (m4 / milligram~e.130)
+                       :quant 1~e.129))
+   :ARG0 (y / you~e.123))
+
+# ::id orange_chicken_3_instr8_1
+# ::name orange_chicken_3_instr8_1
+# ::snt Add to orange sauce .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_3_instr8
+(a / add-02~e.134
+   :mode imperative~e.134
+   :ARG2 (s / sauce~e.137
+            :mod (o / orange~e.136))
+   :ARG0 (y / you~e.134))
+
+# ::id orange_chicken_3_instr9
+# ::name orange_chicken_3_instr9
+# ::snt Allow to simmer until sauce has thickened .
+# ::root a
+# ::alignments a, y
+# ::snt_id orange_chicken_3_instr9
+(a / allow-01~e.139
+   :mode imperative~e.146
+   :ARG0 (y / you~e.139)
+   :ARG1 (s2 / simmer-01~e.141
+             :time (u / until~e.142
+                      :op1 (t / thick-03~e.145
+                              :ARG1 (s / sauce~e.143)))))
+
+# ::id orange_chicken_3_instr10
+# ::name orange_chicken_3_instr10
+# ::snt About 2 minutes .
+# ::root a
+# ::alignments
+# ::snt_id orange_chicken_3_instr10
+(a / about~e.147
+   :op1 (t / temporal-quantity~e.149
+           :unit (m / minute~e.149)
+           :quant 2~e.148))
+
+# ::id orange_chicken_3_instr11_0
+# ::name orange_chicken_3_instr11_0
+# ::snt Combine orange sauce and chicken .
+# ::root c3
+# ::alignments c3
+# ::snt_id orange_chicken_3_instr11
+(c3 / combine-01~e.151
+    :mode imperative~e.151
+    :ARG0 (y / you~e.151)
+    :ARG1 (s / sauce~e.153
+             :mod (o / orange~e.152))
+    :ARG2 (c / chicken~e.155))
+
+# ::id orange_chicken_3_instr11_1
+# ::name orange_chicken_3_instr11_1
+# ::snt Coat well .
+# ::root c2
+# ::alignments c2
+# ::snt_id orange_chicken_3_instr11
+(c2 / coat-01~e.157
+    :mode imperative~e.159
+    :ARG0 (y / you~e.157)
+    :ARG1-of (g / good-02~e.158))
+
+# ::id orange_chicken_3_instr12
+# ::name orange_chicken_3_instr12
+# ::snt Serve over rice .
+# ::root s
+# ::alignments s, y
+# ::snt_id orange_chicken_3_instr12
+(s / serve-02~e.160
+   :mode imperative~e.163
+   :ARG0 (y / you~e.160)
+   :ARG2 (r / rice~e.162))
+

@@ -1,0 +1,105 @@
+# ::id chewy_chocolate_chip_cookies_3_instr0
+# ::name chewy_chocolate_chip_cookies_3_instr0
+# ::snt Cream butter and sugars in a large mixing bowl .
+# ::root b
+# ::alignments b, y
+# ::snt_id chewy_chocolate_chip_cookies_3_instr0
+(b / bake-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.3
+            :op1 (b3 / butter~e.2)
+            :op2 (s / sugar-cane~e.4))
+   :location (b2 / bowl~e.9
+                 :mod (l / large~e.7)
+                 :instrument-of (m / mix-01~e.8)))
+
+# ::id chewy_chocolate_chip_cookies_3_instr1
+# ::name chewy_chocolate_chip_cookies_3_instr1
+# ::snt Beat in eggs and vanilla .
+# ::root b
+# ::alignments b, y
+# ::snt_id chewy_chocolate_chip_cookies_3_instr1
+(b / beat-01~e.11
+   :mode imperative~e.16
+   :ARG0 (y / you~e.11)
+   :ARG1 (a / and~e.14
+            :op1 (e / egg~e.13)
+            :op2 (v / vanilla~e.15)))
+
+# ::id chewy_chocolate_chip_cookies_3_instr2
+# ::name chewy_chocolate_chip_cookies_3_instr2
+# ::snt Stir in dry ingredients and chocolate chips .
+# ::root s
+# ::alignments s, y
+# ::snt_id chewy_chocolate_chip_cookies_3_instr2
+(s / stir-01~e.17
+   :mode imperative~e.17
+   :ARG0 (y / you~e.17)
+   :ARG1 (a / and~e.21
+            :op1 (i / ingredient~e.20
+                    :ARG1-of (d / dry-08~e.19))
+            :op2 (c / chip~e.23
+                    :consist-of (c2 / chocolate~e.22))))
+
+# ::id chewy_chocolate_chip_cookies_3_instr3
+# ::name chewy_chocolate_chip_cookies_3_instr3
+# ::snt Chill for at least 1 - 2 hours , overnight is fine .
+# ::root f
+# ::alignments c, y
+# ::snt_id chewy_chocolate_chip_cookies_3_instr3
+(f / fine-04~e.36
+   :ARG1 (c / chill-02~e.25
+            :ARG0 (y / you~e.25)
+            :duration (a / at-least~e.28
+                         :op1 (b / between~e.29
+                                 :op1 (t / temporal-quantity~e.32
+                                         :unit (h / hour~e.32)
+                                         :quant 1~e.29)
+                                 :op2 (t2 / temporal-quantity~e.32
+                                          :unit (h2 / hour~e.32)
+                                          :quant 2~e.31)))
+            :mode imperative~e.25)
+   :time (o / overnight~e.34))
+
+# ::id chewy_chocolate_chip_cookies_3_instr4
+# ::name chewy_chocolate_chip_cookies_3_instr4
+# ::snt Scoop by tablespoonfuls onto silpat lined or lightly greased cookie sheets .
+# ::root s
+# ::alignments s, l2, c
+# ::snt_id chewy_chocolate_chip_cookies_3_instr4
+(s / save-01~e.38
+   :mode imperative~e.38
+   :quant (a / Pan~e.40)
+   :ARG0 (y / you~e.38)
+   :ARG1 (o / or~e.44
+            :op1 (s2 / sheet~e.48
+                     :ARG1-of (l2 / line-01~e.43
+                                  :ARG2 (s4 / silpat~e.42)
+                                  :ARG1 s3)
+                     :consist-of (c3 / cookie~e.47))
+            :op2 (s3 / sheet~e.48))
+   :rel (c / coat-01~e.46
+           :ARG1-of (l / light-06~e.45))
+   :source (c2 / continent~e.40
+               :name (n / name~e.40)))
+
+# ::id chewy_chocolate_chip_cookies_3_instr5
+# ::name chewy_chocolate_chip_cookies_3_instr5
+# ::snt Bake at 325 ° for 12 - 15 minutes .
+# ::root b
+# ::alignments b, y
+# ::snt_id chewy_chocolate_chip_cookies_3_instr5
+(b / bake-01~e.50
+   :mode imperative~e.53
+   :ARG0 (y / you~e.50)
+   :duration (b2 / between~e.55
+                 :op1 (t / temporal-quantity~e.58
+                         :unit (m / minute~e.58)
+                         :quant 12~e.55)
+                 :op2 (t2 / temporal-quantity~e.58
+                          :unit (m2 / minute~e.58)
+                          :quant 15~e.57))
+   :location (a / angle-quantity~e.53
+                :unit (d / degree~e.53)
+                :quant 325~e.52))
+

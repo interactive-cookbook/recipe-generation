@@ -1,0 +1,368 @@
+# ::id waffles_8_instr0
+# ::name waffles_8_instr0
+# ::snt Note : If you really like crispy yet tender and light waffles , refer to the above post for tips and substitutions .
+# ::root n
+# ::alignments
+# ::snt_id waffles_8_instr0
+(n / note-01~e.1
+   :ARG1 (r2 / refer-01~e.14
+             :ARG0 (y / you~e.4)
+             :ARG1 (p / post-01~e.18
+                      :purpose (a3 / and~e.21
+                                   :op1 (t2 / tip-05~e.20)
+                                   :op2 (s / substitute-01~e.22))
+                      :location (a2 / above~e.17))
+             :condition (l2 / like-01~e.6
+                            :ARG0 y
+                            :ARG1 (a / W~e.12
+                                     :mod (c2 / crispy~e.7)
+                                     :ARG1-of (l / light-06~e.11))
+                            :ARG1-of (r / real-04~e.5)
+                            :ARG1-of (c / contrast-01~e.8
+                                        :ARG2 (t / tender-02~e.9
+                                                 :ARG1 a)))
+             :mode imperative~e.1))
+
+# ::id waffles_8_instr1_0
+# ::name waffles_8_instr1_0
+# ::snt Place flour , baking soda , sugar , and salt in a large bowl .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_8_instr1
+(p / place-01~e.24
+   :mode imperative~e.42
+   :ARG0 (y / you~e.24)
+   :ARG1 (a / and~e.32
+            :op1 (f / flour~e.25)
+            :op2 (s2 / soda~e.28
+                     :ARG2-of (b / bake-01~e.27))
+            :op3 (s3 / sugar~e.30)
+            :op4 (s / salt~e.33))
+   :ARG2 (b2 / bowl~e.37
+             :mod (l / large~e.36)))
+
+# ::id waffles_8_instr1_1
+# ::name waffles_8_instr1_1
+# ::snt Mix flour , baking soda , sugar , and salt to combine .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_8_instr1
+(m / mix-01~e.39
+   :mode imperative~e.42
+   :purpose (c / combine-01~e.41
+               :ARG1 y
+               :ARG2 a)
+   :ARG0 (y / you~e.39)
+   :ARG3 (a / and~e.32
+            :op1 (f / flour~e.25)
+            :op2 (s2 / soda~e.28
+                     :ARG2-of (b / bake-01~e.27))
+            :op3 (s3 / sugar~e.30)
+            :op4 (s / salt~e.33)))
+
+# ::id waffles_8_instr2_0
+# ::name waffles_8_instr2_0
+# ::snt In another medium bowl , place eggs .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_8_instr2
+(p / place-01~e.48
+   :mode imperative~e.53
+   :ARG1 (e / egg~e.49)
+   :location (b2 / bowl~e.46
+                 :mod (m / medium~e.45)
+                 :mod (a2 / another~e.44))
+   :ARG0 (y / you~e.48))
+
+# ::id waffles_8_instr2_1
+# ::name waffles_8_instr2_1
+# ::snt In another medium bowl , beat slightly .
+# ::root b
+# ::alignments b
+# ::snt_id waffles_8_instr2
+(b / beat-01~e.51
+   :mode imperative~e.53
+   :degree (s / slight~e.52)
+   :location (b2 / bowl~e.46
+                 :mod (m / medium~e.45)
+                 :mod (a2 / another~e.44))
+   :ARG0 (y / you~e.51))
+
+# ::id waffles_8_instr3_1
+# ::name waffles_8_instr3_1
+# ::snt Melt butter .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_8_instr3
+(m / melt-01~e.61
+   :mode imperative~e.61
+   :ARG1 (b / butter~e.62)
+   :ARG0 (y / you~e.61))
+
+# ::id waffles_8_instr3_0
+# ::name waffles_8_instr3_0
+# ::snt Add milk , vanilla extract , butter to the eggs .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_8_instr3
+(a / add-02~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG1 (a2 / and~e.56
+             :op1 (m2 / milk~e.55)
+             :op2 (e2 / extract-01~e.58
+                      :ARG1 (v / vanilla~e.57))
+             :op3 (b / butter~e.62))
+   :ARG2 (e / egg~e.65))
+
+# ::id waffles_8_instr3_2
+# ::name waffles_8_instr3_2
+# ::snt Milk , vanilla extract , butter whisk to combine .
+# ::root s
+# ::alignments s
+# ::snt_id waffles_8_instr3
+(s / stir-01~e.67
+   :mode imperative~e.70
+   :purpose (c / combine-01~e.69
+               :ARG1 y
+               :ARG2 (a2 / and~e.56
+                         :op1 (m2 / milk~e.55)
+                         :op2 (e2 / extract-01~e.58
+                                  :ARG1 (v / vanilla~e.57))
+                         :op3 (b / butter~e.62)))
+   :ARG0 (y / you~e.67))
+
+# ::id waffles_8_instr4_0
+# ::name waffles_8_instr4_0
+# ::snt Make a well in the center of the flour mixture .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_8_instr4
+(m / make-01~e.71
+   :mode imperative~e.71
+   :ARG0 (y / you~e.71)
+   :ARG1 (w / well~e.73)
+   :location (c / center~e.76
+                :part-of (m2 / mixture~e.80
+                             :consist-of (f / flour~e.79))))
+
+# ::id waffles_8_instr4_1
+# ::name waffles_8_instr4_1
+# ::snt Pour in the egg mixture .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_8_instr4
+(p / pour-01~e.82
+   :mode imperative~e.87
+   :ARG0 (y / you~e.82)
+   :ARG1 (m3 / mixture~e.86
+             :consist-of (e / egg~e.85)))
+
+# ::id waffles_8_instr5
+# ::name waffles_8_instr5
+# ::snt Whisk until thoroughly combined and smooth .
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_8_instr5
+(m / mix-01~e.88
+   :mode imperative~e.88
+   :ARG0 (y / you~e.88)
+   :time (u / until~e.89
+            :op1 (a / and~e.92
+                    :op1 (c / combine-01~e.91
+                            :ARG1 y
+                            :degree (t / thorough~e.90))
+                    :op2 (s / smooth-04~e.93
+                            :ARG1 y))))
+
+# ::id waffles_8_instr6
+# ::name waffles_8_instr6
+# ::snt Do n’t over mix .
+# ::root m
+# ::alignments
+# ::snt_id waffles_8_instr6
+(m / mix-01~e.98
+   :mode imperative~e.95
+   :polarity -~e.96
+   :ARG0 (y / you~e.95)
+   :ARG1-of (o / over-03~e.97))
+
+# ::id waffles_8_instr7
+# ::name waffles_8_instr7
+# ::snt Preheat your waffle iron and grease lightly ( oil spray is great for this ) .
+# ::root m
+# ::alignments h, g
+# ::snt_id waffles_8_instr7
+(m / multi-sentence~e.115
+   :snt1 (h / hot-05~e.100
+            :ARG0 (y / you~e.100)
+            :ARG1 (a / and~e.104
+                     :op1 (i / iron~e.103
+                             :mod (w / waffle~e.102)
+                             :poss y)
+                     :op2 (g / grease~e.105))
+            :manner (l / light-06~e.106)
+            :mode imperative~e.100)
+   :snt2 (g2 / great~e.111
+             :purpose (t / this~e.113)
+             :domain (s / spray-01~e.109
+                        :ARG1 (o / oil~e.108))))
+
+# ::id waffles_8_instr8
+# ::name waffles_8_instr8
+# ::snt Bake waffles according to your iron manufacturer ’s instructions , or until brown and crisp .
+# ::root o
+# ::alignments b, y, b2
+# ::snt_id waffles_8_instr8
+(o / or~e.126
+   :op1 (b / bake-01~e.116
+           :ARG0 (y / you~e.116)
+           :ARG1 W~e.117)
+   :op2 (b2 / bake-01~e.116
+            :ARG0 y
+            :time (u / until~e.127
+                     :op1 (a / and~e.129
+                             :op1 (b3 / brown-01~e.128
+                                      :ARG1 W~e.117)
+                             :op2 (c2 / crisp-01~e.130
+                                      :ARG1 W~e.117))))
+   :ARG1-of (s / say-01~e.118
+               :ARG0 (i / instruct-01~e.124
+                        :ARG0 (c / company~e.122
+                                 :ARG0-of (m / manufacture-01~e.122
+                                             :ARG1 (i2 / iron~e.121))))))
+
+# ::id waffles_8_instr9
+# ::name waffles_8_instr9
+# ::snt Usually , for each waffle you ’ll need to pour or spoon ¼ -1/2 cup batter , and the cooking time will be around 3 - 5 minutes .
+# ::root a
+# ::alignments s
+# ::snt_id waffles_8_instr9
+(a / and~e.149
+   :op1 (n / need-01~e.139
+           :purpose (w / waffle~e.136
+                       :mod (e / each~e.135))
+           :ARG0 (y / you~e.137)
+           :ARG1 (o / or~e.142
+                    :op1 (p / pour-01~e.141
+                            :ARG0 y
+                            :ARG1 (t3 / thing~e.148
+                                      :quant (v2 / volume-quantity~e.146
+                                                 :unit (c3 / cup~e.146)
+                                                 :quant 1~e.144)
+                                      :ARG2-of (b / batter-01~e.147)))
+                    :op2 (s / spoonfeed-01~e.143
+                            :ARG0 y
+                            :ARG1 t3))
+           :mod (u / usual~e.132))
+   :op2 (t4 / time~e.152
+            :quant (a2 / around~e.155
+                       :op1 (b2 / between~e.156
+                                :op1 (t / temporal-quantity~e.159
+                                        :unit (m / minute~e.159)
+                                        :quant 3~e.156)
+                                :op2 (t2 / temporal-quantity~e.159
+                                         :unit (m2 / minute~e.159)
+                                         :quant 5~e.158)))
+            :duration-of (c / cook-01~e.151
+                            :ARG1 t3))
+   :rel (v / volume-quantity~e.146
+           :unit (c2 / cup~e.146)
+           :quant 3~e.144))
+
+# ::id waffles_8_instr10
+# ::name waffles_8_instr10
+# ::snt Do n’t overload it with batter on the first try , and do n’t check for doneness before cooking for at least two minutes ( to prevent making a mess ) .
+# ::root a
+# ::alignments
+# ::snt_id waffles_8_instr10
+(a / and~e.172
+   :op1 (o2 / overload-01~e.163
+            :ARG0 (y / you~e.161)
+            :ARG1 (i / it~e.164)
+            :ARG2 (b / batter~e.166)
+            :time (t2 / try-01~e.170
+                      :ord (o / ordinal-entity~e.169
+                              :value 1~e.169))
+            :mode imperative~e.161
+            :polarity -~e.162)
+   :op2 (c / check-01~e.175
+           :ARG0 y
+           :ARG1 (d / doneness~e.177)
+           :time (b2 / before~e.178
+                     :op1 (c2 / cook-01~e.179
+                              :purpose (p / prevent-01~e.187
+                                          :ARG0 y
+                                          :ARG1 (m / make-01~e.188
+                                                   :ARG0 y
+                                                   :ARG1 (m2 / mess~e.190)))
+                              :ARG0 y
+                              :duration (a2 / at-least~e.182
+                                            :op1 (t / temporal-quantity~e.184
+                                                    :unit (m3 / minute~e.184)
+                                                    :quant 2~e.183))))
+           :mode imperative~e.192
+           :polarity -~e.174))
+
+# ::id waffles_8_instr11_1
+# ::name waffles_8_instr11_1
+# ::snt Transfer to a plate .
+# ::root t
+# ::alignments t
+# ::snt_id waffles_8_instr11
+(t / transfer-01~e.193
+   :mode imperative~e.206
+   :ARG0 (y / you~e.193)
+   :ARG2 (p / plate~e.196))
+
+# ::id waffles_8_instr11_0
+# ::name waffles_8_instr11_0
+# ::snt Cover loosely with aluminum foil to keep warm .
+# ::root c
+# ::alignments c, k
+# ::snt_id waffles_8_instr11
+(c / cover-02~e.198
+   :mode imperative~e.206
+   :purpose (k / keep-01~e.204
+               :ARG0 y
+               :ARG1 (w / warm-01~e.205
+                        :ARG1 y))
+   :ARG1 (y / you~e.204)
+   :ARG2 (f / foil~e.202
+            :consist-of (a / aluminum~e.201))
+   :manner (l / light-06~e.199)
+   :ARG0 (y1 / you~e.198))
+
+# ::id waffles_8_instr12
+# ::name waffles_8_instr12
+# ::snt If you do n’t plan to serve the waffles right away , you can keep them warm in a preheated 200F/95C oven set with a wire rack for up to 30 minutes .
+# ::root p2
+# ::alignments s2
+# ::snt_id waffles_8_instr12
+(p2 / possible-01~e.220
+    :ARG1 (k / keep-01~e.221
+             :ARG0 (y / you~e.219)
+             :ARG1 (w / warm-07~e.223
+                      :ARG1 W~e.215)
+             :duration (u / up-to~e.235
+                          :op1 (t3 / temporal-quantity~e.238
+                                   :unit (m / minute~e.238)
+                                   :quant 30~e.237))
+             :location (s2 / set~e.229
+                           :mod (o / oven~e.228)
+                           :mod (b / between~e.227
+                                   :op1 (t / temperature-quantity~e.227
+                                           :quant 100~e.227)
+                                   :op2 (t2 / temperature-quantity~e.227
+                                            :quant 200~e.227))
+                           :prep-with (r / rack~e.233
+                                         :consist-of (w2 / wire~e.232))
+                           :ARG1-of (h / heat-01~e.226)))
+    :condition (p / plan-01~e.211
+                  :ARG0 y
+                  :ARG1 (s / serve-02~e.213
+                           :ARG0 y
+                           :time (r2 / right-away~e.216)
+                           :ARG1 W~e.215)
+                  :polarity -~e.210))
+

@@ -1,0 +1,414 @@
+# ::id homemade_pizza_dough_3_instr0_1
+# ::name homemade_pizza_dough_3_instr0_1
+# ::snt Of a stand mixer fit with the dough attachment .
+# ::root f
+# ::alignments f
+# ::snt_id homemade_pizza_dough_3_instr0
+(f / fit-01~e.8
+   :mode imperative~e.8
+   :ARG1 (t / thing~e.7
+            :mod (s / stand~e.6)
+            :ARG0-of (m / mix-01~e.7))
+   :ARG2 (a / attachment~e.12
+            :purpose (d / dough~e.11))
+   :ARG0 (y / you~e.8))
+
+# ::id homemade_pizza_dough_3_instr0_0
+# ::name homemade_pizza_dough_3_instr0_0
+# ::snt In the bowl of a stand mixer , pour in the water followed by the yeast .
+# ::root p
+# ::alignments p
+# ::snt_id homemade_pizza_dough_3_instr0
+(p / pour-01~e.14
+   :mode imperative~e.22
+   :ARG1 (w / water~e.17)
+   :location (b / bowl~e.3
+                :part-of (t / thing~e.7
+                            :mod (s / stand~e.6)
+                            :ARG0-of (m / mix-01~e.7)))
+   :ARG0 (y1 / you~e.14)
+   :ARG2-of (f2 / follow-01~e.18
+                :ARG1 (y / yeast~e.21)))
+
+# ::id homemade_pizza_dough_3_instr1_1
+# ::name homemade_pizza_dough_3_instr1_1
+# ::snt Gently stir together .
+# ::root s3
+# ::alignments s3
+# ::snt_id homemade_pizza_dough_3_instr1
+(s3 / stir-01~e.24
+    :mode imperative~e.23
+    :ARG0 (y / you~e.24)
+    :manner (g / gentle~e.23)
+    :mod (t2 / together~e.25))
+
+# ::id homemade_pizza_dough_3_instr1_0
+# ::name homemade_pizza_dough_3_instr1_0
+# ::snt Let stand for about 5 minutes until the mixture starts to get foamy .
+# ::root l
+# ::alignments l, s, s2
+# ::snt_id homemade_pizza_dough_3_instr1
+(l / let-01~e.27
+   :mode imperative~e.27
+   :ARG0 (y / you~e.27)
+   :ARG1 (s / stand-01~e.28
+            :duration (a / about~e.30
+                         :op1 (t / temporal-quantity~e.31
+                                 :unit (m / minute~e.32)
+                                 :quant 5~e.31)))
+   :time (u / until~e.33
+            :op1 (s2 / start-01~e.36
+                     :ARG1 (g2 / get-03~e.38
+                               :ARG1 (m2 / mixture~e.35)
+                               :ARG2 (f / foam~e.39)))))
+
+# ::id homemade_pizza_dough_3_instr2_0
+# ::name homemade_pizza_dough_3_instr2_0
+# ::snt Add in the flour , sugar , salt , the oil .
+# ::root a2
+# ::alignments a2
+# ::snt_id homemade_pizza_dough_3_instr2
+(a2 / add-02~e.41
+    :mode imperative~e.41
+    :ARG1 (a3 / and~e.45
+              :op1 (f / flour~e.44)
+              :op2 (s2 / sugar~e.46)
+              :op3 (s / salt~e.48)
+              :op4 (o / oil~e.52))
+    :ARG0 (y / you~e.41))
+
+# ::id homemade_pizza_dough_3_instr2_1
+# ::name homemade_pizza_dough_3_instr2_1
+# ::snt Mix by hand or with the dough hook for about 2 minutes .
+# ::root m2
+# ::alignments m2
+# ::snt_id homemade_pizza_dough_3_instr2
+(m2 / mix-01~e.54
+    :mode imperative~e.54
+    :duration (a / about~e.63
+                 :op1 (t / temporal-quantity~e.65
+                         :unit (m / minute~e.65)
+                         :quant 2~e.64))
+    :manner (o2 / or~e.57
+                :op1 (h / hand~e.56)
+                :op2 (h2 / hook~e.61
+                         :purpose (d / dough~e.60)))
+    :ARG0 (y / you~e.54))
+
+# ::id homemade_pizza_dough_3_instr3
+# ::name homemade_pizza_dough_3_instr3
+# ::snt You can add more flour if needed if the dough is too sticky or more warm water if it seems too dry .
+# ::root p
+# ::alignments
+# ::snt_id homemade_pizza_dough_3_instr3
+(p / possible-01~e.68
+   :ARG1 (a / add-02~e.69
+            :ARG0 (y / you~e.67)
+            :ARG1 (f / flour~e.71
+                     :mod (m / more~e.70))
+            :condition (n / need-01~e.73)
+            :condition (o / or~e.80
+                          :condition (s / seem-01~e.86
+                                        :ARG1 (h2 / have-degree-91~e.87
+                                                  :ARG1 (d / dough~e.76)
+                                                  :ARG2 (d2 / dry-02~e.88
+                                                            :ARG1 d)
+                                                  :ARG3 (t2 / too~e.87)))
+                          :op1 (h / have-degree-91~e.78
+                                  :ARG1 d
+                                  :ARG2 (s2 / sticky~e.79)
+                                  :ARG3 (t / too~e.78))
+                          :op2 (w2 / water~e.83
+                                   :ARG1-of (h3 / have-quant-91~e.81
+                                                :ARG2 (w / warm-07~e.82
+                                                         :ARG1 w2)
+                                                :ARG3 (m2 / more~e.81))))))
+
+# ::id homemade_pizza_dough_3_instr4_1
+# ::name homemade_pizza_dough_3_instr4_1
+# ::snt Flour surface .
+# ::root f
+# ::alignments f
+# ::snt_id homemade_pizza_dough_3_instr4
+(f / fling-01~e.100
+   :mode imperative~e.100
+   :ARG1 (s / surface~e.101)
+   :ARG0 (y / you~e.100))
+
+# ::id homemade_pizza_dough_3_instr4_0
+# ::name homemade_pizza_dough_3_instr4_0
+# ::snt Once combined , either knead with your hands on a surface or with the dough hook for about 5 - 7 minutes .
+# ::root b
+# ::alignments b, c
+# ::snt_id homemade_pizza_dough_3_instr4
+(b / bake-01~e.94
+   :mode imperative~e.94
+   :ARG0 (y / you~e.94
+            :part (h / hand~e.97))
+   :duration (a / about~e.108
+                :op1 (b2 / between~e.109
+                         :op1 (t / temporal-quantity~e.112
+                                 :unit (m / minute~e.112)
+                                 :quant 5~e.109)
+                         :op2 (t2 / temporal-quantity~e.112
+                                  :unit (m2 / minute~e.112)
+                                  :quant 7~e.111)))
+   :instrument (o / or~e.102
+                  :op1 (s / surface~e.101)
+                  :op2 (h2 / hook~e.106
+                           :purpose (d / dough~e.105)))
+   :time (c / combine-01~e.91
+            :ARG1 y))
+
+# ::id homemade_pizza_dough_3_instr5
+# ::name homemade_pizza_dough_3_instr5
+# ::snt Shape the dough into a ball .
+# ::root s
+# ::alignments s, y
+# ::snt_id homemade_pizza_dough_3_instr5
+(s / shape-01~e.114
+   :mode imperative~e.120
+   :ARG0 (y / you~e.114)
+   :ARG1 (d / dough~e.116)
+   :ARG2 (b / ball~e.119))
+
+# ::id homemade_pizza_dough_3_instr6
+# ::name homemade_pizza_dough_3_instr6
+# ::snt Grease a bowl with more oil .
+# ::root e
+# ::alignments e, y
+# ::snt_id homemade_pizza_dough_3_instr6
+(e / enzyme~e.121
+   :mode imperative~e.121
+   :ARG0 (y / you~e.121)
+   :ARG2 (o / oil~e.126
+            :quant (m / more~e.125))
+   :part-of (b / bowl~e.123))
+
+# ::id homemade_pizza_dough_3_instr7_0
+# ::name homemade_pizza_dough_3_instr7_0
+# ::snt Place the dough ball into the bowl .
+# ::root p
+# ::alignments p
+# ::snt_id homemade_pizza_dough_3_instr7
+(p / place-01~e.128
+   :ARG0 (y / you~e.128)
+   :ARG1 (b / ball~e.131
+            :consist-of (d / dough~e.130))
+   :ARG2 (b2 / bowl~e.134))
+
+# ::id homemade_pizza_dough_3_instr7_1
+# ::name homemade_pizza_dough_3_instr7_1
+# ::snt Roll the dough ball around to coat the ball with some of the oil .
+# ::root r
+# ::alignments r
+# ::snt_id homemade_pizza_dough_3_instr7
+(r / roll-01~e.136
+   :mode imperative~e.136
+   :purpose (c / coat-01~e.139
+               :ARG0 y
+               :ARG1 (b / ball~e.131
+                        :consist-of (d / dough~e.130))
+               :ARG2 (o / oil~e.146
+                        :quant (s / some~e.143)))
+   :ARG1 (y / you~e.139)
+   :direction (a2 / around~e.137)
+   :ARG0 (y1 / you~e.136))
+
+# ::id homemade_pizza_dough_3_instr7_2
+# ::name homemade_pizza_dough_3_instr7_2
+# ::snt Cover the dough ball with plastic wrap .
+# ::root c2
+# ::alignments c2
+# ::snt_id homemade_pizza_dough_3_instr7
+(c2 / cover-02~e.148
+    :ARG0 (y / you~e.148)
+    :ARG1 (b / ball~e.131
+             :consist-of (d / dough~e.130))
+    :ARG2 (w / wrap~e.151
+             :consist-of (p2 / plastic~e.150)))
+
+# ::id homemade_pizza_dough_3_instr8_0
+# ::name homemade_pizza_dough_3_instr8_0
+# ::snt Allow the dough to rise for about one hour in a warm environment I like to turn my oven to about 200 degrees F .
+# ::root a3
+# ::alignments a3, r
+# ::snt_id homemade_pizza_dough_3_instr8
+(a3 / allow-01~e.153
+    :mode imperative~e.153
+    :ARG0 (y / you~e.153)
+    :ARG1 (r / rise-01~e.157
+             :ARG1 (d / dough~e.155)
+             :duration (a / about~e.159
+                          :op1 (t2 / temporal-quantity~e.161
+                                   :unit (h / hour~e.161)
+                                   :quant 1~e.160))
+             :location (e / environment~e.165
+                          :example (l / like-01~e.168
+                                      :ARG0 (i / i~e.167)
+                                      :ARG1 (t4 / turn-01~e.170
+                                                :ARG0 i
+                                                :ARG1 (o / oven~e.172
+                                                         :poss i)
+                                                :destination (a2 / about~e.174
+                                                                 :op1 (t / temperature-quantity~e.177
+                                                                         :scale (f / fahrenheit~e.177)
+                                                                         :quant 200~e.175))))
+                          :ARG1-of (w / warm-07~e.164))))
+
+# ::id homemade_pizza_dough_3_instr8_1
+# ::name homemade_pizza_dough_3_instr8_1
+# ::snt Place the bowl on top of the stove to rise .
+# ::root p
+# ::alignments p
+# ::snt_id homemade_pizza_dough_3_instr8
+(p / place-01~e.180
+   :mode imperative~e.190
+   :purpose (r2 / rise-01~e.189
+                :ARG1 b)
+   :ARG0 (y / you~e.180)
+   :ARG1 (b / bowl~e.182)
+   :ARG2 (t3 / top~e.184
+             :part-of (s / stove~e.187)))
+
+# ::id homemade_pizza_dough_3_instr9_1
+# ::name homemade_pizza_dough_3_instr9_1
+# ::snt Flour surface .
+# ::root f
+# ::alignments f
+# ::snt_id homemade_pizza_dough_3_instr9
+(f / fling-01~e.197
+   :mode imperative~e.197
+   :ARG1 (s / surface~e.198)
+   :ARG0 (y / you~e.197))
+
+# ::id homemade_pizza_dough_3_instr9_0
+# ::name homemade_pizza_dough_3_instr9_0
+# ::snt Turn the risen dough onto a surface .
+# ::root t
+# ::alignments t
+# ::snt_id homemade_pizza_dough_3_instr9
+(t / turn-01~e.191
+   :mode imperative~e.191
+   :ARG0 (y / you~e.191)
+   :ARG1 (d / dough~e.194
+            :ARG1-of (r / rise-01~e.193))
+   :ARG3 (s / surface~e.198))
+
+# ::id homemade_pizza_dough_3_instr10_0
+# ::name homemade_pizza_dough_3_instr10_0
+# ::snt Divide the dough ball in half .
+# ::root d
+# ::alignments d
+# ::snt_id homemade_pizza_dough_3_instr10
+(d / divide-02~e.200
+   :mode imperative~e.200
+   :ARG0 (y / you~e.200)
+   :ARG1 (b / ball~e.203
+            :consist-of (d2 / dough~e.202))
+   :ARG2 (h / half~e.205))
+
+# ::id homemade_pizza_dough_3_instr10_1
+# ::name homemade_pizza_dough_3_instr10_1
+# ::snt Let the dough ball rest for 10 minutes .
+# ::root l
+# ::alignments l
+# ::snt_id homemade_pizza_dough_3_instr10
+(l / let-01~e.207
+   :mode imperative~e.207
+   :ARG0 (y / you~e.207)
+   :ARG1 (r / rest-01~e.208
+            :ARG1 (b / ball~e.203
+                     :consist-of (d2 / dough~e.202))
+            :duration (t / temporal-quantity~e.210
+                         :unit (m / minute~e.211)
+                         :quant 10~e.210)))
+
+# ::id homemade_pizza_dough_3_instr11
+# ::name homemade_pizza_dough_3_instr11
+# ::snt Roll the dough out to about 1-inch thickness .
+# ::root r
+# ::alignments r, o
+# ::snt_id homemade_pizza_dough_3_instr11
+(r / roll-01~e.213
+   :mode imperative~e.221
+   :ARG0 (y / you~e.213)
+   :ARG1 (d2 / dough~e.215)
+   :ARG4 (t / thickness~e.220
+            :mod (a / about~e.218
+                    :op1 (d / distance-quantity~e.219
+                            :unit (i / inch~e.219)
+                            :quant 1~e.219)))
+   :direction (o / out~e.216))
+
+# ::id homemade_pizza_dough_3_instr12
+# ::name homemade_pizza_dough_3_instr12
+# ::snt Top with desired toppings and bake in oven at 425 degrees on a pizza pan or stone until golden ( about 10 - 15 minutes depending on toppings ) .
+# ::root a2
+# ::alignments t4, b
+# ::snt_id homemade_pizza_dough_3_instr12
+(a2 / and~e.226
+    :rel 425~e.231
+    :op1 (t4 / top~e.222
+             :ARG0 (y / you~e.227)
+             :ARG2 (t3 / thing~e.225
+                       :ARG1-of (b2 / base-01~e.225)
+                       :ARG1-of (d2 / desire-01~e.224))
+             :mode imperative~e.222)
+    :op2 (b / bake-01~e.227
+            :ARG0 y
+            :location (o2 / oven~e.229)
+            :location (o / or~e.237
+                         :op1 (p / pan~e.236
+                                 :mod (p2 / pizza~e.235))
+                         :op2 (s / stone~e.238))
+            :time (u / until~e.239
+                     :op1 (g / gold~e.240)
+                     :ARG1-of (m / mean-01~e.241
+                                 :ARG2 (a / about~e.242
+                                          :op1 (b3 / between~e.243
+                                                   :op1 (t / temporal-quantity~e.246
+                                                           :unit (m2 / minute~e.246)
+                                                           :quant 10~e.243)
+                                                   :op2 (t2 / temporal-quantity~e.246
+                                                            :unit (m3 / minute~e.246)
+                                                            :quant 15~e.245))
+                                          :ARG0-of (d / depend-01~e.247
+                                                      :ARG1 t3))))
+            :mode imperative~e.251))
+
+# ::id homemade_pizza_dough_3_instr13_0
+# ::name homemade_pizza_dough_3_instr13_0
+# ::snt To freeze the unused portion , wrap in plastic wrap .
+# ::root a
+# ::alignments f
+# ::snt_id homemade_pizza_dough_3_instr13
+(a / and~e.262
+   :op1 (f / freeze-01~e.253
+           :ARG1 (p2 / portion~e.256
+                     :ARG1-of (u / use-01~e.255
+                                 :polarity -~e.254))
+           :ARG0 (y / you~e.253)
+           :mode imperative~e.253)
+   :op2 (w2 / wrap-01~e.258
+            :ARG2 (w / wrap~e.261
+                     :consist-of (p / plastic~e.260))))
+
+# ::id homemade_pizza_dough_3_instr13_1
+# ::name homemade_pizza_dough_3_instr13_1
+# ::snt Wrap in plastic wrap and then seal in a freezer - safe bag .
+# ::root a
+# ::alignments s2
+# ::snt_id homemade_pizza_dough_3_instr13
+(a / and~e.262
+   :op2 (w2 / wrap-01~e.258
+            :ARG2 (w / wrap~e.261
+                     :consist-of (p / plastic~e.260)))
+   :op3 (s2 / seal-01~e.264
+            :ARG2 (b / bag~e.270
+                     :ARG1-of (s / safe-01~e.269
+                                 :ARG2 (f2 / freezer~e.267)))
+            :time (t / then~e.263)
+            :ARG0 (y / you~e.264)
+            :mode imperative~e.264))
+

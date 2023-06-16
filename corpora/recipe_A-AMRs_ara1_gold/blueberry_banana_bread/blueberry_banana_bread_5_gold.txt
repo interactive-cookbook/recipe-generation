@@ -1,0 +1,177 @@
+# ::id blueberry_banana_bread_5_instr0
+# ::name blueberry_banana_bread_5_instr0
+# ::snt Preheat oven to 350F and butter a loaf / bread pan ( 4X8 inches )
+# ::root a
+# ::alignments b, y
+# ::snt_id blueberry_banana_bread_5_instr0
+(a / and~e.5
+   :op1 (b / bake-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (o / oven~e.2)
+           :destination (t / temperature-quantity~e.4
+                           :scale (f / fahrenheit~e.4)
+                           :quant 35~e.4)
+           :mode imperative~e.1)
+   :op2 (b3 / butter-01~e.6
+            :ARG0 y
+            :ARG1 (p / pan~e.11
+                     :purpose (s / slash~e.9
+                                 :op1 (l / loaf~e.8)
+                                 :op2 (b2 / bread~e.10)
+                                 :ARG1-of (m / mean-01~e.12
+                                             :extent (d2 / distance-quantity~e.14
+                                                         :unit (i / inch~e.14)
+                                                         :unit (i2 / inch~e.14)))))
+            :mode imperative~e.15)
+   :rel (d / distance-quantity~e.13
+           :quant 8~e.13))
+
+# ::id blueberry_banana_bread_5_instr1
+# ::name blueberry_banana_bread_5_instr1
+# ::snt With a wooden spoon mix melted butter , mashed bananas , and applesauce .
+# ::root m2
+# ::alignments m, p
+# ::snt_id blueberry_banana_bread_5_instr1
+(m2 / mix-01~e.20
+    :ARG1 (a / and~e.27
+             :op1 (b2 / butter~e.22
+                      :ARG1-of (m / melt-01~e.21))
+             :op2 (b / banana~e.25
+                     :ARG1-of (p / pure-02~e.24))
+             :op3 (a2 / applesauce~e.28))
+    :instrument (s / spoon~e.19
+                   :mod (w / wooden~e.18)))
+
+# ::id blueberry_banana_bread_5_instr2_1
+# ::name blueberry_banana_bread_5_instr2_1
+# ::snt Add the sugar , egg , and vanilla .
+# ::root a
+# ::alignments a
+# ::snt_id blueberry_banana_bread_5_instr2
+(a / add-02~e.30
+   :mode imperative~e.30
+   :ARG1 (a2 / and~e.36
+             :op1 (s / sugar~e.32)
+             :op2 (e / egg~e.34)
+             :op3 (v / vanilla~e.37))
+   :ARG0 (y / you~e.30))
+
+# ::id blueberry_banana_bread_5_instr2_0
+# ::name blueberry_banana_bread_5_instr2_0
+# ::snt Mix till combined .
+# ::root m
+# ::alignments m, c
+# ::snt_id blueberry_banana_bread_5_instr2
+(m / mix-01~e.39
+   :mode imperative~e.39
+   :manner (c / combine-01~e.41)
+   :ARG0 (y / you~e.39))
+
+# ::id blueberry_banana_bread_5_instr3_0
+# ::name blueberry_banana_bread_5_instr3_0
+# ::snt Sprinkle the baking soda and salt .
+# ::root s3
+# ::alignments s3
+# ::snt_id blueberry_banana_bread_5_instr3
+(s3 / spray-01~e.43
+    :mode imperative~e.43
+    :ARG0 (y / you~e.43)
+    :ARG1 (a / and~e.47
+             :op1 (s2 / soda~e.46
+                      :ARG2-of (b / bake-01~e.45))
+             :op2 (s / salt~e.48)))
+
+# ::id blueberry_banana_bread_5_instr3_1
+# ::name blueberry_banana_bread_5_instr3_1
+# ::snt Mix .
+# ::root m
+# ::alignments m
+# ::snt_id blueberry_banana_bread_5_instr3
+(m / mix-01~e.50
+   :mode imperative~e.43
+   :ARG0 (y / you~e.50))
+
+# ::id blueberry_banana_bread_5_instr4_0
+# ::name blueberry_banana_bread_5_instr4_0
+# ::snt Add the flour .
+# ::root a
+# ::alignments a
+# ::snt_id blueberry_banana_bread_5_instr4
+(a / add-02~e.52
+   :mode imperative~e.52
+   :ARG0 (y / you~e.52)
+   :ARG1 (f / flour~e.54))
+
+# ::id blueberry_banana_bread_5_instr4_1
+# ::name blueberry_banana_bread_5_instr4_1
+# ::snt Mix .
+# ::root m
+# ::alignments m
+# ::snt_id blueberry_banana_bread_5_instr4
+(m / mix-01~e.56
+   :mode imperative~e.57
+   :ARG0 (y / you~e.56))
+
+# ::id blueberry_banana_bread_5_instr5
+# ::name blueberry_banana_bread_5_instr5
+# ::snt Gently fold in the blueberries .
+# ::root f
+# ::alignments f
+# ::snt_id blueberry_banana_bread_5_instr5
+(f / fold-03~e.59
+   :mode imperative~e.58
+   :ARG0 (y / you~e.58)
+   :ARG1 (l / Blue~e.62))
+
+# ::id blueberry_banana_bread_5_instr6_0
+# ::name blueberry_banana_bread_5_instr6_0
+# ::snt Pour into bread pan .
+# ::root p2
+# ::alignments p2
+# ::snt_id blueberry_banana_bread_5_instr6
+(p2 / pour-01~e.64
+    :mode imperative~e.64
+    :ARG0 (y / you~e.64)
+    :ARG2 (p / pan~e.67
+             :purpose (b2 / bread~e.66)))
+
+# ::id blueberry_banana_bread_5_instr6_1
+# ::name blueberry_banana_bread_5_instr6_1
+# ::snt Bake for 1 hour .
+# ::root b
+# ::alignments b
+# ::snt_id blueberry_banana_bread_5_instr6
+(b / bake-01~e.69
+   :mode imperative~e.73
+   :ARG0 (y / you~e.69)
+   :duration (t / temporal-quantity~e.72
+                :unit (h / hour~e.72)
+                :quant 1~e.71))
+
+# ::id blueberry_banana_bread_5_instr7_0
+# ::name blueberry_banana_bread_5_instr7_0
+# ::snt Cool on a rack .
+# ::root c
+# ::alignments c
+# ::snt_id blueberry_banana_bread_5_instr7
+(c / cool-01~e.74
+   :mode imperative~e.74
+   :location (r / rack~e.77)
+   :ARG0 (y / you~e.74))
+
+# ::id blueberry_banana_bread_5_instr7_1
+# ::name blueberry_banana_bread_5_instr7_1
+# ::snt Then you are ready to remove from pan and serve !
+# ::root r2
+# ::alignments s
+# ::snt_id blueberry_banana_bread_5_instr7
+(r2 / ready-02~e.82
+    :ARG1 (y / you~e.80)
+    :ARG2 (a2 / and~e.87
+              :op1 (r3 / remove-01~e.84
+                       :ARG1 y
+                       :ARG2 (p / pan~e.86))
+              :op2 (s / serve-02~e.88
+                      :ARG0 y))
+    :time (t / then~e.79))
+

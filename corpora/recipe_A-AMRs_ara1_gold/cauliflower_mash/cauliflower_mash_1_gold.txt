@@ -1,0 +1,239 @@
+# ::id cauliflower_mash_1_instr0_0
+# ::name cauliflower_mash_1_instr0_0
+# ::snt Remove greens from the head of cauliflower .
+# ::root r2
+# ::alignments r2
+# ::snt_id cauliflower_mash_1_instr0
+(r2 / remove-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (r / Greens~e.2)
+    :ARG2 (h / head~e.5
+             :part-of (c / cauliflower~e.7)))
+
+# ::id cauliflower_mash_1_instr0_1
+# ::name cauliflower_mash_1_instr0_1
+# ::snt Of cauliflower break the cauliflower up into large hunks ( ~6 large pieces ) .
+# ::root b
+# ::alignments b
+# ::snt_id cauliflower_mash_1_instr0
+(b / break-up-08~e.9
+   :mode imperative~e.21
+   :ARG0 (y / you~e.9)
+   :ARG1 (c / cauliflower~e.7)
+   :ARG3 (p2 / piece~e.19
+             :ARG1-of (c2 / chunk-01~e.15
+                          :mod (l / large~e.14)
+                          :ARG1-of (m / mean-01~e.16
+                                      :ARG2 (p / piece~e.19
+                                               :mod (l2 / large~e.18)
+                                               :quant 6~e.17)))))
+
+# ::id cauliflower_mash_1_instr1
+# ::name cauliflower_mash_1_instr1
+# ::snt Place cauliflower , garlic cloves and 1 cup broth in a large pot over medium - high heat .
+# ::root p
+# ::alignments p, y
+# ::snt_id cauliflower_mash_1_instr1
+(p / place-01~e.22
+   :mode imperative~e.40
+   :ARG0 (y / you~e.22)
+   :ARG1 (a / and~e.27
+            :op1 (c / cauliflower~e.23)
+            :op2 (p3 / pound~e.26
+                     :consist-of (g / garlic~e.25))
+            :op3 (b / broth~e.30
+                    :quant (v / volume-quantity~e.29
+                              :unit (c2 / cup~e.29)
+                              :quant 1~e.28)))
+   :ARG2 (p2 / pot~e.34
+             :mod (l / large~e.33))
+   :location (h / heat~e.39
+                :ARG1-of (h2 / high-02~e.38
+                             :degree (m / medium~e.36))))
+
+# ::id cauliflower_mash_1_instr2_0
+# ::name cauliflower_mash_1_instr2_0
+# ::snt Bring broth to a boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id cauliflower_mash_1_instr2
+(b2 / bring-01~e.41
+    :mode imperative~e.41
+    :ARG0 (y / you~e.41)
+    :ARG1 (b3 / broth~e.42)
+    :ARG2 (b / boil-01~e.45
+             :ARG1 b3))
+
+# ::id cauliflower_mash_1_instr2_1
+# ::name cauliflower_mash_1_instr2_1
+# ::snt Then reduce heat to simmer .
+# ::root r
+# ::alignments r
+# ::snt_id cauliflower_mash_1_instr2
+(r / reduce-01~e.48
+   :ARG0 (y / you~e.48)
+   :ARG1 (h / heat~e.49)
+   :ARG4 (s / simmer-01~e.51
+            :ARG1 h)
+   :time (t / then~e.47))
+
+# ::id cauliflower_mash_1_instr3_1
+# ::name cauliflower_mash_1_instr3_1
+# ::snt Cover , about 15 minutes .
+# ::root c2
+# ::alignments c2
+# ::snt_id cauliflower_mash_1_instr3
+(c2 / cover-01~e.53
+    :mode imperative~e.53
+    :ARG0 (y / you~e.53)
+    :duration (a / about~e.65
+                 :op1 (t / temporal-quantity~e.67
+                         :unit (m / minute~e.67)
+                         :quant 15~e.66)))
+
+# ::id cauliflower_mash_1_instr3_0
+# ::name cauliflower_mash_1_instr3_0
+# ::snt Let the cauliflower steam until fall apart fork tender , about 15 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id cauliflower_mash_1_instr3
+(l / let-01~e.55
+   :mode imperative~e.55
+   :ARG0 (y / you~e.55)
+   :ARG1 (s / steam-02~e.58
+            :ARG1 (c / cauliflower~e.57)
+            :time (u / until~e.59
+                     :op1 (f / fall-apart-09~e.61
+                             :ARG1 c
+                             :manner (t2 / tender-02~e.63
+                                         :ARG1 c
+                                         :ARG2 (f2 / fork~e.62)))))
+   :duration (a / about~e.65
+                :op1 (t / temporal-quantity~e.67
+                        :unit (m / minute~e.67)
+                        :quant 15~e.66)))
+
+# ::id cauliflower_mash_1_instr4_0
+# ::name cauliflower_mash_1_instr4_0
+# ::snt Remove from heat .
+# ::root r
+# ::alignments r
+# ::snt_id cauliflower_mash_1_instr4
+(r / remove-01~e.69
+   :mode imperative~e.69
+   :ARG0 (y / you~e.69)
+   :ARG2 (h / heat-01~e.71))
+
+# ::id cauliflower_mash_1_instr4_2
+# ::name cauliflower_mash_1_instr4_2
+# ::snt Use an immersion blender .
+# ::root u
+# ::alignments u
+# ::snt_id cauliflower_mash_1_instr4
+(u / use-01~e.84
+   :mode imperative~e.84
+   :ARG1 (b3 / blender~e.87
+             :instrument-of (i / immigrate-01~e.86))
+   :ARG0 (y / you~e.84))
+
+# ::id cauliflower_mash_1_instr4_1
+# ::name cauliflower_mash_1_instr4_1
+# ::snt Blend a food processor , a blender , or blender .
+# ::root b
+# ::alignments b
+# ::snt_id cauliflower_mash_1_instr4
+(b / blend-01~e.73
+   :mode imperative~e.88
+   :ARG0 (y / you~e.73)
+   :ARG1 (o / or~e.83
+            :op1 (b2 / blender~e.87
+                     :instrument-of (p / process-01~e.78
+                                       :ARG1 (f / food~e.77))))
+   :ARG2 (m / minister~e.87))
+
+# ::id cauliflower_mash_1_instr5_0
+# ::name cauliflower_mash_1_instr5_0
+# ::snt Add ghee .
+# ::root a
+# ::alignments a
+# ::snt_id cauliflower_mash_1_instr5
+(a / add-02~e.89
+   :mode imperative~e.89
+   :ARG0 (y / you~e.89)
+   :ARG1 (g / ghee~e.90))
+
+# ::id cauliflower_mash_1_instr5_1
+# ::name cauliflower_mash_1_instr5_1
+# ::snt Continue to blend .
+# ::root c
+# ::alignments c
+# ::snt_id cauliflower_mash_1_instr5
+(c / continue-01~e.92
+   :mode imperative~e.89
+   :ARG0 (y / you~e.92)
+   :ARG1 (b / blend-01~e.94))
+
+# ::id cauliflower_mash_1_instr6
+# ::name cauliflower_mash_1_instr6
+# ::snt Now , add additional broth until the cauliflower reaches the consistency you like ( this depends on your taste and on the size of the cauliflower ) .
+# ::root a
+# ::alignments a, r
+# ::snt_id cauliflower_mash_1_instr6
+(a / add-02~e.98
+   :mode imperative~e.98
+   :ARG0 (y / you~e.108)
+   :ARG1 (b / broth~e.100
+            :mod (a2 / additional~e.99))
+   :time (n / now~e.96)
+   :time (u / until~e.101
+            :op1 (r / reach-01~e.104
+                    :ARG0 (c / cauliflower~e.103)
+                    :ARG1 (c2 / consistent-02~e.106
+                              :ARG1 c
+                              :ARG0-of (d / depend-01~e.111
+                                          :ARG1 (a3 / and~e.115
+                                                    :op1 (t / taste~e.114
+                                                            :poss y)
+                                                    :op2 (s / size-01~e.118
+                                                            :ARG1 c)))
+                              :ARG1-of (l / like-02~e.108
+                                          :ARG0 y)))))
+
+# ::id cauliflower_mash_1_instr7
+# ::name cauliflower_mash_1_instr7
+# ::snt Add in the thyme and plenty of salt and pepper , to taste .
+# ::root a
+# ::alignments a, y
+# ::snt_id cauliflower_mash_1_instr7
+(a / add-02~e.124
+   :mode imperative~e.124
+   :ARG0 (y / you~e.124)
+   :ARG1 (a2 / and~e.128
+             :op1 (t2 / thyme~e.127)
+             :op2 (s / salt~e.131
+                     :quant (p2 / plenty~e.129
+                                :op3 (p / pepper~e.133)))
+             :ARG1-of (t / taste-01~e.136
+                         :ARG0 y)))
+
+# ::id cauliflower_mash_1_instr8_0
+# ::name cauliflower_mash_1_instr8_0
+# ::snt Serve .
+# ::root s
+# ::alignments s
+# ::snt_id cauliflower_mash_1_instr8
+(s / serve-01~e.138
+   :mode imperative~e.138
+   :ARG0 (y / you~e.138))
+
+# ::id cauliflower_mash_1_instr8_1
+# ::name cauliflower_mash_1_instr8_1
+# ::snt Enjoy !
+# ::root e
+# ::alignments e
+# ::snt_id cauliflower_mash_1_instr8
+(e / enjoy-01~e.140
+   :mode imperative~e.141
+   :ARG0 (y / you~e.140))
+

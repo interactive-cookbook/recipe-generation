@@ -1,0 +1,208 @@
+# ::id homemade_pizza_dough_4_instr0
+# ::name homemade_pizza_dough_4_instr0
+# ::snt Combine yeast , water , salt , oil , and 2 cups flour in the bowl of a stand mixer .
+# ::root c
+# ::alignments c, y2
+# ::snt_id homemade_pizza_dough_4_instr0
+(c / combine-01~e.1
+   :mode imperative~e.21
+   :ARG0 (y2 / you~e.1)
+   :ARG1 (a / and~e.10
+            :op1 (y / yeast~e.2)
+            :op2 (w / water~e.4)
+            :op3 (s / salt~e.6)
+            :op4 (o / oil~e.8)
+            :op5 (f / flour~e.13
+                    :quant (v / volume-quantity~e.12
+                              :unit (c2 / cup~e.12)
+                              :quant 2~e.11)))
+   :location (b / bowl~e.16
+                :part-of (t / thing~e.20
+                            :instrument-of (m / mix-01~e.20
+                                              :mod (s2 / stand~e.19)))))
+
+# ::id homemade_pizza_dough_4_instr1
+# ::name homemade_pizza_dough_4_instr1
+# ::snt Using the dough hook , mix on speed 2 for about 1 minute .
+# ::root m2
+# ::alignments u
+# ::snt_id homemade_pizza_dough_4_instr1
+(m2 / mix-01~e.27
+    :duration (a / about~e.32
+                 :op1 (t / temporal-quantity~e.34
+                         :unit (m / minute~e.34)
+                         :quant 1~e.33))
+    :prep-on (s / speed~e.29
+                :mod 2~e.30)
+    :ARG2-of (u / use-01~e.22
+                :ARG1 (h / hook~e.25
+                         :purpose (d / dough~e.24))))
+
+# ::id homemade_pizza_dough_4_instr2
+# ::name homemade_pizza_dough_4_instr2
+# ::snt Add remaining flour , 1/2 cup at a time , until the dough clings to the hook and cleans the sides of the bowl .
+# ::root a
+# ::alignments a, c2, c
+# ::snt_id homemade_pizza_dough_4_instr2
+(a / add-02~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :ARG1 (f / flour~e.38
+            :ARG1-of (r / remain-01~e.37))
+   :ARG2 (c3 / cup~e.41
+             :quant "1/2"~e.40)
+   :mod (a3 / at-a-time~e.44)
+   :time (u / until~e.46
+            :op1 (a2 / and~e.53
+                     :op1 (c2 / cling-01~e.49
+                              :ARG0 (d / dough~e.48)
+                              :ARG1 (h / hook~e.52))
+                     :op2 (c / clean-01~e.54
+                             :ARG1 (s / side~e.56
+                                      :part-of (b / bowl~e.59))))))
+
+# ::id homemade_pizza_dough_4_instr3
+# ::name homemade_pizza_dough_4_instr3
+# ::snt ( This should take about 2 minutes ) .
+# ::root p
+# ::alignments
+# ::snt_id homemade_pizza_dough_4_instr3
+(p / probable~e.63
+   :domain (t / take-10~e.64
+              :ARG0 (t3 / this~e.62)
+              :ARG1 (a / about~e.65
+                       :op1 (t2 / temporal-quantity~e.67
+                                :unit (m / minute~e.67)
+                                :quant 2~e.66))))
+
+# ::id homemade_pizza_dough_4_instr4
+# ::name homemade_pizza_dough_4_instr4
+# ::snt Continue kneading for an additional two minutes .
+# ::root c
+# ::alignments c, y
+# ::snt_id homemade_pizza_dough_4_instr4
+(c / continue-01~e.70
+   :mode imperative~e.77
+   :ARG0 (y / you~e.70)
+   :ARG1 (w / wring-01~e.71
+            :ARG0 y
+            :degree (m / mass~e.71)
+            :duration (t / temporal-quantity~e.76
+                         :mod (a / additional~e.74)
+                         :unit (m2 / minute~e.76)
+                         :quant 2~e.75)))
+
+# ::id homemade_pizza_dough_4_instr5
+# ::name homemade_pizza_dough_4_instr5
+# ::snt Place dough in a greased bowl ( I often use the stand mixer bowl , which I remove the dough from , grease , and then return the dough to ) , turning to grease the top .
+# ::root a
+# ::alignments p, r, r2, t3
+# ::snt_id homemade_pizza_dough_4_instr5
+(a / and~e.109
+   :op1 (p / place-01~e.78
+           :ARG0 (y / you~e.78)
+           :ARG1 (d / dough~e.79)
+           :ARG2 (b / bowl~e.83
+                    :instrument (o2 / oil~e.112)
+                    :ARG1-of (m / mean-01~e.84
+                                :ARG2 (u / use-01~e.87
+                                         :ARG0 (i / i~e.85)
+                                         :ARG1 (b2 / bowl~e.91
+                                                   :ARG2-of (r / remove-01~e.95
+                                                               :ARG0 i
+                                                               :ARG1 d)
+                                                   :ARG2-of (r2 / return-02~e.104
+                                                                :ARG0 i
+                                                                :ARG1 d
+                                                                :time (t / then~e.103))
+                                                   :instrument-of (m2 / mix-01~e.90
+                                                                      :mod (s / stand~e.89)))
+                                         :frequency (o / often~e.86)))))
+   :op2 (t3 / turn-01~e.110
+            :purpose (o3 / oil~e.112
+                         :location (t2 / top~e.114))
+            :ARG1 y
+            :ARG0 (y1 / you~e.110)
+            :mode imperative~e.110))
+
+# ::id homemade_pizza_dough_4_instr6_1
+# ::name homemade_pizza_dough_4_instr6_1
+# ::snt Cover with a towel or plastic wrap .
+# ::root c
+# ::alignments c
+# ::snt_id homemade_pizza_dough_4_instr6
+(c / cover-02~e.116
+   :mode imperative~e.116
+   :ARG0 (y / you~e.116)
+   :ARG2 (o / or~e.120
+            :op1 (t2 / towel~e.119)
+            :op2 (w2 / wrap~e.122
+                     :consist-of (p3 / plastic~e.121))))
+
+# ::id homemade_pizza_dough_4_instr6_0
+# ::name homemade_pizza_dough_4_instr6_0
+# ::snt Place in a warm place to rise for an hour .
+# ::root p2
+# ::alignments p2, r
+# ::snt_id homemade_pizza_dough_4_instr6
+(p2 / place-01~e.125
+    :mode imperative~e.135
+    :purpose (r / rise-01~e.131
+                :ARG1 y
+                :duration (t / temporal-quantity~e.134
+                             :unit (h / hour~e.134)
+                             :quant 1~e.133))
+    :ARG0 (y / you~e.125)
+    :ARG2 (p / place~e.129
+             :ARG1-of (w / warm-07~e.128)))
+
+# ::id homemade_pizza_dough_4_instr7
+# ::name homemade_pizza_dough_4_instr7
+# ::snt This recipe can be divided into 4 pieces to make smaller , thin crust pizzas , or can be divided in half to make 2 larger , medium - thick crust pizzas .
+# ::root o
+# ::alignments m2
+# ::snt_id homemade_pizza_dough_4_instr7
+(o / or~e.152
+   :op1 (p2 / possible-01~e.138
+            :ARG1 (d / divide-02~e.140
+                     :purpose (m / make-01~e.145
+                                 :ARG0 r
+                                 :ARG1 (t4 / tuesday~e.150
+                                           :mod (c / crust~e.149
+                                                   :ARG1-of (t2 / thin-03~e.148))
+                                           :ARG1-of (h2 / have-degree-91~e.146
+                                                        :ARG2 (s / small~e.146)
+                                                        :ARG3 (m4 / more~e.146))))
+                     :ARG1 (r / recipe~e.137
+                              :mod (t3 / this~e.136))
+                     :ARG2 (p / piece~e.143
+                              :quant 4~e.142)))
+   :op2 (p3 / possible-01~e.153
+            :ARG1 (d2 / divide-02~e.155
+                      :purpose (m2 / make-01~e.159
+                                   :ARG0 r
+                                   :ARG1 (t5 / tuesday~e.167
+                                             :mod (c2 / crust~e.166
+                                                      :ARG1-of (t / thick-03~e.165
+                                                                  :mod (m3 / medium~e.163)))
+                                             :ARG1-of (h3 / have-degree-91~e.161
+                                                          :ARG2 (l / large~e.161)
+                                                          :ARG3 (m5 / more~e.161))
+                                             :quant 2~e.160))
+                      :ARG1 r
+                      :ARG2 (h / half~e.157))))
+
+# ::id homemade_pizza_dough_4_instr8
+# ::name homemade_pizza_dough_4_instr8
+# ::snt Make pizza according to your favorite directions .
+# ::root m
+# ::alignments m, y
+# ::snt_id homemade_pizza_dough_4_instr8
+(m / make-01~e.169
+   :mode imperative~e.169
+   :ARG0 (y / you~e.169)
+   :ARG1 (p / pizza~e.170)
+   :ARG1-of (c / conform-01~e.171
+               :ARG2 (d / direction~e.175
+                        :mod (f / favorite~e.174))))
+

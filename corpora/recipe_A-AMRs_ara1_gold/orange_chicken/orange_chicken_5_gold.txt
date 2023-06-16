@@ -1,0 +1,270 @@
+# ::id orange_chicken_5_instr0_1
+# ::name orange_chicken_5_instr0_1
+# ::snt Greas slow cooker .
+# ::root f
+# ::alignments f
+# ::snt_id orange_chicken_5_instr0
+(f / fry-01~e.5
+   :mode imperative~e.5
+   :ARG1 (t / thing~e.8
+            :ARG1-of (s / slow-01~e.7))
+   :ARG0 (y / you~e.5))
+
+# ::id orange_chicken_5_instr0_0
+# ::name orange_chicken_5_instr0_0
+# ::snt Place chicken in a slow cooker .
+# ::root p
+# ::alignments p
+# ::snt_id orange_chicken_5_instr0
+(p / place-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (c / chicken~e.2)
+   :ARG2 (t / thing~e.8
+            :ARG1-of (s / slow-01~e.7)))
+
+# ::id orange_chicken_5_instr1
+# ::name orange_chicken_5_instr1
+# ::snt Top with peppers and carrots .
+# ::root t
+# ::alignments t
+# ::snt_id orange_chicken_5_instr1
+(t / top~e.9
+   :ARG2 (a / and~e.12
+            :op1 (p / pepper~e.11)
+            :op2 (c / carrot~e.13)))
+
+# ::id orange_chicken_5_instr2
+# ::name orange_chicken_5_instr2
+# ::snt Combine broth ingredients in separate bowl : orange juice , soy sauce , brown sugar , mustard , garlic salt , and pepper flakes .
+# ::root c
+# ::alignments c
+# ::snt_id orange_chicken_5_instr2
+(c / combine-01~e.15
+   :mode imperative~e.15
+   :ARG1 (i2 / ingredient~e.17
+             :mod (b2 / broth~e.16)
+             :ARG2-of (i / include-91~e.24
+                         :ARG1 (a / and~e.24
+                                  :op1 (j / juice~e.23
+                                          :source (o / orange~e.22))
+                                  :op2 (s2 / sauce~e.26
+                                           :mod (s5 / soy~e.25))
+                                  :op3 (s6 / sugar~e.29
+                                           :ARG1-of (b3 / brown-01~e.28))
+                                  :op4 (m / mustard~e.31)
+                                  :op5 (s / salt~e.34
+                                          :location (s4 / southwest~e.38)
+                                          :mod (g / garlic~e.33)))))
+   :location (b / bowl~e.20
+                :ARG1-of (s3 / separate-02~e.19))
+   :ARG0 (y / you~e.15))
+
+# ::id orange_chicken_5_instr3
+# ::name orange_chicken_5_instr3
+# ::snt Pour over chicken .
+# ::root p
+# ::alignments p, y
+# ::snt_id orange_chicken_5_instr3
+(p / pour-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG2 (c / chicken~e.42))
+
+# ::id orange_chicken_5_instr4_0
+# ::name orange_chicken_5_instr4_0
+# ::snt Cover on low .
+# ::root c2
+# ::alignments c2
+# ::snt_id orange_chicken_5_instr4
+(c2 / cover-01~e.44
+    :mode imperative~e.44
+    :ARG0 (y / you~e.44)
+    :manner (l / low-04~e.53))
+
+# ::id orange_chicken_5_instr4_1
+# ::name orange_chicken_5_instr4_1
+# ::snt Cook for 6 - 7 hours on low .
+# ::root c
+# ::alignments c
+# ::snt_id orange_chicken_5_instr4
+(c / cook-01~e.46
+   :mode imperative~e.54
+   :ARG0 (y / you~e.46)
+   :duration (b / between~e.48
+                :op1 (t / temporal-quantity~e.51
+                        :unit (h / hour~e.51)
+                        :quant 6~e.48)
+                :op2 (t2 / temporal-quantity~e.51
+                         :unit (h2 / hour~e.51)
+                         :quant 7~e.50))
+   :manner (l / low-04~e.53))
+
+# ::id orange_chicken_5_instr5_0
+# ::name orange_chicken_5_instr5_0
+# ::snt Remove chicken and veggies from slow cooker .
+# ::root r
+# ::alignments r
+# ::snt_id orange_chicken_5_instr5
+(r / remove-01~e.55
+   :mode imperative~e.55
+   :ARG0 (y / you~e.55)
+   :ARG1 (a / and~e.57
+            :op1 (c / chicken~e.56)
+            :op2 (v / vegetable~e.58))
+   :ARG2 (c2 / cooker~e.61
+             :ARG1-of (s / slow-05~e.60)))
+
+# ::id orange_chicken_5_instr5_1
+# ::name orange_chicken_5_instr5_1
+# ::snt Keep warm .
+# ::root k
+# ::alignments k
+# ::snt_id orange_chicken_5_instr5
+(k / keep-01~e.63
+   :mode imperative~e.65
+   :ARG0 (y / you~e.63)
+   :ARG1 (w / warm-01~e.64
+            :ARG1 y))
+
+# ::id orange_chicken_5_instr6_0
+# ::name orange_chicken_5_instr6_0
+# ::snt Take out 1 cup of cooking liquid .
+# ::root t
+# ::alignments t
+# ::snt_id orange_chicken_5_instr6
+(t / take-out-11~e.66
+   :mode imperative~e.66
+   :ARG0 (y / you~e.66)
+   :ARG1 (l / liquid~e.72
+            :purpose (c / cook-01~e.71)
+            :quant (v / volume-quantity~e.69
+                      :unit (c2 / cup~e.69)
+                      :quant 1~e.68)))
+
+# ::id orange_chicken_5_instr6_1
+# ::name orange_chicken_5_instr6_1
+# ::snt Bring to a boil in saucepan .
+# ::root b2
+# ::alignments b2
+# ::snt_id orange_chicken_5_instr6
+(b2 / bring-01~e.74
+    :mode imperative~e.80
+    :ARG0 (y / you~e.74)
+    :ARG2 (b / boil-01~e.77
+             :location (s / saucepan~e.79)))
+
+# ::id orange_chicken_5_instr7
+# ::name orange_chicken_5_instr7
+# ::snt Stir together 1 Tbs .
+# ::root s
+# ::alignments s, y
+# ::snt_id orange_chicken_5_instr7
+(s / stir-01~e.81
+   :mode imperative~e.81
+   :ARG0 (y / you~e.81)
+   :ARG1 (v / volume-quantity~e.84
+            :unit (g / gallon~e.84)
+            :quant 1~e.83)
+   :manner (t / together~e.82))
+
+# ::id orange_chicken_5_instr8_1
+# ::name orange_chicken_5_instr8_1
+# ::snt Boil sauce .
+# ::root b
+# ::alignments b
+# ::snt_id orange_chicken_5_instr8
+(b / boil-01~e.95
+   :mode imperative~e.95
+   :ARG1 (s / sauce~e.96)
+   :ARG0 (y / you~e.95))
+
+# ::id orange_chicken_5_instr8_0
+# ::name orange_chicken_5_instr8_0
+# ::snt Of orange juice and the cornstarch , add to sauce .
+# ::root a
+# ::alignments a
+# ::snt_id orange_chicken_5_instr8
+(a / add-02~e.93
+   :mode imperative~e.93
+   :ARG1 (a2 / and~e.89
+             :op1 (j / juice~e.88
+                     :source (o / orange~e.87))
+             :op2 (c / cornstarch~e.91))
+   :ARG2 (s / sauce~e.96)
+   :ARG0 (y / you~e.93))
+
+# ::id orange_chicken_5_instr9
+# ::name orange_chicken_5_instr9
+# ::snt Stir for 2 - 3 minutes until thick .
+# ::root s
+# ::alignments s, y
+# ::snt_id orange_chicken_5_instr9
+(s / stir-01~e.98
+   :mode imperative~e.98
+   :ARG0 (y / you~e.98)
+   :duration (b / between~e.100
+                :op1 (t / temporal-quantity~e.103
+                        :unit (m / minute~e.103)
+                        :quant 2~e.100)
+                :op2 (t2 / temporal-quantity~e.103
+                         :unit (m2 / minute~e.103)
+                         :quant 3~e.102))
+   :time (u / until~e.104
+            :op1 (t3 / thick-03~e.105)))
+
+# ::id orange_chicken_5_instr10
+# ::name orange_chicken_5_instr10
+# ::snt Pour over the chicken .
+# ::root p
+# ::alignments p, y
+# ::snt_id orange_chicken_5_instr10
+(p / pour-01~e.107
+   :mode imperative~e.107
+   :ARG0 (y / you~e.107)
+   :ARG2 (c / chicken~e.110))
+
+# ::id orange_chicken_5_instr11_1
+# ::name orange_chicken_5_instr11_1
+# ::snt Slice green onions .
+# ::root s2
+# ::alignments s2
+# ::snt_id orange_chicken_5_instr11
+(s2 / slice-01~e.114
+    :mode imperative~e.114
+    :ARG1 (v / vegetable~e.116
+             :ARG1-of (g / green-02~e.115))
+    :ARG0 (y / you~e.114))
+
+# ::id orange_chicken_5_instr11_0
+# ::name orange_chicken_5_instr11_0
+# ::snt Top with green onions .
+# ::root t
+# ::alignments t
+# ::snt_id orange_chicken_5_instr11
+(t / top~e.112
+   :ARG2 (v / vegetable~e.116
+            :ARG1-of (g / green-02~e.115)))
+
+# ::id orange_chicken_5_instr11_3
+# ::name orange_chicken_5_instr11_3
+# ::snt Cook rice .
+# ::root c
+# ::alignments c
+# ::snt_id orange_chicken_5_instr11
+(c / cook-01~e.120
+   :mode imperative~e.120
+   :ARG1 (r / rice~e.121)
+   :ARG0 (y / you~e.120))
+
+# ::id orange_chicken_5_instr11_2
+# ::name orange_chicken_5_instr11_2
+# ::snt Serve over rice .
+# ::root s
+# ::alignments s
+# ::snt_id orange_chicken_5_instr11
+(s / serve-02~e.118
+   :mode imperative~e.118
+   :ARG2 (r / rice~e.121)
+   :ARG0 (y / you~e.118))
+

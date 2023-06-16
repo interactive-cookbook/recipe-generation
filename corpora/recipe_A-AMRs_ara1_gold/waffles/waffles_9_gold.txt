@@ -1,0 +1,252 @@
+# ::id waffles_9_instr0_0
+# ::name waffles_9_instr0_0
+# ::snt Beat eggs .
+# ::root b
+# ::alignments b
+# ::snt_id waffles_9_instr0
+(b / beat-01~e.1
+   :mode imperative~e.6
+   :ARG0 (y / you~e.1)
+   :ARG1 (e / egg~e.2))
+
+# ::id waffles_9_instr0_1
+# ::name waffles_9_instr0_1
+# ::snt Add milk .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_9_instr0
+(a / add-02~e.4
+   :mode imperative~e.6
+   :ARG0 (y / you~e.4)
+   :ARG1 (m / milk~e.5))
+
+# ::id waffles_9_instr1
+# ::name waffles_9_instr1
+# ::snt Sift flour , salt , baking powder and sugar into egg mixture .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id waffles_9_instr1
+(s2 / sift-01~e.7
+    :mode imperative~e.7
+    :ARG0 (y / you~e.7)
+    :ARG1 (a / and~e.14
+             :op1 (f / flour~e.8)
+             :op2 (s / salt~e.10)
+             :op3 (p / powder-01~e.13
+                     :ARG1 (b / bake-01~e.12))
+             :op4 (s3 / sugar~e.15))
+    :ARG2 (m / mixture~e.18
+             :consist-of (e / egg~e.17)))
+
+# ::id waffles_9_instr2
+# ::name waffles_9_instr2
+# ::snt Mix gently but do not over mix .
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_9_instr2
+(m / mix-01~e.20
+   :mode imperative~e.23
+   :ARG0 (y / you~e.20)
+   :manner (g / gentle~e.21)
+   :concession-of (m2 / mix-01~e.26
+                      :ARG0 y
+                      :ARG1-of (o / over-03~e.25)
+                      :polarity -~e.24))
+
+# ::id waffles_9_instr3
+# ::name waffles_9_instr3
+# ::snt Batter will be slightly lumpy .
+# ::root l
+# ::alignments
+# ::snt_id waffles_9_instr3
+(l / lump-01~e.32
+   :ARG1 B~e.28
+   :degree (s / slight~e.31))
+
+# ::id waffles_9_instr4_0
+# ::name waffles_9_instr4_0
+# ::snt Add oil .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_9_instr4
+(a / add-02~e.34
+   :mode imperative~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (o / oil~e.35))
+
+# ::id waffles_9_instr4_1
+# ::name waffles_9_instr4_1
+# ::snt Mix again .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_9_instr4
+(m / mix-01~e.37
+   :mode imperative~e.34
+   :ARG0 (y / you~e.37)
+   :mod (a2 / again~e.38))
+
+# ::id waffles_9_instr5_0
+# ::name waffles_9_instr5_0
+# ::snt Pour 1/4 cup of batter onto hot waffle iron .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_9_instr5
+(p / pour-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (b / batter-01~e.44
+            :quant (v / volume-quantity~e.42
+                      :unit (c2 / cup~e.42)
+                      :quant "1/4"~e.41))
+   :ARG2 (i / iron~e.48
+            :mod (w / waffle~e.47)
+            :ARG1-of (h / hot-05~e.46)))
+
+# ::id waffles_9_instr5_1
+# ::name waffles_9_instr5_1
+# ::snt Cook to a light golden brown .
+# ::root c
+# ::alignments c
+# ::snt_id waffles_9_instr5
+(c / cook-01~e.50
+   :mode imperative~e.56
+   :ARG0 (y / you~e.50)
+   :manner (b2 / brown~e.55
+               :ARG1-of (l / light-07~e.53)
+               :consist-of (g / gold~e.54)))
+
+# ::id waffles_9_instr6
+# ::name waffles_9_instr6
+# ::snt Repeat with remaining batter .
+# ::root r2
+# ::alignments r2
+# ::snt_id waffles_9_instr6
+(r2 / repeat-01~e.57
+    :mode imperative~e.57
+    :ARG1 (t / thing~e.61
+             :ARG1-of (r / remain-01~e.59)
+             :ARG2-of (b / batter-01~e.60))
+    :ARG0 (y / you~e.57))
+
+# ::id waffles_9_instr7
+# ::name waffles_9_instr7
+# ::snt Notes and Suggestions
+# ::root a
+# ::alignments
+# ::snt_id waffles_9_instr7
+(a / and~e.63
+   :op1 (t / thing~e.62
+           :ARG1-of (n / note-01~e.62))
+   :op2 (t2 / thing~e.64
+            :ARG1-of (s / suggest-01~e.64)))
+
+# ::id waffles_9_instr8
+# ::name waffles_9_instr8
+# ::snt For variation add either blueberries or chocolate chips to the batter before cooking or top with bananas , strawberries , peaches or any fruit of your choice .
+# ::root o2
+# ::alignments a, c4, t
+# ::snt_id waffles_9_instr8
+(o2 / or~e.78
+    :purpose (v / vary-01~e.66)
+    :op1 (a / add-02~e.67
+            :ARG0 (y / you~e.91)
+            :ARG1 (o / or~e.70
+                     :op1 (l / Blue~e.69)
+                     :op2 (c / chip~e.72
+                             :mod (c2 / chocolate~e.71)))
+            :ARG2 (b2 / batter~e.75)
+            :time (b3 / before~e.76
+                      :op1 (c4 / cook-01~e.77
+                               :ARG0 y
+                               :ARG1 b2))
+            :mode imperative~e.67)
+    :op2 (t / top-02~e.79
+            :ARG0 y
+            :ARG2 (o3 / or~e.86
+                      :op1 (b / banana~e.81)
+                      :op2 (f / fruit~e.83)
+                      :op3 (p / peck~e.85)
+                      :op4 (f2 / fruit~e.88
+                               :mod (a2 / any~e.87)
+                               :ARG1-of (c3 / choose-01~e.91
+                                            :ARG0 y)))
+            :mode imperative~e.92))
+
+# ::id waffles_9_instr9
+# ::name waffles_9_instr9
+# ::snt Drizzle with pure maple syrup or top with a scoop of vanilla ice cream and chocolate syrup for a sweet treat !
+# ::root o
+# ::alignments p, t
+# ::snt_id waffles_9_instr9
+(o / or~e.98
+   :op1 (p / pour-01~e.93
+           :ARG0 (y / you~e.99)
+           :ARG2 (s3 / syrup~e.97
+                     :mod (m / maple~e.96)
+                     :ARG1-of (p2 / pure-02~e.95))
+           :mode imperative~e.93)
+   :op2 (t / top-01~e.99
+           :purpose (t2 / treat-01~e.113
+                        :ARG1-of (s2 / sweet-04~e.112))
+           :ARG0 y
+           :ARG2 (a / and~e.107
+                    :quant (s / scoop~e.102)
+                    :op1 (i / ice-cream~e.106
+                            :mod (v / vanilla~e.104))
+                    :op2 (s4 / syrup~e.109
+                             :mod (c / chocolate~e.108)))
+           :mode imperative~e.93))
+
+# ::id waffles_9_instr10
+# ::name waffles_9_instr10
+# ::snt Nutritional Facts
+# ::root f
+# ::alignments n
+# ::snt_id waffles_9_instr10
+(f / fact~e.116
+   :mod (n / nutrition~e.115))
+
+# ::id waffles_9_instr11
+# ::name waffles_9_instr11
+# ::snt Serving : Calories 262 ; Fat 11 g ( 6 % calories from fat ) ; Protein 6 g ; Carbohydrate 34 g ; Dietary Fiber 1 g ; Cholesterol 58 mg ; Sodium 702 mg .
+# ::root a
+# ::alignments s
+# ::snt_id waffles_9_instr11
+(a / and~e.149
+   :rel 34~e.138
+   :domain (s / serve-02~e.117)
+   :op1 (c / calorie~e.119
+           :quant 262~e.120)
+   :op2 (f2 / fat-03~e.122
+            :quant (m / mass-quantity~e.124
+                      :quant 11~e.123)
+            :ARG1-of (m7 / mean-01~e.125
+                         :ARG2 (c2 / calorie~e.128
+                                   :quant (p / percentage-entity~e.127
+                                             :value 6~e.126)
+                                   :source (f / fat~e.130))))
+   :op3 (p2 / protein~e.133
+            :quant (m2 / mass-quantity~e.135
+                       :unit (g / g~e.144)
+                       :unit (m8 / milligram~e.148)
+                       :quant 6~e.134))
+   :op4 (c3 / carbohydrate~e.137)
+   :op5 (n2 / narcotic~e.146
+            :mod (m4 / mass-quantity~e.148
+                     :unit (m9 / milligram~e.148)
+                     :quant 58~e.147))
+   :op6 (m5 / mass-quantity~e.148
+            :unit n2
+            :quant 1~e.143)
+   :op7 (m6 / mass-quantity~e.152
+            :unit (m10 / milligram~e.152)
+            :quant 702~e.151)
+   :rel (n3 / nutrition~e.141)
+   :rel (g2 / g~e.144)
+   :rel (v / "vitamin"~e.146
+           :name n
+           :quant m3)
+   :rel (m3 / mass-quantity~e.148
+            :quant 58~e.147)
+   :rel (n / name~e.150))
+

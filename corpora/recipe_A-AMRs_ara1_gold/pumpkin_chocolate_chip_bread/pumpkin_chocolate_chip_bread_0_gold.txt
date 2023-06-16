@@ -1,0 +1,142 @@
+# ::id pumpkin_chocolate_chip_bread_0_instr0_0
+# ::name pumpkin_chocolate_chip_bread_0_instr0_0
+# ::snt In large bowl combine eggs , pumpkin , and oil .
+# ::root c
+# ::alignments c
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr0
+(c / combine-01~e.4
+   :mode imperative~e.4
+   :ARG1 (a2 / and~e.9
+             :op1 (e / egg~e.8)
+             :op2 (p / pumpkin~e.10)
+             :op3 (o / oil~e.13))
+   :location (b2 / bowl~e.3
+                 :mod (l / large~e.2))
+   :ARG0 (y / you~e.4))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr0_1
+# ::name pumpkin_chocolate_chip_bread_0_instr0_1
+# ::snt In large bowl beat together eggs , pumpkin , and oil .
+# ::root b
+# ::alignments b
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr0
+(b / beat-01~e.6
+   :mode imperative~e.6
+   :ARG1 (a2 / and~e.9
+             :op1 (e / egg~e.8)
+             :op2 (p / pumpkin~e.10)
+             :op3 (o / oil~e.13))
+   :ARG3 (t / together~e.7)
+   :location (b2 / bowl~e.3
+                 :mod (l / large~e.2))
+   :ARG0 (y / you~e.6))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr1
+# ::name pumpkin_chocolate_chip_bread_0_instr1
+# ::snt Add sugar to pumpkin mixture .
+# ::root a
+# ::alignments a
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr1
+(a / add-02~e.15
+   :mode imperative~e.15
+   :ARG1 (s / sugar~e.16)
+   :ARG2 (m / mix-01~e.19
+            :ARG1 (p / pumpkin~e.18))
+   :ARG0 (y / you~e.15))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr2_0
+# ::name pumpkin_chocolate_chip_bread_0_instr2_0
+# ::snt Sift dry ingredients together .
+# ::root s
+# ::alignments s
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr2
+(s / sift-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG1 (i / ingredient~e.23
+            :ARG1-of (d / dry-08~e.22))
+   :manner (t / together~e.24))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr2_1
+# ::name pumpkin_chocolate_chip_bread_0_instr2_1
+# ::snt Add chocolate chips .
+# ::root a
+# ::alignments a
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr2
+(a / add-02~e.26
+   :mode imperative~e.21
+   :ARG0 (y / you~e.26)
+   :ARG1 (c / chip~e.28
+            :consist-of (c2 / chocolate~e.27)))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr2_2
+# ::name pumpkin_chocolate_chip_bread_0_instr2_2
+# ::snt Add to first mixture .
+# ::root a2
+# ::alignments a2
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr2
+(a2 / add-02~e.30
+    :mode imperative~e.34
+    :ARG0 (y / you~e.30)
+    :ARG2 (m / mixture~e.33
+             :ord (o / ordinal-entity~e.32
+                     :value 1~e.32)))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr3_1
+# ::name pumpkin_chocolate_chip_bread_0_instr3_1
+# ::snt Into 3 greas loaf pans .
+# ::root b
+# ::alignments b
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr3
+(b / bake-01~e.38
+   :mode imperative~e.38
+   :ARG2 (a / Pan~e.40
+            :quant 3~e.37)
+   :ARG1 (l / loaf~e.39)
+   :ARG0 (y / you~e.38))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr3_0
+# ::name pumpkin_chocolate_chip_bread_0_instr3_0
+# ::snt Pour into 3 pans .
+# ::root p
+# ::alignments p
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr3
+(p / pour-01~e.35
+   :mode imperative~e.35
+   :ARG0 (y / you~e.35)
+   :ARG2 (a / Pan~e.40
+            :quant 3~e.37))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr4
+# ::name pumpkin_chocolate_chip_bread_0_instr4
+# ::snt Bake at 350 degrees for 1 hour or until tests done with toothpick or paring knife .
+# ::root b
+# ::alignments b, t3
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr4
+(b / bake-01~e.42
+   :ARG0 (y / you~e.42)
+   :ARG2 (t / temperature-quantity~e.45
+            :scale (c / celsius~e.45)
+            :quant 350~e.44)
+   :duration (o / or~e.49
+                :op1 (t2 / temporal-quantity~e.48
+                         :unit (h / hour~e.48)
+                         :quant 1~e.47)
+                :op2 (u / until~e.50
+                        :op1 (t3 / test-01~e.51
+                                 :instrument (o2 / or~e.55
+                                                 :op1 (t4 / toothpick~e.54)
+                                                 :op2 (k / knife~e.57
+                                                         :instrument-of (p / pare-01~e.56)))))))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr5
+# ::name pumpkin_chocolate_chip_bread_0_instr5
+# ::snt Freezes well .
+# ::root f
+# ::alignments f
+# ::snt_id pumpkin_chocolate_chip_bread_0_instr5
+(f / free-01~e.59
+   :mode imperative~e.59
+   :ARG0 (y / you~e.59)
+   :ARG1-of (w / well-09~e.60))
+

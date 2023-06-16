@@ -1,0 +1,241 @@
+# ::id waffles_7_instr0
+# ::name waffles_7_instr0
+# ::snt Sift together in a large mixing bowl flour , baking powder , salt and sugar
+# ::root s2
+# ::alignments s2, y
+# ::snt_id waffles_7_instr0
+(s2 / sift-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (a / and~e.9
+             :medium (b2 / bowl~e.7
+                         :mod (l / large~e.5)
+                         :instrument-of (m / mix-01~e.6))
+             :op1 (f / flour~e.8)
+             :op2 (p / powder~e.11
+                     :instrument-of (b / bake-01~e.10))
+             :op3 (s / salt~e.13)
+             :op4 (s3 / sugar~e.15))
+    :mod (t / together~e.2))
+
+# ::id waffles_7_instr1
+# ::name waffles_7_instr1
+# ::snt In a jug measure out milk
+# ::root m
+# ::alignments m, y
+# ::snt_id waffles_7_instr1
+(m / measure-01~e.19
+   :mode imperative~e.20
+   :ARG0 (y / you~e.19)
+   :ARG1 (m2 / milk~e.21)
+   :location (j / jug~e.18))
+
+# ::id waffles_7_instr2_1
+# ::name waffles_7_instr2_1
+# ::snt Place egg whites in the bowl of stand mixer .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_7_instr2
+(p / place-01~e.25
+   :mode imperative~e.25
+   :ARG1 (w / white-03~e.27
+            :ARG1 (e2 / egg~e.26))
+   :ARG2 (b / bowl~e.30
+            :poss (t / thing~e.33
+                     :mod (s2 / stand~e.32)
+                     :instrument-of (m / mix-01~e.33)))
+   :ARG0 (y / you~e.25))
+
+# ::id waffles_7_instr2_0
+# ::name waffles_7_instr2_0
+# ::snt Separate eggs .
+# ::root s
+# ::alignments s
+# ::snt_id waffles_7_instr2
+(s / separate-02~e.22
+   :mode imperative~e.22
+   :ARG1 (e / egg~e.23)
+   :ARG0 (y / you~e.22))
+
+# ::id waffles_7_instr3_0
+# ::name waffles_7_instr3_0
+# ::snt Add yolks and vanilla essence to milk .
+# ::root a
+# ::alignments a
+# ::snt_id waffles_7_instr3
+(a / add-02~e.34
+   :mode imperative~e.34
+   :ARG0 (y2 / you~e.34)
+   :ARG1 (a2 / and~e.36
+             :op1 (y / yolk~e.35)
+             :op2 (e / essence~e.38
+                     :mod (v / vanilla~e.37)))
+   :ARG2 (m / milk~e.40))
+
+# ::id waffles_7_instr3_1
+# ::name waffles_7_instr3_1
+# ::snt Whisk together .
+# ::root w
+# ::alignments w
+# ::snt_id waffles_7_instr3
+(w / whisk-01~e.42
+   :mode imperative~e.44
+   :ARG0 (y2 / you~e.42)
+   :manner (t / together~e.43))
+
+# ::id waffles_7_instr4_1
+# ::name waffles_7_instr4_1
+# ::snt Pour over the flour mixture .
+# ::root p
+# ::alignments p
+# ::snt_id waffles_7_instr4
+(p / pour-01~e.45
+   :mode imperative~e.45
+   :ARG0 (y / you~e.45)
+   :ARG2 (m / mix-01~e.49
+            :ARG1 (f / flour~e.48)))
+
+# ::id waffles_7_instr4_0
+# ::name waffles_7_instr4_0
+# ::snt Very gently stir until about combined .
+# ::root s
+# ::alignments s, c
+# ::snt_id waffles_7_instr4
+(s / stir-01~e.53
+   :ARG0 (y / you~e.53)
+   :manner (g / gentle~e.52
+              :degree (v / very~e.51))
+   :manner (u / until~e.54
+              :op1 (c / combine-01~e.56
+                      :degree (a / about~e.55))))
+
+# ::id waffles_7_instr5_1
+# ::name waffles_7_instr5_1
+# ::snt Melt butter .
+# ::root m
+# ::alignments m
+# ::snt_id waffles_7_instr5
+(m / melt-01~e.60
+   :mode imperative~e.60
+   :ARG1 (b / butter~e.61)
+   :ARG0 (y / you~e.60))
+
+# ::id waffles_7_instr5_0
+# ::name waffles_7_instr5_0
+# ::snt Stir in the butter .
+# ::root s
+# ::alignments s
+# ::snt_id waffles_7_instr5
+(s / stir-01~e.57
+   :mode imperative~e.57
+   :ARG0 (y / you~e.57)
+   :ARG1 (b / butter~e.61))
+
+# ::id waffles_7_instr5_2
+# ::name waffles_7_instr5_2
+# ::snt Continue mixing very gently until combined .
+# ::root c2
+# ::alignments c2
+# ::snt_id waffles_7_instr5
+(c2 / continue-01~e.63
+    :mode imperative~e.67
+    :ARG0 (y / you~e.63)
+    :ARG1 (m2 / mix-01~e.64
+              :manner (g / gentle~e.66
+                         :degree (v / very~e.65)))
+    :duration (u / until~e.67
+                 :op1 (c / combine-01~e.68)))
+
+# ::id waffles_7_instr6_0
+# ::name waffles_7_instr6_0
+# ::snt Beat egg whites until stiff .
+# ::root b2
+# ::alignments b2
+# ::snt_id waffles_7_instr6
+(b2 / beat-01~e.69
+    :mode imperative~e.69
+    :ARG0 (y / you~e.69)
+    :ARG1 (w / white-02~e.71
+             :ARG2 (e / egg~e.70))
+    :time (u / until~e.72
+             :op1 (s2 / stiff-04~e.73
+                      :ARG1 w)))
+
+# ::id waffles_7_instr6_1
+# ::name waffles_7_instr6_1
+# ::snt Fold egg whites slowly into batter .
+# ::root f
+# ::alignments f
+# ::snt_id waffles_7_instr6
+(f / fold-03~e.76
+   :mode imperative~e.77
+   :ARG0 (w / white-02~e.71
+            :ARG2 (e / egg~e.70))
+   :ARG2 (b / batter~e.78)
+   :ARG1-of (s / slow-05~e.75))
+
+# ::id waffles_7_instr7_1
+# ::name waffles_7_instr7_1
+# ::snt Preheat waffle iron .
+# ::root h
+# ::alignments h
+# ::snt_id waffles_7_instr7
+(h / heat-01~e.83
+   :mode imperative~e.83
+   :ARG1 (i / iron~e.85
+            :mod (w / waffle~e.84))
+   :ARG0 (y / you~e.83))
+
+# ::id waffles_7_instr7_0
+# ::name waffles_7_instr7_0
+# ::snt Spoon the batter into waffle iron in batches .
+# ::root s
+# ::alignments s
+# ::snt_id waffles_7_instr7
+(s / save-01~e.79
+   :mode imperative~e.79
+   :ARG0 (y / you~e.79)
+   :ARG1 (b2 / batter-01~e.81)
+   :ARG2 (i / iron~e.85
+            :mod (w / waffle~e.84))
+   :manner (b / batch~e.87))
+
+# ::id waffles_7_instr7_2
+# ::name waffles_7_instr7_2
+# ::snt The batter into cook according to its directions .
+# ::root c2
+# ::alignments c2
+# ::snt_id waffles_7_instr7
+(c2 / cook-01~e.89
+    :mode imperative~e.79
+    :ARG0 (b2 / batter-01~e.81
+              :poss-of (d / direction~e.93))
+    :ARG1-of (c / conform-01~e.90
+                :ARG2 d))
+
+# ::id waffles_7_instr8_0
+# ::name waffles_7_instr8_0
+# ::snt Remove immediately .
+# ::root r
+# ::alignments r
+# ::snt_id waffles_7_instr8
+(r / remove-01~e.94
+   :mode imperative~e.94
+   :ARG1 (y / you~e.94)
+   :time (i / immediate~e.95)
+   :ARG0 (y1 / you~e.94))
+
+# ::id waffles_7_instr8_1
+# ::name waffles_7_instr8_1
+# ::snt Serve with maple syrup and fruits .
+# ::root s
+# ::alignments s
+# ::snt_id waffles_7_instr8
+(s / serve-02~e.97
+   :mode imperative~e.98
+   :ARG0 (y / you~e.97)
+   :accompanier (a2 / and~e.101
+                    :op1 (s2 / syrup~e.100
+                             :mod (m / maple~e.99))
+                    :op2 (f / fruit~e.102)))
+
