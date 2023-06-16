@@ -1,10 +1,12 @@
 import os
 import stanza
 import re
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Union
 import networkx as nx
 from pathlib import Path
+from argparse import ArgumentParser
 from nltk.stem import PorterStemmer
+from utils.paths import ACTION_AMR_DIR
 from graph_processing.graph_traversal import order_actions_pf_lf_id
 from coref_processing.coref_utils import get_coref_clusters_extended, get_new_orig_id_mappings
 
@@ -13,7 +15,9 @@ from graph_processing.recipe_graph import read_graph_from_conllu
 
 def create_dep_baseline_corpus(instruction_dir, ara_dir, output_dir, coref_file: str = '', order_ac_graph: bool = False):
     """
-
+    Creates the corpus of the dependency baseline instructions, i.e. of individual instructions for each individual action
+    based on the syntactic dependencies
+    For all recipes in the corpus
     :param instruction_dir: path to directory with the original sentences,
                             each file should contain the sentences line by line
     :param ara_dir: path to ara directory with the action graphs
@@ -75,7 +79,7 @@ def split_sentences(sentences: List[List[str]],
                     sentence_actions: List[List[str]],
                     nlp_model,
                     ac_graph: nx.DiGraph,
-                    coref_dict: dict,
+                    coref_dict: Union[dict, None] = None,
                     order_ac_graph: bool = False) -> List[str]:
     """
 
@@ -84,9 +88,9 @@ def split_sentences(sentences: List[List[str]],
                         i.e. the token sentences[0] has the token id sentence_ids[0] and so on
     :param sentence_actions: one sublist per sentence with the ids of the action tokens (strings)
     :param nlp_model: a loaded stanza model pipeline
-    :param ac_graph:
+    :param ac_graph: action graph
     :param coref_dict:
-    :param order_ac_graph:
+    :param order_ac_graph: whether to order the sentences based on the action graph using the pf-lf-id heuristic
     :return: list of the separated sentences
     """
     separated_sentences = []
@@ -149,7 +153,8 @@ def add_implicit_coref_mentions(coref_data: Dict[str, List],
                                 sentence: List[str],
                                 actions: List[str]) -> Tuple[List[str], List[int], Dict[str, str]]:
     """
-
+    Makes implicit mentions in the sentences explicit based on the coreference information
+    e.g. "[Turn dough out onto surface and] knead until smooth" becomes "knead dough until smooth"
     :param coref_data: a dictionary of the coreference data
     :param token_ids: a list of the recipe-level token IDs (recipe-level IDs starting at 1)
     :param sentence: list of the tokens
@@ -210,7 +215,7 @@ def add_implicit_coref_mentions(coref_data: Dict[str, List],
 
 def split_sentence(tokens: List[str], token_ids: List[int], actions: List[str], nlp_model) -> Tuple[List[str], List[str]]:
     """
-
+    Separates the input sentence into individual sentences for each action based on syntactic dependencies
     :param tokens: list of tokens of a sentence
     :param token_ids: list of the recipe-level token ids of the tokens in tokens
     :param actions: list of the action token ids (strings) of the sentence
@@ -304,7 +309,7 @@ def create_dependency_graph(processed_sentence, shifting_value) -> nx.DiGraph:
     create a networkx Graph object from the dependency tree information created by the stanza dependency parser
     :param processed_sentence: the output of running a dependency parsing stanza pipeline on a sentence
     :param shifting_value: the value by which the sentence-level token ids need be shifted to be recipe-level ids
-    :return:
+    :return: the graph
     """
     dep_graph = nx.DiGraph()
     nodes = []
@@ -328,12 +333,15 @@ def fix_ordering(extracted_token_ids: List[int],
                  modified_verb_inds: List[int],
                  snt_level_action_inds: List[int]) -> List[str]:
     """
-
-    :param extracted_token_ids:
-    :param extracted_tokens:
-    :param extracted_tokens_tags:
-    :param modified_verb_inds:
-    :param snt_level_action_inds:
+    Reorders self.final_tokens if an NP like phrase is at the beginning of the sentence, followed by a verb that
+    is an action and original root
+    Then the verb is moved to the sentence beginning because in imperative sentences the verb should
+    be before its direct object
+    :param extracted_token_ids: list of IDs of the tokens to include in the split sentence
+    :param extracted_tokens: list of tokens to include in the split sentence
+    :param extracted_tokens_tags: list of the POS tags of the tokens to include in the split sentence
+    :param modified_verb_inds: list of the IDs of the tokens that are actions that got stemmed
+    :param snt_level_action_inds: action-level token IDs of the action tokens
     :return:
     """
     orig_token_ids = extracted_token_ids  # the original indices of the tokens in self.final_tokens
@@ -436,9 +444,15 @@ def fix_ordering(extracted_token_ids: List[int],
 
 def fix_sentence_start_and_end(sentence_tokens: List[str]) -> List[str]:
     """
-
-    :param sentence_tokens:
-    :return:
+    Remove punctuation at the sentence beginning, adds / replaces end of sentence to get sentence final punctuation and
+    removes lonely 'and' at the end of the sentence
+    Additionally, fix other punctuation issues
+    - ( sentence ) -> remove brackets
+    - tokens () tokens -> remove brackets
+    - remove brackets if only opening or only closing brackets in string
+    - "," "," -> remove one comma
+    :param sentence_tokens: the tokenized sentence to remove punctuation from
+    :return: modified sentence
     """
     punctuation_to_remove = []
     brackets_open = []
@@ -498,9 +512,23 @@ def fix_sentence_start_and_end(sentence_tokens: List[str]) -> List[str]:
 
 if __name__=='__main__':
 
-    create_dep_baseline_corpus(instruction_dir='../../data/amr_input_data',
-                               ara_dir='../../data/ara1.1',
-                               output_dir='../tuning_data_sets/dependency_baseline',
-                               coref_file='',
-                               order_ac_graph=True
+    parser = ArgumentParser()
+    parser.add_argument('--recipe_dir', required=True)
+    parser.add_argument('--ara_dir', required=False)
+    parser.add_argument('--output_dir', required=True)
+    parser.add_argument('--coref_file', required=False)
+    parser.add_argument('--order_ac_graph', required=False)
+
+    args = parser.parse_args()
+    instruction_dir = args.recipe_dir
+    ara_dir = args.ara_dir if args.ara_dir else ACTION_AMR_DIR
+    output_dir = args.output_dir
+    coref_file = args.coref_file if args.coref_file else ''
+    order_ac_graph = args.order_ac_graph if args.order_ac_graph else True
+
+    create_dep_baseline_corpus(instruction_dir=instruction_dir,
+                               ara_dir=ara_dir,
+                               output_dir=output_dir,
+                               coref_file=coref_file,
+                               order_ac_graph=order_ac_graph
                                )

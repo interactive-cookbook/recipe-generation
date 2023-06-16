@@ -19,7 +19,17 @@ from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR, JOINED_COREF_DIR
 from generate_gold_action_instruction import InstructionExtractor
 
 """
-Experimenting with the creation of an additional corpus 
+Experimental
+
+Experimenting with the creation of an additional corpus where sentences are ordered (within the constraints of the
+action graphs) such that the corpus includes for each instruction that has coreferences to another instruction two versions 
+Version 1:
+    the two sentences follow each other directly and the coreferring mention is only made explicit in the first sentence
+    and left implicit in the second sentence
+Version 2:
+    the two sentences do not follow each other directly and the coreferring mentions both get made explicit
+    
+Requires to previously create files with explicit mentions for implicit coreferences.
 """
 
 
