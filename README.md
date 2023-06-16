@@ -8,8 +8,8 @@ The [Wiki](https://github.com/interactive-cookbook/recipe-generation/wiki) conta
 The implemented steps of the overall pipeline are
 1. Parsing each recipe sentence by sentence into AMR graphs with recipe-level node-to-token alignments, see [AMR Parsing](https://github.com/interactive-cookbook/recipe-generation#amr-parsing)
 2. Separating the AMR graphs into sub-graphs in order to get one AMR per action-event in the corresponding action graph for the recipe, see [AMR Splitting](https://github.com/interactive-cookbook/recipe-generation#amr-splitting)
-* Extracting approximated gold instructions for the split action-level amr graphs as well as extracting action-level instructions based on dependency information only, see [Extraction](https://github.com/interactive-cookbook/recipe-generation#extracting-gold-instructions)
-* Generating a recipe text based on an action graph, the amr graphs corresponding to each action node and a graph traversal, see [Generating Recipe Texts](https://github.com/interactive-cookbook/recipe-generation#generating-recipe-texts)
+3. Extracting approximated gold instructions for the split action-level amr graphs as well as extracting action-level instructions based on dependency information only, see [Extraction](https://github.com/interactive-cookbook/recipe-generation#extracting-gold-instructions)
+4. Generating a recipe text based on an action graph, the amr graphs corresponding to each action node and a graph traversal, see [Generating Recipe Texts](https://github.com/interactive-cookbook/recipe-generation#generating-recipe-texts)
 
 ## Requirements 
 
@@ -131,7 +131,7 @@ Should be "train", "val" or "test" if the split file has the format shown above,
 
 Information about coreference clusters, the corresponding AMR nodes and coreferences arising from the AMR splitting can be obtained by running the [coref_processing/create_joined_coref.py](https://github.com/interactive-cookbook/recipe-generation/blob/main/coref_processing/create_joined_coref.py) script.
 
-This requires another subfolder of the data folder as described above which contains one subfolder per dish with the .jsonlines coref files. 
+This requires another subfolder of the data folder as described above which contains one subfolder per dish with .jsonlines coref files. 
 
 The paths to the action-level AMR graphs and to the coreference files is specified in utils/paths.py (ACTION_AMR_DIR and RAW_COREF_DIR). Also the path to the output folder that gets created and will contain the generated files is specified in the paths.py script (JOINED_COREF_DIR). 
 
