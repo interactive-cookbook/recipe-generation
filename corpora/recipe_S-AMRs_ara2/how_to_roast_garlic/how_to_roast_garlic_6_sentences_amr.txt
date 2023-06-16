@@ -1,0 +1,126 @@
+# ::id how_to_roast_garlic_6_instr0
+# ::name how_to_roast_garlic_6_instr0
+# ::snt Preheat your oven to 425 degrees .
+# ::root h
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3
+            :poss y)
+   :destination (t / temperature-quantity~e.5
+                   :quant 425~e.5))
+
+# ::id how_to_roast_garlic_6_instr1
+# ::name how_to_roast_garlic_6_instr1
+# ::snt Do not peel the garlic , simply cut the top off of the head of the garlic .
+# ::root c
+(c / contrast-01~e.13
+   :ARG1 (p / peel-off-02~e.10
+            :ARG0 (y / you~e.8)
+            :ARG1 (g / garlic~e.12
+                     :part (h / head~e.21
+                              :part (t / top~e.17)))
+            :mode imperative~e.8
+            :polarity -~e.9)
+   :ARG2 (c2 / cut-01~e.15
+             :ARG0 y
+             :ARG1 t
+             :ARG1-of (s / simple-02~e.14)
+             :mode imperative~e.15))
+
+# ::id how_to_roast_garlic_6_instr2
+# ::name how_to_roast_garlic_6_instr2
+# ::snt Place in a piece of aluminum foil and pour olive oil over the top of the garlic .
+# ::root a2
+(a2 / and~e.33
+    :op1 (p2 / place-01~e.26
+             :ARG0 (y / you~e.26)
+             :ARG2 (p / piece~e.29
+                      :mod (f / foil~e.32
+                              :mod (a / aluminum~e.31)))
+             :mode imperative~e.26)
+    :op2 (p3 / pour-01~e.34
+             :ARG0 y
+             :ARG1 (o / oil~e.36
+                      :mod (o2 / olive~e.35))
+             :ARG2 (t / top~e.39
+                      :mod (g / garlic~e.42))
+             :mode imperative~e.43))
+
+# ::id how_to_roast_garlic_6_instr3
+# ::name how_to_roast_garlic_6_instr3
+# ::snt Pour just enough oil so that the garlic is full of oil and it spills out and down the sides .
+# ::root p
+(p / pour-01~e.44
+   :mode imperative~e.44
+   :ARG0 (y / you~e.44)
+   :ARG1 (o / oil~e.47
+            :ARG1-of (h / have-quant-91~e.46
+                        :ARG3 (e / enough~e.46
+                                 :mod (j / just~e.45))
+                        :ARG6 (a / and~e.56
+                                 :op1 (f / fill-01~e.53
+                                         :ARG1 (g / garlic~e.51)
+                                         :ARG2 (o2 / oil~e.55))
+                                 :op2 (s2 / spill-01~e.58
+                                          :ARG1 g
+                                          :direction (o3 / out~e.59)
+                                          :direction (d / down~e.61
+                                                        :op1 (s / side~e.63)))))))
+
+# ::id how_to_roast_garlic_6_instr4
+# ::name how_to_roast_garlic_6_instr4
+# ::snt Tightly wrap the foil around the bulb of garlic and place on a baking sheet .
+# ::root a
+(a / and~e.74
+   :op1 (w / wrap-01~e.66
+           :ARG0 (y / you~e.66)
+           :ARG1 (f / foil~e.68)
+           :manner (a2 / around~e.69
+                       :op1 (b2 / bulb~e.71
+                                :consist-of (g / garlic~e.73)))
+           :ARG1-of (t / tight-05~e.65)
+           :mode imperative~e.80)
+   :op2 (p / place-01~e.75
+           :ARG0 y
+           :ARG2 (s / sheet~e.79
+                    :instrument-of (b / bake-01~e.78))
+           :mode imperative~e.80))
+
+# ::id how_to_roast_garlic_6_instr5
+# ::name how_to_roast_garlic_6_instr5
+# ::snt Bake for 35 minutes or until the garlic is fragrant .
+# ::root b
+(b / bake-01~e.81
+   :mode imperative~e.91
+   :ARG0 (y / you~e.81)
+   :duration (o / or~e.85
+                :op1 (t / temporal-quantity~e.84
+                        :unit (m / minute~e.84)
+                        :quant 35~e.83)
+                :op2 (u / until~e.86
+                        :op1 (f / fragrant~e.90
+                                :domain (g / garlic~e.88)))))
+
+# ::id how_to_roast_garlic_6_instr6
+# ::name how_to_roast_garlic_6_instr6
+# ::snt Let cool then peel the outside layers off of the garlic and pop out the roasted garlic .
+# ::root a2
+(a2 / and~e.109
+    :op1 (l2 / let-01~e.92
+             :ARG0 (y / you~e.92)
+             :ARG1 (c / cool-06~e.93)
+             :mode imperative~e.92)
+    :op2 (a / and~e.103
+            :op1 (p / peel-off-02~e.95
+                    :ARG0 y
+                    :ARG1 (l / layer~e.98
+                             :mod (o / outside~e.97)
+                             :mod (g / garlic~e.102)))
+            :op2 (p2 / pop-04~e.104
+                     :ARG0 y
+                     :ARG1 (g2 / garlic~e.108
+                               :ARG1-of (r / roast-01~e.107))
+                     :mode imperative~e.109)
+            :time (t / then~e.94)))
+

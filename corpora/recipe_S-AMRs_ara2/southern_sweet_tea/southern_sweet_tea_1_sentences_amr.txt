@@ -1,0 +1,130 @@
+# ::id southern_sweet_tea_1_instr0
+# ::name southern_sweet_tea_1_instr0
+# ::snt In a small sauce pan add 2 cups water , bring to boil .
+# ::root a2
+(a2 / and~e.10
+    :op1 (a / add-02~e.6
+            :ARG1 (w / water~e.9
+                     :quant (v / volume-quantity~e.8
+                               :unit (c / cup~e.8)
+                               :quant 2~e.7))
+            :location (p / pan~e.5
+                         :mod (s / sauce~e.4)
+                         :mod (s2 / small~e.3)))
+    :op2 (b2 / bring-01~e.11
+             :ARG1 w
+             :ARG2 (b / boil-01~e.13
+                      :ARG1 w)))
+
+# ::id southern_sweet_tea_1_instr1
+# ::name southern_sweet_tea_1_instr1
+# ::snt Remove from heat and add the 12 individual or 3 family size tea bags .
+# ::root a2
+(a2 / and~e.18
+    :op1 (r / remove-01~e.15
+            :ARG0 (y / you~e.15)
+            :ARG2 (h / heat-01~e.17)
+            :mode imperative~e.15)
+    :op2 (a / add-02~e.19
+            :ARG0 y
+            :ARG1 (o / or~e.23
+                     :op1 (b / bag~e.28
+                             :mod (t / tea~e.27)
+                             :ARG1-of (s / size-01~e.26
+                                         :ARG2 (i / individual~e.22))
+                             :quant 12~e.21)
+                     :op2 (b2 / bag~e.28
+                              :mod t
+                              :ARG1-of (s2 / size-01~e.26
+                                           :ARG2 (f / family~e.25))
+                              :quant 3~e.24))
+            :mode imperative~e.29))
+
+# ::id southern_sweet_tea_1_instr2
+# ::name southern_sweet_tea_1_instr2
+# ::snt Cover with lid .
+# ::root c
+(c / cover-02~e.30
+   :mode imperative~e.30
+   :ARG0 (y / you~e.30)
+   :ARG2 (l / lid~e.32))
+
+# ::id southern_sweet_tea_1_instr3
+# ::name southern_sweet_tea_1_instr3
+# ::snt Steep the tea for 15 minutes .
+# ::root s
+(s / steep-01~e.34
+   :mode imperative~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (t / tea~e.36)
+   :duration (t2 / temporal-quantity~e.38
+                 :unit (m / minute~e.39)
+                 :quant 15~e.38))
+
+# ::id southern_sweet_tea_1_instr4
+# ::name southern_sweet_tea_1_instr4
+# ::snt Pour into 2 quart container .
+# ::root p
+(p / pour-01~e.41
+   :mode imperative~e.41
+   :ARG0 (y / you~e.41)
+   :ARG2 (c / container~e.45
+            :mod (v / volume-quantity~e.44
+                    :unit (q / quart~e.44)
+                    :quant 2~e.43)))
+
+# ::id southern_sweet_tea_1_instr5
+# ::name southern_sweet_tea_1_instr5
+# ::snt Add sugar and stir until sugar is completely dissolved .
+# ::root a2
+(a2 / and~e.49
+    :op1 (a / add-02~e.47
+            :ARG0 (y / you~e.47)
+            :ARG1 (s2 / sugar~e.48))
+    :op2 (s / stir-01~e.50
+            :ARG0 y)
+    :time (u / until~e.51
+             :op1 (d / dissolve-01~e.55
+                     :ARG1 s2
+                     :ARG1-of (c / complete-02~e.54))))
+
+# ::id southern_sweet_tea_1_instr6
+# ::name southern_sweet_tea_1_instr6
+# ::snt Add the cold water , and allow tea to reach room temperature before placing in refrigerator .
+# ::root a3
+(a3 / and~e.62
+    :op1 (a / add-02~e.57
+            :ARG0 (y / you~e.57)
+            :ARG1 (w / water~e.60
+                     :ARG1-of (c / cold-01~e.59))
+            :mode imperative~e.57)
+    :op2 (a2 / allow-01~e.63
+             :ARG0 y
+             :ARG1 (r / reach-01~e.66
+                      :ARG0 (t / tea~e.64)
+                      :ARG1 (t2 / temperature~e.68
+                                :mod (r3 / room~e.67)))
+             :mode imperative~e.73)
+    :time (b / before~e.69
+             :op1 (p / place-01~e.70
+                     :ARG1 t
+                     :ARG2 (r2 / refrigerator~e.72))))
+
+# ::id southern_sweet_tea_1_instr7
+# ::name southern_sweet_tea_1_instr7
+# ::snt * For an extra twist , add two slices of dehydrated peach slices into glass when served .
+# ::root a
+(a / add-02~e.80
+   :mode imperative~e.80
+   :purpose (t / twist-01~e.78
+               :mod (e / extra~e.77))
+   :ARG0 (y / you~e.80)
+   :ARG1 (s2 / slice~e.82
+             :consist-of (s3 / slice~e.86
+                             :ARG1-of (d / dehydrate-01~e.84)
+                             :part-of (p / peach~e.85))
+             :quant 2~e.81)
+   :ARG2 (g / glass~e.88)
+   :time (s / serve-02~e.90
+            :ARG1 s2))
+

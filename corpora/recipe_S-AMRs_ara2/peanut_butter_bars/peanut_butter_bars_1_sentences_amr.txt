@@ -1,0 +1,210 @@
+# ::id peanut_butter_bars_1_instr0
+# ::name peanut_butter_bars_1_instr0
+# ::snt Line a small baking pan with parchment paper .
+# ::root l
+(l / line-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (p / pan~e.5
+            :mod (s / small~e.3)
+            :instrument-of (b / bake-01~e.4))
+   :ARG2 (p2 / paper~e.8
+             :consist-of (p3 / parchment~e.7)))
+
+# ::id peanut_butter_bars_1_instr1
+# ::name peanut_butter_bars_1_instr1
+# ::snt You need one that ’s about 8x8 inches or 9x9 inches or 7x10 inches ( 20x20 cm bis 23x23 cm , 18x26 cm ) .
+# ::root n
+(n / need-01~e.11
+   :ARG0 (y / you~e.10)
+   :ARG1 (o / one~e.12
+            :quant (a / about~e.15
+                      :op1 (d / distance-quantity~e.17
+                              :unit (i / inch~e.17)
+                              :quant 8~e.16)
+                      :op2 (d2 / distance-quantity~e.20
+                               :unit (i2 / inch~e.23)
+                               :quant 9~e.19)
+                      :op3 (d3 / distance-quantity~e.23
+                               :quant 7~e.22)
+                      :ARG1-of (m / mean-01~e.24
+                                  :ARG2 (a2 / and~e.30
+                                            :op1 (d5 / distance-quantity~e.26
+                                                     :unit (m2 / millimeter~e.29)
+                                                     :quant 20~e.25)
+                                            :op2 (a3 / angle-quantity~e.27
+                                                     :quant d4
+                                                     :quant 23~e.28)
+                                            :op3 (d4 / distance-quantity~e.23
+                                                     :unit (i3 / inch~e.23)
+                                                     :unit (m3 / millimeter~e.29))
+                                            :op4 (d6 / distance-quantity~e.32
+                                                     :unit (i4 / inch~e.32)
+                                                     :quant 26~e.31))))))
+
+# ::id peanut_butter_bars_1_instr2
+# ::name peanut_butter_bars_1_instr2
+# ::snt Place the chocolate and salt into a medium bowl .
+# ::root p
+(p / place-01~e.35
+   :mode imperative~e.44
+   :ARG0 (y / you~e.35)
+   :ARG1 (a / and~e.38
+            :op1 (c / chocolate~e.37)
+            :op2 (s / salt~e.39))
+   :ARG2 (b / bowl~e.43
+            :mod (m / medium~e.42)))
+
+# ::id peanut_butter_bars_1_instr3
+# ::name peanut_butter_bars_1_instr3
+# ::snt Heat the cream in a saucepan over medium heat until bubbles start to form ( remove from heat before cream comes to a boil ) .
+# ::root a
+(a / and~e.59
+   :op1 (h2 / heat-01~e.45
+            :ARG0 (y / you~e.45)
+            :ARG1 (c / cream~e.47)
+            :location (s / saucepan~e.50)
+            :location (h / heat~e.53
+                         :degree (m / medium~e.52))
+            :time (u / until~e.54
+                     :op1 (s2 / start-01~e.56
+                              :ARG1 (f / form-01~e.58
+                                       :ARG1 (b3 / bubble~e.55))))
+            :mode imperative~e.59)
+   :op2 (r / remove-01~e.60
+           :ARG0 y
+           :ARG2 c
+           :time (b / before~e.63
+                    :op1 (b2 / boil-01~e.68
+                             :ARG1 c))
+           :mode imperative~e.70
+           :mode imperative~e.70))
+
+# ::id peanut_butter_bars_1_instr4
+# ::name peanut_butter_bars_1_instr4
+# ::snt Immediately pour the hot cream over the chocolate and let it stand for 1 - 2 minutes , then stir until completely smooth .
+# ::root a
+(a / and~e.79
+   :op1 (p / pour-01~e.72
+           :ARG0 (y / you~e.72)
+           :ARG1 (c3 / cream~e.75
+                     :ARG1-of (h / hot-05~e.74))
+           :ARG2 (c / chocolate~e.78)
+           :time (i / immediate~e.71)
+           :mode imperative~e.80)
+   :op2 (l / let-01~e.80
+           :ARG0 y
+           :ARG1 (s2 / stand-01~e.82
+                     :ARG1 c3
+                     :duration (b / between~e.84
+                                  :op1 (t / temporal-quantity~e.87
+                                          :unit (m / minute~e.87)
+                                          :quant 1~e.84)
+                                  :op2 (t2 / temporal-quantity~e.87
+                                           :unit (m2 / minute~e.87)
+                                           :quant 2~e.86))))
+   :op3 (s3 / stir-01~e.90
+            :ARG0 y
+            :time (t3 / then~e.89)
+            :time (u / until~e.91
+                     :op1 (s / smooth-04~e.93
+                             :ARG1 c3
+                             :ARG1-of (c2 / complete-02~e.92)))
+            :mode imperative~e.94))
+
+# ::id peanut_butter_bars_1_instr5
+# ::name peanut_butter_bars_1_instr5
+# ::snt Set aside .
+# ::root s
+(s / set-01~e.95
+   :ARG2 (a / aside~e.96))
+
+# ::id peanut_butter_bars_1_instr6
+# ::name peanut_butter_bars_1_instr6
+# ::snt In a large mixing bowl combine the remaining ingredients .
+# ::root c
+(c / combine-01~e.103
+   :mode imperative~e.107
+   :ARG0 (y / you~e.103)
+   :ARG1 (i / ingredient~e.106
+            :ARG1-of (r / remain-01~e.105))
+   :location (b / bowl~e.102
+                :purpose (m / mix-01~e.101)
+                :mod (l / large~e.100)))
+
+# ::id peanut_butter_bars_1_instr7
+# ::name peanut_butter_bars_1_instr7
+# ::snt Press the peanut butter mixture into the pan .
+# ::root p3
+(p3 / press-01~e.108
+    :mode imperative~e.116
+    :ARG0 (y / you~e.108)
+    :ARG1 (m / mix-01~e.112
+             :ARG1 (b / butter~e.111
+                      :consist-of (p2 / peanut~e.110)))
+    :ARG2 (p / pan~e.115))
+
+# ::id peanut_butter_bars_1_instr8
+# ::name peanut_butter_bars_1_instr8
+# ::snt Stir the chocolate once more , pour it over the peanut butter mixture and spread evenly .
+# ::root a
+(a / and~e.130
+   :op1 (s2 / stir-01~e.117
+            :ARG0 (y / you~e.117)
+            :ARG1 (c / chocolate~e.119)
+            :mod (m2 / more~e.121
+                     :mod (o / once~e.120))
+            :mode imperative~e.117)
+   :op2 (p2 / pour-01~e.123
+            :ARG0 y
+            :ARG1 c
+            :ARG2 (m / mixture~e.129
+                     :consist-of (b / butter~e.128
+                                    :mod (p / peanut~e.127)))
+            :mode imperative~e.131)
+   :op3 (s / spread-03~e.131
+           :ARG0 y
+           :ARG1 c
+           :ARG1-of (e / even-02~e.132)
+           :mode imperative~e.133))
+
+# ::id peanut_butter_bars_1_instr9
+# ::name peanut_butter_bars_1_instr9
+# ::snt Chill the Peanut Butter Bars for at least 2 hours before cutting into small squares .
+# ::root c
+(c / chill-01~e.134
+   :mode imperative~e.134
+   :ARG0 (y / you~e.134)
+   :ARG1 (b / bar~e.138
+            :mod (p / product~e.137
+                    :name (n / name~e.136
+                             :op1 "Peanut"~e.136
+                             :op2 "Butter"~e.137)))
+   :duration (a / at-least~e.141
+                :op1 (t / temporal-quantity~e.143
+                        :unit (h / hour~e.143)
+                        :quant 2~e.142))
+   :time (b2 / before~e.144
+             :op1 (c2 / cut-01~e.145
+                      :ARG1 b
+                      :ARG2 (s2 / square~e.148
+                                :mod (s / small~e.147)))))
+
+# ::id peanut_butter_bars_1_instr10
+# ::name peanut_butter_bars_1_instr10
+# ::snt Store in refrigerator – they taste best chilled !
+# ::root m2
+(m2 / multi-sentence~e.153
+    :snt1 (s / store-01~e.150
+             :ARG1 (t2 / they~e.154)
+             :location (r / refrigerator~e.152))
+    :snt2 (t / taste-02~e.155
+             :ARG1 t2
+             :ARG2 (c / chill-01~e.157
+                      :ARG1 t2
+                      :ARG1-of (h / have-degree-91~e.156
+                                  :ARG2 (g / good-02~e.156
+                                           :ARG1 c)
+                                  :ARG3 (m / most~e.156)))
+             :mode expressive~e.158))
+

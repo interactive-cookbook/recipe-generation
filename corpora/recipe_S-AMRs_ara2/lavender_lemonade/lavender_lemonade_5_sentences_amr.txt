@@ -1,0 +1,181 @@
+# ::id lavender_lemonade_5_instr0
+# ::name lavender_lemonade_5_instr0
+# ::snt In a small sauce pan , boil the lavender in the 5 cups of water .
+# ::root b
+(b / boil-01~e.7
+   :mode imperative~e.16
+   :ARG0 (y / you~e.7)
+   :ARG1 (l / lavender~e.9)
+   :ARG2 (w / water~e.15
+            :quant (v / volume-quantity~e.13
+                      :unit (c / cup~e.13)
+                      :quant 5~e.12))
+   :location (p / pan~e.5
+                :mod (s / sauce~e.4)
+                :mod (s2 / small~e.3)))
+
+# ::id lavender_lemonade_5_instr1
+# ::name lavender_lemonade_5_instr1
+# ::snt If you have a large loose leaf tea ball , you can place the lavender inside and brew it like a tea , or you can add it directly to the water and strain it later .
+# ::root o
+(o / or~e.40
+   :condition (h / have-03~e.19
+                 :ARG0 (y / you~e.27)
+                 :ARG1 (b / ball~e.25
+                          :mod (t / tea~e.24)
+                          :mod (l / large~e.21)
+                          :consist-of (l3 / leaf~e.23
+                                          :ARG1-of (l4 / loose-04~e.22))))
+   :op1 (p2 / possible-01~e.28
+            :ARG1 (a3 / and~e.33
+                      :op1 (p / place-01~e.29
+                              :ARG0 y
+                              :ARG1 (l2 / lavender~e.31)
+                              :ARG2 (i / inside~e.32))
+                      :op2 (b2 / brew-01~e.34
+                               :ARG0 y
+                               :ARG1 l2
+                               :ARG1-of (r / resemble-01~e.36
+                                           :ARG2 (t2 / tea~e.38)))))
+   :op2 (p3 / possible-01~e.42
+            :ARG1 (a4 / and~e.49
+                      :op1 (a / add-02~e.43
+                              :ARG0 y
+                              :ARG1 l2
+                              :ARG2 (w / water~e.48)
+                              :ARG1-of (d / direct-02~e.45))
+                      :op2 (s / strain-01~e.50
+                              :ARG0 y
+                              :ARG1 l2
+                              :time (a2 / after~e.52
+                                        :op1 p)))))
+
+# ::id lavender_lemonade_5_instr2
+# ::name lavender_lemonade_5_instr2
+# ::snt Once the water has boiled , reduce the heat to low and let simmer for 15 minutes .
+# ::root a
+(a / and~e.65
+   :op1 (r / reduce-01~e.60
+           :ARG0 (y / you~e.66)
+           :ARG1 (h / heat~e.62)
+           :ARG4 (l2 / low-04~e.64)
+           :mode imperative~e.66)
+   :op2 (l / let-01~e.66
+           :ARG0 y
+           :ARG1 (s / simmer-01~e.67
+                    :duration (t / temporal-quantity~e.70
+                                 :unit (m / minute~e.70)
+                                 :quant 15~e.69))
+           :mode imperative~e.66)
+   :time (b / boil-01~e.58
+            :ARG1 (w / water~e.56)))
+
+# ::id lavender_lemonade_5_instr3
+# ::name lavender_lemonade_5_instr3
+# ::snt Remove from heat and let cool for about 30 minutes .
+# ::root a2
+(a2 / and~e.75
+    :op1 (r / remove-01~e.72
+            :ARG0 (y / you~e.72)
+            :ARG2 (h / heat~e.74)
+            :mode imperative~e.72)
+    :op2 (l / let-01~e.76
+            :ARG0 y
+            :ARG1 (c / cool-06~e.77
+                     :ARG1 y)
+            :duration (a / about~e.79
+                         :op1 (t / temporal-quantity~e.81
+                                 :unit (m / minute~e.81)
+                                 :quant 30~e.80))
+            :mode imperative~e.76))
+
+# ::id lavender_lemonade_5_instr4
+# ::name lavender_lemonade_5_instr4
+# ::snt ( I did this primarily because I was n’t sure if my pitcher was heat safe and I ’ve cracked a couple of glass pitchers making iced tea . )
+# ::root d2
+(d2 / do-02~e.85
+    :ARG0 (i / i~e.84)
+    :ARG1 (t2 / this~e.86)
+    :ARG1-of (c / cause-01~e.88
+                :ARG0 (a / and~e.99
+                         :op1 (s2 / sure-02~e.92
+                                  :ARG0 i
+                                  :ARG1 (t3 / truth-value~e.93
+                                            :polarity-of (s / safe-01~e.98
+                                                            :ARG0 (p / pitcher~e.95
+                                                                     :poss i)
+                                                            :ARG2 (h / heat~e.97)))
+                                  :polarity -~e.91)
+                         :op2 (c3 / crack-02~e.102
+                                  :purpose (m / make-01~e.108
+                                              :ARG0 i
+                                              :ARG1 (t / tea~e.110
+                                                       :ARG1-of (i2 / ice-02~e.109)))
+                                  :ARG0 i
+                                  :ARG1 (d / dish~e.107
+                                           :quant (c2 / couple~e.104)
+                                           :consist-of (g / glass~e.106))))
+                :mod (p2 / primary~e.87)))
+
+# ::id lavender_lemonade_5_instr5
+# ::name lavender_lemonade_5_instr5
+# ::snt Pour the water into a pitcher through a fine mesh strainer to remove the lavender .
+# ::root p2
+(p2 / pour-01~e.113
+    :mode imperative~e.113
+    :purpose (r / remove-01~e.125
+                :ARG0 y
+                :ARG1 (l / lavender~e.127))
+    :ARG0 (y / you~e.113)
+    :ARG1 (w / water~e.115)
+    :ARG3 (p / pitcher~e.118)
+    :instrument (s / strainer~e.123
+                   :mod (m / mesh~e.122
+                           :ARG1-of (f / fine-03~e.121))))
+
+# ::id lavender_lemonade_5_instr6
+# ::name lavender_lemonade_5_instr6
+# ::snt Add the lemon juice and agave to the water .
+# ::root a
+(a / add-02~e.129
+   :mode imperative~e.129
+   :ARG0 (y / you~e.129)
+   :ARG1 (a3 / and~e.133
+             :op1 (j / juice~e.132
+                     :source (l / lemon~e.131))
+             :op2 (a2 / agave~e.134))
+   :ARG2 (w / water~e.137))
+
+# ::id lavender_lemonade_5_instr7
+# ::name lavender_lemonade_5_instr7
+# ::snt More agave can be added to taste .
+# ::root p
+(p / possible-01~e.141
+   :ARG1 (a / add-02~e.143
+            :ARG1 (a2 / agave~e.140
+                      :quant (m / more~e.139))
+            :ARG2 (t / taste-01~e.145)))
+
+# ::id lavender_lemonade_5_instr8
+# ::name lavender_lemonade_5_instr8
+# ::snt Chill the fridge for a few hours .
+# ::root c
+(c / chill-01~e.147
+   :mode imperative~e.147
+   :ARG0 (y / you~e.147)
+   :ARG1 (f2 / fridge~e.149)
+   :duration (f / few~e.152
+                :op1 (t / temporal-quantity~e.153
+                        :unit (h / hour~e.153)
+                        :quant 1~e.152)))
+
+# ::id lavender_lemonade_5_instr9
+# ::name lavender_lemonade_5_instr9
+# ::snt Serve with lots of ice !
+# ::root s
+(s / serve-02~e.155
+   :mode imperative~e.155
+   :ARG0 (y / you~e.155)
+   :accompanier (i / ice~e.159
+                   :quant (l / lot~e.157)))
+

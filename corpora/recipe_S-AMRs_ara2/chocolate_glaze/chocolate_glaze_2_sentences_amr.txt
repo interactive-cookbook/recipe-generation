@@ -1,0 +1,38 @@
+# ::id chocolate_glaze_2_instr0
+# ::name chocolate_glaze_2_instr0
+# ::snt Melt chocolate and butter .
+# ::root m
+(m / melt-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.3
+            :op1 (c / chocolate~e.2)
+            :op2 (b / butter~e.4)))
+
+# ::id chocolate_glaze_2_instr1
+# ::name chocolate_glaze_2_instr1
+# ::snt Mix together with powdered sugar .
+# ::root m
+(m / mix-01~e.6
+   :mode imperative~e.11
+   :ARG0 (y / you~e.6)
+   :ARG2 (s / sugar~e.10
+            :ARG1-of (p / powder-01~e.9))
+   :manner (t / together~e.7))
+
+# ::id chocolate_glaze_2_instr2
+# ::name chocolate_glaze_2_instr2
+# ::snt Use this to frost fudge brownies or cakes .
+# ::root u
+(u / use-01~e.12
+   :mode imperative~e.20
+   :ARG0 (y / you~e.12)
+   :ARG1 (t / this~e.13)
+   :ARG2 (f / frost-01~e.15
+            :ARG0 y
+            :ARG1 (o / or~e.18
+                     :op1 (c2 / cookie~e.17
+                              :mod (f2 / fudge~e.16))
+                     :op2 (c / cake~e.19
+                             :mod f2))))
+

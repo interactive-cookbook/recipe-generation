@@ -1,0 +1,137 @@
+# ::id homemade_graham_crackers_2_instr0
+# ::name homemade_graham_crackers_2_instr0
+# ::snt Measure flours , sugar , salt , baking powder and baking soda into a bowl , and cut in butter mixing it around until it is mealy .
+# ::root a2
+(a2 / and~e.17
+    :op1 (m2 / measure-01~e.1
+             :ARG0 (y / you~e.1)
+             :ARG1 (a / and~e.3
+                      :op2 (s3 / sugar~e.4)
+                      :op3 (s / salt~e.6)
+                      :op4 (p / powder~e.9
+                              :mod (b / bake-01~e.11))
+                      :op5 (s2 / soda~e.12
+                               :ARG2-of (b2 / bake-01~e.11)))
+             :ARG3 (b3 / bowl~e.15)
+             :mode imperative~e.28)
+    :op2 (c / cut-01~e.18
+            :ARG0 y
+            :ARG1 (b4 / butter~e.20)
+            :manner (m3 / mix-01~e.21
+                        :ARG0 y
+                        :ARG1 b4
+                        :duration (u / until~e.24
+                                     :op1 (m / mealy~e.27
+                                             :domain b4))
+                        :mod (a3 / around~e.23))
+            :mode imperative~e.28)
+    :rel (f / fluid~e.2))
+
+# ::id homemade_graham_crackers_2_instr1
+# ::name homemade_graham_crackers_2_instr1
+# ::snt Stir warm water , vanilla , and honey together and add to flour mixture .
+# ::root a3
+(a3 / and~e.38
+    :op1 (m / mix-01~e.29
+            :ARG0 (y / you~e.29)
+            :ARG1 (a2 / and~e.32
+                      :op1 (w2 / water~e.31
+                               :ARG1-of (w / warm-07~e.30))
+                      :op2 (v / vanilla~e.33)
+                      :op3 (h / honey~e.36))
+            :manner (t / together~e.37)
+            :mode imperative~e.29)
+    :op2 (a / add-02~e.39
+            :ARG0 y
+            :ARG2 (m2 / mix-01~e.42
+                      :ARG3 (f / flour~e.41))
+            :mode imperative~e.29))
+
+# ::id homemade_graham_crackers_2_instr2
+# ::name homemade_graham_crackers_2_instr2
+# ::snt Mix around until it forms a ball , divide in
+# ::root a
+(a / and~e.51
+   :op1 (m / mix-01~e.44
+           :ARG0 (y / you~e.44)
+           :duration (u / until~e.46
+                        :op1 (f / form-01~e.48
+                                :ARG0 (i / it~e.47)
+                                :ARG1 (b / ball~e.50)))
+           :manner (a2 / around~e.45)
+           :mode imperative~e.51)
+   :op2 (d / divide-02~e.52
+           :ARG0 y
+           :mode imperative~e.53))
+
+# ::id homemade_graham_crackers_2_instr3
+# ::name homemade_graham_crackers_2_instr3
+# ::snt Roll dough out right on ungreased baking sheets with a floured rolling pin until about 1/8 inch thickness .
+# ::root r2
+(r2 / roll-01~e.54
+    :mode imperative~e.72
+    :ARG0 (y / you~e.54)
+    :ARG1 (d2 / dough~e.55)
+    :instrument (p / pin~e.66
+                   :ARG1-of (f / fling-01~e.64)
+                   :instrument-of (r3 / roll-01~e.65
+                                      :ARG1 d2))
+    :location (s / sheet~e.61
+                 :ARG1-of (c / cook-01~e.59
+                             :polarity -~e.59)
+                 :instrument-of (b / bake-01~e.60))
+    :mod (r / right~e.57)
+    :time (u / until~e.67
+             :op1 (a / about~e.68
+                     :op1 (t / thickness~e.71
+                             :mod (d / distance-quantity~e.70
+                                     :unit (i / inch~e.70)
+                                     :quant "1/8"~e.69)))))
+
+# ::id homemade_graham_crackers_2_instr4
+# ::name homemade_graham_crackers_2_instr4
+# ::snt Mark off squares without cutting through , and prick with a fork all through the dough in even rows .
+# ::root a2
+(a2 / and~e.80
+    :op1 (m / mark-02~e.73
+            :ARG0 (y / you~e.73)
+            :ARG1 (s / square~e.75)
+            :manner (c / cut-01~e.77
+                       :path (t / through~e.78)
+                       :polarity -~e.76)
+            :mode imperative~e.74)
+    :op2 (p / prick-01~e.81
+            :ARG0 y
+            :ARG1 (d / dough~e.88
+                     :mod (a / all~e.85))
+            :instrument (f / fork~e.84)
+            :manner (r / row~e.91
+                       :ARG1-of (e / even-02~e.90))
+            :mode imperative~e.92))
+
+# ::id homemade_graham_crackers_2_instr5
+# ::name homemade_graham_crackers_2_instr5
+# ::snt Bake at 425 degrees for about 10 minutes ( until golden ) , they will get crispier as they cool !
+# ::root a2
+(a2 / and~e.105
+    :rel 425~e.95
+    :op1 (b / bake-01~e.93
+            :ARG0 (y / you~e.93)
+            :ARG1 (t2 / they~e.106)
+            :duration (a / about~e.98
+                         :op1 (t / temporal-quantity~e.99
+                                 :time (u / until~e.102
+                                          :op1 (g2 / gold~e.103))
+                                 :unit (m / minute~e.100)
+                                 :quant 10~e.99))
+            :mode imperative~e.101)
+    :op2 (g / get-03~e.108
+            :ARG1 t2
+            :ARG2 (h / have-degree-91~e.109
+                     :ARG1 t2
+                     :ARG2 (w / warm-07~e.109
+                              :ARG1 t2)
+                     :ARG3 (m2 / more~e.109))
+            :time (c / cool-01~e.112
+                     :ARG1 t2)))
+

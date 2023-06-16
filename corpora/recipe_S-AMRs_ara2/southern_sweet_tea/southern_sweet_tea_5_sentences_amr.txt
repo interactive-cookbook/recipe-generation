@@ -1,0 +1,81 @@
+# ::id southern_sweet_tea_5_instr0
+# ::name southern_sweet_tea_5_instr0
+# ::snt Place baking soda into a large heat proof pitcher .
+# ::root p2
+(p2 / place-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (s / soda~e.3
+             :instrument-of (b / bake-01~e.2))
+    :ARG2 (p / pitcher~e.9
+             :mod (l / large~e.6)
+             :ARG1-of (p3 / proof-02~e.8
+                          :ARG2 (h / heat-01~e.7))))
+
+# ::id southern_sweet_tea_5_instr1
+# ::name southern_sweet_tea_5_instr1
+# ::snt Pour in boiling water and tea bags , and allow to steep for 15 minutes .
+# ::root a3
+(a3 / and~e.19
+    :op1 (p / pour-01~e.11
+            :ARG0 (y / you~e.11)
+            :ARG1 (a2 / and~e.15
+                      :op1 (w / water~e.14
+                              :ARG1-of (b2 / boil-01~e.13))
+                      :op2 (b / bag~e.17
+                              :mod (t / tea~e.16))))
+    :op2 (a / allow-01~e.20
+            :ARG0 y
+            :ARG1 (s / steep-01~e.22
+                     :ARG1 a2)
+            :duration (t2 / temporal-quantity~e.24
+                          :unit (m / minute~e.25)
+                          :quant 15~e.24)
+            :mode imperative~e.26
+            :mode imperative~e.26))
+
+# ::id southern_sweet_tea_5_instr2
+# ::name southern_sweet_tea_5_instr2
+# ::snt Remove and discard tea bags .
+# ::root a
+(a / and~e.28
+   :op1 (r / remove-01~e.27
+           :ARG0 (y / you~e.27)
+           :ARG1 (b / bag~e.31
+                    :mod (t / tea~e.30))
+           :mode imperative~e.28)
+   :op2 (d / discard-01~e.29
+           :ARG0 y
+           :ARG1 b
+           :mode imperative~e.32))
+
+# ::id southern_sweet_tea_5_instr3
+# ::name southern_sweet_tea_5_instr3
+# ::snt Stir in sugar until fully dissolved .
+# ::root s
+(s / stir-01~e.33
+   :mode imperative~e.33
+   :ARG0 (y / you~e.33)
+   :ARG2 (s2 / sugar~e.35)
+   :time (u / until~e.36
+            :op1 (d / dissolve-01~e.38
+                    :ARG1 s2
+                    :ARG2-of (f / full-09~e.37))))
+
+# ::id southern_sweet_tea_5_instr4
+# ::name southern_sweet_tea_5_instr4
+# ::snt Pour in cold water and chill before serving .
+# ::root a
+(a / and~e.44
+   :op1 (p / pour-01~e.40
+           :ARG0 (y / you~e.40)
+           :ARG2 (w / water~e.43
+                    :ARG1-of (c2 / cold-01~e.42))
+           :mode imperative~e.40)
+   :op2 (c / chill-01~e.45
+           :ARG0 y
+           :mode imperative~e.48)
+   :time (b / before~e.46
+            :op1 (s / serve-02~e.47
+                    :ARG0 y)))
+

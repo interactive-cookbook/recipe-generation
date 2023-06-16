@@ -1,0 +1,135 @@
+# ::id peanut_butter_bars_9_instr0
+# ::name peanut_butter_bars_9_instr0
+# ::snt In a mixing bowl combine butter and peanut butter .
+# ::root c
+(c / combine-01~e.5
+   :mode imperative~e.10
+   :ARG0 (y / you~e.5)
+   :ARG1 (b2 / butter~e.6)
+   :ARG2 (b3 / butter~e.9
+             :mod (p / peanut~e.8))
+   :location (b / bowl~e.4
+                :instrument-of (m / mix-01~e.3)))
+
+# ::id peanut_butter_bars_9_instr1
+# ::name peanut_butter_bars_9_instr1
+# ::snt { melt a little for ease }
+# ::root m
+(m / melt-01~e.12
+   :mode imperative~e.11
+   :purpose (e / easy-05~e.16)
+   :ARG0 (y / you~e.12)
+   :degree (l / little~e.14))
+
+# ::id peanut_butter_bars_9_instr2
+# ::name peanut_butter_bars_9_instr2
+# ::snt Add graham cracker crumbs and powdered sugar
+# ::root a
+(a / add-02~e.18
+   :mode imperative~e.18
+   :ARG0 (y / you~e.18)
+   :ARG1 (a2 / and~e.22
+             :op1 (c2 / crumb~e.21
+                      :consist-of (c / cracker~e.20
+                                     :consist-of (g / graham~e.19)))
+             :op2 (s / sugar~e.24
+                     :ARG1-of (p / powder-01~e.23))))
+
+# ::id peanut_butter_bars_9_instr3
+# ::name peanut_butter_bars_9_instr3
+# ::snt Combine ingredients and press into pan
+# ::root a
+(a / and~e.27
+   :op1 (c / combine-01~e.25
+           :ARG0 (y / you~e.25)
+           :ARG1 (i / ingredient~e.26)
+           :mode imperative~e.25)
+   :op2 (p2 / press-01~e.28
+            :ARG0 y
+            :ARG2 (p / pan~e.30)
+            :mode imperative~e.29))
+
+# ::id peanut_butter_bars_9_instr4
+# ::name peanut_butter_bars_9_instr4
+# ::snt Put peanut butter and chocolate chips into bowl .
+# ::root p2
+(p2 / put-01~e.31
+    :mode imperative~e.31
+    :ARG0 (y / you~e.31)
+    :ARG1 (a / and~e.34
+             :op1 (b2 / butter~e.33
+                      :mod (p / peanut~e.32))
+             :op2 (c / chip~e.36
+                     :mod (c2 / chocolate~e.35)))
+    :ARG2 (b / bowl~e.38))
+
+# ::id peanut_butter_bars_9_instr5
+# ::name peanut_butter_bars_9_instr5
+# ::snt Melt in microwave for 30 second intervals , stirring mixture in between .
+# ::root a
+(a / and~e.47
+   :op1 (m / melt-01~e.40
+           :ARG0 (y / you~e.40)
+           :duration (v / value-interval~e.46
+                        :duration (t / temporal-quantity~e.44
+                                     :unit (s / second~e.45)
+                                     :quant 30~e.44))
+           :location (m2 / microwave~e.42))
+   :op2 (s2 / stir-01~e.48
+            :ARG0 y
+            :ARG1 (m3 / mixture~e.49)
+            :mod (b / between~e.51
+                    :op1 m)))
+
+# ::id peanut_butter_bars_9_instr6
+# ::name peanut_butter_bars_9_instr6
+# ::snt Combine until smooth .
+# ::root c
+(c / combine-01~e.53
+   :mode imperative~e.53
+   :ARG0 (y / you~e.53)
+   :manner (u / until~e.54
+              :op1 (s / smooth-01~e.55)))
+
+# ::id peanut_butter_bars_9_instr7
+# ::name peanut_butter_bars_9_instr7
+# ::snt Pour over bars and frost evenly .
+# ::root a
+(a / and~e.60
+   :op1 (p / pour-01~e.57
+           :ARG0 (y / you~e.57)
+           :ARG2 (b / bar~e.59)
+           :mode imperative~e.57)
+   :op2 (f / freeze-01~e.61
+           :ARG0 y
+           :ARG1-of (e / even-02~e.62)
+           :mode imperative~e.63))
+
+# ::id peanut_butter_bars_9_instr8
+# ::name peanut_butter_bars_9_instr8
+# ::snt Chill in fridge for 45 mins to 1 hr .
+# ::root c
+(c / chill-01~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :duration (b / between~e.70
+                :op1 (t / temporal-quantity~e.69
+                        :unit (m / minute~e.69)
+                        :quant 45~e.68)
+                :op2 (t2 / temporal-quantity~e.72
+                         :unit (h / hour~e.72)
+                         :quant 1~e.71))
+   :location (f / fridge~e.66))
+
+# ::id peanut_butter_bars_9_instr9
+# ::name peanut_butter_bars_9_instr9
+# ::snt Cut and enjoy .
+# ::root a
+(a / and~e.75
+   :op1 (c / cut-02~e.74
+           :ARG0 (y / you~e.74)
+           :mode imperative~e.74)
+   :op2 (e / enjoy-01~e.76
+           :ARG0 y
+           :mode imperative~e.77))
+

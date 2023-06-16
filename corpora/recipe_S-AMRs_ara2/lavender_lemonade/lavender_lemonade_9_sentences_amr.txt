@@ -1,0 +1,136 @@
+# ::id lavender_lemonade_9_instr0
+# ::name lavender_lemonade_9_instr0
+# ::snt Prepare your simple syrup , first .
+# ::root p
+(p / prepare-02~e.1
+   :ARG0 (y / you~e.2)
+   :ARG1 (s2 / syrup~e.4
+             :poss y
+             :ARG1-of (s / simple-02~e.3))
+   :ord (o / ordinal-entity~e.6
+           :value 1~e.6))
+
+# ::id lavender_lemonade_9_instr1
+# ::name lavender_lemonade_9_instr1
+# ::snt It needs time to cool .
+# ::root n
+(n / need-01~e.9
+   :ARG0 (i / it~e.8)
+   :ARG1 (t / time~e.10
+            :purpose (c / cool-01~e.12
+                        :ARG1 i)))
+
+# ::id lavender_lemonade_9_instr2
+# ::name lavender_lemonade_9_instr2
+# ::snt It 's just a matter of dissolving your sugar on low heat .
+# ::root m
+(m / matter~e.18
+   :domain (d / dissolve-01~e.20
+              :ARG1 (s / sugar~e.22
+                       :poss (y / you~e.21))
+              :condition (h / heat~e.25
+                            :ARG1-of (l / low-04~e.24)))
+   :mod (j / just~e.16))
+
+# ::id lavender_lemonade_9_instr3
+# ::name lavender_lemonade_9_instr3
+# ::snt Allow it to sit with its peel and set it aside .
+# ::root a2
+(a2 / and~e.34
+    :op1 (a / allow-01~e.27
+            :ARG0 (y / you~e.27)
+            :ARG1 (s2 / sit-01~e.30
+                      :ARG1 (i / it~e.28
+                               :part p)
+                      :ARG2 (p / peel~e.33))
+            :mode imperative~e.38)
+    :op2 (s / set-01~e.35
+            :ARG0 y
+            :ARG1 i
+            :ARG2 (a3 / aside~e.37)
+            :mode imperative~e.38))
+
+# ::id lavender_lemonade_9_instr4
+# ::name lavender_lemonade_9_instr4
+# ::snt In a separate pot , steep your lavender flowers for about 10 min or so .
+# ::root s3
+(s3 / steep-01~e.44
+    :mode imperative~e.54
+    :ARG0 (y / you~e.45)
+    :ARG1 (f / flower~e.47
+             :mod (l / lavender~e.46)
+             :poss y)
+    :duration (a / about~e.49
+                 :op1 (o / or~e.52
+                         :op1 (t / temporal-quantity~e.50
+                                 :unit (m / minute~e.51)
+                                 :quant 10~e.50)
+                         :op2 (s2 / so~e.53)))
+    :location (p / pot~e.42
+                 :ARG1-of (s / separate-02~e.41)))
+
+# ::id lavender_lemonade_9_instr5
+# ::name lavender_lemonade_9_instr5
+# ::snt Combine the syrup and tea . Stir and allow it to mingle .
+# ::root m2
+(m2 / multi-sentence~e.60
+    :snt1 (c / combine-01~e.55
+             :ARG0 (y / you~e.55)
+             :ARG1 (s2 / syrup~e.57)
+             :ARG2 (t / tea~e.59)
+             :mode imperative~e.61)
+    :snt2 (a2 / and~e.62
+              :op1 (s / stir-01~e.61
+                      :ARG0 y
+                      :mode imperative~e.61)
+              :op2 (a / allow-01~e.63
+                      :ARG0 y
+                      :ARG1 (m / mingle-01~e.66
+                               :ARG0 (i / it~e.64))
+                      :mode imperative~e.67)))
+
+# ::id lavender_lemonade_9_instr6
+# ::name lavender_lemonade_9_instr6
+# ::snt Squeeze the juice of your lemons .
+# ::root s
+(s / squeeze-01~e.68
+   :mode imperative~e.74
+   :ARG0 (y / you~e.68)
+   :ARG1 (j / juice~e.70
+            :source (l / lemon~e.73
+                       :poss y)))
+
+# ::id lavender_lemonade_9_instr7
+# ::name lavender_lemonade_9_instr7
+# ::snt Combine all your liquids together .
+# ::root c
+(c / combine-01~e.75
+   :mode imperative~e.75
+   :ARG0 (y / you~e.75)
+   :ARG1 (f / fluid-ounce~e.78
+            :mod (a / all~e.76)
+            :poss y)
+   :manner (t / together~e.79))
+
+# ::id lavender_lemonade_9_instr8
+# ::name lavender_lemonade_9_instr8
+# ::snt Stir .
+# ::root s
+(s / stir-01~e.81)
+
+# ::id lavender_lemonade_9_instr9
+# ::name lavender_lemonade_9_instr9
+# ::snt Chill .
+# ::root c
+(c / chill-02~e.83
+   :mode imperative~e.83
+   :ARG0 (y / you~e.83))
+
+# ::id lavender_lemonade_9_instr10
+# ::name lavender_lemonade_9_instr10
+# ::snt Enjoy .
+# ::root e
+(e / enjoy-01~e.85
+   :mode imperative~e.86
+   :ARG0 (y / you~e.85))
+

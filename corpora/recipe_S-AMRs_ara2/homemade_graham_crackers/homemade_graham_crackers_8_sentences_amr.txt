@@ -1,0 +1,300 @@
+# ::id homemade_graham_crackers_8_instr0
+# ::name homemade_graham_crackers_8_instr0
+# ::snt In a medium bowl , whisk together both flours , the baking soda and salt ; set aside .
+# ::root a2
+(a2 / and~e.16
+    :op1 (w / whisk-01~e.6
+            :ARG0 (y / you~e.6)
+            :ARG1 (a / and~e.10
+                     :op1 (f / fluid~e.9
+                             :mod (b2 / both~e.8))
+                     :op2 (s3 / soda~e.13
+                              :instrument-of (b / bake-01~e.12))
+                     :op3 (s / salt~e.15))
+            :location (b3 / bowl~e.4
+                          :mod (m / medium~e.3))
+            :mode imperative~e.6)
+    :op2 (s2 / set-01~e.17
+             :ARG0 y
+             :ARG2 (a3 / aside~e.18)
+             :mode imperative~e.19))
+
+# ::id homemade_graham_crackers_8_instr1
+# ::name homemade_graham_crackers_8_instr1
+# ::snt In a large bowl , combine the butter , brown sugar and honey , and beat at medium - high speed until light and fluffy , about 2 minutes .
+# ::root a3
+(a3 / and~e.34
+    :duration (a / about~e.46
+                 :op1 (t / temporal-quantity~e.48
+                         :unit (m2 / minute~e.48)
+                         :quant 2~e.47))
+    :op1 (c / combine-01~e.25
+            :ARG0 (y / you~e.25)
+            :ARG1 (a2 / and~e.31
+                      :op1 (b4 / butter~e.27)
+                      :op2 (s2 / sugar~e.30
+                               :mod (b3 / brown~e.29))
+                      :op3 (h2 / honey~e.32))
+            :location (b2 / bowl~e.23
+                          :mod (l / large~e.22))
+            :mode imperative~e.49)
+    :op2 (b / beat-01~e.35
+            :ARG0 y
+            :duration (u / until~e.41
+                         :op1 (a4 / and~e.43
+                                  :op1 (l2 / light-06~e.42)
+                                  :op2 (f / fluffy~e.44)))
+            :manner (s / speed-01~e.40
+                       :ARG1-of (h / high-02~e.39
+                                   :degree (m / medium~e.37)))
+            :mode imperative~e.49))
+
+# ::id homemade_graham_crackers_8_instr2
+# ::name homemade_graham_crackers_8_instr2
+# ::snt Scrape down the sides of the bowl .
+# ::root s
+(s / scrap-01~e.50
+   :mode imperative~e.50
+   :ARG0 (y / you~e.50)
+   :ARG1 (s2 / side~e.53
+             :part-of (b / bowl~e.56))
+   :direction (d / down~e.51))
+
+# ::id homemade_graham_crackers_8_instr3
+# ::name homemade_graham_crackers_8_instr3
+# ::snt Add the flour mixture and mix on low speed just until blended and the dough comes together , about 30 seconds .
+# ::root a3
+(a3 / and~e.62
+    :op1 (a2 / add-02~e.58
+             :ARG1 (m / mix-01~e.61
+                      :ARG1 (f / flour~e.60)))
+    :op2 (m2 / mix-01~e.63
+             :duration (u / until~e.68
+                          :mod (j / just~e.67)
+                          :op1 (b / blend-01~e.69))
+             :manner (s2 / speed-01~e.66
+                         :ARG1-of (l / low-04~e.65)))
+    :op3 (c / come-04~e.73
+            :ARG1 (d / dough~e.72)
+            :ARG2 (t2 / together~e.74)
+            :duration (a / about~e.76
+                         :op1 (t / temporal-quantity~e.78
+                                 :unit (s / second~e.78)
+                                 :quant 30~e.77))))
+
+# ::id homemade_graham_crackers_8_instr4
+# ::name homemade_graham_crackers_8_instr4
+# ::snt Transfer the dough onto a piece of plastic wrap , press into a 7-inch square , and wrap tightly .
+# ::root a
+(a / and~e.96
+   :op1 (t2 / transfer-01~e.80
+            :ARG0 (y / you~e.80)
+            :ARG1 (d2 / dough~e.82)
+            :ARG2 (p / piece~e.85
+                     :consist-of (w / wrap-01~e.88
+                                    :consist-of (p2 / plastic~e.87)))
+            :mode imperative~e.99)
+   :op2 (p3 / press-01~e.90
+            :ARG0 y
+            :ARG2 (s / square~e.94
+                     :mod (d / distance-quantity~e.93
+                             :quant 7~e.93)))
+   :op3 (w2 / wrap-01~e.97
+            :ARG0 y
+            :ARG1-of (t / tight-05~e.98)
+            :mode imperative~e.99))
+
+# ::id homemade_graham_crackers_8_instr5
+# ::name homemade_graham_crackers_8_instr5
+# ::snt Refrigerate for at least 2 hours , or up to 5 days .
+# ::root c
+(c / cool-01~e.100
+   :mode imperative~e.100
+   :ARG0 (y / you~e.100)
+   :duration (o / or~e.107
+                :op1 (a / at-least~e.103
+                        :op1 (t / temporal-quantity~e.105
+                                :unit (h / hour~e.105)
+                                :quant 2~e.104))
+                :op2 (a2 / at-least~e.103
+                         :op1 (t2 / temporal-quantity~e.111
+                                  :unit (d / day~e.111)
+                                  :quant 5~e.110))))
+
+# ::id homemade_graham_crackers_8_instr6
+# ::name homemade_graham_crackers_8_instr6
+# ::snt When ready to bake the cookies , preheat the oven to 350 degrees F. Line two baking sheets with parchment paper or a silicone baking mat .
+# ::root h
+(h / heat-01~e.120
+   :mode imperative~e.120
+   :ARG0 (y / you~e.120)
+   :ARG1 (o2 / oven~e.122)
+   :ARG2 (l / line-01~e.127
+            :ARG0 y
+            :ARG1 (s / sheet~e.130
+                     :instrument-of (b2 / bake-01~e.129)
+                     :quant 2~e.128)
+            :ARG2 (o / or~e.134
+                     :op1 (p / paper~e.133
+                             :consist-of (p2 / parchment~e.132))
+                     :op2 (m / mat~e.138
+                             :mod (s2 / silicone~e.136)
+                             :instrument-of (b3 / bake-01~e.138))))
+   :destination (t / temperature-quantity~e.126
+                   :scale (f / fahrenheit~e.126)
+                   :quant 350~e.124)
+   :time (r / ready-02~e.114
+            :ARG1 y
+            :ARG2 (b / bake-01~e.116
+                     :ARG1 (c / cookie~e.118))))
+
+# ::id homemade_graham_crackers_8_instr7
+# ::name homemade_graham_crackers_8_instr7
+# ::snt On a lightly floured surface , roll out the dough to a 1/8-inch thickness and cut into 3-inch squares .
+# ::root a
+(a / and~e.154
+   :location (s2 / surface~e.144
+                 :ARG1-of (f / fling-01~e.143
+                             :ARG1-of (l / light-06~e.142)))
+   :op1 (r / roll-01~e.146
+           :ARG0 (y / you~e.146)
+           :ARG1 (d3 / dough~e.149)
+           :extent (t / thickness~e.153
+                      :mod (d / distance-quantity~e.152
+                              :unit (i / inch~e.157)
+                              :quant 8~e.152))
+           :mode imperative~e.159)
+   :op2 (c / cut-01~e.155
+           :ARG0 y
+           :ARG1 d3
+           :ARG2 (s / square~e.158
+                    :mod (d2 / distance-quantity~e.152
+                             :quant 3~e.157))
+           :mode imperative~e.159))
+
+# ::id homemade_graham_crackers_8_instr8
+# ::name homemade_graham_crackers_8_instr8
+# ::snt Transfer to the baking sheet , spacing the crackers at least Â¾-inch apart , gather any scraps , re - roll , and cut out more cookies .
+# ::root a
+(a / and~e.182
+   :op1 (t / transfer-01~e.160
+           :ARG0 (y / you~e.160)
+           :ARG2 (s2 / sheet~e.164
+                     :instrument-of (b / bake-01~e.163))
+           :mode imperative~e.187)
+   :op2 (s3 / space-01~e.166
+            :ARG0 y
+            :ARG1 (c2 / crack-02~e.168)
+            :ARG2 (a3 / apart~e.172
+                      :extent (a4 / at-least~e.170
+                                  :op1 (d / distance-quantity~e.171
+                                          :unit (i / inch~e.171)
+                                          :quant 1~e.171))))
+   :op3 (r / roll-01~e.180
+           :ARG0 y
+           :mode imperative~e.187)
+   :op4 (c3 / cut-out-06~e.183
+            :ARG0 y
+            :ARG1 (c / cookie~e.186
+                     :quant (m / more~e.185)))
+   :rel (g / gather-01~e.174
+           :ARG0 y
+           :ARG1 (s / scrap~e.176
+                    :mod (a2 / any~e.175))))
+
+# ::id homemade_graham_crackers_8_instr9
+# ::name homemade_graham_crackers_8_instr9
+# ::snt Bake the cookies for 10 minutes and then rotate the baking sheet .
+# ::root a
+(a / and~e.194
+   :op1 (b / bake-01~e.188
+           :ARG0 (y / you~e.188)
+           :ARG1 (c / cookie~e.190)
+           :duration (t / temporal-quantity~e.192
+                        :unit (m / minute~e.193)
+                        :quant 10~e.192)
+           :mode imperative~e.200)
+   :op2 (r / rotate-01~e.196
+           :ARG0 y
+           :ARG1 (s / sheet~e.199
+                    :instrument-of (b2 / bake-01~e.198))
+           :time (t2 / then~e.195)
+           :mode imperative~e.200))
+
+# ::id homemade_graham_crackers_8_instr10
+# ::name homemade_graham_crackers_8_instr10
+# ::snt Bake for another 6 to 8 minutes , or until the cookies are dark golden brown and just firm to the touch .
+# ::root b
+(b / bake-01~e.201
+   :mode imperative~e.223
+   :ARG0 (y / you~e.201)
+   :duration (o / or~e.209
+                :op1 (b2 / between~e.204
+                         :mod (a2 / another~e.203)
+                         :op1 (t / temporal-quantity~e.207
+                                 :unit (m / minute~e.207)
+                                 :quant 6~e.204)
+                         :op2 (t2 / temporal-quantity~e.207
+                                  :unit (m2 / minute~e.207)
+                                  :quant 8~e.206))
+                :op2 (u / until~e.210
+                        :op1 (a / and~e.217
+                                :op1 (b3 / brown-01~e.216
+                                         :ARG1 (c / cookie~e.212)
+                                         :ARG1-of (d / dark-02~e.214)
+                                         :consist-of (g / gold~e.215))
+                                :op2 (f / firm-01~e.219
+                                        :ARG1 c
+                                        :ARG3 (t3 / touch~e.222)
+                                        :mod (j / just~e.218))))))
+
+# ::id homemade_graham_crackers_8_instr11
+# ::name homemade_graham_crackers_8_instr11
+# ::snt Let cool for a minute on the baking sheets , then transfer to a cooling rack .
+# ::root a
+(a / and~e.233
+   :op1 (l / let-01~e.224
+           :ARG0 (y / you~e.224)
+           :ARG1 (c2 / cool-06~e.225
+                     :ARG1 y
+                     :duration (t / temporal-quantity~e.228
+                                  :unit (m / minute~e.228)
+                                  :quant 1~e.227)
+                     :location (s / sheet~e.232
+                                  :instrument-of (b / bake-01~e.231)))
+           :mode imperative~e.224)
+   :op2 (t3 / transfer-01~e.235
+            :ARG1 y
+            :ARG2 (r / rack~e.239
+                     :purpose (c / cool-01~e.238))
+            :time (t2 / then~e.234)))
+
+# ::id homemade_graham_crackers_8_instr12
+# ::name homemade_graham_crackers_8_instr12
+# ::snt Let cool completely ( they will crisp up as they cool ) .
+# ::root l
+(l / let-01~e.241
+   :mode imperative~e.241
+   :ARG0 (y / you~e.241)
+   :ARG1 (c2 / cool-01~e.242
+             :ARG1 (t / they~e.245)
+             :ARG1-of (c / complete-02~e.243))
+   :ARG1-of (m / mean-01~e.244
+               :ARG2 (d / dry-up-01~e.247
+                        :ARG1 t
+                        :time c2)))
+
+# ::id homemade_graham_crackers_8_instr13
+# ::name homemade_graham_crackers_8_instr13
+# ::snt Store in an airtight container for up to 5 days .
+# ::root s
+(s / store-01~e.254
+   :mode imperative~e.264
+   :ARG0 (y / you~e.254)
+   :ARG2 (c / container~e.258
+            :mod (a / airtight~e.257))
+   :duration (u / up-to~e.260
+                :op1 (t / temporal-quantity~e.263
+                        :unit (d / day~e.263)
+                        :quant 5~e.262)))
+

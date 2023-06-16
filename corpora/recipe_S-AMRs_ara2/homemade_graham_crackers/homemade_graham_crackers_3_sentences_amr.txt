@@ -1,0 +1,273 @@
+# ::id homemade_graham_crackers_3_instr0
+# ::name homemade_graham_crackers_3_instr0
+# ::snt Place the dry ingredients into a food processor and mix for a moment , just to blend together the ingredients .
+# ::root a
+(a / and~e.9
+   :op1 (p / place-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (i / ingredient~e.4
+                    :ARG1-of (d / dry-02~e.3))
+           :ARG2 (t / thing~e.8
+                    :instrument-of (p2 / process-01~e.8
+                                       :ARG1 (f / food~e.7))))
+   :op2 (m / mix-01~e.10
+           :purpose (b / blend-01~e.17
+                       :ARG0 y
+                       :ARG1 i
+                       :mod (j / just~e.15)
+                       :mod (t2 / together~e.18))
+           :ARG0 y
+           :ARG1 i
+           :duration (m2 / moment~e.13)))
+
+# ::id homemade_graham_crackers_3_instr1
+# ::name homemade_graham_crackers_3_instr1
+# ::snt Cut the butter into small chunks and add to the food processor as well as the honey , milk , and molasses .
+# ::root a2
+(a2 / and~e.28
+    :op1 (c2 / cut-02~e.22
+             :ARG0 (y / you~e.22)
+             :ARG1 (b / butter~e.24)
+             :manner (c / chunk-01~e.27
+                        :ARG1 b
+                        :mod (s / small~e.26))
+             :mode imperative~e.22)
+    :op2 (a / add-02~e.29
+            :ARG0 y
+            :ARG1 (a3 / and~e.42
+                      :op1 (h / honey~e.38)
+                      :op2 (m / milk~e.40)
+                      :op3 (m2 / molest-01~e.43))
+            :ARG2 (t / thing~e.33
+                     :ARG0-of (p / process-01~e.33
+                                 :ARG1 (f / food~e.32)))
+            :mode imperative~e.22))
+
+# ::id homemade_graham_crackers_3_instr2
+# ::name homemade_graham_crackers_3_instr2
+# ::snt Continue to blend until crumbs form and then large clumps .
+# ::root c
+(c / continue-01~e.45
+   :mode imperative~e.55
+   :ARG0 (y / you~e.45)
+   :ARG1 (b / blend-01~e.47)
+   :time (u / until~e.48
+            :op1 (a / and~e.51
+                    :op1 (f / form-01~e.50
+                            :ARG1 (c2 / crumb~e.49))
+                    :op2 (l / Clinton~e.54
+                            :mod (l2 / large~e.53)
+                            :time (t / then~e.52)))))
+
+# ::id homemade_graham_crackers_3_instr3
+# ::name homemade_graham_crackers_3_instr3
+# ::snt Turn dough out onto a non - stick surface and work into a large ball .
+# ::root a
+(a / and~e.65
+   :op1 (t / turn-out-11~e.56
+           :ARG0 (y / you~e.56)
+           :ARG1 (d / dough~e.57)
+           :destination (s2 / surface~e.64
+                            :ARG1-of (s / stick-01~e.63
+                                        :polarity -~e.61))
+           :mode imperative~e.56)
+   :op2 (w / work-01~e.66
+           :ARG0 y
+           :ARG1 (b / ball~e.70
+                    :mod (l / large~e.69))
+           :mode imperative~e.71))
+
+# ::id homemade_graham_crackers_3_instr4
+# ::name homemade_graham_crackers_3_instr4
+# ::snt Flatten some with the palm of your hand .
+# ::root f
+(f / flat-06~e.72
+   :mode imperative~e.72
+   :ARG0 (y / you~e.72
+            :part (h / hand~e.79
+                     :part p))
+   :ARG1 (s / some~e.73)
+   :instrument (p / palm~e.76))
+
+# ::id homemade_graham_crackers_3_instr5
+# ::name homemade_graham_crackers_3_instr5
+# ::snt Cover in plastic wrap and roll the dough out under the plastic wrap to be about 1/8 inch thick .
+# ::root a2
+(a2 / and~e.85
+    :op1 (c / cover-02~e.81
+            :ARG0 (y / you~e.81)
+            :ARG2 (w / wrap~e.84
+                     :consist-of (p / plastic~e.83))
+            :mode imperative~e.81)
+    :op2 (r / roll-01~e.86
+            :purpose (t / thick-03~e.99
+                        :ARG1 d2
+                        :ARG2 (a / about~e.96
+                                 :op1 (d / distance-quantity~e.98
+                                         :unit (i / inch~e.98)
+                                         :quant "1/8"~e.97)))
+            :ARG0 y
+            :ARG1 (d2 / dough~e.88)
+            :ARG2 (u / under~e.90
+                     :op1 w)
+            :mode imperative~e.100))
+
+# ::id homemade_graham_crackers_3_instr6
+# ::name homemade_graham_crackers_3_instr6
+# ::snt Keeping the plastic wrap on top will keep it from cracking and tearing ( although there will still be some cracks around the edges ) .
+# ::root h
+(h / have-concession-91~e.115
+   :ARG1 (k2 / keep-04~e.108
+             :ARG0 (k / keep-01~e.101
+                      :ARG1 (w / wrap-01~e.104
+                               :ARG2 (p / plastic~e.103))
+                      :location (t2 / top~e.106))
+             :ARG1 (i / it~e.109)
+             :ARG2 (a / and~e.112
+                      :op1 (c / crack-02~e.111
+                              :ARG1 i)
+                      :op2 (t / tear-01~e.113
+                              :ARG1 i)))
+   :ARG2 (c2 / crack-02~e.121
+             :quant (s / some~e.120)
+             :location (a2 / around~e.122
+                           :op1 (e / edge~e.124))
+             :mod (s2 / still~e.118)))
+
+# ::id homemade_graham_crackers_3_instr7
+# ::name homemade_graham_crackers_3_instr7
+# ::snt Use a cookie cutter to cut out the crackers .
+# ::root u
+(u / use-01~e.127
+   :mode imperative~e.127
+   :ARG0 (y / you~e.127)
+   :ARG1 (t / thing~e.136
+            :instrument-of (c3 / cut-01~e.130
+                               :ARG1 (c / cookie~e.129)))
+   :ARG2 (c4 / cut-out-06~e.132
+             :ARG0 y
+             :ARG1 (c2 / cookie~e.135)))
+
+# ::id homemade_graham_crackers_3_instr8
+# ::name homemade_graham_crackers_3_instr8
+# ::snt Use a toothpick to poke 4 holes in each cracker .
+# ::root u
+(u / use-01~e.137
+   :mode imperative~e.137
+   :ARG0 (y / you~e.137)
+   :ARG1 (t / toothpick~e.139)
+   :ARG2 (p / poke-01~e.141
+            :ARG0 y
+            :ARG1 (h / hole~e.143
+                     :quant 4~e.142)
+            :ARG2 (c / cracker~e.146
+                     :mod (e / each~e.145))))
+
+# ::id homemade_graham_crackers_3_instr9
+# ::name homemade_graham_crackers_3_instr9
+# ::snt If you want it to look like store - bought cookie , score the center of the crackers .
+# ::root s
+(s / score-01~e.160
+   :mode imperative~e.166
+   :ARG0 (y / you~e.149)
+   :ARG1 (c / center~e.162
+            :part-of (c3 / cookie~e.165))
+   :condition (w / want-01~e.150
+                 :ARG0 y
+                 :ARG1 (r / resemble-01~e.154
+                          :ARG1 (i / it~e.151)
+                          :ARG2 (c2 / cookie~e.158
+                                    :ARG1-of (b / buy-01~e.157
+                                                :ARG0 (s2 / store~e.155))))))
+
+# ::id homemade_graham_crackers_3_instr10
+# ::name homemade_graham_crackers_3_instr10
+# ::snt Place crackers on a lined ungreased cookie sheet , and chill for 30 WHOLE minutes ( do n't cheat ! ) .
+# ::root a
+(a / and~e.176
+   :op1 (p / place-01~e.167
+           :ARG0 y
+           :ARG1 (c4 / cookie~e.168)
+           :ARG2 (s / sheet~e.174
+                    :mod (c5 / cookie~e.173)
+                    :ARG1-of (c3 / cook-01~e.172
+                                 :polarity -~e.172)
+                    :ARG1-of (l / line-01~e.171)))
+   :op2 (c2 / chill-01~e.177
+            :ARG1 y
+            :duration (t / temporal-quantity~e.181
+                         :mod (w / whole~e.180)
+                         :unit (m2 / minute~e.181)
+                         :quant 30~e.179)
+            :mode imperative~e.183)
+   :ARG1-of (m / mean-01~e.182
+               :ARG2 (c / cheat-02~e.185
+                        :ARG0 (y / you~e.167)
+                        :mode imperative~e.183
+                        :polarity -~e.184)))
+
+# ::id homemade_graham_crackers_3_instr11
+# ::name homemade_graham_crackers_3_instr11
+# ::snt Meanwhile , preheat oven to 350ºF.
+# ::root h
+(h / heat-01~e.191
+   :mode imperative~e.194
+   :ARG0 (y / you~e.190)
+   :ARG1 (o / oven~e.192)
+   :destination (t / temperature-quantity~e.194
+                   :scale (f / fahrenheit~e.194))
+   :time (m / meanwhile~e.189))
+
+# ::id homemade_graham_crackers_3_instr12
+# ::name homemade_graham_crackers_3_instr12
+# ::snt Bake for 12 - 15 minutes ( mine were burnt at 15 , perfect at about 13 ) .
+# ::root m3
+(m3 / multi-sentence~e.213
+    :snt1 (b / bake-01~e.195
+             :ARG0 (y2 / you~e.195)
+             :duration (b2 / between~e.197
+                           :op1 (t / temporal-quantity~e.200
+                                   :unit (m / minute~e.200)
+                                   :quant 12~e.197)
+                           :op2 (t2 / temporal-quantity~e.200
+                                    :unit (m2 / minute~e.200)
+                                    :quant 15~e.199))
+             :mode imperative~e.213)
+    :snt2 (a2 / and~e.207
+              :op1 (b3 / burn-01~e.204
+                       :ARG1 (t4 / thing~e.202
+                                 :poss (i / i~e.202)))
+              :op2 (p / perfect-02~e.208
+                      :ARG1 (t3 / temporal-quantity~e.200
+                                :unit (y / year~e.206)
+                                :op1-of a
+                                :quant 15~e.206
+                                :quant 13~e.211)
+                      :time (a / about~e.210))))
+
+# ::id homemade_graham_crackers_3_instr13
+# ::name homemade_graham_crackers_3_instr13
+# ::snt Transfer to a wire rack for cooling immediately after removing from oven .
+# ::root t
+(t / transfer-01~e.214
+   :mode imperative~e.226
+   :purpose (c / cool-01~e.220
+               :ARG1 y
+               :time (a / after~e.222
+                        :mod (i / immediate~e.221)
+                        :op1 (r2 / remove-01~e.223
+                                 :ARG1 y
+                                 :ARG2 (o / oven~e.225))))
+   :ARG1 (y / you~e.214)
+   :ARG2 (r / rack~e.218
+            :mod (w / wire~e.217)))
+
+# ::id homemade_graham_crackers_3_instr14
+# ::name homemade_graham_crackers_3_instr14
+# ::snt Cookies will crispen as they cool .
+# ::root c3
+(c3 / crisp~e.229
+    :domain (c / cookie~e.227)
+    :time (c2 / cool-01~e.232
+              :ARG1 c))
+

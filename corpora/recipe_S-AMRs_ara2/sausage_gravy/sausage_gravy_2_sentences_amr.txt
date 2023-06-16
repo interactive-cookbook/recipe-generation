@@ -1,0 +1,121 @@
+# ::id sausage_gravy_2_instr0
+# ::name sausage_gravy_2_instr0
+# ::snt Step 1 In a heavy bottom skillet on medium high heat brown sausage and break up into little pieces .
+# ::root a
+(a / and~e.14
+   :li 1~e.2
+   :op1 (s / sausage~e.13
+           :location (s2 / skillet~e.7
+                         :mod (b / bottom~e.6)
+                         :mod (h2 / heavy~e.5))
+           :mod (b3 / brown~e.12)
+           :ARG1-of (h / heat-01~e.11
+                       :ARG1-of (h3 / high-02~e.10
+                                    :ARG2 (m / medium~e.9))))
+   :op2 (t / thing~e.14)
+   :op2 (b2 / break-up-08~e.15
+            :ARG1 s
+            :ARG2 (p / piece~e.19
+                     :mod (l / little~e.18)))
+   :rel (s3 / step-01~e.1))
+
+# ::id sausage_gravy_2_instr1
+# ::name sausage_gravy_2_instr1
+# ::snt Remove the sausage from the skillet once there is n’t any pink showing .
+# ::root r
+(r / remove-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG1 (s / sausage~e.23)
+   :ARG2 (s3 / skillet~e.26)
+   :time (o / once~e.27
+            :op1 (s2 / show-01~e.33
+                     :ARG1 (p / pink-04~e.32)
+                     :polarity -~e.30)))
+
+# ::id sausage_gravy_2_instr2
+# ::name sausage_gravy_2_instr2
+# ::snt Drain the sausage , and reserve 2 - 3 Tablespoons of the grease .
+# ::root a
+(a / and~e.39
+   :op1 (d3 / drain-01~e.35
+            :ARG0 (y / you~e.35)
+            :ARG1 (s / sausage~e.37)
+            :mode imperative~e.35)
+   :op2 (r / reserve-01~e.40
+           :ARG0 y
+           :ARG1 (g / grease~e.47
+                    :quant (b / between~e.41
+                              :op1 (d / dish~e.44
+                                      :quant 2~e.41)
+                              :op2 (d2 / dish~e.44
+                                       :quant 3~e.43)))
+           :mode imperative~e.35))
+
+# ::id sausage_gravy_2_instr3
+# ::name sausage_gravy_2_instr3
+# ::snt Step 2 Put the hot grease back into the pan with the flour and stir till incorporated .
+# ::root a
+(a / and~e.62
+   :mod (t / thing~e.50
+           :ARG4-of (s / step-01~e.49)
+           :mod 2~e.50)
+   :op1 (p2 / put-01~e.51
+            :ARG0 (y / you~e.51)
+            :ARG1 (g / grease~e.54
+                     :ARG1-of (h / hot-05~e.53))
+            :ARG2 (p / pan~e.58)
+            :accompanier (f / flour~e.61)
+            :direction (b / back~e.55))
+   :op2 (s2 / stir-01~e.63
+            :ARG0 y
+            :manner (t2 / till~e.64
+                        :op1 (i / incorporate-02~e.65
+                                :ARG1 f))
+            :mode imperative~e.66
+            :mode imperative~e.66))
+
+# ::id sausage_gravy_2_instr4
+# ::name sausage_gravy_2_instr4
+# ::snt Slowly add the milk , while whisking .
+# ::root a
+(a / add-02~e.68
+   :ARG1 (m / milk~e.70)
+   :time (w / whisk-01~e.73)
+   :ARG1-of (s / slow-01~e.67))
+
+# ::id sausage_gravy_2_instr5
+# ::name sausage_gravy_2_instr5
+# ::snt If it ’s too thick add some more milk or water .
+# ::root a
+(a / add-02~e.80
+   :mode imperative~e.80
+   :ARG0 (y / you~e.80)
+   :ARG1 (o / or~e.84
+            :quant (m2 / more~e.82)
+            :mod (s / some~e.81)
+            :op1 (m / milk~e.83)
+            :op2 (w / water~e.85))
+   :condition (h / have-degree-91~e.78
+                 :ARG1 (i / it~e.76)
+                 :ARG2 (t / thick-03~e.79
+                          :ARG1 i)
+                 :ARG3 (t2 / too~e.78)))
+
+# ::id sausage_gravy_2_instr6
+# ::name sausage_gravy_2_instr6
+# ::snt Step 3 Stir in the cooked sausage , sage , and season with salt and pepper .
+# ::root a2
+(a2 / and~e.97
+    :li 3~e.88
+    :op1 (s5 / stir-01~e.89
+             :ARG1 (a / and~e.94
+                      :op1 (s2 / sausage~e.93
+                               :ARG1-of (c / cook-01~e.92))
+                      :op2 (s / sage~e.95)))
+    :op2 (s3 / season-01~e.98
+             :ARG1-of (e / equal-01~e.100
+                         :ARG2 (a3 / and~e.101
+                                   :op2 (p / pepper~e.102))))
+    :ARG4-of (s4 / step-01~e.87))
+

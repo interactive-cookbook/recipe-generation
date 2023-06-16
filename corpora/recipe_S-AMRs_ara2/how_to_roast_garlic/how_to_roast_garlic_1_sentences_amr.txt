@@ -1,0 +1,213 @@
+# ::id how_to_roast_garlic_1_instr0
+# ::name how_to_roast_garlic_1_instr0
+# ::snt Preheat the oven to 400 degrees F. Peel the outer skin from the garlic head , leaving the cloves intact in their casings .
+# ::root a
+(a / and~e.16
+   :op1 (v / visit-01~e.8
+           :ARG0 (y / you~e.8)
+           :ARG1 (s / skin~e.11
+                    :mod (o / outer~e.10)
+                    :part-of (h / head~e.15
+                                :part-of (g / garlic~e.14)))
+           :mode imperative~e.8)
+   :op2 (h2 / hot-05~e.1
+            :ARG1 (o2 / oven~e.3)
+            :ARG2 (t / temperature-quantity~e.5
+                     :scale (f / fahrenheit~e.7)
+                     :quant 400~e.5)
+            :mode imperative~e.1)
+   :op3 (l / leave-13~e.17
+           :ARG0 y
+           :ARG1 (i / intact~e.20
+                    :location (c / casing~e.23
+                                 :unit (p2 / pound~e.19)))
+           :mode imperative~e.8)
+   :rel (p / pound~e.8))
+
+# ::id how_to_roast_garlic_1_instr1
+# ::name how_to_roast_garlic_1_instr1
+# ::snt Slice the top part of the garlic head off , leaving the cloves exposed .
+# ::root s
+(s / slice-01~e.25
+   :mode imperative~e.25
+   :ARG0 (y / you~e.25)
+   :ARG1 (p / part~e.28
+            :mod (t / top~e.27)
+            :mod (o / off~e.33)
+            :part-of (h / head~e.32
+                        :part-of (g / garlic~e.31)))
+   :manner (l / leave-13~e.35
+              :ARG0 y
+              :ARG1 (e / expose-01~e.38
+                       :ARG1 g)))
+
+# ::id how_to_roast_garlic_1_instr2
+# ::name how_to_roast_garlic_1_instr2
+# ::snt Put the garlic head onto a square of aluminum foil and drizzle with olive oil .
+# ::root a2
+(a2 / and~e.50
+    :op1 (p / put-01~e.40
+            :ARG0 (y / you~e.40)
+            :ARG1 (h / head~e.43
+                     :part-of (g / garlic~e.42))
+            :ARG2 (s / square~e.46
+                     :consist-of (f / foil~e.49
+                                    :consist-of (a / aluminum~e.48)))
+            :mode imperative~e.40)
+    :op2 (d / drip-01~e.51
+            :ARG0 y
+            :ARG2 (o / oil~e.54
+                     :mod (o2 / olive~e.53))
+            :mode imperative~e.55))
+
+# ::id how_to_roast_garlic_1_instr3
+# ::name how_to_roast_garlic_1_instr3
+# ::snt Wrap the garlic up in the foil .
+# ::root u
+(u / up-03~e.56
+   :mode imperative~e.56
+   :ARG0 (y / you~e.56)
+   :ARG1 (g / garlic~e.58)
+   :ARG2 (f / foil~e.62)
+   :rel (m / mass-quantity~e.56))
+
+# ::id how_to_roast_garlic_1_instr4
+# ::name how_to_roast_garlic_1_instr4
+# ::snt Put it on a small baking sheet and place it in the hot oven for 45 minutes .
+# ::root a
+(a / and~e.71
+   :op1 (p2 / put-01~e.64
+            :ARG0 (y / you~e.64)
+            :ARG1 (i / it~e.65)
+            :ARG2 (s / sheet~e.70
+                     :mod (s2 / small~e.68)
+                     :instrument-of (b / bake-01~e.69)))
+   :op2 (p / place-01~e.72
+           :ARG0 y
+           :ARG1 i
+           :ARG2 (o / oven~e.77
+                    :ARG1-of (h / hot-05~e.76))
+           :duration (t / temporal-quantity~e.80
+                        :unit (m / minute~e.80)
+                        :quant 45~e.79)))
+
+# ::id how_to_roast_garlic_1_instr5
+# ::name how_to_roast_garlic_1_instr5
+# ::snt Remove garlic from the oven and unfold carefully-- there will be hot steam inside .
+# ::root a
+(a / and~e.87
+   :op1 (r / remove-01~e.82
+           :ARG0 (y / you~e.82)
+           :ARG1 (g / garlic~e.83)
+           :ARG2 o
+           :mode imperative~e.82)
+   :op2 (u / unfold-01~e.88
+           :ARG1 y
+           :mode imperative~e.89)
+   :ARG1-of (c / cause-01~e.89
+               :ARG0 (s / steam~e.94
+                        :location (i / inside~e.95
+                                     :op1 (o / oven~e.86))
+                        :ARG1-of (h / hot-05~e.93))))
+
+# ::id how_to_roast_garlic_1_instr6
+# ::name how_to_roast_garlic_1_instr6
+# ::snt You may wish to let it cool for several minutes before unwrapping .
+# ::root p
+(p / possible-01~e.98
+   :ARG1 (w / wish-01~e.99
+            :ARG0 (y / you~e.97)
+            :ARG1 (l / let-01~e.101
+                     :ARG0 y
+                     :ARG1 (c / cool-01~e.103
+                              :ARG1 (i / it~e.102)
+                              :duration (s / several~e.105
+                                           :op1 (t / temporal-quantity~e.106
+                                                   :unit (m / minute~e.106)
+                                                   :quant 1~e.105)))
+                     :time (b / before~e.107
+                              :op1 (w2 / wrap-01~e.108
+                                       :ARG0 y
+                                       :ARG1 i)))))
+
+# ::id how_to_roast_garlic_1_instr7
+# ::name how_to_roast_garlic_1_instr7
+# ::snt After you take the garlic out of the foil , you will see your garlic is nicely roasted .
+# ::root s
+(s / see-01~e.122
+   :ARG0 (y / you~e.120)
+   :ARG1 (r / roast-01~e.127
+            :ARG1 (g2 / garlic~e.124
+                      :poss y)
+            :ARG1-of (n / nice-01~e.126))
+   :time (a / after~e.110
+            :op1 (t / take-out-11~e.112
+                    :ARG0 y
+                    :ARG1 (g / garlic~e.114)
+                    :source (f / foil~e.118))))
+
+# ::id how_to_roast_garlic_1_instr8
+# ::name how_to_roast_garlic_1_instr8
+# ::snt It should look similar to this :
+# ::root r
+(r / recommend-01~e.130
+   :ARG1 (l / look-02~e.131
+            :ARG0 (i / it~e.129)
+            :ARG1 (r2 / resemble-01~e.132
+                      :ARG1 i
+                      :ARG2 (t / this~e.134))))
+
+# ::id how_to_roast_garlic_1_instr9
+# ::name how_to_roast_garlic_1_instr9
+# ::snt Squeeze the cloves out from their casings .
+# ::root s
+(s / squeeze-01~e.136
+   :mode imperative~e.136
+   :ARG0 (y / you~e.136)
+   :ARG1 (n / nut~e.138)
+   :direction (o / out-06~e.139
+                 :ARG1 n
+                 :ARG2 (c / casing~e.142
+                          :poss n)))
+
+# ::id how_to_roast_garlic_1_instr10
+# ::name how_to_roast_garlic_1_instr10
+# ::snt They will be soft , caramelized , and easy to spread on toast or crackers .
+# ::root a
+(a / and~e.151
+   :op1 (s / soft-02~e.147
+           :ARG1 (t / they~e.144))
+   :op2 (r / roast-01~e.149
+           :ARG1 t)
+   :op3 (e / easy-05~e.152
+           :ARG1 (s2 / spread-01~e.154
+                     :ARG1 t
+                     :ARG2 (o / or~e.157
+                              :op1 (t2 / toast~e.156)
+                              :op2 (c / cookie~e.158)))))
+
+# ::id how_to_roast_garlic_1_instr11
+# ::name how_to_roast_garlic_1_instr11
+# ::snt Now the roasted garlic cloves are ready to use in your favorite recipe , or as an appetizer .
+# ::root r
+(r / ready-02~e.166
+   :ARG1 (p / pound~e.164
+            :ARG1-of (r3 / roast-01~e.162)
+            :consist-of (g / garlic~e.163)
+            :ARG1-of u)
+   :ARG2 (u / use-01~e.168
+            :ARG2 (o / or~e.174
+                     :op1 (r2 / recipe~e.172
+                              :mod (f / favorite~e.171
+                                      :poss (y / you~e.170)))
+                     :op2 (a / appetizer~e.177)))
+   :time (n / now~e.160))
+
+# ::id how_to_roast_garlic_1_instr12
+# ::name how_to_roast_garlic_1_instr12
+# ::snt Enjoy !
+# ::root e
+(e / enjoy-01~e.179
+   :mode expressive~e.180
+   :ARG0 (y / you~e.179))
+

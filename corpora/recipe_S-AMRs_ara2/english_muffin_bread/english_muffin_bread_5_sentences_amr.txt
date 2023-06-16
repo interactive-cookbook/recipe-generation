@@ -1,0 +1,191 @@
+# ::id english_muffin_bread_5_instr0
+# ::name english_muffin_bread_5_instr0
+# ::snt Add the yeast , warm water and sugar to a mixing bowl .
+# ::root a
+(a / add-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y2 / you~e.1)
+   :ARG1 (a2 / and~e.7
+             :op1 (y / yeast~e.3)
+             :op2 (w2 / water~e.6
+                      :ARG1-of (w / warm-07~e.5))
+             :op3 (s / sugar~e.8))
+   :ARG2 (b / bowl~e.12
+            :instrument-of (m / mix-01~e.11)))
+
+# ::id english_muffin_bread_5_instr1
+# ::name english_muffin_bread_5_instr1
+# ::snt Stir to combine and let set for 5 minutes or until mixture is bubbly .
+# ::root a
+(a / and~e.17
+   :op1 (s2 / stir-01~e.14
+            :purpose (c / combine-01~e.16)
+            :ARG0 (y / you~e.14)
+            :mode imperative~e.14)
+   :op2 (l / let-01~e.18
+           :ARG0 y
+           :ARG1 (s / set-01~e.19
+                    :duration (o / or~e.23
+                                 :op1 (t / temporal-quantity~e.22
+                                         :unit (m / minute~e.22)
+                                         :quant 5~e.21)
+                                 :op2 (u / until~e.24
+                                         :op1 (f / froth-01~e.27
+                                                 :ARG1 (m2 / mixture~e.25)))))
+           :mode imperative~e.18))
+
+# ::id english_muffin_bread_5_instr2
+# ::name english_muffin_bread_5_instr2
+# ::snt Add the honey and warm milk .
+# ::root a
+(a / add-02~e.29
+   :mode imperative~e.29
+   :ARG0 (y / you~e.29)
+   :ARG1 (a2 / and~e.32
+             :op1 (h / honey~e.31)
+             :op2 (m / milk~e.34
+                     :ARG1-of (w / warm-07~e.33))))
+
+# ::id english_muffin_bread_5_instr3
+# ::name english_muffin_bread_5_instr3
+# ::snt Mix the flour , salt and baking soda together .
+# ::root m
+(m / mix-01~e.36
+   :mode imperative~e.45
+   :ARG0 (y / you~e.36)
+   :ARG1 (a / and~e.41
+            :op1 (f / flour~e.38)
+            :op2 (s / salt~e.40)
+            :op3 (s2 / soda~e.43
+                     :ARG2-of (b / bake-01~e.42)))
+   :manner (t / together~e.44))
+
+# ::id english_muffin_bread_5_instr4
+# ::name english_muffin_bread_5_instr4
+# ::snt Add it to the mixing bowl and stir until it is thoroughly mixed together .
+# ::root a2
+(a2 / and~e.52
+    :op1 (a / add-02~e.46
+            :ARG1 (i / it~e.47)
+            :ARG2 (b / bowl~e.51
+                     :instrument-of (m / mix-01~e.50)))
+    :op2 (s / stir-01~e.53
+            :ARG1 i
+            :duration (u / until~e.54
+                         :op1 (m2 / mix-01~e.58
+                                  :ARG1 i
+                                  :degree (t / thorough~e.57)
+                                  :manner (t2 / together~e.59)))))
+
+# ::id english_muffin_bread_5_instr5
+# ::name english_muffin_bread_5_instr5
+# ::snt Batter will be really thick and sticky .
+# ::root a
+(a / and~e.66
+   :degree (r / really~e.64)
+   :op1 (t / thick-03~e.65
+           :ARG1 B~e.61)
+   :op2 (s / sticky~e.67
+           :domain B~e.61))
+
+# ::id english_muffin_bread_5_instr6
+# ::name english_muffin_bread_5_instr6
+# ::snt Grease 2 bread pans .
+# ::root b
+(b / bake-01~e.69
+   :mode imperative~e.69
+   :ARG0 (y / you~e.69)
+   :ARG2 (a / Pan~e.72
+            :purpose (b2 / bread~e.71)
+            :quant 2~e.70))
+
+# ::id english_muffin_bread_5_instr7
+# ::name english_muffin_bread_5_instr7
+# ::snt Sprinkle cornmeal on the bottom .
+# ::root s
+(s / spray-01~e.74
+   :mode imperative~e.74
+   :ARG0 (y / you~e.74)
+   :ARG1 (c / cornmeal~e.75)
+   :ARG2 (b / bottom~e.78))
+
+# ::id english_muffin_bread_5_instr8
+# ::name english_muffin_bread_5_instr8
+# ::snt Divide the batter between the 2 pans .
+# ::root d
+(d / divide-02~e.80
+   :mode imperative~e.80
+   :ARG0 (y / you~e.80)
+   :ARG1 (b / batter-01~e.82)
+   :ARG2 (a / Pan~e.86
+            :quant 2~e.85))
+
+# ::id english_muffin_bread_5_instr9
+# ::name english_muffin_bread_5_instr9
+# ::snt Sprinkle a little additional cornmeal on top .
+# ::root s
+(s / spray-01~e.88
+   :mode imperative~e.88
+   :ARG0 (y / you~e.88)
+   :ARG1 (c / cornmeal~e.92
+            :quant (l / little~e.90)
+            :mod (a / additional~e.91))
+   :ARG2 (t / top~e.94))
+
+# ::id english_muffin_bread_5_instr10
+# ::name english_muffin_bread_5_instr10
+# ::snt Cover with a towel and let raise until doubled .
+# ::root a
+(a / and~e.100
+   :op1 (c / cover-02~e.96
+           :ARG0 (y / you~e.96)
+           :ARG2 (t / towel~e.99)
+           :mode imperative~e.96)
+   :op2 (l / let-01~e.101
+           :ARG0 y
+           :ARG1 (r / raise-01~e.102)
+           :duration (u / until~e.103
+                        :op1 (d / double-01~e.104))
+           :mode imperative~e.101))
+
+# ::id english_muffin_bread_5_instr11
+# ::name english_muffin_bread_5_instr11
+# ::snt ( about 45 minutes )
+# ::root a
+(a / about~e.107
+   :op1 (t / temporal-quantity~e.109
+           :unit (m / minute~e.109)
+           :quant 45~e.108))
+
+# ::id english_muffin_bread_5_instr12
+# ::name english_muffin_bread_5_instr12
+# ::snt Bake at 375 degrees for 25 - 30 minutes .
+# ::root b
+(b / bake-01~e.111
+   :mode imperative~e.120
+   :ARG0 (y / you~e.111)
+   :ARG2 (t3 / temporal-quantity~e.119
+             :unit (d / degree~e.120)
+             :quant 375~e.113)
+   :duration (b2 / between~e.116
+                 :op1 (t / temporal-quantity~e.116
+                         :unit (m / minute~e.119)
+                         :quant 25~e.116)
+                 :op2 (t2 / temporal-quantity~e.118
+                          :unit (m2 / minute~e.119)
+                          :quant 30~e.118)))
+
+# ::id english_muffin_bread_5_instr13
+# ::name english_muffin_bread_5_instr13
+# ::snt Loaves will be brown on top and sound hollow when tapped on the tops .
+# ::root a
+(a / and~e.127
+   :op1 (b / brown-01~e.124
+           :ARG1 (l / lamb~e.121)
+           :location (t2 / top~e.126))
+   :op2 (s / sound-01~e.128
+           :ARG1 l
+           :ARG2 (h / hollow~e.129)
+           :time (t / tap-02~e.131
+                    :ARG1 l)))
+

@@ -1,0 +1,102 @@
+# ::id southern_sweet_tea_8_instr0
+# ::name southern_sweet_tea_8_instr0
+# ::snt Place one quart of water in a pan and bring to a boil .
+# ::root a
+(a / and~e.9
+   :op1 (p2 / place-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (w / water~e.5
+                     :quant (v / volume-quantity~e.3
+                               :unit (q / quart~e.3)
+                               :quant 1~e.2))
+            :ARG2 (p / pan~e.8)
+            :mode imperative~e.14)
+   :op2 (b / boil-01~e.13
+           :ARG0 y
+           :ARG1 w
+           :mode imperative~e.14))
+
+# ::id southern_sweet_tea_8_instr1
+# ::name southern_sweet_tea_8_instr1
+# ::snt Add the tea bags , cover and let steep for 10 - 15 minutes .
+# ::root a2
+(a2 / and~e.21
+    :op1 (a / add-02~e.15
+            :ARG0 (y / you~e.15)
+            :ARG1 (b / bag~e.18
+                     :mod (t / tea~e.17))
+            :mode imperative~e.15)
+    :op2 (c / cover-01~e.20
+            :ARG0 y
+            :mode imperative~e.22)
+    :op3 (l / let-01~e.22
+            :ARG0 y
+            :ARG1 (s / steep-01~e.23
+                     :ARG1 b
+                     :duration (b2 / between~e.25
+                                   :op1 (t2 / temporal-quantity~e.28
+                                            :unit (m / minute~e.28)
+                                            :quant 10~e.25)
+                                   :op2 (t3 / temporal-quantity~e.28
+                                            :unit (m2 / minute~e.28)
+                                            :quant 15~e.27)))
+            :mode imperative~e.22))
+
+# ::id southern_sweet_tea_8_instr2
+# ::name southern_sweet_tea_8_instr2
+# ::snt Remove the tea bags , add the sugar and stir until completely dissolved .
+# ::root a2
+(a2 / and~e.38
+    :op1 (r / remove-01~e.30
+            :ARG0 (y / you~e.30)
+            :ARG1 (b / bag~e.33
+                     :mod (t / tea~e.32))
+            :mode imperative~e.30)
+    :op2 (a / add-02~e.35
+            :ARG0 y
+            :ARG1 (s2 / sugar~e.37)
+            :mode imperative~e.43)
+    :op3 (s / stir-01~e.39
+            :ARG0 y
+            :duration (u / until~e.40
+                         :op1 (d / dissolve-01~e.42
+                                 :ARG1 s2
+                                 :ARG1-of (c / complete-02~e.41)))
+            :mode imperative~e.43))
+
+# ::id southern_sweet_tea_8_instr3
+# ::name southern_sweet_tea_8_instr3
+# ::snt Add the additional quart of cold water and stir .
+# ::root a3
+(a3 / and~e.51
+    :op1 (a / add-02~e.44
+            :ARG0 (y / you~e.44)
+            :ARG1 (w / water~e.50
+                     :quant (v / volume-quantity~e.47
+                               :mod (a2 / additional~e.46)
+                               :unit (q / quart~e.47)
+                               :quant 1~e.47)
+                     :ARG1-of (c / cold-01~e.49))
+            :mode imperative~e.44)
+    :op2 (s / stir-01~e.52
+            :ARG0 y
+            :mode imperative~e.53))
+
+# ::id southern_sweet_tea_8_instr4
+# ::name southern_sweet_tea_8_instr4
+# ::snt Serve over ice .
+# ::root s
+(s / serve-02~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG2 (i / ice~e.56))
+
+# ::id southern_sweet_tea_8_instr5
+# ::name southern_sweet_tea_8_instr5
+# ::snt Lemon and/or mint optional .
+# ::root o
+(o / optional~e.61
+   :domain (a / and-or~e.59
+              :op1 (v / vitamin~e.58)
+              :op2 (m / mint~e.60)))
+

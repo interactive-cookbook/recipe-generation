@@ -1,0 +1,133 @@
+# ::id homemade_graham_crackers_0_instr0
+# ::name homemade_graham_crackers_0_instr0
+# ::snt Preheat oven to 350F.
+# ::root h
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :scale (f / fahrenheit~e.4)
+                   :quant 25~e.4))
+
+# ::id homemade_graham_crackers_0_instr1
+# ::name homemade_graham_crackers_0_instr1
+# ::snt Combine all ingredients in a bowl until a dough is formed .
+# ::root c
+(c / combine-01~e.5
+   :mode imperative~e.5
+   :ARG0 (y / you~e.5)
+   :ARG1 (i / ingredient~e.7
+            :mod (a / all~e.6))
+   :location (b / bowl~e.10)
+   :time (u / until~e.11
+            :op1 (f / form-01~e.15
+                    :ARG1 (d / dough~e.13))))
+
+# ::id homemade_graham_crackers_0_instr2
+# ::name homemade_graham_crackers_0_instr2
+# ::snt Flour a cutting board and roll out the dough into ~1/4 inch thickness .
+# ::root a
+(a / and~e.21
+   :op1 (f / fix-01~e.17
+           :ARG0 (y / you~e.17)
+           :ARG1 (b / board~e.20
+                    :instrument-of (c / cut-01~e.19))
+           :mode imperative~e.17)
+   :op2 (r / roll-01~e.22
+           :ARG0 y
+           :ARG1 (d2 / dough~e.25)
+           :ARG3 (t / thickness~e.29
+                    :mod (d / distance-quantity~e.28
+                            :unit (i / inch~e.28)
+                            :quant 1.5~e.27))
+           :mode imperative~e.17))
+
+# ::id homemade_graham_crackers_0_instr3
+# ::name homemade_graham_crackers_0_instr3
+# ::snt Cut into rectangular , graham cracker shapes .
+# ::root c2
+(c2 / cut-01~e.31
+    :ARG2 (s / shape-01~e.37
+             :ARG2 (c / cracker~e.36
+                      :mod (g / graham~e.35))
+             :mod (r / rectangular~e.33)))
+
+# ::id homemade_graham_crackers_0_instr4
+# ::name homemade_graham_crackers_0_instr4
+# ::snt Use a fork to poke holes into the crackers to make them look like traditional graham crackers .
+# ::root u
+(u / use-01~e.39
+   :mode imperative~e.39
+   :ARG0 (y / you~e.39)
+   :ARG1 (f / fork~e.41)
+   :ARG2 (p / poke-01~e.43
+            :purpose (m / make-02~e.49
+                        :ARG0 y
+                        :ARG1 (l / look-02~e.51
+                                 :ARG0 c
+                                 :ARG1 (p2 / product~e.55
+                                           :mod (g / graham~e.54)
+                                           :mod (t / tradition~e.53))))
+            :ARG0 f
+            :ARG1 (c / cookie~e.55)
+            :ARG2 (h / hole~e.44)))
+
+# ::id homemade_graham_crackers_0_instr5
+# ::name homemade_graham_crackers_0_instr5
+# ::snt Place cut out dough onto a greased baking sheet .
+# ::root p
+(p / place-01~e.57
+   :mode imperative~e.57
+   :ARG0 (y / you~e.57)
+   :ARG1 (d / dough~e.60
+            :ARG1-of (c / cut-out-06~e.58
+                        :ARG0 y))
+   :ARG2 (s / sheet~e.65
+            :instrument-of (b2 / bake-01~e.64)
+            :instrument-of (b / bake-01~e.63)))
+
+# ::id homemade_graham_crackers_0_instr6
+# ::name homemade_graham_crackers_0_instr6
+# ::snt Bake for 12 - 16 minutes ( 12 for softer graham crackers and 16 for crunchy traditional graham crackers ) .
+# ::root b
+(b / bake-01~e.67
+   :mode imperative~e.87
+   :rel 12~e.69
+   :purpose (a / and~e.79
+               :op1 (t3 / temporal-quantity~e.72
+                        :unit (m4 / minute~e.72)
+                        :purpose-of p
+                        :quant 16~e.80)
+               :op2 (p / product~e.85
+                       :mod (t4 / tradition~e.83)
+                       :mod (c / crunchy~e.82)))
+   :ARG0 (y / you~e.67)
+   :duration (b2 / between~e.70
+                 :op1 (t / temporal-quantity~e.69
+                         :unit (m2 / minute~e.72)
+                         :quant 12~e.69)
+                 :op2 (t2 / temporal-quantity~e.72
+                          :unit (m3 / minute~e.72)
+                          :quant 16~e.71))
+   :rel (h / have-degree-91~e.76
+           :ARG2 s
+           :ARG1 s2
+           :ARG3 m5)
+   :rel (m5 / more~e.76)
+   :rel (s / soft-02~e.76
+           :ARG1 s2)
+   :rel (g / graham~e.77)
+   :rel (g2 / graham~e.84)
+   :rel (s2 / stamp~e.85
+            :mod g)
+   :ARG1-of (m / mean-01~e.87
+               :ARG2 a))
+
+# ::id homemade_graham_crackers_0_instr7
+# ::name homemade_graham_crackers_0_instr7
+# ::snt Null
+# ::root d
+(d / differ-02~e.88
+   :polarity -~e.88)
+

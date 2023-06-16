@@ -1,0 +1,141 @@
+# ::id bananas_foster_0_instr0
+# ::name bananas_foster_0_instr0
+# ::snt Instructions
+# ::root i
+(i / instruct-01~e.1)
+
+# ::id bananas_foster_0_instr1
+# ::name bananas_foster_0_instr1
+# ::snt Combine butter , brown sugar and cinnamon in a flambe pan or skillet .
+# ::root c2
+(c2 / combine-01~e.2
+    :mode imperative~e.15
+    :ARG0 (y / you~e.2)
+    :ARG1 (a / and~e.7
+             :op1 (b2 / butter~e.3)
+             :op2 (s2 / sugar~e.6
+                      :ARG1-of (b / brown-01~e.5))
+             :op3 (c / cinnamon~e.8))
+    :ARG2 (o / or~e.13
+             :op1 (p / pan~e.12
+                     :mod (f / flambe~e.11))
+             :op2 (s / skillet~e.14)))
+
+# ::id bananas_foster_0_instr2
+# ::name bananas_foster_0_instr2
+# ::snt Place over low heat and cook , stirring , until sugar dissolves .
+# ::root a
+(a / and~e.20
+   :op1 (p / place-01~e.16
+           :ARG0 (y / you~e.16)
+           :ARG2 (o / over~e.17
+                    :op1 (h / heat~e.19
+                            :ARG1-of (l / low-04~e.18)))
+           :mode imperative~e.16)
+   :op2 (c / cook-01~e.21
+           :ARG0 y
+           :manner (s / stir-01~e.23
+                      :ARG0 y)
+           :mode imperative~e.28)
+   :time (u / until~e.25
+            :op1 (d / dissolve-01~e.27
+                    :ARG1 (s2 / sugar~e.26))))
+
+# ::id bananas_foster_0_instr3
+# ::name bananas_foster_0_instr3
+# ::snt Stir in 1/2 cup rum , then place bananas in the pan .
+# ::root a
+(a / and~e.34
+   :op1 (s / stir-01~e.29
+           :ARG0 (y / you~e.29)
+           :ARG1 (r / rum~e.33
+                    :quant (v / volume-quantity~e.32
+                              :unit (c / cup~e.32)
+                              :quant "1/2"~e.31))
+           :mode imperative~e.29)
+   :op2 (p2 / place-01~e.36
+            :ARG0 y
+            :ARG1 (b / banana~e.37)
+            :ARG2 (p / pan~e.40)
+            :time (t / then~e.35)
+            :mode imperative~e.41))
+
+# ::id bananas_foster_0_instr4
+# ::name bananas_foster_0_instr4
+# ::snt When banana sections soften and begin to brown , carefully add remaining rum .
+# ::root a
+(a / add-02~e.52
+   :mode imperative~e.50
+   :ARG0 (y / you~e.52)
+   :ARG1 (r3 / rum~e.54
+             :ARG1-of (r2 / remain-01~e.53))
+   :time (a2 / and~e.46
+             :op1 (s2 / soft-02~e.45
+                      :ARG1 (s / section~e.44
+                               :part-of (b / banana~e.43)))
+             :op2 (b2 / begin-01~e.47
+                      :ARG1 (r / Brown~e.49
+                               :ARG1 s)))
+   :ARG1-of (c / care-04~e.51
+               :ARG0 y))
+
+# ::id bananas_foster_0_instr5
+# ::name bananas_foster_0_instr5
+# ::snt Continue to cook until rum is hot , then ignite if desired .
+# ::root a
+(a / and~e.63
+   :op1 (c / continue-01~e.56
+           :ARG0 (y / you~e.56)
+           :ARG1 (c2 / cook-01~e.58
+                     :ARG0 y
+                     :time (u / until~e.59
+                              :op1 (h / hot-05~e.62
+                                      :ARG1 (r / rum~e.60))))
+           :mode imperative~e.68)
+   :op2 (i / ignite-01~e.65
+           :ARG1 y
+           :condition (d / desire-01~e.67
+                         :ARG0 y)
+           :time (t / then~e.64)
+           :mode imperative~e.68))
+
+# ::id bananas_foster_0_instr6
+# ::name bananas_foster_0_instr6
+# ::snt When the flames subside , lift bananas out of pan and place four pieces over each scoop of ice cream .
+# ::root a
+(a / and~e.79
+   :op1 (l / lift-01~e.74
+           :ARG0 (y / you~e.74)
+           :ARG1 (b / banana~e.75)
+           :source (p / pan~e.78)
+           :mode imperative~e.73)
+   :op2 (p3 / place-01~e.80
+            :ARG0 y
+            :ARG1 (p2 / piece~e.82
+                      :quant 4~e.81)
+            :ARG2 (o / over~e.83
+                     :op1 (s / scoop~e.85
+                             :mod (e / each~e.84)
+                             :consist-of (c / cream~e.88
+                                            :mod (i / ice~e.87))))
+            :mode imperative~e.89)
+   :time (s2 / subside-01~e.72
+             :ARG1 (f / flame~e.71)))
+
+# ::id bananas_foster_0_instr7
+# ::name bananas_foster_0_instr7
+# ::snt Spoon warm sauce over top and serve immediately .
+# ::root a
+(a / and~e.95
+   :op1 (s3 / spoil-01~e.90
+            :ARG0 (y / you~e.90)
+            :ARG1 (s / sauce~e.92
+                     :ARG1-of (w / warm-07~e.91))
+            :ARG2 (t / top~e.94)
+            :mode imperative~e.90)
+   :op2 (s2 / serve-02~e.96
+            :ARG0 y
+            :ARG1 s
+            :time (i / immediate~e.97)
+            :mode imperative~e.90))
+

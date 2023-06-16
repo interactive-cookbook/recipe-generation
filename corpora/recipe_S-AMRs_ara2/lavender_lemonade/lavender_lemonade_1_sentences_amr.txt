@@ -1,0 +1,123 @@
+# ::id lavender_lemonade_1_instr0
+# ::name lavender_lemonade_1_instr0
+# ::snt Heat up 2 cups water until nearly boiling .
+# ::root h
+(h / heat-01~e.1
+   :mode imperative~e.9
+   :ARG0 (y / you~e.1)
+   :ARG1 (w / water~e.5
+            :quant (v / volume-quantity~e.4
+                      :unit (c / cup~e.4)
+                      :quant 2~e.3))
+   :time (u / until~e.6
+            :op1 (b / boil-01~e.8
+                    :ARG1 w
+                    :degree (n / near~e.7))))
+
+# ::id lavender_lemonade_1_instr1
+# ::name lavender_lemonade_1_instr1
+# ::snt Stir the sugar into the water until it 's dissolved and pour it into a pitcher .
+# ::root a
+(a / and~e.20
+   :op1 (s / stir-01~e.10
+           :ARG0 (y / you~e.10)
+           :ARG1 (s2 / sugar~e.12)
+           :ARG2 (w / water~e.15)
+           :duration (u / until~e.16
+                        :op1 (d / dissolve-01~e.19
+                                :ARG1 w))
+           :mode imperative~e.10)
+   :op2 (p2 / pour-01~e.21
+            :ARG0 y
+            :ARG1 s2
+            :ARG3 (p / pitcher~e.25)
+            :mode imperative~e.26))
+
+# ::id lavender_lemonade_1_instr2
+# ::name lavender_lemonade_1_instr2
+# ::snt Add the lavender sprigs and let steep for 10 minutes .
+# ::root a2
+(a2 / and~e.31
+    :op1 (a / add-02~e.27
+            :ARG0 (y / you~e.27)
+            :ARG1 (m / magazine~e.30
+                     :ARG1-of (s2 / supply-01~e.30
+                                  :ARG2 (l / lavender~e.29)))
+            :mode imperative~e.27)
+    :op2 (l2 / let-01~e.32
+             :ARG0 y
+             :ARG1 (s / steep-01~e.33
+                      :ARG1 m)
+             :duration (t / temporal-quantity~e.36
+                          :unit (m2 / minute~e.36)
+                          :quant 10~e.35)
+             :mode imperative~e.30))
+
+# ::id lavender_lemonade_1_instr3
+# ::name lavender_lemonade_1_instr3
+# ::snt While it 's steeping , zest the lemons and juice them .
+# ::root a
+(a / and~e.46
+   :op1 (z / zap-01~e.43
+           :ARG0 (y / you~e.43)
+           :ARG1 (l / lemon~e.45)
+           :mode imperative~e.43)
+   :op2 (j / juice~e.47
+           :domain l
+           :mode imperative~e.43)
+   :time (s / steam-02~e.41
+            :ARG1 (i / it~e.39)))
+
+# ::id lavender_lemonade_1_instr4
+# ::name lavender_lemonade_1_instr4
+# ::snt Cut one of the lemons into circles .
+# ::root c2
+(c2 / cut-02~e.50
+    :mode imperative~e.50
+    :ARG0 (y / you~e.50)
+    :ARG1 (l / lemon~e.54
+             :ARG1-of (i / include-91~e.52
+                         :ARG2 (l2 / lemon~e.54))
+             :quant 1~e.51)
+    :ARG2 (c / circle-01~e.56))
+
+# ::id lavender_lemonade_1_instr5
+# ::name lavender_lemonade_1_instr5
+# ::snt Add this to the pitcher as well as the cold water .
+# ::root a
+(a / add-02~e.58
+   :mode imperative~e.58
+   :ARG0 (y / you~e.58)
+   :ARG1 (a2 / and~e.63
+             :op1 (t / this~e.59)
+             :op2 (p / pitcher~e.62)
+             :op3 (w / water~e.68
+                     :ARG1-of (c / cold-01~e.67))))
+
+# ::id lavender_lemonade_1_instr6
+# ::name lavender_lemonade_1_instr6
+# ::snt Stir and serve over ice .
+# ::root a
+(a / and~e.71
+   :op1 (s2 / stir-01~e.70
+            :ARG0 (y / you~e.70)
+            :ARG1 (i / ice~e.74)
+            :mode imperative~e.70)
+   :op2 (s / serve-02~e.72
+           :ARG0 y
+           :manner i
+           :mode imperative~e.73))
+
+# ::id lavender_lemonade_1_instr7
+# ::name lavender_lemonade_1_instr7
+# ::snt Store in the fridge for up to a week .
+# ::root s
+(s / store-01~e.76
+   :mode imperative~e.85
+   :ARG0 (y / you~e.76)
+   :ARG2 (f / fridge~e.79)
+   :duration (u / up-to~e.81
+                :op1 (t / temporal-quantity~e.84
+                        :unit (w / week~e.84)
+                        :quant 1~e.83)))
+

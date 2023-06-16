@@ -1,0 +1,218 @@
+# ::id english_muffin_bread_0_instr0
+# ::name english_muffin_bread_0_instr0
+# ::snt Lightly coat two bread pans with Pam cooking spray and lightly sprinkle cornmeal on the bottom of each bread pan .
+# ::root a2
+(a2 / and~e.10
+    :op1 (c / coat-01~e.2
+            :ARG1 (a / Pan~e.5
+                     :mod (b2 / bread~e.4)
+                     :quant 2~e.3)
+            :ARG2 (s / spray~e.9
+                     :name (n / name~e.7
+                              :op1 "Pam"~e.7)
+                     :instrument-of (c2 / cook-01~e.8))
+            :ARG1-of (l / light-06~e.11))
+    :op2 (d / dust-01~e.12
+            :ARG1 (c3 / cornmeal~e.13)
+            :ARG2 (b / bottom~e.16
+                     :part-of (p / pan~e.20
+                                 :mod (e / each~e.18)
+                                 :mod b2))
+            :manner (l2 / light-06~e.11)))
+
+# ::id english_muffin_bread_0_instr1
+# ::name english_muffin_bread_0_instr1
+# ::snt Place 2 cups whole wheat flour and 2 cups bread flour in a bowl with yeast , sugar , salt and baking soda .
+# ::root p
+(p / place-01~e.22
+   :mode imperative~e.45
+   :ARG0 (y2 / you~e.22)
+   :ARG1 (a / and~e.28
+            :op1 (f / flour~e.27
+                    :quant (v / volume-quantity~e.30
+                              :unit (c / cup~e.24)
+                              :quant 2~e.23)
+                    :mod (w / wheat~e.26
+                            :mod (w2 / whole~e.25)))
+            :op2 (f2 / flour~e.32
+                     :quant (v2 / volume-quantity~e.30
+                                :unit (c2 / cup~e.30)
+                                :quant 2~e.29)
+                     :mod (b3 / bread~e.31)))
+   :ARG2 (b2 / bowl~e.35
+             :accompanier (a2 / and~e.38
+                              :op1 (y / yeast~e.37)
+                              :op2 (s3 / sugar~e.39)
+                              :op3 (s / salt~e.41)
+                              :op4 (s2 / soda~e.44
+                                       :instrument-of (b / bake-01~e.43)))))
+
+# ::id english_muffin_bread_0_instr2
+# ::name english_muffin_bread_0_instr2
+# ::snt Heat milk and water to 120 - 130 degrees ( microwave for 2 minutes ) .
+# ::root h
+(h / heat-01~e.46
+   :mode imperative~e.61
+   :rel 130~e.53
+   :ARG0 (y / you~e.46)
+   :ARG1 (a / and~e.48
+            :op1 (m2 / milk~e.47)
+            :op2 (w / water~e.49))
+   :ARG4 (b / between~e.51
+            :op1 (t2 / temperature-quantity~e.54
+                     :scale (c / celsius~e.54)
+                     :quant 120~e.51)
+            :op2 (t / temperature-quantity~e.53
+                    :scale c))
+   :manner (m / microwave~e.56
+              :duration (t3 / temporal-quantity~e.58
+                            :unit (m3 / minute~e.59)
+                            :quant 2~e.58)))
+
+# ::id english_muffin_bread_0_instr3
+# ::name english_muffin_bread_0_instr3
+# ::snt Make sure that liquid is not boiling .
+# ::root e
+(e / ensure-01~e.63
+   :mode imperative~e.62
+   :ARG0 (y / you~e.62)
+   :ARG1 (b / boil-01~e.68
+            :ARG1 (l / liquid~e.65)
+            :polarity -~e.67))
+
+# ::id english_muffin_bread_0_instr4
+# ::name english_muffin_bread_0_instr4
+# ::snt Pour liquid into bowl with dry ingredients and mix thoroughly .
+# ::root a
+(a / and~e.77
+   :op1 (p / pour-01~e.70
+           :ARG0 (y / you~e.70)
+           :ARG1 (l / liquid~e.71)
+           :ARG2 (b / bowl~e.73)
+           :accompanier (i / ingredient~e.76
+                           :ARG1-of (d / dry-08~e.75))
+           :mode imperative~e.70)
+   :op2 (m / mix-01~e.78
+           :ARG0 y
+           :ARG2 i
+           :manner (t / thorough~e.79)
+           :mode imperative~e.80))
+
+# ::id english_muffin_bread_0_instr5
+# ::name english_muffin_bread_0_instr5
+# ::snt Add remaining flour to bowl and mix thoroughly .
+# ::root a2
+(a2 / and~e.86
+    :op1 (a / add-02~e.81
+            :ARG0 (y / you~e.81)
+            :ARG1 (f / flour~e.83
+                     :ARG1-of (r / remain-01~e.82))
+            :ARG2 (b / bowl~e.85)
+            :mode imperative~e.81)
+    :op2 (m / mix-01~e.87
+            :ARG0 y
+            :ARG3 f
+            :manner (t / thorough~e.88)
+            :mode imperative~e.89))
+
+# ::id english_muffin_bread_0_instr6
+# ::name english_muffin_bread_0_instr6
+# ::snt Batter should be soft .
+# ::root r
+(r / recommend-01~e.91
+   :ARG1 (s / soft-02~e.93
+            :ARG1 (t / thing~e.90
+                     :ARG2-of (b / batter-01~e.90))))
+
+# ::id english_muffin_bread_0_instr7
+# ::name english_muffin_bread_0_instr7
+# ::snt Spoon batter equally into the two prepared bread pans and lightly sprinkle cornmeal on the top of each loaf .
+# ::root a2
+(a2 / and~e.104
+    :op1 (s / save-01~e.95
+            :ARG0 (y / you~e.95)
+            :ARG1 (b / batter-01~e.96)
+            :ARG2 (a / Pan~e.103
+                     :purpose (b2 / bread~e.102)
+                     :ARG1-of (p / prepare-01~e.101)
+                     :quant 2~e.100)
+            :ARG1-of (e2 / equal-01~e.97)
+            :mode imperative~e.95)
+    :op2 (d / dust-01~e.106
+            :ARG0 y
+            :ARG1 (c / cornmeal~e.107)
+            :ARG2 (t / top~e.110
+                     :part-of (l2 / loaf~e.113
+                                  :mod (e / each~e.112)))
+            :manner (l / light-06~e.105)
+            :mode imperative~e.95))
+
+# ::id english_muffin_bread_0_instr8
+# ::name english_muffin_bread_0_instr8
+# ::snt Put loaves in a warm place to rise for 45 minutes .
+# ::root p2
+(p2 / put-01~e.115
+    :purpose (r / rise-01~e.122
+                :ARG1 l
+                :duration (t / temporal-quantity~e.124
+                             :unit (m / minute~e.125)
+                             :quant 45~e.124))
+    :ARG1 (l / lamb~e.116)
+    :ARG2 (p / place~e.120
+             :ARG1-of (w / warm-07~e.119)))
+
+# ::id english_muffin_bread_0_instr9
+# ::name english_muffin_bread_0_instr9
+# ::snt Preheat oven to 400 degrees .
+# ::root h
+(h / heat-01~e.127
+   :mode imperative~e.127
+   :ARG0 (y / you~e.127)
+   :ARG1 (o / oven~e.128)
+   :destination (t / temperature-quantity~e.132
+                   :quant 400~e.130))
+
+# ::id english_muffin_bread_0_instr10
+# ::name english_muffin_bread_0_instr10
+# ::snt Bake loaves in preheated oven for 25 minutes .
+# ::root b
+(b / bake-01~e.133
+   :mode imperative~e.141
+   :ARG0 (y / you~e.133)
+   :ARG1 (l / lamb~e.134)
+   :duration (t / temporal-quantity~e.140
+                :unit (m / minute~e.140)
+                :quant 25~e.139)
+   :location (o / oven~e.137
+                :ARG1-of (h / heat-01~e.136)))
+
+# ::id english_muffin_bread_0_instr11
+# ::name english_muffin_bread_0_instr11
+# ::snt Immediately remove the loaves from the pans and cool on a rack .
+# ::root a2
+(a2 / and~e.149
+    :op1 (r2 / remove-01~e.143
+             :ARG0 (y / you~e.142)
+             :ARG1 (a / Pan~e.145)
+             :time (i / immediate~e.142)
+             :mode imperative~e.154)
+    :op2 (c / cool-01~e.150
+            :ARG1 y
+            :location (r / rack~e.153))
+    :rel (d / dear~e.145))
+
+# ::id english_muffin_bread_0_instr12
+# ::name english_muffin_bread_0_instr12
+# ::snt NOTE : The bread flour may be substituted for whole wheat flour if desired .
+# ::root n
+(n / note-01~e.155
+   :ARG1 (p / possible-01~e.160
+            :ARG1 (s / substitute-01~e.162
+                     :ARG1 (f / flour~e.159
+                              :mod (b / bread~e.158))
+                     :ARG2 (f2 / flour~e.166
+                               :consist-of (w / wheat~e.165
+                                              :mod (w2 / whole~e.164))))
+            :condition (d / desire-01~e.168
+                          :ARG1 s)))
+

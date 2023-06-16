@@ -1,0 +1,161 @@
+# ::id peanut_butter_bars_10_instr0
+# ::name peanut_butter_bars_10_instr0
+# ::snt In large mixer bowl , combine peanut butter and butter .
+# ::root c
+(c / combine-01~e.6
+   :mode imperative~e.11
+   :ARG0 (y / you~e.6)
+   :ARG1 (b2 / butter~e.8
+             :mod (p / peanut~e.7))
+   :ARG2 (b3 / butter~e.10)
+   :location (b / bowl~e.4
+                :mod (l / large~e.2)
+                :instrument-of (m / mix-01~e.3)))
+
+# ::id peanut_butter_bars_10_instr1
+# ::name peanut_butter_bars_10_instr1
+# ::snt Beat until smooth .
+# ::root b
+(b / beat-03~e.12
+   :mode imperative~e.15
+   :ARG0 (y / you~e.12)
+   :time (u / until~e.13
+            :op1 (s / smooth-04~e.14)))
+
+# ::id peanut_butter_bars_10_instr2
+# ::name peanut_butter_bars_10_instr2
+# ::snt Add sugar , eggs , and vanilla .
+# ::root a
+(a / add-02~e.16
+   :mode imperative~e.16
+   :ARG0 (y / you~e.16)
+   :ARG1 (a2 / and~e.21
+             :op1 (s / sugar~e.17)
+             :op2 (e / egg~e.19)
+             :op3 (v / vanilla~e.22)))
+
+# ::id peanut_butter_bars_10_instr3
+# ::name peanut_butter_bars_10_instr3
+# ::snt Beat until creamy .
+# ::root b
+(b / beat-01~e.24
+   :mode imperative~e.27
+   :ARG0 (y / you~e.24)
+   :duration (u / until~e.25
+                :op1 (c / creamy~e.26)))
+
+# ::id peanut_butter_bars_10_instr4
+# ::name peanut_butter_bars_10_instr4
+# ::snt Blend in flour and salt .
+# ::root m
+(m / mix-01~e.28
+   :mode imperative~e.28
+   :ARG0 (y / you~e.28)
+   :ARG2 (a / and~e.31
+            :op1 (f / flour~e.30)
+            :op2 (s / salt~e.32)))
+
+# ::id peanut_butter_bars_10_instr5
+# ::name peanut_butter_bars_10_instr5
+# ::snt Stir in 1 cup morsels
+# ::root s
+(s / stir-01~e.34
+   :mode imperative~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (d / disaster~e.38
+            :quant (v / volume-quantity~e.37
+                      :unit (c / cup~e.37)
+                      :quant 1~e.36))
+   :manner (n / English~e.38))
+
+# ::id peanut_butter_bars_10_instr6
+# ::name peanut_butter_bars_10_instr6
+# ::snt Spread in 9x13 pan .
+# ::root s
+(s / spread-03~e.39
+   :location (p / pan~e.42
+                :mod (d2 / distance-quantity~e.41
+                         :unit (i / inch~e.41)
+                         :quant 9~e.41))
+   :rel (d / distance-quantity~e.41
+           :unit (f / foot~e.41)
+           :quant 9x13~e.41))
+
+# ::id peanut_butter_bars_10_instr7
+# ::name peanut_butter_bars_10_instr7
+# ::snt Bake at 350 for 25 – 30 minutes , until edges begin to brown .
+# ::root b
+(b / bake-01~e.44
+   :mode imperative~e.58
+   :ARG0 (y / you~e.44)
+   :ARG3 (t3 / thing~e.58
+             :quant 350~e.46)
+   :duration (b3 / between~e.48
+                 :op1 (t / temporal-quantity~e.48
+                         :unit (m / minute~e.51)
+                         :quant 25~e.48)
+                 :op2 (t2 / temporal-quantity~e.50
+                          :unit (m2 / minute~e.51)
+                          :quant 30~e.50))
+   :time (u / until~e.53
+            :op1 (b2 / begin-01~e.55
+                     :ARG1 (r / Brown~e.57
+                              :domain (e / edge~e.54)))))
+
+# ::id peanut_butter_bars_10_instr8
+# ::name peanut_butter_bars_10_instr8
+# ::snt Sprinkle with remaining morsels .
+# ::root s
+(s / spray-01~e.59
+   :mode imperative~e.59
+   :ARG0 (y / you~e.59)
+   :ARG2 (m / moron~e.62
+            :ARG1-of (r / remain-01~e.61)))
+
+# ::id peanut_butter_bars_10_instr9
+# ::name peanut_butter_bars_10_instr9
+# ::snt Let set for about 5 min to soften then spread chocolate over top .
+# ::root a2
+(a2 / and~e.77
+    :op1 (l / let-01~e.64
+            :ARG0 (y / you~e.64)
+            :ARG1 (s / set-01~e.65
+                     :purpose (s2 / soft-02~e.71)
+                     :duration (a / about~e.67
+                                  :op1 (t / temporal-quantity~e.68
+                                          :unit (m / minute~e.69)
+                                          :quant 5~e.68)))
+            :mode imperative~e.64)
+    :op2 (s3 / spread-01~e.73
+             :ARG0 y
+             :ARG1 (c / chocolate~e.74)
+             :ARG2 (o / over~e.75
+                      :op1 (t3 / top~e.76))
+             :time (t2 / then~e.72)
+             :mode imperative~e.77))
+
+# ::id peanut_butter_bars_10_instr10
+# ::name peanut_butter_bars_10_instr10
+# ::snt Cool completely .
+# ::root c2
+(c2 / cool-04~e.78
+    :ARG1-of (c / complete-02~e.79))
+
+# ::id peanut_butter_bars_10_instr11
+# ::name peanut_butter_bars_10_instr11
+# ::snt For more chocolaty taste , use 3 cups chips ( 1½ packages ) .
+# ::root u
+(u / use-01~e.86
+   :mode imperative~e.94
+   :purpose (t / taste-01~e.84
+               :quant (m2 / more~e.82)
+               :ARG1 (c2 / chocolaty~e.83))
+   :ARG0 (y / you~e.86)
+   :ARG1 (c / chip~e.89
+            :quant (v / volume-quantity~e.88
+                      :unit (c3 / cup~e.88)
+                      :quant 3~e.87)
+            :ARG1-of (m / mean-01~e.90
+                        :ARG2 (p / package~e.92
+                                 :quant 1~e.91))))
+

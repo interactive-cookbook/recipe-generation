@@ -1,0 +1,219 @@
+# ::id peanut_butter_bars_3_instr0
+# ::name peanut_butter_bars_3_instr0
+# ::snt For the cookie , beat Crisco with peanut butter , milk and brown sugar until creamy .
+# ::root b
+(b / beat-01~e.5
+   :mode imperative~e.17
+   :purpose (c / cookie~e.3)
+   :ARG0 (y / you~e.5)
+   :ARG1 (p2 / product~e.6
+             :name (n / name~e.6
+                      :op1 "Crisco"~e.6))
+   :ARG2 (a / and~e.12
+            :op1 (b3 / butter~e.9
+                     :mod (p / peanut~e.8))
+            :op2 (m / milk~e.11)
+            :op3 (s / sugar~e.14
+                    :ARG1-of (b2 / brown-01~e.13)))
+   :duration (u / until~e.15
+                :op1 (c2 / creamy~e.16)))
+
+# ::id peanut_butter_bars_3_instr1
+# ::name peanut_butter_bars_3_instr1
+# ::snt Beat in egg .
+# ::root b
+(b / beat-01~e.18
+   :mode imperative~e.21
+   :ARG0 (y / you~e.18)
+   :ARG1 (e / egg~e.20))
+
+# ::id peanut_butter_bars_3_instr2
+# ::name peanut_butter_bars_3_instr2
+# ::snt Add flour , salt and baking soda , mix until thoroughly combined .
+# ::root a3
+(a3 / and~e.29
+    :op1 (a / add-02~e.22
+            :ARG0 (y / you~e.22)
+            :ARG1 (a2 / and~e.26
+                      :op1 (f / flour~e.23)
+                      :op2 (s / salt~e.25)
+                      :op3 (s2 / soda~e.28
+                               :ARG2-of (b / bake-01~e.27)))
+            :mode imperative~e.22)
+    :op2 (m / mix-01~e.30
+            :ARG0 y
+            :duration (u / until~e.31
+                         :op1 (c / combine-01~e.33
+                                 :ARG1 a2
+                                 :degree (t / thorough~e.32)))
+            :mode imperative~e.34))
+
+# ::id peanut_butter_bars_3_instr3
+# ::name peanut_butter_bars_3_instr3
+# ::snt Press cookie dough into a lightly greased 15x10 baking sheet .
+# ::root p
+(p / press-01~e.35
+   :mode imperative~e.45
+   :rel 10~e.42
+   :ARG0 (y / you~e.35)
+   :ARG1 (d / dough~e.37
+            :consist-of (c / cookie~e.36))
+   :ARG2 (s / sheet~e.44
+            :ARG1-of (e / equal-01~e.42
+                        :ARG2 (s2 / sheet~e.44
+                                  :quant 15~e.42))
+            :instrument-of (b2 / bake-01~e.43)
+            :instrument-of (b / bake-01~e.41
+                              :ARG1 s2))
+   :rel (l / light-06~e.40))
+
+# ::id peanut_butter_bars_3_instr4
+# ::name peanut_butter_bars_3_instr4
+# ::snt Bake in a 375 degree oven for 18 - 22 minutes , until browned .
+# ::root b
+(b / bake-01~e.46
+   :mode imperative~e.60
+   :ARG0 (y / you~e.46)
+   :ARG2 (o / oven~e.51
+            :mod (t / temperature-quantity~e.49
+                    :quant 375~e.49))
+   :duration (b2 / between~e.53
+                 :op1 (t2 / temporal-quantity~e.56
+                          :unit (m / minute~e.56)
+                          :quant 18~e.53)
+                 :op2 (t3 / temporal-quantity~e.56
+                          :unit (m2 / minute~e.56)
+                          :quant 22~e.55))
+   :time (u / until~e.58
+            :op1 (r / Brown~e.59)))
+
+# ::id peanut_butter_bars_3_instr5
+# ::name peanut_butter_bars_3_instr5
+# ::snt Remove .
+# ::root r
+(r / remove-01~e.61)
+
+# ::id peanut_butter_bars_3_instr6
+# ::name peanut_butter_bars_3_instr6
+# ::snt While baking , heat condensed milk with butter over low heat until warmed .
+# ::root h2
+(h2 / heat-01~e.66
+    :ARG1 (m / milk~e.68
+             :ARG1-of (c / condense-01~e.67))
+    :duration (u / until~e.74
+                 :op1 (w / warm-01~e.75
+                         :ARG1 m))
+    :instrument (b2 / butter~e.70)
+    :location (h / heat~e.73
+                 :ARG1-of (l / low-04~e.72))
+    :time (b / bake-01~e.64))
+
+# ::id peanut_butter_bars_3_instr7
+# ::name peanut_butter_bars_3_instr7
+# ::snt Remove from heat , whisk in peanut butter morsels and stir until melted .
+# ::root a
+(a / and~e.86
+   :op1 (r / remove-01~e.77
+           :ARG0 (y / you~e.77)
+           :ARG2 (h / heat~e.79)
+           :mode imperative~e.77)
+   :op2 (s / stir-01~e.81
+           :ARG0 y
+           :ARG1 (m2 / moron~e.85
+                     :consist-of (b / butter~e.84
+                                    :source (p / peanut~e.83)))
+           :mode imperative~e.90)
+   :op3 (s2 / stir-01~e.87
+            :ARG0 y
+            :duration (u / until~e.88
+                         :op1 (m / melt-01~e.89
+                                 :ARG1 m2))
+            :mode imperative~e.90))
+
+# ::id peanut_butter_bars_3_instr8
+# ::name peanut_butter_bars_3_instr8
+# ::snt Pour over warm cookie layer .
+# ::root p
+(p / pour-01~e.91
+   :mode imperative~e.91
+   :ARG0 (y / you~e.91)
+   :ARG2 (l / layer~e.95
+            :ARG1-of (w / warm-07~e.93)
+            :consist-of (c / cookie~e.94)))
+
+# ::id peanut_butter_bars_3_instr9
+# ::name peanut_butter_bars_3_instr9
+# ::snt Immediately press candies into top layer .
+# ::root p
+(p / press-01~e.98
+   :mode imperative~e.103
+   :ARG0 (y / you~e.98)
+   :ARG1 (c / cookie~e.99)
+   :ARG2 (l / layer~e.102
+            :mod (t / top~e.101))
+   :time (i / immediate~e.97))
+
+# ::id peanut_butter_bars_3_instr10
+# ::name peanut_butter_bars_3_instr10
+# ::snt Allow to set , about one hour .
+# ::root a2
+(a2 / allow-01~e.104
+    :mode imperative~e.111
+    :ARG0 (y / you~e.104)
+    :ARG1 (s / set-01~e.106
+             :duration (a / about~e.108
+                          :op1 (t / temporal-quantity~e.110
+                                  :unit (h / hour~e.110)
+                                  :quant 1~e.109))))
+
+# ::id peanut_butter_bars_3_instr11
+# ::name peanut_butter_bars_3_instr11
+# ::snt Slice and serve !
+# ::root a
+(a / and~e.113
+   :op1 (s2 / slash~e.112
+            :ARG0 (y / you~e.112)
+            :mode imperative~e.112)
+   :op2 (s / serve-01~e.114
+           :ARG0 y
+           :mode imperative~e.112))
+
+# ::id peanut_butter_bars_3_instr12
+# ::name peanut_butter_bars_3_instr12
+# ::snt !
+# ::root t
+(t / thing~e.116
+   :mode expressive~e.116)
+
+# ::id peanut_butter_bars_3_instr13
+# ::name peanut_butter_bars_3_instr13
+# ::snt * * I store cut cookie bars in a ziploc freezer bag for my kid 's lunches .
+# ::root s
+(s / store-01~e.120
+   :purpose (l / lunch~e.133
+               :poss (p / person~e.131
+                        :ARG0-of (h / have-rel-role-91~e.131
+                                    :ARG1 i
+                                    :ARG2 (k / kid~e.131))))
+   :ARG0 (i / i~e.119)
+   :ARG1 (c2 / cut-01~e.121
+             :ARG1 (b2 / bar~e.123
+                       :mod (c / cookie~e.122)))
+   :location (b / bag~e.128
+                :location (f / freezer~e.127)
+                :consist-of (z / ziploc~e.126)))
+
+# ::id peanut_butter_bars_3_instr14
+# ::name peanut_butter_bars_3_instr14
+# ::snt The color of the candies may change slightly , but they taste delicious !
+# ::root h
+(h / have-concession-91~e.144
+   :ARG1 (t / taste-01~e.146
+            :ARG1 (c3 / cookie~e.139)
+            :ARG3 (d / delicious~e.147))
+   :ARG2 (p / possible-01~e.140
+            :ARG1 (c / change-01~e.141
+                     :ARG1 (c2 / color-01~e.136
+                               :ARG1 c3)
+                     :ARG2 (s / slight~e.142))))
+

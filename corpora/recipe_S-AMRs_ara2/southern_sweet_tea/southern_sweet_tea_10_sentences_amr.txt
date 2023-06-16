@@ -1,0 +1,117 @@
+# ::id southern_sweet_tea_10_instr0
+# ::name southern_sweet_tea_10_instr0
+# ::snt Bring 3 cups water to a boil in a saucepan ; add tea bags .
+# ::root a2
+(a2 / and~e.11
+    :op1 (b3 / bring-01~e.1
+             :ARG0 (y / you~e.1)
+             :ARG1 (w / water~e.4
+                      :quant (v / volume-quantity~e.3
+                                :unit (c / cup~e.3)
+                                :quant 3~e.2))
+             :ARG2 (b2 / boil-01~e.7
+                       :ARG1 w)
+             :location (s / saucepan~e.10)
+             :mode imperative~e.1)
+    :op2 (a / add-02~e.12
+            :ARG0 y
+            :ARG1 (b / bag~e.14
+                     :mod (t / tea~e.13))
+            :mode imperative~e.15))
+
+# ::id southern_sweet_tea_10_instr1
+# ::name southern_sweet_tea_10_instr1
+# ::snt Boil 1 minute ; remove from heat .
+# ::root a
+(a / and~e.19
+   :op1 (b / boil-01~e.16
+           :ARG0 (y / you~e.16)
+           :duration (t / temporal-quantity~e.18
+                        :unit (m / minute~e.18)
+                        :quant 1~e.17)
+           :mode imperative~e.16)
+   :op2 (r / remove-01~e.20
+           :ARG0 y
+           :ARG2 (h / heat~e.22)
+           :mode imperative~e.16))
+
+# ::id southern_sweet_tea_10_instr2
+# ::name southern_sweet_tea_10_instr2
+# ::snt Cover and steep 10 minutes .
+# ::root a
+(a / and~e.25
+   :op1 (c / cover-02~e.24)
+   :op2 (t / temporal-quantity~e.28
+           :unit (m / minute~e.28)
+           :ARG1-of (s / steep-01~e.26)
+           :quant 10~e.27))
+
+# ::id southern_sweet_tea_10_instr3
+# ::name southern_sweet_tea_10_instr3
+# ::snt Remove and discard tea bags .
+# ::root a
+(a / and~e.31
+   :op1 (r / remove-01~e.30
+           :ARG0 (y / you~e.30)
+           :ARG1 (b / bag~e.34
+                    :mod (t / tea~e.33))
+           :mode imperative~e.31)
+   :op2 (d / discard-01~e.32
+           :ARG0 y
+           :ARG1 b
+           :mode imperative~e.35))
+
+# ::id southern_sweet_tea_10_instr4
+# ::name southern_sweet_tea_10_instr4
+# ::snt Add desired amount of sugar , stirring until dissolved .
+# ::root a
+(a / add-02~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :ARG1 (a2 / amount~e.38
+             :ARG1-of (d / desire-01~e.37)
+             :quant-of (s2 / sugar~e.40))
+   :manner (s / stir-01~e.42
+              :ARG0 y
+              :duration (u / until~e.43
+                           :op1 (d2 / dissolve-01~e.44
+                                    :ARG1 s2))))
+
+# ::id southern_sweet_tea_10_instr5
+# ::name southern_sweet_tea_10_instr5
+# ::snt Pour into
+# ::root p
+(p / pour-01~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46))
+
+# ::id southern_sweet_tea_10_instr6
+# ::name southern_sweet_tea_10_instr6
+# ::snt a 1-gal .
+# ::root v
+(v / volume-quantity~e.49
+   :quant 1~e.48
+   :unit 1-gal~e.49)
+
+# ::id southern_sweet_tea_10_instr7
+# ::name southern_sweet_tea_10_instr7
+# ::snt container , and add 7 cups cold water .
+# ::root a2
+(a2 / and~e.53
+    :op1 (c2 / container~e.51)
+    :op2 (a / add-02~e.54
+            :ARG1 (w / water~e.58
+                     :quant (v / volume-quantity~e.56
+                               :unit (c3 / cup~e.56)
+                               :quant 7~e.55)
+                     :ARG1-of (c / cold-01~e.57))))
+
+# ::id southern_sweet_tea_10_instr8
+# ::name southern_sweet_tea_10_instr8
+# ::snt Serve over ice .
+# ::root s
+(s / serve-02~e.60
+   :mode imperative~e.60
+   :ARG0 (y / you~e.60)
+   :ARG2 (i / ice~e.62))
+

@@ -1,0 +1,135 @@
+# ::id southern_sweet_tea_2_instr0
+# ::name southern_sweet_tea_2_instr0
+# ::snt Pour sugar into a one - gallon pitcher .
+# ::root p2
+(p2 / pour-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (s / sugar~e.2)
+    :ARG2 (p / pitcher~e.8
+             :mod (v / volume-quantity~e.7
+                     :unit (g / gallon~e.7)
+                     :quant 1~e.5)))
+
+# ::id southern_sweet_tea_2_instr1
+# ::name southern_sweet_tea_2_instr1
+# ::snt Bring water to a boil in a pot over medium heat .
+# ::root b2
+(b2 / bring-01~e.10
+    :mode imperative~e.10
+    :ARG0 (y / you~e.10)
+    :ARG1 (w / water~e.11)
+    :ARG2 (b / boil-01~e.14
+             :ARG1 w)
+    :condition (h / heat~e.20
+                  :degree (m / medium~e.19))
+    :location (p / pot~e.17))
+
+# ::id southern_sweet_tea_2_instr2
+# ::name southern_sweet_tea_2_instr2
+# ::snt When water begins to boil , remove from heat and place teabags in .
+# ::root a
+(a / and~e.31
+   :op1 (r / remove-01~e.28
+           :ARG0 (y / you~e.28)
+           :ARG2 (h / heat~e.30)
+           :mode imperative~e.22)
+   :op2 (p / place-01~e.32
+           :ARG0 y
+           :ARG1 (e / Tea~e.33)
+           :mode imperative~e.35)
+   :time (b / begin-01~e.24
+            :ARG1 (b2 / boil-01~e.26
+                      :ARG1 (w / water~e.23))))
+
+# ::id southern_sweet_tea_2_instr3
+# ::name southern_sweet_tea_2_instr3
+# ::snt Let steep for 5 to 6 minutes .
+# ::root l
+(l / let-01~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :ARG1 (s / steep-01~e.37
+            :ARG0 y
+            :duration (b / between~e.39
+                         :op1 (t / temporal-quantity~e.42
+                                 :unit (m / minute~e.42)
+                                 :quant 5~e.39)
+                         :op2 (t2 / temporal-quantity~e.42
+                                  :unit (m2 / minute~e.42)
+                                  :quant 6~e.41))))
+
+# ::id southern_sweet_tea_2_instr4
+# ::name southern_sweet_tea_2_instr4
+# ::snt Remove tea bags , and pour tea into pitcher .
+# ::root a
+(a / and~e.48
+   :op1 (r / remove-01~e.44
+           :ARG0 (y / you~e.44)
+           :ARG1 (b / bag~e.46
+                    :mod (t / tea~e.45))
+           :mode imperative~e.44)
+   :op2 (p2 / pour-01~e.49
+            :ARG0 y
+            :ARG1 t
+            :ARG3 (p / pitcher~e.52)
+            :mode imperative~e.53))
+
+# ::id southern_sweet_tea_2_instr5
+# ::name southern_sweet_tea_2_instr5
+# ::snt Stir until sugar is dissolved .
+# ::root s
+(s / stir-01~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :time (u / until~e.55
+            :op1 (d / dissolve-01~e.58
+                    :ARG1 (s2 / sugar~e.56))))
+
+# ::id southern_sweet_tea_2_instr6
+# ::name southern_sweet_tea_2_instr6
+# ::snt Fill pitcher rest of the way with cold water and stir until blended .
+# ::root a
+(a / and~e.69
+   :op1 (f / fill-01~e.60
+           :ARG0 (y / you~e.60)
+           :ARG1 (p / pitcher~e.61)
+           :ARG2 (w / water~e.68
+                    :ARG1-of (c / cold-01~e.67))
+           :duration (r / rest~e.62
+                        :part-of (w2 / way~e.65))
+           :mode imperative~e.73)
+   :op2 (s / stir-01~e.70
+           :ARG0 y
+           :duration (u / until~e.71
+                        :op1 (b / blend-01~e.72
+                                :ARG1 w))
+           :mode imperative~e.73))
+
+# ::id southern_sweet_tea_2_instr7
+# ::name southern_sweet_tea_2_instr7
+# ::snt Serve over ice in glasses .
+# ::root s
+(s / serve-02~e.74
+   :mode imperative~e.79
+   :ARG0 (y / you~e.74)
+   :ARG2 (i / ice~e.76
+            :location (g / glasses~e.78)))
+
+# ::id southern_sweet_tea_2_instr8
+# ::name southern_sweet_tea_2_instr8
+# ::snt Add a lemon slice or a mint sprig to each serving if desired .
+# ::root a
+(a / add-02~e.80
+   :mode imperative~e.80
+   :ARG0 (y / you~e.80)
+   :ARG1 (o / or~e.84
+            :op1 (s2 / slice~e.83
+                     :mod (l / lemon~e.82))
+            :op2 (s3 / sprig~e.87
+                     :mod (m / mint~e.86)))
+   :ARG2 (s / serve-02~e.90
+            :mod (e / each~e.89))
+   :condition (d / desire-01~e.92
+                 :ARG0 y))
+

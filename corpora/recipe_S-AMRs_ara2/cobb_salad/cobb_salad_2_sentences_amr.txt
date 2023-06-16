@@ -1,0 +1,204 @@
+# ::id cobb_salad_2_instr0
+# ::name cobb_salad_2_instr0
+# ::snt Whisk together Dijon mustard , vinegar and shallot in a bowl .
+# ::root m
+(m / mix-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.7
+            :op1 (m2 / mustard~e.4
+                     :name (n / name~e.3
+                              :op1 "Dijon"~e.3))
+            :op2 (v / vinegar~e.6)
+            :op3 (s / shallot~e.8))
+   :location (b / bowl~e.11))
+
+# ::id cobb_salad_2_instr1
+# ::name cobb_salad_2_instr1
+# ::snt Gradually whisk in oil , to create an emulsion ; I use my immersion mixer to make it simple .
+# ::root m3
+(m3 / multi-sentence~e.22
+    :snt1 (w / whisk-01~e.14
+             :purpose (c / create-01~e.19
+                         :ARG1 (e / emulsion~e.21))
+             :ARG1 (o / oil~e.16)
+             :manner (g / gradual~e.13)
+             :mode imperative~e.13)
+    :snt2 (u / use-01~e.24
+             :ARG0 (i / i~e.23)
+             :ARG1 (t / thing~e.27
+                      :poss i
+                      :instrument-of (m2 / mix-01~e.27
+                                         :mod (i2 / immersion~e.26)))
+             :ARG2 (m / make-02~e.29
+                      :ARG0 i
+                      :ARG1 (s / simple-02~e.31
+                               :ARG1 (i3 / it~e.30)))))
+
+# ::id cobb_salad_2_instr2
+# ::name cobb_salad_2_instr2
+# ::snt Season to taste with salt and pepper .
+# ::root s2
+(s2 / season~e.33
+    :mode imperative~e.33
+    :instrument (a / and~e.38
+                   :op1 (s / salt~e.37)
+                   :op2 (p / pepper~e.39))
+    :ARG1-of (t / taste-01~e.35))
+
+# ::id cobb_salad_2_instr3
+# ::name cobb_salad_2_instr3
+# ::snt Boil eggs in a saucepan for over 10 minutes .
+# ::root b
+(b / boil-01~e.41
+   :mode imperative~e.41
+   :ARG0 (y / you~e.41)
+   :ARG1 (e / egg~e.42)
+   :duration (o / over~e.47
+                :op1 (t / temporal-quantity~e.49
+                        :unit (m / minute~e.49)
+                        :quant 10~e.48))
+   :location (s / saucepan~e.45))
+
+# ::id cobb_salad_2_instr4
+# ::name cobb_salad_2_instr4
+# ::snt Remove from hot water , cool , peel and chop .
+# ::root a
+(a / and~e.59
+   :op1 (r / remove-01~e.51
+           :ARG0 (y / you~e.51)
+           :ARG2 (w / water~e.54
+                    :ARG1-of (h / hot-05~e.53))
+           :mode imperative~e.58)
+   :op2 (c2 / cool-01~e.56
+            :ARG0 y)
+   :op3 (p / peel~e.58
+           :ARG0 y
+           :mode imperative~e.58)
+   :op4 (c / chop-up-03~e.60
+           :ARG0 y
+           :mode imperative~e.58))
+
+# ::id cobb_salad_2_instr5
+# ::name cobb_salad_2_instr5
+# ::snt Place bacon in a skillet .
+# ::root p
+(p / place-01~e.62
+   :mode imperative~e.62
+   :ARG0 (y / you~e.62)
+   :ARG1 (b / bacon~e.63)
+   :ARG2 (s / skillet~e.66))
+
+# ::id cobb_salad_2_instr6
+# ::name cobb_salad_2_instr6
+# ::snt Cook over medium high heat until evenly brown .
+# ::root c
+(c / cook-01~e.68
+   :mode imperative~e.68
+   :ARG0 (y / you~e.68)
+   :instrument (h / heat~e.72
+                  :mod (m / medium~e.70)
+                  :ARG1-of (h2 / high-02~e.71))
+   :time (u / until~e.73
+            :op1 (b / brown-01~e.75
+                    :ARG1 y
+                    :ARG1-of (e / even-02~e.74))))
+
+# ::id cobb_salad_2_instr7
+# ::name cobb_salad_2_instr7
+# ::snt Drain , crumble and set aside .
+# ::root a
+(a / and~e.80
+   :op1 (d / drain-01~e.77
+           :ARG0 (y / you~e.77)
+           :mode imperative~e.77)
+   :op2 (c / crumble-01~e.79
+           :ARG0 y
+           :mode imperative~e.83)
+   :op3 (s / set-01~e.81
+           :ARG0 y
+           :ARG2 (a2 / aside~e.82)))
+
+# ::id cobb_salad_2_instr8
+# ::name cobb_salad_2_instr8
+# ::snt Prepare a bed of the chopped lettuce on a large serving dish .
+# ::root p
+(p / prepare-02~e.84
+   :mode imperative~e.96
+   :ARG0 (y / you~e.84)
+   :ARG1 (b / bed~e.86
+            :consist-of (l2 / lettuce~e.90
+                            :ARG1-of (c / chop-01~e.89)))
+   :location (d / dish~e.95
+                :mod (l / large~e.93)
+                :ARG2-of (s / serve-02~e.94)))
+
+# ::id cobb_salad_2_instr9
+# ::name cobb_salad_2_instr9
+# ::snt Evenly divide and arrange chicken , eggs , tomatoes , blue cheese , bacon , avocado and green onions in a row on top of the lettuce , take your time , make it pretty .
+# ::root a
+(a / and~e.99
+   :op1 (a2 / and~e.99
+            :op1 (d / divide-02~e.98
+                    :ARG0 (y / you~e.98)
+                    :ARG1 (a3 / and~e.102
+                              :manner (r / row~e.118
+                                         :location (t3 / top~e.120
+                                                       :mod (l / lettuce~e.123)))
+                              :op1 (c2 / chicken~e.101)
+                              :op2 (e / egg~e.103)
+                              :op3 (v / vegetable~e.105)
+                              :op3 (m / make-01~e.129
+                                      :ARG0 y
+                                      :ARG1 (i / it~e.130)
+                                      :manner (p / pretty~e.131))
+                              :op4 (c / cheese~e.108
+                                      :mod (b2 / blue~e.107))
+                              :op5 (b / bacon~e.110)
+                              :op6 (a5 / avocado~e.112)
+                              :op7 (v2 / vegetable~e.115
+                                       :ARG1-of (g / green-02~e.114)))
+                    :mod (e2 / even~e.97)
+                    :mode imperative~e.97)
+            :op2 (a4 / arrange-01~e.100
+                     :ARG0 y
+                     :ARG1 a3
+                     :mode imperative~e.97))
+   :op2 (t / take-01~e.125
+           :ARG0 y
+           :ARG1 (t2 / time~e.127
+                     :poss y)
+           :mode imperative~e.132))
+
+# ::id cobb_salad_2_instr10
+# ::name cobb_salad_2_instr10
+# ::snt Put it in the fridge until serving .
+# ::root p
+(p / put-01~e.133
+   :mode imperative~e.140
+   :ARG0 (y / you~e.133)
+   :ARG1 (i / it~e.134)
+   :ARG2 (f / fridge~e.137)
+   :time (u / until~e.138
+            :op1 (s / serve-02~e.139
+                    :ARG0 y
+                    :ARG1 i)))
+
+# ::id cobb_salad_2_instr11
+# ::name cobb_salad_2_instr11
+# ::snt Pour over the dress when serving .
+# ::root p
+(p / pour-01~e.141
+   :mode imperative~e.141
+   :ARG0 (y / you~e.141)
+   :ARG2 (d / dress~e.144)
+   :time (s / serve-01~e.146
+            :ARG0 y))
+
+# ::id cobb_salad_2_instr12
+# ::name cobb_salad_2_instr12
+# ::snt Enjoy
+# ::root e
+(e / enjoy-01~e.148
+   :ARG0 (y / you~e.148))
+

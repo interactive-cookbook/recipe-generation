@@ -1,0 +1,79 @@
+# ::id bananas_foster_10_instr0
+# ::name bananas_foster_10_instr0
+# ::snt In a large skillet over medium heat , melt butter .
+# ::root m2
+(m2 / melt-01~e.9
+    :mode imperative~e.11
+    :ARG0 (y / you~e.11)
+    :ARG1 (b / butter~e.10)
+    :location (s / skillet~e.4
+                 :location (h / heat~e.7
+                              :mod (m / medium~e.6))
+                 :mod (l / large~e.3)))
+
+# ::id bananas_foster_10_instr1
+# ::name bananas_foster_10_instr1
+# ::snt Stir in sugar , rum , and cinnamon .
+# ::root s
+(s / stir-01~e.12
+   :mode imperative~e.12
+   :ARG0 (y / you~e.12)
+   :ARG1 (a / and~e.18
+            :op1 (s2 / sugar~e.14)
+            :op2 (r / rum~e.16)
+            :op3 (c / cinnamon~e.19)))
+
+# ::id bananas_foster_10_instr2
+# ::name bananas_foster_10_instr2
+# ::snt It will sizzle quite a bit when you add the rum .
+# ::root s
+(s / sift-01~e.23
+   :ARG1 (i / it~e.21)
+   :degree (m / much~e.24
+              :degree (q / quite~e.24))
+   :time (a / add-02~e.29
+            :ARG0 (y / you~e.28)
+            :ARG1 (r / rum~e.31)))
+
+# ::id bananas_foster_10_instr3
+# ::name bananas_foster_10_instr3
+# ::snt When mixture begins to bubble , place bananas in pan .
+# ::root p2
+(p2 / place-01~e.39
+    :mode imperative~e.43
+    :ARG0 (y / you~e.39)
+    :ARG1 (b / banana~e.40)
+    :ARG2 (p / pan~e.42)
+    :time (b2 / begin-01~e.35
+              :ARG1 (b3 / bubble~e.37
+                        :domain (m / mixture~e.34))))
+
+# ::id bananas_foster_10_instr4
+# ::name bananas_foster_10_instr4
+# ::snt Cook until bananas are hot , 1 to 2 minutes .
+# ::root c
+(c / cook-01~e.44
+   :mode imperative~e.44
+   :ARG0 (y / you~e.44)
+   :time (u / until~e.45
+            :duration (b2 / between~e.50
+                          :op1 (t / temporal-quantity~e.53
+                                  :unit (m / minute~e.53)
+                                  :quant 1~e.50)
+                          :op2 (t2 / temporal-quantity~e.53
+                                   :unit (m2 / minute~e.53)
+                                   :quant 2~e.52))
+            :op1 (h / hot-05~e.48
+                    :ARG1 (b / banana~e.46))))
+
+# ::id bananas_foster_10_instr5
+# ::name bananas_foster_10_instr5
+# ::snt Serve warm over vanilla ice cream .
+# ::root s
+(s / serve-02~e.55
+   :mode imperative~e.61
+   :ARG0 (y / you~e.55)
+   :ARG2 (i / ice-cream~e.60
+            :mod (v / vanilla~e.58))
+   :ARG1-of (w / warm-07~e.56))
+

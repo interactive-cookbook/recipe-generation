@@ -1,0 +1,105 @@
+# ::id southern_sweet_tea_6_instr0
+# ::name southern_sweet_tea_6_instr0
+# ::snt Fill a large container with 3 quarts of water minus one cup .
+# ::root f
+(f / fill-01~e.1
+   :mode imperative~e.13
+   :ARG0 (y / you~e.1)
+   :ARG1 (c / container~e.4
+            :mod (l / large~e.3))
+   :ARG2 (w / water~e.9
+            :quant (v / volume-quantity~e.12
+                      :unit (q / quart~e.7)
+                      :quant 3~e.6)
+            :quant (v2 / volume-quantity~e.12
+                       :unit (c2 / cup~e.12)
+                       :quant 1~e.11)))
+
+# ::id southern_sweet_tea_6_instr1
+# ::name southern_sweet_tea_6_instr1
+# ::snt On the stove melt the sugar with the one cup of water .
+# ::root m
+(m / melt-01~e.17
+   :mode imperative~e.26
+   :ARG0 (y / you~e.17)
+   :ARG1 (s2 / sugar~e.19)
+   :accompanier (w / water~e.25
+                   :quant (v / volume-quantity~e.23
+                             :unit (c / cup~e.23)
+                             :quant 1~e.22))
+   :location (s / stove~e.16))
+
+# ::id southern_sweet_tea_6_instr2
+# ::name southern_sweet_tea_6_instr2
+# ::snt Add the tea bags and let the tea steep for 30 minutes .
+# ::root a2
+(a2 / and~e.31
+    :op1 (a / add-02~e.27
+            :ARG0 (y / you~e.27)
+            :ARG1 (b / bag~e.30
+                     :mod (t / tea~e.29))
+            :mode imperative~e.27)
+    :op2 (l / let-01~e.32
+            :ARG0 y
+            :ARG1 (s / steep-01~e.35
+                     :ARG1 t
+                     :duration (t2 / temporal-quantity~e.37
+                                   :unit (m / minute~e.38)
+                                   :quant 30~e.37))
+            :mode imperative~e.32))
+
+# ::id southern_sweet_tea_6_instr3
+# ::name southern_sweet_tea_6_instr3
+# ::snt After the tea has steeped , add the sugar mixture .
+# ::root a
+(a / add-02~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (t2 / thing~e.50
+             :ARG3-of (m / mix-01~e.49
+                         :ARG1 (s2 / sugar~e.48)))
+   :time (a2 / after~e.40
+             :op1 (s / steep-01~e.44
+                     :ARG1 (t / tea~e.42))))
+
+# ::id southern_sweet_tea_6_instr4
+# ::name southern_sweet_tea_6_instr4
+# ::snt Add the slices of lemons and give it a good stir .
+# ::root a2
+(a2 / and~e.56
+    :op1 (a / add-02~e.51
+            :ARG0 (y / you~e.51)
+            :ARG1 (s / slice~e.53
+                     :part-of (l / lemon~e.55))
+            :mode imperative~e.51)
+    :op2 (s2 / stir-01~e.61
+             :ARG0 y
+             :ARG1 (i / it~e.58)
+             :ARG1-of (g / good-02~e.60)
+             :mode imperative~e.51))
+
+# ::id southern_sweet_tea_6_instr5
+# ::name southern_sweet_tea_6_instr5
+# ::snt Pour over ice and add a sprig of fresh mint .
+# ::root a2
+(a2 / and~e.66
+    :op1 (p / pour-01~e.63
+            :ARG0 (y / you~e.63)
+            :ARG2 (i / ice~e.65)
+            :mode imperative~e.63)
+    :op2 (a / add-02~e.67
+            :ARG0 y
+            :ARG1 (s / sprig~e.69
+                     :quant-of (m / mint~e.72
+                                  :ARG1-of (f / fresh-04~e.71)))
+            :mode imperative~e.67))
+
+# ::id southern_sweet_tea_6_instr6
+# ::name southern_sweet_tea_6_instr6
+# ::snt Summer in a glass .
+# ::root b
+(b / be-located-at-91~e.75
+   :ARG1 (d / date-entity~e.74
+            :season (s / summer~e.74))
+   :ARG2 (g / glass~e.77))
+

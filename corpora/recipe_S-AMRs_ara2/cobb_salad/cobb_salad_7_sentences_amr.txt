@@ -1,0 +1,78 @@
+# ::id cobb_salad_7_instr0
+# ::name cobb_salad_7_instr0
+# ::snt 1
+# ::root n
+(n / number~e.1
+   :value 1~e.1)
+
+# ::id cobb_salad_7_instr1
+# ::name cobb_salad_7_instr1
+# ::snt In tightly covered container , shake all vinaigrette ingredients .
+# ::root s
+(s / shake-01~e.7
+   :mode imperative~e.11
+   :ARG0 (y / you~e.7)
+   :ARG1 (i / ingredient~e.10
+            :mod (v / vinaigrette~e.9)
+            :mod (a / all~e.8))
+   :location (c / container~e.5
+                :ARG1-of (c2 / cover-01~e.4
+                             :ARG1-of (t / tight-05~e.3))))
+
+# ::id cobb_salad_7_instr2
+# ::name cobb_salad_7_instr2
+# ::snt Refrigerate at least 1 hour to blend flavors .
+# ::root c
+(c / cool-01~e.12
+   :mode imperative~e.12
+   :purpose (b / blend-01~e.18
+               :ARG0 y
+               :ARG1 (f / flavor-00~e.19))
+   :ARG0 (y / you~e.12)
+   :duration (a / at-least~e.14
+                :op1 (t / temporal-quantity~e.16
+                        :unit (h / hour~e.16)
+                        :quant 1~e.15)))
+
+# ::id cobb_salad_7_instr3
+# ::name cobb_salad_7_instr3
+# ::snt 2
+# ::root n
+(n / number~e.21
+   :value 2~e.21)
+
+# ::id cobb_salad_7_instr4
+# ::name cobb_salad_7_instr4
+# ::snt Divide lettuce among 4 salad plates or shallow bowls .
+# ::root d
+(d / divide-02~e.22
+   :mode imperative~e.22
+   :ARG0 (y / you~e.22)
+   :ARG1 (l / lettuce~e.23)
+   :ARG2 (o / or~e.28
+            :op1 (p / plate~e.27
+                    :mod (s / salad~e.26)
+                    :quant 4~e.25)
+            :op2 (p2 / plate~e.30
+                     :mod (s2 / shallow~e.29))))
+
+# ::id cobb_salad_7_instr5
+# ::name cobb_salad_7_instr5
+# ::snt Arrange remaining salad ingredients in rows on lettuce .
+# ::root a
+(a / arrange-01~e.32
+   :ARG1 (i / ingredient~e.35
+            :mod (s / salad~e.34)
+            :ARG1-of (r / remain-01~e.33))
+   :ARG2 (r2 / row~e.37
+             :consist-of (l / lettuce~e.39)))
+
+# ::id cobb_salad_7_instr6
+# ::name cobb_salad_7_instr6
+# ::snt Serve with vinaigrette .
+# ::root s
+(s / serve-02~e.41
+   :mode imperative~e.41
+   :ARG0 (y / you~e.41)
+   :accompanier (v / vinaigrette~e.43))
+

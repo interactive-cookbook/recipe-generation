@@ -1,0 +1,163 @@
+# ::id bananas_foster_7_instr0
+# ::name bananas_foster_7_instr0
+# ::snt Prep by scooping ice cream into bowls and storing in the freezer until you 're ready ( this keeps it moving if you 're making more than one batch )
+# ::root p2
+(p2 / prepare-02~e.1
+    :ARG0 (y / you~e.14)
+    :manner (a / and~e.8
+               :op1 (s / scoop-01~e.3
+                       :ARG0 y
+                       :ARG1 (c / cream~e.5
+                                :mod (i / ice~e.4))
+                       :ARG2 (p / pound~e.7))
+               :op2 (s2 / store-01~e.9
+                        :ARG1 y
+                        :ARG2 (f / freezer~e.12)
+                        :time (u / until~e.13
+                                 :op1 (r / ready-02~e.16
+                                         :ARG1 y)))
+               :ARG0-of (k / keep-02~e.19
+                           :ARG1 (m3 / move-01~e.21
+                                     :ARG1 (i2 / it~e.20))
+                           :condition (m / make-01~e.25
+                                         :ARG0 y
+                                         :ARG1 (b / batch~e.29
+                                                  :quant (m2 / more-than~e.26
+                                                             :op1 1~e.28))))))
+
+# ::id bananas_foster_7_instr1
+# ::name bananas_foster_7_instr1
+# ::snt Slice banana
+# ::root s
+(s / slice~e.31
+   :op1 (b / banana~e.32))
+
+# ::id bananas_foster_7_instr2
+# ::name bananas_foster_7_instr2
+# ::snt Place butter , brown sugar , cinnamon & nutmeg in a pre - heated non stick pan .
+# ::root p2
+(p2 / place-01~e.33
+    :mode imperative~e.33
+    :ARG0 (y / you~e.33)
+    :ARG1 (a / and~e.40
+             :op1 (b3 / butter~e.34)
+             :op2 (s2 / sugar~e.37
+                      :mod (b2 / brown~e.36))
+             :op3 (c / cinnamon~e.39)
+             :op4 (n / nutmeg~e.41))
+    :ARG2 (p / pan~e.49
+             :ARG1-of (s / stick-01~e.48
+                         :polarity -~e.47)
+             :ARG1-of (h / heat-01~e.46
+                         :time (b / before~e.44))))
+
+# ::id bananas_foster_7_instr3
+# ::name bananas_foster_7_instr3
+# ::snt Stir until combined , melted and bubbly .
+# ::root s
+(s / stir-01~e.51
+   :mode imperative~e.51
+   :ARG0 (y / you~e.51)
+   :time (u / until~e.52
+            :op1 (a / and~e.56
+                    :op1 (c / combine-01~e.53)
+                    :op2 (m / melt-01~e.55)
+                    :op3 (b / bubbly~e.57
+                            :quant 23~e.57))))
+
+# ::id bananas_foster_7_instr4
+# ::name bananas_foster_7_instr4
+# ::snt Add bananas and stir to heat up and coat well .
+# ::root a2
+(a2 / and~e.61
+    :op1 (a / add-02~e.59
+            :ARG0 (y / you~e.59)
+            :ARG1 (b / banana~e.60)
+            :mode imperative~e.59)
+    :op2 (s / stir-01~e.62
+            :purpose (a3 / and~e.66
+                         :op1 (h / heat-up-02~e.64
+                                 :ARG1 y)
+                         :op2 (c / coat-01~e.67
+                                 :ARG1 b
+                                 :manner (w / well-09~e.68)))
+            :ARG0 y
+            :mode imperative~e.59))
+
+# ::id bananas_foster_7_instr5
+# ::name bananas_foster_7_instr5
+# ::snt Remove pan from heat and add rum .
+# ::root a2
+(a2 / and~e.74
+    :op1 (r / remove-01~e.70
+            :ARG0 (y / you~e.70)
+            :ARG1 (p / pan~e.71)
+            :ARG2 (h / heat-01~e.73)
+            :mode imperative~e.70)
+    :op2 (a / add-02~e.75
+            :ARG0 y
+            :ARG1 (r2 / rum~e.76)
+            :mode imperative~e.77))
+
+# ::id bananas_foster_7_instr6
+# ::name bananas_foster_7_instr6
+# ::snt Allow the rum to heat for a few seconds , then light with a stick lighter ( safety first )
+# ::root a2
+(a2 / and~e.87
+    :op1 (a / allow-01~e.78
+            :ARG0 (y / you~e.78)
+            :ARG1 (h2 / heat-01~e.82
+                      :ARG1 (r / rum~e.80)
+                      :duration (f / few~e.85
+                                   :op1 (t / temporal-quantity~e.86
+                                           :unit (s2 / second~e.86)
+                                           :quant 1~e.84)))
+            :mode imperative~e.88)
+    :op2 (l / light-04~e.89
+            :ARG0 r
+            :instrument (s3 / stick~e.92
+                            :ARG1-of (h / have-degree-91~e.93
+                                        :ARG2 (l2 / light-06~e.93
+                                                  :ARG1 s3)
+                                        :ARG3 (m / more~e.93)))
+            :time (t2 / then~e.88)
+            :mode imperative~e.97)
+    :rel (s / safe-01~e.95
+            :ord (o / ordinal-entity~e.96
+                    :value 1~e.96)))
+
+# ::id bananas_foster_7_instr7
+# ::name bananas_foster_7_instr7
+# ::snt Once the flame goes down a bit you can add the pan back to the heat source and gently stir until the flame is extinguished .
+# ::root p2
+(p2 / possible-01~e.106
+    :ARG1 (a2 / and~e.115
+              :op1 (a / add-02~e.107
+                      :ARG0 (y / you~e.105)
+                      :ARG1 (p / pan~e.109)
+                      :ARG2 (s / source~e.114
+                               :mod (h / heat~e.113))
+                      :direction (b / back~e.110))
+              :op2 (s2 / stir-01~e.117
+                       :ARG0 y
+                       :duration (u / until~e.118
+                                    :op1 (e / extinguish-01~e.122
+                                            :ARG1 (f / flame~e.120)))
+                       :manner (g / gentle~e.116)))
+    :time (g2 / go-down-27~e.101
+              :ARG1 f
+              :degree (b2 / bit~e.104)))
+
+# ::id bananas_foster_7_instr8
+# ::name bananas_foster_7_instr8
+# ::snt Pour over ice cream and serve !
+# ::root a
+(a / and~e.128
+   :op1 (p / pour-01~e.124
+           :ARG0 (y / you~e.124)
+           :ARG2 (i / ice-cream~e.127)
+           :mode imperative~e.124)
+   :op2 (s / serve-02~e.129
+           :ARG0 y
+           :mode imperative~e.130))
+

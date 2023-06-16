@@ -1,0 +1,227 @@
+# ::id english_muffin_bread_8_instr0
+# ::name english_muffin_bread_8_instr0
+# ::snt In a large mixing OR the bowl of your stand mixer , add your water , milk , sugar , yeast and salt .
+# ::root a
+(a / add-02~e.13
+   :ARG0 (y2 / you~e.14)
+   :ARG1 (a2 / and~e.16
+             :op1 (w / water~e.15
+                     :poss y2)
+             :op2 (m / milk~e.17)
+             :op3 (s3 / sugar~e.19)
+             :op4 (y / yeast~e.21)
+             :op5 (s / salt~e.23))
+   :location (o / or~e.5
+                :op1 (m2 / mix-01~e.4
+                         :manner (l / large~e.3))
+                :op2 (b / bowl~e.7
+                        :poss y2
+                        :instrument-of (m3 / mix-01~e.11
+                                           :mod (s2 / stand~e.10)))))
+
+# ::id english_muffin_bread_8_instr1
+# ::name english_muffin_bread_8_instr1
+# ::snt Add 3 cups out of the 5 cups of flour and mix until incorporated .
+# ::root a2
+(a2 / and~e.35
+    :op1 (a / add-02~e.25
+            :ARG0 (y / you~e.25)
+            :ARG1 (v / volume-quantity~e.32
+                     :unit (c / cup~e.27)
+                     :ARG1-of (i / include-91~e.29
+                                 :ARG2 (v2 / volume-quantity~e.32
+                                           :unit (c2 / cup~e.32)
+                                           :quant-of (f / flour~e.34)
+                                           :quant 5~e.31))
+                     :quant 3~e.26)
+            :mode imperative~e.25)
+    :op2 (m / mix-01~e.36
+            :ARG0 y
+            :time (u / until~e.37
+                     :op1 (i2 / incorporate-02~e.38
+                              :ARG1 f))
+            :mode imperative~e.39))
+
+# ::id english_muffin_bread_8_instr2
+# ::name english_muffin_bread_8_instr2
+# ::snt Add the additional 2 cups of flour and mix until blended without over mixing .
+# ::root a3
+(a3 / and~e.47
+    :op1 (a / add-02~e.40
+            :ARG0 (y / you~e.40)
+            :ARG1 (f / flour~e.46
+                     :quant (v / volume-quantity~e.44
+                               :mod (a2 / additional~e.42)
+                               :unit (c / cup~e.44)
+                               :quant 2~e.43))
+            :mode imperative~e.40)
+    :op2 (m / mix-01~e.48
+            :ARG0 y
+            :duration (u / until~e.49
+                         :op1 (m2 / mix-01~e.50
+                                  :ARG1 f
+                                  :manner (m3 / mix-01~e.53
+                                              :manner (o / over~e.52)
+                                              :polarity -~e.51)))
+            :mode imperative~e.54))
+
+# ::id english_muffin_bread_8_instr3
+# ::name english_muffin_bread_8_instr3
+# ::snt The dough will be sticky , so lightly flour your hands to handle .
+# ::root s
+(s / sticky~e.59
+   :domain (d / dough~e.56)
+   :ARG0-of (c / cause-01~e.61
+               :ARG1 (d2 / dust-01~e.63
+                         :purpose (h2 / handle-01~e.67
+                                      :ARG0 y
+                                      :ARG1 d)
+                         :ARG0 (y / you~e.64
+                                  :part h)
+                         :ARG1 (h / hand~e.65)
+                         :ARG1-of (l / light-06~e.62)
+                         :mode imperative~e.63)))
+
+# ::id english_muffin_bread_8_instr4
+# ::name english_muffin_bread_8_instr4
+# ::snt Grease 2 loaf pans and sprinkle 1 tbs of cornmeal in the bottom of each pan .
+# ::root a2
+(a2 / and~e.73
+    :op1 (b / bake-01~e.69
+            :ARG0 (y / you~e.69)
+            :ARG2 (a / Pan~e.72
+                     :mod (l / loaf~e.71
+                             :quant 2~e.70)
+                     :mod (e / each~e.83)
+                     :part (b3 / bottom~e.81))
+            :mode imperative~e.69)
+    :op2 (b2 / bake-01~e.74
+             :ARG0 y
+             :ARG1 (c / cornmeal~e.78
+                      :quant (m / mass-quantity~e.76
+                                :unit (t / ton~e.76)
+                                :quant 1~e.75))
+             :ARG2 b3
+             :mode imperative~e.74))
+
+# ::id english_muffin_bread_8_instr5
+# ::name english_muffin_bread_8_instr5
+# ::snt Divide the dough in half and place into the pans .
+# ::root a2
+(a2 / and~e.91
+    :op1 (d / divide-02~e.86
+            :ARG0 (y / you~e.86)
+            :ARG1 (d2 / dough~e.88)
+            :manner (h / half~e.90)
+            :mode imperative~e.86)
+    :op2 (p / place-01~e.92
+            :ARG0 y
+            :ARG2 (a / Pan~e.95)
+            :mode imperative~e.96))
+
+# ::id english_muffin_bread_8_instr6
+# ::name english_muffin_bread_8_instr6
+# ::snt Sprinkle 1tbs cornmeal on the top of bread loaves , cover with a tea towel and let it rise in a warm place until doubled in size .
+# ::root a
+(a / and~e.112
+   :op1 (s2 / spray-01~e.97
+            :ARG0 (y / you~e.97)
+            :ARG1 (c / cornmeal~e.99
+                     :quant (m / mass-quantity~e.98
+                               :unit (t2 / ton~e.98)
+                               :quant 1~e.98))
+            :ARG2 (t3 / top~e.102
+                      :part-of (a2 / aw~e.105
+                                   :mod (b / bread~e.104)))
+            :mode imperative~e.97)
+   :op2 (c2 / cover-02~e.107
+            :ARG0 y
+            :ARG2 (t4 / towel~e.111
+                      :mod (t / tea~e.110))
+            :mode imperative~e.97)
+   :op3 (l / let-01~e.113
+           :ARG0 y
+           :ARG1 (r / rise-01~e.115
+                    :ARG1 a2
+                    :location (p / place~e.119
+                                 :ARG1-of (w / warm-07~e.118))
+                    :time (u / until~e.120
+                             :op1 (d / double-01~e.121
+                                     :ARG1 a2
+                                     :ARG3 (s / size-01~e.123
+                                              :ARG1 a2))))))
+
+# ::id english_muffin_bread_8_instr7
+# ::name english_muffin_bread_8_instr7
+# ::snt appx 30 min .
+# ::root a
+(a / approximately~e.128
+   :op1 (t / temporal-quantity~e.127
+           :unit (m / minute~e.127)
+           :quant 30~e.126))
+
+# ::id english_muffin_bread_8_instr8
+# ::name english_muffin_bread_8_instr8
+# ::snt Preheat oven to
+# ::root h
+(h / heat-01~e.129
+   :mode imperative~e.129
+   :ARG0 (y / you~e.129)
+   :ARG1 (o / oven~e.130))
+
+# ::id english_muffin_bread_8_instr9
+# ::name english_muffin_bread_8_instr9
+# ::snt Remove tea towel after 30 min rise and place into oven and bake for 35 - 40 min or until golden brown and when tapped , loaf sounds hallow .
+# ::root a2
+(a2 / and~e.139
+    :op1 (a3 / and~e.139
+             :op1 (r / remove-01~e.132
+                     :ARG0 (y / you~e.132)
+                     :ARG1 (t6 / towel~e.134
+                               :mod (t2 / tea~e.133))
+                     :time (a / after~e.135
+                              :op1 (r2 / rise-01~e.138
+                                       :duration (t3 / temporal-quantity~e.136
+                                                     :unit (m / minute~e.137)
+                                                     :quant 30~e.136))))
+             :op2 (p / place-01~e.140
+                     :ARG0 y
+                     :ARG2 (o2 / oven~e.142))
+             :op3 (b / bake-01~e.144
+                     :ARG0 y
+                     :duration (o / or~e.150
+                                  :op1 (b2 / between~e.146
+                                           :op1 (t4 / temporal-quantity~e.146
+                                                    :unit (m2 / minute~e.149)
+                                                    :quant 35~e.146)
+                                           :op2 (t5 / temporal-quantity~e.148
+                                                    :unit (m3 / minute~e.149)
+                                                    :quant 40~e.148))
+                                  :op2 (u / until~e.151
+                                          :op1 (b3 / brown-01~e.153
+                                                   :ARG1 (g / gold~e.152))))))
+    :op2 (s / sound-01~e.159
+            :ARG1 (l / loaf~e.158)
+            :ARG2 (h / hallow~e.160)
+            :condition (t / tap-02~e.156
+                          :ARG1 l)))
+
+# ::id english_muffin_bread_8_instr10
+# ::name english_muffin_bread_8_instr10
+# ::snt Allow to cool on a cooling rack .
+# ::root a
+(a / allow-01~e.162
+   :mode imperative~e.169
+   :ARG0 (y / you~e.162)
+   :ARG1 (c / cool-01~e.164
+            :location (r / rack~e.168
+                         :ARG0-of (c2 / cool-01~e.167))))
+
+# ::id english_muffin_bread_8_instr11
+# ::name english_muffin_bread_8_instr11
+# ::snt ENJOY !
+# ::root e
+(e / enjoy-01~e.170
+   :mode expressive~e.171
+   :ARG0 (y / you~e.170))
+

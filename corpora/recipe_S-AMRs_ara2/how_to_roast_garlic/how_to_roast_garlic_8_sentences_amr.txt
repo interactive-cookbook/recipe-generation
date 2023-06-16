@@ -1,0 +1,186 @@
+# ::id how_to_roast_garlic_8_instr0
+# ::name how_to_roast_garlic_8_instr0
+# ::snt Pre - heat oven to 375 degrees Farenheit .
+# ::root o
+(o / oven~e.4
+   :rel 375~e.6
+   :rel (c / celsius~e.6)
+   :rel (t / temperature-quantity~e.6
+           :scale c
+           :quant 375~e.6)
+   :time (b / before~e.1
+            :op1 (h / heat-01~e.3)))
+
+# ::id how_to_roast_garlic_8_instr1
+# ::name how_to_roast_garlic_8_instr1
+# ::snt Slice off the top of the garlic so that all of the cloves are exposed .
+# ::root s
+(s / slash~e.10
+   :mode imperative~e.10
+   :purpose (e / expose-01~e.24
+               :ARG1 (b / bulb~e.22
+                        :mod (a / all~e.19)))
+   :ARG0 (y / you~e.10)
+   :ARG1 (t / top~e.13
+            :part-of (g / garlic~e.16)))
+
+# ::id how_to_roast_garlic_8_instr2
+# ::name how_to_roast_garlic_8_instr2
+# ::snt Place garlic head in a piece of heavy gauge foil ( or a double layer of thinner foil ) .
+# ::root p2
+(p2 / place-01~e.26
+    :mode imperative~e.26
+    :ARG0 (y / you~e.26)
+    :ARG1 (h2 / head~e.28
+              :part-of (g / garlic~e.27))
+    :ARG2 (o / or~e.37
+             :op1 (p / piece~e.31
+                     :consist-of (f / foil~e.35
+                                    :mod (g2 / gauge~e.34
+                                             :mod (h3 / heavy~e.33))))
+             :op2 (l / layer~e.40
+                     :mod (d / double~e.39)
+                     :consist-of (f2 / foil~e.43
+                                     :ARG1-of (h / have-degree-91~e.42
+                                                 :ARG2 (t / thin-03~e.42
+                                                          :ARG1 f2)
+                                                 :ARG3 (m / more~e.42))))))
+
+# ::id how_to_roast_garlic_8_instr3
+# ::name how_to_roast_garlic_8_instr3
+# ::snt Drizzle about 1 tablespoon of oil , for each head , over top of the garlic cloves .
+# ::root l
+(l / light-06~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (o / oil~e.51
+            :quant (a / about~e.47
+                      :op1 (m / mass-quantity~e.49
+                              :unit (t / tablespoon~e.49)
+                              :quant 1~e.48)))
+   :ARG2 (o2 / over~e.57
+             :op1 (t2 / top~e.58
+                      :part-of (b / bulb~e.62
+                                  :consist-of (g / garlic~e.61))))
+   :beneficiary (h / head~e.55
+                   :mod (e / each~e.54)))
+
+# ::id how_to_roast_garlic_8_instr4
+# ::name how_to_roast_garlic_8_instr4
+# ::snt Sprinkle a pinch of salt over the cut cloves .
+# ::root s2
+(s2 / spray-01~e.64
+    :mode imperative~e.64
+    :ARG0 (y / you~e.64)
+    :ARG1 (s / salt~e.68
+             :ARG1-of (m / mix-01~e.66
+                         :ARG0 y))
+    :ARG2 (p / pound~e.72
+             :ARG3-of (c / cut-01~e.71)))
+
+# ::id how_to_roast_garlic_8_instr5
+# ::name how_to_roast_garlic_8_instr5
+# ::snt Give the garlic a few grinds of black pepper .
+# ::root g2
+(g2 / give-01~e.74
+    :mode imperative~e.74
+    :ARG0 (y / you~e.74)
+    :ARG1 (p / pepper~e.82
+             :ARG1-of (b / black-04~e.81)
+             :ARG1-of (g3 / grind-01~e.79
+                          :quant (f / few~e.78)))
+    :ARG2 (g / garlic~e.76))
+
+# ::id how_to_roast_garlic_8_instr6
+# ::name how_to_roast_garlic_8_instr6
+# ::snt Twist the foil up around the head of garlic so that it 's completely closed .
+# ::root t
+(t / twist-01~e.84
+   :mode imperative~e.84
+   :purpose (c / close-01~e.98
+               :ARG1 f
+               :ARG1-of (c2 / complete-02~e.97))
+   :ARG0 (y / you~e.84)
+   :ARG1 (f / foil~e.86)
+   :direction (a / around~e.88
+                 :op1 (h / head~e.90
+                         :part-of (g / garlic~e.92))))
+
+# ::id how_to_roast_garlic_8_instr7
+# ::name how_to_roast_garlic_8_instr7
+# ::snt Place the wrapped garlic on the middle rack of oven and bake for 45 minutes .
+# ::root a
+(a / and~e.110
+   :op1 (p / place-01~e.100
+           :ARG0 (y / you~e.100)
+           :ARG1 (g / garlic~e.103
+                    :ARG1-of (w / wrap-01~e.102))
+           :ARG2 (r / rack~e.107
+                    :mod (m / middle~e.106)
+                    :part-of (o / oven~e.109)))
+   :op2 (b / bake-01~e.111
+           :ARG0 y
+           :duration (t / temporal-quantity~e.114
+                        :unit (m2 / minute~e.114)
+                        :quant 45~e.113)))
+
+# ::id how_to_roast_garlic_8_instr8
+# ::name how_to_roast_garlic_8_instr8
+# ::snt Remove from oven and let cool enough so that you can open the foil .
+# ::root a
+(a / and~e.119
+   :op1 (r / remove-01~e.116
+           :ARG0 (y / you~e.116)
+           :ARG2 (o2 / oven~e.118)
+           :mode imperative~e.116)
+   :op2 (l / let-01~e.120
+           :ARG0 y
+           :ARG1 (c / cool-06~e.121
+                    :ARG1 y
+                    :ARG2-of (h / have-degree-91~e.122
+                                :ARG1 l
+                                :ARG3 (e / enough~e.122)
+                                :ARG6 (p / possible-01~e.126
+                                         :ARG1 (o / open-01~e.127
+                                                  :ARG0 y
+                                                  :ARG1 (f / foil~e.129)))))
+           :mode imperative~e.120))
+
+# ::id how_to_roast_garlic_8_instr9
+# ::name how_to_roast_garlic_8_instr9
+# ::snt Squeeze the garlic head to remove the roasted garlic cloves .
+# ::root s
+(s / squeeze-01~e.131
+   :mode imperative~e.141
+   :purpose (r / remove-01~e.136
+               :ARG0 y
+               :ARG1 (p / pound~e.140
+                        :ARG1-of (r2 / roast-01~e.138)))
+   :ARG0 (y / you~e.131)
+   :ARG1 (h / head~e.134
+            :part-of (g / garlic~e.133
+                        :consist p)))
+
+# ::id how_to_roast_garlic_8_instr10
+# ::name how_to_roast_garlic_8_instr10
+# ::snt Enjoy immediately or put into a covered container and store in the refrigerator for up to one week .
+# ::root o
+(o / or~e.144
+   :op1 (e / enjoy-01~e.142
+           :ARG0 (y / you~e.142)
+           :time (i / immediate~e.143)
+           :mode imperative~e.142)
+   :op2 (a / and~e.150
+           :op1 (p / put-01~e.145
+                   :ARG0 y
+                   :ARG2 (c / container~e.149
+                            :ARG1-of (c2 / cover-02~e.148))
+                   :mode imperative~e.160)
+           :op2 (s / store-01~e.151
+                   :ARG0 y
+                   :ARG2 (r / refrigerator~e.154)
+                   :duration (u / up-to~e.156
+                                :op1 (t / temporal-quantity~e.159
+                                        :unit (w / week~e.159)
+                                        :quant 1~e.158)))))
+

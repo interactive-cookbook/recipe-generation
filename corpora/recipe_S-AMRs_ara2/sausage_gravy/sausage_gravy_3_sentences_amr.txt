@@ -1,0 +1,230 @@
+# ::id sausage_gravy_3_instr0
+# ::name sausage_gravy_3_instr0
+# ::snt Heat a large skillet over medium heat .
+# ::root h2
+(h2 / heat-01~e.1
+    :mode imperative~e.8
+    :ARG0 (y / you~e.1)
+    :ARG1 (s / skillet~e.4
+             :mod (l / large~e.3))
+    :location (h / heat~e.7
+                 :mod (m / medium~e.6)))
+
+# ::id sausage_gravy_3_instr1
+# ::name sausage_gravy_3_instr1
+# ::snt Once hot , brown the sausage in small pieces , adding the garlic about 3 minutes into the cooking ( when sausage is half cooked ) .
+# ::root a3
+(a3 / and~e.18
+    :op1 (r / Brown~e.12
+            :ARG0 (y / you~e.12)
+            :ARG1 (s / sausage~e.14)
+            :prep-in (p / piece~e.17
+                        :mod (s2 / small~e.16))
+            :mode imperative~e.12)
+    :op2 (a2 / add-02~e.19
+             :ARG0 y
+             :ARG1 (g / garlic~e.21)
+             :time (a / about~e.22
+                      :op1 (t / temporal-quantity~e.24
+                              :unit (m / minute~e.24)
+                              :quant 3~e.23))
+             :time (c / cook-01~e.27
+                      :ARG1 s))
+    :time (h2 / hot-05~e.10)
+    :time (c2 / cook-01~e.33
+              :ARG1 s
+              :degree (h / half~e.32)))
+
+# ::id sausage_gravy_3_instr2
+# ::name sausage_gravy_3_instr2
+# ::snt Once browned , remove the sausage with a slotted spoon and set aside on a separate plate .
+# ::root a
+(a / and~e.46
+   :op1 (r2 / remove-01~e.39
+            :ARG0 (y / you~e.39)
+            :ARG1 (s / sausage~e.41)
+            :instrument (s5 / spoon~e.45
+                            :ARG1-of (s4 / slant-01~e.44))
+            :mode imperative~e.39)
+   :op2 (s3 / set-01~e.47
+            :ARG0 y
+            :ARG1 s
+            :ARG2 (a2 / aside~e.48)
+            :destination (p / plate~e.52
+                            :ARG1-of (s2 / separate-02~e.51))
+            :mode imperative~e.53)
+   :time (r / Brown~e.37
+            :ARG1 s))
+
+# ::id sausage_gravy_3_instr3
+# ::name sausage_gravy_3_instr3
+# ::snt Lower the heat to medium - low .
+# ::root l2
+(l2 / lower-05~e.54
+    :mode imperative~e.61
+    :ARG0 (y / you~e.54)
+    :ARG1 (h / heat-01~e.56)
+    :ARG4 (l / low-04~e.60
+             :ARG1-of (m / mean-01~e.59
+                         :ARG2 (m2 / medium~e.58))))
+
+# ::id sausage_gravy_3_instr4
+# ::name sausage_gravy_3_instr4
+# ::snt There should be a fair amount of fat leftover -- if you estimate more than two tablespoons worth , discard all but the 2 tablespoons of sausage fat .
+# ::root m2
+(m2 / multi-sentence~e.71
+    :rel 2~e.77
+    :rel imperative~e.81
+    :rel (v2 / volume-quantity~e.86
+             :unit (t2 / teaspoon~e.86)
+             :quant 2~e.85)
+    :rel (y / you~e.73
+            :snt2 d)
+    :rel (e / estimate-01~e.74
+            :ARG1 m)
+    :rel (m / more-than~e.75
+            :op1 v
+            :ARG1-of w)
+    :rel (t / teaspoon~e.78)
+    :rel (w / worth-01~e.79)
+    :rel (d / discard-01~e.81
+            :ARG0 y2
+            :ARG1 f3
+            :condition e
+            :mode imperative~e.81)
+    :rel (y2 / you~e.81)
+    :rel (a / all~e.82)
+    :rel (e2 / except-01~e.83
+             :ARG1 f4)
+    :rel (v / volume-quantity~e.86
+            :unit t
+            :quant 2~e.77)
+    :rel (s / sausage~e.88)
+    :rel (f3 / fat~e.89
+             :mod s
+             :mod a
+             :ARG2-of e2)
+    :rel (f4 / fat~e.89
+             :quant s)
+    :snt1 (r / recommend-01~e.63
+             :ARG1 (l / leave-over-08~e.70
+                      :ARG1 (f2 / fat~e.69
+                                :quant (a2 / amount~e.67
+                                           :ARG1-of (f / fair-04~e.66))))))
+
+# ::id sausage_gravy_3_instr5
+# ::name sausage_gravy_3_instr5
+# ::snt If there is n’t enough , add 1 - 2 tablespoons of butter to the skillet .
+# ::root a
+(a / add-02~e.97
+   :mode imperative~e.97
+   :ARG0 (y / you~e.97)
+   :ARG1 (b2 / butter~e.103
+             :quant (b / between~e.98
+                       :op1 (v / volume-quantity~e.101
+                               :unit (t / teaspoon~e.101)
+                               :quant 1~e.98)
+                       :op2 (p / percentage-entity~e.101
+                               :quant 2~e.100)))
+   :ARG2 (s / skillet~e.106)
+   :condition (h / have-quant-91~e.95
+                 :ARG3 (e / enough~e.95)
+                 :polarity -~e.94))
+
+# ::id sausage_gravy_3_instr6
+# ::name sausage_gravy_3_instr6
+# ::snt Incorporate the flour , whisking constantly .
+# ::root i
+(i / involve-01~e.108
+   :mode imperative~e.108
+   :ARG0 (y / you~e.108)
+   :ARG1 (f / flour~e.110)
+   :manner (w / whisk-01~e.112
+              :ARG0 y
+              :manner (c / constant~e.113)))
+
+# ::id sausage_gravy_3_instr7
+# ::name sausage_gravy_3_instr7
+# ::snt Keep whisking for about a minute .
+# ::root k
+(k / keep-02~e.115
+   :ARG0 (y / you~e.115)
+   :ARG1 (w / whisk-01~e.116
+            :ARG0 y
+            :duration (a / about~e.118
+                         :op1 (t / temporal-quantity~e.120
+                                 :unit (m / minute~e.120)
+                                 :quant 1~e.119))))
+
+# ::id sausage_gravy_3_instr8
+# ::name sausage_gravy_3_instr8
+# ::snt Slowly whisk in the milk and the half and half .
+# ::root w
+(w / whisk-01~e.123
+   :mode imperative~e.132
+   :ARG0 (y / you~e.123)
+   :ARG1 (a / and~e.127
+            :op1 (m / milk~e.126)
+            :op2 (h / half~e.129))
+   :ARG1-of (s / slow-01~e.122))
+
+# ::id sausage_gravy_3_instr9
+# ::name sausage_gravy_3_instr9
+# ::snt Keep whisking until fully combined .
+# ::root k
+(k / keep-02~e.133
+   :mode imperative~e.133
+   :ARG0 (y / you~e.133)
+   :ARG1 (w / whisk-01~e.134
+            :ARG0 y)
+   :time (u / until~e.135
+            :op1 (c / combine-01~e.137
+                    :ARG1 y
+                    :degree (f / full~e.136))))
+
+# ::id sausage_gravy_3_instr10
+# ::name sausage_gravy_3_instr10
+# ::snt The milk will thicken , making the gravy .
+# ::root t
+(t / thicken-01~e.142
+   :ARG1 (m2 / milk~e.140)
+   :ARG0-of (m / make-01~e.144
+               :ARG1 (g / gravy~e.146)))
+
+# ::id sausage_gravy_3_instr11
+# ::name sausage_gravy_3_instr11
+# ::snt Once thickened , remove from heat , mix in the sausage , and season additionally to taste .
+# ::root a2
+(a2 / and~e.160
+    :op2 (r / remove-01~e.151
+            :ARG2 (h / heat-01~e.153))
+    :op3 (m / mix-01~e.155
+            :ARG2 (s / sausage~e.158)
+            :mode imperative~e.161
+            :mode imperative~e.161)
+    :op4 (s2 / season~e.161
+             :purpose (t / taste-01~e.164)
+             :mod (a / additional~e.162))
+    :time (o / once~e.148
+             :op1 (t2 / thick-03~e.149
+                      :ARG1 s)))
+
+# ::id sausage_gravy_3_instr12
+# ::name sausage_gravy_3_instr12
+# ::snt Cover and keep warm until ready to use .
+# ::root a
+(a / and~e.167
+   :op1 (c / cover-02~e.166
+           :ARG1 (y / you~e.166)
+           :mode imperative~e.166)
+   :op2 (k / keep-01~e.168
+           :ARG0 y
+           :ARG1 (w / warm-01~e.169
+                    :ARG1 y)
+           :time (u / until~e.170
+                    :op1 (r / ready-02~e.171
+                            :ARG1 y
+                            :ARG2 (u2 / use-01~e.173
+                                      :ARG1 y)))
+           :mode imperative~e.174))
+

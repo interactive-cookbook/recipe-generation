@@ -1,0 +1,151 @@
+# ::id homemade_graham_crackers_10_instr0
+# ::name homemade_graham_crackers_10_instr0
+# ::snt In a large bowl , combine butter , brown sugar , salt , cinnamon and honey .
+# ::root c2
+(c2 / combine-01~e.6
+    :mode imperative~e.17
+    :ARG0 (y / you~e.6)
+    :ARG1 (a / and~e.8
+             :op1 (b3 / butter~e.7)
+             :op2 (s2 / sugar~e.10
+                      :mod (b2 / brown~e.9))
+             :op3 (s / salt~e.12)
+             :op4 (c / cinnamon~e.14)
+             :op5 (h / honey~e.16))
+    :location (b / bowl~e.4
+                 :mod (l / large~e.3)))
+
+# ::id homemade_graham_crackers_10_instr1
+# ::name homemade_graham_crackers_10_instr1
+# ::snt Mix until blended .
+# ::root m
+(m / mix-01~e.18
+   :mode imperative~e.21
+   :ARG0 (y / you~e.18)
+   :duration (u / until~e.19
+                :op1 (b / blend-01~e.20)))
+
+# ::id homemade_graham_crackers_10_instr2
+# ::name homemade_graham_crackers_10_instr2
+# ::snt Gradually add in flour and wheat flour alternating between them until incorporated .
+# ::root a
+(a / add-02~e.23
+   :mode imperative~e.22
+   :ARG0 (y / you~e.23)
+   :ARG1 (a3 / and~e.26
+             :op1 (f / flour~e.25)
+             :op2 (f2 / flour~e.28
+                      :mod (w / wheat~e.27))
+             :ARG2-of (a2 / alternate-01~e.29
+                          :duration (u / until~e.32
+                                       :op1 (i / incorporate-02~e.33
+                                               :ARG1 a3))))
+   :manner (g / gradual~e.22))
+
+# ::id homemade_graham_crackers_10_instr3
+# ::name homemade_graham_crackers_10_instr3
+# ::snt Roll out dough between sheets of wax or parchment paper to about 1/ thickness .
+# ::root r
+(r / roll-01~e.35
+   :mode imperative~e.49
+   :ARG0 (y / you~e.35)
+   :ARG1 (d / dough~e.37)
+   :extent (a / about~e.46
+              :op1 (p3 / product-of~e.47
+                       :op2 (t / thickness~e.48)
+                       :op1 "1/"~e.47))
+   :location (b / between~e.38
+                :op1 (s / sheet~e.39
+                        :consist-of (w / wax~e.41)
+                        :consist-of (p / paper~e.44
+                                       :consist-of (p2 / parchment~e.43)))))
+
+# ::id homemade_graham_crackers_10_instr4
+# ::name homemade_graham_crackers_10_instr4
+# ::snt Cut / score into individual cracker sizes and use a skewer or toothpick to make holes in the crackers .
+# ::root a
+(a / and~e.57
+   :op1 (s4 / slash~e.51
+            :op1 (c2 / cut-01~e.50
+                     :ARG0 (y / you~e.50)
+                     :ARG4 (s2 / size~e.56
+                               :mod (i / individual~e.54)
+                               :poss (c / cracker~e.55))
+                     :mode imperative~e.50)
+            :op2 (s / score-01~e.52
+                    :ARG0 y
+                    :ARG2 s2))
+   :op2 (u / use-01~e.58
+           :ARG0 y
+           :ARG1 (o / or~e.61
+                    :op1 (s3 / skewer~e.60)
+                    :op2 (t / toothpick~e.62))
+           :ARG2 (m / make-01~e.64
+                    :ARG0 y
+                    :ARG1 (h / hole~e.65))
+           :mode imperative~e.69))
+
+# ::id homemade_graham_crackers_10_instr5
+# ::name homemade_graham_crackers_10_instr5
+# ::snt Place in freezer for 30 minutes to harden .
+# ::root p
+(p / place-01~e.70
+   :purpose (h / hard~e.77)
+   :ARG0 (y / you~e.70)
+   :ARG2 (f / freezer~e.72)
+   :duration (t / temporal-quantity~e.74
+                :unit (m / minute~e.75)
+                :quant 30~e.74))
+
+# ::id homemade_graham_crackers_10_instr6
+# ::name homemade_graham_crackers_10_instr6
+# ::snt Line a cookie sheet with silicone or parchment paper .
+# ::root l
+(l / line-01~e.79
+   :mode imperative~e.79
+   :ARG0 (y / you~e.79)
+   :ARG1 (s / sheet~e.82
+            :mod (c / cookie~e.81))
+   :ARG2 (o / or~e.85
+            :op1 (s2 / silicone~e.84)
+            :op2 (p / paper~e.87
+                    :consist-of (p2 / parchment~e.86))))
+
+# ::id homemade_graham_crackers_10_instr7
+# ::name homemade_graham_crackers_10_instr7
+# ::snt Preheat oben to
+# ::root h
+(h / heat-01~e.89
+   :mode imperative~e.89
+   :ARG0 (y / you~e.89)
+   :ARG1 (e / enzyme~e.90
+            :name (n / name~e.89)))
+
+# ::id homemade_graham_crackers_10_instr8
+# ::name homemade_graham_crackers_10_instr8
+# ::snt Separate cookies and place on prepared sheet .
+# ::root a
+(a / and~e.94
+   :op1 (c / cookie~e.93
+           :ARG1-of (s / separate-02~e.92)
+           :ARG1-of p)
+   :op2 (p / place-01~e.95
+           :ARG2 (s2 / sheet~e.98
+                     :ARG1-of (p2 / prepare-01~e.97))))
+
+# ::id homemade_graham_crackers_10_instr9
+# ::name homemade_graham_crackers_10_instr9
+# ::snt Bake until crackers begin to brown , about 10 minutes .
+# ::root b
+(b / bake-01~e.100
+   :mode imperative~e.110
+   :ARG0 (y / you~e.100)
+   :time (u / until~e.101
+            :duration (a / about~e.107
+                         :op1 (t / temporal-quantity~e.109
+                                 :unit (m / minute~e.109)
+                                 :quant 10~e.108))
+            :op1 (b2 / begin-01~e.103
+                     :ARG1 (r / Brown~e.105
+                              :domain (c / crack~e.102)))))
+

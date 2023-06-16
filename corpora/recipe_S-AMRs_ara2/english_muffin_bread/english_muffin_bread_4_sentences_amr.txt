@@ -1,0 +1,215 @@
+# ::id english_muffin_bread_4_instr0
+# ::name english_muffin_bread_4_instr0
+# ::snt Lightly grease an 8x4 inch loaf pan and sprinkle with cornmeal .
+# ::root a
+(a / and~e.8
+   :op1 (f / fry-01~e.2
+           :ARG1 (p / pan~e.7
+                    :mod (l2 / loaf~e.6
+                             :mod (d2 / distance-quantity~e.5
+                                      :unit (i / inch~e.5)
+                                      :unit (i2 / inch~e.5)
+                                      :quant 8~e.4)))
+           :ARG1-of (l / light-06~e.1))
+   :op2 (d3 / dust-01~e.9
+            :ARG2 (c / cornmeal~e.11))
+   :rel (d / distance-quantity~e.5
+           :quant 4~e.4))
+
+# ::id english_muffin_bread_4_instr1
+# ::name english_muffin_bread_4_instr1
+# ::snt In a large bowl combine dry ingredients .
+# ::root c
+(c / combine-01~e.17
+   :mode imperative~e.20
+   :ARG0 (y / you~e.17)
+   :ARG1 (i / ingredient~e.19
+            :ARG1-of (d / dry-08~e.18))
+   :location (b / bowl~e.16
+                :mod (l / large~e.15)))
+
+# ::id english_muffin_bread_4_instr2
+# ::name english_muffin_bread_4_instr2
+# ::snt Heat up milk to 120 degrees .
+# ::root h
+(h / heat-01~e.21
+   :mode imperative~e.27
+   :ARG0 (y / you~e.21)
+   :ARG1 (m / milk~e.23)
+   :ARG4 (t / temperature-quantity~e.25
+            :scale (c / celsius~e.25)
+            :quant 120~e.25))
+
+# ::id english_muffin_bread_4_instr3
+# ::name english_muffin_bread_4_instr3
+# ::snt With mixer on low , slowly pour in milk .
+# ::root p
+(p / pour-01~e.34
+   :mode imperative~e.33
+   :ARG0 (y / you~e.34)
+   :ARG1 (m / milk~e.36)
+   :manner (t / thing~e.32
+              :instrument-of (m2 / mix-01~e.29)
+              :ARG1-of b)
+   :rel (b / be-located-at-91~e.32
+           :ARG2 (l / low-04~e.31))
+   :ARG1-of (s / slow-05~e.33))
+
+# ::id english_muffin_bread_4_instr4
+# ::name english_muffin_bread_4_instr4
+# ::snt Turn mixer up to medium speed , continuing to mix until dough pulls away from the sides of the bowl .
+# ::root a
+(a / and~e.44
+   :op1 (t / turn-01~e.38
+           :ARG0 (y / you~e.38)
+           :direction (u2 / up-to~e.40
+                          :op1 (s2 / speed~e.43
+                                   :mod (m / medium~e.42)))
+           :mode imperative~e.38)
+   :op2 (c / continue-01~e.45
+           :ARG0 y
+           :ARG1 (m3 / mix-01~e.47
+                     :ARG1 (d / dough~e.49))
+           :time (u / until~e.48
+                    :op1 (p / pull-01~e.50
+                            :ARG1 d
+                            :ARG2 (a2 / away~e.51
+                                      :op1 (s / side~e.54
+                                              :part-of (b / bowl~e.57)))))
+           :mode imperative~e.58)
+   :rel (m2 / mix-01~e.39))
+
+# ::id english_muffin_bread_4_instr5
+# ::name english_muffin_bread_4_instr5
+# ::snt Lightly grease a rubber spatula , and your hands if necessary .
+# ::root p
+(p / polish-01~e.60
+   :mode imperative~e.59
+   :ARG0 (y / you~e.60
+            :part (h / hand~e.67))
+   :ARG1 (a / and~e.65
+            :op1 (s / spatula~e.63
+                    :consist-of (r / rubber~e.62))
+            :op2 h)
+   :condition (n / need-01~e.69
+                 :ARG1 a)
+   :ARG1-of (l / light-06~e.59))
+
+# ::id english_muffin_bread_4_instr6
+# ::name english_muffin_bread_4_instr6
+# ::snt Transfer dough to prepared loaf pan , spreading out into all corners .
+# ::root t
+(t / transfer-01~e.71
+   :ARG1 (d / dough~e.72
+            :ARG1-of (s / spread-out-04~e.78
+                        :ARG2 (c / corner~e.82
+                                 :mod (a / all~e.81))))
+   :ARG3 (p / pan~e.76
+            :purpose (l / loaf~e.75)
+            :ARG1-of (p2 / prepare-01~e.74)))
+
+# ::id english_muffin_bread_4_instr7
+# ::name english_muffin_bread_4_instr7
+# ::snt Lightly sprinkle with cornmeal and cover with plastic wrap .
+# ::root a
+(a / and~e.88
+   :op1 (s / sprinkle-01~e.85
+           :ARG2 (c / cornmeal~e.87)
+           :ARG1-of (l / light-06~e.84)
+           :mode imperative~e.85)
+   :op2 (c2 / cover-02~e.89
+            :ARG2 (w / wrap~e.92
+                     :consist-of (p / plastic~e.91))))
+
+# ::id english_muffin_bread_4_instr8
+# ::name english_muffin_bread_4_instr8
+# ::snt Allow to rise in a warm location for 90 minutes .
+# ::root a
+(a / allow-01~e.94
+   :mode imperative~e.104
+   :ARG0 (y / you~e.94)
+   :ARG1 (r / rise-01~e.96
+            :ARG1 y
+            :duration (t / temporal-quantity~e.103
+                         :unit (m / minute~e.103)
+                         :quant 90~e.102)
+            :location (l / location~e.100
+                         :ARG1-of (w / warm-07~e.99))))
+
+# ::id english_muffin_bread_4_instr9
+# ::name english_muffin_bread_4_instr9
+# ::snt Remove plastic prior to baking .
+# ::root r
+(r / remove-01~e.105
+   :mode imperative~e.105
+   :ARG0 (y / you~e.105)
+   :ARG1 (p / plastic~e.106)
+   :time (p2 / prior~e.107
+             :op1 (b / bake-01~e.109)))
+
+# ::id english_muffin_bread_4_instr10
+# ::name english_muffin_bread_4_instr10
+# ::snt Preheat oven to 375 degrees .
+# ::root h
+(h / heat-01~e.111
+   :mode imperative~e.111
+   :ARG0 (y / you~e.111)
+   :ARG1 (o / oven~e.112)
+   :destination (t / temperature-quantity~e.116
+                   :quant 375~e.114))
+
+# ::id english_muffin_bread_4_instr11
+# ::name english_muffin_bread_4_instr11
+# ::snt Bake for 30 minutes .
+# ::root b
+(b / bake-01~e.117
+   :mode imperative~e.121
+   :ARG0 (y / you~e.117)
+   :duration (t / temporal-quantity~e.119
+                :unit (m / minute~e.120)
+                :quant 30~e.119))
+
+# ::id english_muffin_bread_4_instr12
+# ::name english_muffin_bread_4_instr12
+# ::snt Allow bread to cool in pan before turning into a wire rack or cutting board .
+# ::root a
+(a / allow-01~e.122
+   :mode imperative~e.137
+   :ARG0 (y / you~e.122)
+   :ARG1 (c / cool-01~e.125
+            :ARG1 (b3 / bread~e.123)
+            :location (p / pan~e.127))
+   :time (b / before~e.128
+            :op1 (t / turn-02~e.129
+                    :ARG1 b3
+                    :ARG2 (o / or~e.134
+                             :op1 (r / rack~e.133
+                                     :mod (w / wire~e.132))
+                             :op2 (b2 / board~e.136
+                                      :purpose (c2 / cut-01~e.135))))))
+
+# ::id english_muffin_bread_4_instr13
+# ::name english_muffin_bread_4_instr13
+# ::snt Toast slices and serve with butter or jam .
+# ::root a
+(a / and~e.140
+   :op1 (s2 / slice~e.139
+            :ARG1-of (t / toast-01~e.138)
+            :ARG1-of s)
+   :op2 (s / serve-02~e.141
+           :accompanier (o / or~e.144
+                           :op1 (b / butter~e.143)
+                           :op2 (j / jam~e.145))))
+
+# ::id english_muffin_bread_4_instr14
+# ::name english_muffin_bread_4_instr14
+# ::snt Store remaining bread in an airtight container .
+# ::root s
+(s / store-01~e.147
+   :mode imperative~e.147
+   :ARG0 (y / you~e.147)
+   :ARG1 (b / bread~e.149
+            :ARG1-of (r / remain-01~e.148))
+   :ARG2 (c / container~e.153
+            :mod (a / airtight~e.152)))
+

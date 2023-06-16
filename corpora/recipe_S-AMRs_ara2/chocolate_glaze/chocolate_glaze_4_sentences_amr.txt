@@ -1,0 +1,27 @@
+# ::id chocolate_glaze_4_instr0
+# ::name chocolate_glaze_4_instr0
+# ::snt Melt the butter in a sauce pan .
+# ::root m
+(m / melt-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (b / butter~e.3)
+   :location (p / pan~e.7
+                :mod (s / sauce~e.6)))
+
+# ::id chocolate_glaze_4_instr1
+# ::name chocolate_glaze_4_instr1
+# ::snt Remove from heat and stir in the chocolate to melt .
+# ::root a
+(a / and~e.12
+   :op1 (r / remove-01~e.9
+           :ARG0 (y / you~e.9)
+           :ARG2 (h / heat~e.11)
+           :mode imperative~e.9)
+   :op2 (s / stir-01~e.13
+           :purpose (m / melt-01~e.18
+                       :ARG1 c)
+           :ARG0 y
+           :ARG1 (c / chocolate~e.16)
+           :mode imperative~e.19))
+

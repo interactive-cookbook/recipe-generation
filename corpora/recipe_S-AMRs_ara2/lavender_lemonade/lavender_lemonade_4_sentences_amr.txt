@@ -1,0 +1,86 @@
+# ::id lavender_lemonade_4_instr0
+# ::name lavender_lemonade_4_instr0
+# ::snt In a large saucepan , bring 2 1/2 cups of water and sugar to a boil .
+# ::root b2
+(b2 / bring-01~e.6
+    :mode imperative~e.17
+    :ARG0 (y / you~e.6)
+    :ARG1 (a / and~e.12
+             :quant (v / volume-quantity~e.9
+                       :unit (c / cup~e.9)
+                       :quant 2.5~e.8)
+             :op1 (w / water~e.11)
+             :op2 (s2 / sugar~e.13))
+    :ARG2 (b / boil-01~e.16
+             :ARG1 a)
+    :location (s / saucepan~e.4
+                 :mod (l / large~e.3)))
+
+# ::id lavender_lemonade_4_instr1
+# ::name lavender_lemonade_4_instr1
+# ::snt Remove from the heat ; add lavender blossoms .
+# ::root a2
+(a2 / and~e.22
+    :op1 (r / remove-01~e.18
+            :ARG0 (y / you~e.18)
+            :ARG2 (h / heat-01~e.21)
+            :mode imperative~e.18)
+    :op2 (a / add-02~e.23
+            :ARG0 y
+            :ARG1 (f / flower~e.25
+                     :mod (l / lavender~e.24))
+            :mode imperative~e.25
+            :mode imperative~e.25))
+
+# ::id lavender_lemonade_4_instr2
+# ::name lavender_lemonade_4_instr2
+# ::snt Let stand at least one hour .
+# ::root s
+(s / stand-04~e.28
+   :mode imperative~e.27
+   :ARG1 (w / we~e.27)
+   :ARG2 (a / at-least~e.30
+            :op1 (t / temporal-quantity~e.32
+                    :unit (h / hour~e.32)
+                    :quant 1~e.31)))
+
+# ::id lavender_lemonade_4_instr3
+# ::name lavender_lemonade_4_instr3
+# ::snt Strain to remove lavender blossoms .
+# ::root s
+(s / strain-01~e.34
+   :mode imperative~e.34
+   :purpose (r / remove-01~e.36
+               :ARG0 y
+               :ARG1 (f / flower~e.38
+                        :mod (l / lavender~e.37)))
+   :ARG0 (y / you~e.34))
+
+# ::id lavender_lemonade_4_instr4
+# ::name lavender_lemonade_4_instr4
+# ::snt Stir in remaining water and lemon juice , adding more water depending on taste .
+# ::root s
+(s / stir-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (a2 / and~e.44
+             :op1 (w / water~e.43
+                     :ARG1-of (r / remain-01~e.42))
+             :op2 (j / juice~e.46
+                     :source (l / lemon~e.45)))
+   :concession-of (a / add-02~e.48
+                     :ARG0 y
+                     :ARG1 (w2 / water~e.50
+                               :quant (m / more~e.49))
+                     :ARG0-of (d / depend-01~e.51
+                                 :ARG1 (t / taste-02~e.53))))
+
+# ::id lavender_lemonade_4_instr5
+# ::name lavender_lemonade_4_instr5
+# ::snt Serve over ice .
+# ::root s
+(s / serve-02~e.55
+   :mode imperative~e.55
+   :ARG0 (y / you~e.55)
+   :ARG2 (i / ice~e.57))
+

@@ -1,0 +1,75 @@
+# ::id sausage_gravy_9_instr0
+# ::name sausage_gravy_9_instr0
+# ::snt In a skillet over medium heat , cook the pork sausage until browned , crumbling into smaller pieces as it browns .
+# ::root c
+(c / cook-01~e.8
+   :mode imperative~e.22
+   :ARG0 (y / you~e.8)
+   :ARG1 (s / sausage~e.11
+            :consist-of (p2 / pork~e.10))
+   :duration (u / until~e.12)
+   :location (s2 / skillet~e.3
+                 :location (h2 / heat~e.6
+                               :mod (m / medium~e.5)))
+   :manner (a / and~e.19
+              :op2 (c2 / crumble-01~e.15
+                       :ARG1 s
+                       :manner (p / piece~e.18
+                                  :ARG1-of (h / have-degree-91~e.17
+                                              :ARG2 (s3 / small~e.17)
+                                              :ARG3 (m2 / more~e.17)))
+                       :time (r / Brown~e.21
+                                :domain s))))
+
+# ::id sausage_gravy_9_instr1
+# ::name sausage_gravy_9_instr1
+# ::snt Add the flour and cook for 5 minutes , stirring occasionally .
+# ::root a2
+(a2 / and~e.26
+    :op1 (a / add-02~e.23
+            :ARG1 (f / flour~e.25))
+    :op2 (c / cook-01~e.27
+            :duration (t / temporal-quantity~e.29
+                         :unit (m / minute~e.30)
+                         :quant 5~e.29))
+    :op3 (s / stir-01~e.32
+            :frequency (o / occasional~e.33)))
+
+# ::id sausage_gravy_9_instr2
+# ::name sausage_gravy_9_instr2
+# ::snt Combine the milk with the flour and sausage and bring to a simmer .
+# ::root a2
+(a2 / and~e.43
+    :op1 (c / combine-01~e.35
+            :ARG0 (y / you~e.35)
+            :ARG1 (m / milk~e.37)
+            :ARG2 (a / and~e.41
+                     :op1 (f / flour~e.40)
+                     :op2 (s / sausage~e.42)))
+    :op2 (b / bring-01~e.44
+            :ARG0 y
+            :ARG2 (s2 / simmer-01~e.47)
+            :mode imperative~e.48
+            :mode imperative~e.48))
+
+# ::id sausage_gravy_9_instr3
+# ::name sausage_gravy_9_instr3
+# ::snt Add salt to taste , black pepper and cayenne and stir until blended .
+# ::root a3
+(a3 / and~e.58
+    :op1 (a / add-02~e.49
+            :purpose (t / taste-02~e.52
+                        :ARG1 (s / salt~e.50))
+            :ARG0 (y / you~e.49)
+            :ARG1 (a2 / and~e.56
+                      :op1 s
+                      :op2 (p / pepper~e.55
+                              :ARG1-of (b / black-04~e.54))
+                      :op3 (c / cayenne~e.57))
+            :mode imperative~e.49)
+    :op2 (s2 / stir-01~e.59
+             :ARG0 y
+             :duration (b2 / blend-01~e.61
+                           :ARG1 a2)
+             :mode imperative~e.62))
+
