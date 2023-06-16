@@ -1,0 +1,193 @@
+# ::id cauliflower_mash_3_instr0
+# ::name cauliflower_mash_3_instr0
+# ::snt Pull the leaves off the cauliflower and cut out the core in a kind of cone - shaped section .
+(a / and~e.7
+   :op1 (p / pull-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (l / leaf~e.3)
+           :ARG2 (c / cauliflower~e.6)
+           :mode imperative~e.20)
+   :op2 (c4 / cut-out-06~e.8
+            :ARG0 y
+            :ARG1 (c3 / core~e.11)
+            :manner (s / section~e.19
+                       :ARG1-of (s2 / shape-01~e.18
+                                    :ARG2 (c2 / cone~e.16)
+                                    :mod (k / kind~e.14)))
+            :mode imperative~e.20))
+
+# ::id cauliflower_mash_3_instr1
+# ::name cauliflower_mash_3_instr1
+# ::snt Break or cut the florets into small , regular pieces ( about 1 1/2 inch ) and put them in the steamer insert .
+(a2 / and~e.37
+    :op1 (o / or~e.22
+            :op1 (b / break-01~e.21
+                    :ARG0 (y / you~e.21)
+                    :ARG1 (w / wow~e.25)
+                    :mode imperative~e.21)
+            :op2 (c / cut-01~e.23
+                    :ARG0 y
+                    :ARG1 w
+                    :ARG3 (p / piece~e.30
+                             :extent (a / about~e.32
+                                        :op1 (d / distance-quantity~e.35
+                                                :unit (i / inch~e.35)
+                                                :quant 1.5~e.34))
+                             :mod (s / small~e.27)
+                             :ARG1-of (r / regular-03~e.29))
+                    :mode imperative~e.25))
+    :op2 (p2 / put-01~e.38
+             :ARG0 y
+             :ARG1 w
+             :ARG2 (i2 / insert-01~e.43
+                       :ARG2 (s2 / steamer~e.42))
+             :mode imperative~e.44))
+
+# ::id cauliflower_mash_3_instr2
+# ::name cauliflower_mash_3_instr2
+# ::snt Bring about 1 inch of water to a boil in the steamer pot , add the insert , cover , and cook for about 20 minutes , or until you can poke a paring knife into the stems and you can feel that there 's still a little texture there .
+(a4 / and~e.65
+    :duration (o / or~e.72
+                 :op1 (p3 / possible-01~e.75
+                          :ARG1 (p2 / poke-01~e.76
+                                    :ARG0 (y / you~e.45)
+                                    :ARG1 (k / knife~e.79
+                                             :instrument-of (p / pare-01~e.78))
+                                    :ARG2 (s2 / stem~e.82)))
+                 :op2 (u / until~e.73)
+                 :op2 (p4 / possible-01~e.85
+                          :ARG1 (f / feel-01~e.86
+                                   :ARG0 y
+                                   :ARG1 (t2 / texture~e.93
+                                             :location (p5 / pot~e.57
+                                                           :ARG1-of (s / steam-02~e.56))
+                                             :mod (l / little~e.92)
+                                             :mod (s3 / still~e.90)))))
+    :op1 (b2 / bring-01~e.45
+             :ARG0 y
+             :ARG1 (w / water~e.50
+                      :quant (a / about~e.46
+                                :op1 (d / distance-quantity~e.48
+                                        :unit (i / inch~e.48)
+                                        :quant 1~e.47))
+                      :ARG1-of b)
+             :ARG2 (b / boil-01~e.53
+                      :location p5))
+    :op2 (a3 / add-02~e.59
+             :ARG0 y
+             :ARG1 (t3 / thing~e.60
+                       :ARG2-of (i2 / insert-01~e.61)))
+    :op3 (c2 / cover-01~e.63
+             :ARG0 y)
+    :op4 (c / cook-01~e.66
+            :ARG0 y
+            :duration (a2 / about~e.68
+                          :op1 (t / temporal-quantity~e.70
+                                  :unit (m / minute~e.70)
+                                  :quant 20~e.69))))
+
+# ::id cauliflower_mash_3_instr3
+# ::name cauliflower_mash_3_instr3
+# ::snt Dump about half of the cauliflower into a food processor .
+(d / dump-01~e.96
+   :ARG0 (y / you~e.96)
+   :ARG1 (c / cauliflower~e.101
+            :ARG1-of (i / include-91~e.99
+                        :ARG2 (c2 / cauliflower~e.101)
+                        :ARG3 (a / about~e.97
+                                 :op1 (h / half~e.98))))
+   :ARG3 (t / thing~e.106
+            :ARG0-of (p / process-01~e.105
+                        :ARG1 (f / food~e.104)))
+   :mode imperative~e.96)
+
+# ::id cauliflower_mash_3_instr4
+# ::name cauliflower_mash_3_instr4
+# ::snt Pour in the nut milk and purée until smooth .
+(a / and~e.112
+   :op1 (p / pour-01~e.107
+           :ARG0 (y / you~e.107)
+           :ARG1 (m / milk~e.111
+                    :mod (n / nut~e.110))
+           :mode imperative~e.107)
+   :op2 (p2 / pure-02~e.113
+            :ARG0 y
+            :duration (u / until~e.114
+                         :op1 (s / smooth-01~e.115
+                                 :ARG1 m))
+            :mode imperative~e.116))
+
+# ::id cauliflower_mash_3_instr5
+# ::name cauliflower_mash_3_instr5
+# ::snt Now dump the rest of the cauliflower on top and purée again .
+(a2 / and~e.126
+    :op1 (d / dump-01~e.118
+            :ARG0 (y / you~e.118)
+            :ARG1 (c / cauliflower~e.123
+                     :mod (r / rest~e.120))
+            :location (t / top~e.125)
+            :mode imperative~e.124)
+    :op2 (p / pure-02~e.127
+            :ARG0 y
+            :mod (a / again~e.128)
+            :mode imperative~e.129)
+    :time (n / now~e.117))
+
+# ::id cauliflower_mash_3_instr6
+# ::name cauliflower_mash_3_instr6
+# ::snt You 'll need to stop and scrape and stir the purée a few times .
+(n / need-01~e.132
+   :ARG0 (y / you~e.130)
+   :ARG1 (a / and~e.137
+            :op1 (s3 / stop-01~e.134
+                     :ARG0 y)
+            :op2 (s / scrape-01~e.136
+                    :ARG0 y)
+            :op3 (s2 / stir-01~e.138
+                     :ARG0 y
+                     :ARG1 (p / pure-02~e.140)
+                     :frequency (f / few~e.142))))
+
+# ::id cauliflower_mash_3_instr7
+# ::name cauliflower_mash_3_instr7
+# ::snt Once smooth , add in the butter , salt , pepper and garlic and mix .
+(a3 / and~e.158
+    :op1 (a / add-02~e.148
+            :ARG0 (y / you~e.148)
+            :ARG1 (a2 / and~e.152
+                      :op1 (b / butter~e.151)
+                      :op2 (s / salt~e.153)
+                      :op3 (p / pepper~e.155)
+                      :op4 (g / garlic~e.157))
+            :mode imperative~e.160)
+    :op2 (m / mix-01~e.159
+            :ARG0 y
+            :mode imperative~e.160)
+    :time (s2 / smooth-04~e.146
+              :ARG1 y))
+
+# ::id cauliflower_mash_3_instr8
+# ::name cauliflower_mash_3_instr8
+# ::snt Taste for seasoning and serve hot .
+(a / and~e.164
+   :op1 (t / taste-01~e.161
+           :purpose (s / season-01~e.163))
+   :op2 (s2 / serve-02~e.165
+            :ARG1-of (h / hot-05~e.166)))
+
+# ::id cauliflower_mash_3_instr9
+# ::name cauliflower_mash_3_instr9
+# ::snt ( You can reheat over low heat in the same pan if you 're not eating immediately . )
+(p2 / possible-01~e.170
+    :ARG1 (r / reheat-01~e.171
+             :ARG0 (y / you~e.169)
+             :ARG1 (t / thing~e.185
+                      :ARG1-of (h / heat-01~e.174
+                                  :ARG1-of (l / low-04~e.173)))
+             :location (p / pan~e.178
+                          :ARG1-of (s / same-01~e.177)))
+    :condition (e / eat-01~e.183
+                  :ARG0 y
+                  :time (i / immediate~e.184)
+                  :polarity -~e.182))
+

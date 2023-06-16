@@ -1,0 +1,70 @@
+# ::id orange_chicken_8_instr0
+# ::name orange_chicken_8_instr0
+# ::snt Place each chicken breast half between 2 sheets of heavy - duty plastic wrap ; pound each piece to 1/2-inch thickness using a meat mallet or small heavy skillet .
+(a / and~e.15
+   :op1 (p2 / place-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (b2 / breast~e.4
+                      :mod (e / each~e.2)
+                      :part (h / half~e.5)
+                      :part-of (c / chicken~e.3))
+            :ARG2 h
+            :ARG2 (b / between~e.6
+                     :op1 (s / sheet~e.8
+                             :quant 2~e.7
+                             :consist-of (w / wrap~e.14
+                                            :mod (d2 / duty~e.12
+                                                     :mod (h2 / heavy~e.10))
+                                            :consist-of (p3 / plastic~e.13))))
+            :mode imperative~e.15)
+   :op2 (p4 / pound~e.16
+            :ARG0 y
+            :ARG1 (p / piece~e.18
+                     :mod (e2 / each~e.17))
+            :ARG4 (t / thickness~e.21
+                     :mod (d / distance-quantity~e.20
+                             :unit (i / inch~e.20)
+                             :quant 1~e.20))
+            :manner (u / use-01~e.22
+                       :ARG0 y
+                       :ARG1 (o / or~e.26
+                                :op1 (m / mallet~e.25
+                                        :mod (m2 / meat~e.24))
+                                :op2 (s2 / skillet~e.29
+                                         :mod (h3 / heavy~e.28)
+                                         :mod (s3 / small~e.27))))
+            :mode imperative~e.16))
+
+# ::id orange_chicken_8_instr1
+# ::name orange_chicken_8_instr1
+# ::snt Sprinkle both sides of chicken evenly with salt and pepper ; dredge chicken in flour .
+(a2 / and~e.41
+    :op1 (s3 / spray-01~e.31
+             :ARG0 (y / you~e.31)
+             :ARG1 (s2 / side~e.33
+                       :mod (b / both~e.32)
+                       :part-of (c / chicken~e.35))
+             :ARG2 (a / and~e.39
+                      :op1 (s / salt~e.38)
+                      :op2 (p / pepper~e.40))
+             :mode imperative~e.31
+             :ARG1-of (e / even-02~e.36))
+    :op2 (d / dredge-01~e.42
+            :ARG0 y
+            :ARG1 c
+            :ARG2 (f / flour~e.45)
+            :mode imperative~e.31))
+
+# ::id orange_chicken_8_instr2
+# ::name orange_chicken_8_instr2
+# ::snt Heat oil and butter in a large nonstick skillet over ...
+(h / heat-01~e.47
+   :ARG1 (a / and~e.49
+            :op1 (o / oil~e.48)
+            :op2 (b / butter~e.50))
+   :location (s / skillet~e.55
+                :mod (l / large~e.53)
+                :ARG1-of (s2 / stick-01~e.54
+                             :polarity -~e.54))
+   :mod (o2 / over~e.56))
+

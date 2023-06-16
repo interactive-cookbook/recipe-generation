@@ -1,0 +1,187 @@
+# ::id garam_masala_5_instr0
+# ::name garam_masala_5_instr0
+# ::snt Combine all the ingredients in a shallow , heavy pan over medium heat and dry roast the spices for 4 minutes .
+(a2 / and~e.14
+    :op1 (c / combine-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (i / ingredient~e.4
+                     :mod (a / all~e.2))
+            :ARG2 (p / pan~e.10
+                     :mod (h2 / heavy~e.9)
+                     :mod (s / shallow~e.7)
+                     :prep-under (h / heat~e.13
+                                    :mod (m / medium~e.12))))
+    :op2 (r / roast-01~e.16
+            :ARG0 y
+            :ARG1 (i2 / ingredient~e.18)
+            :duration (t / temporal-quantity~e.21
+                         :unit (m2 / minute~e.21)
+                         :quant 4~e.20)
+            :manner (d / dry-02~e.15
+                       :ARG0 y)))
+
+# ::id garam_masala_5_instr1
+# ::name garam_masala_5_instr1
+# ::snt During the entire cooking time , shake the pan every 15 to 20 seconds to prevent the spices from burning .
+(s3 / shake-01~e.29
+    :purpose (p2 / prevent-01~e.38
+                 :ARG0 (y / you~e.29)
+                 :ARG1 (b2 / burn-01~e.42
+                           :ARG1 (n / nut~e.40)))
+    :ARG0 y
+    :ARG1 (p / pan~e.31)
+    :frequency (r / rate-entity-91~e.32
+                  :ARG3 (b / between~e.33
+                           :op1 (t / temporal-quantity~e.36
+                                   :unit (s / second~e.36)
+                                   :quant 15~e.33)
+                           :op2 (t2 / temporal-quantity~e.36
+                                    :unit (s2 / second~e.36)
+                                    :quant 20~e.35)))
+    :time (t3 / time~e.27
+              :mod (e / entire~e.25)
+              :duration-of (c / cook-01~e.26))
+    :mode imperative~e.43)
+
+# ::id garam_masala_5_instr2
+# ::name garam_masala_5_instr2
+# ::snt The mixture should be just toasted and aromatic .
+(r / recommend-01~e.46
+   :ARG1 (a / and~e.50
+            :op1 (t / toast-01~e.49
+                    :ARG1 (m / mixture~e.45)
+                    :mod (j / just~e.48))
+            :op2 (a2 / aromatic~e.51
+                     :domain m)))
+
+# ::id garam_masala_5_instr3
+# ::name garam_masala_5_instr3
+# ::snt Remove from the heat , transfer to a plate , and set aside to cool for 15 minutes .
+(a / and~e.63
+   :op1 (r / remove-01~e.53
+           :ARG1 (y / you~e.53)
+           :ARG2 (h / heat-01~e.56)
+           :mode imperative~e.53)
+   :op2 (t2 / transfer-01~e.58
+            :ARG0 y
+            :ARG2 (p / plate~e.61)
+            :mode imperative~e.71)
+   :op3 (s / set-01~e.64
+           :purpose (c / cool-01~e.67
+                       :ARG1 y)
+           :ARG0 y
+           :ARG2 (a2 / aside~e.65)
+           :duration (t / temporal-quantity~e.69
+                        :unit (m / minute~e.70)
+                        :quant 15~e.69)
+           :mode imperative~e.71))
+
+# ::id garam_masala_5_instr4
+# ::name garam_masala_5_instr4
+# ::snt .
+(a / amr-empty~e.72)
+
+# ::id garam_masala_5_instr5
+# ::name garam_masala_5_instr5
+# ::snt Place the cooled , roasted spices in a spice grinder or a powerful blender , such as a Vitamix , and process into a fine powder .
+(a / and~e.93
+   :op1 (p / place-01~e.73
+           :ARG0 (y / you~e.73)
+           :ARG2 (o / or~e.83
+                    :example (t2 / thing~e.86
+                                 :ARG0-of (b / blend-01~e.86)
+                                 :ARG1-of (p3 / powerful-02~e.85))
+                    :op1 (t / thing~e.84
+                            :ARG1-of (c / cool-01~e.75)
+                            :instrument-of (g / grind-01~e.82
+                                              :ARG1 (s / spice~e.81)))
+                    :op2 g)
+           :ARG2-of (r / recommend-01~e.78
+                       :ARG1 s))
+   :op2 (p4 / process-01~e.94
+            :ARG0 s
+            :ARG3 (p2 / powder~e.98
+                      :ARG1-of (f / fine-03~e.97)))
+   :rel (p5 / product~e.78
+            :name (n / name~e.78
+                     :op1 "Vitamix"~e.91))
+   :rel (r2 / roast-01~e.77))
+
+# ::id garam_masala_5_instr6
+# ::name garam_masala_5_instr6
+# ::snt Take your time , as this may take a few minutes .
+(t / take-01~e.100
+   :ARG0 (y / you~e.100)
+   :ARG1 (t5 / time~e.102
+             :poss y)
+   :mode imperative~e.100
+   :ARG1-of (c / cause-01~e.104
+               :ARG0 (p / possible-01~e.106
+                        :ARG1 (t2 / take-10~e.107
+                                  :ARG0 (t4 / this~e.105)
+                                  :ARG1 (f / few~e.109
+                                           :op1 (t3 / temporal-quantity~e.110
+                                                    :unit (m / minute~e.110)
+                                                    :quant 1~e.109))))))
+
+# ::id garam_masala_5_instr7
+# ::name garam_masala_5_instr7
+# ::snt If your spice grinder is small , you may need to grind it in several small batches .
+(p / possible-01~e.120
+   :ARG1 (n / need-01~e.121
+            :ARG0 (y / you~e.119)
+            :ARG1 (g / grind-01~e.123
+                     :ARG0 y
+                     :ARG1 (s4 / spice~e.114)
+                     :manner (b / batch~e.128
+                                :quant (s / several~e.126)
+                                :mod (s3 / small~e.127))))
+   :condition (s2 / small~e.117
+                  :domain (t / thing~e.116
+                             :poss y
+                             :ARG0-of (f / filter-02~e.115
+                                         :ARG1 s4))))
+
+# ::id garam_masala_5_instr8
+# ::name garam_masala_5_instr8
+# ::snt Sift after grinding to refine the powder or use as is .
+(o / or~e.137
+   :op1 (s / sift-01~e.130
+           :purpose (r / refine-01~e.134
+                       :ARG0 (y / you~e.130)
+                       :ARG1 (p / powder~e.136))
+           :ARG0 y
+           :time (a / after~e.131
+                    :op1 (g / grind-01~e.132))
+           :mode imperative~e.130)
+   :op2 (u / use-01~e.138
+           :ARG0 y
+           :ARG1 p
+           :mod (a2 / as-is~e.140)
+           :mode imperative~e.130))
+
+# ::id garam_masala_5_instr9
+# ::name garam_masala_5_instr9
+# ::snt .
+(a / amr-empty~e.142)
+
+# ::id garam_masala_5_instr10
+# ::name garam_masala_5_instr10
+# ::snt Store in an airtight ( preferably glass ) jar in a cool , dry place for up to 6 months .
+(s / store-01~e.143
+   :ARG0 (y / you~e.143)
+   :ARG1 (j / jar~e.151
+            :mod (a / airtight~e.146
+                    :ARG1-of (m / mean-01~e.147
+                                :ARG2 (g / glass~e.149
+                                         :ARG1-of (p2 / prefer-01~e.148
+                                                      :ARG0 y)))))
+   :duration (u / up-to~e.159
+                :op1 (t / temporal-quantity~e.162
+                        :unit (m2 / month~e.162)
+                        :quant 6~e.161))
+   :location (p / place~e.157
+                :ARG1-of (d / dry-02~e.156)
+                :ARG1-of (c / cool-01~e.154))
+   :mode imperative~e.163)
+

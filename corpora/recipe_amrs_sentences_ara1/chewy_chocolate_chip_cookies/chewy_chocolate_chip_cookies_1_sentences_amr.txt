@@ -1,0 +1,248 @@
+# ::id chewy_chocolate_chip_cookies_1_instr0
+# ::name chewy_chocolate_chip_cookies_1_instr0
+# ::snt Cream the butter and sugars together with the paddle attachment until it is light and fluffy .
+(c / cream-02~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.4
+            :op1 (b / butter~e.3)
+            :op2 (e / enzyme~e.5
+                    :ARG1-of (w / white-02~e.5)))
+   :instrument (a3 / attachment~e.10
+                   :purpose (p / paddle~e.9))
+   :time (u / until~e.11
+            :op1 (a2 / and~e.15
+                     :op1 (l / light-06~e.14
+                             :ARG1 a)
+                     :op2 (f / fluffy~e.16
+                             :domain a)))
+   :mode imperative~e.1)
+
+# ::id chewy_chocolate_chip_cookies_1_instr1
+# ::name chewy_chocolate_chip_cookies_1_instr1
+# ::snt While that 's mixing , sift together ( or briskly whisk ) the flour , baking soda , salt and cinnamon together .
+(o / or~e.26
+   :op1 (s2 / sift-01~e.23
+            :ARG1 (a / and~e.37
+                     :manner (t3 / together~e.39)
+                     :op1 (f / flour~e.31)
+                     :op2 (s3 / soda~e.34
+                              :ARG2-of (b / bake-01~e.33))
+                     :op3 (s / salt~e.36)
+                     :op4 (c / cinnamon~e.38))
+            :manner (t2 / together~e.24))
+   :op2 (w / whisk-01~e.28
+           :ARG1 a
+           :manner (s4 / swift~e.27))
+   :time (m / mix-01~e.21
+            :ARG0 (t / that~e.19)))
+
+# ::id chewy_chocolate_chip_cookies_1_instr2
+# ::name chewy_chocolate_chip_cookies_1_instr2
+# ::snt In a separate bowl or measuring cup , whisk together the eggs , milk and vanilla .
+(w / whisk-01~e.49
+   :ARG0 (y / you~e.57)
+   :ARG1 (a / and~e.55
+            :op1 (e / egg~e.52)
+            :op2 (m2 / milk~e.54)
+            :op3 (v / vanilla~e.56))
+   :location (o / or~e.45
+                :op1 (b / bowl~e.44
+                        :ARG1-of (s / separate-02~e.43))
+                :op2 (c / cup~e.47
+                        :instrument-of (m / measure-01~e.46)))
+   :manner (t / together~e.50)
+   :mode imperative~e.57)
+
+# ::id chewy_chocolate_chip_cookies_1_instr3
+# ::name chewy_chocolate_chip_cookies_1_instr3
+# ::snt When the butter and sugar has reached the light and fluffy stage , add the egg mixture in three stages , mixing thoroughly and scraping down the sides as necessary .
+(a / add-02~e.71
+   :ARG0 (y / you~e.71)
+   :ARG1 (m / mix-01~e.74
+            :ARG3 (e / egg~e.73))
+   :manner (a3 / and~e.81
+               :op1 (m2 / mix-01~e.79
+                        :ARG0 m
+                        :manner (t / thorough~e.80))
+               :op2 (s / scrape-02~e.82
+                       :ARG0 y
+                       :ARG1 (s2 / side~e.85)
+                       :ARG2 (d / down~e.83)
+                       :manner (n / need-01~e.87)))
+   :time (r / reach-01~e.64
+            :ARG0 (a2 / and~e.61
+                      :op1 (b / butter~e.60)
+                      :op2 (s5 / sugar~e.62))
+            :ARG1 (s3 / stage~e.69
+                      :ARG1-of (l2 / light-06~e.68)
+                      :ARG1-of (l / light-06~e.66)))
+   :time (s4 / stage~e.77
+             :quant 3~e.76)
+   :mode imperative~e.71)
+
+# ::id chewy_chocolate_chip_cookies_1_instr4
+# ::name chewy_chocolate_chip_cookies_1_instr4
+# ::snt Add the flour mixture to the batter and gently mix until just combined .
+(a2 / and~e.96
+    :op1 (a / add-02~e.89
+            :ARG0 (y / you~e.89)
+            :ARG1 (m / mix-01~e.92
+                     :ARG1 (f / flour~e.91))
+            :ARG2 (b / batter-01~e.95)
+            :mode imperative~e.89)
+    :op2 (m2 / mix-01~e.98
+             :ARG0 y
+             :duration (u / until~e.99
+                          :op1 (c / combine-01~e.101
+                                  :ARG1 m
+                                  :ARG2 b
+                                  :mod (j / just~e.100)))
+             :manner (g / gentle~e.97)))
+
+# ::id chewy_chocolate_chip_cookies_1_instr5
+# ::name chewy_chocolate_chip_cookies_1_instr5
+# ::snt Stir in the chocolate chips and then refrigerate for an hour .
+(a / and~e.108
+   :op1 (s / stir-01~e.103
+           :ARG0 (y / you~e.103)
+           :ARG1 (c / chip~e.107
+                    :consist-of (c2 / chocolate~e.106))
+           :mode imperative~e.103)
+   :op2 (s2 / store-01~e.110
+            :ARG1 y
+            :duration (t / temporal-quantity~e.113
+                         :unit (h / hour~e.113)
+                         :quant 1~e.112)
+            :time (t2 / then~e.109)
+            :mode imperative~e.114))
+
+# ::id chewy_chocolate_chip_cookies_1_instr6
+# ::name chewy_chocolate_chip_cookies_1_instr6
+# ::snt Preheat the oven to 375 degrees F ( place the racks in the top and lower thirds of the oven ) .
+(m2 / multi-sentence~e.122
+    :snt1 (h2 / hot-05~e.115
+              :ARG0 (y / you~e.115)
+              :ARG1 (o / oven~e.117)
+              :ARG2 (t / temperature-quantity~e.121
+                       :scale (f / fahrenheit~e.121)
+                       :quant 375~e.119)
+              :mode imperative~e.115)
+    :snt2 (p / place-01~e.123
+             :ARG0 y
+             :ARG1 (r / rod~e.125)
+             :ARG2 (a2 / and~e.129
+                       :op1 (t2 / top~e.128)
+                       :op2 (o2 / oven~e.134
+                                :part (l / low-04~e.130
+                                         :ARG1 (a / "2/3"~e.131
+                                                  :ARG1-of (h / have-degree-91~e.130
+                                                              :ARG2 l
+                                                              :ARG3 (m / more~e.130))))))
+             :mode imperative~e.136))
+
+# ::id chewy_chocolate_chip_cookies_1_instr7
+# ::name chewy_chocolate_chip_cookies_1_instr7
+# ::snt Portion out the cookie dough into approximately 5 oz scoops and cook 2 cookie sheets at a ( 6 cookies per sheet ) for for about 15 minutes , switching the cookie sheets halfway through .
+(a2 / and~e.147
+    :op1 (t3 / throw-out-06~e.137
+             :ARG0 (y / you~e.137)
+             :ARG1 (d / dough~e.141
+                      :consist-of (c2 / cookie~e.140))
+             :ARG2 (i / ice~e.146)
+             :mode imperative~e.137)
+    :op2 (c / cook-01~e.148
+            :ARG0 y
+            :ARG1 (s / sheet~e.151
+                     :mod c2
+                     :quant 2~e.149)
+            :duration (a / about~e.162
+                         :op1 (t / temporal-quantity~e.164
+                                 :unit (m3 / minute~e.164)
+                                 :quant 15~e.163))
+            :ARG1-of (m2 / mean-01~e.154
+                         :ARG2 (r / rate-entity-91~e.157
+                                  :ARG1 (c3 / cookie~e.156
+                                            :quant 6~e.155)
+                                  :ARG2 (s2 / sheet~e.158))))
+    :op3 (s3 / switch-01~e.166
+             :ARG0 y
+             :ARG1 s
+             :time (t2 / through~e.171
+                       :extent (h / halfway~e.170)))
+    :rel (a3 / approximately~e.143
+             :op1 (m / mass-quantity~e.145
+                     :unit (f / fluid-ounce~e.145)
+                     :quant 5~e.144)))
+
+# ::id chewy_chocolate_chip_cookies_1_instr8
+# ::name chewy_chocolate_chip_cookies_1_instr8
+# ::snt When cooked , transfer the cookies to a cooling rack and let sit for a few minutes before consuming .
+(a / and~e.183
+   :op1 (t2 / transfer-01~e.176
+            :ARG0 (y / you~e.176)
+            :ARG1 (c3 / cookie~e.178)
+            :ARG3 (r / rack~e.182
+                     :ARG0-of (c4 / cool-01~e.181))
+            :mode imperative~e.184)
+   :op2 (l / let-01~e.184
+           :ARG0 y
+           :ARG1 (s / sit-01~e.185
+                    :ARG1 c3
+                    :duration (f / few~e.188
+                                 :op1 (t / temporal-quantity~e.189
+                                         :unit (m / minute~e.189)
+                                         :quant 1~e.188)))
+           :time (b / before~e.190
+                    :op1 (c / consume-01~e.191
+                            :ARG0 y
+                            :ARG1 c3))
+           :mode imperative~e.184)
+   :time (c2 / cook-01~e.174
+             :ARG1 c3))
+
+# ::id chewy_chocolate_chip_cookies_1_instr9
+# ::name chewy_chocolate_chip_cookies_1_instr9
+# ::snt Try to also let the cookie sheets cool for a few minutes before portioning out the next round .
+(t2 / try-01~e.193
+    :ARG0 (y / you~e.193)
+    :ARG1 (l / let-01~e.196
+             :ARG0 y
+             :ARG1 (c2 / cool-06~e.200
+                       :ARG1 (s / sheet~e.199
+                                :consist-of (c / cookie~e.198))
+                       :duration (f / few~e.203
+                                    :op1 (t / temporal-quantity~e.204
+                                            :unit (m / minute~e.204)
+                                            :quant 1~e.203)))
+             :mod (a / also~e.195)
+             :time (b / before~e.205
+                      :op1 (p / portion-01~e.206
+                              :ARG0 y
+                              :ARG1 (r / round~e.210
+                                       :mod (n / next~e.209)))))
+    :mode imperative~e.193)
+
+# ::id chewy_chocolate_chip_cookies_1_instr10
+# ::name chewy_chocolate_chip_cookies_1_instr10
+# ::snt Also - keep the extra cookie dough in the fridge until you 're ready to use it .
+(k / keep-01~e.214
+   :ARG0 (y / you~e.214)
+   :ARG1 (d / dough~e.218
+            :mod (e / extra~e.216)
+            :consist-of (c / cookie~e.217))
+   :location (f / fridge~e.221)
+   :mod (a / also~e.212)
+   :time (u / until~e.222
+            :op1 (r / ready-02~e.225
+                    :ARG1 y
+                    :ARG2 (u2 / use-01~e.227
+                              :ARG0 y
+                              :ARG1 d))))
+
+# ::id chewy_chocolate_chip_cookies_1_instr11
+# ::name chewy_chocolate_chip_cookies_1_instr11
+# ::snt Enjoy !
+(e / enjoy-01~e.230
+   :ARG0 (y / you~e.230)
+   :mode expressive~e.231)
+

@@ -1,0 +1,90 @@
+# ::id garam_masala_3_instr0
+# ::name garam_masala_3_instr0
+# ::snt In a small pan roast separately the coriander , cumin , peppercorns , cardamom , cinnamon and cloves .
+(r / roast-01~e.5
+   :ARG1 (a / and~e.17
+            :op1 (c3 / coriander~e.8)
+            :op2 (c4 / cumin~e.10)
+            :op3 (s / seed~e.12)
+            :op4 (c / cardamom~e.14)
+            :op5 (c2 / cinnamon~e.16)
+            :op6 (n2 / nut~e.18))
+   :instrument (p / pan~e.4
+                  :mod (s3 / small~e.3))
+   :manner (s2 / separate-02~e.6)
+   :rel (n / nut~e.12))
+
+# ::id garam_masala_3_instr1
+# ::name garam_masala_3_instr1
+# ::snt As each one starts to smell fragrant turn on to plate to cool .
+(b / be-temporally-at-91~e.20
+   :ARG2 (s2 / start-01~e.23
+             :ARG0 (o / one~e.22
+                      :mod (e / each~e.21)
+                      :ARG0-of s)
+             :ARG1 (s / smell-01~e.25
+                      :ARG1 (t2 / turn-01~e.27
+                                :purpose (c / cool-01~e.32
+                                            :ARG1 o)
+                                :ARG1 (t / thing~e.33
+                                         :mod (f / fragrant~e.26))
+                                :destination (p / plate~e.30)))))
+
+# ::id garam_masala_3_instr2
+# ::name garam_masala_3_instr2
+# ::snt After roasting , peel the cardamoms , discard pods and use only the seeds .
+(a2 / and~e.43
+    :op1 (s2 / strip-01~e.37
+             :ARG0 (y / you~e.37)
+             :ARG1 (c / card~e.39)
+             :mode imperative~e.37)
+    :op2 (d / discard-01~e.41
+            :ARG0 y
+            :ARG1 (p / pod~e.42)
+            :mode imperative~e.37)
+    :op3 (u / use-01~e.44
+            :ARG0 y
+            :ARG1 (s / seed~e.47
+                     :mod (o / only~e.45))
+            :mode imperative~e.48)
+    :time (a / after~e.34
+             :op1 (r / roast-01~e.35)))
+
+# ::id garam_masala_3_instr3
+# ::name garam_masala_3_instr3
+# ::snt Put all into electric blender and blend to a fine powder .
+(a2 / and~e.54
+    :op1 (p2 / put-01~e.49
+             :ARG0 (y / you~e.49)
+             :ARG1 (a / all~e.50)
+             :ARG2 (b2 / blender~e.53
+                       :mod (e / electric~e.52))
+             :mode imperative~e.49)
+    :op2 (b / blend-01~e.55
+            :ARG0 y
+            :prep-to (p / powder~e.59
+                        :ARG1-of (f / fine-02~e.58))
+            :mode imperative~e.60))
+
+# ::id garam_masala_3_instr4
+# ::name garam_masala_3_instr4
+# ::snt Finely grate nutmeg and mix in .
+(a / and~e.64
+   :op1 (g / grate-02~e.62
+           :ARG0 (y / you~e.62)
+           :ARG1 (n / nutmeg~e.63)
+           :mode imperative~e.61
+           :ARG1-of (f / fine-04~e.61))
+   :op2 (m / mix-01~e.65
+           :ARG0 y
+           :mode imperative~e.61))
+
+# ::id garam_masala_3_instr5
+# ::name garam_masala_3_instr5
+# ::snt Store in glass jar with airtight lid .
+(s / store-01~e.68
+   :ARG2 (j / jar~e.71
+            :part (l / lid~e.74
+                     :mod (a / airtight~e.73))
+            :consist-of (g / glass~e.70)))
+

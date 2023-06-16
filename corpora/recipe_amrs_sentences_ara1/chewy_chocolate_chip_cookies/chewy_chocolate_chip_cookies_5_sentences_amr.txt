@@ -1,0 +1,132 @@
+# ::id chewy_chocolate_chip_cookies_5_instr0
+# ::name chewy_chocolate_chip_cookies_5_instr0
+# ::snt Preheat the oven to 325 , line cookie sheets with parchment paper .
+(a / and~e.6
+   :op1 (b / bake-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (o / oven~e.3)
+           :destination (t / temperature-quantity~e.5
+                           :quant 325~e.5)
+           :mode imperative~e.1)
+   :op2 (l / line-01~e.7
+           :ARG0 y
+           :ARG1 (s / sheet~e.9
+                    :consist-of (c / cookie~e.8))
+           :ARG2 (p / paper~e.12
+                    :consist-of (p2 / parchment~e.11))
+           :mode imperative~e.7))
+
+# ::id chewy_chocolate_chip_cookies_5_instr1
+# ::name chewy_chocolate_chip_cookies_5_instr1
+# ::snt together the flour , baking soda and salt ; set aside .
+(a2 / and~e.22
+    :op1 (a / and~e.20
+            :op1 (f / flour~e.16)
+            :op2 (s3 / soda~e.19
+                     :instrument-of (b / bake-01~e.18))
+            :op3 (s / salt~e.21)
+            :source (t / together~e.14))
+    :op2 (s2 / set-01~e.23
+             :ARG0 a
+             :ARG2 (a3 / aside~e.24)))
+
+# ::id chewy_chocolate_chip_cookies_5_instr2
+# ::name chewy_chocolate_chip_cookies_5_instr2
+# ::snt In a medium bowl , cream together the melted butter , brown sugar and white sugar until well blended .
+(c / cream-02~e.31
+   :ARG1 (a / and~e.39
+            :op1 (b4 / butter~e.35
+                     :ARG1-of (m2 / melt-01~e.34))
+            :op2 (s / sugar~e.38
+                    :mod (b3 / brown~e.37))
+            :op3 (s2 / sugar~e.41
+                     :ARG1-of (w2 / white-03~e.40)))
+   :duration (u / until~e.42
+                :op1 (b / blend-01~e.44
+                        :ARG1 a
+                        :ARG1-of (w / well-09~e.43)))
+   :location (b2 / bowl~e.29
+                 :mod (m / medium~e.28))
+   :manner (t / together~e.32)
+   :mode imperative~e.45)
+
+# ::id chewy_chocolate_chip_cookies_5_instr3
+# ::name chewy_chocolate_chip_cookies_5_instr3
+# ::snt Beat in the vanilla , egg , and egg yolk until light and creamy .
+(b / beat-01~e.46
+   :ARG0 (y2 / you~e.46)
+   :ARG1 (a / and~e.53
+            :op1 (v / vanilla~e.49)
+            :op2 (e / egg~e.51
+                    :consist (y / yolk~e.55))
+            :op3 y)
+   :manner (u / until~e.56
+              :op1 (a2 / and~e.58
+                       :op1 (l / light-06~e.57
+                               :ARG1 a)
+                       :op2 (c / creamy~e.59)))
+   :mode imperative~e.60)
+
+# ::id chewy_chocolate_chip_cookies_5_instr4
+# ::name chewy_chocolate_chip_cookies_5_instr4
+# ::snt Mix in the flour mixed ingredients until just blended .
+(m / mix-01~e.61
+   :ARG0 (y / you~e.61)
+   :ARG1 (i / ingredient~e.66
+            :ARG2-of (m2 / mix-01~e.65
+                         :ARG1 (f / flour~e.64)))
+   :duration (u / until~e.67
+                :op1 (b / blend-01~e.69
+                        :ARG1 i
+                        :mod (j / just~e.68)))
+   :mode imperative~e.70)
+
+# ::id chewy_chocolate_chip_cookies_5_instr5
+# ::name chewy_chocolate_chip_cookies_5_instr5
+# ::snt Stir in the chocolate chips by hand using a wooden spoon .
+(s2 / stir-01~e.71
+    :ARG0 (y / you~e.71)
+    :ARG1 (c / chip~e.75
+             :consist-of (c2 / chocolate~e.74))
+    :manner (h / hand~e.77)
+    :manner (u / use-01~e.78
+               :ARG0 y
+               :ARG1 (s / spoon~e.81
+                        :consist-of (w / wooden~e.80)))
+    :mode imperative~e.71)
+
+# ::id chewy_chocolate_chip_cookies_5_instr6
+# ::name chewy_chocolate_chip_cookies_5_instr6
+# ::snt Drop cookie dough ¼ cup at a time onto the prepared cookie sheets .
+(d2 / drop-01~e.83
+    :ARG0 (y / you~e.83)
+    :ARG1 (d / dough~e.85
+             :consist-of (c / cookie~e.84
+                            :mod-of s))
+    :ARG4 (s / sheet~e.95
+             :ARG1-of (p / prepare-01~e.93))
+    :manner (t / thing~e.88
+               :mod (a / at-a-time~e.89)
+               :unit (c2 / cup~e.87
+                         :quant 1~e.86))
+    :mode imperative~e.96)
+
+# ::id chewy_chocolate_chip_cookies_5_instr7
+# ::name chewy_chocolate_chip_cookies_5_instr7
+# ::snt Bake for 15 to 17 minutes in the preheated oven , or until the edges are
+(b / bake-01~e.97
+   :ARG0 (y / you~e.97)
+   :duration (b2 / between~e.99
+                 :op1 (t / temporal-quantity~e.102
+                         :unit (m / minute~e.102)
+                         :quant 15~e.99)
+                 :op2 (t2 / temporal-quantity~e.102
+                          :unit (m2 / minute~e.102)
+                          :quant 17~e.101))
+   :location (o / oven~e.106
+                :ARG1-of (h2 / heat-01~e.105))
+   :time (u / until~e.109
+            :op1 (h / have-mod-91~e.112
+                    :ARG1 (e / edge~e.111)))
+   :mode imperative~e.112)
+

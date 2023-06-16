@@ -1,0 +1,280 @@
+# ::id orange_chicken_1_instr0
+# ::name orange_chicken_1_instr0
+# ::snt For the chicken : In a large bowl , whisk together the cornstarch and egg whites with a fork until almost frothy , about 1 minute .
+(w / whisk-01~e.10
+   :ARG0 (y / you~e.10)
+   :ARG1 (a3 / and~e.14
+             :op1 (c2 / cornstarch~e.13)
+             :op2 (p / person~e.16
+                     :ARG1-of (w2 / white-02~e.16
+                                  :ARG2 (e / egg~e.15))))
+   :instrument (f / fork~e.19)
+   :location (b / bowl~e.8
+                :mod (l / large~e.7))
+   :time (u / until~e.20
+            :duration (a / about~e.24
+                         :op1 (t / temporal-quantity~e.26
+                                 :unit (m / minute~e.26)
+                                 :quant 1~e.25))
+            :op1 (f2 / froth-01~e.22
+                     :ARG1 a3
+                     :mod (a2 / almost~e.21)))
+   :topic (c / chicken~e.3)
+   :mode imperative~e.27)
+
+# ::id orange_chicken_1_instr1
+# ::name orange_chicken_1_instr1
+# ::snt Add the chicken to the mixture and allow to sit for 5 to 10 minutes .
+(a3 / and~e.34
+    :op1 (a / add-02~e.28
+            :ARG0 (y / you~e.28)
+            :ARG1 (c / chicken~e.30)
+            :ARG2 (m3 / mixture~e.33)
+            :mode imperative~e.28)
+    :op2 (a2 / allow-01~e.35
+             :ARG0 y
+             :ARG1 (s / sit-01~e.37
+                      :ARG1 c
+                      :duration (b / between~e.39
+                                   :op1 (t / temporal-quantity~e.42
+                                           :unit (m / minute~e.42)
+                                           :quant 5~e.39)
+                                   :op2 (t2 / temporal-quantity~e.42
+                                            :unit (m2 / minute~e.42)
+                                            :quant 10~e.41)))
+             :mode imperative~e.43))
+
+# ::id orange_chicken_1_instr2
+# ::name orange_chicken_1_instr2
+# ::snt For the sauce : Meanwhile , put the orange juice , soy sauce , sugar , vinegar , sesame oil , salt , crushed red pepper , garlic and ginger ( and orange zest , if using ) in a small nonstick skillet and whisk together .
+(a2 / and~e.87
+    :purpose (s2 / sauce~e.46)
+    :op1 (p2 / put-01~e.50
+             :ARG0 (y / you~e.50)
+             :ARG1 (a / and~e.54
+                      :op1 (j / juice~e.53
+                              :source (o2 / orange~e.52))
+                      :op2 (s3 / sauce~e.56
+                               :mod (s7 / soy~e.55))
+                      :op3 (s9 / sugar~e.58)
+                      :op4 (v / vinegar~e.60)
+                      :op5 (o / oil~e.63
+                              :mod (s4 / sesame~e.62))
+                      :op6 (s / salt~e.65)
+                      :op7 (p / pepper~e.69
+                              :condition (u / use-01~e.80
+                                            :ARG0 y
+                                            :ARG1 (z / zest~e.77
+                                                     :mod o2))
+                              :ARG1-of (r / red-02~e.68)
+                              :ARG1-of (c / crush-01~e.67))
+                      :op8 (g / garlic~e.71)
+                      :op9 (g2 / ginger~e.73)
+                      :op10 z)
+             :ARG2 (s5 / skillet~e.86
+                       :mod (s6 / small~e.84)
+                       :ARG1-of (s8 / stick-01~e.85
+                                    :polarity -~e.85))
+             :mode imperative~e.50)
+    :op2 (w / whisk-01~e.88
+            :ARG0 y
+            :manner (t / together~e.89)
+            :mode imperative~e.90)
+    :time (m / meanwhile~e.48))
+
+# ::id orange_chicken_1_instr3
+# ::name orange_chicken_1_instr3
+# ::snt Heat until bubbling and starting to thicken , about 3 - 4 minutes .
+(h / heat~e.91
+   :duration (a / about~e.99
+                :op1 (b / between~e.100
+                        :op1 (t / temporal-quantity~e.103
+                                :unit (m / minute~e.103)
+                                :quant 3~e.100)
+                        :op2 (t2 / temporal-quantity~e.103
+                                 :unit (m2 / minute~e.103)
+                                 :quant 4~e.102)))
+   :time (u / until~e.92
+            :op1 (a2 / and~e.94
+                     :op1 (g / gush-02~e.93)
+                     :op2 (s / start-01~e.95
+                             :ARG1 (t3 / thicken-01~e.97)))))
+
+# ::id orange_chicken_1_instr4
+# ::name orange_chicken_1_instr4
+# ::snt Whisk together the cornstarch and 1/4 cup water in a small bowl and add 1 to 2 tablespoons of the cornstarch slurry to the sauce .
+(a3 / and~e.117
+    :op1 (c / cook-01~e.105
+            :ARG0 (y / you~e.105)
+            :ARG1 (a2 / and~e.109
+                      :op1 (c2 / cornstarch~e.108
+                               :consist (s2 / slurry~e.126
+                                            :quant (b / between~e.119
+                                                      :op1 (v3 / volume-quantity~e.122
+                                                               :unit (m / milligram~e.122))
+                                                      :op2 (v2 / volume-quantity~e.122
+                                                               :unit (t / tablespoons~e.122)
+                                                               :quant 2~e.121))))
+                      :op2 (w / water~e.112
+                              :quant (v / volume-quantity~e.122
+                                        :unit (c3 / cup~e.111)
+                                        :quant "1/4"~e.110)))
+            :location (b2 / bowl~e.116
+                          :mod (s3 / small~e.115))
+            :manner (t2 / together~e.106)
+            :mode imperative~e.105)
+    :op2 (a / add-02~e.118
+            :ARG0 y
+            :ARG1 s2
+            :ARG2 (s / sauce~e.129)
+            :mode imperative~e.130)
+    :rel 1~e.119)
+
+# ::id orange_chicken_1_instr5
+# ::name orange_chicken_1_instr5
+# ::snt Mix in and thicken for 1 minute .
+(a / and~e.133
+   :op1 (m2 / mix-01~e.131
+            :duration (t / temporal-quantity~e.137
+                         :unit (m / minute~e.137)
+                         :quant 1~e.136
+                         :duration-of t2))
+   :op2 (t2 / thump-01~e.134))
+
+# ::id orange_chicken_1_instr6
+# ::name orange_chicken_1_instr6
+# ::snt ( If sauce gets overly thick , just add in another 1/4 cup water and whisk in . )
+(a2 / and~e.153
+    :condition (t / thick-03~e.144
+                  :ARG1 (s / sauce~e.141)
+                  :ARG1-of (o / over-03~e.143))
+    :op1 (a / add-02~e.147
+            :ARG0 (y / you~e.147)
+            :ARG1 (w / water~e.152
+                     :quant (v / volume-quantity~e.151
+                               :unit (c / cup~e.151)
+                               :quant "1/4"~e.150)
+                     :mod (a3 / another~e.149))
+            :mod (j / just~e.146))
+    :op2 (w2 / whisk-01~e.154
+             :ARG0 y
+             :mode imperative~e.157))
+
+# ::id orange_chicken_1_instr7
+# ::name orange_chicken_1_instr7
+# ::snt Heat about 2 inches of vegetable oil in a heavy - bottomed pot until a deep - fry thermometer inserted in the oil registers 350 degrees F. In batches , carefully drop a few pieces of chicken into the oil ( drop them in one by one to keep them from sticking together ) and move it around , 2 - 3 minutes or until light golden .
+(m5 / multi-sentence~e.225
+    :rel (i / imperative~e.184)
+    :snt1 (h / heat-01~e.158
+             :ARG1 (o / oil~e.164
+                      :quant (a / about~e.159
+                                :op1 (d2 / distance-quantity~e.161
+                                         :unit (i2 / inch~e.161)
+                                         :quant 2~e.160))
+                      :mod (v / vegetable~e.163))
+             :location (p2 / pot~e.170
+                           :location (b2 / bottom~e.169
+                                         :mod (h2 / heavy~e.167)))
+             :time (u / until~e.171
+                      :op1 (r / register-01~e.181
+                              :ARG1 (t4 / thermometer~e.176
+                                        :ARG1-of (i3 / insert-01~e.177)
+                                        :instrument-of (f3 / fry-01~e.175
+                                                           :ARG1-of (d / deep-02~e.173)))
+                              :ARG3 (t / temperature-quantity~e.182
+                                       :scale (f / fahrenheit~e.184)
+                                       :quant 350~e.182))))
+    :snt2 (a2 / and~e.212
+              :duration (o4 / or~e.221
+                            :op1 (b / between~e.217
+                                    :op1 (t2 / temporal-quantity~e.220
+                                             :unit (m2 / minute~e.220)
+                                             :quant 2~e.217)
+                                    :op2 (t3 / temporal-quantity~e.220
+                                             :unit (m3 / minute~e.220)
+                                             :quant 3~e.219))
+                            :op2 (u2 / until~e.222
+                                     :op1 (g / gold~e.224
+                                             :ARG1-of (l / light-06~e.223))))
+              :op1 (d3 / drop-01~e.189
+                       :ARG0 (y / you~e.189)
+                       :ARG1 (p / piece~e.192
+                                :quant (f2 / few~e.191)
+                                :mod (c2 / chicken~e.194))
+                       :ARG2 (o2 / oil~e.197)
+                       :ARG1-of (c / care-04~e.188
+                                   :ARG0 y
+                                   :mode imperative~e.186)
+                       :ARG1-of (m / mean-01~e.198
+                                   :ARG2 (d4 / drop-01~e.199
+                                             :purpose (k / keep-04~e.206
+                                                         :ARG0 y
+                                                         :ARG1 p
+                                                         :ARG2 (s / stick-01~e.209
+                                                                  :ARG1 p
+                                                                  :ARG3 (t5 / together~e.210)
+                                                                  :polarity -~e.224))
+                                             :ARG0 y
+                                             :ARG1 p
+                                             :manner (o3 / one-by-one~e.203)
+                                             :mode imperative~e.186)))
+              :op2 (m4 / move-01~e.213
+                       :ARG1 y
+                       :ARG2 (a3 / around~e.215)
+                       :mode imperative~e.225)))
+
+# ::id orange_chicken_1_instr8
+# ::name orange_chicken_1_instr8
+# ::snt Let the pieces drain on a plate lined with paper towels for 2 to 3 minutes .
+(l / let-01~e.226
+   :ARG0 (y / you~e.226)
+   :ARG1 (d / drain-01~e.229
+            :ARG1 (p3 / piece~e.228)
+            :ARG2 (p4 / plate~e.232
+                      :ARG1-of (l2 / line-01~e.233
+                                   :ARG2 (p2 / paper~e.236
+                                             :consist-of (p / paper~e.235))))
+            :duration (b / between~e.238
+                         :op1 (t / temporal-quantity~e.241
+                                 :unit (m / minute~e.241)
+                                 :quant 2~e.238)
+                         :op2 (t2 / temporal-quantity~e.241
+                                  :unit (m2 / minute~e.241)
+                                  :quant 3~e.240)))
+   :mode imperative~e.226)
+
+# ::id orange_chicken_1_instr9
+# ::name orange_chicken_1_instr9
+# ::snt Then drop them back into the oil for 1 minute to really solidify the coating .
+(d / drop-01~e.244
+   :purpose (s / solidify-01~e.255
+               :ARG1 (c / coat-01~e.257)
+               :ARG1-of (r / real-04~e.254))
+   :ARG1 (t3 / they~e.245)
+   :ARG4 (o / oil~e.249)
+   :duration (t / temporal-quantity~e.252
+                :unit (m / minute~e.252)
+                :quant 1~e.251)
+   :mod (b / back~e.246)
+   :time (t2 / then~e.243))
+
+# ::id orange_chicken_1_instr10
+# ::name orange_chicken_1_instr10
+# ::snt Toss the chicken in the sauce and serve immediately with orange zest and sliced green onions on the top .
+(a / and~e.265
+   :op1 (t2 / toss-01~e.259
+            :ARG0 (y / you~e.259)
+            :ARG1 (c / chicken~e.261)
+            :ARG2 (s / sauce~e.264)
+            :mode imperative~e.259)
+   :op2 (s2 / serve-02~e.266
+            :ARG1 y
+            :accompanier (a2 / and~e.271
+                             :op1 (z / zest~e.270
+                                     :mod (o / orange~e.269))
+                             :op2 (a3 / apple~e.274
+                                      :ARG1-of (s3 / slice-01~e.272)))
+            :location (t / top~e.277)
+            :time (i / immediate~e.267))
+   :rel (g / green-02~e.273))
+

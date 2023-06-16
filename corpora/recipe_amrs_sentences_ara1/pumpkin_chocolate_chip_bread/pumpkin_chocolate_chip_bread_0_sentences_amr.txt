@@ -1,0 +1,81 @@
+# ::id pumpkin_chocolate_chip_bread_0_instr0
+# ::name pumpkin_chocolate_chip_bread_0_instr0
+# ::snt In large bowl combine and beat together eggs , pumpkin , and oil .
+(a / and~e.5
+   :location (b2 / bowl~e.3
+                 :mod (l / large~e.2))
+   :op1 (c / combine-01~e.4
+           :ARG1 (a2 / and~e.9
+                     :op1 (e / egg~e.8)
+                     :op2 (p / pumpkin~e.10)
+                     :op3 (o / oil~e.13)
+                     :ARG1-of b))
+   :op2 (b / beat-01~e.6
+           :ARG3 (t / together~e.7)))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr1
+# ::name pumpkin_chocolate_chip_bread_0_instr1
+# ::snt Add sugar to pumpkin mixture .
+(a / add-02~e.15
+   :ARG1 (s / sugar~e.16)
+   :ARG2 (m / mix-01~e.19
+            :ARG1 (p / pumpkin~e.18)))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr2
+# ::name pumpkin_chocolate_chip_bread_0_instr2
+# ::snt Sift dry ingredients together , add chocolate chips and add to first mixture .
+(a3 / and~e.29
+    :op1 (s / sift-01~e.21
+            :ARG0 (y / you~e.21)
+            :ARG1 (i / ingredient~e.23
+                     :ARG1-of (d / dry-08~e.22))
+            :manner (t / together~e.24)
+            :mode imperative~e.21)
+    :op2 (a / add-02~e.26
+            :ARG0 y
+            :ARG1 (c / chip~e.28
+                     :consist-of (c2 / chocolate~e.27))
+            :mode imperative~e.21)
+    :op3 (a2 / add-02~e.30
+             :ARG0 y
+             :ARG2 (m / mixture~e.33
+                      :ord (o / ordinal-entity~e.32
+                              :value 1~e.32))
+             :mode imperative~e.34))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr3
+# ::name pumpkin_chocolate_chip_bread_0_instr3
+# ::snt Pour into 3 greased loaf pans .
+(p / pour-01~e.35
+   :ARG0 (y / you~e.35)
+   :ARG2 (a / Pan~e.40
+            :quant 3~e.37
+            :ARG2-of (b / bake-01~e.38
+                        :ARG1 (l / loaf~e.39)))
+   :mode imperative~e.35)
+
+# ::id pumpkin_chocolate_chip_bread_0_instr4
+# ::name pumpkin_chocolate_chip_bread_0_instr4
+# ::snt Bake at 350 degrees for 1 hour or until tests done with toothpick or paring knife .
+(b / bake-01~e.42
+   :ARG0 (y / you~e.42)
+   :ARG2 (t / temperature-quantity~e.45
+            :scale (c / celsius~e.45)
+            :quant 350~e.44)
+   :duration (o / or~e.49
+                :op1 (t2 / temporal-quantity~e.48
+                         :unit (h / hour~e.48)
+                         :quant 1~e.47)
+                :op2 (u / until~e.50
+                        :op1 (t3 / test-01~e.51
+                                 :instrument (o2 / or~e.55
+                                                 :op1 (t4 / toothpick~e.54)
+                                                 :op2 (k / knife~e.57
+                                                         :instrument-of (p / pare-01~e.56)))))))
+
+# ::id pumpkin_chocolate_chip_bread_0_instr5
+# ::name pumpkin_chocolate_chip_bread_0_instr5
+# ::snt Freezes well .
+(f / free-01~e.59
+   :ARG1-of (w / well-09~e.60))
+

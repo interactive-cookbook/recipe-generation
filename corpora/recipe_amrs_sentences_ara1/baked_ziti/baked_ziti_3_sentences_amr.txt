@@ -1,0 +1,89 @@
+# ::id baked_ziti_3_instr0
+# ::name baked_ziti_3_instr0
+# ::snt Preheat the oven to 350 degrees .
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3)
+   :destination (t / temperature-quantity~e.5
+                   :quant 350~e.5)
+   :mode imperative~e.1)
+
+# ::id baked_ziti_3_instr1
+# ::name baked_ziti_3_instr1
+# ::snt Boil the ziti until al dente and drain .
+(b / boil-01~e.8
+   :ARG0 (y / you~e.8)
+   :ARG1 (z / ziti~e.10)
+   :time (u / until~e.11
+            :op1 (a / and~e.14
+                    :op1 (d / dent-01~e.13
+                            :ARG0 z)
+                    :op2 (d2 / drain-01~e.15
+                             :ARG0 z)))
+   :mode imperative~e.8)
+
+# ::id baked_ziti_3_instr2
+# ::name baked_ziti_3_instr2
+# ::snt In a skillet brown the onion and beef over medium .
+(r / Brown~e.20
+   :ARG1 (a / and~e.23
+            :op1 (o / onion~e.22)
+            :op2 (b / beef~e.24))
+   :location (s / skillet~e.19)
+   :manner (m / medium~e.26)
+   :mode imperative~e.20)
+
+# ::id baked_ziti_3_instr3
+# ::name baked_ziti_3_instr3
+# ::snt Add the spaghetti sauce and simmer 15 minutes .
+(a2 / and~e.32
+    :op1 (a / add-02~e.28
+            :ARG0 (y / you~e.28)
+            :ARG1 (s / sauce~e.31
+                     :mod (s3 / spaghetti~e.30))
+            :mode imperative~e.28)
+    :op2 (s2 / simmer-01~e.33
+             :duration (t / temporal-quantity~e.35
+                          :unit (m / minute~e.35)
+                          :quant 15~e.34)))
+
+# ::id baked_ziti_3_instr4
+# ::name baked_ziti_3_instr4
+# ::snt Layer 1/2 the ziti , provolone , sour cream , and 1/2 the sauce in the casserole dish .
+(l / layer~e.37
+   :domain (a / and~e.47
+              :op1 (z / ziti~e.40)
+              :op2 (p2 / provolone~e.42
+                       :quant (p / product-of~e.48
+                                 :op2 "1/2"~e.38))
+              :op3 (c2 / cream~e.45
+                       :mod (s2 / sour~e.44))
+              :op4 (s / sauce~e.50))
+   :location (d / dish~e.54
+                :mod (c / casserole~e.53))
+   :rel "1/2"~e.48)
+
+# ::id baked_ziti_3_instr5
+# ::name baked_ziti_3_instr5
+# ::snt Top with the rest of the ingredients and the Parmesan .
+(t / top-off-03~e.56
+   :ARG2 (a / and~e.63
+            :op1 (i / ingredient~e.62
+                    :mod (r / rest~e.59))
+            :op2 (p / product~e.65
+                    :name (n / name~e.65
+                             :op1 "Parmesan"~e.65))))
+
+# ::id baked_ziti_3_instr6
+# ::name baked_ziti_3_instr6
+# ::snt Bake 30 minutes until the cheeses are melted .
+(b / bake-01~e.67
+   :ARG0 (y / you~e.67)
+   :duration (t / temporal-quantity~e.68
+                :unit (m2 / minute~e.69)
+                :quant 30~e.68)
+   :time (u / until~e.70
+            :op1 (m / melt-01~e.74
+                    :ARG1 (c / cheese-off-00~e.72)))
+   :mode imperative~e.75)
+

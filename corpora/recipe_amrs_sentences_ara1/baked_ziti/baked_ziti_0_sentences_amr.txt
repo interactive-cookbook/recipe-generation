@@ -1,0 +1,228 @@
+# ::id baked_ziti_0_instr0
+# ::name baked_ziti_0_instr0
+# ::snt In a large pot , brown ground beef .
+(r / Brown~e.6
+   :ARG0 (y / you~e.6)
+   :ARG1 (b / beef~e.8
+            :ARG1-of (g / ground-02~e.7))
+   :location (p / pot~e.4
+                :mod (l / large~e.3))
+   :mode imperative~e.6)
+
+# ::id baked_ziti_0_instr1
+# ::name baked_ziti_0_instr1
+# ::snt While browning sprinkle beef liberally with sea salt , pepper , oregano and basil .
+(s3 / spray-01~e.12
+    :ARG0 (y / you~e.12)
+    :ARG1 (b2 / beef~e.13)
+    :ARG2 (a / and~e.22
+             :op1 (s / salt~e.17
+                     :mod (s2 / sea~e.16))
+             :op2 (p / pepper~e.19)
+             :op3 (o / oregano~e.21)
+             :op4 (b / basil~e.23))
+    :time (r / Brown~e.11)
+    :mode imperative~e.12
+    :ARG1-of (l / liberal-02~e.14))
+
+# ::id baked_ziti_0_instr2
+# ::name baked_ziti_0_instr2
+# ::snt After meat is browned , add Flora tomato sauce , all seasonings , sugar and parmesan and romano cheese .
+(a / add-02~e.30
+   :ARG0 (y / you~e.30)
+   :ARG1 (a4 / and~e.37
+             :op1 (s / sauce~e.33
+                     :name (n / name~e.31
+                              :op1 "Flora"~e.31)
+                     :mod (t / tomato~e.32))
+             :op2 (s2 / season~e.36
+                      :mod (a3 / all~e.35))
+             :op3 (s3 / sugar~e.38)
+             :op4 (p / parmesan~e.40)
+             :op5 (c / cheese~e.43
+                     :mod (r2 / romano~e.42)))
+   :time (a2 / after~e.25
+             :op1 (r / Brown~e.28
+                     :domain (m / meat~e.26)))
+   :mode imperative~e.30)
+
+# ::id baked_ziti_0_instr3
+# ::name baked_ziti_0_instr3
+# ::snt Do n't pour off grease .
+(p / pour-01~e.47
+   :ARG0 (y / you~e.45)
+   :ARG1 (g / grease~e.49)
+   :ARG3 (o / off~e.48)
+   :mode imperative~e.45
+   :polarity -~e.46)
+
+# ::id baked_ziti_0_instr4
+# ::name baked_ziti_0_instr4
+# ::snt Turn to low and simmer 1 - 2 hours .
+(a / and~e.54
+   :op1 (t3 / turn-01~e.51
+            :ARG0 (y / you~e.51)
+            :ARG4 (l / low-04~e.53)
+            :mode imperative~e.51)
+   :op2 (s / simmer-01~e.55
+           :duration (b / between~e.56
+                        :op1 (t / temporal-quantity~e.59
+                                :unit (h / hour~e.59)
+                                :quant 1~e.56)
+                        :op2 (t2 / temporal-quantity~e.59
+                                 :unit (h2 / hour~e.59)
+                                 :quant 2~e.58))
+           :mode imperative~e.60))
+
+# ::id baked_ziti_0_instr5
+# ::name baked_ziti_0_instr5
+# ::snt minutes before ready to eat , bring pot of water to boil for pasta .
+(b3 / bring-01~e.67
+    :purpose (b2 / boil-01~e.72
+                 :purpose (p / pasta~e.74)
+                 :ARG1 (p2 / pot~e.68
+                           :consist-of (w / water~e.70)))
+    :ARG0 (y / you~e.67)
+    :ARG1 p2
+    :time (b / before~e.62
+             :quant (m2 / multiple~e.61
+                        :op1 (t / temporal-quantity~e.61
+                                :unit (m / minute~e.61)
+                                :quant 1~e.61))
+             :op1 (r / ready-02~e.63
+                     :ARG1 y
+                     :ARG2 (e / eat-01~e.65
+                              :ARG0 y)))
+    :mode imperative~e.75)
+
+# ::id baked_ziti_0_instr6
+# ::name baked_ziti_0_instr6
+# ::snt Add Tbsp salt and a dash of olive oil .
+(a / add-02~e.76
+   :ARG0 (y / you~e.76)
+   :ARG1 (a2 / and~e.79
+             :op1 (s / salt~e.78
+                     :quant (m / more~e.77
+                               :quant 1~e.77))
+             :op2 (o / oil~e.84
+                     :quant (d / dash~e.81)
+                     :mod (o2 / olive~e.83)))
+   :mode imperative~e.76)
+
+# ::id baked_ziti_0_instr7
+# ::name baked_ziti_0_instr7
+# ::snt Cook pasta al dente about 9 minutes .
+(c / cook-01~e.86
+   :ARG0 (y / you~e.86)
+   :ARG1 (p / pasta~e.87
+            :mod (l / Al~e.89))
+   :duration (a / about~e.90
+                :op1 (t / temporal-quantity~e.92
+                        :unit (m / minute~e.92)
+                        :quant 9~e.91))
+   :mode imperative~e.86)
+
+# ::id baked_ziti_0_instr8
+# ::name baked_ziti_0_instr8
+# ::snt While cooking pasta , preheat oven to
+(h / heat-01~e.98
+   :ARG0 (y / you~e.98)
+   :ARG1 (o / oven~e.99)
+   :time (c / cook-01~e.95
+            :ARG0 y
+            :ARG1 (p / pasta~e.96))
+   :mode imperative~e.98)
+
+# ::id baked_ziti_0_instr9
+# ::name baked_ziti_0_instr9
+# ::snt In a large 10 x 15 casserole dish , add in cooked pasta and all of the meat sauce .
+(a / add-02~e.110
+   :ARG1 (a3 / and~e.114
+             :op1 (p / pasta~e.113
+                     :ARG1-of (c2 / cook-01~e.112))
+             :op2 (s / sauce~e.119
+                     :mod (m / meat~e.118)
+                     :mod (a2 / all~e.115)))
+   :location (d / dish~e.108
+                :mod (c / casserole~e.107)
+                :mod (p2 / product-of~e.105
+                         :op1 10~e.104
+                         :op2 15~e.106)
+                :mod (l / large~e.103)))
+
+# ::id baked_ziti_0_instr10
+# ::name baked_ziti_0_instr10
+# ::snt Grate a bit of extra parmesan and romano cheese in for good measure .
+(g2 / gut-01~e.121
+    :purpose (m / measure-02~e.133
+                :ARG1-of (g / good-02~e.132))
+    :ARG0 (y / you~e.121)
+    :ARG1 (a / and~e.127
+             :quant (e / extra~e.125)
+             :op1 (c / cheese~e.129
+                     :mod (p / parmesan~e.126))
+             :op2 (c2 / cheese~e.129
+                      :mod (c3 / country~e.128
+                               :name (n / name~e.128
+                                        :op1 "Russia"~e.128))))
+    :rel (b / bit~e.123)
+    :mode imperative~e.121)
+
+# ::id baked_ziti_0_instr11
+# ::name baked_ziti_0_instr11
+# ::snt Top with shredded mozzarella cheese .
+(t / top~e.135
+   :ARG2 (c / cheese~e.139
+            :mod (m / mozzarella~e.138)
+            :ARG1-of (s / shred-01~e.137)))
+
+# ::id baked_ziti_0_instr12
+# ::name baked_ziti_0_instr12
+# ::snt Cover with foil ( tented ) , and bake for 30 minutes or until the cheese is melted and bubbly .
+(a / and~e.148
+   :op1 (c2 / cover-02~e.141
+            :ARG0 (y / you~e.141)
+            :ARG2 (f2 / foil~e.143
+                      :ARG1-of (m / mean-01~e.144
+                                  :ARG2 (t2 / tent~e.145)))
+            :mode imperative~e.141)
+   :op2 (b / bake-01~e.149
+           :ARG0 y
+           :duration (o / or~e.153
+                        :op1 (t / temporal-quantity~e.151
+                                :unit (m4 / minute~e.152)
+                                :quant 30~e.151)
+                        :op2 (u / until~e.154
+                                :op1 (a2 / and~e.159
+                                         :op1 (m2 / melt-01~e.158
+                                                  :ARG1 (c / cheese~e.156))
+                                         :op2 (f / firm~e.160
+                                                 :ARG1-of (m3 / melt-01~e.160)))))
+           :mode imperative~e.161))
+
+# ::id baked_ziti_0_instr13
+# ::name baked_ziti_0_instr13
+# ::snt For a 5 oz serving : 238 calories , 8 grams fat , 22 grams carbs , 6 grams sugar , and 19 grams protein
+(a / and~e.183
+   :purpose (s / serve-02~e.166
+               :quant (v / volume-quantity~e.165
+                         :unit (f2 / fluid-ounce~e.165)
+                         :quant 5~e.164))
+   :op1 (c / calorie~e.169
+           :quant 238~e.168)
+   :op2 (f / fat~e.173
+           :quant (m / mass-quantity~e.172
+                     :unit (g / gram~e.172)
+                     :quant 8~e.171))
+   :op3 (c2 / carbohydrate~e.177
+            :quant (m2 / mass-quantity~e.176
+                       :unit (g2 / gram~e.176)
+                       :quant 22~e.175))
+   :op4 (s2 / sugar~e.181
+            :quant (m3 / mass-quantity~e.180
+                       :unit (g3 / gram~e.180)
+                       :quant 6~e.179))
+   :op5 (p / protein~e.186
+           :quant (m4 / mass-quantity~e.185
+                      :quant 19~e.184)))
+

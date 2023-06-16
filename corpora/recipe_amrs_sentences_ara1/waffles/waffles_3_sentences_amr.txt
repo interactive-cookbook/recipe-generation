@@ -1,0 +1,60 @@
+# ::id waffles_3_instr0
+# ::name waffles_3_instr0
+# ::snt Preheat your waffle iron .
+(h / hot-05~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / iron~e.4
+            :mod (w / waffle~e.3)
+            :poss y)
+   :mode imperative~e.1)
+
+# ::id waffles_3_instr1
+# ::name waffles_3_instr1
+# ::snt Sift together the dry ingredients ( except for the flax ) .
+(s / sift-01~e.6
+   :ARG0 (y / you~e.6)
+   :ARG1 (i / ingredient~e.10
+            :ARG1-of (d / dry-02~e.9)
+            :ARG2-of (e / except-01~e.12
+                        :ARG1 (f / flax~e.15)))
+   :manner (t / together~e.7)
+   :mode imperative~e.6)
+
+# ::id waffles_3_instr2
+# ::name waffles_3_instr2
+# ::snt Whisk together the wet ingredients and the flax .
+(m / mix-01~e.18
+   :ARG0 (y / you~e.18)
+   :ARG1 (a / and~e.23
+            :op1 (i / ingredient~e.22
+                    :ARG1-of (w / wet-01~e.21))
+            :op2 (f / flax~e.25))
+   :manner (t / together~e.19)
+   :mode imperative~e.18)
+
+# ::id waffles_3_instr3
+# ::name waffles_3_instr3
+# ::snt Mix wet and dry ingredients together and cook the batter according to your waffle maker 's timing , or until golden brown and crisp on the outside .
+(a / and~e.33
+   :op1 (m2 / mix-01~e.27
+            :ARG0 (y / you~e.27)
+            :ARG1 (i / ingredient~e.31
+                     :ARG1-of (w2 / wet-01~e.28))
+            :ARG2 (i2 / ingredient~e.31
+                      :ARG1-of (d / dry-02~e.30))
+            :ARG3 (t3 / together~e.32))
+   :op2 (c2 / cook-01~e.34
+            :ARG0 y
+            :ARG1 (b / batter-01~e.36)
+            :time (u / until~e.46
+                     :op1 (a2 / and~e.49
+                              :location (o / outside~e.53)
+                              :op1 (b2 / brown-01~e.48
+                                       :ARG1 (g / gold~e.47))
+                              :op2 (c3 / crisp-01~e.50)))
+            :ARG1-of (c / conform-01~e.37
+                        :ARG2 (t2 / time-02~e.43
+                                  :ARG0 (t / thing~e.41
+                                           :ARG0-of (m / make-01~e.41
+                                                       :ARG1 (w / waffle~e.40)))))))
+

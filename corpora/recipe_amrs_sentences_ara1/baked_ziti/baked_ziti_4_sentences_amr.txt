@@ -1,0 +1,128 @@
+# ::id baked_ziti_4_instr0
+# ::name baked_ziti_4_instr0
+# ::snt Cook ziti according to package directions until al dente ; drain .
+(a / and~e.10
+   :op1 (c2 / cook-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (z / ziti~e.2)
+            :time (u / until~e.7
+                     :op1 (t2 / thing~e.10
+                              :name (n / name~e.9
+                                       :op1 "Al"~e.9
+                                       :op2 "Fascism"~e.9)))
+            :mode imperative~e.1
+            :ARG1-of (c / conform-01~e.3
+                        :ARG2 (t / thing~e.6
+                                 :ARG2-of (d / direct-01~e.6
+                                             :ARG0 (p / package-01~e.5)))))
+   :op2 (d2 / drain-01~e.11
+            :ARG0 y
+            :mode imperative~e.12))
+
+# ::id baked_ziti_4_instr1
+# ::name baked_ziti_4_instr1
+# ::snt In a large skillet , brown ground beef and onion over medium heat .
+(r / Brown~e.18
+   :ARG0 (y / you~e.18)
+   :ARG1 (a / and~e.21
+            :op1 (b / beef~e.20
+                    :ARG2-of (g / ground-02~e.19))
+            :op2 (o / onion~e.22))
+   :location (s / skillet~e.16
+                :mod (l / large~e.15))
+   :mode imperative~e.18
+   :ARG1-of (h / heat-01~e.25
+               :ARG2 (m / medium~e.24)))
+
+# ::id baked_ziti_4_instr2
+# ::name baked_ziti_4_instr2
+# ::snt Add spaghetti sauce and simmer 15 minutes .
+(a2 / and~e.30
+    :op1 (a / add-01~e.27
+            :ARG0 (y / you~e.27)
+            :ARG1 (s / sauce~e.29
+                     :mod (s3 / spaghetti~e.28))
+            :mode imperative~e.27)
+    :op2 (s2 / simmer-01~e.31
+             :duration (t / temporal-quantity~e.33
+                          :unit (m / minute~e.33)
+                          :quant 15~e.32)))
+
+# ::id baked_ziti_4_instr3
+# ::name baked_ziti_4_instr3
+# ::snt Preheat the oven to 350 degrees F.
+(h / heat-01~e.35
+   :ARG0 (y / you~e.35)
+   :ARG1 (o / oven~e.37)
+   :destination (t / temperature-quantity~e.41
+                   :scale (f / fahrenheit~e.41)
+                   :quant 350~e.39)
+   :mode imperative~e.35)
+
+# ::id baked_ziti_4_instr4
+# ::name baked_ziti_4_instr4
+# ::snt In a small bowl , combine ricotta and egg .
+(c / combine-01~e.47
+   :ARG0 (y / you~e.47)
+   :ARG1 (a / and~e.49
+            :op1 (r / ricotta~e.48)
+            :op2 (e / egg~e.50))
+   :location (b / bowl~e.45
+                :mod (s / small~e.44))
+   :mode imperative~e.51)
+
+# ::id baked_ziti_4_instr5
+# ::name baked_ziti_4_instr5
+# ::snt Layer as follows in the prepared pan : 1/2 cup sauce , 1/2 of the ziti , Provolone cheese , ricotta mixture , 1/2 remaining sauce mixture , remaining ziti , mozzarella cheese and remaining sauce mixture .
+(l / layer~e.52
+   :location (p / pan~e.58
+                :ARG1-of (p2 / prepare-01~e.57))
+   :rel (a / "1/2"~e.75
+           :op5 (m2 / mixture~e.78
+                    :mod s2
+                    :ARG1-of (r2 / remain-01~e.80)))
+   :ARG1-of (f / follow-04~e.54)
+   :consist-of (a2 / and~e.63
+                   :op1 (s / sauce~e.62
+                           :quant (v / volume-quantity~e.61
+                                     :unit (c3 / cup~e.61)
+                                     :quant "1/2"~e.60))
+                   :op2 (z / ziti~e.67
+                           :quant "1/2"~e.64)
+                   :op3 (c / cheese~e.70
+                           :name (n / name~e.69
+                                    :op1 "Provolone"~e.69))
+                   :ARG1 (z2 / ziti~e.81)
+                   :op4 (m / mixture~e.73
+                           :consist-of (r3 / ricotta~e.72))
+                   :op6 (c2 / cheese~e.84
+                            :mod (m4 / mozzarella~e.83))
+                   :op7 (m3 / mixture~e.88
+                            :mod (s2 / sauce~e.77
+                                     :ARG1-of (r / remain-01~e.76)))))
+
+# ::id baked_ziti_4_instr6
+# ::name baked_ziti_4_instr6
+# ::snt Top with grated Parmesan cheese .
+(t / top~e.90
+   :ARG2 (c / cheese~e.94
+            :name (n / name~e.93
+                     :op1 "Parmesan"~e.93)
+            :ARG1-of (g / grit-01~e.92)))
+
+# ::id baked_ziti_4_instr7
+# ::name baked_ziti_4_instr7
+# ::snt Bake for 30 minutes in the preheated oven , or until cheeses are melted .
+(b / bake-01~e.96
+   :ARG0 (y / you~e.96)
+   :duration (t / temporal-quantity~e.98
+                :unit (m2 / minute~e.99)
+                :quant 30~e.98)
+   :location (o / oven~e.103
+                :ARG1-of (h / heat-01~e.102))
+   :time (u / until~e.106
+            :op1 (m / melt-01~e.109
+                    :ARG1 (t2 / thing~e.107
+                              :ARG1-of (c / cheese-off-00~e.107))))
+   :mode imperative~e.110)
+

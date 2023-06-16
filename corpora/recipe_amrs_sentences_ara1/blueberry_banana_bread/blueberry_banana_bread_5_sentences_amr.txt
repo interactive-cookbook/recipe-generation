@@ -1,0 +1,117 @@
+# ::id blueberry_banana_bread_5_instr0
+# ::name blueberry_banana_bread_5_instr0
+# ::snt Preheat oven to 350F and butter a loaf / bread pan ( 4X8 inches )
+(a / and~e.5
+   :op1 (b / bake-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (o / oven~e.2)
+           :destination (t / temperature-quantity~e.4
+                           :scale (f / fahrenheit~e.4)
+                           :quant 35~e.4)
+           :mode imperative~e.1)
+   :op2 (b3 / butter-01~e.6
+            :ARG0 y
+            :ARG1 (p / pan~e.11
+                     :purpose (s / slash~e.9
+                                 :op1 (l / loaf~e.8)
+                                 :op2 (b2 / bread~e.10)
+                                 :ARG1-of (m / mean-01~e.12
+                                             :extent (d2 / distance-quantity~e.14
+                                                         :unit (i / inch~e.14)
+                                                         :unit (i2 / inch~e.14)))))
+            :mode imperative~e.15)
+   :rel (d / distance-quantity~e.13
+           :quant 8~e.13))
+
+# ::id blueberry_banana_bread_5_instr1
+# ::name blueberry_banana_bread_5_instr1
+# ::snt With a wooden spoon mix melted butter , mashed bananas , and applesauce .
+(m2 / mix-01~e.20
+    :ARG1 (a / and~e.27
+             :op1 (b2 / butter~e.22
+                      :ARG1-of (m / melt-01~e.21))
+             :op2 (b / banana~e.25
+                     :ARG1-of (p / pure-02~e.24))
+             :op3 (a2 / applesauce~e.28))
+    :instrument (s / spoon~e.19
+                   :mod (w / wooden~e.18)))
+
+# ::id blueberry_banana_bread_5_instr2
+# ::name blueberry_banana_bread_5_instr2
+# ::snt Add the sugar , egg , and vanilla and mix till combined .
+(a3 / and~e.38
+    :op1 (a / add-02~e.30
+            :ARG1 (a2 / and~e.36
+                      :op1 (s / sugar~e.32)
+                      :op2 (e / egg~e.34)
+                      :op3 (v / vanilla~e.37)))
+    :op2 (m / mix-01~e.39
+            :manner (c / combine-01~e.41)))
+
+# ::id blueberry_banana_bread_5_instr3
+# ::name blueberry_banana_bread_5_instr3
+# ::snt Sprinkle the baking soda and salt and mix .
+(a2 / and~e.49
+    :op1 (s3 / spray-01~e.43
+             :ARG0 (y / you~e.43)
+             :ARG1 (a / and~e.47
+                      :op1 (s2 / soda~e.46
+                               :ARG2-of (b / bake-01~e.45))
+                      :op2 (s / salt~e.48))
+             :mode imperative~e.43)
+    :op2 (m / mix-01~e.50
+            :ARG0 y
+            :mode imperative~e.43))
+
+# ::id blueberry_banana_bread_5_instr4
+# ::name blueberry_banana_bread_5_instr4
+# ::snt Add the flour and mix .
+(a2 / and~e.55
+    :op1 (a / add-02~e.52
+            :ARG0 (y / you~e.52)
+            :ARG1 (f / flour~e.54)
+            :mode imperative~e.52)
+    :op2 (m / mix-01~e.56
+            :ARG0 y
+            :mode imperative~e.57))
+
+# ::id blueberry_banana_bread_5_instr5
+# ::name blueberry_banana_bread_5_instr5
+# ::snt Gently fold in the blueberries .
+(f / fold-03~e.59
+   :ARG0 (y / you~e.58)
+   :ARG1 (l / Blue~e.62)
+   :mode imperative~e.58)
+
+# ::id blueberry_banana_bread_5_instr6
+# ::name blueberry_banana_bread_5_instr6
+# ::snt Pour into bread pan and bake for 1 hour .
+(a / and~e.68
+   :op1 (p2 / pour-01~e.64
+            :ARG0 (y / you~e.64)
+            :ARG2 (p / pan~e.67
+                     :purpose (b2 / bread~e.66))
+            :mode imperative~e.64)
+   :op2 (b / bake-01~e.69
+           :ARG0 y
+           :duration (t / temporal-quantity~e.72
+                        :unit (h / hour~e.72)
+                        :quant 1~e.71)
+           :mode imperative~e.73))
+
+# ::id blueberry_banana_bread_5_instr7
+# ::name blueberry_banana_bread_5_instr7
+# ::snt Cool on a rack and then you are ready to remove from pan and serve !
+(a / and~e.78
+   :op1 (c / cool-01~e.74
+           :location (r / rack~e.77))
+   :op2 (r2 / ready-02~e.82
+            :ARG1 (y / you~e.80)
+            :ARG2 (a2 / and~e.87
+                      :op1 (r3 / remove-01~e.84
+                               :ARG1 y
+                               :ARG2 (p / pan~e.86))
+                      :op2 (s / serve-02~e.88
+                              :ARG0 y))
+            :time (t / then~e.79)))
+

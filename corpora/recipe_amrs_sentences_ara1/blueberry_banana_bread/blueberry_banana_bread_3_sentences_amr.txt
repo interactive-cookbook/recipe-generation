@@ -1,0 +1,142 @@
+# ::id blueberry_banana_bread_3_instr0
+# ::name blueberry_banana_bread_3_instr0
+# ::snt Preheat oven at 350 ° F .
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :ARG2 (t / temperature-quantity~e.6
+            :scale (f / fahrenheit~e.6)
+            :quant 350~e.4)
+   :mode imperative~e.1)
+
+# ::id blueberry_banana_bread_3_instr1
+# ::name blueberry_banana_bread_3_instr1
+# ::snt Grease and flour a loaf pan .
+(a / and~e.9
+   :op1 (b / bake-01~e.8
+           :ARG0 (y / you~e.8)
+           :mode imperative~e.8)
+   :op2 (b2 / bake-01~e.10
+            :ARG0 y
+            :ARG2 (p / pan~e.13
+                     :purpose (l / loaf~e.12))
+            :mode imperative~e.10))
+
+# ::id blueberry_banana_bread_3_instr2
+# ::name blueberry_banana_bread_3_instr2
+# ::snt In a stand mixer or a bowl beat together the sugar , oil , bananas , yogurt , vanilla , eggs , and salt .
+(b2 / beat-01~e.22
+    :ARG1 (a / and~e.26
+             :op1 (s3 / sugar~e.25)
+             :op2 (o / oil~e.27)
+             :op3 (b / banana~e.29)
+             :op4 (y / yogurt~e.31)
+             :op5 (v / vanilla~e.33)
+             :op6 (e / egg~e.35)
+             :op7 (s / salt~e.38))
+    :location (o2 / or~e.19
+                  :op1 (t / thing~e.18
+                          :mod (s2 / stand~e.17)
+                          :instrument-of (m / mix-01~e.18))
+                  :op2 (b3 / bowl~e.21))
+    :manner (t2 / together~e.23))
+
+# ::id blueberry_banana_bread_3_instr3
+# ::name blueberry_banana_bread_3_instr3
+# ::snt In a separate bowl mix together the flour and baking soda .
+(m / mix-01~e.44
+   :ARG1 (a / and~e.48
+            :op1 (f / flour~e.47)
+            :op2 (s2 / soda~e.50
+                     :ARG2-of (b / bake-01~e.49)))
+   :manner (t / together~e.45)
+   :medium (b2 / bowl~e.43
+               :ARG1-of (s / separate-02~e.42)))
+
+# ::id blueberry_banana_bread_3_instr4
+# ::name blueberry_banana_bread_3_instr4
+# ::snt Add the the flour mixture to the banana yogurt mixture a little at a time .
+(a / add-02~e.52
+   :ARG0 (y2 / you~e.52)
+   :ARG1 (m / mix-01~e.56
+            :ARG1 (f / flour~e.55))
+   :ARG2 (m2 / mix-01~e.61
+             :ARG1 (y / yogurt~e.60
+                      :source (b / banana~e.59)))
+   :manner (t / thing~e.64
+              :quant (l / little~e.63))
+   :mod (a2 / at-a-time~e.65)
+   :mode imperative~e.52)
+
+# ::id blueberry_banana_bread_3_instr5
+# ::name blueberry_banana_bread_3_instr5
+# ::snt Mix until just combined .
+(m / mix-01~e.68
+   :ARG0 (y / you~e.68)
+   :manner (c / combine-01~e.71
+              :mod (j / just~e.70))
+   :mode imperative~e.72)
+
+# ::id blueberry_banana_bread_3_instr6
+# ::name blueberry_banana_bread_3_instr6
+# ::snt Gently fold in blueberries .
+(f / fold-03~e.74
+   :ARG0 (y / you~e.73)
+   :ARG2 (l / Blue~e.76)
+   :mode imperative~e.73)
+
+# ::id blueberry_banana_bread_3_instr7
+# ::name blueberry_banana_bread_3_instr7
+# ::snt Pour into loaf pan .
+(p2 / pour-01~e.78
+    :ARG0 (y / you~e.78)
+    :ARG2 (p / pan~e.81
+             :purpose (l / loaf~e.80))
+    :mode imperative~e.78)
+
+# ::id blueberry_banana_bread_3_instr8
+# ::name blueberry_banana_bread_3_instr8
+# ::snt Cook for 40 - 45 minutes , or until toothpick comes out clean and top is browned .
+(c3 / cook-01~e.83
+    :ARG0 (y / you~e.83)
+    :duration (b / between~e.85
+                 :op1 (t / temporal-quantity~e.88
+                         :unit (m / minute~e.88)
+                         :quant 40~e.85)
+                 :op2 (t2 / temporal-quantity~e.88
+                          :unit (m2 / minute~e.88)
+                          :quant 45~e.87))
+    :time (u / until~e.91
+             :op1 (a / and~e.96
+                     :op1 (c2 / come-out-09~e.93
+                              :ARG1 (t3 / toothpick~e.92)
+                              :ARG1-of (c / clean-04~e.95))
+                     :op2 (r / Brown~e.99
+                             :domain (t4 / top~e.97))))
+    :mode imperative~e.83)
+
+# ::id blueberry_banana_bread_3_instr9
+# ::name blueberry_banana_bread_3_instr9
+# ::snt Let cool for 10 - 15 minutes , remove from pan and cool completely .
+(a / and~e.108
+   :op1 (l / let-01~e.101
+           :ARG0 (y / you~e.101)
+           :ARG1 (c2 / cool-01~e.102
+                     :ARG1 y
+                     :duration (b / between~e.104
+                                  :op1 (t / temporal-quantity~e.104
+                                          :unit (m / minute~e.107)
+                                          :quant 10~e.104)
+                                  :op2 (t2 / temporal-quantity~e.107
+                                           :unit (m2 / minute~e.107)
+                                           :quant 15~e.106)))
+           :mode imperative~e.101)
+   :op2 (r / remove-01~e.109
+           :ARG0 y
+           :ARG2 (p / pan~e.111)
+           :mode imperative~e.115)
+   :op3 (c3 / cool-01~e.113
+            :ARG1 y
+            :mode imperative~e.115
+            :ARG1-of (c / complete-02~e.114)))
+

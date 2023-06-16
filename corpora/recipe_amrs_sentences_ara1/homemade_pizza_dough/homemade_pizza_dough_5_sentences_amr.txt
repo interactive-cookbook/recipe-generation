@@ -1,0 +1,103 @@
+# ::id homemade_pizza_dough_5_instr0
+# ::name homemade_pizza_dough_5_instr0
+# ::snt Measure dry ingredients into a mixing bowl ; whisk to combine .
+(a / and~e.8
+   :op1 (m / measure-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (i / ingredient~e.3
+                    :ARG1-of (d / dry-08~e.2))
+           :ARG3 (b / bowl~e.7
+                    :instrument-of (m2 / mix-01~e.6))
+           :mode imperative~e.8)
+   :op2 (s / stir-01~e.9
+           :purpose (c / combine-01~e.11
+                       :ARG0 y
+                       :ARG2 i)
+           :ARG0 y
+           :mode imperative~e.12))
+
+# ::id homemade_pizza_dough_5_instr1
+# ::name homemade_pizza_dough_5_instr1
+# ::snt Add the oil .
+(a / add-02~e.13
+   :ARG0 (y / you~e.13)
+   :ARG1 (o / oil~e.15)
+   :mode imperative~e.13)
+
+# ::id homemade_pizza_dough_5_instr2
+# ::name homemade_pizza_dough_5_instr2
+# ::snt Gradually add the water , while mixing .
+(a / add-02~e.18
+   :ARG0 (y / you~e.18)
+   :ARG1 (w / water~e.20)
+   :manner (g / gradual~e.17)
+   :time (m / mix-01~e.23
+            :ARG0 y
+            :ARG1 w)
+   :mode imperative~e.17)
+
+# ::id homemade_pizza_dough_5_instr3
+# ::name homemade_pizza_dough_5_instr3
+# ::snt Knead until dough is smooth , and sides of the bowl are clean .
+(b / bake-01~e.25
+   :ARG0 (y / you~e.25)
+   :time (u / until~e.26
+            :op1 (a / and~e.31
+                    :op1 (s2 / smooth-04~e.29
+                             :ARG1 (d / dough~e.27))
+                    :op2 (c / clean-04~e.37
+                            :ARG1 (s / side~e.32
+                                     :part-of (b2 / bowl~e.35)))))
+   :mode imperative~e.25)
+
+# ::id homemade_pizza_dough_5_instr4
+# ::name homemade_pizza_dough_5_instr4
+# ::snt If you ’re making medium pizzas , divide your dough now .
+(d / divide-02~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (d2 / dough~e.48
+             :poss y)
+   :condition (m / make-01~e.42
+                 :ARG0 y
+                 :ARG1 (p / pizzeria~e.44
+                          :mod (m2 / medium~e.43)))
+   :time (n / now~e.49)
+   :mode imperative~e.46)
+
+# ::id homemade_pizza_dough_5_instr5
+# ::name homemade_pizza_dough_5_instr5
+# ::snt Shape dough into ball(s ) , and flatten .
+(a / and~e.57
+   :op1 (s / shape-01~e.51
+           :ARG0 (y / you~e.51)
+           :ARG1 (d / dough~e.52)
+           :ARG2 (b / ball~e.54)
+           :mode imperative~e.54)
+   :op2 (f / flatten-01~e.58
+           :ARG0 y
+           :ARG1 d
+           :mode imperative~e.59))
+
+# ::id homemade_pizza_dough_5_instr6
+# ::name homemade_pizza_dough_5_instr6
+# ::snt Place dough in lightly oiled bowl(s ) ; cover ; and let rise for two hours .
+(a / and~e.70
+   :op1 (p / place-01~e.60
+           :ARG0 (y / you~e.60)
+           :ARG1 (d / dough~e.61)
+           :ARG2 (p2 / pound~e.65
+                     :consist-of (o / oil~e.64
+                                    :ARG1-of (l2 / light-06~e.63)))
+           :mode imperative~e.65)
+   :op2 (c / cover-02~e.68
+           :ARG0 y
+           :mode imperative~e.71)
+   :op3 (l / let-01~e.71
+           :ARG0 y
+           :ARG1 (r / rise-01~e.72
+                    :ARG1 d
+                    :duration (t / temporal-quantity~e.75
+                                 :unit (h / hour~e.75)
+                                 :quant 2~e.74))
+           :mode imperative~e.71))
+
