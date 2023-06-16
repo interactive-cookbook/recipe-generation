@@ -1,0 +1,131 @@
+# ::id blueberry_banana_bread_0_instr0
+# ::name blueberry_banana_bread_0_instr0
+# ::snt Preheat oven to 350 degrees .
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4)
+   :mode imperative~e.1)
+
+# ::id blueberry_banana_bread_0_instr1
+# ::name blueberry_banana_bread_0_instr1
+# ::snt Coat a bread pan with cooking spray .
+(c / coat-01~e.7
+   :ARG0 (y / you~e.7)
+   :ARG1 (p / pan~e.10
+            :purpose (b / bread~e.9))
+   :ARG2 (s / spray~e.13
+            :instrument-of (c2 / cook-01~e.12))
+   :mode imperative~e.7)
+
+# ::id blueberry_banana_bread_0_instr2
+# ::name blueberry_banana_bread_0_instr2
+# ::snt Mix flour , baking powder , baking soda and salt .
+(m / mix-01~e.15
+   :ARG1 (a / and~e.23
+            :op1 (f / flour~e.16)
+            :op2 (p / powder-01~e.19
+                    :ARG1 (b / bake-01~e.21))
+            :op3 (s2 / soda~e.22
+                     :ARG2-of (b2 / bake-01~e.21))
+            :op4 (s / salt~e.24)))
+
+# ::id blueberry_banana_bread_0_instr3
+# ::name blueberry_banana_bread_0_instr3
+# ::snt In another bowl , mix butter and sugar until well combined .
+(m / mix-01~e.30
+   :ARG0 (y / you~e.30)
+   :ARG1 (a / and~e.32
+            :op1 (b2 / butter~e.31)
+            :op2 (s / sugar~e.33))
+   :location (b / bowl~e.28
+                :mod (a2 / another~e.27))
+   :manner (c / combine-01~e.36
+              :ARG1 a
+              :ARG1-of (w / well-09~e.35))
+   :mode imperative~e.37)
+
+# ::id blueberry_banana_bread_0_instr4
+# ::name blueberry_banana_bread_0_instr4
+# ::snt Add eggs , milk and vanilla .
+(a / add-02~e.38
+   :ARG1 (a2 / and~e.42
+             :op1 (e / egg~e.39)
+             :op2 (m / milk~e.41)
+             :op3 (v / vanilla~e.43)))
+
+# ::id blueberry_banana_bread_0_instr5
+# ::name blueberry_banana_bread_0_instr5
+# ::snt Mix well then add in bananas .
+(a2 / and~e.51
+    :op1 (m / mix-01~e.45
+            :ARG0 (y / you~e.45)
+            :manner (w / well-09~e.46)
+            :mode imperative~e.47)
+    :op2 (a / add-02~e.48
+            :ARG0 y
+            :ARG1 (b / banana~e.50)
+            :time (t / then~e.47)
+            :mode imperative~e.51))
+
+# ::id blueberry_banana_bread_0_instr6
+# ::name blueberry_banana_bread_0_instr6
+# ::snt Slowly add the dry ingredients to the wet until combined then mix in blueberries .
+(a2 / and~e.66
+    :op1 (a / add-02~e.53
+            :ARG0 (y / you~e.53)
+            :ARG1 (i / ingredient~e.56
+                     :ARG1-of (d / dry-08~e.55))
+            :ARG2 (w / wet-01~e.59)
+            :duration (u / until~e.60
+                         :op1 (c / combine-01~e.61
+                                 :ARG1 i))
+            :mode imperative~e.66
+            :ARG1-of (s / slow-05~e.52))
+    :op2 (m / mix-01~e.63
+            :ARG0 y
+            :ARG2 (l / Blue~e.65)
+            :time (t / then~e.62)
+            :mode imperative~e.66))
+
+# ::id blueberry_banana_bread_0_instr7
+# ::name blueberry_banana_bread_0_instr7
+# ::snt Add batter to pan and bake for 50 minutes .
+(a2 / and~e.71
+    :op1 (a / add-02~e.67
+            :ARG1 (b2 / batter-01~e.68)
+            :ARG2 (p / pan~e.70))
+    :op2 (b / bake-01~e.72
+            :duration (t / temporal-quantity~e.75
+                         :unit (m / minute~e.75)
+                         :quant 50~e.74)))
+
+# ::id blueberry_banana_bread_0_instr8
+# ::name blueberry_banana_bread_0_instr8
+# ::snt Use a toothpick to check if it 's done .
+(u / use-01~e.77
+   :ARG0 (y / you~e.77)
+   :ARG1 (t / toothpick~e.79)
+   :ARG2 (c / check-01~e.81
+            :ARG0 y
+            :ARG1 (t2 / truth-value~e.82
+                      :polarity-of (b / be-done-08~e.85
+                                      :ARG1 (i / it~e.83))))
+   :mode imperative~e.77)
+
+# ::id blueberry_banana_bread_0_instr9
+# ::name blueberry_banana_bread_0_instr9
+# ::snt Let cool for 20 minutes before removing from the pan .
+(l / let-01~e.87
+   :ARG1 (c / cool-01~e.88
+            :ARG1 (y / you~e.87))
+   :duration (t / temporal-quantity~e.90
+                :unit (m / minute~e.91)
+                :quant 20~e.90)
+   :time (b / before~e.92
+            :op1 (r / remove-01~e.93
+                    :ARG1 y
+                    :ARG2 (p / pan~e.96)))
+   :mode imperative~e.87)
+

@@ -1,0 +1,159 @@
+# ::id baked_ziti_6_instr0
+# ::name baked_ziti_6_instr0
+# ::snt Preheat oven to
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :mode imperative~e.1)
+
+# ::id baked_ziti_6_instr1
+# ::name baked_ziti_6_instr1
+# ::snt Boil ziti or other pasta , i. e. rigatoni , penne , farfalle , rotini , following package directions , drain and place in a large bowl .
+(a2 / and~e.25
+    :op1 (b / boil-01~e.4
+            :ARG0 (y / you~e.4)
+            :ARG1 (o / or~e.6
+                     :op1 (z / ziti~e.5)
+                     :op2 (p2 / pasta~e.8
+                              :example (a / and~e.13
+                                          :op1 (r / rigatoni~e.12)
+                                          :op2 (p3 / penne~e.14)
+                                          :op3 (f / farfalle~e.16)
+                                          :op4 (r2 / rotini~e.18))
+                              :mod (o2 / other~e.7)))
+            :mode imperative~e.4)
+    :op2 (f2 / follow-02~e.20
+             :ARG0 y
+             :ARG1 (d / direction~e.22
+                      :mod (p / package-01~e.21))
+             :mode imperative~e.31)
+    :op3 (d2 / drain-01~e.24
+             :ARG0 y)
+    :op4 (p4 / place-01~e.26
+             :ARG0 y
+             :ARG2 (b2 / bowl~e.30
+                       :mod (l / large~e.29))
+             :mode imperative~e.31))
+
+# ::id baked_ziti_6_instr2
+# ::name baked_ziti_6_instr2
+# ::snt To ricotta , add salt and pepper ( about 1tsp each ) , dried parsley and blend .
+(a2 / add-02~e.35
+    :ARG1 (a3 / and~e.37
+              :quant (a / about~e.40
+                        :op1 (m / mass-quantity~e.41
+                                :unit (t / ton~e.41)
+                                :quant 1~e.41))
+              :op1 (s / salt~e.36)
+              :op2 (p2 / pepper~e.38)
+              :op3 (p / parsley~e.46
+                      :ARG1-of (d / dry-02~e.45))
+              :op4 (b / blend-01~e.48))
+    :ARG2 (r / ricotta~e.33))
+
+# ::id baked_ziti_6_instr3
+# ::name baked_ziti_6_instr3
+# ::snt Mix all the ricotta cheese and half of the mozzarella with the ziti .
+(m / mix-01~e.50
+   :ARG0 (y / you~e.50)
+   :ARG1 (a2 / and~e.55
+             :op1 (c / cheese~e.54
+                     :mod (r / ricotta~e.53)
+                     :mod (a / all~e.51))
+             :op2 (m2 / mozzarella~e.59
+                      :ARG1-of (i / include-91~e.57
+                                  :ARG2 (m3 / mozzarella~e.59)
+                                  :ARG3 "1/2"~e.56)))
+   :ARG3 (z / ziti~e.62)
+   :mode imperative~e.63)
+
+# ::id baked_ziti_6_instr4
+# ::name baked_ziti_6_instr4
+# ::snt Spray a 13x9 pan with Pam .
+(s / spray-01~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (p / pan~e.67
+            :mod (d2 / distance-quantity~e.66
+                     :unit (i / inch~e.66)
+                     :quant 9~e.66))
+   :ARG2 (p2 / product~e.69
+             :name (n / name~e.69
+                      :op1 "Pam"~e.69))
+   :rel (d / distance-quantity~e.66
+           :unit (f / foot~e.66)
+           :quant 9~e.66)
+   :mode imperative~e.64
+   :rel 13~e.66)
+
+# ::id baked_ziti_6_instr5
+# ::name baked_ziti_6_instr5
+# ::snt Cover the bottom half of the pan with about half the sauce .
+(c / cover-02~e.71
+   :ARG0 (y / you~e.71)
+   :ARG1 (h / half~e.74
+            :mod (b / bottom~e.73)
+            :part-of (p / pan~e.77))
+   :ARG2 (s / sauce~e.82
+            :quant (a / about~e.79
+                      :op1 (h2 / half~e.80)))
+   :mode imperative~e.71)
+
+# ::id baked_ziti_6_instr6
+# ::name baked_ziti_6_instr6
+# ::snt Put the ziti mixture on top of sauce .
+(p / put-01~e.84
+   :ARG0 (y / you~e.84)
+   :ARG1 (m / mix-01~e.87
+            :ARG1 (z / ziti~e.86))
+   :ARG2 (t / top~e.89
+            :op1 (s / sauce~e.91))
+   :mode imperative~e.84)
+
+# ::id baked_ziti_6_instr7
+# ::name baked_ziti_6_instr7
+# ::snt Pour remaining sauce on top of ziti .
+(p / pour-01~e.93
+   :ARG0 (y / you~e.93)
+   :ARG1 (s / sauce~e.95
+            :ARG1-of (r / remain-01~e.94))
+   :ARG2 (t / top-01~e.97
+            :ARG1 (z / ziti~e.99))
+   :mode imperative~e.93)
+
+# ::id baked_ziti_6_instr8
+# ::name baked_ziti_6_instr8
+# ::snt Sprinkle with the parmesan cheese .
+(s / spray-01~e.101
+   :ARG0 (y / you~e.101)
+   :ARG2 (c / cheese~e.105
+            :mod (p / parmesan~e.104))
+   :mode imperative~e.101)
+
+# ::id baked_ziti_6_instr9
+# ::name baked_ziti_6_instr9
+# ::snt Top with the remaining mozzarella cheese .
+(t / top~e.107
+   :ARG2 (c / cheese~e.112
+            :mod (m / mozzarella~e.111)
+            :ARG1-of (r / remain-01~e.110)))
+
+# ::id baked_ziti_6_instr10
+# ::name baked_ziti_6_instr10
+# ::snt Bake for 20 - 30 minutes until cheese is melted and it is lightly golden .
+(b / bake-01~e.114
+   :ARG0 (y / you~e.114)
+   :duration (b2 / between~e.116
+                 :op1 (t2 / temporal-quantity~e.119
+                          :unit (m2 / minute~e.119)
+                          :quant 20~e.116)
+                 :op2 (t / temporal-quantity~e.118
+                         :unit (m3 / minute~e.119)
+                         :quant 30~e.118))
+   :time (u / until~e.120
+            :op1 (a / and~e.124
+                    :op1 (m / melt-01~e.123
+                            :ARG1 (c / cheese~e.121
+                                     :domain-of g))
+                    :op2 (g / gold~e.128
+                            :ARG1-of (l / light-06~e.127)))))
+

@@ -1,0 +1,268 @@
+# ::id blueberry_banana_bread_6_instr0
+# ::name blueberry_banana_bread_6_instr0
+# ::snt Preheat oven to 350 degrees F. Oil 2 loaf pans and line the bottom only with parchment .
+(a2 / and~e.11
+    :op1 (o / oil~e.7
+            :domain (a / Pan~e.10
+                       :purpose (l2 / loaf~e.9
+                                    :quant 2~e.8)))
+    :op2 (a3 / and~e.11
+             :op1 o
+             :op2 (l / line-01~e.12
+                     :ARG1 (b / bottom~e.14)
+                     :ARG2 (p / parchment~e.17)
+                     :mod (o2 / only~e.15)
+                     :mode imperative~e.18))
+    :rel (h / hot-05~e.1
+            :ARG1 (o3 / oven~e.2)
+            :mode (t / temperature-quantity~e.1
+                     :scale (f / fahrenheit~e.6)
+                     :quant 350~e.4))
+    :rel (i / imperative~e.1)
+    :rel (n / name~e.1))
+
+# ::id blueberry_banana_bread_6_instr1
+# ::name blueberry_banana_bread_6_instr1
+# ::snt Place the loaf pans on a sheet tray for easy removal from the oven later .
+(p / place-01~e.19
+   :purpose (r / remove-01~e.29
+               :ARG1 (t / tray~e.26
+                        :consist-of (s / sheet~e.25))
+               :ARG2 (o / oven~e.32)
+               :time (a2 / after~e.33
+                         :op1 (n / now~e.33))
+               :ARG1-of (e / easy-05~e.28))
+   :ARG0 (y / you~e.19)
+   :ARG1 (a / Pan~e.22
+            :mod (l / loaf~e.21))
+   :ARG2 t
+   :mode imperative~e.34)
+
+# ::id blueberry_banana_bread_6_instr2
+# ::name blueberry_banana_bread_6_instr2
+# ::snt In a medium bowl , stir together flour , baking soda , cinnamon , and salt .
+(s3 / stir-01~e.40
+    :ARG0 (y / you~e.40)
+    :ARG1 (a / and~e.49
+             :op1 (f / flour~e.42)
+             :op2 (s2 / soda~e.45
+                      :ARG2-of (b / bake-01~e.44))
+             :op3 (c / cinnamon~e.47)
+             :op4 (s / salt~e.50))
+    :location (b2 / bowl~e.38
+                  :mod (m / medium~e.37))
+    :mod (t / together~e.41)
+    :mode imperative~e.40)
+
+# ::id blueberry_banana_bread_6_instr3
+# ::name blueberry_banana_bread_6_instr3
+# ::snt In a large bowl , stir together sugar , brown sugar , and oil .
+(s / stir-01~e.57
+   :ARG0 (y / you~e.57)
+   :ARG1 (a / and~e.64
+            :op1 (s2 / sugar~e.59)
+            :op2 (s3 / sugar~e.62
+                     :mod (b2 / brown~e.61))
+            :op3 (o / oil~e.65))
+   :location (b / bowl~e.55
+                :mod (l / large~e.54))
+   :mod (t / together~e.58)
+   :mode imperative~e.66)
+
+# ::id blueberry_banana_bread_6_instr4
+# ::name blueberry_banana_bread_6_instr4
+# ::snt Stir in the eggs one at a time until well combined .
+(s / stir-01~e.67
+   :ARG0 (y / you~e.67)
+   :ARG1 (e / egg~e.70)
+   :manner (t / thing~e.72
+              :mod (a / at-a-time~e.73)
+              :quant 1~e.71)
+   :time (u / until~e.75
+            :op1 (c / combine-01~e.77
+                    :ARG1 e
+                    :manner (w / well~e.76)))
+   :mode imperative~e.67)
+
+# ::id blueberry_banana_bread_6_instr5
+# ::name blueberry_banana_bread_6_instr5
+# ::snt Stir in the vanilla and bananas .
+(s / stir-01~e.79
+   :ARG0 (y / you~e.79)
+   :ARG1 (a / and~e.83
+            :op1 (v / vanilla~e.82)
+            :op2 (b / banana~e.84))
+   :mode imperative~e.79)
+
+# ::id blueberry_banana_bread_6_instr6
+# ::name blueberry_banana_bread_6_instr6
+# ::snt Add the flour mixture and mix until just combined .
+(a2 / and~e.90
+    :op1 (a / add-02~e.86
+            :ARG0 (y / you~e.86)
+            :ARG1 (m / mix-01~e.89
+                     :ARG1 (f / flour~e.88))
+            :mode imperative~e.86)
+    :op2 (m2 / mix-01~e.91
+             :ARG0 y
+             :manner (u / until~e.92
+                        :op1 (c / combine-01~e.94
+                                :ARG1 m
+                                :mod (j / just~e.93)))))
+
+# ::id blueberry_banana_bread_6_instr7
+# ::name blueberry_banana_bread_6_instr7
+# ::snt Fold in the blueberries until distributed .
+(w / white-03~e.96
+   :ARG0 (y / you~e.96)
+   :ARG1 (l / Blue~e.99)
+   :mod (e / exact~e.96)
+   :time (u / until~e.100
+            :op1 (d / distribute-01~e.101
+                    :ARG1 l))
+   :mode imperative~e.96)
+
+# ::id blueberry_banana_bread_6_instr8
+# ::name blueberry_banana_bread_6_instr8
+# ::snt Divide the batter equally between the loaf pans and place in the oven .
+(d / divide-02~e.103
+   :purpose (p / place-01~e.112
+               :ARG1 (b / batter~e.105)
+               :ARG2 (o / oven~e.115))
+   :ARG0 (y / you~e.103)
+   :ARG1 b
+   :ARG2 (b2 / between~e.107
+             :op1 (a / Pan~e.110
+                     :mod (l / loaf~e.109)))
+   :mode imperative~e.103
+   :ARG1-of (e / equal-01~e.106))
+
+# ::id blueberry_banana_bread_6_instr9
+# ::name blueberry_banana_bread_6_instr9
+# ::snt Bake for about 1 hour , rotating halfway through , until a toothpick inserted in the center of each loaf comes out clean or with a few moist crumbs .
+(b / bake-01~e.117
+   :ARG0 (y / you~e.117)
+   :duration (a / about~e.119
+                :op1 (t / temporal-quantity~e.121
+                        :unit (h2 / hour~e.121)
+                        :quant 1~e.120))
+   :manner (r / rotate-01~e.123
+              :ARG0 y
+              :path (t2 / through~e.125
+                        :extent (h / halfway~e.124)))
+   :time (u / until~e.127
+            :op1 (c3 / come-out-09~e.137
+                     :ARG1 (t3 / toothpick~e.129
+                               :ARG1-of (i / insert-01~e.130
+                                           :ARG2 (c / center~e.133
+                                                    :part-of (l / loaf~e.136
+                                                                :mod (e / each~e.135))))
+                               :ARG1-of (c2 / clean-04~e.139))
+                     :op1-of (o / or~e.140
+                                :op2 (c4 / crumb~e.145
+                                         :quant (f / few~e.143)
+                                         :ARG1-of (m / moist-02~e.144))))))
+
+# ::id blueberry_banana_bread_6_instr10
+# ::name blueberry_banana_bread_6_instr10
+# ::snt If the loaves are getting too brown , tent with foil .
+(h / have-condition-91~e.147
+   :ARG1 (t / tent~e.155
+            :prep-with (f / foil~e.157))
+   :ARG2 (g / get-03~e.151
+            :ARG1 (l / lamb~e.149)
+            :ARG2 (b / brown-01~e.153
+                     :ARG1 l
+                     :ARG2-of (h2 / have-degree-91~e.152
+                                  :ARG1 l
+                                  :ARG3 (t2 / too~e.152)))))
+
+# ::id blueberry_banana_bread_6_instr11
+# ::name blueberry_banana_bread_6_instr11
+# ::snt I recommend doing this between 30 - 40 minutes into baking .
+(r / recommend-01~e.160
+   :ARG0 (i / i~e.159)
+   :ARG1 (d / do-02~e.161
+            :ARG1 (t3 / this~e.162)
+            :time (b2 / between~e.163
+                      :op1 (t / temporal-quantity~e.164
+                              :unit (m / minute~e.167)
+                              :quant 30~e.164)
+                      :op2 (t2 / temporal-quantity~e.166
+                               :unit (m2 / minute~e.167)
+                               :quant 40~e.166))
+            :time (b / bake-01~e.169)))
+
+# ::id blueberry_banana_bread_6_instr12
+# ::name blueberry_banana_bread_6_instr12
+# ::snt Cool loaves in the pan for about a half an hour before removing and allowing to cool completely on a rack or serving tray .
+(b / before~e.182
+   :op1 (l2 / last-01~e.176
+            :ARG1 (l / lamb~e.172
+                     :location (p / pan~e.175)
+                     :ARG0-of (c2 / cool-01~e.171))
+            :ARG2 (a / about~e.177
+                     :op1 (t / temporal-quantity~e.181
+                             :unit (h / hour~e.181)
+                             :quant "1/2"~e.179)))
+   :op1 (a3 / and~e.184
+            :op1 (r2 / remove-01~e.183
+                     :ARG1 l)
+            :op2 (a2 / allow-01~e.185
+                     :ARG1 (c3 / cool-01~e.187
+                               :ARG1 l
+                               :location (o / or~e.192
+                                            :op1 (r / rack~e.191)
+                                            :op2 (t2 / tray~e.194
+                                                     :ARG2-of (s / serve-02~e.193)))
+                               :ARG1-of (c / complete-02~e.188)))))
+
+# ::id blueberry_banana_bread_6_instr13
+# ::name blueberry_banana_bread_6_instr13
+# ::snt Bread may be stored at room temperature in an airtight container for up to 4 days or frozen , wrapped in parchment and foil and placed in a zipper bag for up to 3 months .
+(p3 / possible-01~e.197
+    :ARG1 (o / or~e.212
+             :op1 (s / store-01~e.199
+                     :ARG1 (b2 / bake-01~e.196)
+                     :ARG2 (c / container~e.206
+                              :mod (a / airtight~e.205))
+                     :duration (u / up-to~e.208
+                                  :op1 (t2 / temporal-quantity~e.211
+                                           :unit (d / day~e.211)
+                                           :quant 4~e.210))
+                     :mod (t / temperature~e.202
+                             :mod (r / room~e.201)))
+             :op2 (f2 / freeze-01~e.213
+                      :ARG1 b2)
+             :op3 (w / wrap-01~e.215
+                     :ARG1 b2
+                     :ARG2 (a2 / and~e.218
+                               :op1 (p / parchment~e.217)
+                               :op2 (f / foil~e.219)))
+             :op4 (p2 / place-01~e.221
+                      :ARG1 b2
+                      :ARG2 (b / bag~e.225
+                               :consist-of (z / zipper~e.224))
+                      :duration (u2 / up-to~e.227
+                                    :op1 (t3 / temporal-quantity~e.230
+                                             :unit (m / month~e.230)
+                                             :quant 3~e.229)))))
+
+# ::id blueberry_banana_bread_6_instr14
+# ::name blueberry_banana_bread_6_instr14
+# ::snt Thaw at room temperature for about an hour or in the microwave for about 1 minute .
+(f / freeze-01~e.232
+   :ARG0 (y / you~e.232)
+   :ARG2 (t / temperature~e.235
+            :mod (r / room~e.234))
+   :duration (a / about~e.237
+                :op1 (t2 / temporal-quantity~e.239
+                         :unit (h / hour~e.239)
+                         :quant 1~e.238))
+   :location (m / microwave~e.243)
+   :manner (o / or~e.240
+              :duration (a2 / about~e.245
+                            :op1 (t3 / temporal-quantity~e.247
+                                     :unit (m2 / minute~e.247)
+                                     :quant 1~e.246))))
+

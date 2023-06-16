@@ -1,0 +1,153 @@
+# ::id slow_cooker_chicken_tortilla_soup_1_instr0
+# ::name slow_cooker_chicken_tortilla_soup_1_instr0
+# ::snt Place the chicken breast in the bottom of a slow cooker , and top with the onion , garlic , green chiles , chili powder , cumin , paprika , and coriander .
+(a / and~e.13
+   :op1 (p2 / place-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (b2 / breast~e.4
+                      :mod (c / chicken~e.3))
+            :ARG2 (b / bottom~e.7
+                     :part-of (c3 / cooker~e.11
+                                  :ARG1-of (s2 / slow-01~e.10))))
+   :op2 (t / top-01~e.14
+           :ARG0 y
+           :ARG2 (a2 / and~e.18
+                     :op1 (o / onion~e.17)
+                     :op2 (g / garlic~e.19)
+                     :op3 (s / sea~e.22
+                             :ARG1-of (g2 / green-02~e.21))
+                     :op4 (p3 / powder-01~e.25
+                              :ARG1 (c2 / chili~e.24))
+                     :op5 (c5 / cumin~e.27)
+                     :op6 (p / paprika~e.29)
+                     :op7 (c4 / coriander~e.32))))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr1
+# ::name slow_cooker_chicken_tortilla_soup_1_instr1
+# ::snt Pour the chicken broth and diced tomatoes over top .
+(p / pour-01~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (a / and~e.38
+            :op1 (b / broth~e.37
+                    :mod (c2 / chicken~e.36))
+            :op2 (t / tomato~e.40
+                    :ARG1-of (c / can-01~e.39)))
+   :ARG2 (o / over~e.41
+            :op1 (t2 / top~e.42))
+   :mode imperative~e.34)
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr2
+# ::name slow_cooker_chicken_tortilla_soup_1_instr2
+# ::snt Cover with the lid , and cook on low heat for about 6 hours , until the chicken is no longer pink .
+(a2 / and~e.49
+    :op1 (c3 / cover-01~e.44
+             :ARG0 (y / you~e.44)
+             :ARG2 (l / lid~e.47)
+             :mode imperative~e.44)
+    :op2 (c2 / cook-01~e.50
+             :ARG0 y
+             :duration (a / about~e.55
+                          :op1 (t / temporal-quantity~e.57
+                                  :unit (h2 / hour~e.57)
+                                  :quant 6~e.56))
+             :manner (h / heat~e.53
+                        :ARG1-of (l2 / low-04~e.52))
+             :time (u / until~e.59
+                      :op1 (p / pink-04~e.65
+                              :ARG1 (c / chicken~e.61)
+                              :time (n / no-longer~e.64)))
+             :mode imperative~e.66))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr3
+# ::name slow_cooker_chicken_tortilla_soup_1_instr3
+# ::snt Remove the chicken from the slow cooker and shred with a fork ( or place the chicken into your stand mixer with the paddle attachment and mix on low speed until it is shredded ) .
+(o / or~e.80
+   :op1 (a / and~e.74
+           :op1 (r / remove-01~e.67
+                   :ARG0 (y / you~e.67)
+                   :ARG1 (c / chicken~e.69)
+                   :ARG2 (c2 / cooker~e.73
+                             :ARG1-of (s3 / slow-05~e.72))
+                   :mode imperative~e.67)
+           :op2 (s / shred-01~e.75
+                   :ARG0 y
+                   :ARG1 c
+                   :instrument (f / fork~e.78)))
+   :op2 (a2 / and~e.92
+            :op1 (p2 / place-01~e.81
+                     :ARG0 y
+                     :ARG1 c
+                     :ARG2 (t / thing~e.87
+                              :instrument (a3 / attachment~e.91
+                                              :mod (p / paddle~e.90))
+                              :mod (s5 / stand~e.86)
+                              :poss y
+                              :instrument-of (m / mix-01~e.87))
+                     :mode imperative~e.102)
+            :op2 (m2 / mix-01~e.93
+                     :ARG0 y
+                     :ARG1 c
+                     :duration (u / until~e.97
+                                  :op1 (s2 / shred-01~e.100
+                                           :ARG1 c))
+                     :manner (s4 / speed~e.96
+                                 :ARG1-of (l / low-04~e.95))
+                     :mode imperative~e.102)))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr4
+# ::name slow_cooker_chicken_tortilla_soup_1_instr4
+# ::snt Once shredded , return the chicken back to the slow cooker , and add the black beans , pinto beans , corn , and lime juice , continuing to cook on low heat until the beans have heated through .
+(a2 / and~e.115
+    :op1 (r / return-02~e.106
+            :ARG1 (c / chicken~e.108)
+            :ARG2 (c4 / cooker~e.113
+                      :ARG1-of (s2 / slow-01~e.112)))
+    :op2 (a / add-02~e.116
+            :ARG1 (a3 / and~e.123
+                      :op1 (b / bean~e.119
+                              :ARG1-of (b3 / black-04~e.118))
+                      :op2 (b2 / bean~e.122
+                               :mod (p / pinto~e.121))
+                      :op3 (c5 / corn~e.124)
+                      :op4 (j / juice~e.128
+                              :source (l / lime~e.127))))
+    :op3 (c2 / continue-01~e.130
+             :ARG1 (c3 / cook-01~e.132
+                       :manner (h / heat~e.135
+                                  :ARG1-of (l2 / low-04~e.134))
+                       :time (u / until~e.136
+                                :op1 (h2 / heat-01~e.140
+                                         :ARG1 b
+                                         :mod (t / through~e.141)))))
+    :time (s / shred-01~e.104
+             :ARG1 c))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr5
+# ::name slow_cooker_chicken_tortilla_soup_1_instr5
+# ::snt Season with salt and pepper to taste .
+(s2 / season~e.143
+    :instrument (a / and~e.146
+                   :op1 (s / salt~e.145)
+                   :op2 (p / pepper~e.147))
+    :mode imperative~e.143
+    :ARG1-of (t / taste-02~e.149))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr6
+# ::name slow_cooker_chicken_tortilla_soup_1_instr6
+# ::snt Serve with crushed tortilla chips , cheese , and sour cream .
+(s / serve-02~e.151
+   :accompanier (a / and~e.159
+                   :op1 (c2 / chip~e.155
+                            :mod (t / tortilla~e.154)
+                            :ARG1-of (c4 / crush-01~e.153))
+                   :op2 (c / cheese~e.157)
+                   :op3 (c3 / cream~e.161
+                            :mod (s2 / sour~e.160))))
+
+# ::id slow_cooker_chicken_tortilla_soup_1_instr7
+# ::name slow_cooker_chicken_tortilla_soup_1_instr7
+# ::snt Enjoy !
+(e / enjoy-01~e.163
+   :ARG0 (y / you~e.163)
+   :mode expressive~e.164)
+

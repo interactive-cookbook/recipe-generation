@@ -1,0 +1,92 @@
+# ::id cauliflower_mash_5_instr0
+# ::name cauliflower_mash_5_instr0
+# ::snt Separate the cauliflower into florets and chop the core finely .
+(a / and~e.6
+   :op1 (s / separate-01~e.1
+           :ARG0 (y / you~e.1)
+           :ARG1 (c / cauliflower~e.3)
+           :ARG2 (p / poppy~e.5)
+           :mode imperative~e.5)
+   :op2 (c2 / chop-up-03~e.7
+            :ARG0 y
+            :ARG1 (c3 / core~e.9)
+            :mode imperative~e.7
+            :ARG1-of (f / fine-03~e.10)))
+
+# ::id cauliflower_mash_5_instr1
+# ::name cauliflower_mash_5_instr1
+# ::snt Bring about 1 cup of water to a simmer in a pot , then add the cauliflower .
+(a3 / and~e.24
+    :op1 (b / bring-01~e.12
+            :ARG0 (y / you~e.12)
+            :ARG1 (w / water~e.17
+                     :quant (a / about~e.13
+                               :op1 (v / volume-quantity~e.15
+                                       :unit (c2 / cup~e.15)
+                                       :quant 1~e.14))
+                     :ARG1-of s)
+            :ARG2 (s / simmer-01~e.20
+                     :location (p / pot~e.23)))
+    :op2 (a2 / add-02~e.26
+             :ARG0 y
+             :ARG1 (c / cauliflower~e.28)
+             :time (t / then~e.25)))
+
+# ::id cauliflower_mash_5_instr2
+# ::name cauliflower_mash_5_instr2
+# ::snt Cover and turn the heat to medium .
+(a / and~e.31
+   :op1 (c / cover-02~e.30
+           :ARG0 (y / you~e.30)
+           :mode imperative~e.30)
+   :op2 (t / turn-01~e.32
+           :ARG0 y
+           :ARG1 (h / heat-01~e.34)
+           :ARG4 (m / medium~e.36)
+           :mode imperative~e.37))
+
+# ::id cauliflower_mash_5_instr3
+# ::name cauliflower_mash_5_instr3
+# ::snt Cook the cauliflower for 12 - 15 minutes or until very tender .
+(c2 / cook-01~e.38
+    :ARG0 (y / you~e.38)
+    :ARG1 (c / cauliflower~e.40)
+    :duration (o / or~e.46
+                 :op1 (b / between~e.42
+                         :op1 (t2 / temporal-quantity~e.45
+                                  :unit (m / minute~e.45)
+                                  :quant 12~e.42)
+                         :op2 (t / temporal-quantity~e.44
+                                 :unit (m2 / minute~e.45)
+                                 :quant 15~e.44))
+                 :op2 (u / until~e.47
+                         :op1 (t3 / tender-02~e.49
+                                  :ARG2 c
+                                  :degree (v / very~e.48))))
+    :mode imperative~e.38)
+
+# ::id cauliflower_mash_5_instr4
+# ::name cauliflower_mash_5_instr4
+# ::snt Drain and discard all of the water ( the drier the cauliflower is , the better ! )
+(m3 / multi-sentence~e.58
+    :snt1 (a2 / and~e.52
+              :op1 (d2 / drain-01~e.51
+                       :ARG0 (y / you~e.51)
+                       :ARG1 (w / water~e.57
+                                :mod (a / all~e.54))
+                       :mode imperative~e.51)
+              :op2 (d / discard-01~e.53
+                      :ARG0 y
+                      :ARG1 w
+                      :mode imperative~e.51))
+    :snt2 (a3 / and~e.68
+              :op1 (m / more~e.60
+                      :ARG3-of (h / have-degree-91~e.60
+                                  :ARG1 (c / cauliflower~e.62)
+                                  :ARG2 (d3 / dry-02~e.60
+                                            :ARG1 m
+                                            :ARG1 c)))
+              :op2 (m2 / more~e.60
+                       :ARG3-of (h2 / have-degree-91~e.66
+                                    :ARG2 (g / good-02~e.66)))))
+

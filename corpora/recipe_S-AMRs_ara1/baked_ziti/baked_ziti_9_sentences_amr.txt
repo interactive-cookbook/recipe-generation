@@ -1,0 +1,141 @@
+# ::id baked_ziti_9_instr0
+# ::name baked_ziti_9_instr0
+# ::snt Cook pasta until it 's aldente ( do not over cook the pasta )
+(m / mean-01~e.7
+   :ARG1 (c / cook-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (p / pasta~e.2)
+            :time (u / until~e.3
+                     :op1 (a / aldente~e.6
+                             :domain p))
+            :mode imperative~e.1)
+   :ARG2 (c2 / cook-01~e.11
+             :ARG0 y
+             :ARG1 p
+             :degree (o / over~e.10)
+             :mode imperative~e.8
+             :polarity -~e.9))
+
+# ::id baked_ziti_9_instr1
+# ::name baked_ziti_9_instr1
+# ::snt When baking pasta under cooking the pasta for a minute is so much better than overcooking it for a second .
+(h / have-degree-91~e.28
+   :ARG4 (b / bake-01~e.16
+            :ARG1 (p / pasta~e.17))
+   :ARG2 (g / good-02~e.28)
+   :ARG3 (m2 / more~e.28
+             :ARG1-of (h2 / have-quant-91~e.27
+                          :ARG2 (m3 / much~e.27)
+                          :ARG3 (s2 / so~e.26)))
+   :ARG4 (c2 / cook-01~e.30
+             :ARG1 p
+             :duration (t2 / temporal-quantity~e.34
+                           :unit (s / second~e.34)
+                           :quant 1~e.33))
+   :rel (c / cook-01~e.19
+           :ARG1 p
+           :duration (t / temporal-quantity~e.24
+                        :unit (m / minute~e.24)
+                        :quant 1~e.23)))
+
+# ::id baked_ziti_9_instr2
+# ::name baked_ziti_9_instr2
+# ::snt While the pasta is cooking , brown the ground beef in a pan until it 's thoroughly cookedIn large bowl place pasta , marinara sauce .
+(r / Brown~e.42
+   :ARG0 (y / you~e.42)
+   :ARG1 (b / beef~e.45
+            :ARG1-of (g / ground-02~e.44))
+   :domain (a / and~e.58
+              :location (p3 / place~e.56
+                            :mod (b2 / bowl~e.55
+                                     :mod (l / large~e.54)))
+              :op1 (p2 / pasta~e.38)
+              :op2 (s / sauce~e.60
+                      :mod (m / marinara~e.59)))
+   :location (p / pan~e.48)
+   :time (c / cook-01~e.40
+            :ARG1 p2)
+   :time (u / until~e.49
+            :op1 (c2 / cook-01~e.53
+                     :ARG1 b
+                     :degree (t / thorough~e.52)))
+   :mode imperative~e.42)
+
+# ::id baked_ziti_9_instr3
+# ::name baked_ziti_9_instr3
+# ::snt Add to it the ground beef , salt , and pepper to taste along with oregano , mix well .
+(a3 / and~e.78
+    :op1 (a / add-02~e.62
+            :purpose (t / taste-01~e.74
+                        :ARG0 (y / you~e.81)
+                        :ARG1 (a2 / and~e.71
+                                  :accompanier (o / oregano~e.77)
+                                  :op1 (b / beef~e.67
+                                          :ARG1-of (g2 / ground-02~e.66))
+                                  :op2 (s / salt~e.69)
+                                  :op3 (p / pepper~e.72)))
+            :ARG1 a2
+            :ARG2 (i / it~e.64)
+            :mode imperative~e.62)
+    :op2 (m / mix-01~e.79
+            :ARG0 y
+            :mode imperative~e.81
+            :ARG1-of (g / good-02~e.80)))
+
+# ::id baked_ziti_9_instr4
+# ::name baked_ziti_9_instr4
+# ::snt In a 13x9 pan create 2 layers of the pasta mixture topping each with a cup of grated Mozzarella Cheese .
+(c / create-01~e.86
+   :ARG0 (y / you~e.84)
+   :ARG1 (l / layer~e.88
+            :quant 2~e.87
+            :ARG0-of (t2 / top-02~e.93
+                         :ARG2 (p3 / product~e.101
+                                   :name (n2 / name~e.100
+                                             :op1 "Mozzarella"~e.100
+                                             :op2 "Cheese"~e.101)
+                                   :quant (v / volume-quantity~e.97
+                                             :unit (c2 / cup~e.97)
+                                             :quant 13~e.84)
+                                   :ARG1-of (g / grit-01~e.99))
+                         :mod (e / each~e.94))
+            :consist-of (t / thing~e.90
+                           :ARG2-of (m / mix-01~e.92
+                                       :ARG1 (p2 / pasta~e.91))))
+   :location (p / "pan"~e.85
+                :name (n / name~e.93
+                         :op1 13~e.84))
+   :mode imperative~e.102
+   :rel 9~e.84)
+
+# ::id baked_ziti_9_instr5
+# ::name baked_ziti_9_instr5
+# ::snt Bake at 350 degrees for 30 - 45 minutes .
+(b / bake-01~e.103
+   :ARG0 (y / you~e.103)
+   :ARG2 (t / temperature-quantity~e.105
+            :quant 350~e.105)
+   :duration (b2 / between~e.108
+                 :op1 (t2 / temporal-quantity~e.108
+                          :unit (m / minute~e.111)
+                          :quant 30~e.108)
+                 :op2 (t3 / temporal-quantity~e.111
+                          :unit (m2 / minute~e.111)
+                          :quant 45~e.110))
+   :mode imperative~e.112)
+
+# ::id baked_ziti_9_instr6
+# ::name baked_ziti_9_instr6
+# ::snt Until cheese is melted and when you stick a knife into the center of the dish , the food is hot .
+(b / be-temporally-at-91~e.113
+   :ARG2 (u / until~e.113
+            :op1 (m / melt-01~e.116
+                    :ARG1 (c2 / cheese~e.114))
+            :op2 (h / hot-05~e.133
+                    :ARG1 (f / food~e.131)
+                    :time (s / stick-01~e.120
+                             :ARG0 (y / you~e.119)
+                             :ARG1 (k / knife~e.122)
+                             :ARG2 (c / center~e.125
+                                      :part-of (d / dish~e.128))))))
+

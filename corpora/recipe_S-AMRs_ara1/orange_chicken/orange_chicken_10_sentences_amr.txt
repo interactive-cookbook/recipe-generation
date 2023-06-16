@@ -1,0 +1,88 @@
+# ::id orange_chicken_10_instr0
+# ::name orange_chicken_10_instr0
+# ::snt Cook chicken in crockpot on HIGH for 3 hours or LOW for 6 hours .
+(o / or~e.10
+   :op1 (c2 / cook-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (c / chicken~e.2)
+            :duration (t / temporal-quantity~e.9
+                         :unit (h2 / hour~e.9)
+                         :quant 3~e.8)
+            :location (c4 / crockpot~e.4)
+            :mode imperative~e.1)
+   :op2 (c3 / cook-01~e.1
+            :ARG0 y
+            :duration (t2 / temporal-quantity~e.14
+                          :unit (h3 / hour~e.14)
+                          :quant 6~e.13)
+            :manner (l / low-04~e.11)
+            :mode imperative~e.15)
+   :rel (h / high-02~e.6
+           :ARG1 c2))
+
+# ::id orange_chicken_10_instr1
+# ::name orange_chicken_10_instr1
+# ::snt ( Covered )
+(c / cover-01~e.17)
+
+# ::id orange_chicken_10_instr2
+# ::name orange_chicken_10_instr2
+# ::snt After 3 hours on HIGH or 6 hours on LOW , drain juices from crockpot .
+(d / drain-01~e.30
+   :ARG0 (y / you~e.30)
+   :ARG1 (j / juice~e.31)
+   :ARG2 (c / crockpot~e.33)
+   :time (a / after~e.19
+            :op1 (o / or~e.24
+                    :op1 (t / temporal-quantity~e.21
+                            :unit (h2 / hour~e.21)
+                            :quant 3~e.20
+                            :duration-of (h / high-02~e.23))
+                    :op2 (t2 / temporal-quantity~e.26
+                             :unit (h3 / hour~e.26)
+                             :quant 6~e.25
+                             :duration-of (l / low-04~e.28))))
+   :mode imperative~e.34)
+
+# ::id orange_chicken_10_instr3
+# ::name orange_chicken_10_instr3
+# ::snt Pour Panda Express Orange Sauce over chicken , and cook on high covered for 30 more minutes .
+(a / and~e.43
+   :op1 (p / pour-01~e.35
+           :ARG0 (y / you~e.35)
+           :ARG1 (p2 / product~e.39
+                     :name (n / name~e.36
+                              :op1 "Panda"~e.36
+                              :op2 "Express"~e.37
+                              :op3 "Orange"~e.38
+                              :op4 "Sauce"~e.39))
+           :ARG2 (c / chicken~e.41)
+           :mode imperative~e.35)
+   :op2 (c2 / cook-01~e.44
+            :ARG0 y
+            :duration (t / temporal-quantity~e.51
+                         :mod (m2 / more~e.50)
+                         :unit (m / minute~e.51)
+                         :quant 30~e.49)
+            :manner (t2 / thing~e.52
+                        :ARG1-of (c3 / cover-01~e.47)
+                        :ARG1-of (h / high-02~e.46))
+            :mode imperative~e.52))
+
+# ::id orange_chicken_10_instr4
+# ::name orange_chicken_10_instr4
+# ::snt Serve with a side of white rice .
+(s / serve-02~e.53
+   :ARG0 (y / you~e.53)
+   :accompanier (r / rice~e.59
+                   :ARG1-of (w / white-03~e.58)
+                   :consist-of (s2 / side~e.56))
+   :mode imperative~e.60)
+
+# ::id orange_chicken_10_instr5
+# ::name orange_chicken_10_instr5
+# ::snt Enjoy !
+(e / enjoy-01~e.61
+   :ARG0 (y / you~e.61)
+   :mode expressive~e.62)
+

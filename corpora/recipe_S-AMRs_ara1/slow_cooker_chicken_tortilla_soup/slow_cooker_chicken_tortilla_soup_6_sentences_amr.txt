@@ -1,0 +1,95 @@
+# ::id slow_cooker_chicken_tortilla_soup_6_instr0
+# ::name slow_cooker_chicken_tortilla_soup_6_instr0
+# ::snt Combine all ingredients except the lime juice and the garnishes .
+(c / combine-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.3
+            :mod (a / all~e.2)
+            :ARG2-of (e / except-01~e.4
+                        :ARG1 (a2 / and~e.8
+                                  :op1 (j / juice~e.7
+                                          :source (l / lime~e.6))
+                                  :op2 (p / preservative~e.10))))
+   :mode imperative~e.1)
+
+# ::id slow_cooker_chicken_tortilla_soup_6_instr1
+# ::name slow_cooker_chicken_tortilla_soup_6_instr1
+# ::snt Cook on high for 3 - 4 hours or on low for 6 - 8 hours .
+(o / or~e.20
+   :op1 (c / cook-01~e.12
+           :ARG0 (y / you~e.12)
+           :duration (b / between~e.16
+                        :op1 (t / temporal-quantity~e.19
+                                :unit (h2 / hour~e.19)
+                                :quant 3~e.16)
+                        :op2 (t2 / temporal-quantity~e.19
+                                 :unit (h3 / hour~e.19)
+                                 :quant 4~e.18))
+           :manner (h / high-02~e.14)
+           :mode imperative~e.12)
+   :op2 (c2 / cook-01~e.12
+            :ARG0 y
+            :duration (b2 / between~e.24
+                          :op1 (t3 / temporal-quantity~e.27
+                                   :unit (h4 / hour~e.27)
+                                   :quant 6~e.24)
+                          :op2 (t4 / temporal-quantity~e.27
+                                   :quant 8~e.26))
+            :manner (l / low-04~e.22)))
+
+# ::id slow_cooker_chicken_tortilla_soup_6_instr2
+# ::name slow_cooker_chicken_tortilla_soup_6_instr2
+# ::snt With 30 minutes left in the cooking time remove chicken and shred with a fork , return to slow cooker .
+(a / and~e.39
+   :op1 (r / remove-01~e.37
+           :ARG0 (y / you~e.37)
+           :ARG1 (c / chicken~e.38)
+           :mode imperative~e.49)
+   :op2 (s / shred-01~e.40
+           :ARG0 y
+           :ARG1 c
+           :instrument (f / fork~e.43))
+   :op3 (r2 / return-01~e.45
+            :ARG1 y
+            :ARG4 (c3 / cooker~e.48
+                      :ARG1-of (s2 / slow-01~e.47))
+            :mode imperative~e.49)
+   :time (l / leave-17~e.32
+            :ARG1 (t2 / time~e.36
+                      :duration-of (c2 / cook-01~e.35))
+            :duration (t / temporal-quantity~e.31
+                         :unit (m / minute~e.31)
+                         :quant 30~e.30)))
+
+# ::id slow_cooker_chicken_tortilla_soup_6_instr3
+# ::name slow_cooker_chicken_tortilla_soup_6_instr3
+# ::snt Add the lime juice , stir , cover and finish cooking the remaining 30 minutes .
+(a2 / and~e.58
+    :op1 (a / add-02~e.50
+            :ARG1 (j / juice~e.53
+                     :source (l / lime~e.52)))
+    :op2 (s / stir-01~e.55)
+    :op3 (c2 / cover-01~e.57)
+    :op4 (f / finish-01~e.59
+            :ARG1 (c / cook-01~e.60
+                     :duration (t / temporal-quantity~e.64
+                                  :unit (m / minute~e.64)
+                                  :quant 30~e.63
+                                  :ARG1-of (r / remain-01~e.62)))))
+
+# ::id slow_cooker_chicken_tortilla_soup_6_instr4
+# ::name slow_cooker_chicken_tortilla_soup_6_instr4
+# ::snt Garnish with your favorite toppings and serve warm .
+(a / and~e.71
+   :op1 (c / cook-01~e.66
+           :ARG0 (y / you~e.66)
+           :ARG1 (t / thing~e.71
+                    :ARG1-of (b / base-01~e.70)
+                    :ARG1-of (f / favor-01~e.69
+                                :ARG0 y))
+           :mode imperative~e.66)
+   :op2 (s / serve-02~e.72
+           :ARG0 y
+           :mode imperative~e.74
+           :ARG1-of (w / warm-07~e.73)))
+

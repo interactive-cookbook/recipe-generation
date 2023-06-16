@@ -1,0 +1,122 @@
+# ::id pumpkin_chocolate_chip_bread_5_instr0
+# ::name pumpkin_chocolate_chip_bread_5_instr0
+# ::snt Mix all of the dry ingredients ( except the chocolate chips ) in a large bowl .
+(m / mix-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.6
+            :mod (a / all~e.2)
+            :ARG1-of (d / dry-02~e.5)
+            :ARG2-of (e / except-01~e.8
+                        :ARG1 (c / chip~e.11
+                                 :mod (c2 / chocolate~e.10))))
+   :ARG2 (b / bowl~e.16
+            :mod (l / large~e.15))
+   :mode imperative~e.17)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr1
+# ::name pumpkin_chocolate_chip_bread_5_instr1
+# ::snt Mix the wet ingredients in a medium
+(m2 / mix-01~e.18
+    :ARG0 (y / you~e.18)
+    :ARG1 (i / ingredient~e.21
+             :ARG1-of (w / wet-01~e.20))
+    :ARG2 (m / medium~e.24)
+    :mode imperative~e.23)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr2
+# ::name pumpkin_chocolate_chip_bread_5_instr2
+# ::snt bowl .
+(b / bowl~e.25)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr3
+# ::name pumpkin_chocolate_chip_bread_5_instr3
+# ::snt Mix the wet ingredients into the dry ingredients until combined .
+(m / mix-01~e.27
+   :ARG0 (y / you~e.27)
+   :ARG1 (i / ingredient~e.30
+            :ARG1-of (w / wet-01~e.29))
+   :ARG2 (i2 / ingredient~e.34
+             :ARG1-of (d / dry-02~e.33)
+             :ARG2-of c)
+   :duration (c / combine-01~e.36)
+   :mode imperative~e.37)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr4
+# ::name pumpkin_chocolate_chip_bread_5_instr4
+# ::snt Toss the chocolate chips with flour , then stir into the batter just until combined .
+(a / and~e.44
+   :op1 (t2 / toss-01~e.38
+            :ARG1 (c / chip~e.41
+                     :consist-of (c2 / chocolate~e.40))
+            :ARG2 (f / flour~e.43))
+   :op2 (s / stir-01~e.46
+           :ARG2 (b / batter-01~e.49)
+           :duration (u / until~e.51
+                        :mod (j / just~e.50)
+                        :op1 (c3 / combine-01~e.52
+                                 :ARG1 c
+                                 :ARG2 b))
+           :time (t / then~e.45)))
+
+# ::id pumpkin_chocolate_chip_bread_5_instr5
+# ::name pumpkin_chocolate_chip_bread_5_instr5
+# ::snt Scrape the batter into a greased and floured loaf pan .
+(s / scrap-01~e.54
+   :ARG0 (y / you~e.54)
+   :ARG1 (b3 / batter~e.56)
+   :ARG3 (p / pan~e.63
+            :purpose (l / loaf~e.62)
+            :ARG2-of (b2 / bake-01~e.61)
+            :ARG2-of (b / bake-01~e.59))
+   :mode imperative~e.54)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr6
+# ::name pumpkin_chocolate_chip_bread_5_instr6
+# ::snt Bake at 350 degrees for 1 hour and 20 minutes , or until a skewer inserted in the center comes out with very few moist crumbs attached .
+(b / bake-01~e.65
+   :ARG0 (y / you~e.65)
+   :ARG2 (t / temperature-quantity~e.92
+            :quant (a / and~e.72
+                      :op1 (t2 / temporal-quantity~e.71
+                               :unit (h / hour~e.71))
+                      :op2 (t3 / temporal-quantity~e.73
+                               :unit (m / minute~e.74)
+                               :quant 20~e.73)))
+   :duration a
+   :rel (f / few~e.88
+           :degree (v / very~e.87))
+   :time (u / until~e.77
+            :op1 (c2 / come-out-09~e.84
+                     :ARG1 (s / skewer~e.79
+                              :ARG1-of (i / insert-01~e.80
+                                          :ARG2 (c / center~e.83)))
+                     :manner (a2 / attach-01~e.91
+                                 :ARG1 (c3 / crumb~e.90
+                                           :ARG1-of (m2 / moist-02~e.89
+                                                        :degree v))
+                                 :ARG2 s)))
+   :mode imperative~e.65
+   :rel 350~e.67)
+
+# ::id pumpkin_chocolate_chip_bread_5_instr7
+# ::name pumpkin_chocolate_chip_bread_5_instr7
+# ::snt Let cool in the pan for 15 minutes , then turn out onto a rack to cool completely .
+(a / and~e.101
+   :op1 (l / let-01~e.93
+           :ARG0 (y / you~e.93)
+           :ARG1 (c2 / cool-01~e.94
+                     :ARG1 y
+                     :duration (t / temporal-quantity~e.99
+                                  :unit (m / minute~e.100)
+                                  :quant 15~e.99)
+                     :location (p / pan~e.97))
+           :mode imperative~e.93)
+   :op2 (t3 / turn-01~e.103
+            :purpose (c3 / cool-01~e.109
+                         :ARG1 y
+                         :ARG1-of (c / complete-02~e.110))
+            :ARG1 y
+            :destination (r / rack~e.107)
+            :time (t2 / then~e.102)
+            :mode imperative~e.111))
+

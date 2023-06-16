@@ -1,0 +1,145 @@
+# ::id slow_cooker_chicken_tortilla_soup_3_instr0
+# ::name slow_cooker_chicken_tortilla_soup_3_instr0
+# ::snt Place chicken , tomatoes , enchilada sauce , onion , green chiles and garlic in slow cooker .
+(p / place-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.13
+            :op1 (c / chicken~e.2)
+            :op2 (t / tomato~e.4)
+            :op3 (o / onion~e.9)
+            :op4 (h / Chile~e.12
+                    :ARG1-of (g2 / green-02~e.11))
+            :op5 (g / garlic~e.14))
+   :ARG2 (c2 / cooker~e.17
+             :ARG1-of (s2 / slow-01~e.16))
+   :rel (s / sauce~e.7
+           :mod (e / enchilada~e.6))
+   :mode imperative~e.18)
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr1
+# ::name slow_cooker_chicken_tortilla_soup_3_instr1
+# ::snt Pour in water and chicken broth and season with cumin , chili powder , salt , pepper and bay leaf .
+(a2 / and~e.25
+    :op1 (p2 / pour-01~e.19
+             :ARG0 (y / you~e.19)
+             :ARG1 (a / and~e.22
+                      :op1 (w / water~e.21)
+                      :op2 (b2 / broth~e.24
+                               :mod (c / chicken~e.23)))
+             :mode imperative~e.19)
+    :op2 (v / vary-01~e.26
+            :ARG0 y
+            :ARG2 (a3 / and~e.29
+                      :op1 (c3 / cumin~e.28)
+                      :op2 (p3 / powder~e.31
+                               :mod (c2 / chili~e.30))
+                      :op3 (s / salt~e.33)
+                      :op4 (p / pepper~e.35)
+                      :op5 (l / leaf~e.38
+                              :mod (b / bay~e.37)))
+            :mode imperative~e.26))
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr2
+# ::name slow_cooker_chicken_tortilla_soup_3_instr2
+# ::snt Stir in corn and cilantro .
+(s / stir-01~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (a / and~e.43
+            :op1 (c2 / corn~e.42)
+            :op2 (c / cilantro~e.44))
+   :mode imperative~e.40)
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr3
+# ::name slow_cooker_chicken_tortilla_soup_3_instr3
+# ::snt Cover and cook on low for 6 - 8 hours or on high 3 - 4 hours .
+(a / and~e.47
+   :op1 (c2 / cover-01~e.46
+            :ARG0 (y / you~e.46)
+            :mode imperative~e.63)
+   :op2 (c / cook-01~e.48
+           :ARG0 y
+           :location (o / or~e.56
+                        :op1 (b / between~e.52
+                                :op1 (t / temporal-quantity~e.55
+                                        :unit (h2 / hour~e.55)
+                                        :quant 6~e.52)
+                                :op2 (t2 / temporal-quantity~e.55
+                                         :unit (h3 / hour~e.55)
+                                         :quant 8~e.54))
+                        :op2 (h / high-02~e.58
+                                :duration (b2 / between~e.59
+                                              :op1 (t4 / temporal-quantity~e.62
+                                                       :unit (h5 / hour~e.62)
+                                                       :quant 4~e.61)
+                                              :op2 (t3 / temporal-quantity~e.55
+                                                       :unit (h4 / hour~e.62)
+                                                       :quant 3~e.59)))))
+   :rel (l / low-04~e.50))
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr4
+# ::name slow_cooker_chicken_tortilla_soup_3_instr4
+# ::snt Preheat oven to 400 ° .
+(h / heat-01~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (o / oven~e.65)
+   :destination (t / temperature-quantity~e.68
+                   :scale (c / celsius~e.68)
+                   :quant 400~e.67)
+   :mode imperative~e.64)
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr5
+# ::name slow_cooker_chicken_tortilla_soup_3_instr5
+# ::snt Brush tortillas ( both sides ) with oil .
+(b2 / brush-01~e.70
+    :ARG0 (y / you~e.70)
+    :ARG1 (a / Pan~e.71
+             :mod (s / side~e.74
+                     :mod (b / both~e.73)))
+    :ARG2 (o / oil~e.77)
+    :mode imperative~e.78)
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr6
+# ::name slow_cooker_chicken_tortilla_soup_3_instr6
+# ::snt Cut tortillas into strips and place on baking sheet .
+(a2 / and~e.83
+    :op1 (c / cut-02~e.79
+            :ARG0 (y / you~e.79)
+            :ARG1 (a / Pan~e.80)
+            :ARG2 (s2 / strip-01~e.82
+                      :ARG1 a)
+            :mode imperative~e.79)
+    :op2 (p / place-01~e.84
+            :ARG0 y
+            :ARG2 (s / sheet~e.87
+                     :instrument-of (b / bake-01~e.86))
+            :mode imperative~e.79))
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr7
+# ::name slow_cooker_chicken_tortilla_soup_3_instr7
+# ::snt Bake until crisp , about 10 - 15 minutes .
+(b / bake-01~e.89
+   :ARG0 (y / you~e.89)
+   :duration (u / until~e.90
+                :op1 (c / crisp~e.91))
+   :duration (a / about~e.93
+                :op1 (b2 / between~e.94
+                         :op1 (t / temporal-quantity~e.94
+                                 :unit (m / minute~e.97)
+                                 :quant 10~e.94)
+                         :op2 (t2 / temporal-quantity~e.97
+                                  :unit (m2 / minute~e.97)
+                                  :quant 15~e.96)))
+   :mode imperative~e.98)
+
+# ::id slow_cooker_chicken_tortilla_soup_3_instr8
+# ::name slow_cooker_chicken_tortilla_soup_3_instr8
+# ::snt To serve , sprinkle tortilla strips on top of soup .
+(m / mix-01~e.102
+   :purpose (s / serve-02~e.100)
+   :ARG0 (y / you~e.102)
+   :ARG1 (s3 / strip-01~e.104
+             :mod (t2 / tortilla~e.103))
+   :ARG2 (t / top-01~e.106
+            :ARG1 (s2 / soup~e.108))
+   :mode imperative~e.102)
+

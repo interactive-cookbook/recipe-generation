@@ -1,0 +1,137 @@
+# ::id blueberry_banana_bread_1_instr0
+# ::name blueberry_banana_bread_1_instr0
+# ::snt Preheat oven to 350ºF.
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :scale (f / fahrenheit~e.4))
+   :mode imperative~e.1)
+
+# ::id blueberry_banana_bread_1_instr1
+# ::name blueberry_banana_bread_1_instr1
+# ::snt In a small mixing bowl , sift together the flour , baking powder , baking soda and salt .
+(s2 / sift-01~e.11
+    :ARG1 (a / and~e.21
+             :op1 (f / flour~e.14)
+             :op2 (p / powder-01~e.17
+                     :ARG1 (b / bake-01~e.19))
+             :op3 (s4 / soda~e.20
+                      :ARG2-of (b2 / bake-01~e.19))
+             :op4 (s / salt~e.22))
+    :location (b3 / bowl~e.9
+                  :purpose (m / mix-01~e.8)
+                  :mod (s3 / small~e.7))
+    :manner (t / together~e.12))
+
+# ::id blueberry_banana_bread_1_instr2
+# ::name blueberry_banana_bread_1_instr2
+# ::snt In a large bowl cream the butter and sugar using an electric mixer .
+(c / cream-02~e.28
+   :ARG1 (a / and~e.31
+            :op1 (b2 / butter~e.30)
+            :op2 (s / sugar~e.32))
+   :instrument (u / use-01~e.33
+                  :ARG1 (t / thing~e.36
+                           :instrument-of (m / mix-01~e.36
+                                             :mod (e / electric~e.35))))
+   :location (b / bowl~e.27
+                :mod (l / large~e.26)))
+
+# ::id blueberry_banana_bread_1_instr3
+# ::name blueberry_banana_bread_1_instr3
+# ::snt Add the eggs , buttermilk , mashed bananas and vanilla .
+(a / add-02~e.38
+   :ARG0 (y / you~e.38)
+   :ARG1 (a2 / and~e.46
+             :op1 (e / egg~e.40)
+             :op2 (b2 / buttermilk~e.42)
+             :op3 (b / banana~e.45
+                     :ARG1-of (p / pure-02~e.44))
+             :op4 (v / vanilla~e.47))
+   :mode imperative~e.38)
+
+# ::id blueberry_banana_bread_1_instr4
+# ::name blueberry_banana_bread_1_instr4
+# ::snt Mix until fully combined .
+(m / mix-01~e.49
+   :ARG0 (y / you~e.49)
+   :time (u / until~e.50
+            :op1 (c / combine-01~e.52
+                    :degree (f / full~e.51)))
+   :mode imperative~e.53)
+
+# ::id blueberry_banana_bread_1_instr5
+# ::name blueberry_banana_bread_1_instr5
+# ::snt Slowly add in the flour mixture .
+(a / add-02~e.55
+   :ARG1 (m / mix-01~e.59
+            :ARG1 (f / flour~e.58))
+   :ARG1-of (s / slow-01~e.54))
+
+# ::id blueberry_banana_bread_1_instr6
+# ::name blueberry_banana_bread_1_instr6
+# ::snt Place the frozen blueberries in a small bowl .
+(p / place-01~e.61
+   :ARG0 (y / you~e.61)
+   :ARG1 (l / Blue~e.64
+            :ARG1-of (f / freeze-01~e.63))
+   :ARG2 (b / bowl~e.68
+            :mod (s / small~e.67))
+   :mode imperative~e.69)
+
+# ::id blueberry_banana_bread_1_instr7
+# ::name blueberry_banana_bread_1_instr7
+# ::snt Toss with a handful of flour until fully coated .
+(t / toss-01~e.70
+   :ARG0 (y / you~e.70)
+   :ARG2 (f / flour~e.75
+            :quant (h / handful~e.73))
+   :time (u / until~e.76
+            :op1 (c / coat-01~e.78
+                    :ARG1 f
+                    :ARG2-of (f2 / full-09~e.77)))
+   :mode imperative~e.70)
+
+# ::id blueberry_banana_bread_1_instr8
+# ::name blueberry_banana_bread_1_instr8
+# ::snt Carefully fold in the blueberries .
+(f / fold-03~e.81
+   :ARG0 (y / you~e.81)
+   :ARG1 (l / Blue~e.84)
+   :mode imperative~e.85
+   :ARG1-of (c / care-04~e.80
+               :ARG0 y))
+
+# ::id blueberry_banana_bread_1_instr9
+# ::name blueberry_banana_bread_1_instr9
+# ::snt Portion batter among four greased mini loaves and bake for 35 - 40 minutes or until a toothpick inserted in the center comes out clean .
+(a3 / and~e.93
+    :op1 (b3 / batter-01~e.87
+             :ARG0 (y / you~e.87)
+             :ARG2 (a2 / among~e.88
+                       :op1 (b / bake-01~e.90
+                               :ARG0 y)
+                       :op1 (a / Pan~e.92
+                               :mod (m / mini~e.91)
+                               :quant 4~e.89))
+             :mod (o / Portion~e.86)
+             :mode imperative~e.86)
+    :op2 (b2 / bake-01~e.94
+             :ARG0 y
+             :duration (o2 / or~e.100
+                           :op1 (b4 / between~e.96
+                                    :op1 (t2 / temporal-quantity~e.99
+                                             :unit (m2 / minute~e.99)
+                                             :quant 35~e.96)
+                                    :op2 (t / temporal-quantity~e.98
+                                            :unit (m3 / minute~e.99)
+                                            :quant 40~e.98))
+                           :op2 (u / until~e.101
+                                   :op1 (c3 / come-out-09~e.108
+                                            :ARG1 (t3 / toothpick~e.103
+                                                      :ARG1-of (i / insert-01~e.104
+                                                                  :ARG2 (c / center~e.107)))
+                                            :ARG1-of (c2 / clean-04~e.110))))
+             :mode imperative~e.86))
+

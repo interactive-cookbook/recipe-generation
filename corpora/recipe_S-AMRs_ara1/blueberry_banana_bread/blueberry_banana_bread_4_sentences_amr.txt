@@ -1,0 +1,184 @@
+# ::id blueberry_banana_bread_4_instr0
+# ::name blueberry_banana_bread_4_instr0
+# ::snt Toss Blueberries with 2 Tbsp .
+(t / toss-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (l / Blue~e.2)
+   :accompanier (v / volume-quantity~e.5
+                   :unit (g / gallon~e.5)
+                   :quant 2~e.4)
+   :rel (n / name~e.5)
+   :mode imperative~e.1)
+
+# ::id blueberry_banana_bread_4_instr1
+# ::name blueberry_banana_bread_4_instr1
+# ::snt flour and set aside .
+(a / and~e.8
+   :op1 (f / flour~e.7)
+   :op2 (s / set-01~e.9
+           :ARG2 (a2 / aside~e.10)))
+
+# ::id blueberry_banana_bread_4_instr2
+# ::name blueberry_banana_bread_4_instr2
+# ::snt Combine remaining flour , baking powder , soda , salt and nutmeg in a small bowl .
+(c / combine-01~e.12
+   :ARG0 (y / you~e.12)
+   :ARG1 (a / and~e.22
+            :op1 (f / flour~e.14
+                    :ARG1-of (r / remain-01~e.13))
+            :op2 (p / powder~e.17
+                    :instrument-of (b / bake-01~e.16))
+            :op3 (s3 / soda~e.19)
+            :op4 (s / salt~e.21)
+            :op5 (n / nutmeg~e.23))
+   :ARG2 (b2 / bowl~e.27
+             :mod (s2 / small~e.26))
+   :mode imperative~e.28)
+
+# ::id blueberry_banana_bread_4_instr3
+# ::name blueberry_banana_bread_4_instr3
+# ::snt Cream butter and sugar in a large bowl at medium speed .
+(b / bake-01~e.29
+   :ARG0 (y / you~e.29)
+   :ARG1 (a / and~e.31
+            :op1 (b3 / butter~e.30)
+            :op2 (s2 / sugar~e.32))
+   :location (b2 / bowl~e.36
+                 :mod (l / large~e.35))
+   :manner (s / speed-01~e.39
+              :degree (m / medium~e.38)))
+
+# ::id blueberry_banana_bread_4_instr4
+# ::name blueberry_banana_bread_4_instr4
+# ::snt Add eggs , one at a time , beating well after each egg .
+(a / add-02~e.41
+   :ARG0 (y / you~e.41)
+   :ARG1 (e2 / egg~e.42)
+   :manner (a3 / at-a-time~e.45
+               :op1 1~e.44)
+   :manner (b / beat-01~e.49
+              :ARG0 y
+              :time (a2 / after~e.51
+                        :degree (w / well~e.50)
+                        :op1 (e3 / egg~e.53
+                                 :mod (e / each~e.52))))
+   :mode imperative~e.41)
+
+# ::id blueberry_banana_bread_4_instr5
+# ::name blueberry_banana_bread_4_instr5
+# ::snt Stir in buttermilk .
+(s / stir-01~e.55
+   :ARG0 (y / you~e.55)
+   :ARG1 (b / buttermilk~e.57)
+   :mode imperative~e.55)
+
+# ::id blueberry_banana_bread_4_instr6
+# ::name blueberry_banana_bread_4_instr6
+# ::snt Add flour mixture alternately with mashed banana , beginning and ending with flour mixture .
+(a / add-02~e.59
+   :ARG0 (y / you~e.59)
+   :ARG1 (m / mix-01~e.61
+            :ARG1 (f / flour~e.60))
+   :ARG2 (b / banana~e.65
+            :ARG1-of (c / can-01~e.64))
+   :manner (a3 / and~e.68
+               :op1 (b2 / begin-01~e.67
+                        :ARG0 y
+                        :ARG2 m)
+               :op2 (e / end-01~e.69
+                       :ARG0 y
+                       :ARG1 m))
+   :mode imperative~e.59
+   :ARG1-of (a2 / alternate-01~e.62))
+
+# ::id blueberry_banana_bread_4_instr7
+# ::name blueberry_banana_bread_4_instr7
+# ::snt Mix just until dry ingredients are moistened .
+(m / mix-01~e.74
+   :ARG0 (y / you~e.74)
+   :time (u / until~e.76
+            :mod (j / just~e.75)
+            :op1 (m2 / moist-02~e.80
+                     :ARG1 (i / ingredient~e.78
+                              :ARG1-of (d / dry-08~e.77))))
+   :mode imperative~e.81)
+
+# ::id blueberry_banana_bread_4_instr8
+# ::name blueberry_banana_bread_4_instr8
+# ::snt Fold in reserved blueberries .
+(t / thing~e.86
+   :location (l / Blue~e.85
+                :ARG1-of (r / reserve-01~e.84))
+   :mod (h / White~e.82))
+
+# ::id blueberry_banana_bread_4_instr9
+# ::name blueberry_banana_bread_4_instr9
+# ::snt Spoon batter into a 9x5 loafpan coated with cooking spray or butter .
+(b / batter-01~e.88
+   :ARG0 (y / you~e.88)
+   :ARG2 (l / loafpan~e.92
+            :mod (d2 / distance-quantity~e.91
+                     :unit (f / foot~e.91)
+                     :unit (i / inch~e.91)
+                     :quant 9~e.91)
+            :ARG1-of (c / coat-01~e.93
+                        :ARG2 (o / or~e.97
+                                 :op1 (s2 / spray~e.96
+                                          :instrument-of (c2 / cook-01~e.95))
+                                 :op2 (b2 / butter~e.98))))
+   :instrument (s / spoon~e.87)
+   :rel (d / distance-quantity~e.91
+           :quant 9~e.91)
+   :mode imperative~e.87
+   :rel 5~e.91)
+
+# ::id blueberry_banana_bread_4_instr10
+# ::name blueberry_banana_bread_4_instr10
+# ::snt Bake at 350 degrees for 45 minutes or until a wooden pick inserted in center comes out clean .
+(b / bake-01~e.100
+   :ARG0 (y / you~e.100)
+   :ARG3 (t / temperature-quantity~e.118
+            :quant 350~e.102)
+   :duration (o / or~e.107
+                :op1 (t2 / temporal-quantity~e.105
+                         :unit (m / minute~e.106)
+                         :quant 45~e.105)
+                :op2 (u / until~e.108
+                        :op1 (c3 / come-out-09~e.115
+                                 :ARG1 (p / pick~e.111
+                                          :mod (w / wood~e.110)
+                                          :ARG1-of (i / insert-01~e.112
+                                                      :ARG2 (c / center~e.114)))
+                                 :ARG1-of (c2 / clean-04~e.117))))
+   :mode imperative~e.118)
+
+# ::id blueberry_banana_bread_4_instr11
+# ::name blueberry_banana_bread_4_instr11
+# ::snt Let cool in pan 10 minutes ; remove to wire rack and cool completely .
+(a / and~e.125
+   :op1 (l / let-01~e.119
+           :ARG0 (y / you~e.119)
+           :ARG1 (c2 / cool-01~e.120
+                     :prep-in (p / pan~e.122))
+           :duration (t / temporal-quantity~e.124
+                        :unit (m / minute~e.124)
+                        :quant 10~e.123)
+           :mode imperative~e.119)
+   :op2 (a2 / and~e.130
+            :op1 (r2 / remove-01~e.126
+                     :ARG0 y
+                     :destination (r / rack~e.129
+                                     :mod (w / wire~e.128))
+                     :mode imperative~e.133)
+            :op2 (c3 / cool-01~e.131
+                     :ARG1 y
+                     :mode imperative~e.133
+                     :ARG1-of (c / complete-02~e.132))))
+
+# ::id blueberry_banana_bread_4_instr12
+# ::name blueberry_banana_bread_4_instr12
+# ::snt Enjoy !
+(e / enjoy-01~e.134
+   :ARG0 (y / you~e.134)
+   :mode expressive~e.135)
+

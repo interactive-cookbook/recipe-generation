@@ -1,0 +1,81 @@
+# ::id pumpkin_chocolate_chip_bread_8_instr0
+# ::name pumpkin_chocolate_chip_bread_8_instr0
+# ::snt Preheat oven to
+(h / heat-01~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :mode imperative~e.1)
+
+# ::id pumpkin_chocolate_chip_bread_8_instr1
+# ::name pumpkin_chocolate_chip_bread_8_instr1
+# ::snt Grease loaf pan(s ) .
+(e / enzyme~e.4
+   :mod (l / loaf~e.5)
+   :ARG2-of (b / bake-01~e.4))
+
+# ::id pumpkin_chocolate_chip_bread_8_instr2
+# ::name pumpkin_chocolate_chip_bread_8_instr2
+# ::snt Mix sugar , pumpkin , milk , egg , butter and vanilla in medium mixing bowl .
+(m3 / mix-01~e.9
+    :ARG1 (a / and~e.19
+             :op1 (s / sugar~e.10)
+             :op2 (p / pumpkin~e.12)
+             :op3 (m2 / milk~e.14)
+             :op4 (e / egg~e.16)
+             :op5 (b2 / butter~e.18)
+             :op6 (v / vanilla~e.20))
+    :location (b / bowl~e.24
+                 :mod (m / medium~e.22)
+                 :instrument-of (m4 / mix-01~e.23)))
+
+# ::id pumpkin_chocolate_chip_bread_8_instr3
+# ::name pumpkin_chocolate_chip_bread_8_instr3
+# ::snt Add flour , baking soda and cinnamon .
+(a / add-02~e.26
+   :ARG0 (y / you~e.26)
+   :ARG1 (a2 / and~e.31
+             :op1 (f / flour~e.27)
+             :op2 (s / soda~e.30
+                     :ARG2-of (b / bake-01~e.29))
+             :op3 (c / cinnamon~e.32))
+   :mode imperative~e.26)
+
+# ::id pumpkin_chocolate_chip_bread_8_instr4
+# ::name pumpkin_chocolate_chip_bread_8_instr4
+# ::snt Mix until just combined .
+(m / mix-01~e.34
+   :ARG0 (y / you~e.34)
+   :manner (c / combine-01~e.37
+              :mod (j / just~e.36))
+   :mode imperative~e.38)
+
+# ::id pumpkin_chocolate_chip_bread_8_instr5
+# ::name pumpkin_chocolate_chip_bread_8_instr5
+# ::snt Fold in chocolate chips .
+(f / fat-03~e.39
+   :ARG2 (c / chip~e.42
+            :consist-of (c2 / chocolate~e.41)))
+
+# ::id pumpkin_chocolate_chip_bread_8_instr6
+# ::name pumpkin_chocolate_chip_bread_8_instr6
+# ::snt Pour batter into loaf pan(s ) and bake 30 minutes or until knife inserted in middle comes out clean .
+(a2 / and~e.50
+    :op1 (p / pour-01~e.44
+            :ARG0 (y / you~e.44)
+            :ARG1 (b2 / batter-01~e.45)
+            :ARG2 (a / Pan~e.48
+                     :mod (l / loaf~e.47))
+            :mode imperative~e.44)
+    :op2 (b / bake-01~e.51
+            :ARG0 y
+            :duration (o / or~e.54
+                         :op1 (t / temporal-quantity~e.53
+                                 :unit (m2 / minute~e.53)
+                                 :quant 30~e.52)
+                         :op2 (u / until~e.55
+                                 :op1 (c2 / come-out-09~e.60
+                                          :ARG1 (k / knife~e.56
+                                                   :ARG1-of (i / insert-01~e.57
+                                                               :ARG2 (m / middle~e.59)))
+                                          :ARG1-of (c / clean-04~e.62))))))
+

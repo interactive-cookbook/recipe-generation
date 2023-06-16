@@ -1,0 +1,98 @@
+# ::id cauliflower_mash_8_instr0
+# ::name cauliflower_mash_8_instr0
+# ::snt Steam cauliflower until super tender .
+(s / steam-02~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (c / cauliflower~e.2)
+   :time (u / until~e.3
+            :op1 (t / tender-02~e.5
+                    :ARG2 c
+                    :degree (s2 / super~e.4)))
+   :mode imperative~e.1)
+
+# ::id cauliflower_mash_8_instr1
+# ::name cauliflower_mash_8_instr1
+# ::snt Remove from stove and place in medium bowl .
+(a / and~e.10
+   :op1 (r / remove-01~e.7
+           :ARG0 (y / you~e.7)
+           :ARG2 (s / stove~e.9)
+           :mode imperative~e.8)
+   :op2 (p / place-01~e.11
+           :ARG0 y
+           :ARG2 (b / bowl~e.14
+                    :mod (m / medium~e.13))
+           :mode imperative~e.12))
+
+# ::id cauliflower_mash_8_instr2
+# ::name cauliflower_mash_8_instr2
+# ::snt Add 1 tbsp butter , garlic , salt , pepper .
+(a / add-02~e.16
+   :ARG0 (y / you~e.16)
+   :ARG1 (a2 / and~e.20
+             :op1 (b / butter~e.19)
+             :op2 (g2 / garlic~e.21)
+             :op3 (s / salt~e.23)
+             :op4 (p / pepper~e.25))
+   :mode imperative~e.16
+   :ARG1-of (g3 / govern-01~e.18
+                :ARG0 (m / mass-quantity~e.18
+                         :unit (g / gallon~e.18)
+                         :quant 1~e.17)))
+
+# ::id cauliflower_mash_8_instr3
+# ::name cauliflower_mash_8_instr3
+# ::snt Mash or use hand blender until it reaches desired consistency .
+(o / or~e.28
+   :op1 (m / mix-01~e.27
+           :ARG0 (y / you~e.27)
+           :mode imperative~e.27)
+   :op2 (u2 / use-01~e.29
+            :ARG0 y
+            :ARG1 (t / thing~e.31
+                     :mod (h / hand~e.30)
+                     :ARG0-of (b / blend-01~e.31))
+            :time (u / until~e.32
+                     :op1 (r / reach-01~e.34
+                             :ARG0 t
+                             :ARG1 (c / consistent-02~e.36
+                                      :ARG1-of (d / desire-01~e.35))))
+            :mode imperative~e.37))
+
+# ::id cauliflower_mash_8_instr4
+# ::name cauliflower_mash_8_instr4
+# ::snt Taste and add more butter or salt if needed .
+(a2 / and~e.39
+    :condition (n / need-01~e.46
+                  :ARG1 (o / or~e.43
+                           :mod (m / more~e.41)
+                           :op1 (b / butter~e.42)
+                           :op2 (s / salt~e.44)))
+    :op1 (t / taste-01~e.38
+            :ARG0 (y / you~e.38)
+            :mode imperative~e.38)
+    :op2 (a / add-02~e.40
+            :ARG0 y
+            :ARG1 o
+            :mode imperative~e.38))
+
+# ::id cauliflower_mash_8_instr5
+# ::name cauliflower_mash_8_instr5
+# ::snt Stir in chives .
+(s / stir-01~e.48
+   :ARG0 (y / you~e.48)
+   :ARG1 (h / Chile~e.50)
+   :mode imperative~e.48)
+
+# ::id cauliflower_mash_8_instr6
+# ::name cauliflower_mash_8_instr6
+# ::snt Sever with a sprinkle of nutritional yeast - optional
+(s / save-01~e.52
+   :ARG0 (y2 / you~e.52)
+   :ARG1 (t / taste-01~e.55
+            :ARG0 y2
+            :ARG1 (y / yeast~e.58
+                     :mod (n / nutrition~e.57)
+                     :mod (o / optional~e.60)))
+   :mode imperative~e.52)
+

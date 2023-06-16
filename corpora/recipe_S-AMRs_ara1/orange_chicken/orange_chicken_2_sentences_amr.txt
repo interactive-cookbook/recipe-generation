@@ -1,0 +1,141 @@
+# ::id orange_chicken_2_instr0
+# ::name orange_chicken_2_instr0
+# ::snt aimRenderAd(300 , 250 , ' RECTANGLE','ContentRect','/SR=0 / POS=2 ' ) ;
+(a2 / and~e.11
+    :op1 (r / render-02~e.1
+            :ARG0 (a3 / angle-quantity~e.10
+                      :quant 2~e.8))
+    :op3 a3
+    :rel (d / distance-quantity~e.10
+            :quant 250~e.3)
+    :rel (a / POS=2~e.8)
+    :op2 250~e.3)
+
+# ::id orange_chicken_2_instr1
+# ::name orange_chicken_2_instr1
+# ::snt Heat a little oil in a deep - sided frying pan or heatproof casserole dish and brown chicken pieces all over .
+(a2 / and~e.27
+    :op1 (h / heat-01~e.12
+            :ARG1 (o / oil~e.15
+                     :quant (l / little~e.14))
+            :location (o2 / or~e.23
+                          :op1 (p / pan~e.22
+                                  :part (s / sided~e.20
+                                           :ARG1-of (d / deep-02~e.18))
+                                  :instrument-of (f / fry-01~e.21))
+                          :op2 (d2 / dish~e.26
+                                   :mod (c / casserole~e.25)
+                                   :ARG2-of (h2 / heat-01~e.24))))
+    :op2 (h3 / heat-01~e.33
+             :ARG1 (p2 / piece~e.30
+                       :ARG1-of (f2 / fry-01~e.28)
+                       :part-of (c2 / chicken~e.29))
+             :location (a / all-over~e.32)))
+
+# ::id orange_chicken_2_instr2
+# ::name orange_chicken_2_instr2
+# ::snt Remove to one side .
+(r / remove-01~e.34
+   :ARG0 (y / you~e.34)
+   :direction (s / side~e.37
+                 :quant 1~e.36)
+   :mode imperative~e.34)
+
+# ::id orange_chicken_2_instr3
+# ::name orange_chicken_2_instr3
+# ::snt Add onion and celery to pan and cook over a medium heat for 10 minutes to soften but not brown .
+(a3 / and~e.45
+    :op1 (a / add-02~e.39
+            :ARG1 (a2 / and~e.41
+                      :op1 (o / onion~e.40)
+                      :op2 (c / celery~e.42))
+            :ARG2 (p / pan~e.44))
+    :op2 (c3 / cook-01~e.46
+             :purpose (c2 / contrast-01~e.56
+                          :ARG1 (s / soft-02~e.55
+                                   :ARG1 a2)
+                          :ARG2 (r / Brown~e.58
+                                   :polarity -~e.57))
+             :duration (t / temporal-quantity~e.52
+                          :unit (m2 / minute~e.53)
+                          :quant 10~e.52)
+             :manner (h / heat-01~e.50
+                        :mod (m / medium~e.49))))
+
+# ::id orange_chicken_2_instr4
+# ::name orange_chicken_2_instr4
+# ::snt Return chicken to the pan .
+(r / return-02~e.60
+   :ARG0 (y / you~e.60)
+   :ARG1 (c / chicken~e.61)
+   :ARG2 (p / pan~e.64)
+   :mode imperative~e.60)
+
+# ::id orange_chicken_2_instr5
+# ::name orange_chicken_2_instr5
+# ::snt Combine chicken soup , soy sauce , the zest of one orange , and the juice of two oranges , and pour this liquid over the browned chicken pieces .
+(a2 / and~e.86
+    :op1 (c3 / combine-01~e.66
+             :ARG1 (a / and~e.69
+                      :op1 (s2 / soup~e.68
+                               :mod (c / chicken~e.67))
+                      :op2 (s / sauce~e.71
+                              :mod (s3 / soy~e.70))
+                      :op3 (z / zest~e.74
+                              :poss (o / orange~e.77
+                                       :quant 1~e.76))
+                      :op4 (j / juice~e.81
+                              :poss (o2 / orange~e.84
+                                        :quant 2~e.83))))
+    :op2 (p2 / pour-01~e.87
+             :ARG1 (l / liquid~e.89
+                      :mod (t / this~e.88))
+             :ARG2 (p / piece~e.94
+                      :ARG1-of (b / brown-01~e.92)
+                      :part-of (c2 / chicken~e.93))))
+
+# ::id orange_chicken_2_instr6
+# ::name orange_chicken_2_instr6
+# ::snt Cover pan or casserole dish and simmer very gently for 45 to 50 minutes or until the chicken is cooked when tested .
+(a / and~e.101
+   :op1 (c4 / cover-01~e.96
+            :ARG0 (y / you~e.96)
+            :ARG1 (o / or~e.98
+                     :op1 (p / pan~e.97)
+                     :op2 (d / dish~e.100
+                             :mod (c / casserole~e.99)))
+            :mode imperative~e.96)
+   :op2 (s / simmer-01~e.102
+           :ARG0 y
+           :duration (o2 / or~e.110
+                         :op1 (b / between~e.106
+                                 :op1 (t / temporal-quantity~e.109
+                                         :unit (m / minute~e.109)
+                                         :quant 45~e.106)
+                                 :op2 (t2 / temporal-quantity~e.109
+                                          :unit (m2 / minute~e.109)
+                                          :quant 50~e.108))
+                         :op2 (u / until~e.111
+                                 :op1 (c3 / cook-01~e.115
+                                          :ARG1 (c2 / chicken~e.113)
+                                          :time (t3 / test-01~e.117
+                                                    :ARG1 c2))))
+           :manner (g / gentle~e.104
+                      :degree (v / very~e.103))))
+
+# ::id orange_chicken_2_instr7
+# ::name orange_chicken_2_instr7
+# ::snt Adjust seasoning with salt and pepper and garnish finished dish with remaining orange zest .
+(a3 / and~e.125
+    :op1 (a / adjust-01~e.119
+            :ARG1 (s2 / season-01~e.120)
+            :manner (a2 / and~e.123
+                        :op1 (s / salt~e.122)
+                        :op2 (p / pepper~e.124)))
+    :op2 (s3 / stir-01~e.126
+             :ARG1 (d / dish~e.128
+                      :ARG1-of (f / finish-01~e.127))
+             :accompanier (z / zest~e.132
+                             :ARG1-of (r / remain-01~e.130)
+                             :consist-of (o / orange~e.131))))
+

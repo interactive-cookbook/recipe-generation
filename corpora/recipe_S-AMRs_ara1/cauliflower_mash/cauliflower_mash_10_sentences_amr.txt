@@ -1,0 +1,195 @@
+# ::id cauliflower_mash_10_instr0
+# ::name cauliflower_mash_10_instr0
+# ::snt Microwave Mann ’s Cauliflower in the bag for 6 minutes .
+(h / have-03~e.8
+   :ARG0 (y / you~e.1)
+   :ARG1 (w / watermelon~e.4
+            :source (p / person~e.2
+                       :name (n / name~e.1
+                                :op1 "Mann"~e.2)))
+   :duration (t / temporal-quantity~e.10
+                :unit (m / minute~e.10)
+                :quant 6~e.9)
+   :location (i2 / in-the-bag~e.7)
+   :rel (i / imperative~e.1)
+   :mode microwave~e.1)
+
+# ::id cauliflower_mash_10_instr1
+# ::name cauliflower_mash_10_instr1
+# ::snt Remove from microwave and let it set for 1 minute .
+(a / and~e.15
+   :op1 (r / remove-01~e.12
+           :ARG0 (y / you~e.12)
+           :ARG2 (m / microwave~e.14)
+           :mode imperative~e.13)
+   :op2 (l / let-01~e.16
+           :ARG0 y
+           :ARG1 (s / set-01~e.18
+                    :ARG1 m
+                    :duration (t / temporal-quantity~e.21
+                                 :unit (m2 / minute~e.21)
+                                 :quant 1~e.20))
+           :mode imperative~e.16))
+
+# ::id cauliflower_mash_10_instr2
+# ::name cauliflower_mash_10_instr2
+# ::snt Carefully remove from the bag ( it will be hot ) and place in a mixing bowl .
+(a / and~e.34
+   :op1 (r / remove-01~e.24
+           :ARG0 (y / you~e.24)
+           :ARG2 (b / bag~e.27
+                    :ARG1-of (h / hot-05~e.32))
+           :mode imperative~e.40
+           :ARG1-of (c / care-04~e.23))
+   :op2 (p / place-01~e.35
+           :ARG1 y
+           :ARG2 (b2 / bowl~e.39
+                     :purpose (m / mix-01~e.38))
+           :mode imperative~e.40))
+
+# ::id cauliflower_mash_10_instr3
+# ::name cauliflower_mash_10_instr3
+# ::snt Add butter , milk , salt and pepper .
+(a / add-02~e.41
+   :ARG0 (y / you~e.41)
+   :ARG1 (a2 / and~e.43
+             :op1 (b / butter~e.42)
+             :op2 (m / milk~e.44)
+             :op3 (s / salt~e.46)
+             :op4 (p / pepper~e.48))
+   :mode imperative~e.41)
+
+# ::id cauliflower_mash_10_instr4
+# ::name cauliflower_mash_10_instr4
+# ::snt Mash all ingredients together .
+(m / mix-01~e.50
+   :ARG0 (y / you~e.50)
+   :ARG1 (i / ingredient~e.52
+            :mod (a / all~e.51))
+   :manner (t / together~e.53)
+   :mode imperative~e.50)
+
+# ::id cauliflower_mash_10_instr5
+# ::name cauliflower_mash_10_instr5
+# ::snt Fluff with a fork and place in your favorite serving dish .
+(a / and~e.59
+   :op1 (f2 / fluff-00~e.55
+            :ARG0 (y / you~e.55)
+            :instrument (f3 / fork~e.58))
+   :op2 (p / place-01~e.60
+           :ARG0 y
+           :ARG1 f2
+           :ARG2 (d / dish~e.65
+                    :mod (f / favorite~e.63)
+                    :ARG2-of (s / serve-02~e.64))))
+
+# ::id cauliflower_mash_10_instr6
+# ::name cauliflower_mash_10_instr6
+# ::snt Other options to add before mashing are garlic powder or green onions .
+(o2 / or~e.76
+    :domain (o / option~e.68
+               :mod (o3 / other~e.67)
+               :ARG1-of (a / add-02~e.70
+                           :time (b / before~e.71
+                                    :op1 (m / munch-01~e.72))))
+    :op1 (p2 / powder-01~e.75
+             :ARG1 (g / garlic~e.74))
+    :op2 (p / potato~e.78
+            :ARG1-of (g2 / green-02~e.77)))
+
+# ::id cauliflower_mash_10_instr7
+# ::name cauliflower_mash_10_instr7
+# ::snt Nutrition Facts
+(f / fact~e.81
+   :topic (n / nutrition~e.80))
+
+# ::id cauliflower_mash_10_instr8
+# ::name cauliflower_mash_10_instr8
+# ::snt Serving Size : 109 g | Servings : 5
+(m2 / multi-sentence~e.87
+    :snt1 (s3 / size~e.83
+              :quant (m / mass-quantity~e.86
+                        :unit (g / gram~e.86)
+                        :quant 109~e.85)
+              :mod (s / serve-02~e.82))
+    :snt2 (s2 / serve-02~e.88
+              :quant 5~e.90))
+
+# ::id cauliflower_mash_10_instr9
+# ::name cauliflower_mash_10_instr9
+# ::snt Amount Per Serving
+(r / rate-entity-91~e.92
+   :ARG1 (a / amount~e.91)
+   :ARG2 (s / serve-01~e.93))
+
+# ::id cauliflower_mash_10_instr10
+# ::name cauliflower_mash_10_instr10
+# ::snt Calories 70 | Calories from Fat 45 l Total Fat 5 g ( sat fat 5 g trans 0 g ) l Cholesterol 15 mg l
+(m7 / multi-sentence~e.96
+    :rel (n / name~e.94
+            :op1 "vitamin"~e.116)
+    :rel (t / total-01~e.102)
+    :rel (t2 / trans~e.111)
+    :snt1 (c / calorie~e.97
+             :li 70~e.95)
+    :snt1 (s2 / sum-of~e.119
+              :op1 (c2 / calorie~e.97
+                       :mod (m / mass-quantity~e.110
+                               :unit (m5 / milligram~e.118)
+                               :quant 45~e.100)
+                       :source (f2 / fat-03~e.99))
+              :op2 (f / fat~e.108
+                      :mod (s / sat~e.107))
+              :op3 (m4 / mass-quantity~e.118
+                       :mod (h / Cholesterol~e.116
+                               :mod (m3 / mass-quantity~e.118
+                                        :unit (m6 / milligram~e.118))
+                               :mod-of m2)))
+    :snt2 c2
+    :snt3 (m2 / mass-quantity~e.118)
+    :rel 5~e.109
+    :rel 0~e.112
+    :rel 15~e.117)
+
+# ::id cauliflower_mash_10_instr11
+# ::name cauliflower_mash_10_instr11
+# ::snt Sodium 270 mg l Total Carbohydrate 5 g l Dietary Fiber 2 g l Sugars 2 g l Protein 2 g l Vitamin A 4 % l
+(a / and~e.146
+   :op1 (m / mass-quantity~e.122
+           :unit (m4 / milligram~e.122)
+           :quant 270~e.121)
+   :op2 (c / carbohydrate~e.125
+           :quant (m2 / mass-quantity~e.146
+                      :unit (m5 / milligram~e.146)
+                      :quant 2~e.139)
+           :ARG2-of (t / total-01~e.124))
+   :op2 (m3 / mass-quantity~e.146
+            :unit (m6 / milligram~e.146)
+            :quant 2~e.139)
+   :op4 (s / small-molecule~e.143
+           :name (n / name~e.143
+                    :op1 "vitamin"~e.142
+                    :op2 "A"~e.143))
+   :rel (p / percentage-entity~e.145
+           :value 4~e.144)
+   :rel 5~e.126
+   :rel 2~e.135)
+
+# ::id cauliflower_mash_10_instr12
+# ::name cauliflower_mash_10_instr12
+# ::snt Vitamin C 70 % l Calcium 4 % l Iron 2 %
+(s / small-molecule~e.147
+   :name (n / name~e.147
+            :op1 "Vitamin"~e.147
+            :op2 "C"~e.148
+            :op4 "vitamin"~e.156)
+   :mod (p / percentage-entity~e.150
+           :value 70~e.149)
+   :rel (p4 / percentage-entity~e.158
+            :value 2~e.157)
+   :rel (p2 / percentage-entity~e.154
+            :value 4~e.153)
+   :rel (p3 / percentage-entity~e.158
+            :value 2~e.157)
+   :rel (a / Calcium~e.152))
+

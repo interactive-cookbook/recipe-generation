@@ -1,0 +1,115 @@
+# ::id cauliflower_mash_7_instr0
+# ::name cauliflower_mash_7_instr0
+# ::snt In a medium pot , bring 1 cup water to a simmer .
+(b / bring-01~e.6
+   :ARG0 (y / you~e.6)
+   :ARG1 (w / water~e.9
+            :quant (v / volume-quantity~e.8
+                      :unit (c / cup~e.8)
+                      :quant 1~e.7)
+            :ARG1-of s)
+   :ARG2 (s / simmer-01~e.12)
+   :location (p / pot~e.4
+                :mod (m / medium~e.3))
+   :mode imperative~e.13)
+
+# ::id cauliflower_mash_7_instr1
+# ::name cauliflower_mash_7_instr1
+# ::snt Add cauliflower , cover and cook over medium heat 10 - 15 minutes .
+(a2 / and~e.18
+    :op1 (a / add-02~e.14
+            :ARG0 (y / you~e.14)
+            :ARG1 (c / cauliflower~e.15)
+            :mode imperative~e.14)
+    :op2 (c3 / cover-01~e.17
+             :ARG0 y)
+    :op3 (c2 / cook-01~e.19
+             :ARG0 y
+             :duration (h / heat~e.22
+                          :mod (m / medium~e.21))
+             :duration (b / between~e.23
+                          :op1 (t / temporal-quantity~e.26
+                                  :unit (m2 / minute~e.26)
+                                  :quant 10~e.23)
+                          :op2 (t2 / temporal-quantity~e.26
+                                   :unit (m3 / minute~e.26)
+                                   :quant 15~e.25))
+             :mode imperative~e.27))
+
+# ::id cauliflower_mash_7_instr2
+# ::name cauliflower_mash_7_instr2
+# ::snt Drain cauliflower and place on a paper towel .
+(a / and~e.30
+   :op1 (p3 / pour-01~e.28
+            :ARG0 (y / you~e.28)
+            :ARG1 (c / cauliflower~e.29)
+            :mode imperative~e.28)
+   :op2 (p2 / place-01~e.31
+            :ARG0 y
+            :ARG2 (t / towel~e.35
+                     :consist-of (p / paper~e.34))
+            :mode imperative~e.28))
+
+# ::id cauliflower_mash_7_instr3
+# ::name cauliflower_mash_7_instr3
+# ::snt Pat dry to remove excess water .
+(d / dry-02~e.38
+   :purpose (r / remove-01~e.40
+               :ARG0 (y / you~e.38)
+               :ARG1 (w / water~e.42
+                        :ARG0-of (e / exceed-01~e.41)))
+   :ARG0 y
+   :ARG1 (a / Pat~e.37)
+   :mode imperative~e.37)
+
+# ::id cauliflower_mash_7_instr4
+# ::name cauliflower_mash_7_instr4
+# ::snt Transfer to a bowl and add cream cheese , milk , butter , garlic powder , salt and cheese .
+(a2 / and~e.48
+    :op1 (t / transfer-01~e.44
+            :ARG1 (y / you~e.44)
+            :ARG2 (b / bowl~e.47)
+            :mode imperative~e.63)
+    :op2 (a / add-02~e.49
+            :ARG0 y
+            :ARG1 (a3 / and~e.52
+                      :op1 (c / cheese~e.51
+                              :mod (c3 / cream~e.50))
+                      :op2 (m / milk~e.53)
+                      :op3 (b2 / butter~e.55)
+                      :op4 (p / powder-01~e.58
+                              :ARG1 (g / garlic~e.57))
+                      :op5 (s / salt~e.60)
+                      :op6 (c2 / cheese~e.62))
+            :mode imperative~e.63))
+
+# ::id cauliflower_mash_7_instr5
+# ::name cauliflower_mash_7_instr5
+# ::snt Use a potato masher to combine well .
+(u / use-01~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (n / newspaper~e.67
+            :instrument-of (u2 / use-01~e.67
+                               :ARG1 (p / potato~e.66)))
+   :ARG2 (c / combine-01~e.69
+            :ARG0 y
+            :ARG1-of (w / well-09~e.70))
+   :mode imperative~e.64)
+
+# ::id cauliflower_mash_7_instr6
+# ::name cauliflower_mash_7_instr6
+# ::snt Add additional ingredients to taste and depending on desired consistency .
+(a3 / and~e.77
+    :op1 (a / add-02~e.72
+            :purpose (t / taste-01~e.76)
+            :ARG0 (y / you~e.72)
+            :ARG1 (i / ingredient~e.74
+                     :mod (a2 / additional~e.73))
+            :mode imperative~e.72)
+    :op2 (d / depend-01~e.78
+            :ARG0 y
+            :ARG1 (c / consistent-02~e.81
+                     :ARG1-of (d2 / desire-01~e.80
+                                  :ARG0 y))
+            :mode imperative~e.82))
+
