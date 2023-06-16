@@ -1,6 +1,6 @@
 import json
 import os.path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 
 def read_coref_file(coref_file: str) -> Dict[str, Dict]:
@@ -18,7 +18,7 @@ def read_coref_file(coref_file: str) -> Dict[str, Dict]:
     return coref_dicts
 
 
-def read_joined_coref(recipe_coref_path):
+def read_joined_coref(recipe_coref_path) -> Tuple[List, List]:
     """
     Reads the split-rel clusters from the coref file
     :return: a list of the split-rel cluster dicts
@@ -240,7 +240,7 @@ def get_new_orig_id_mappings(original_ids, new_ids):
 # TODO: enable to use the ara2 corpus as well
 def fix_sentence_segmentation(recipe_id: str, coref_tokens: List[str], orig_token_ids: List[int]):
     """
-    Adjust the sentence segmentation from the coreference data files such that is matches with the
+    Adjust the sentence segmentation from the coreference data files such that it matches with the
     segmentation from the microsoft corpus
     :param recipe_id:
     :param coref_tokens:

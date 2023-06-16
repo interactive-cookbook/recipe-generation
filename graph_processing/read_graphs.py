@@ -1,5 +1,6 @@
 import penman
-from typing import List
+from typing import List, Union
+from pathlib import Path
 
 """
 Function to read the AMRs produced by the Struct-BART parser, i.e. including node-token alignments
@@ -7,7 +8,7 @@ Creates a list of penman graph objects
 """
 
 
-def read_aligned_amr_file(recipe_amr_file: str) -> List[penman.Graph]:
+def read_aligned_amr_file(recipe_amr_file: Union[str, Path]) -> List[penman.Graph]:
     """
     Reads a file with the sentence or action level AMRs for one recipe
     Node to token alignments included

@@ -19,7 +19,7 @@ from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR, JOINED_COREF_DIR
 from generate_gold_action_instruction import InstructionExtractor
 
 """
-Functions to create gold instructions for the split AMRs using a simple string-match and rule-based approach
+Experimenting with the creation of an additional corpus 
 """
 
 

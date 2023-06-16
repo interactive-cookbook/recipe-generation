@@ -8,6 +8,7 @@ from graph_processing.read_graphs import read_aligned_amr_file
 from amr_processing.penman_networkx_conversions import penman2networkx
 from coref_utils import get_coref_clusters_original, get_coref_clusters_extended
 
+
 """
 Functions to create .jsonlines files with the combined information from the coreference files, the coreference 
 information about previously shared amr nodes and then node variables of the amr nodes aligned to tokens from 

@@ -1,5 +1,5 @@
 import os
-from typing import List, Dict
+from typing import List, Dict, Union
 import networkx as nx
 import penman
 from collections import defaultdict
@@ -13,11 +13,12 @@ from graph_processing.read_graphs import read_aligned_amr_file
 from graph_processing.graph_traversal import order_actions_pf_lf_id
 from amr_processing.penman_networkx_conversions import penman2networkx, networkx2penman
 from coref_processing.coref_utils import read_joined_coref
+from coref_processing.create_ident_clusters import create_ident_clusters
 from utils.paths import ACTION_AMR_DIR, ARA_DIR, SENT_AMR_DIR, JOINED_COREF_DIR
 from generate_gold_action_instruction import InstructionExtractor
 
 """
-Functions to create gold instructions for the split AMRs using a simple string-match and rule-based approach
+Functions to create a corpus of gold instructions for the split AMRs using a simple string-match and rule-based approach
 """
 
 
@@ -28,8 +29,8 @@ class RecipeExtractor:
                  orig_amrs: Dict,
                  action_graph: nx.DiGraph,
                  nlp_model,
-                 ident_clusters,
-                 coref_clusters,
+                 ident_clusters: Union[None, List],
+                 coref_clusters: Union[None, List],
                  version: int = 3,
                  text_only: bool = False,
                  order_ac_graph: bool = False):
@@ -39,9 +40,10 @@ class RecipeExtractor:
         :param orig_amrs: dict with the corresponding sentence-level AMRs
                           keys: the original amr/instruction ID; values: the corresponding graph (networkX Graph)
         :param action_graph: the action graph for the recipe
-        :param nlp_model:
-        :param ident_clusters:
-        :param coref_clusters:
+        :param nlp_model: already loaded stanza model for English to use for POS tagging
+        :param ident_clusters: None or the information about which nodes in the different A-AMRs were a single node in the
+                                original S-AMR
+        :param coref_clusters: None or the coreference information
         :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
         :param text_only: if only text is relevant then set to true and '\t was changed' gets appended to each extracted
                           sentence
@@ -128,7 +130,7 @@ class RecipeExtractor:
     def create_instruction_order(self):
         """
         Re-orders the self.recipe_amrs
-        either according to the action graph or re-orders only the instructiosn that were split
+        either according to the action graph or re-orders only the instructions that were split
         :return:
         """
         ordered_amrs = []
@@ -199,7 +201,11 @@ class RecipeExtractor:
 
     def create_coherent_dets(self):
         """
-
+        If self.ident_clusters is None, this functions has no effect
+        Otherwise, it checks whether in two action-level sentences that stem from the same original sentence there are tokens
+        which are aligned to AMR nodes that were the same AMR node in the original S-AMR and that are preceded by an indefinite determiner
+        If this is the case, the indefinite determiner in the second sentence (according to the determined order of A-AMRs
+        is replaced with a definite determiner)
         :return:
         """
         ordered_amr_ids = [gr.graph['id'] for gr in self.recipe_amrs]
@@ -226,7 +232,7 @@ class RecipeExtractor:
                             found_indef = True
                         elif potential_determiner_token.lower() in ['a', 'an'] and found_indef:
                             # in this case there was already a mention of the same entity in a previous sentence
-                            # with and indefinite determiner and now the definite one needs to be used
+                            # with an indefinite determiner and now the definite one needs to be used
                             if potential_determiner_index == 0: # should probably never happen, but still check ...
                                 def_det = 'The'
                             else:
@@ -244,7 +250,10 @@ class RecipeExtractor:
 
     def remove_redundant_mentions(self):
         """
-
+        Makes use of the coreference clusters in order to remove duplicated entity mentions such as in
+        "Knead the dough it until smooth"
+        If two token spans of the same coreference cluster occur directly after each other, the second span gets removed
+        Directly changes the snt attribute of the graphs for which this is the case
         :return:
         """
         ordered_amr_ids = [gr.graph['id'] for gr in self.recipe_amrs]
@@ -269,8 +278,6 @@ class RecipeExtractor:
             # for each sentence which potentially includes redundant coreferences
             for extractor in relevant_extractors:
                 extracted_sent_ids = [sent_id + extractor.shift_value for sent_id in extractor.final_tokens_orig_inds]
-                #if extractor.split_amr.graph['id'] == 'cauliflower_mash_3_instr1_1':
-                    #print("h")
 
                 successive_coref_token_spans = []
                 prev_span = []
@@ -341,11 +348,12 @@ def create_gold_corpus(action_amr_corpus: str,
     :param sentence_amr_corpus: path to parent folder of the sentence-level AMR files
     :param action_graph_corpus: path to parent folder of the action-graph conllu files
     :param gold_corpus_dir: path to directory for the generated gold data set, gets created if not exists yet
-    :param use_coref:
+    :param use_coref: whether to use the coreference information to remove redundant mentions
     :param version: algorithm version to use for deciding about adding unaligned tokens; i.e. the "sliding window"
                     1: do not add any unaligned tokens
                     2: add unaligned token if directly adjacent to an aligned token
                     3: add contiguous spans of unaligned tokens if span boundary adjacent to an aligned token
+                    Version 3 works best
     :param text_only: if set to True then files only containing the generated sentences (but not the AMRs) are created
     :return:
     """
@@ -387,9 +395,11 @@ def create_gold_corpus(action_amr_corpus: str,
                 coref_file_path = os.path.join(JOINED_COREF_DIR, dish, coref_file)
                 identity_clusters, coref_clusters = read_joined_coref(coref_file_path)
             else:
-                identity_clusters, coref_clusters = None, None
-            if recipe_name == 'cauliflower_mash_3':
-                print("h")
+                # extract the information about previously identical nodes
+                identity_clusters = create_ident_clusters(recipe_path, action_graph_path)
+                # set coref to None
+                coref_clusters = None
+
             # create the gold instructions for the action-level AMRs of the current recipe
             gold_recipe_creator = RecipeExtractor(recipe_amrs=recipe_amrs, orig_amrs=orig_amrs,
                                                   action_graph=recipe_action_graph, nlp_model=nlp_model,
@@ -417,23 +427,25 @@ def create_gold_corpus(action_amr_corpus: str,
 
 if __name__=='__main__':
 
-    #arg_parser = argparse.ArgumentParser()
-    #arg_parser.add_argument('--sep_dir', required=False)
-    #arg_parser.add_argument('--orig_dir', required=False)
-    #arg_parser.add_argument('--ara_dir', required=False)
-    #arg_parser.add_argument('--out_dir', required=True)
-    #arg_parser.add_argument('--text', required=False, action='store_true')
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('--sep_dir', required=False)
+    arg_parser.add_argument('--orig_dir', required=False)
+    arg_parser.add_argument('--ara_dir', required=False)
+    arg_parser.add_argument('--out_dir', required=True)
+    arg_parser.add_argument('--coref', required=False)
+    arg_parser.add_argument('--text', required=False, action='store_true')
 
-    #args = arg_parser.parse_args()
+    args = arg_parser.parse_args()
 
-    #action_amr_dir = args.sep_dir if args.sep_dir else ACTION_AMR_DIR
-    #sent_amr_dir = args.orig_dir if args.orig_dir else SENT_AMR_DIR
-    #ara_dir = args.ara_dir if args.ara_dir else ARA_DIR
-    #out_dir = args.out_dir
-    #only_text = args.text
-    #create_gold_corpus(action_amr_dir, sent_amr_dir, ara_dir, out_dir, 3, only_text)
+    action_amr_dir = args.sep_dir if args.sep_dir else ACTION_AMR_DIR
+    sent_amr_dir = args.orig_dir if args.orig_dir else SENT_AMR_DIR
+    ara_dir = args.ara_dir if args.ara_dir else ARA_DIR
+    out_dir = args.out_dir
+    coref = args.coref if args.coref else False
+    only_text = args.text
+    create_gold_corpus(action_amr_dir, sent_amr_dir, ara_dir, out_dir, coref, 3, only_text)
 
     #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_amrs_ara1', True, 3, False)
-    create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_test', True, 3, True)
+    #create_gold_corpus(ACTION_AMR_DIR, SENT_AMR_DIR, ARA_DIR, '../tuning_data_sets/gold_sentences_test', True, 3, True)
 
 

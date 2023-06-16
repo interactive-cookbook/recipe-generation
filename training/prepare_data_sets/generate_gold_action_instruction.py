@@ -28,7 +28,7 @@ class InstructionExtractor:
                     1: do not add any unaligned tokens
                     2: add unaligned token if directly adjacent to an aligned token
                     3: add contiguous spans of unaligned tokens if span boundary adjacent to an aligned token
-        :param nlp_model: already loaded spacy model for English to use for POS tagging
+        :param nlp_model: already loaded stanza model for English to use for POS tagging
         """
         self.split_amr = split_amr                  # the action-level AMR
         self.sentence_amr = sentence_amr            # corresponding sentence-level AMR
@@ -63,7 +63,8 @@ class InstructionExtractor:
 
     def process_sentence(self, sentence:str):
         """
-
+        Runs POS tagging and stemming on the sentence and saves pos tags and lemmas for each token
+        in self.orig_snt_tagged and self.orig_snt_lemmas
         :param sentence:
         :return:
         """
@@ -143,7 +144,11 @@ class InstructionExtractor:
 
 
     def extract_final_tags_and_inds(self):
-
+        """
+        Determine the POS tags and original sentence-level token IDs of the tokens that were selected to
+        be added to the gold instruction
+        :return: None
+        """
         orig_token_ids = list(self.inds_to_add)         # the original indices of the tokens in self.final_tokens
         orig_token_ids.sort()                           # sort to get original token order
 
