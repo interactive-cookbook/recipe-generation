@@ -126,8 +126,11 @@ It is also possible to pass a file that was obtained by running `create_recipe2s
 **split_type** <br>
 Should be "train", "val" or "test" if the split file has the format shown above, but can be set to any value that occurs in the first column of the split file. Then all recipes where the value in the first column is equal to `split_type` are chosen for generation
 
+## Making use of Coreference Information
 
-## Creating Joined Coref Files
+The repository also contains scripts to use coreference information for making implicit arguments explicit, switching between explicit NP mentions and pronouns, creating a variation of the recipe corpus and optionally including the information for the syntactic-dependency based splitting. This code (located in the [coref_processing](coref_processing) folder) is at a preliminary state.
+
+### Creating Joined Coref Files
 
 Information about coreference clusters, the corresponding AMR nodes and coreferences arising from the AMR splitting can be obtained by running the [coref_processing/create_joined_coref.py](https://github.com/interactive-cookbook/recipe-generation/blob/main/coref_processing/create_joined_coref.py) script.
 
