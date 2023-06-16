@@ -28,12 +28,6 @@ The [pytorch library](https://pytorch.org/get-started/locally/) (e.g. 1.10.1)
 Note: Running the AMR parser requires further dependencies than the ones listed in the current section (see [amr_parsing Readme](https://github.com/interactive-cookbook/recipe-generation/tree/main/amr_parsing)). 
 
 
-Spacy is only needed if the spacy tagger and dependency parser should be used for the gold extracted instruction. Otherwise stanza is used as default. <br>
-[Spacy](https://spacy.io/usage/models) library and model for english:
-* `pip install spacy`
-* `python -m spacy download en_core_web_sm`
-
-
 
 ## AMR Parsing 
 
