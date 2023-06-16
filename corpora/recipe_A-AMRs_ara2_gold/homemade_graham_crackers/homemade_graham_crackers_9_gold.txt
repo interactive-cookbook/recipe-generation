@@ -1,0 +1,218 @@
+# ::id homemade_graham_crackers_9_instr0
+# ::name homemade_graham_crackers_9_instr0
+# ::snt Preheat an oven to 425 ° .
+# ::root h
+# ::alignments h, y
+# ::snt_id homemade_graham_crackers_9_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3)
+   :destination (t / temperature-quantity~e.6
+                   :scale (f / fahrenheit~e.6)
+                   :quant 425~e.5))
+
+# ::id homemade_graham_crackers_9_instr1_1
+# ::name homemade_graham_crackers_9_instr1_1
+# ::snt Combine all of the ingredients in a large bowl .
+# ::root c
+# ::alignments c
+# ::snt_id homemade_graham_crackers_9_instr1
+(c / combine-01~e.8
+   :mode imperative~e.8
+   :ARG0 (y / you~e.8)
+   :ARG1 (i / ingredient~e.12
+            :mod (a / all~e.9))
+   :ARG3 (b / bowl~e.16
+            :mod (l / large~e.15)))
+
+# ::id homemade_graham_crackers_9_instr1_0
+# ::name homemade_graham_crackers_9_instr1_0
+# ::snt Mix all of the ingredients well to combine .
+# ::root m
+# ::alignments m, c2
+# ::snt_id homemade_graham_crackers_9_instr1
+(m / mix-01~e.18
+   :mode imperative~e.22
+   :purpose (c2 / combine-01~e.21
+                :ARG1 (i / ingredient~e.12
+                         :mod (a / all~e.9)))
+   :ARG0 (y / you~e.18)
+   :ARG1-of (w / well-09~e.19))
+
+# ::id homemade_graham_crackers_9_instr2
+# ::name homemade_graham_crackers_9_instr2
+# ::snt Transfer the dough to an unsided cookie sheet or , alternately , the underside of a baking sheet .
+# ::root t
+# ::alignments t, y
+# ::snt_id homemade_graham_crackers_9_instr2
+(t / transfer-01~e.23
+   :mode imperative~e.41
+   :ARG0 (y / you~e.23)
+   :ARG1 (d / dough~e.25)
+   :ARG2 (o / or~e.31
+            :op1 (s / sheet~e.30
+                    :mod (c / cookie~e.29)
+                    :ARG1-of (s3 / side-01~e.28
+                                 :polarity -~e.27))
+            :op2 (u / underside~e.36
+                    :ARG1-of (a / alternate-01~e.33)
+                    :part-of (s2 / sheet~e.40
+                                 :instrument-of (b / bake-01~e.39)))))
+
+# ::id homemade_graham_crackers_9_instr3_0
+# ::name homemade_graham_crackers_9_instr3_0
+# ::snt A rolling pin and add a bit of flour to the dough , and out to desired .
+# ::root a3
+# ::alignments a2, y
+# ::snt_id homemade_graham_crackers_9_instr3
+(a3 / and~e.56
+    :op1 (p / pin~e.45
+            :instrument-of (r / roll-01~e.44
+                              :ARG1 (d3 / dough~e.54)))
+    :op2 (a2 / add-02~e.47
+             :ARG0 (y / you~e.60
+                      :ARG0-of (d / desire-01~e.60))
+             :ARG1 (f / flour~e.51
+                      :quant (b / bit~e.49))
+             :ARG2 p
+             :ARG2 d3
+             :mode imperative~e.42))
+
+# ::id homemade_graham_crackers_9_instr3_1
+# ::name homemade_graham_crackers_9_instr3_1
+# ::snt A rolling pin to the dough , and roll out to thickness — about 1/2-inch .
+# ::root a3
+# ::alignments r2
+# ::snt_id homemade_graham_crackers_9_instr3
+(a3 / and~e.56
+    :op1 (p / pin~e.45
+            :instrument-of (r / roll-01~e.44
+                              :ARG1 (d3 / dough~e.54)))
+    :op3 (r2 / roll-01~e.57
+             :ARG0 d3
+             :manner (t / thickness~e.61
+                        :quant (a / about~e.63
+                                  :op1 (d2 / distance-quantity~e.64
+                                           :quant "1/2-inch"~e.64)))
+             :mode imperative~e.42))
+
+# ::id homemade_graham_crackers_9_instr4
+# ::name homemade_graham_crackers_9_instr4
+# ::snt Add more flour as necessary to prevent sticking .
+# ::root a
+# ::alignments a, y
+# ::snt_id homemade_graham_crackers_9_instr4
+(a / add-02~e.66
+   :mode imperative~e.66
+   :purpose (p / prevent-01~e.72
+               :ARG0 y
+               :ARG1 (s / stick-01~e.73))
+   :ARG0 (y / you~e.66)
+   :ARG1 (f / flour~e.68
+            :quant (m / more~e.67)
+            :ARG1-of (n / need-01~e.70)))
+
+# ::id homemade_graham_crackers_9_instr5
+# ::name homemade_graham_crackers_9_instr5
+# ::snt Lightly score the crackers two inches apart with a paring knife .
+# ::root s
+# ::alignments s, y
+# ::snt_id homemade_graham_crackers_9_instr5
+(s / score-01~e.76
+   :ARG0 (y / you~e.76)
+   :ARG1 (c / crack-02~e.78)
+   :ARG2 (r / relative-position~e.80
+            :quant (d / distance-quantity~e.80
+                      :unit (i / inch~e.80)
+                      :quant 2~e.79)
+            :direction (a / apart~e.81)
+            :op1 c)
+   :instrument (k / knife~e.85
+                  :instrument-of (p / pare-01~e.84))
+   :ARG1-of (l / light-06~e.75))
+
+# ::id homemade_graham_crackers_9_instr6
+# ::name homemade_graham_crackers_9_instr6
+# ::snt Prick with a fork in even lines .
+# ::root p
+# ::alignments p
+# ::snt_id homemade_graham_crackers_9_instr6
+(p / prick~e.87
+   :mode imperative~e.87
+   :instrument (f / fork~e.90)
+   :manner (l / line~e.93
+              :ARG1-of (e / even-02~e.92)))
+
+# ::id homemade_graham_crackers_9_instr7
+# ::name homemade_graham_crackers_9_instr7
+# ::snt Bake for 8 to 10 minutes or until golden brown .
+# ::root b
+# ::alignments b, y
+# ::snt_id homemade_graham_crackers_9_instr7
+(b / bake-01~e.95
+   :mode imperative~e.105
+   :ARG0 (y / you~e.95)
+   :duration (o / or~e.101
+                :op1 (b2 / between~e.97
+                         :op1 (t / temporal-quantity~e.100
+                                 :unit (m / minute~e.100)
+                                 :quant 8~e.97)
+                         :op2 (t2 / temporal-quantity~e.100
+                                  :unit (m2 / minute~e.100)
+                                  :quant 10~e.99))
+                :op2 (u / until~e.102
+                        :op1 (b3 / brown~e.104
+                                 :consist-of (g / gold~e.103)))))
+
+# ::id homemade_graham_crackers_9_instr8_1
+# ::name homemade_graham_crackers_9_instr8_1
+# ::snt Then cut on the scored lines .
+# ::root c2
+# ::alignments c2
+# ::snt_id homemade_graham_crackers_9_instr8
+(c2 / cut-01~e.114
+    :mode imperative~e.114
+    :ARG1 (l / line~e.118
+             :ARG1-of (s / score-01~e.117))
+    :time (t2 / then~e.113)
+    :ARG0 (y / you~e.114))
+
+# ::id homemade_graham_crackers_9_instr8_0
+# ::name homemade_graham_crackers_9_instr8_0
+# ::snt Cool for a few minutes .
+# ::root c
+# ::alignments c
+# ::snt_id homemade_graham_crackers_9_instr8
+(c / cool-04~e.106
+   :mode imperative~e.106
+   :duration (f / few~e.109
+                :op1 (t / temporal-quantity~e.110
+                        :unit (m / minute~e.110)
+                        :quant 1~e.108))
+   :ARG0 (y / you~e.106))
+
+# ::id homemade_graham_crackers_9_instr9
+# ::name homemade_graham_crackers_9_instr9
+# ::snt Crush up for your favorite graham cracker treat , or just enjoy them as is .
+# ::root o
+# ::alignments p
+# ::snt_id homemade_graham_crackers_9_instr9
+(o / or~e.129
+   :op1 (t / thing~e.128
+           :mod (f / favorite~e.124)
+           :ARG1-of (t2 / treat-03~e.127
+                        :ARG1 (y / you~e.123)
+                        :ARG3 (c / cracker~e.126
+                                 :mod (g / graham~e.125))
+                        :mod f))
+   :op2 (e / enjoy-01~e.131
+           :ARG0 y
+           :ARG1 t
+           :mod (j / just~e.130)
+           :mod (a / as-is~e.134)
+           :mode imperative~e.120
+           :mode imperative~e.120)
+   :rel (p / pound~e.120
+           :ARG0 y))
+

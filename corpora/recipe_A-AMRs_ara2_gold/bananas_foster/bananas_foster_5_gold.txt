@@ -1,0 +1,68 @@
+# ::id bananas_foster_5_instr0_0
+# ::name bananas_foster_5_instr0_0
+# ::snt Melt the butter in a deep skillet over medium heat .
+# ::root m2
+# ::alignments m2
+# ::snt_id bananas_foster_5_instr0
+(m2 / melt-01~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (b / butter~e.3)
+    :location (s / skillet~e.7
+                 :ARG1-of (d / deep-02~e.6))
+    :medium (h / heat~e.10
+               :mod (m / medium~e.9)))
+
+# ::id bananas_foster_5_instr0_1
+# ::name bananas_foster_5_instr0_1
+# ::snt Then stir in the sugar , rum , cinnamon , and vanilla .
+# ::root s2
+# ::alignments s2
+# ::snt_id bananas_foster_5_instr0
+(s2 / stir-01~e.13
+    :ARG0 (y / you~e.13)
+    :ARG1 (a2 / and~e.19
+              :op1 (s3 / sugar~e.16)
+              :op2 (r / rum~e.18)
+              :op3 (c / cinnamon~e.20)
+              :op4 (v / vanilla~e.23))
+    :time (t / then~e.12))
+
+# ::id bananas_foster_5_instr1
+# ::name bananas_foster_5_instr1
+# ::snt Add the bananas and walnuts when the mixture begins to bubble .
+# ::root a
+# ::alignments a, b2
+# ::snt_id bananas_foster_5_instr1
+(a / add-02~e.25
+   :mode imperative~e.25
+   :ARG0 (y / you~e.25)
+   :ARG1 (a2 / and~e.28
+             :op1 (b / banana~e.27)
+             :op2 (n / nut~e.29))
+   :time (b2 / begin-01~e.33
+             :ARG1 (b3 / bubble~e.35
+                       :domain (m / mixture~e.32))))
+
+# ::id bananas_foster_5_instr2_0
+# ::name bananas_foster_5_instr2_0
+# ::snt Cook for 2 minutes .
+# ::root c
+# ::alignments c
+# ::snt_id bananas_foster_5_instr2
+(c / cook-01~e.37
+   :ARG0 (y / you~e.37)
+   :duration (t / temporal-quantity~e.39
+                :unit (m / minute~e.40)
+                :quant 2~e.39))
+
+# ::id bananas_foster_5_instr2_1
+# ::name bananas_foster_5_instr2_1
+# ::snt Serve immediately over ice cream .
+# ::root s
+# ::alignments s
+# ::snt_id bananas_foster_5_instr2
+(s / serve-02~e.42
+   :ARG0 (y / you~e.42)
+   :ARG2 (i / ice-cream~e.46)
+   :time (i2 / immediate~e.43))
+

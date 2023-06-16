@@ -1,0 +1,169 @@
+# ::id bananas_foster_8_instr0
+# ::name bananas_foster_8_instr0
+# ::snt melt the butter in a large skillet with the brown sugar .
+# ::root m
+# ::alignments m, y
+# ::snt_id bananas_foster_8_instr0
+(m / melt-01~e.1
+   :mode imperative~e.12
+   :ARG0 (y / you~e.1)
+   :ARG1 (b2 / butter~e.3)
+   :accompanier (s2 / sugar~e.11
+                    :mod (b / brown~e.10))
+   :location (s / skillet~e.7
+                :mod (l / large~e.6)))
+
+# ::id bananas_foster_8_instr1_1
+# ::name bananas_foster_8_instr1_1
+# ::snt Once it 's heated through , add in the banana pieces .
+# ::root a
+# ::alignments a
+# ::snt_id bananas_foster_8_instr1
+(a / add-02~e.19
+   :mode imperative~e.25
+   :ARG0 (y / you~e.19)
+   :ARG1 (p / piece~e.23
+            :part-of (b / banana~e.22))
+   :time (h / heat-01~e.16
+            :ARG1 (i / it~e.14)
+            :manner (t3 / through~e.17)))
+
+# ::id bananas_foster_8_instr1_0
+# ::name bananas_foster_8_instr1_0
+# ::snt Once it 's heated through , let simmer for 4 - 5 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id bananas_foster_8_instr1
+(l / let-01~e.25
+   :mode imperative~e.25
+   :ARG0 (y / you~e.25)
+   :ARG1 (s / simmer-01~e.26
+            :duration (b2 / between~e.28
+                          :op1 (t / temporal-quantity~e.31
+                                  :unit (m / minute~e.31)
+                                  :quant 4~e.28)
+                          :op2 (t2 / temporal-quantity~e.31
+                                   :unit (m2 / minute~e.31)
+                                   :quant 5~e.30)))
+   :time (h / heat-01~e.16
+            :ARG1 (i / it~e.14)
+            :manner (t3 / through~e.17)))
+
+# ::id bananas_foster_8_instr2_0
+# ::name bananas_foster_8_instr2_0
+# ::snt Add in the cream .
+# ::root a
+# ::alignments a
+# ::snt_id bananas_foster_8_instr2
+(a / add-02~e.33
+   :mode imperative~e.33
+   :ARG1 (c / cream~e.36)
+   :ARG0 (y / you~e.33))
+
+# ::id bananas_foster_8_instr2_1
+# ::name bananas_foster_8_instr2_1
+# ::snt Stir .
+# ::root s
+# ::alignments s
+# ::snt_id bananas_foster_8_instr2
+(s / stir-01~e.38
+   :mode imperative~e.38
+   :ARG0 (y / you~e.38))
+
+# ::id bananas_foster_8_instr3
+# ::name bananas_foster_8_instr3
+# ::snt Off of the heat , add in the dark rum and the banana liquor .
+# ::root a
+# ::alignments a, y
+# ::snt_id bananas_foster_8_instr3
+(a / add-02~e.45
+   :mode imperative~e.40
+   :ARG0 (y / you~e.45)
+   :ARG1 (a2 / and~e.50
+             :op1 (r / rum~e.49
+                     :ARG1-of (d / dark-02~e.48))
+             :op2 (l / liquor~e.53
+                     :consist-of (b / banana~e.52)))
+   :concession (h / heat-01~e.43
+                  :polarity -~e.54))
+
+# ::id bananas_foster_8_instr4_1
+# ::name bananas_foster_8_instr4_1
+# ::snt Use a lighter .
+# ::root u2
+# ::alignments u2
+# ::snt_id bananas_foster_8_instr4
+(u2 / use-01~e.55
+    :mode imperative~e.59
+    :ARG0 (y / you~e.55)
+    :ARG1 (t / thing~e.58
+             :ARG1-of (h / have-degree-91~e.57
+                         :ARG2 (l3 / light-06~e.57
+                                   :ARG1 t)
+                         :ARG3 (m / more~e.57))))
+
+# ::id bananas_foster_8_instr4_2
+# ::name bananas_foster_8_instr4_2
+# ::snt Carefully light the top of the sauce .
+# ::root l2
+# ::alignments l2
+# ::snt_id bananas_foster_8_instr4
+(l2 / light-04~e.60
+    :ARG0 (y / you~e.60)
+    :ARG1 (t2 / top~e.62
+              :part-of (s / sauce~e.65))
+    :ARG1-of (c / care-04~e.59))
+
+# ::id bananas_foster_8_instr4_0
+# ::name bananas_foster_8_instr4_0
+# ::snt Let burn until the flame burns out .
+# ::root l
+# ::alignments l, b2
+# ::snt_id bananas_foster_8_instr4
+(l / let-01~e.67
+   :mode imperative~e.67
+   :ARG0 (y / you~e.67)
+   :ARG1 (b / burn-01~e.68)
+   :time (u / until~e.69
+            :op1 (b2 / burn-01~e.72
+                     :ARG1 (f / flame~e.71))))
+
+# ::id bananas_foster_8_instr5_0
+# ::name bananas_foster_8_instr5_0
+# ::snt Let cool for 5 minutes .
+# ::root l
+# ::alignments l, c2
+# ::snt_id bananas_foster_8_instr5
+(l / let-01~e.75
+   :mode imperative~e.75
+   :ARG0 (y / you~e.75)
+   :ARG1 (c2 / cool-01~e.76
+             :ARG1 y
+             :duration (t / temporal-quantity~e.78
+                          :unit (m / minute~e.79)
+                          :quant 5~e.78)))
+
+# ::id bananas_foster_8_instr5_1
+# ::name bananas_foster_8_instr5_1
+# ::snt Then serve over ice cream .
+# ::root s
+# ::alignments s
+# ::snt_id bananas_foster_8_instr5
+(s / serve-02~e.82
+   :mode imperative~e.90
+   :ARG0 (y / you~e.82)
+   :ARG2 (o / over~e.83
+            :op1 (i / ice-cream~e.85))
+   :time (t2 / then~e.81))
+
+# ::id bananas_foster_8_instr5_2
+# ::name bananas_foster_8_instr5_2
+# ::snt Then dust with cinnamon .
+# ::root d
+# ::alignments d
+# ::snt_id bananas_foster_8_instr5
+(d / dust-01~e.87
+   :ARG0 (y / you~e.87)
+   :ARG2 (c / cinnamon~e.89)
+   :time (t2 / then~e.81))
+

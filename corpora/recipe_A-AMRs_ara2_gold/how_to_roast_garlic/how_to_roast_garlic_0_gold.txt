@@ -1,0 +1,239 @@
+# ::id how_to_roast_garlic_0_instr0
+# ::name how_to_roast_garlic_0_instr0
+# ::snt Preheat the oven to 400 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id how_to_roast_garlic_0_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3)
+   :destination (t / temperature-quantity~e.5
+                   :quant 400~e.5))
+
+# ::id how_to_roast_garlic_0_instr1
+# ::name how_to_roast_garlic_0_instr1
+# ::snt Cut approximately ¼-inch to ½-inch off the top of each head of garlic and save the removed portion .
+# ::root a
+# ::alignments c, y
+# ::snt_id how_to_roast_garlic_0_instr1
+(a / and~e.21
+   :op1 (c / cut-02~e.8
+           :ARG0 (y / you~e.8)
+           :ARG1 (a2 / approximately~e.9
+                     :ARG4 (d2 / distance-quantity~e.12
+                               :unit (i2 / inch~e.12)
+                               :quant 1~e.12)
+                     :op1 (d / distance-quantity~e.10
+                             :unit (i / inch~e.12)
+                             :quant 1~e.10))
+           :ARG2 (t / top~e.15
+                    :part-of (h / head~e.18
+                                :mod (e / each~e.17)
+                                :consist-of (g / garlic~e.20)))
+           :mode imperative~e.8)
+   :op2 (s / save-01~e.22
+           :ARG0 y
+           :ARG1 (p / portion~e.25
+                    :ARG1-of (r / remove-01~e.24))
+           :mode imperative~e.8))
+
+# ::id how_to_roast_garlic_0_instr2
+# ::name how_to_roast_garlic_0_instr2
+# ::snt Place all of the garlic -- and the top portions -- face up on a large piece of heavy - duty foil or in a shallow , oven - proof ceramic pot fitted with a lid .
+# ::root p2
+# ::alignments p2, y
+# ::snt_id how_to_roast_garlic_0_instr2
+(p2 / place-01~e.27
+    :mode imperative~e.63
+    :ARG0 (y / you~e.27)
+    :ARG1 (a2 / and~e.33
+              :op1 (g / garlic~e.31
+                      :mod (a / all~e.28))
+              :op2 (p3 / portion~e.36
+                       :location (t / top~e.35)))
+    :ARG2 (f / face-01~e.38
+             :ARG0 a2
+             :ARG2 (o / or~e.49
+                      :op1 (p / piece~e.43
+                              :mod (l / large~e.42)
+                              :mod (f3 / foil~e.48
+                                       :mod (d / duty~e.47
+                                               :mod (h / heavy~e.45))))
+                      :op2 (p4 / pot~e.58
+                               :mod (s / shallow~e.52)
+                               :ARG1-of (p5 / proof-02~e.56
+                                            :ARG2 (o2 / oven~e.54))
+                               :ARG1-of (f2 / fit-01~e.59
+                                            :ARG2 (l2 / lid~e.62))
+                               :consist-of (c / ceramic~e.57)))
+             :direction (u / up-03~e.39)))
+
+# ::id how_to_roast_garlic_0_instr3
+# ::name how_to_roast_garlic_0_instr3
+# ::snt Drizzle the vermouth and the olive oil evenly over the open cloves .
+# ::root l
+# ::alignments l, y
+# ::snt_id how_to_roast_garlic_0_instr3
+(l / light-06~e.64
+   :mode fuck~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (a / and~e.67
+            :op1 (v / vermouth~e.66)
+            :op2 (o / oil~e.70
+                    :source (o2 / olive~e.69)))
+   :ARG2 (n / nut~e.75
+            :ARG1-of (o3 / open-09~e.74))
+   :ARG1-of (e / even-02~e.71))
+
+# ::id how_to_roast_garlic_0_instr4
+# ::name how_to_roast_garlic_0_instr4
+# ::snt Season with salt and pepper .
+# ::root s2
+# ::alignments s2
+# ::snt_id how_to_roast_garlic_0_instr4
+(s2 / season~e.77
+    :mode imperative~e.77
+    :manner (a / and~e.80
+               :op1 (s / salt~e.79)
+               :op2 (p / pepper~e.81)))
+
+# ::id how_to_roast_garlic_0_instr5_0
+# ::name how_to_roast_garlic_0_instr5_0
+# ::snt Seal the foil tightly ( or cover your ceramic pot ) .
+# ::root o
+# ::alignments s, c2
+# ::snt_id how_to_roast_garlic_0_instr5
+(o / or~e.88
+   :op1 (s / seal-01~e.83
+           :ARG0 (y / you~e.83)
+           :ARG1 (f / foil~e.85)
+           :ARG1-of (t / tight-05~e.86)
+           :mode imperative~e.83)
+   :op2 (c2 / cover-02~e.89
+            :ARG2 y
+            :ARG1 (p2 / pot~e.92
+                      :mod (c / ceramic~e.91)
+                      :poss y)
+            :ARG0 (y1 / you~e.89)
+            :mode imperative~e.89))
+
+# ::id how_to_roast_garlic_0_instr5_2
+# ::name how_to_roast_garlic_0_instr5_2
+# ::snt Preheat oven .
+# ::root h
+# ::alignments h
+# ::snt_id how_to_roast_garlic_0_instr5
+(h / heat-01~e.103
+   :mode imperative~e.103
+   :ARG1 (o2 / oven~e.104)
+   :ARG0 (y / you~e.103))
+
+# ::id how_to_roast_garlic_0_instr5_1
+# ::name how_to_roast_garlic_0_instr5_1
+# ::snt Place the foil it on a baking sheet in the oven .
+# ::root p
+# ::alignments p
+# ::snt_id how_to_roast_garlic_0_instr5
+(p / place-01~e.95
+   :mode imperative~e.105
+   :ARG0 (y / you~e.95)
+   :ARG1 (f / foil~e.85)
+   :ARG2 (s2 / sheet~e.100
+             :location (o2 / oven~e.104)
+             :instrument-of (b / bake-01~e.99)))
+
+# ::id how_to_roast_garlic_0_instr6
+# ::name how_to_roast_garlic_0_instr6
+# ::snt Roast until the garlic is super soft and will easily squeeze out of the skin , about 1 hour and 15 minutes .
+# ::root r
+# ::alignments r, s3
+# ::snt_id how_to_roast_garlic_0_instr6
+(r / roast-01~e.106
+   :mode imperative~e.106
+   :ARG0 (y / you~e.106)
+   :duration (a / about~e.122
+                :op1 (t / temporal-quantity~e.124
+                        :unit (h / hour~e.124)
+                        :unit (m / minute~e.127)
+                        :quant 75~e.126))
+   :time (u / until~e.107
+            :op1 (a2 / and~e.113
+                     :op1 (s2 / soft-02~e.112
+                              :ARG1 (g / garlic~e.109)
+                              :degree (s4 / super~e.111))
+                     :op2 (s3 / squeeze-01~e.116
+                              :ARG1 g
+                              :ARG1-of (e / easy-05~e.115)
+                              :ARG1-of (o / out-06~e.117
+                                          :ARG2 (s / skin~e.120))))))
+
+# ::id how_to_roast_garlic_0_instr7_0
+# ::name how_to_roast_garlic_0_instr7_0
+# ::snt Unwrap the foil ( or uncover your pot ) .
+# ::root o
+# ::alignments w, u
+# ::snt_id how_to_roast_garlic_0_instr7
+(o / or~e.133
+   :op1 (w / wrap-01~e.129
+           :ARG0 (y / you~e.134)
+           :ARG1 (f / foil~e.131)
+           :mode imperative~e.129)
+   :op2 (u / uncover-01~e.134
+           :ARG0 y
+           :ARG1 (p / pot~e.136
+                    :poss y)
+           :mode imperative~e.129))
+
+# ::id how_to_roast_garlic_0_instr7_1
+# ::name how_to_roast_garlic_0_instr7_1
+# ::snt Let the garlic cool until it 's comfortable to touch .
+# ::root l
+# ::alignments l, c2
+# ::snt_id how_to_roast_garlic_0_instr7
+(l / let-01~e.139
+   :mode imperative~e.139
+   :ARG0 (y / you~e.139)
+   :ARG1 (c2 / cool-01~e.142
+             :ARG1 (g / garlic~e.141))
+   :time (u2 / until~e.143
+             :op1 (c / comfortable-02~e.146
+                     :ARG0 (t / touch-01~e.148))))
+
+# ::id how_to_roast_garlic_0_instr8
+# ::name how_to_roast_garlic_0_instr8
+# ::snt Then squeeze the soft , creamy garlic out of its skin -- or , if you 'd like to keep the cloves whole , use a paring knife to help you gently remove them .
+# ::root o
+# ::alignments s3, u, r
+# ::snt_id how_to_roast_garlic_0_instr8
+(o / or~e.162
+   :op1 (s3 / squeeze-01~e.151
+            :ARG0 (y / you~e.169)
+            :ARG1 (g / garlic~e.156
+                     :mod (c / creamy~e.155)
+                     :part (s / skin~e.160)
+                     :ARG1-of (s2 / soft-02~e.153))
+            :ARG2 (o2 / out-06~e.157
+                      :ARG2 s)
+            :time (t / then~e.150)
+            :mode imperative~e.150)
+   :op2 (u / use-01~e.174
+           :ARG0 y
+           :ARG1 (k2 / knife~e.177
+                     :instrument-of (p / pare-01~e.176)
+                     :ARG0-of h)
+           :ARG2 (h / help-01~e.179
+                    :ARG1 (r / remove-01~e.182
+                             :ARG0 y
+                             :ARG1 g
+                             :ARG1-of (g2 / gentle-01~e.181))
+                    :ARG2 y)
+           :condition (l / like-02~e.167
+                         :ARG0 y
+                         :ARG1 (k / keep-02~e.169
+                                  :ARG0 y
+                                  :ARG1 (w / whole~e.172)))
+           :mode imperative~e.184)
+   :rel (p2 / pound~e.171))
+

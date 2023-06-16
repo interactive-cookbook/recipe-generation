@@ -1,0 +1,127 @@
+# ::id chocolate_glaze_6_instr0
+# ::name chocolate_glaze_6_instr0
+# ::snt Serves : Decorates 12 éclairs or 36 profiteroles
+# ::root s
+# ::alignments s, d
+# ::snt_id chocolate_glaze_6_instr0
+(s / serve-01~e.1
+   :mode imperative~e.1
+   :ARG1 (d / decorate-01~e.3
+            :ARG1 (o / or~e.6
+                     :op1 (e / eyebrow~e.5
+                             :quant 12~e.4)
+                     :op2 (p / person~e.8
+                             :ARG0-of (p2 / profit-01~e.8)
+                             :quant 36~e.7)))
+   :ARG0 (y / you~e.1))
+
+# ::id chocolate_glaze_6_instr1_0
+# ::name chocolate_glaze_6_instr1_0
+# ::snt Place the chocolate , butter and corn syrup in a metal bowl .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_6_instr1
+(p / place-01~e.9
+   :mode imperative~e.9
+   :ARG1 (a / and~e.14
+            :op1 (c / chocolate~e.11)
+            :op2 (b3 / butter~e.13)
+            :op3 (s4 / syrup~e.16
+                     :mod (c2 / corn~e.15)))
+   :ARG2 (b2 / bowl~e.20
+             :consist-of (m2 / metal~e.19))
+   :ARG0 (y / you~e.9))
+
+# ::id chocolate_glaze_6_instr1_1
+# ::name chocolate_glaze_6_instr1_1
+# ::snt In a metal bowl set this over a pot water .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_6_instr1
+(s / set-01~e.22
+   :mode imperative~e.22
+   :ARG1 (b2 / bowl~e.20
+             :consist-of (m2 / metal~e.19))
+   :ARG2 (o / over~e.24
+            :op1 (p2 / pot~e.26
+                     :consist-of (w / water~e.30)))
+   :ARG0 (y / you~e.22))
+
+# ::id chocolate_glaze_6_instr1_2
+# ::name chocolate_glaze_6_instr1_2
+# ::snt Of barely simmer water .
+# ::root s2
+# ::alignments s2
+# ::snt_id chocolate_glaze_6_instr1
+(s2 / simmer-01~e.29
+    :mode imperative~e.29
+    :ARG1 (w / water~e.30)
+    :degree (b / barely~e.28)
+    :ARG0 (y / you~e.29))
+
+# ::id chocolate_glaze_6_instr1_3
+# ::name chocolate_glaze_6_instr1_3
+# ::snt Stir the chocolate , butter and corn syrup until melted .
+# ::root s3
+# ::alignments s3
+# ::snt_id chocolate_glaze_6_instr1
+(s3 / stir-01~e.32
+    :mode imperative~e.32
+    :ARG1 (a / and~e.14
+             :op1 (c / chocolate~e.11)
+             :op2 (b3 / butter~e.13)
+             :op3 (s4 / syrup~e.16
+                      :mod (c2 / corn~e.15)))
+    :duration (u / until~e.33
+                 :op1 (m / melt-01~e.34
+                         :ARG1 a))
+    :ARG0 (y / you~e.32))
+
+# ::id chocolate_glaze_6_instr2
+# ::name chocolate_glaze_6_instr2
+# ::snt Remove the bowl from the heat .
+# ::root r
+# ::alignments r, y
+# ::snt_id chocolate_glaze_6_instr2
+(r / remove-01~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :ARG1 (b / bowl~e.38)
+   :ARG2 (h / heat~e.41))
+
+# ::id chocolate_glaze_6_instr3_1
+# ::name chocolate_glaze_6_instr3_1
+# ::snt Dip the tops of the éclairs or profiteroles in the warm glaze .
+# ::root d
+# ::alignments d
+# ::snt_id chocolate_glaze_6_instr3
+(d / dip-02~e.43
+   :mode imperative~e.43
+   :year 2007~e.48
+   :ARG0 (y / you~e.43)
+   :ARG1 (o / or~e.49
+            :op1 (t / top~e.45)
+            :op2 (p / profit-01~e.50
+                    :mod (h / ha~e.48)))
+   :ARG2 (g / glaze~e.54
+            :ARG1-of (w / warm-07~e.53)))
+
+# ::id chocolate_glaze_6_instr3_0
+# ::name chocolate_glaze_6_instr3_0
+# ::snt Enjoy warm , cool to set or chill to serve later .
+# ::root e
+# ::alignments e, s2, s
+# ::snt_id chocolate_glaze_6_instr3
+(e / enjoy-01~e.56
+   :mode imperative~e.43
+   :ARG0 (y / you~e.56)
+   :ARG1 (a3 / and~e.58
+             :purpose (s2 / set-01~e.61)
+             :ARG1 (o2 / or~e.62
+                       :op1 (w2 / warm-07~e.57))
+             :op2 (c2 / cool-01~e.59)
+             :op3 (c / chill-01~e.63
+                     :purpose (s / serve-02~e.65
+                                 :time (a / after~e.66
+                                          :op1 (n / now~e.66))))))
+

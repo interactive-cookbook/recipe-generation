@@ -1,0 +1,252 @@
+# ::id peanut_butter_bars_0_instr0
+# ::name peanut_butter_bars_0_instr0
+# ::snt Preheat oven to 350 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id peanut_butter_bars_0_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4))
+
+# ::id peanut_butter_bars_0_instr1
+# ::name peanut_butter_bars_0_instr1
+# ::snt In a medium bowl , cream butter and sugars until light .
+# ::root c
+# ::alignments
+# ::snt_id peanut_butter_bars_0_instr1
+(c / cream-02~e.12
+   :ARG1 (a / and~e.14
+            :op1 (b2 / butter~e.13)
+            :op2 (s / sugar-cane~e.15))
+   :duration (u / until~e.16
+                :op1 (l / light-06~e.17))
+   :location (b / bowl~e.10
+                :mod (m / medium~e.9)))
+
+# ::id peanut_butter_bars_0_instr2
+# ::name peanut_butter_bars_0_instr2
+# ::snt Add egg , peanut butter , baking soda , salt , and vanilla .
+# ::root a
+# ::alignments a
+# ::snt_id peanut_butter_bars_0_instr2
+(a / add-02~e.19
+   :mode imperative~e.19
+   :ARG1 (a2 / and~e.30
+             :op1 (e / egg~e.20)
+             :op2 (b2 / butter~e.23
+                      :mod (p / peanut~e.22))
+             :op3 (s2 / soda~e.26
+                      :instrument-of (b / bake-01~e.25))
+             :op4 (s / salt~e.28)
+             :op5 (v / vanilla~e.31))
+   :ARG0 (y / you~e.19))
+
+# ::id peanut_butter_bars_0_instr3
+# ::name peanut_butter_bars_0_instr3
+# ::snt Blend .
+# ::root b
+# ::alignments
+# ::snt_id peanut_butter_bars_0_instr3
+(b / blend-01~e.33)
+
+# ::id peanut_butter_bars_0_instr4
+# ::name peanut_butter_bars_0_instr4
+# ::snt Stir in flour and oats .
+# ::root s
+# ::alignments s, y
+# ::snt_id peanut_butter_bars_0_instr4
+(s / stir-01~e.35
+   :mode imperative~e.35
+   :ARG0 (y / you~e.35)
+   :ARG1 (a / and~e.38
+            :op1 (f / flour~e.37)
+            :op2 (o / oat~e.39)))
+
+# ::id peanut_butter_bars_0_instr5_0
+# ::name peanut_butter_bars_0_instr5_0
+# ::snt Spread dough into a 9 x 13 baking dish .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_0_instr5
+(s / spread-03~e.41
+   :mode imperative~e.41
+   :ARG0 (y / you~e.41)
+   :ARG1 (d2 / dough~e.42)
+   :ARG3 (d / dish~e.50
+            :extent (p / product-of~e.46
+                       :op2 (p2 / product-of~e.47
+                                :op2 13~e.48)
+                       :op1 9~e.46)
+            :instrument-of (b2 / bake-01~e.49)))
+
+# ::id peanut_butter_bars_0_instr5_1
+# ::name peanut_butter_bars_0_instr5_1
+# ::snt Greas 9 x 13 baking dish .
+# ::root b
+# ::alignments b
+# ::snt_id peanut_butter_bars_0_instr5
+(b / bake-01~e.45
+   :mode imperative~e.45
+   :ARG2 (d / dish~e.50
+            :extent (p / product-of~e.46
+                       :op2 (p2 / product-of~e.47
+                                :op2 13~e.48)
+                       :op1 9~e.46)
+            :instrument-of (b2 / bake-01~e.49))
+   :ARG0 (y / you~e.45))
+
+# ::id peanut_butter_bars_0_instr6
+# ::name peanut_butter_bars_0_instr6
+# ::snt Bake for 12 - 15 minutes ( more as needed for desired doneness ) .
+# ::root b
+# ::alignments b, y
+# ::snt_id peanut_butter_bars_0_instr6
+(b / bake-01~e.52
+   :mode imperative~e.66
+   :ARG0 (y / you~e.52)
+   :duration (b2 / between~e.54
+                 :op1 (t / temporal-quantity~e.57
+                         :unit (m / minute~e.57)
+                         :quant 12~e.54)
+                 :op2 (t2 / temporal-quantity~e.57
+                          :unit (m2 / minute~e.57)
+                          :quant 15~e.56)
+                 :ARG1-of (h / have-quant-91~e.59
+                             :ARG3 (m3 / more~e.59)
+                             :ARG1-of (n / need-01~e.61
+                                         :purpose (d2 / doneness~e.64
+                                                      :ARG1-of (d / desire-01~e.63))))))
+
+# ::id peanut_butter_bars_0_instr7_1
+# ::name peanut_butter_bars_0_instr7_1
+# ::snt Remove from oven .
+# ::root r
+# ::alignments r
+# ::snt_id peanut_butter_bars_0_instr7
+(r / remove-01~e.67
+   :mode imperative~e.71
+   :ARG0 (y / you~e.67)
+   :ARG2 (o / oven~e.69))
+
+# ::id peanut_butter_bars_0_instr7_2
+# ::name peanut_butter_bars_0_instr7_2
+# ::snt Sprinkle with chocolate chips .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_0_instr7
+(s / spray-01~e.71
+   :mode imperative~e.71
+   :ARG0 (y / you~e.71)
+   :ARG2 (c / chip~e.74
+            :consist-of (c2 / chocolate~e.73)))
+
+# ::id peanut_butter_bars_0_instr7_0
+# ::name peanut_butter_bars_0_instr7_0
+# ::snt Let stand five minutes .
+# ::root l
+# ::alignments l, s2
+# ::snt_id peanut_butter_bars_0_instr7
+(l / let-01~e.76
+   :ARG0 (y / you~e.76)
+   :ARG1 (s2 / stand-01~e.77
+             :duration (t / temporal-quantity~e.78
+                          :unit (m / minute~e.79)
+                          :quant 5~e.78)))
+
+# ::id peanut_butter_bars_0_instr8
+# ::name peanut_butter_bars_0_instr8
+# ::snt ( You do n't have to use the entire bag !
+# ::root o
+# ::alignments
+# ::snt_id peanut_butter_bars_0_instr8
+(o / obligate-01~e.85
+   :polarity -~e.84
+   :ARG1 (y / you~e.82)
+   :ARG2 (u / use-01~e.87
+            :ARG0 y
+            :ARG1 (b / bag~e.90
+                     :mod (e / entire~e.89))))
+
+# ::id peanut_butter_bars_0_instr9
+# ::name peanut_butter_bars_0_instr9
+# ::snt Sprinkle to your liking )
+# ::root s
+# ::alignments s, y
+# ::snt_id peanut_butter_bars_0_instr9
+(s / spray-01~e.92
+   :mode imperative~e.92
+   :ARG0 (y / you~e.92)
+   :ARG3 (l / like-01~e.95
+            :ARG0 y))
+
+# ::id peanut_butter_bars_0_instr10_0
+# ::name peanut_butter_bars_0_instr10_0
+# ::snt While chocolate is melting , combine powdered sugar , peanut butter , and milk in a small bowl .
+# ::root c2
+# ::alignments c2
+# ::snt_id peanut_butter_bars_0_instr10
+(c2 / combine-01~e.102
+    :mode imperative~e.119
+    :ARG0 (y / you~e.102)
+    :ARG1 (a / and~e.109
+             :op1 (s4 / sugar~e.104
+                      :ARG1-of (p2 / powder-01~e.103))
+             :op2 (b2 / butter~e.107
+                      :mod (p / peanut~e.106))
+             :op3 (m2 / milk~e.110))
+    :ARG2 (b / bowl~e.114
+             :mod (s / small~e.113))
+    :time (m / melt-01~e.100
+             :ARG1 (c / chocolate~e.98)))
+
+# ::id peanut_butter_bars_0_instr10_1
+# ::name peanut_butter_bars_0_instr10_1
+# ::snt While chocolate is melting , powdered sugar , peanut butter , and milk whisk until smooth .
+# ::root s3
+# ::alignments s3
+# ::snt_id peanut_butter_bars_0_instr10
+(s3 / stir-01~e.116
+    :mode imperative~e.119
+    :ARG0 (y / you~e.116)
+    :duration (u / until~e.117
+                 :op1 (s2 / smooth-01~e.118
+                          :ARG1 (a / and~e.109
+                                   :op1 (s4 / sugar~e.104
+                                            :ARG1-of (p2 / powder-01~e.103))
+                                   :op2 (b2 / butter~e.107
+                                            :mod (p / peanut~e.106))
+                                   :op3 (m2 / milk~e.110))))
+    :time (m / melt-01~e.100
+             :ARG1 (c / chocolate~e.98)))
+
+# ::id peanut_butter_bars_0_instr11_0
+# ::name peanut_butter_bars_0_instr11_0
+# ::snt Smooth the chocolate over the bars .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_0_instr11
+(s / smooth-04~e.120
+   :mode imperative~e.133
+   :ARG0 (y / you~e.120)
+   :ARG1 (c / chocolate~e.122)
+   :ARG2 (o / over~e.123
+            :op1 (b / bar~e.125)))
+
+# ::id peanut_butter_bars_0_instr11_1
+# ::name peanut_butter_bars_0_instr11_1
+# ::snt Then drizzle with peanut butter topping .
+# ::root d
+# ::alignments d
+# ::snt_id peanut_butter_bars_0_instr11
+(d / drip-01~e.128
+   :mode imperative~e.133
+   :ARG0 (y / you~e.128)
+   :ARG2 (t2 / thing~e.132
+             :ARG0-of (t3 / top-02~e.132
+                          :ARG1 (b2 / butter~e.131
+                                    :mod (p / peanut~e.130))))
+   :time (t / then~e.127))
+

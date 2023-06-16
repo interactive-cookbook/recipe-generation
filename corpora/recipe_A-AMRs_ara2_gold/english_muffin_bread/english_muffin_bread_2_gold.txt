@@ -1,0 +1,367 @@
+# ::id english_muffin_bread_2_instr0_0
+# ::name english_muffin_bread_2_instr0_0
+# ::snt Combine half and half , water , and oil and ( liquid should be warm to the touch but not hot ) .
+# ::root m2
+# ::alignments c
+# ::snt_id english_muffin_bread_2_instr0
+(m2 / multi-sentence~e.19
+    :snt1 (a2 / and~e.10
+              :op1 (c / combine-01~e.1
+                      :ARG0 (y / you~e.1)
+                      :ARG1 (a / and~e.3
+                               :op1 (h / half~e.2)
+                               :op2 (h2 / half~e.4)
+                               :op3 (w2 / water~e.6)
+                               :op4 (o / oil~e.9))
+                      :mode imperative~e.19))
+    :snt2 (p / probable~e.21
+             :domain (c2 / contrast-01~e.27
+                         :ARG1 (w / warm-07~e.23
+                                  :ARG1 (l / liquid~e.20)
+                                  :prep-to (t3 / touch-01~e.26))
+                         :ARG2 (h4 / hot-05~e.29
+                                   :ARG1 l
+                                   :polarity -~e.28))))
+
+# ::id english_muffin_bread_2_instr0_1
+# ::name english_muffin_bread_2_instr0_1
+# ::snt And microwave on high for 30 to 40 seconds ( liquid should be warm to the touch but not hot ) .
+# ::root m2
+# ::alignments m
+# ::snt_id english_muffin_bread_2_instr0
+(m2 / multi-sentence~e.19
+    :snt1 (a2 / and~e.10
+              :op2 (m / microwave~e.11
+                      :duration (b / between~e.15
+                                   :op1 (t / temporal-quantity~e.18
+                                           :unit (s / second~e.18)
+                                           :quant 30~e.15)
+                                   :op2 (t2 / temporal-quantity~e.18
+                                            :unit (s2 / second~e.18)
+                                            :quant 40~e.17))
+                      :ARG1-of (h3 / high-02~e.13)
+                      :mode imperative~e.19))
+    :snt2 (p / probable~e.21
+             :domain (c2 / contrast-01~e.27
+                         :ARG1 (w / warm-07~e.23
+                                  :ARG1 (l / liquid~e.20)
+                                  :prep-to (t3 / touch-01~e.26))
+                         :ARG2 (h4 / hot-05~e.29
+                                   :ARG1 l
+                                   :polarity -~e.28))))
+
+# ::id english_muffin_bread_2_instr1_1
+# ::name english_muffin_bread_2_instr1_1
+# ::snt Add the yeast and sugar to the liquid mixture .
+# ::root a
+# ::alignments a
+# ::snt_id english_muffin_bread_2_instr1
+(a / add-02~e.32
+   :mode imperative~e.42
+   :ARG0 (y2 / you~e.32)
+   :ARG1 (a2 / and~e.35
+             :op1 (y / yeast~e.34)
+             :op2 (s2 / sugar~e.36))
+   :ARG2 (m2 / mix-01~e.40
+             :ARG1 (l2 / liquid~e.39)))
+
+# ::id english_muffin_bread_2_instr1_0
+# ::name english_muffin_bread_2_instr1_0
+# ::snt Let the yeast and sugar sit for 10 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id english_muffin_bread_2_instr1
+(l / let-01~e.42
+   :mode imperative~e.42
+   :ARG0 (y2 / you~e.42)
+   :ARG1 (s / sit-01~e.43
+            :ARG1 (a2 / and~e.35
+                      :op1 (y / yeast~e.34)
+                      :op2 (s2 / sugar~e.36))
+            :duration (t / temporal-quantity~e.46
+                         :unit (m / minute~e.46)
+                         :quant 10~e.45)))
+
+# ::id english_muffin_bread_2_instr2_0
+# ::name english_muffin_bread_2_instr2_0
+# ::snt In a large bowl , combine the flour , salt , and baking soda .
+# ::root c
+# ::alignments c
+# ::snt_id english_muffin_bread_2_instr2
+(c / combine-01~e.53
+   :mode imperative~e.68
+   :ARG0 (y / you~e.53)
+   :ARG1 (a / and~e.56
+            :op1 (f / flour~e.55)
+            :op2 (s / salt~e.57)
+            :op3 (s2 / soda~e.61
+                     :ARG2-of (b / bake-01~e.60)))
+   :location (b2 / bowl~e.51
+                 :mod (l / large~e.50)))
+
+# ::id english_muffin_bread_2_instr2_1
+# ::name english_muffin_bread_2_instr2_1
+# ::snt Mix throughly with a fork .
+# ::root m
+# ::alignments m
+# ::snt_id english_muffin_bread_2_instr2
+(m / mix-01~e.63
+   :mode imperative~e.68
+   :ARG0 (y / you~e.63)
+   :instrument (f2 / fork~e.67)
+   :manner (t / throughly~e.64))
+
+# ::id english_muffin_bread_2_instr3_1
+# ::name english_muffin_bread_2_instr3_1
+# ::snt Pour the liquid mixture into the flour mixture and it all , being careful not to mix too much , it just needs to all be incorporated .
+# ::root a4
+# ::alignments p
+# ::snt_id english_muffin_bread_2_instr3
+(a4 / and~e.92
+    :op1 (a3 / and~e.77
+             :op1 (p / pour-01~e.69
+                     :ARG0 (y / you~e.69)
+                     :ARG1 (m4 / mixture~e.72
+                               :mod (l / liquid~e.71))
+                     :mode imperative~e.69))
+    :op2 (c / care-04~e.86
+            :ARG1 (m3 / mix-01~e.89
+                      :ARG0 (m / mix-01~e.72
+                               :ARG1 (f / flour~e.75)
+                               :mod (a / all~e.81))
+                      :ARG1-of (h / have-quant-91~e.90
+                                  :ARG2 (m5 / much~e.91)
+                                  :ARG3 (t2 / too~e.90))
+                      :polarity -~e.87)
+            :mode imperative~e.100)
+    :op3 (n / need-01~e.95
+            :ARG1 (i / incorporate-02~e.99
+                     :ARG1 m
+                     :mod (a2 / all~e.97))
+            :mod (j / just~e.94)))
+
+# ::id english_muffin_bread_2_instr3_0
+# ::name english_muffin_bread_2_instr3_0
+# ::snt Mixture into the flour mixture and mix until it all comes together , being careful not to mix too much , it just needs to all be incorporated .
+# ::root a4
+# ::alignments m2, c2, t
+# ::snt_id english_muffin_bread_2_instr3
+(a4 / and~e.92
+    :op1 (a3 / and~e.77
+             :op2 (m2 / mix-01~e.78
+                      :ARG0 (y / you~e.86)
+                      :ARG1 (m / mix-01~e.72
+                               :ARG1 (f / flour~e.75)
+                               :mod (a / all~e.81))
+                      :duration (u / until~e.79
+                                   :op1 (c2 / come-04~e.82
+                                            :ARG1 m
+                                            :ARG2 (t / together~e.83)))))
+    :op2 (c / care-04~e.86
+            :ARG0 y
+            :ARG1 (m3 / mix-01~e.89
+                      :ARG0 m
+                      :ARG1-of (h / have-quant-91~e.90
+                                  :ARG2 (m5 / much~e.91)
+                                  :ARG3 (t2 / too~e.90))
+                      :polarity -~e.87)
+            :mode imperative~e.100)
+    :op3 (n / need-01~e.95
+            :ARG1 (i / incorporate-02~e.99
+                     :ARG1 m
+                     :mod (a2 / all~e.97))
+            :mod (j / just~e.94)))
+
+# ::id english_muffin_bread_2_instr4
+# ::name english_muffin_bread_2_instr4
+# ::snt The dough will be sticky .
+# ::root s
+# ::alignments
+# ::snt_id english_muffin_bread_2_instr4
+(s / sticky~e.105
+   :domain (d / dough~e.102))
+
+# ::id english_muffin_bread_2_instr5_0
+# ::name english_muffin_bread_2_instr5_0
+# ::snt Leave the dough in the bowl .
+# ::root l
+# ::alignments l
+# ::snt_id english_muffin_bread_2_instr5
+(l / leave-14~e.107
+   :mode imperative~e.107
+   :ARG0 (y / you~e.107)
+   :ARG1 (d2 / dough~e.109)
+   :location (b2 / bowl~e.112))
+
+# ::id english_muffin_bread_2_instr5_1
+# ::name english_muffin_bread_2_instr5_1
+# ::snt Allow the dough to rise in a warm place until doubled ( about 45 minutes to 1 hour ) .
+# ::root a2
+# ::alignments a2
+# ::snt_id english_muffin_bread_2_instr5
+(a2 / allow-01~e.114
+    :mode imperative~e.131
+    :ARG0 (y / you~e.114)
+    :ARG1 (r / rise-01~e.116
+             :ARG1 (d2 / dough~e.109)
+             :location (p / place~e.120
+                          :ARG1-of (w / warm-07~e.119))
+             :time (u / until~e.121
+                      :op1 (d / double-01~e.122
+                              :ARG1 d2)
+                      :ARG1-of (m / mean-01~e.123
+                                  :ARG2 (a / about~e.124
+                                           :op1 (b / between~e.130
+                                                   :op1 (t / temporal-quantity~e.126
+                                                           :unit (m2 / minute~e.126)
+                                                           :quant 45~e.125)
+                                                   :op2 (t2 / temporal-quantity~e.129
+                                                            :unit (h / hour~e.129)
+                                                            :quant 1~e.129)))))))
+
+# ::id english_muffin_bread_2_instr6_2
+# ::name english_muffin_bread_2_instr6_2
+# ::snt Once the bread has risen , an 8-inch by 5-inch .
+# ::root a
+# ::alignments r
+# ::snt_id english_muffin_bread_2_instr6
+(a / and~e.146
+   :rel (d / distance-quantity~e.143
+           :unit (f / foot~e.143)
+           :quant 8~e.141)
+   :time (r / rise-01~e.136
+            :ARG1 (b / bread~e.134)))
+
+# ::id english_muffin_bread_2_instr6_1
+# ::name english_muffin_bread_2_instr6_1
+# ::snt An 8-inch by 5-inch and preheat the oven to 400 .
+# ::root a
+# ::alignments h
+# ::snt_id english_muffin_bread_2_instr6
+(a / and~e.146
+   :op2 (h / heat-01~e.147
+           :ARG0 (y / you~e.147)
+           :ARG1 (o / oven~e.149)
+           :destination (t / temperature-quantity~e.151
+                           :quant 400~e.151)
+           :mode imperative~e.153
+           :mode imperative~e.153)
+   :rel (d / distance-quantity~e.143
+           :unit (f / foot~e.143)
+           :quant 8~e.141))
+
+# ::id english_muffin_bread_2_instr6_0
+# ::name english_muffin_bread_2_instr6_0
+# ::snt Generously butter an 8-inch by 5-inch loaf pan and degrees .
+# ::root a
+# ::alignments b2
+# ::snt_id english_muffin_bread_2_instr6
+(a / and~e.146
+   :op1 (b2 / butter-01~e.139
+            :ARG0 (y / you~e.153)
+            :ARG1 (p / pan~e.145
+                     :mod (l / loaf~e.144)
+                     :mod (d2 / distance-quantity~e.143
+                              :quant 5~e.143
+                              :unit 5-inch~e.143))
+            :ARG2-of (g / generous-01~e.138))
+   :rel (d / distance-quantity~e.143
+           :unit (f / foot~e.143)
+           :quant 8~e.141))
+
+# ::id english_muffin_bread_2_instr7_0
+# ::name english_muffin_bread_2_instr7_0
+# ::snt Pour the batter into the pan .
+# ::root p2
+# ::alignments p2
+# ::snt_id english_muffin_bread_2_instr7
+(p2 / pour-01~e.154
+    :mode imperative~e.154
+    :ARG0 (y / you~e.154)
+    :ARG1 (b / batter-01~e.156)
+    :ARG2 (p / pan~e.159))
+
+# ::id english_muffin_bread_2_instr7_1
+# ::name english_muffin_bread_2_instr7_1
+# ::snt Gently even out the top .
+# ::root e
+# ::alignments e
+# ::snt_id english_muffin_bread_2_instr7
+(e / even-02~e.162
+   :mode imperative~e.166
+   :ARG0 (y / you~e.162)
+   :ARG1 (t / top~e.165)
+   :manner (g / gentle~e.161))
+
+# ::id english_muffin_bread_2_instr8
+# ::name english_muffin_bread_2_instr8
+# ::snt Bake the bread for 20 to 22 minutes , until the crust is golden .
+# ::root b
+# ::alignments b, y
+# ::snt_id english_muffin_bread_2_instr8
+(b / bake-01~e.167
+   :mode imperative~e.181
+   :ARG0 (y / you~e.167)
+   :ARG1 (b3 / bread~e.169)
+   :duration (b2 / between~e.171
+                 :op1 (t / temporal-quantity~e.174
+                         :unit (m / minute~e.174)
+                         :quant 20~e.171)
+                 :op2 (t2 / temporal-quantity~e.174
+                          :unit (m2 / minute~e.174)
+                          :quant 22~e.173))
+   :time (u / until~e.176
+            :op1 (g / gold~e.180
+                    :domain (c / crust~e.178))))
+
+# ::id english_muffin_bread_2_instr9_0
+# ::name english_muffin_bread_2_instr9_0
+# ::snt Let the bread cool in the pan for 10 minutes .
+# ::root l
+# ::alignments l, c
+# ::snt_id english_muffin_bread_2_instr9
+(l / let-01~e.182
+   :mode imperative~e.182
+   :ARG0 (y / you~e.182)
+   :ARG1 (c / cool-06~e.185
+            :ARG1 (b2 / bread~e.184)
+            :location (p / pan~e.188))
+   :duration (t / temporal-quantity~e.190
+                :unit (m / minute~e.191)
+                :quant 10~e.190))
+
+# ::id english_muffin_bread_2_instr9_1
+# ::name english_muffin_bread_2_instr9_1
+# ::snt The bread in the pan remov .
+# ::root r
+# ::alignments r
+# ::snt_id english_muffin_bread_2_instr9
+(r / remove-01~e.193
+   :mode imperative~e.193
+   :ARG1 (b2 / bread~e.184)
+   :ARG2 (p / pan~e.188)
+   :ARG0 (y / you~e.193))
+
+# ::id english_muffin_bread_2_instr10_0
+# ::name english_muffin_bread_2_instr10_0
+# ::snt Cool the bread completely .
+# ::root c2
+# ::alignments c2
+# ::snt_id english_muffin_bread_2_instr10
+(c2 / cool-01~e.198
+    :mode imperative~e.198
+    :ARG1 (b2 / bread~e.200)
+    :ARG0 (y / you~e.198)
+    :ARG1-of (c / complete-02~e.201))
+
+# ::id english_muffin_bread_2_instr10_1
+# ::name english_muffin_bread_2_instr10_1
+# ::snt Slice the bread .
+# ::root s
+# ::alignments s
+# ::snt_id english_muffin_bread_2_instr10
+(s / slice-01~e.203
+   :mode imperative~e.203
+   :ARG1 (b2 / bread~e.200)
+   :ARG0 (y / you~e.203))
+

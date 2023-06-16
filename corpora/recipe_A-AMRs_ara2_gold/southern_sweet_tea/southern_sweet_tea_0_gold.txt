@@ -1,0 +1,183 @@
+# ::id southern_sweet_tea_0_instr0_0
+# ::name southern_sweet_tea_0_instr0_0
+# ::snt Add water to a medium sized pot .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_0_instr0
+(a / add-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (w / water~e.2)
+   :ARG2 (p / pot~e.7
+            :ARG1-of (s / size-01~e.6
+                        :ARG2 (m / medium~e.5))))
+
+# ::id southern_sweet_tea_0_instr0_1
+# ::name southern_sweet_tea_0_instr0_1
+# ::snt Boil over high heat .
+# ::root b
+# ::alignments b
+# ::snt_id southern_sweet_tea_0_instr0
+(b / boil-01~e.9
+   :mode imperative~e.13
+   :ARG0 (y / you~e.9)
+   :degree (h / heat~e.12
+              :ARG1-of (h2 / high-02~e.11)))
+
+# ::id southern_sweet_tea_0_instr1_2
+# ::name southern_sweet_tea_0_instr1_2
+# ::snt Boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id southern_sweet_tea_0_instr1
+(b2 / boil-01~e.15
+    :mode imperative~e.15
+    :ARG0 (y / you~e.15))
+
+# ::id southern_sweet_tea_0_instr1_0
+# ::name southern_sweet_tea_0_instr1_0
+# ::snt Turn off heat .
+# ::root t2
+# ::alignments t2
+# ::snt_id southern_sweet_tea_0_instr1
+(t2 / turn-off-07~e.17
+    :mode imperative~e.18
+    :ARG0 (y / you~e.17)
+    :ARG1 (h / heat~e.19))
+
+# ::id southern_sweet_tea_0_instr1_1
+# ::name southern_sweet_tea_0_instr1_1
+# ::snt Add tea bags .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_0_instr1
+(a / add-02~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG1 (b / bag~e.23
+            :mod (t / tea~e.22)))
+
+# ::id southern_sweet_tea_0_instr2
+# ::name southern_sweet_tea_0_instr2
+# ::snt Steep for 15 - 25 minutes ( depending on strength you prefer ) .
+# ::root s
+# ::alignments
+# ::snt_id southern_sweet_tea_0_instr2
+(s / step-01~e.25
+   :mode imperative~e.25
+   :ARG1 (y / you~e.25)
+   :duration (b / between~e.27
+                :op1 (t / temporal-quantity~e.30
+                        :unit (m / minute~e.30)
+                        :quant 15~e.27)
+                :op2 (t2 / temporal-quantity~e.30
+                         :unit (m2 / minute~e.30)
+                         :quant 25~e.29))
+   :ARG0-of (d / depend-01~e.32
+               :ARG1 (s2 / strong-02~e.34
+                         :ARG1-of (p / prefer-01~e.36
+                                     :ARG0 y))))
+
+# ::id southern_sweet_tea_0_instr3
+# ::name southern_sweet_tea_0_instr3
+# ::snt Stir in sugar until it completely dissolves into the hot tea .
+# ::root s
+# ::alignments s, d
+# ::snt_id southern_sweet_tea_0_instr3
+(s / stir-01~e.39
+   :mode imperative~e.39
+   :ARG0 (y / you~e.39)
+   :ARG2 (s2 / sugar~e.41)
+   :time (u / until~e.42
+            :op1 (d / dissolve-01~e.45
+                    :ARG1 s2
+                    :ARG2 (t / tea~e.49
+                             :ARG1-of (h / hot-05~e.48))
+                    :ARG1-of (c / complete-02~e.44))))
+
+# ::id southern_sweet_tea_0_instr4_0
+# ::name southern_sweet_tea_0_instr4_0
+# ::snt Remove tea bags from pot .
+# ::root r
+# ::alignments r
+# ::snt_id southern_sweet_tea_0_instr4
+(r / remove-01~e.51
+   :mode imperative~e.51
+   :ARG0 (y / you~e.51)
+   :ARG1 (b / bag~e.53
+            :consist-of (t / tea~e.52))
+   :ARG2 (p2 / pot~e.55))
+
+# ::id southern_sweet_tea_0_instr4_1
+# ::name southern_sweet_tea_0_instr4_1
+# ::snt Then pour tea tea into a large pitcher .
+# ::root p3
+# ::alignments p3
+# ::snt_id southern_sweet_tea_0_instr4
+(p3 / pour-01~e.57
+    :mode imperative~e.63
+    :ARG0 (y / you~e.57)
+    :ARG1 (t / tea~e.52)
+    :ARG3 (p / pitcher~e.62
+             :mod (l / large~e.61))
+    :time (t2 / then~e.56))
+
+# ::id southern_sweet_tea_0_instr5_0
+# ::name southern_sweet_tea_0_instr5_0
+# ::snt Add water to .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_0_instr5
+(a / add-02~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (w / water~e.66))
+
+# ::id southern_sweet_tea_0_instr5_1
+# ::name southern_sweet_tea_0_instr5_1
+# ::snt Enough to fill the pitcher .
+# ::root f
+# ::alignments f
+# ::snt_id southern_sweet_tea_0_instr5
+(f / fill-01~e.68
+   :ARG0 (y / you~e.68)
+   :ARG2 (p / pitcher~e.70)
+   :ARG6-of (h / have-quant-91~e.65
+               :ARG3 (e / enough~e.65)))
+
+# ::id southern_sweet_tea_0_instr5_2
+# ::name southern_sweet_tea_0_instr5_2
+# ::snt Then add lemon wedges and mint ( if you would like for garnish and flavor ) .
+# ::root a2
+# ::alignments a2
+# ::snt_id southern_sweet_tea_0_instr5
+(a2 / add-02~e.72
+    :polite +~e.85
+    :purpose (a5 / and~e.75
+                 :op1 (r / research-institute~e.83)
+                 :op2 (f2 / flavor~e.85))
+    :ARG0 (y / you~e.81)
+    :ARG1 (a3 / and~e.75
+              :op1 (w2 / wednesday~e.74
+                       :consist-of (l / lemon~e.73))
+              :op2 (m / mint~e.76))
+    :condition (l2 / like-02~e.81
+                   :ARG0 y
+                   :ARG1 a5)
+    :time (t / then~e.71))
+
+# ::id southern_sweet_tea_0_instr6
+# ::name southern_sweet_tea_0_instr6
+# ::snt Refrigerate until ready to serve .
+# ::root f
+# ::alignments f, y
+# ::snt_id southern_sweet_tea_0_instr6
+(f / freeze-01~e.88
+   :mode imperative~e.88
+   :ARG0 (y / you~e.88)
+   :time (u / until~e.89
+            :op1 (r / ready-02~e.90
+                    :ARG1 y
+                    :ARG2 (s / serve-02~e.92
+                             :ARG0 y))))
+

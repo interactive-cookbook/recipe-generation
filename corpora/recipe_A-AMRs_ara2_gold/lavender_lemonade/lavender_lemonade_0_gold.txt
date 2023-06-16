@@ -1,0 +1,92 @@
+# ::id lavender_lemonade_0_instr0
+# ::name lavender_lemonade_0_instr0
+# ::snt Add honey and lavender buds to a pitcher .
+# ::root a
+# ::alignments a, y
+# ::snt_id lavender_lemonade_0_instr0
+(a / add-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a2 / and~e.3
+             :quant (v / volume-quantity~e.9
+                       :time (e / ever~e.5))
+             :op1 (h / honey~e.2))
+   :ARG2 (p / pitcher~e.8)
+   :rel (l / lavender~e.4))
+
+# ::id lavender_lemonade_0_instr1_0
+# ::name lavender_lemonade_0_instr1_0
+# ::snt Pour hot water over .
+# ::root p
+# ::alignments p
+# ::snt_id lavender_lemonade_0_instr1
+(p / pour-01~e.10
+   :mode imperative~e.10
+   :ARG0 (y / you~e.10)
+   :ARG1 (w / water~e.12
+            :ARG1-of (h / hot-05~e.11))
+   :ARG2 (o / over~e.13))
+
+# ::id lavender_lemonade_0_instr1_1
+# ::name lavender_lemonade_0_instr1_1
+# ::snt Stir hot water to combine well .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_0_instr1
+(s / stir-01~e.15
+   :mode imperative~e.19
+   :purpose (c / combine-01~e.17
+               :ARG1 (w / water~e.12
+                        :ARG1-of (h / hot-05~e.11))
+               :ARG1-of (w2 / well-09~e.18))
+   :ARG0 (y / you~e.15))
+
+# ::id lavender_lemonade_0_instr2
+# ::name lavender_lemonade_0_instr2
+# ::snt Add lemon juice and cold water .
+# ::root a
+# ::alignments a, y
+# ::snt_id lavender_lemonade_0_instr2
+(a / add-02~e.20
+   :mode imperative~e.20
+   :ARG0 (y / you~e.20)
+   :ARG1 (a2 / and~e.23
+             :op1 (j / juice~e.22
+                     :source (l / lemon~e.21))
+             :op2 (w / water~e.25
+                     :ARG1-of (c / cold-01~e.24))))
+
+# ::id lavender_lemonade_0_instr3_0
+# ::name lavender_lemonade_0_instr3_0
+# ::snt To serve .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_0_instr3
+(s / serve-02~e.28
+   :mode imperative~e.28
+   :ARG0 (y / you~e.28))
+
+# ::id lavender_lemonade_0_instr3_1
+# ::name lavender_lemonade_0_instr3_1
+# ::snt Pour over ice .
+# ::root p
+# ::alignments p
+# ::snt_id lavender_lemonade_0_instr3
+(p / pour-01~e.30
+   :mode imperative~e.31
+   :ARG0 (y / you~e.30)
+   :ARG2 (i / ice~e.32))
+
+# ::id lavender_lemonade_0_instr3_2
+# ::name lavender_lemonade_0_instr3_2
+# ::snt Serve with a fresh sprig of lavender .
+# ::root s2
+# ::alignments s2
+# ::snt_id lavender_lemonade_0_instr3
+(s2 / serve-02~e.34
+    :mode imperative~e.41
+    :ARG0 (y / you~e.34)
+    :accompanier (s3 / sprig~e.38
+                     :ARG1-of (f / fresh-04~e.37)
+                     :consist-of (l / lavender~e.40)))
+

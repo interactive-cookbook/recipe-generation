@@ -1,0 +1,252 @@
+# ::id how_to_roast_garlic_7_instr0
+# ::name how_to_roast_garlic_7_instr0
+# ::snt Preheat your oven to 400 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id how_to_roast_garlic_7_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3
+            :poss y)
+   :destination (t / temperature-quantity~e.5
+                   :quant 400~e.5))
+
+# ::id how_to_roast_garlic_7_instr1
+# ::name how_to_roast_garlic_7_instr1
+# ::snt Slice off the top of your garlic bulb ( about ⅓ inch down from the top ) .
+# ::root s
+# ::alignments s, y
+# ::snt_id how_to_roast_garlic_7_instr1
+(s / slip-01~e.8
+   :mode imperative~e.8
+   :ARG0 (y / you~e.8)
+   :ARG1 (t / top~e.11
+            :part-of (b / bulb~e.15
+                        :mod (g / garlic~e.14)
+                        :poss y))
+   :location (d2 / down-03~e.20
+                 :ARG1 t
+                 :ARG3 (a / about~e.17
+                          :op1 (d / distance-quantity~e.19
+                                  :unit (i / inch~e.19)
+                                  :quant 1~e.18))))
+
+# ::id how_to_roast_garlic_7_instr2
+# ::name how_to_roast_garlic_7_instr2
+# ::snt Put the bulb root side down in the middle of the foil .
+# ::root p
+# ::alignments p, y
+# ::snt_id how_to_roast_garlic_7_instr2
+(p / put-01~e.26
+   :mode imperative~e.26
+   :ARG0 (y / you~e.26)
+   :ARG1 (s / side~e.30
+            :mod (r / root~e.29
+                    :part-of (b / bulb~e.28)))
+   :ARG2 (m / middle~e.34
+            :part-of (f / foil~e.37))
+   :direction (d / down~e.31))
+
+# ::id how_to_roast_garlic_7_instr3_0
+# ::name how_to_roast_garlic_7_instr3_0
+# ::snt Drizzle on the oil .
+# ::root p2
+# ::alignments p2
+# ::snt_id how_to_roast_garlic_7_instr3
+(p2 / pour-01~e.39
+    :mode imperative~e.39
+    :ARG0 (y / you~e.39)
+    :ARG1 (o / oil~e.42))
+
+# ::id how_to_roast_garlic_7_instr3_1
+# ::name how_to_roast_garlic_7_instr3_1
+# ::snt Add the salt and pepper .
+# ::root a
+# ::alignments a
+# ::snt_id how_to_roast_garlic_7_instr3
+(a / add-02~e.44
+   :mode imperative~e.39
+   :ARG0 (y / you~e.44)
+   :ARG1 (a3 / and~e.47
+             :op1 (s / salt~e.46)
+             :op2 (p / pepper~e.48)))
+
+# ::id how_to_roast_garlic_7_instr4_0
+# ::name how_to_roast_garlic_7_instr4_0
+# ::snt Sprinkle the water around the base of the garlic this will help .
+# ::root s
+# ::alignments s
+# ::snt_id how_to_roast_garlic_7_instr4
+(s / spray-01~e.50
+   :mode imperative~e.50
+   :ARG0 (y / you~e.50)
+   :ARG1 (w / water~e.52)
+   :ARG2 (a / around~e.53
+            :op1 (b / base~e.55
+                    :part-of (g / garlic~e.58)))
+   :ARG0-of (h / help-01~e.62))
+
+# ::id how_to_roast_garlic_7_instr4_1
+# ::name how_to_roast_garlic_7_instr4_1
+# ::snt Of the garlic ( this will help steam it a bit ) .
+# ::root s2
+# ::alignments s2
+# ::snt_id how_to_roast_garlic_7_instr4
+(s2 / steam-02~e.63
+    :mode imperative~e.63
+    :ARG1 (g / garlic~e.58)
+    :degree (b2 / bit~e.66)
+    :ARG0 (y / you~e.63)
+    :ARG1-of (h / help-01~e.62))
+
+# ::id how_to_roast_garlic_7_instr5
+# ::name how_to_roast_garlic_7_instr5
+# ::snt Create a packet by bringing together 2 opposite edges of the foil and folding them together to create a seal .
+# ::root c
+# ::alignments c, b, f2, c2, s
+# ::snt_id how_to_roast_garlic_7_instr5
+(c / create-01~e.69
+   :mode imperative~e.89
+   :ARG0 (y / you~e.82)
+   :ARG1 (p / packet~e.71)
+   :manner (a / and~e.81
+              :op1 (b / bring-01~e.73
+                      :ARG0 y
+                      :ARG1 (e / edge~e.77
+                               :ARG1-of (o / opposite-01~e.76)
+                               :part-of (f / foil~e.80)
+                               :quant 2~e.75)
+                      :ARG3 (t / together~e.74))
+              :op2 (f2 / fold-03~e.82
+                       :purpose (c2 / create-01~e.86
+                                    :ARG0 y
+                                    :ARG1 (s / seal-01~e.88))
+                       :ARG0 y
+                       :ARG1 e
+                       :manner (t2 / together~e.84))))
+
+# ::id how_to_roast_garlic_7_instr6
+# ::name how_to_roast_garlic_7_instr6
+# ::snt Fold each end to seal them up .
+# ::root f
+# ::alignments f, s
+# ::snt_id how_to_roast_garlic_7_instr6
+(f / file-01~e.90
+   :mode imperative~e.90
+   :purpose (s / seal-01~e.94
+               :ARG0 y
+               :ARG1 e2)
+   :ARG0 (y / you~e.94)
+   :ARG1 (c / child~e.90)
+   :ARG2 (e2 / end~e.92
+             :mod (e / each~e.91)))
+
+# ::id how_to_roast_garlic_7_instr7
+# ::name how_to_roast_garlic_7_instr7
+# ::snt Toss the garlic packet into the oven on the middle rack .
+# ::root t
+# ::alignments t, y
+# ::snt_id how_to_roast_garlic_7_instr7
+(t / toss-01~e.98
+   :ARG0 (y / you~e.98)
+   :ARG1 (p / packet~e.101
+            :consist-of (g / garlic~e.100))
+   :ARG2 (o / oven~e.104
+            :location (r / rack~e.108
+                         :mod (m / middle~e.107))))
+
+# ::id how_to_roast_garlic_7_instr8
+# ::name how_to_roast_garlic_7_instr8
+# ::snt Let it roast for 1 hour 10 minutes .
+# ::root l
+# ::alignments l, r
+# ::snt_id how_to_roast_garlic_7_instr8
+(l / let-01~e.110
+   :mode imperative~e.110
+   :ARG0 (y / you~e.110)
+   :ARG1 (r / roast-01~e.112
+            :ARG1 (i / it~e.111)
+            :duration (t / temporal-quantity~e.115
+                         :unit (h / hour~e.115)
+                         :unit (m / minute~e.117)
+                         :quant 10~e.116)))
+
+# ::id how_to_roast_garlic_7_instr9
+# ::name how_to_roast_garlic_7_instr9
+# ::snt Using a kitchen towel , take it out of the oven ( it 's hot ! )
+# ::root t
+# ::alignments t, u
+# ::snt_id how_to_roast_garlic_7_instr9
+(t / take-out-11~e.124
+   :ARG0 (y / you~e.119)
+   :ARG1 (i / it~e.125)
+   :manner (u / use-01~e.119
+              :ARG0 y
+              :ARG1 (t2 / towel~e.122
+                        :mod (k / kitchen~e.121))
+              :mode imperative~e.124)
+   :source (o / oven~e.129)
+   :ARG1-of (c / cause-01~e.130
+               :ARG0 (h / hot-05~e.133
+                        :ARG1 i)))
+
+# ::id how_to_roast_garlic_7_instr10
+# ::name how_to_roast_garlic_7_instr10
+# ::snt and let it cool for 10 minutes .
+# ::root a
+# ::alignments l, c
+# ::snt_id how_to_roast_garlic_7_instr10
+(a / and~e.136
+   :op2 (l / let-01~e.137
+           :ARG0 (y / you~e.137)
+           :ARG1 (c / cool-01~e.139
+                    :ARG1 (i / it~e.138))
+           :duration (t / temporal-quantity~e.141
+                        :unit (m / minute~e.142)
+                        :quant 10~e.141)
+           :mode imperative~e.143))
+
+# ::id how_to_roast_garlic_7_instr11_0
+# ::name how_to_roast_garlic_7_instr11_0
+# ::snt Open up the packet .
+# ::root o
+# ::alignments o
+# ::snt_id how_to_roast_garlic_7_instr11
+(o / open-up-03~e.144
+   :mode imperative~e.158
+   :ARG0 (y / you~e.144)
+   :ARG1 (p / packet~e.147))
+
+# ::id how_to_roast_garlic_7_instr11_1
+# ::name how_to_roast_garlic_7_instr11_1
+# ::snt Up the packet , turn it upside down .
+# ::root t
+# ::alignments t
+# ::snt_id how_to_roast_garlic_7_instr11
+(t / turn-01~e.149
+   :ARG0 (y / you~e.149)
+   :ARG1 (p / packet~e.147)
+   :direction (u / upside~e.151
+                 :op1 (d / down-03~e.152)))
+
+# ::id how_to_roast_garlic_7_instr11_2
+# ::name how_to_roast_garlic_7_instr11_2
+# ::snt Squeeze out the cloves .
+# ::root s
+# ::alignments s
+# ::snt_id how_to_roast_garlic_7_instr11
+(s / squeeze-01~e.154
+   :mode imperative~e.158
+   :ARG0 (y / you~e.154)
+   :ARG1 (n / nut~e.157))
+
+# ::id how_to_roast_garlic_7_instr12
+# ::name how_to_roast_garlic_7_instr12
+# ::snt That 's it !
+# ::root b
+# ::alignments
+# ::snt_id how_to_roast_garlic_7_instr12
+(b / be-it-07~e.160
+   :ARG1 (t / that~e.159))
+

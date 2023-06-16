@@ -1,0 +1,174 @@
+# ::id cobb_salad_4_instr0
+# ::name cobb_salad_4_instr0
+# ::snt Heat the olive oil in a heavy skillet over medium - high heat .
+# ::root h2
+# ::alignments h2, y
+# ::snt_id cobb_salad_4_instr0
+(h2 / heat-01~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (o / oil~e.4
+             :consist-of (o2 / olive~e.3))
+    :location (s / skillet~e.8
+                 :mod (h3 / heavy~e.7))
+    :manner (h / heat~e.13
+               :ARG1-of (h4 / high-02~e.12
+                            :ARG2 (m / medium~e.10))))
+
+# ::id cobb_salad_4_instr1
+# ::name cobb_salad_4_instr1
+# ::snt Slice the 2 chicken breasts in half lengthwise , so you have 4 thin chicken breasts .
+# ::root s
+# ::alignments s, y
+# ::snt_id cobb_salad_4_instr1
+(s / slash~e.15
+   :mode imperative~e.15
+   :ARG0 (y / you~e.15)
+   :ARG1 (b / breast~e.19
+            :part-of (c2 / chicken~e.18)
+            :quant 2~e.17)
+   :manner (h / half~e.21
+              :ARG1-of (l / long-03~e.22))
+   :ARG0-of (c / cause-01~e.24
+               :ARG1 (h2 / have-03~e.26
+                         :ARG0 y
+                         :ARG1 (b2 / breast~e.30
+                                   :ARG1-of (t / thin-03~e.28)
+                                   :part-of (c3 / chicken~e.29)
+                                   :quant 4~e.27))))
+
+# ::id cobb_salad_4_instr2
+# ::name cobb_salad_4_instr2
+# ::snt Salt and pepper and cook for about 3 - 4 minutes on each side or until cooked all the way through .
+# ::root a4
+# ::alignments c
+# ::snt_id cobb_salad_4_instr2
+(a4 / and~e.35
+    :op1 (a3 / and~e.33
+             :op1 (s / salt~e.32)
+             :op2 (p / pepper~e.34))
+    :op2 (c / cook-01~e.36
+            :duration (a / about~e.38
+                         :op1 (b / between~e.39
+                                 :op1 (t / temporal-quantity~e.42
+                                         :unit (m / minute~e.42)
+                                         :quant 3~e.39)
+                                 :op2 (t2 / temporal-quantity~e.42
+                                          :unit (m2 / minute~e.42)
+                                          :quant 4~e.41)))
+            :location (s2 / side~e.45
+                          :mod (e / each~e.44))
+            :time (u / until~e.47
+                     :op1 (c2 / cook-01~e.48
+                              :path (t3 / through~e.52
+                                        :extent (a2 / all-the-way~e.51))))
+            :ARG0 (y / you~e.36)
+            :mode imperative~e.32))
+
+# ::id cobb_salad_4_instr3_0
+# ::name cobb_salad_4_instr3_0
+# ::snt Slice the chicken breasts .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_4_instr3
+(s / scrap-01~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG1 (b / breast~e.58
+            :part-of (c / chicken~e.57)))
+
+# ::id cobb_salad_4_instr3_1
+# ::name cobb_salad_4_instr3_1
+# ::snt Cook chicken breasts .
+# ::root c2
+# ::alignments c2
+# ::snt_id cobb_salad_4_instr3
+(c2 / cook-01~e.56
+    :mode imperative~e.56
+    :ARG1 (b / breast~e.58
+             :part-of (c / chicken~e.57))
+    :ARG0 (y / you~e.56))
+
+# ::id cobb_salad_4_instr3_2
+# ::name cobb_salad_4_instr3_2
+# ::snt Set aside .
+# ::root s2
+# ::alignments s2
+# ::snt_id cobb_salad_4_instr3
+(s2 / set-01~e.60
+    :mode imperative~e.54
+    :ARG0 (y / you~e.60)
+    :ARG2 (a2 / aside~e.61))
+
+# ::id cobb_salad_4_instr4
+# ::name cobb_salad_4_instr4
+# ::snt Arrange your greens on a plate .
+# ::root a
+# ::alignments a, y
+# ::snt_id cobb_salad_4_instr4
+(a / arrange-01~e.63
+   :mode imperative~e.63
+   :ARG0 (y / you~e.63)
+   :ARG1 (p / plate~e.68)
+   :ARG1 (t / thing~e.69
+            :name (n / name~e.65
+                     :op2 "Greens"~e.65)
+            :poss y))
+
+# ::id cobb_salad_4_instr5_1
+# ::name cobb_salad_4_instr5_1
+# ::snt Add on cheddar cheese , avocado , bacon , blue cheese crumbles , chicken eggs .
+# ::root b4
+# ::alignments b4
+# ::snt_id cobb_salad_4_instr5
+(b4 / bring-on-06~e.70
+    :mode imperative~e.70
+    :ARG0 (y / you~e.70)
+    :ARG1 (a / and~e.74
+             :op1 (c2 / cheese~e.73
+                      :mod (c / cheddar~e.72))
+             :op2 (a2 / avocado~e.75)
+             :op3 (b / bacon~e.77)
+             :op4 (c5 / crumble-01~e.81
+                      :ARG1 (c3 / cheese~e.80
+                                :mod (b2 / blue~e.79)))
+             :op5 (c4 / chicken~e.84)
+             :op6 (e / egg~e.89)))
+
+# ::id cobb_salad_4_instr5_2
+# ::name cobb_salad_4_instr5_2
+# ::snt Slice chicken .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_4_instr5
+(s / slice-01~e.83
+   :mode imperative~e.83
+   :ARG1 (c4 / chicken~e.84)
+   :ARG0 (y / you~e.83))
+
+# ::id cobb_salad_4_instr5_0
+# ::name cobb_salad_4_instr5_0
+# ::snt Hard - boiled eggs .
+# ::root h
+# ::alignments b3, h
+# ::snt_id cobb_salad_4_instr5
+(h / hard-04~e.86
+   :mode imperative~e.86
+   :ARG1 (b3 / boil-01~e.88
+             :ARG1 (e / egg~e.89))
+   :ARG0 (y / you~e.86))
+
+# ::id cobb_salad_4_instr6
+# ::name cobb_salad_4_instr6
+# ::snt Serve with Blue Cheese Dressing .
+# ::root s
+# ::alignments s, y
+# ::snt_id cobb_salad_4_instr6
+(s / serve-02~e.91
+   :mode imperative~e.96
+   :ARG0 (y / you~e.91)
+   :accompanier (p / product~e.95
+                   :name (n / name~e.93
+                            :op1 "Blue"~e.93
+                            :op2 "Cheese"~e.94
+                            :op3 "Dressing"~e.95)))
+

@@ -1,0 +1,183 @@
+# ::id lavender_lemonade_3_instr0_0
+# ::name lavender_lemonade_3_instr0_0
+# ::snt Place water and sugar in medium saucepan .
+# ::root p
+# ::alignments p
+# ::snt_id lavender_lemonade_3_instr0
+(p / place-01~e.1
+   :mode imperative~e.1
+   :ARG1 (a2 / and~e.3
+             :op1 (w / water~e.2)
+             :op2 (s2 / sugar~e.4))
+   :ARG2 (s / saucepan~e.7
+            :mod (m / medium~e.6))
+   :ARG0 (y / you~e.1))
+
+# ::id lavender_lemonade_3_instr0_1
+# ::name lavender_lemonade_3_instr0_1
+# ::snt Add water and sugar lavender .
+# ::root a
+# ::alignments a
+# ::snt_id lavender_lemonade_3_instr0
+(a / add-02~e.9
+   :mode imperative~e.9
+   :ARG1 (l / lavender~e.10)
+   :ARG2 (a2 / and~e.3
+             :op1 (w / water~e.2)
+             :op2 (s2 / sugar~e.4))
+   :ARG0 (y / you~e.9))
+
+# ::id lavender_lemonade_3_instr0_2
+# ::name lavender_lemonade_3_instr0_2
+# ::snt Bring to a boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id lavender_lemonade_3_instr0
+(b2 / bring-01~e.12
+    :mode imperative~e.12
+    :ARG2 (b / boil-01~e.15)
+    :ARG0 (y / you~e.12))
+
+# ::id lavender_lemonade_3_instr1_1
+# ::name lavender_lemonade_3_instr1_1
+# ::snt Turn burner off .
+# ::root t
+# ::alignments t
+# ::snt_id lavender_lemonade_3_instr1
+(t / turn-off-07~e.17
+   :mode imperative~e.17
+   :ARG0 (y / you~e.17)
+   :ARG1 (b / burner~e.18))
+
+# ::id lavender_lemonade_3_instr1_0
+# ::name lavender_lemonade_3_instr1_0
+# ::snt Let simple syrup cool .
+# ::root l
+# ::alignments l, c
+# ::snt_id lavender_lemonade_3_instr1
+(l / let-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :ARG1 (c / cool-01~e.24
+            :ARG1 (s2 / syrup~e.23
+                      :ARG1-of (s / simple-02~e.22))))
+
+# ::id lavender_lemonade_3_instr2_0
+# ::name lavender_lemonade_3_instr2_0
+# ::snt Squeeze lemons .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_3_instr2
+(s / squeeze-01~e.26
+   :mode imperative~e.26
+   :ARG0 (y / you~e.26)
+   :ARG1 (l / lemon~e.27))
+
+# ::id lavender_lemonade_3_instr2_1
+# ::name lavender_lemonade_3_instr2_1
+# ::snt Strain out pits .
+# ::root s2
+# ::alignments s2
+# ::snt_id lavender_lemonade_3_instr2
+(s2 / strain-01~e.29
+    :mode imperative~e.32
+    :ARG0 (y / you~e.29)
+    :ARG1 (p / pit~e.31))
+
+# ::id lavender_lemonade_3_instr3_0
+# ::name lavender_lemonade_3_instr3_0
+# ::snt Pour syrup into a ½ gallon container .
+# ::root p
+# ::alignments p
+# ::snt_id lavender_lemonade_3_instr3
+(p / pour-01~e.33
+   :ARG0 (y / you~e.33)
+   :ARG1 (s3 / syrup~e.34)
+   :ARG3 (c / container~e.39
+            :mod (v / volume-quantity~e.38
+                    :unit (g / gallon~e.38)
+                    :quant "1/2"~e.37)))
+
+# ::id lavender_lemonade_3_instr3_1
+# ::name lavender_lemonade_3_instr3_1
+# ::snt Into a ½ gallon container strain out the lavender .
+# ::root s2
+# ::alignments s2
+# ::snt_id lavender_lemonade_3_instr3
+(s2 / strain-01~e.40
+    :ARG0 (c / container~e.39
+             :mod (v / volume-quantity~e.38
+                     :unit (g / gallon~e.38)
+                     :quant "1/2"~e.37))
+    :ARG1 (l / lavender~e.43))
+
+# ::id lavender_lemonade_3_instr3_2
+# ::name lavender_lemonade_3_instr3_2
+# ::snt Add lemon juice and water .
+# ::root a
+# ::alignments a
+# ::snt_id lavender_lemonade_3_instr3
+(a / add-02~e.45
+   :ARG0 (y / you~e.45)
+   :ARG1 (a3 / and~e.48
+             :op1 (j / juice~e.47
+                     :source (l2 / lemon~e.46))
+             :op2 (w / water~e.49)))
+
+# ::id lavender_lemonade_3_instr3_3
+# ::name lavender_lemonade_3_instr3_3
+# ::snt Then stir .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_3_instr3
+(s / stir-01~e.52
+   :ARG0 (y / you~e.52)
+   :time (t / then~e.51))
+
+# ::id lavender_lemonade_3_instr4
+# ::name lavender_lemonade_3_instr4
+# ::snt Serve over ice .
+# ::root s
+# ::alignments s, y
+# ::snt_id lavender_lemonade_3_instr4
+(s / serve-02~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG2 (i / ice~e.56))
+
+# ::id lavender_lemonade_3_instr5
+# ::name lavender_lemonade_3_instr5
+# ::snt If you are serving it in a drink dispenser for a party , you can add more fresh lavender on top as it will stay purple in color and look pretty and add lemon slices if desired .
+# ::root p2
+# ::alignments a, s, a2
+# ::snt_id lavender_lemonade_3_instr5
+(p2 / possible-01~e.72
+    :ARG1 (a / add-02~e.73
+             :ARG0 (y / you~e.71)
+             :ARG1 (l / lavender~e.76
+                      :quant (m / more~e.74)
+                      :ARG1-of (f / fresh-04~e.75))
+             :ARG2 (t / top~e.78))
+    :condition (s / serve-02~e.61
+                  :purpose (p / party~e.69)
+                  :ARG0 y
+                  :ARG1 (i / it~e.80)
+                  :location (d2 / dispenser~e.66
+                                :purpose (d3 / drink~e.65)))
+    :ARG1-of (c / cause-01~e.79
+                :ARG0 (a3 / and~e.86
+                          :op1 (s3 / stay-01~e.82
+                                   :ARG1 i
+                                   :ARG3 (c2 / color-01~e.85
+                                             :ARG1 i
+                                             :ARG2 (p4 / purple-02~e.83)))
+                          :op2 (l3 / look-02~e.87
+                                   :ARG0 i
+                                   :ARG1 (p3 / pretty~e.88))
+                          :op2 (a2 / add-02~e.90
+                                   :ARG0 y
+                                   :ARG1 (s2 / slice~e.92
+                                             :mod (l2 / lemon~e.91))
+                                   :condition (d / desire-01~e.94
+                                                 :ARG0 y)))))
+

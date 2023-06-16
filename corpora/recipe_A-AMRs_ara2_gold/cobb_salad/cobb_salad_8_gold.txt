@@ -1,0 +1,145 @@
+# ::id cobb_salad_8_instr0
+# ::name cobb_salad_8_instr0
+# ::snt Cover each dinner plate with greens .
+# ::root c
+# ::alignments c, y
+# ::snt_id cobb_salad_8_instr0
+(c / cover-02~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (p / plate~e.4
+            :mod (d / dinner~e.3)
+            :mod (e / each~e.2))
+   :ARG2 (r / Greens~e.6))
+
+# ::id cobb_salad_8_instr1_1
+# ::name cobb_salad_8_instr1_1
+# ::snt With one hard boil egg .
+# ::root b3
+# ::alignments b3
+# ::snt_id cobb_salad_8_instr1
+(b3 / boil-01~e.14
+    :mode imperative~e.14
+    :ARG1 (e3 / egg~e.15
+              :quant 1~e.12)
+    :ARG0 (y / you~e.14)
+    :ARG1-of (h3 / hard-04~e.13))
+
+# ::id cobb_salad_8_instr1_0
+# ::name cobb_salad_8_instr1_0
+# ::snt Garnish each plate with one egg , 1 slice of bacon , one half of an avocado , one half of a chicken breast , tomato and one ounce of blue cheese crumbles .
+# ::root e2
+# ::alignments e2
+# ::snt_id cobb_salad_8_instr1
+(e2 / eat-01~e.8
+    :mode imperative~e.8
+    :ARG0 (y / you~e.8)
+    :ARG1 (p / plate~e.10
+             :mod (e / each~e.9))
+    :ARG2 (a / and~e.16
+             :op1 (e3 / egg~e.15
+                      :quant 1~e.12)
+             :op2 (b / bacon~e.21
+                     :consist-of (s / slice~e.18
+                                    :quant 1~e.17))
+             :op3 (h / half~e.24
+                     :part-of (a2 / avocado~e.27)
+                     :quant 1~e.23)
+             :op4 (h2 / half~e.30
+                      :part-of (b4 / breast~e.34
+                                   :mod (c2 / chicken~e.33))
+                      :quant 1~e.29)
+             :op5 (t2 / tomato~e.37)
+             :op6 (t / thing~e.45
+                     :quant (m / mass-quantity~e.40
+                               :unit (o / ounce~e.40)
+                               :quant 1~e.39)
+                     :ARG1-of (c4 / crumble-01~e.44
+                                  :ARG1 (c / cheese~e.43
+                                           :mod (b2 / blue~e.42))))))
+
+# ::id cobb_salad_8_instr1_2
+# ::name cobb_salad_8_instr1_2
+# ::snt Crumbl 1 slice bacon .
+# ::root c3
+# ::alignments c3
+# ::snt_id cobb_salad_8_instr1
+(c3 / crumble-01~e.20
+    :mode imperative~e.20
+    :ARG1 (b / bacon~e.21
+             :consist-of (s / slice~e.18
+                            :quant 1~e.17))
+    :ARG0 (y / you~e.20))
+
+# ::id cobb_salad_8_instr1_3
+# ::name cobb_salad_8_instr1_3
+# ::snt Dice tomato .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_8_instr1
+(d / dump-01~e.36
+   :mode imperative~e.36
+   :ARG1 (t2 / tomato~e.37)
+   :ARG0 (y / you~e.36))
+
+# ::id cobb_salad_8_instr2
+# ::name cobb_salad_8_instr2
+# ::snt Top with your favorite dressing .
+# ::root t
+# ::alignments t
+# ::snt_id cobb_salad_8_instr2
+(t / top~e.46
+   :ARG2 (d / dressing~e.50
+            :ARG1-of (f / favor-01~e.49
+                        :ARG0 (y / you~e.48))))
+
+# ::id cobb_salad_8_instr3
+# ::name cobb_salad_8_instr3
+# ::snt Note : A tip to make this a very easy meal is to purchase the hard boiled eggs , pre - cooked bacon , blue cheese crumbles and pre - cooked chicken .
+# ::root n
+# ::alignments b4, c3, b2, c4
+# ::snt_id cobb_salad_8_instr3
+(n / note-01~e.52
+   :ARG1 (t2 / tip-05~e.55
+             :purpose (m / make-02~e.57
+                         :ARG1 (m2 / meal~e.62
+                                   :domain (t / this~e.58)
+                                   :ARG1-of (e / easy-05~e.61
+                                               :degree (v / very~e.60))))
+             :ARG2 (p / purchase-01~e.65
+                      :ARG1 (a / and~e.70
+                               :op1 (e2 / egg~e.69
+                                        :ARG1-of (b4 / boil-01~e.68
+                                                     :ARG1-of (h / hard-04~e.67)))
+                               :op2 (b / bacon~e.74
+                                       :ARG1-of (c3 / cook-01~e.73
+                                                    :time (b2 / before~e.71
+                                                              :op1 (c4 / cook-01~e.82
+                                                                       :ARG1 c2))))
+                               :op3 (c5 / crumble-01~e.78
+                                        :ARG1 (c / cheese~e.77
+                                                 :mod (b3 / blue~e.76)))
+                               :op4 (c2 / chicken~e.83)))))
+
+# ::id cobb_salad_8_instr4_0
+# ::name cobb_salad_8_instr4_0
+# ::snt Just assemble .
+# ::root a2
+# ::alignments a2
+# ::snt_id cobb_salad_8_instr4
+(a2 / assemble-02~e.86
+    :mode imperative~e.89
+    :ARG0 (y / you~e.86)
+    :mod (j / just~e.85))
+
+# ::id cobb_salad_8_instr4_1
+# ::name cobb_salad_8_instr4_1
+# ::snt Just enjoy !
+# ::root e
+# ::alignments e
+# ::snt_id cobb_salad_8_instr4
+(e / enjoy-01~e.88
+   :mode imperative~e.89
+   :ARG0 (y / you~e.88)
+   :mod (j / just~e.85))
+

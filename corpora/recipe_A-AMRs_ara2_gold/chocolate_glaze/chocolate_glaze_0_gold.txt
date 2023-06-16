@@ -1,0 +1,143 @@
+# ::id chocolate_glaze_0_instr0
+# ::name chocolate_glaze_0_instr0
+# ::snt Step 1Place the chocolate in a large bowl .
+# ::root t
+# ::alignments t
+# ::snt_id chocolate_glaze_0_instr0
+(t / thing~e.2
+   :mod 1Place~e.2
+   :ARG4-of (s / step-01~e.1
+               :ARG2 (b / bowl~e.8
+                        :mod (l / large~e.7)))
+   :location-of (c / chocolate~e.4))
+
+# ::id chocolate_glaze_0_instr1
+# ::name chocolate_glaze_0_instr1
+# ::snt Step 2In a medium saucepan , combine the butter , cream , water , vanilla , corn syrup and salt .
+# ::root c
+# ::alignments c
+# ::snt_id chocolate_glaze_0_instr1
+(c / combine-01~e.16
+   :mode imperative~e.16
+   :ARG1 (a / and~e.19
+            :op1 (b / butter~e.18)
+            :op2 (c3 / cream~e.20)
+            :op3 (w / water~e.22)
+            :op4 (v / vanilla~e.24)
+            :op5 (s4 / syrup~e.27
+                     :mod (c2 / corn~e.26))
+            :op6 (s / salt~e.29))
+   :location (s2 / saucepan~e.14
+                 :mod (m / medium~e.13))
+   :ARG0 (y / you~e.16)
+   :ARG4-of (s3 / step-01~e.10))
+
+# ::id chocolate_glaze_0_instr2
+# ::name chocolate_glaze_0_instr2
+# ::snt Bring to a good simmer over high heat .
+# ::root b
+# ::alignments b, y
+# ::snt_id chocolate_glaze_0_instr2
+(b / bring-01~e.31
+   :mode imperative~e.31
+   :ARG0 (y / you~e.31)
+   :ARG2 (s / simmer-01~e.35
+            :condition (h / heat~e.38
+                          :ARG1-of (h2 / high-02~e.37))
+            :ARG1-of (g / good-02~e.34)))
+
+# ::id chocolate_glaze_0_instr3
+# ::name chocolate_glaze_0_instr3
+# ::snt Remove from heat .
+# ::root r
+# ::alignments
+# ::snt_id chocolate_glaze_0_instr3
+(r / remove-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG2 (h / heat~e.42))
+
+# ::id chocolate_glaze_0_instr4
+# ::name chocolate_glaze_0_instr4
+# ::snt Step 3Pour the cream mixture over the chocolate and gently stir to combine , melting the chocolate and forming a glaze .
+# ::root a
+# ::alignments p, s2, m, f, s
+# ::snt_id chocolate_glaze_0_instr4
+(a / and~e.52
+   :op1 (p / pour-01~e.45
+           :ARG1 (m2 / mixture~e.48
+                     :consist-of (c3 / cream~e.47))
+           :ARG2 (c / chocolate~e.51)
+           :ARG0 (y / you~e.45)
+           :mode imperative~e.45)
+   :op2 (s2 / stir-01~e.54
+            :purpose (c2 / combine-01~e.56
+                         :ARG2 m2)
+            :manner (g / gentle~e.53)
+            :ARG0 (y1 / you~e.54)
+            :mode imperative~e.54)
+   :op3 (a2 / and~e.61
+            :op1 (m / melt-01~e.58
+                    :ARG1 c)
+            :op2 (f / form-01~e.62
+                    :ARG1 (g2 / glaze~e.64)))
+   :ARG4-of (s / step-01~e.44))
+
+# ::id chocolate_glaze_0_instr5
+# ::name chocolate_glaze_0_instr5
+# ::snt Step 4The glaze will thicken as it cools .
+# ::root t
+# ::alignments c
+# ::snt_id chocolate_glaze_0_instr5
+(t / thicken-01~e.70
+   :ARG1 (g / glaze~e.68)
+   :time (c / cool-06~e.73
+            :ARG1 g)
+   :ARG4-of (s / step-01~e.66))
+
+# ::id chocolate_glaze_0_instr6_0
+# ::name chocolate_glaze_0_instr6_0
+# ::snt This makes 2 1/2 cups glaze , which will keep for up to 1 week , refrigerated .
+# ::root m
+# ::alignments k
+# ::snt_id chocolate_glaze_0_instr6
+(m / make-01~e.76
+   :ARG0 (t2 / this~e.75)
+   :ARG1 (g / glaze~e.80
+            :quant (v / volume-quantity~e.79
+                      :unit (c3 / cup~e.79)
+                      :quant 2.5~e.78)
+            :ARG0-of (k / keep-02~e.84
+                        :ARG1 (u / up-to~e.86
+                                 :op1 (t / temporal-quantity~e.89
+                                         :unit (w / week~e.89)
+                                         :quant 1~e.88)))
+            :ARG1-of (c / cold-01~e.93)))
+
+# ::id chocolate_glaze_0_instr6_1
+# ::name chocolate_glaze_0_instr6_1
+# ::snt This makes 2 1/2 cups glaze , which will , covered and refrigerated .
+# ::root m
+# ::alignments c2
+# ::snt_id chocolate_glaze_0_instr6
+(m / make-01~e.76
+   :ARG0 (t2 / this~e.75)
+   :ARG1 (g / glaze~e.80
+            :quant (v / volume-quantity~e.79
+                      :unit (c3 / cup~e.79)
+                      :quant 2.5~e.78)
+            :ARG1-of (c2 / cover-02~e.91)
+            :ARG1-of (c / cold-01~e.93)))
+
+# ::id chocolate_glaze_0_instr7
+# ::name chocolate_glaze_0_instr7
+# ::snt Rewarm slightly to thin .
+# ::root r
+# ::alignments r
+# ::snt_id chocolate_glaze_0_instr7
+(r / reverse-01~e.95
+   :mode imperative~e.95
+   :purpose (t / thin-03~e.98
+               :degree (s / slight~e.96))
+   :ARG0 (y / you~e.95))
+

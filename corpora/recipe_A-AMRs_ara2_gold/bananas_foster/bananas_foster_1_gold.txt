@@ -1,0 +1,235 @@
+# ::id bananas_foster_1_instr0
+# ::name bananas_foster_1_instr0
+# ::snt In a small pot or pan , add in rum , cinnamon , vanilla extract and dark brown sugar .
+# ::root a
+# ::alignments a
+# ::snt_id bananas_foster_1_instr0
+(a / add-02~e.8
+   :mode imperative~e.8
+   :ARG1 (a2 / and~e.16
+             :op1 (r / rum~e.10)
+             :op2 (c / cinnamon~e.12)
+             :op3 (e / extract-01~e.15
+                     :ARG1 (v / vanilla~e.14))
+             :op4 (s2 / sugar~e.19
+                      :mod (b / brown~e.18
+                              :ARG1-of (d / dark-02~e.17))))
+   :location (o / or~e.5
+                :op1 (p2 / pot~e.4
+                         :mod (s / small~e.3))
+                :op2 (p / pan~e.6
+                        :mod s))
+   :ARG0 (y / you~e.8))
+
+# ::id bananas_foster_1_instr1_0
+# ::name bananas_foster_1_instr1_0
+# ::snt Stir .
+# ::root s
+# ::alignments s
+# ::snt_id bananas_foster_1_instr1
+(s / stir-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21))
+
+# ::id bananas_foster_1_instr1_1
+# ::name bananas_foster_1_instr1_1
+# ::snt Bring to boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id bananas_foster_1_instr1
+(b2 / bring-01~e.23
+    :mode imperative~e.26
+    :ARG0 (y / you~e.23)
+    :ARG2 (b / boil-01~e.25))
+
+# ::id bananas_foster_1_instr2
+# ::name bananas_foster_1_instr2
+# ::snt Set aside .
+# ::root s
+# ::alignments s
+# ::snt_id bananas_foster_1_instr2
+(s / set-01~e.27
+   :mode imperative~e.27
+   :ARG2 (a / aside~e.28)
+   :ARG0 (y / you~e.27))
+
+# ::id bananas_foster_1_instr3_2
+# ::name bananas_foster_1_instr3_2
+# ::snt Slice bananas .
+# ::root s2
+# ::alignments s2
+# ::snt_id bananas_foster_1_instr3
+(s2 / slice-01~e.44
+    :mode imperative~e.44
+    :ARG1 (b / banana~e.45)
+    :ARG0 (y / you~e.44))
+
+# ::id bananas_foster_1_instr3_0
+# ::name bananas_foster_1_instr3_0
+# ::snt In a large pan or skillet , melt the butter .
+# ::root m
+# ::alignments m
+# ::snt_id bananas_foster_1_instr3
+(m / melt-01~e.37
+   :mode imperative~e.37
+   :ARG1 (b2 / butter~e.39)
+   :location (o / or~e.34
+                :op1 (p / pan~e.33
+                        :mod (l / large~e.32))
+                :op2 (s / skillet~e.35))
+   :ARG0 (y / you~e.37))
+
+# ::id bananas_foster_1_instr3_1
+# ::name bananas_foster_1_instr3_1
+# ::snt In a large pan or skillet , add in the bananas .
+# ::root a
+# ::alignments a
+# ::snt_id bananas_foster_1_instr3
+(a / add-02~e.41
+   :mode imperative~e.41
+   :ARG1 (b / banana~e.45)
+   :location (o / or~e.34
+                :op1 (p / pan~e.33
+                        :mod (l / large~e.32))
+                :op2 (s / skillet~e.35))
+   :ARG0 (y / you~e.41))
+
+# ::id bananas_foster_1_instr4_1
+# ::name bananas_foster_1_instr4_1
+# ::snt Sprinkle some salt onto the bananas .
+# ::root s5
+# ::alignments s5
+# ::snt_id bananas_foster_1_instr4
+(s5 / spray-01~e.47
+    :mode imperative~e.47
+    :ARG0 (y / you~e.47)
+    :ARG1 (s / salt~e.49
+             :quant (s4 / some~e.48))
+    :ARG2 (b / banana~e.52))
+
+# ::id bananas_foster_1_instr4_0
+# ::name bananas_foster_1_instr4_0
+# ::snt Onto the bananas allow them to brown slightly on each sides .
+# ::root a
+# ::alignments a, r
+# ::snt_id bananas_foster_1_instr4
+(a / allow-01~e.54
+   :mode imperative~e.47
+   :ARG0 (y / you~e.54)
+   :ARG1 (r / Brown~e.57
+            :degree (s3 / slight~e.58)
+            :domain (b / banana~e.52)
+            :location (s2 / side~e.61
+                          :mod (e / each~e.60))))
+
+# ::id bananas_foster_1_instr5_0
+# ::name bananas_foster_1_instr5_0
+# ::snt Pour in the cinnamon sugar mixture .
+# ::root p2
+# ::alignments p2
+# ::snt_id bananas_foster_1_instr5
+(p2 / pour-01~e.63
+    :mode imperative~e.63
+    :ARG0 (y / you~e.63)
+    :ARG1 (m / mix-01~e.68
+             :ARG1 (s / sugar~e.67
+                      :consist-of (c / cinnamon~e.66))))
+
+# ::id bananas_foster_1_instr5_1
+# ::name bananas_foster_1_instr5_1
+# ::snt In the cinnamon sugar mixture swirl the pan to coat the bananas .
+# ::root s2
+# ::alignments s2
+# ::snt_id bananas_foster_1_instr5
+(s2 / swirl-01~e.70
+    :mode imperative~e.77
+    :purpose (c2 / coat-01~e.74
+                 :ARG1 (b / banana~e.76)
+                 :ARG2 (m / mix-01~e.68
+                          :ARG1 (s / sugar~e.67
+                                   :consist-of (c / cinnamon~e.66))))
+    :ARG0 (y / you~e.70)
+    :ARG1 (p / pan~e.72))
+
+# ::id bananas_foster_1_instr6
+# ::name bananas_foster_1_instr6
+# ::snt If the cinnamon sugar has thickened , warm it up gently again .
+# ::root h
+# ::alignments w, y
+# ::snt_id bananas_foster_1_instr6
+(h / have-condition-91~e.78
+   :ARG1 (w / warm-up-02~e.85
+            :ARG0 (y / you~e.85)
+            :ARG1 (s / sugar~e.81
+                     :mod (c / cinnamon~e.80)
+                     :ARG1-of t)
+            :manner (g / gentle~e.88)
+            :mod (a / again~e.89)
+            :mode imperative~e.90)
+   :ARG2 (t / thick-03~e.83))
+
+# ::id bananas_foster_1_instr7_1
+# ::name bananas_foster_1_instr7_1
+# ::snt Turn off heat .
+# ::root t2
+# ::alignments t2
+# ::snt_id bananas_foster_1_instr7
+(t2 / turn-off-07~e.91
+    :mode imperative~e.91
+    :ARG0 (y / you~e.91)
+    :ARG1 (h / heat-01~e.93))
+
+# ::id bananas_foster_1_instr7_0
+# ::name bananas_foster_1_instr7_0
+# ::snt Allow to cool slightly .
+# ::root a
+# ::alignments a, c
+# ::snt_id bananas_foster_1_instr7
+(a / allow-01~e.95
+   :mode imperative~e.105
+   :ARG0 (y / you~e.95)
+   :ARG1 (c / cool-01~e.97
+            :ARG1 y
+            :degree (s / slight~e.98)))
+
+# ::id bananas_foster_1_instr7_2
+# ::name bananas_foster_1_instr7_2
+# ::snt Transfer onto plate or bowl .
+# ::root t
+# ::alignments t
+# ::snt_id bananas_foster_1_instr7
+(t / transfer-01~e.100
+   :ARG0 (y / you~e.100)
+   :ARG2 (o / or~e.103
+            :op1 (p / plate~e.102)
+            :op2 (b2 / bowl~e.104)))
+
+# ::id bananas_foster_1_instr8_0
+# ::name bananas_foster_1_instr8_0
+# ::snt Top scoop or two of vanilla ice - cream .
+# ::root t
+# ::alignments t
+# ::snt_id bananas_foster_1_instr8
+(t / top~e.106
+   :ARG2 (i / ice-cream~e.115
+            :quant (o / or~e.110
+                      :op1 (s / scoop~e.109)
+                      :op2 2~e.111)
+            :mod (v / vanilla~e.113)))
+
+# ::id bananas_foster_1_instr8_1
+# ::name bananas_foster_1_instr8_1
+# ::snt Scoop or two of vanilla ice - cream serve immediately .
+# ::root s2
+# ::alignments s2
+# ::snt_id bananas_foster_1_instr8
+(s2 / serve-02~e.118
+    :mode imperative~e.118
+    :ARG1 (i / ice-cream~e.115
+             :quant (o / or~e.110
+                       :op1 (s / scoop~e.109)
+                       :op2 2~e.111)
+             :mod (v / vanilla~e.113))
+    :time (i2 / immediate~e.119)
+    :ARG0 (y / you~e.118))
+

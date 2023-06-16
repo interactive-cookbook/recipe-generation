@@ -1,0 +1,254 @@
+# ::id peanut_butter_bars_7_instr0
+# ::name peanut_butter_bars_7_instr0
+# ::snt Preheat oven to 350 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id peanut_butter_bars_7_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.2)
+   :destination (t / temperature-quantity~e.4
+                   :quant 350~e.4))
+
+# ::id peanut_butter_bars_7_instr1
+# ::name peanut_butter_bars_7_instr1
+# ::snt In a large bowl , combine crust ingredients on low to medium speed just until mixture is evenly mixed and moist .
+# ::root c
+# ::alignments c, y
+# ::snt_id peanut_butter_bars_7_instr1
+(c / combine-01~e.12
+   :mode imperative~e.28
+   :ARG0 (y / you~e.12)
+   :ARG1 (i / ingredient~e.14
+            :purpose (c2 / crust~e.13))
+   :location (b / bowl~e.10
+                :mod (l / large~e.9))
+   :manner (a / and~e.26
+              :op1 (s / speed~e.19
+                      :mod (l2 / low-04~e.16))
+              :op2 (s2 / speed~e.19
+                       :mod (m / medium~e.18)))
+   :time (u / until~e.21
+            :mod (j / just~e.20)
+            :op1 (a2 / and~e.26
+                     :op1 (m2 / mix-01~e.25
+                              :ARG1 (m3 / mixture~e.22)
+                              :ARG1-of (e / even-02~e.24))
+                     :op2 (m4 / moist-02~e.27
+                              :ARG1 m3))))
+
+# ::id peanut_butter_bars_7_instr2
+# ::name peanut_butter_bars_7_instr2
+# ::snt ( It will start clumping together . )
+# ::root s
+# ::alignments
+# ::snt_id peanut_butter_bars_7_instr2
+(s / start-01~e.32
+   :ARG0 (i / it~e.30)
+   :ARG1 (c / clamp-01~e.33
+            :mod (t / together~e.34)))
+
+# ::id peanut_butter_bars_7_instr3_0
+# ::name peanut_butter_bars_7_instr3_0
+# ::snt Dump into an 8 x 8 inch baking pan that has been .
+# ::root d3
+# ::alignments d3
+# ::snt_id peanut_butter_bars_7_instr3
+(d3 / dump-01~e.37
+    :mode imperative~e.37
+    :ARG0 (y / you~e.37)
+    :ARG1 (p / pan~e.45
+             :mod (p2 / product-of~e.41
+                      :op1 (d / distance-quantity~e.43
+                              :unit (i / inch~e.43)
+                              :quant 8~e.40)
+                      :op2 (d2 / distance-quantity~e.43
+                               :unit (i2 / inch~e.43)
+                               :quant 8~e.40))
+             :instrument-of (b / bake-01~e.44)))
+
+# ::id peanut_butter_bars_7_instr3_1
+# ::name peanut_butter_bars_7_instr3_1
+# ::snt Into an 8 x 8 inch baking pan that has spray with non - stick cooking spray .
+# ::root s2
+# ::alignments s2
+# ::snt_id peanut_butter_bars_7_instr3
+(s2 / spray-01~e.49
+    :mode imperative~e.49
+    :ARG1 (p / pan~e.45
+             :mod (p2 / product-of~e.41
+                      :op1 (d / distance-quantity~e.43
+                              :unit (i / inch~e.43)
+                              :quant 8~e.40)
+                      :op2 (d2 / distance-quantity~e.43
+                               :unit (i2 / inch~e.43)
+                               :quant 8~e.40))
+             :instrument-of (b / bake-01~e.44))
+    :ARG2 (s / spray~e.55
+             :ARG1-of (s3 / stick-01~e.53
+                          :polarity -~e.51)
+             :instrument-of (c / cook-01~e.54))
+    :ARG0 (y / you~e.49))
+
+# ::id peanut_butter_bars_7_instr4
+# ::name peanut_butter_bars_7_instr4
+# ::snt Press mixture onto bottom of pan in an even layer .
+# ::root p2
+# ::alignments p2, y
+# ::snt_id peanut_butter_bars_7_instr4
+(p2 / press-01~e.57
+    :mode imperative~e.67
+    :ARG0 (y / you~e.57)
+    :ARG1 (m / mixture~e.58)
+    :ARG2 (b / bottom~e.60
+             :part-of (p / pan~e.62))
+    :manner (l / layer~e.66
+               :ARG1-of (e / even-02~e.65)))
+
+# ::id peanut_butter_bars_7_instr5
+# ::name peanut_butter_bars_7_instr5
+# ::snt ( Use wet fingers if mixture sticks to skin . )
+# ::root u
+# ::alignments
+# ::snt_id peanut_butter_bars_7_instr5
+(u / use-01~e.69
+   :mode imperative~e.69
+   :ARG0 (y / you~e.69)
+   :ARG1 (f / finger~e.71
+            :ARG1-of (w / wet-01~e.70))
+   :condition (s2 / stick-01~e.74
+                  :ARG1 (m / mixture~e.73)
+                  :ARG2 (s / skin~e.76)))
+
+# ::id peanut_butter_bars_7_instr6_0
+# ::name peanut_butter_bars_7_instr6_0
+# ::snt Prick 6 - 8 times with a fork .
+# ::root m
+# ::alignments m
+# ::snt_id peanut_butter_bars_7_instr6
+(m / match-03~e.79
+   :mode imperative~e.79
+   :ARG0 (y / you~e.79)
+   :frequency (b2 / between~e.80
+                  :op1 6~e.80
+                  :op2 8~e.82)
+   :instrument (f / fork~e.86))
+
+# ::id peanut_butter_bars_7_instr6_1
+# ::name peanut_butter_bars_7_instr6_1
+# ::snt Then bake for 15 - 20 minutes or until golden brown around edges .
+# ::root b
+# ::alignments b
+# ::snt_id peanut_butter_bars_7_instr6
+(b / bake-01~e.89
+   :mode imperative~e.79
+   :ARG0 (y / you~e.89)
+   :duration (o / or~e.95
+                :op1 (b3 / between~e.91
+                         :op1 (t / temporal-quantity~e.91
+                                 :unit (m2 / minute~e.94)
+                                 :quant 15~e.91)
+                         :op2 (t2 / temporal-quantity~e.93
+                                  :unit (m3 / minute~e.94)
+                                  :quant 20~e.93))
+                :op2 (u / until~e.96
+                        :op1 (b4 / brown-01~e.98
+                                 :ARG1 (g / gold~e.97)
+                                 :location (a2 / around~e.99
+                                               :op1 (e / edge~e.100)))))
+   :time (t3 / then~e.88))
+
+# ::id peanut_butter_bars_7_instr7
+# ::name peanut_butter_bars_7_instr7
+# ::snt Meanwhile , beat the ingredients for the filling on medium speed until smooth .
+# ::root b
+# ::alignments b, y
+# ::snt_id peanut_butter_bars_7_instr7
+(b / beat-01~e.104
+   :mode imperative~e.115
+   :ARG0 (y / you~e.104)
+   :ARG1 (i / ingredient~e.106
+            :purpose (f / fill-01~e.109))
+   :duration (u / until~e.113
+                :op1 (s / smooth-01~e.114
+                        :ARG1 i))
+   :instrument (s2 / speed~e.112
+                   :mod (m2 / medium~e.111))
+   :time (m / meanwhile~e.102))
+
+# ::id peanut_butter_bars_7_instr8_1
+# ::name peanut_butter_bars_7_instr8_1
+# ::snt When crust is done , spread mixture evenly over crust .
+# ::root s2
+# ::alignments s2
+# ::snt_id peanut_butter_bars_7_instr8
+(s2 / spread-01~e.121
+    :mode imperative~e.121
+    :ARG0 (y / you~e.121)
+    :ARG1 (m4 / mixture~e.122)
+    :ARG2 (c2 / crust~e.125)
+    :time (b2 / be-done-08~e.119
+              :ARG1 (c / crust~e.117))
+    :ARG1-of (e / even-02~e.123))
+
+# ::id peanut_butter_bars_7_instr8_0
+# ::name peanut_butter_bars_7_instr8_0
+# ::snt When crust is done , bake for 25 - 30 minutes or just until middle is puffed and just set .
+# ::root b
+# ::alignments b, s
+# ::snt_id peanut_butter_bars_7_instr8
+(b / bake-01~e.127
+   :mode imperative~e.142
+   :ARG0 (y / you~e.127)
+   :duration (o / or~e.133
+                :op1 (b3 / between~e.129
+                         :op1 (t / temporal-quantity~e.129
+                                 :unit (m2 / minute~e.132)
+                                 :quant 25~e.129)
+                         :op2 (t2 / temporal-quantity~e.131
+                                  :unit (m3 / minute~e.132)
+                                  :quant 30~e.131))
+                :op2 (u / until~e.135
+                        :op1 (a2 / and~e.139
+                                 :op1 (p / puff-01~e.138
+                                         :ARG1 (m / middle~e.136))
+                                 :op2 (s / set-01~e.141
+                                         :ARG1 m
+                                         :mod (j / just~e.140)))))
+   :time (b2 / be-done-08~e.119
+             :ARG1 (c / crust~e.117)))
+
+# ::id peanut_butter_bars_7_instr9_0
+# ::name peanut_butter_bars_7_instr9_0
+# ::snt Cool completely on wire rack .
+# ::root c2
+# ::alignments c2
+# ::snt_id peanut_butter_bars_7_instr9
+(c2 / cool-01~e.143
+    :mode imperative~e.143
+    :location (r / rack~e.147
+                 :consist-of (w / wire~e.146))
+    :ARG0 (y / you~e.143)
+    :ARG1-of (c / complete-02~e.144))
+
+# ::id peanut_butter_bars_7_instr9_1
+# ::name peanut_butter_bars_7_instr9_1
+# ::snt Cut into bars .
+# ::root c3
+# ::alignments c3
+# ::snt_id peanut_butter_bars_7_instr9
+(c3 / cut-01~e.149
+    :mode imperative~e.149
+    :ARG2 (b / bar~e.151)
+    :ARG0 (y / you~e.149))
+
+# ::id peanut_butter_bars_7_instr10
+# ::name peanut_butter_bars_7_instr10
+# ::snt 9 bars .
+# ::root b
+# ::alignments
+# ::snt_id peanut_butter_bars_7_instr10
+(b / bar~e.154
+   :quant 9~e.153)
+

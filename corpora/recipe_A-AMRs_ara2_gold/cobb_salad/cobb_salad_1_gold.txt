@@ -1,0 +1,344 @@
+# ::id cobb_salad_1_instr0
+# ::name cobb_salad_1_instr0
+# ::snt 1 ) In a medium pan over medium heat , cook the bacon until golden and crispy and the fat is rendered , about 3 to 5 mins .
+# ::root c
+# ::alignments c, y
+# ::snt_id cobb_salad_1_instr0
+(c / cook-01~e.11
+   :li 1~e.1
+   :mode imperative~e.29
+   :ARG0 (y / you~e.11)
+   :ARG1 (b / bacon~e.13)
+   :duration (a / about~e.24
+                :op1 (b2 / between~e.25
+                         :op1 (t / temporal-quantity~e.28
+                                 :unit (m3 / minute~e.28)
+                                 :quant 3~e.25)
+                         :op2 (t2 / temporal-quantity~e.28
+                                  :unit (m4 / minute~e.28)
+                                  :quant 5~e.27)))
+   :location (p / pan~e.6
+                :mod (m / medium~e.5)
+                :ARG1-of (h / heat-01~e.9
+                            :mod (m2 / medium~e.8)))
+   :time (u / until~e.14
+            :op1 (a2 / and~e.16
+                     :op1 (g / gold~e.15)
+                     :op2 (c2 / crispy~e.17)
+                     :op2 (r / render-02~e.22
+                             :ARG1 (f / fat~e.20)))))
+
+# ::id cobb_salad_1_instr1_0
+# ::name cobb_salad_1_instr1_0
+# ::snt Remove with a slotted spoon .
+# ::root r
+# ::alignments r
+# ::snt_id cobb_salad_1_instr1
+(r / remove-01~e.30
+   :mode imperative~e.43
+   :ARG0 (y / you~e.30)
+   :instrument (s2 / spoon~e.34
+                   :ARG1-of (s / slant-01~e.33)))
+
+# ::id cobb_salad_1_instr1_1
+# ::name cobb_salad_1_instr1_1
+# ::snt Drain on paper towels .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_1_instr1
+(d / drain-01~e.36
+   :ARG0 (y / you~e.36)
+   :ARG2 (p2 / please~e.39
+             :mod (p / paper~e.38)))
+
+# ::id cobb_salad_1_instr1_2
+# ::name cobb_salad_1_instr1_2
+# ::snt Reserve .
+# ::root r2
+# ::alignments r2
+# ::snt_id cobb_salad_1_instr1
+(r2 / reserve-01~e.42
+    :mode imperative~e.43
+    :ARG0 (y / you~e.42))
+
+# ::id cobb_salad_1_instr2_0
+# ::name cobb_salad_1_instr2_0
+# ::snt Halve the avocado .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_1_instr2
+(c / cut-02~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :ARG1 (a2 / avocado~e.48))
+
+# ::id cobb_salad_1_instr2_1
+# ::name cobb_salad_1_instr2_1
+# ::snt Remove the seed .
+# ::root r
+# ::alignments r
+# ::snt_id cobb_salad_1_instr2
+(r / remove-01~e.50
+   :mode imperative~e.66
+   :ARG0 (y / you~e.50)
+   :ARG1 (s2 / seed~e.52))
+
+# ::id cobb_salad_1_instr2_2
+# ::name cobb_salad_1_instr2_2
+# ::snt Scoop the avocado , the halves out of the skin with a large spoon .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_1_instr2
+(s / scoop-01~e.55
+   :ARG0 (y / you~e.55)
+   :ARG1 (h / half~e.57
+            :part-of (a2 / avocado~e.48))
+   :ARG2 (s3 / skin~e.61)
+   :instrument (s4 / spoon~e.65
+                   :mod (l / large~e.64)))
+
+# ::id cobb_salad_1_instr3_1
+# ::name cobb_salad_1_instr3_1
+# ::snt In a small bowl , gently toss with lemon juice .
+# ::root t
+# ::alignments t
+# ::snt_id cobb_salad_1_instr3
+(t / toss-01~e.78
+   :mode imperative~e.67
+   :ARG0 (y / you~e.78)
+   :ARG1 (j / juice~e.81
+            :source (l / lemon~e.80))
+   :location (b / bowl~e.75
+                :mod (s / small~e.74))
+   :manner (g / gentle~e.77))
+
+# ::id cobb_salad_1_instr3_0
+# ::name cobb_salad_1_instr3_0
+# ::snt Dice the avocado .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_1_instr3
+(d / ditch-01~e.67
+   :mode imperative~e.67
+   :ARG0 (y / you~e.67)
+   :ARG1 (a2 / avocado~e.69))
+
+# ::id cobb_salad_1_instr4
+# ::name cobb_salad_1_instr4
+# ::snt 3 ) To assemble the salad : use a large , straight - sided glass bowl , if possible - layer the ingredients in the following order : romaine lettuce , chicken , tomatoes , Bibb lettuce , eggs , reserved bacon , spring onions , avocado , watercress , and finally the blue cheese .
+# ::root a
+# ::alignments u, l2, r
+# ::snt_id cobb_salad_1_instr4
+(a / and~e.113
+   :rel 3~e.83
+   :li (a3 / assemble-01~e.86
+           :ARG1 (s / salad~e.88))
+   :op1 (u / use-01~e.90
+           :ARG0 (y / you~e.103)
+           :ARG1 (b3 / bowl~e.98
+                     :mod (s2 / side~e.96
+                              :ARG1-of (s4 / straight-04~e.94))
+                     :mod (l / large~e.92)
+                     :consist-of (g / glass~e.97))
+           :condition (p / possible-01~e.101)
+           :mode imperative~e.138)
+   :op2 (l2 / layer~e.103
+            :ARG0 y
+            :ARG1 (i / ingredient~e.105
+                     :ARG1-of (o / order-03~e.109
+                                 :ARG2 (a2 / and~e.117
+                                           :op1 (l3 / lettuce~e.112
+                                                    :mod (r2 / romaine~e.111))
+                                           :op2 (c2 / chicken~e.114)
+                                           :op3 (l4 / lettuce~e.119
+                                                    :name (n / name~e.116
+                                                             :op1 "B"~e.118))
+                                           :op4 (l5 / lettuce~e.119)
+                                           :op5 (e / egg~e.121)
+                                           :op6 (b / bacon~e.124
+                                                   :ARG1-of (r / reserve-01~e.123))
+                                           :op7 (p2 / potato~e.127
+                                                    :mod (s3 / spring~e.126))
+                                           :op8 (a4 / avocado~e.129)
+                                           :op9 (w / watercress~e.131)
+                                           :op10 (c / cheese~e.137
+                                                    :manner (f / final~e.134)
+                                                    :mod (b2 / blue~e.136)))
+                                 :ARG1-of (f2 / follow-01~e.108)))))
+
+# ::id cobb_salad_1_instr5
+# ::name cobb_salad_1_instr5
+# ::snt Season with pepper to taste .
+# ::root s
+# ::alignments s, y
+# ::snt_id cobb_salad_1_instr5
+(s / season~e.139
+   :mode imperative~e.139
+   :ARG0 (y / you~e.139)
+   :accompanier (p / pepper~e.141)
+   :ARG1-of (t / taste-02~e.143
+               :ARG0 y))
+
+# ::id cobb_salad_1_instr6
+# ::name cobb_salad_1_instr6
+# ::snt 4 ) At the table , gently toss the salad with about 180 - 240ml of the vinaigrette .
+# ::root t2
+# ::alignments t2, y
+# ::snt_id cobb_salad_1_instr6
+(t2 / toss-01~e.152
+    :li 4~e.145
+    :ARG0 (y / you~e.152)
+    :ARG1 (s / salad~e.154)
+    :accompanier (v / vinaigrette~e.162
+                    :quant (a / about~e.156
+                              :op1 (b / between~e.157
+                                      :op1 (m / mass-quantity~e.159
+                                              :unit (g2 / gram~e.159)
+                                              :quant 180~e.157)
+                                      :op2 (m2 / mass-quantity~e.159
+                                               :unit (m3 / milligram~e.159)
+                                               :quant 24~e.159))))
+    :location (t / table~e.149)
+    :manner (g / gentle~e.151))
+
+# ::id cobb_salad_1_instr7_1
+# ::name cobb_salad_1_instr7_1
+# ::snt Chill plates .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_1_instr7
+(c / chill-01~e.168
+   :mode imperative~e.168
+   :ARG1 (p / plate~e.169)
+   :ARG0 (y / you~e.168))
+
+# ::id cobb_salad_1_instr7_0
+# ::name cobb_salad_1_instr7_0
+# ::snt Divide the salad among plates .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_1_instr7
+(d / divide-02~e.164
+   :mode imperative~e.164
+   :ARG0 (y / you~e.164)
+   :ARG1 (s / salad~e.166)
+   :ARG2 (p / plate~e.169))
+
+# ::id cobb_salad_1_instr8
+# ::name cobb_salad_1_instr8
+# ::snt Serve.5 ) For the basic vinaigrette : In a small mixing bowl , whisk together the vinegar , mustard , 1 tsp salt , and pepper to taste .
+# ::root s2
+# ::alignments y, w
+# ::snt_id cobb_salad_1_instr8
+(s2 / serve-01~e.171
+    :purpose (v / vinaigrette~e.176
+                :mod (b / basic~e.175))
+    :ARG0 (y / you~e.184)
+    :ARG1 (w / whisk-01~e.184
+             :purpose (t / taste-01~e.198
+                         :ARG0 y)
+             :ARG0 y
+             :ARG1 (a / and~e.188
+                      :op1 (v2 / vinegar~e.187)
+                      :op2 (m3 / mustard~e.189)
+                      :op3 (s / salt~e.193
+                              :quant (m / mass-quantity~e.192
+                                        :unit (t2 / ton~e.192)
+                                        :quant 1~e.191))
+                      :op4 (p / pepper~e.196))
+             :location (b2 / bowl~e.182
+                           :mod (s3 / small~e.180)
+                           :instrument-of (m2 / mix-01~e.181))
+             :mode imperative~e.199))
+
+# ::id cobb_salad_1_instr9_1
+# ::name cobb_salad_1_instr9_1
+# ::snt In enough to make a smooth dressing with a balanced taste .
+# ::root m
+# ::alignments m
+# ::snt_id cobb_salad_1_instr9
+(m / make-01~e.208
+   :ARG0 (y / you~e.208)
+   :ARG1 (d / dressing~e.211
+            :mod (t / taste~e.215
+                    :ARG1-of (b / balance-01~e.214))
+            :ARG1-of (s / smooth-04~e.210))
+   :ARG6-of (h / have-quant-91~e.203
+               :ARG3 (e / enough~e.203)))
+
+# ::id cobb_salad_1_instr9_0
+# ::name cobb_salad_1_instr9_0
+# ::snt Gradually whisk of the oil to .
+# ::root w
+# ::alignments w
+# ::snt_id cobb_salad_1_instr9
+(w / whisk-01~e.201
+   :mode imperative~e.200
+   :ARG0 (y / you~e.201)
+   :ARG1 (o / oil~e.206)
+   :manner (g / gradual~e.200))
+
+# ::id cobb_salad_1_instr10
+# ::name cobb_salad_1_instr10
+# ::snt Season with salt and pepper , if needed .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id cobb_salad_1_instr10
+(s2 / season~e.217
+    :mode imperative~e.217
+    :ARG0 (y / you~e.217)
+    :condition (n / need-01~e.224)
+    :instrument (a / and~e.220
+                   :op1 (s / salt~e.219)
+                   :op2 (p / pepper~e.221)))
+
+# ::id cobb_salad_1_instr11
+# ::name cobb_salad_1_instr11
+# ::snt Use immediately or store covered , in the refrigerator , for up to a week .
+# ::root o
+# ::alignments u2, s
+# ::snt_id cobb_salad_1_instr11
+(o / or~e.228
+   :op1 (u2 / use-01~e.226
+            :ARG0 (y / you~e.226)
+            :time (i / immediate~e.227))
+   :op2 (c / cover-02~e.230
+           :ARG1 (s / store~e.229)
+           :ARG2 (r / refrigerator~e.234)
+           :duration (u / up-to~e.237
+                        :op1 (t / temporal-quantity~e.240
+                                :unit (w / week~e.240)
+                                :quant 1~e.239))))
+
+# ::id cobb_salad_1_instr12_1
+# ::name cobb_salad_1_instr12_1
+# ::snt * Cook 's .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_1_instr12
+(c / cook-01~e.243
+   :ARG0 (p / person~e.243))
+
+# ::id cobb_salad_1_instr12_0
+# ::name cobb_salad_1_instr12_0
+# ::snt 's Note : When making vinaigrette with a potent vinegar , like sherry , use the larger amount of oil .
+# ::root n
+# ::alignments u, m
+# ::snt_id cobb_salad_1_instr12
+(n / note-01~e.245
+   :ARG1 (u / use-01~e.258
+            :ARG0 (y / you~e.248)
+            :ARG1 (a / amount~e.261
+                     :ARG1-of (h / have-quant-91~e.260
+                                 :ARG2 (l / large~e.260)
+                                 :ARG3 (m2 / more~e.260))
+                     :quant-of (o / oil~e.263))
+            :time (m / make-01~e.248
+                     :ARG0 y
+                     :ARG1 (v / vinaigrette~e.249)
+                     :accompanier (v2 / vinegar~e.253
+                                      :mod (p2 / potent~e.252)
+                                      :ARG1-of (r / resemble-01~e.255
+                                                  :ARG2 (s / sherry~e.256))))
+            :mode imperative~e.264))
+

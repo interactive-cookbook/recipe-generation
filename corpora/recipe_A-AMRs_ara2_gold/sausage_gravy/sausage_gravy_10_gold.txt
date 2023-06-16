@@ -1,0 +1,185 @@
+# ::id sausage_gravy_10_instr0
+# ::name sausage_gravy_10_instr0
+# ::snt Fry the sausage in a nonstick skillet .
+# ::root f
+# ::alignments f, y
+# ::snt_id sausage_gravy_10_instr0
+(f / fry-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (s / sausage~e.3)
+   :instrument (s2 / skillet~e.7
+                   :ARG1-of (s3 / stick-01~e.6
+                                :polarity -~e.6)))
+
+# ::id sausage_gravy_10_instr1
+# ::name sausage_gravy_10_instr1
+# ::snt Drain the grease off if there 's a lot there .
+# ::root p
+# ::alignments p, y
+# ::snt_id sausage_gravy_10_instr1
+(p / piss-off-02~e.9
+   :mode imperative~e.9
+   :ARG0 (y / you~e.9)
+   :ARG1 (g / grease~e.11
+            :quant (l / lot~e.17)))
+
+# ::id sausage_gravy_10_instr2
+# ::name sausage_gravy_10_instr2
+# ::snt You can leave a little for flavor .
+# ::root p
+# ::alignments l
+# ::snt_id sausage_gravy_10_instr2
+(p / possible-01~e.21
+   :ARG1 (l / leave-02~e.22
+            :purpose (f / flavor~e.26)
+            :quant (l2 / little~e.24)
+            :ARG0 (y / you~e.20)))
+
+# ::id sausage_gravy_10_instr3
+# ::name sausage_gravy_10_instr3
+# ::snt Return the sausage to the skillet .
+# ::root r
+# ::alignments r, y
+# ::snt_id sausage_gravy_10_instr3
+(r / return-02~e.28
+   :mode imperative~e.34
+   :ARG0 (y / you~e.28)
+   :ARG1 (s / sausage~e.30)
+   :ARG2 (s2 / skillet~e.33))
+
+# ::id sausage_gravy_10_instr4_0
+# ::name sausage_gravy_10_instr4_0
+# ::snt Add all the other ingredients except for the xanthan gum .
+# ::root a
+# ::alignments a
+# ::snt_id sausage_gravy_10_instr4
+(a / add-02~e.35
+   :mode imperative~e.49
+   :ARG0 (y / you~e.35)
+   :ARG1 (i / ingredient~e.39
+            :mod (o / other~e.38)
+            :mod (a2 / all~e.36)
+            :ARG2-of (e / except-01~e.40
+                        :ARG1 (g / gum~e.44
+                                 :name (n / name~e.43
+                                          :op1 "xanthan"~e.43)))))
+
+# ::id sausage_gravy_10_instr4_1
+# ::name sausage_gravy_10_instr4_1
+# ::snt All the other ingredients except for the xanthan gum stir until smooth .
+# ::root s2
+# ::alignments s2
+# ::snt_id sausage_gravy_10_instr4
+(s2 / stir-01~e.46
+    :mode imperative~e.49
+    :ARG0 (y / you~e.46)
+    :duration (u / until~e.47
+                 :op1 (s / smooth-01~e.48
+                         :ARG1 (i / ingredient~e.39
+                                  :mod (o / other~e.38)
+                                  :mod (a2 / all~e.36)
+                                  :ARG2-of (e / except-01~e.40
+                                              :ARG1 (g / gum~e.44
+                                                       :name (n / name~e.43
+                                                                :op1 "xanthan"~e.43)))))))
+
+# ::id sausage_gravy_10_instr5
+# ::name sausage_gravy_10_instr5
+# ::snt Sprinkle the xanthan gum into the gravy a little at a time while stirring to prevent clumping .
+# ::root s
+# ::alignments s, s2
+# ::snt_id sausage_gravy_10_instr5
+(s / spray-01~e.50
+   :mode imperative~e.50
+   :purpose (p / prevent-01~e.65
+               :ARG1 (c / clog-02~e.66))
+   :ARG0 (y / you~e.50)
+   :ARG1 (g2 / gum~e.53
+             :name (n / name~e.52
+                      :op1 "xanthan"~e.52))
+   :ARG2 (g / gravy~e.56)
+   :manner (t / thing~e.59
+              :quant (l / little~e.58)
+              :mod (a / at-a-time~e.61))
+   :time (s2 / stir-01~e.63
+             :ARG1 g))
+
+# ::id sausage_gravy_10_instr6_0
+# ::name sausage_gravy_10_instr6_0
+# ::snt Let the gravy simmer for ten minutes at least .
+# ::root l
+# ::alignments l, s2
+# ::snt_id sausage_gravy_10_instr6
+(l / let-01~e.68
+   :mode imperative~e.68
+   :ARG0 (y / you~e.68)
+   :ARG1 (s2 / simmer-01~e.71
+             :ARG1 (g / gravy~e.70)
+             :duration (a2 / at-least~e.76
+                           :op1 (t / temporal-quantity~e.74
+                                   :unit (m / minute~e.74)
+                                   :quant 10~e.73))))
+
+# ::id sausage_gravy_10_instr6_1
+# ::name sausage_gravy_10_instr6_1
+# ::snt Then serve the gravy over low carb biscuits .
+# ::root s
+# ::alignments s
+# ::snt_id sausage_gravy_10_instr6
+(s / serve-02~e.79
+   :ARG0 (y / you~e.79)
+   :ARG1 (g / gravy~e.70)
+   :manner (b / biscuit~e.83
+              :mod (c / carb~e.82
+                      :ARG1-of (l2 / low-04~e.81)))
+   :time (t2 / then~e.78))
+
+# ::id sausage_gravy_10_instr7
+# ::name sausage_gravy_10_instr7
+# ::snt Yields 8 - 10 servings .
+# ::root y
+# ::alignments
+# ::snt_id sausage_gravy_10_instr7
+(y / yield-01~e.85
+   :ARG1 (s / serve-02~e.89
+            :quant (b / between~e.86
+                      :op1 8~e.86
+                      :op2 10~e.88)))
+
+# ::id sausage_gravy_10_instr8
+# ::name sausage_gravy_10_instr8
+# ::snt Feel free to thin the gravy down with more almond milk / cream if desired ( you may wish to add more oat fiber and xanthan gum as well ) .
+# ::root m4
+# ::alignments t
+# ::snt_id sausage_gravy_10_instr8
+(m4 / multi-sentence~e.106
+    :snt1 (f / feel-01~e.91
+             :ARG0 (y / you~e.91)
+             :ARG1 (f3 / free-04~e.92
+                       :ARG1 y
+                       :ARG3 (t / thin-01~e.94
+                                :ARG0 y
+                                :ARG1 (g / gravy~e.96)
+                                :ARG2 (s / slash~e.102
+                                         :mod (m2 / more~e.99)
+                                         :op1 (m / milk~e.101
+                                                 :mod (a2 / almond~e.100))
+                                         :op2 (c / cream~e.103))
+                                :condition (d / desire-01~e.105
+                                              :ARG0 y)
+                                :ARG1-of (d2 / down-03~e.97)))
+             :mode imperative~e.91)
+    :snt2 (p / permit-01~e.108
+             :ARG1 (w / wish-01~e.109
+                      :ARG0 (y2 / you~e.107)
+                      :ARG1 (a / add-02~e.111
+                               :ARG0 y2
+                               :ARG1 (a3 / and~e.115
+                                         :op1 (f2 / fiber~e.114
+                                                  :mod (o / oat~e.113)
+                                                  :mod (m3 / more~e.112))
+                                         :op2 (g2 / gum~e.117
+                                                  :mod (x / xanthan~e.116)))
+                               :mod (a4 / as-well~e.119)))))
+

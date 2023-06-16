@@ -1,0 +1,237 @@
+# ::id lavender_lemonade_10_instr0
+# ::name lavender_lemonade_10_instr0
+# ::snt To make Lavender Simple Syrup : Place lavender , water , and sugar in a pot over medium heat .
+# ::root p
+# ::alignments p, m
+# ::snt_id lavender_lemonade_10_instr0
+(p / place-01~e.7
+   :mode imperative~e.20
+   :purpose (m / make-01~e.2
+               :ARG0 y
+               :ARG1 (s / science~e.5
+                        :ARG1-of (s3 / simple-02~e.4)))
+   :ARG0 (y / you~e.2)
+   :ARG1 (a / and~e.9
+            :op1 (l / lavender~e.8)
+            :op2 (w / water~e.10)
+            :op3 (s4 / sugar~e.13))
+   :ARG2 (p2 / pot~e.16)
+   :location (h / heat~e.19
+                :mod (m2 / medium~e.18))
+   :rel (s2 / sea~e.5))
+
+# ::id lavender_lemonade_10_instr1
+# ::name lavender_lemonade_10_instr1
+# ::snt Gently stir until the sugar has dissolved ( It ’s very quick ) .
+# ::root m
+# ::alignments s
+# ::snt_id lavender_lemonade_10_instr1
+(m / multi-sentence~e.28
+   :snt1 (s / stir-01~e.22
+            :ARG0 (y / you~e.21)
+            :time (u / until~e.23
+                     :op1 (d / dissolve-01~e.27
+                             :ARG1 (s2 / sugar~e.25)))
+            :mode imperative~e.21)
+   :snt2 (q / quick-02~e.32
+            :ARG1 (i / it~e.29)
+            :degree (v / very~e.31)))
+
+# ::id lavender_lemonade_10_instr2_1
+# ::name lavender_lemonade_10_instr2_1
+# ::snt Turn off heat .
+# ::root t
+# ::alignments t
+# ::snt_id lavender_lemonade_10_instr2
+(t / turn-off-07~e.35
+   :mode imperative~e.35
+   :ARG0 (y / you~e.35)
+   :ARG1 (h / heat-01~e.37))
+
+# ::id lavender_lemonade_10_instr2_0
+# ::name lavender_lemonade_10_instr2_0
+# ::snt Let cool .
+# ::root l
+# ::alignments l, c
+# ::snt_id lavender_lemonade_10_instr2
+(l / let-01~e.39
+   :mode imperative~e.39
+   :ARG0 (y / you~e.39)
+   :ARG1 (c / cool-01~e.40))
+
+# ::id lavender_lemonade_10_instr3
+# ::name lavender_lemonade_10_instr3
+# ::snt Place pot in the refrigerator to let lavender flowers infuse simple syrup overnight .
+# ::root p
+# ::alignments p, l2, i
+# ::snt_id lavender_lemonade_10_instr3
+(p / place-01~e.42
+   :mode imperative~e.55
+   :purpose (l2 / let-01~e.48
+                :ARG0 y
+                :ARG1 (i / infuse-01~e.51
+                         :ARG0 (f / flower~e.50
+                                  :mod (l / lavender~e.49))
+                         :ARG1 (s2 / syrup~e.53
+                                   :ARG1-of (s / simple-02~e.52))
+                         :time (o / overnight~e.54)))
+   :ARG0 (y / you~e.48)
+   :ARG1 (p2 / pot~e.43)
+   :ARG2 (r / refrigerator~e.46))
+
+# ::id lavender_lemonade_10_instr4
+# ::name lavender_lemonade_10_instr4
+# ::snt The next day , strain Lavender Simple Syrup .
+# ::root s
+# ::alignments s, y
+# ::snt_id lavender_lemonade_10_instr4
+(s / strain-01~e.60
+   :mode imperative~e.64
+   :ARG0 (y / you~e.60)
+   :ARG1 (p / product~e.63
+            :name (n / name~e.61
+                     :op1 "Lavender"~e.61
+                     :op2 "Simple"~e.62
+                     :op3 "Syrup"~e.63))
+   :time (d / day~e.58
+            :mod (n2 / next~e.57)))
+
+# ::id lavender_lemonade_10_instr5
+# ::name lavender_lemonade_10_instr5
+# ::snt Discard lavender flowers .
+# ::root d
+# ::alignments d
+# ::snt_id lavender_lemonade_10_instr5
+(d / discard-01~e.65
+   :mode imperative~e.65
+   :ARG1 (f / flower~e.67
+            :mod (l / lavender~e.66))
+   :ARG0 (y / you~e.65))
+
+# ::id lavender_lemonade_10_instr6_0
+# ::name lavender_lemonade_10_instr6_0
+# ::snt Pour Lavender Simple Syrup in a sealed container .
+# ::root a
+# ::alignments p
+# ::snt_id lavender_lemonade_10_instr6
+(a / and~e.78
+   :rel "simple-02"~e.71
+   :op1 (p / pour-01~e.69
+           :ARG0 (y / you~e.69)
+           :ARG1 (c / carriage~e.72
+                    :mod (s2 / simple~e.70))
+           :ARG2 (c2 / container~e.76
+                     :ARG1-of (s / seal-01~e.75))
+           :mode imperative~e.69)
+   :rel (e / "enzyme"~e.70
+           :name n)
+   :rel (n / name~e.72
+           :ARG1-of "simple-02"~e.71))
+
+# ::id lavender_lemonade_10_instr6_1
+# ::name lavender_lemonade_10_instr6_1
+# ::snt Lavender Simple Syrup , and use as needed .
+# ::root a
+# ::alignments u
+# ::snt_id lavender_lemonade_10_instr6
+(a / and~e.78
+   :rel "simple-02"~e.71
+   :op2 (u / use-01~e.79
+           :ARG0 (y / you~e.79)
+           :ARG1 (c / carriage~e.72
+                    :mod (s2 / simple~e.70))
+           :manner (n2 / need-01~e.81)
+           :mode imperative~e.82)
+   :rel (e / "enzyme"~e.70
+           :name n)
+   :rel (n / name~e.72
+           :ARG1-of "simple-02"~e.71))
+
+# ::id lavender_lemonade_10_instr7
+# ::name lavender_lemonade_10_instr7
+# ::snt To make Lavender Lemonade : Juice 4 lemons in a bowl or pitcher .
+# ::root m
+# ::alignments m, j
+# ::snt_id lavender_lemonade_10_instr7
+(m / make-01~e.84
+   :mode imperative~e.84
+   :ARG1 (p2 / product~e.86
+             :name (n / name~e.85
+                      :op1 "Lavender"~e.85
+                      :op2 "Lemonade"~e.86))
+   :ARG2 (j / juice~e.88
+            :location (o / or~e.94
+                         :op1 (b / bowl~e.93)
+                         :op2 (p / pitcher~e.95))
+            :quant-of (l / lemon~e.90)
+            :quant 4~e.89)
+   :ARG0 (y / you~e.84))
+
+# ::id lavender_lemonade_10_instr8
+# ::name lavender_lemonade_10_instr8
+# ::snt Add Lavender Simple Syrup , for the amount depends on a personal taste for sweet drinks .
+# ::root a
+# ::alignments a, y
+# ::snt_id lavender_lemonade_10_instr8
+(a / add-02~e.97
+   :mode imperative~e.97
+   :purpose (d / depend-01~e.105
+               :ARG0 (a2 / amount~e.104)
+               :ARG1 (t / taste~e.109
+                        :mod (t2 / thing~e.112
+                                 :ARG1-of (d2 / drink-01~e.112)
+                                 :ARG1-of (s3 / sweet-04~e.111))
+                        :ARG1-of (p / personal-02~e.108)))
+   :ARG0 (y / you~e.97)
+   :ARG1 (s / sea~e.100
+            :mod (l / lamb~e.98)
+            :ARG1-of (s2 / simple-02~e.99)))
+
+# ::id lavender_lemonade_10_instr9
+# ::name lavender_lemonade_10_instr9
+# ::snt Place ice in individual glasses .
+# ::root p
+# ::alignments p, y
+# ::snt_id lavender_lemonade_10_instr9
+(p / place-01~e.114
+   :mode imperative~e.119
+   :ARG0 (y / you~e.114)
+   :ARG1 (i / ice~e.115)
+   :ARG2 (g / glass~e.118
+            :mod (i2 / individual~e.117)))
+
+# ::id lavender_lemonade_10_instr10
+# ::name lavender_lemonade_10_instr10
+# ::snt Pour Lavender Lemonade in each glass .
+# ::root p
+# ::alignments p, y
+# ::snt_id lavender_lemonade_10_instr10
+(p / pour-01~e.120
+   :mode imperative~e.120
+   :ARG0 (y / you~e.120)
+   :ARG1 (w / watermelon~e.122
+            :mod (n / navy~e.121))
+   :ARG2 (g / glass~e.125
+            :mod (e / each~e.124)))
+
+# ::id lavender_lemonade_10_instr11
+# ::name lavender_lemonade_10_instr11
+# ::snt Top with sparkling mineral water .
+# ::root t
+# ::alignments t
+# ::snt_id lavender_lemonade_10_instr11
+(t / top~e.127
+   :ARG2 (w / water~e.131
+            :mod (m / mineral~e.130)
+            :ARG1-of (s / sparkle-01~e.129)))
+
+# ::id lavender_lemonade_10_instr12
+# ::name lavender_lemonade_10_instr12
+# ::snt Enjoy !
+# ::root e
+# ::alignments
+# ::snt_id lavender_lemonade_10_instr12
+(e / enjoy-01~e.133
+   :mode expressive~e.134
+   :ARG0 (y / you~e.133))
+

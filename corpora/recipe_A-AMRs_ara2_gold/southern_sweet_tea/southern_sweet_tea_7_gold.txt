@@ -1,0 +1,207 @@
+# ::id southern_sweet_tea_7_instr0_0
+# ::name southern_sweet_tea_7_instr0_0
+# ::snt In a large glass measuring cup , place the tea bags .
+# ::root p
+# ::alignments p
+# ::snt_id southern_sweet_tea_7_instr0
+(p / place-01~e.8
+   :mode imperative~e.8
+   :ARG1 (b / bag~e.11
+            :mod (t / tea~e.10))
+   :location (c / cup~e.6
+                :mod (l / large~e.3)
+                :consist-of (g / glass~e.4)
+                :instrument-of (m / measure-01~e.5))
+   :ARG0 (y / you~e.8))
+
+# ::id southern_sweet_tea_7_instr0_1
+# ::name southern_sweet_tea_7_instr0_1
+# ::snt In a large glass measuring cup , add the baking soda .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_7_instr0
+(a / add-02~e.13
+   :mode imperative~e.13
+   :ARG1 (s / soda~e.16
+            :instrument-of (b2 / bake-01~e.15))
+   :ARG2 (c / cup~e.6
+            :mod (l / large~e.3)
+            :consist-of (g / glass~e.4)
+            :instrument-of (m / measure-01~e.5))
+   :ARG0 (y / you~e.13))
+
+# ::id southern_sweet_tea_7_instr1
+# ::name southern_sweet_tea_7_instr1
+# ::snt ( the amount of baking soda is the same whether it is a half gallon or a full gallon )
+# ::root s
+# ::alignments
+# ::snt_id southern_sweet_tea_7_instr1
+(s / same-01~e.26
+   :ARG1 (a / amount~e.20
+            :quant-of (s2 / soda~e.23
+                          :ARG2-of (b / bake-01~e.22)))
+   :ARG1-of (r / regardless-91~e.27
+               :ARG2 (o / or~e.33
+                        :op1 (v / volume-quantity~e.32
+                                :unit (g / gallon~e.32)
+                                :quant "1/2"~e.31)
+                        :op2 (v2 / volume-quantity~e.36
+                                 :unit (g2 / gallon~e.36
+                                           :mod (f / full~e.35))))))
+
+# ::id southern_sweet_tea_7_instr2
+# ::name southern_sweet_tea_7_instr2
+# ::snt Pour the boiling water over the tea bags .
+# ::root p
+# ::alignments p, y
+# ::snt_id southern_sweet_tea_7_instr2
+(p / pour-01~e.38
+   :mode imperative~e.38
+   :ARG0 (y / you~e.38)
+   :ARG1 (w / water~e.41
+            :ARG1-of (b2 / boil-01~e.40))
+   :ARG2 (b / bag~e.45
+            :mod (t / tea~e.44)))
+
+# ::id southern_sweet_tea_7_instr3_0
+# ::name southern_sweet_tea_7_instr3_0
+# ::snt Cover .
+# ::root c
+# ::alignments c
+# ::snt_id southern_sweet_tea_7_instr3
+(c / cover-02~e.47
+   :mode imperative~e.47
+   :ARG1 (y / you~e.47)
+   :ARG0 (y1 / you~e.47))
+
+# ::id southern_sweet_tea_7_instr3_1
+# ::name southern_sweet_tea_7_instr3_1
+# ::snt Steep for 15 minutes .
+# ::root s
+# ::alignments s
+# ::snt_id southern_sweet_tea_7_instr3
+(s / steep-01~e.49
+   :ARG0 (y / you~e.49)
+   :duration (t / temporal-quantity~e.51
+                :unit (m / minute~e.52)
+                :quant 15~e.51))
+
+# ::id southern_sweet_tea_7_instr4
+# ::name southern_sweet_tea_7_instr4
+# ::snt Take out the tea bags and do not squeeze them
+# ::root a
+# ::alignments t, y
+# ::snt_id southern_sweet_tea_7_instr4
+(a / and~e.59
+   :op1 (t / take-out-11~e.54
+           :ARG0 (y / you~e.54)
+           :ARG1 (b / bag~e.58
+                    :mod (t2 / tea~e.57))
+           :mode imperative~e.54)
+   :op2 (s / squeeze-01~e.62
+           :ARG0 y
+           :ARG1 b
+           :mode imperative~e.60
+           :polarity -~e.61))
+
+# ::id southern_sweet_tea_7_instr5_0
+# ::name southern_sweet_tea_7_instr5_0
+# ::snt Pour the tea mixture into a gallon pitcher .
+# ::root p2
+# ::alignments p2
+# ::snt_id southern_sweet_tea_7_instr5
+(p2 / pour-01~e.64
+    :mode imperative~e.64
+    :ARG0 (y / you~e.64)
+    :ARG1 (m / mix-01~e.67
+             :ARG1 (t / tea~e.66))
+    :ARG2 (p / pitcher~e.71
+             :mod (v / volume-quantity~e.70
+                     :unit (g / gallon~e.70)
+                     :quant 1~e.69)))
+
+# ::id southern_sweet_tea_7_instr5_1
+# ::name southern_sweet_tea_7_instr5_1
+# ::snt Add the sugar .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_7_instr5
+(a / add-02~e.73
+   :mode imperative~e.76
+   :ARG0 (y / you~e.73)
+   :ARG1 (s / sugar~e.75))
+
+# ::id southern_sweet_tea_7_instr6
+# ::name southern_sweet_tea_7_instr6
+# ::snt Stir until the sugar is dissolved .
+# ::root s
+# ::alignments s, y
+# ::snt_id southern_sweet_tea_7_instr6
+(s / stir-01~e.77
+   :mode imperative~e.77
+   :ARG0 (y / you~e.77)
+   :time (u / until~e.78
+            :op1 (d / dissolve-01~e.82
+                    :ARG1 (s2 / sugar~e.80))))
+
+# ::id southern_sweet_tea_7_instr7
+# ::name southern_sweet_tea_7_instr7
+# ::snt Add in the cold water .
+# ::root a
+# ::alignments a, y
+# ::snt_id southern_sweet_tea_7_instr7
+(a / add-02~e.84
+   :mode imperative~e.89
+   :ARG0 (y / you~e.84)
+   :ARG1 (w / water~e.88
+            :ARG1-of (c / cold-01~e.87)))
+
+# ::id southern_sweet_tea_7_instr8_0
+# ::name southern_sweet_tea_7_instr8_0
+# ::snt Let cool .
+# ::root l
+# ::alignments l, c2
+# ::snt_id southern_sweet_tea_7_instr8
+(l / let-01~e.90
+   :mode imperative~e.90
+   :ARG0 (y / you~e.90)
+   :ARG1-of (c2 / cool-01~e.91))
+
+# ::id southern_sweet_tea_7_instr8_1
+# ::name southern_sweet_tea_7_instr8_1
+# ::snt Chill in the refrigerator .
+# ::root c
+# ::alignments c
+# ::snt_id southern_sweet_tea_7_instr8
+(c / chill-01~e.93
+   :mode imperative~e.90
+   :ARG0 (y / you~e.93)
+   :location (r / refrigerator~e.96))
+
+# ::id southern_sweet_tea_7_instr8_2
+# ::name southern_sweet_tea_7_instr8_2
+# ::snt Serve over ice .
+# ::root s
+# ::alignments s
+# ::snt_id southern_sweet_tea_7_instr8
+(s / serve-02~e.98
+   :mode imperative~e.101
+   :ARG0 (y / you~e.98)
+   :manner (o / over~e.99
+              :op1 (i / ice~e.100)))
+
+# ::id southern_sweet_tea_7_instr9
+# ::name southern_sweet_tea_7_instr9
+# ::snt ( add mint leaves and lemon wedges )
+# ::root a
+# ::alignments a, y
+# ::snt_id southern_sweet_tea_7_instr9
+(a / add-02~e.103
+   :mode imperative~e.102
+   :ARG0 (y / you~e.103)
+   :ARG1 (a2 / and~e.106
+             :op1 (l / leaf~e.105
+                     :mod (m / mint~e.104))
+             :op2 (w / wednesday~e.108
+                     :consist-of (l2 / lemon~e.107))))
+

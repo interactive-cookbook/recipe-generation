@@ -1,0 +1,222 @@
+# ::id sausage_gravy_1_instr0
+# ::name sausage_gravy_1_instr0
+# ::snt In a sauté pan over medium high heat , cook sausage , stirring and breaking up with a spoon .
+# ::root c
+# ::alignments c, s4, b
+# ::snt_id sausage_gravy_1_instr0
+(c / cook-01~e.10
+   :mode imperative~e.20
+   :ARG1 (s / sausage~e.11)
+   :location (p / pan~e.4
+                :purpose (s2 / saute-01~e.3)
+                :location (h / heat~e.8
+                             :ARG1-of (h2 / high-02~e.7
+                                          :degree (m / medium~e.6))))
+   :manner (a / and~e.14
+              :instrument (s3 / spoon~e.19)
+              :op2 (s4 / stir-01~e.13
+                       :ARG1 s)
+              :op3 (b / break-up-08~e.15
+                      :ARG1 s))
+   :ARG0 (y / you~e.10))
+
+# ::id sausage_gravy_1_instr1
+# ::name sausage_gravy_1_instr1
+# ::snt Cook until sausage is fully browned , about 10 minutes .
+# ::root c
+# ::alignments c, y
+# ::snt_id sausage_gravy_1_instr1
+(c / cook-01~e.21
+   :mode imperative~e.21
+   :ARG0 (y / you~e.21)
+   :time (u / until~e.22
+            :duration (a / about~e.28
+                         :op1 (t / temporal-quantity~e.30
+                                 :unit (m / minute~e.30)
+                                 :quant 10~e.29))
+            :op1 (r / Brown~e.26
+                    :degree (f / full-09~e.25)
+                    :domain (s / sausage~e.23))))
+
+# ::id sausage_gravy_1_instr2
+# ::name sausage_gravy_1_instr2
+# ::snt Reduce heat to medium low .
+# ::root r
+# ::alignments r, y
+# ::snt_id sausage_gravy_1_instr2
+(r / reduce-01~e.32
+   :mode imperative~e.37
+   :ARG0 (y / you~e.32)
+   :ARG1 (h / heat~e.33)
+   :ARG4 (l / low-04~e.36
+            :mod (m / medium~e.35)))
+
+# ::id sausage_gravy_1_instr3_1
+# ::name sausage_gravy_1_instr3_1
+# ::snt Sprinkle in half the flour .
+# ::root s3
+# ::alignments s3
+# ::snt_id sausage_gravy_1_instr3
+(s3 / spray-01~e.38
+    :mode imperative~e.38
+    :ARG0 (y / you~e.38)
+    :ARG2 (f / flour~e.42
+             :quant (h / half~e.40)))
+
+# ::id sausage_gravy_1_instr3_0
+# ::name sausage_gravy_1_instr3_0
+# ::snt Stir until sausage soaks it all up .
+# ::root s4
+# ::alignments s4, s2
+# ::snt_id sausage_gravy_1_instr3
+(s4 / stir-01~e.44
+    :mode imperative~e.38
+    :ARG0 (y / you~e.44)
+    :duration (u / until~e.45
+                 :op1 (s2 / soak-up-02~e.47
+                          :ARG0 (s / sausage~e.46)
+                          :ARG1 (i / it~e.48
+                                   :mod (a / all~e.49)))))
+
+# ::id sausage_gravy_1_instr4
+# ::name sausage_gravy_1_instr4
+# ::snt Continue to add the rest of the flour a little bit at a time .
+# ::root c
+# ::alignments c, y
+# ::snt_id sausage_gravy_1_instr4
+(c / continue-01~e.52
+   :mode imperative~e.66
+   :ARG0 (y / you~e.52)
+   :ARG1 (a / add-02~e.54
+            :ARG0 y
+            :ARG1 (f / flour~e.59
+                     :mod (r / rest~e.56))
+            :manner (t / thing~e.63
+                       :quant (b / bit~e.62
+                                 :mod (l / little~e.61)))
+            :mod (a2 / at-a-time~e.64)))
+
+# ::id sausage_gravy_1_instr5
+# ::name sausage_gravy_1_instr5
+# ::snt Continue to stir and add 2 cups of milk , stirring the gravy frequently , until it thickens , about 10 - 15 minutes .
+# ::root c
+# ::alignments c, a2, s2
+# ::snt_id sausage_gravy_1_instr5
+(c / continue-01~e.67
+   :mode imperative~e.91
+   :ARG0 (y / you~e.77)
+   :ARG1 (a3 / and~e.70
+             :op1 (s / stir-01~e.69
+                     :ARG0 y)
+             :op2 (a2 / add-02~e.71
+                      :ARG0 y
+                      :ARG1 (m / milk~e.75
+                               :quant (v / volume-quantity~e.73
+                                         :unit (c2 / cup~e.73)
+                                         :quant 2~e.72)))
+             :op3 (s2 / stir-01~e.77
+                      :ARG0 y
+                      :ARG1 (g / gravy~e.79)
+                      :ARG1-of (f / frequent-02~e.80)
+                      :mode imperative~e.91)
+             :time (u / until~e.82
+                      :duration (a / about~e.86
+                                   :op1 (b / between~e.87
+                                           :op1 (t / temporal-quantity~e.90
+                                                   :unit (m2 / minute~e.90)
+                                                   :quant 10~e.87)
+                                           :op2 (t2 / temporal-quantity~e.90
+                                                    :unit (m3 / minute~e.90)
+                                                    :quant 15~e.89)))
+                      :op1 (t3 / thicken-01~e.84
+                               :ARG1 g))))
+
+# ::id sausage_gravy_1_instr6_0
+# ::name sausage_gravy_1_instr6_0
+# ::snt Add salt and pepper .
+# ::root a
+# ::alignments a
+# ::snt_id sausage_gravy_1_instr6
+(a / add-02~e.92
+   :mode imperative~e.92
+   :ARG0 (y / you~e.92)
+   :ARG1 (a2 / and~e.94
+             :op1 (s / salt~e.93)
+             :op2 (p / pepper~e.95)))
+
+# ::id sausage_gravy_1_instr6_1
+# ::name sausage_gravy_1_instr6_1
+# ::snt Continue cooking until thick .
+# ::root c
+# ::alignments c
+# ::snt_id sausage_gravy_1_instr6
+(c / continue-01~e.98
+   :mode imperative~e.102
+   :ARG0 (y / you~e.99)
+   :ARG1 (c2 / cook-01~e.99
+             :ARG0 y
+             :time (u / until~e.100
+                      :op1 (t / thick-03~e.101))))
+
+# ::id sausage_gravy_1_instr7
+# ::name sausage_gravy_1_instr7
+# ::snt If gravy becomes too thick add additional milk , half cup or more as needed .
+# ::root a
+# ::alignments a, y
+# ::snt_id sausage_gravy_1_instr7
+(a / add-02~e.108
+   :mode imperative~e.103
+   :ARG0 (y / you~e.108)
+   :ARG1 (m / milk~e.110
+            :quant (o / or~e.114
+                      :op1 (v / volume-quantity~e.113
+                              :unit (c / cup~e.113)
+                              :quant 1~e.112)
+                      :op2 (m2 / more~e.115))
+            :mod (a2 / additional~e.109))
+   :condition (b / become-01~e.105
+                 :ARG1 (g / gravy~e.104)
+                 :ARG2 (h / have-degree-91~e.106
+                          :ARG1 g
+                          :ARG2 (t / thick-03~e.107
+                                   :ARG1 g)
+                          :ARG3 (t2 / too~e.106)))
+   :condition (n / need-01~e.117))
+
+# ::id sausage_gravy_1_instr8
+# ::name sausage_gravy_1_instr8
+# ::snt Adjust seasoning to taste .
+# ::root a
+# ::alignments a, t
+# ::snt_id sausage_gravy_1_instr8
+(a / adjust-01~e.119
+   :mode imperative~e.119
+   :ARG1 (s / season-01~e.120)
+   :ARG4 (t / taste-02~e.122)
+   :ARG0 (y / you~e.119))
+
+# ::id sausage_gravy_1_instr9_0
+# ::name sausage_gravy_1_instr9_0
+# ::snt Spoon gravy over warm biscuits .
+# ::root s2
+# ::alignments s2
+# ::snt_id sausage_gravy_1_instr9
+(s2 / spoil-01~e.124
+    :mode imperative~e.124
+    :ARG0 (y / you~e.124)
+    :ARG1 (g / gravy~e.125)
+    :ARG2 (b / biscuit~e.128
+             :ARG1-of (w / warm-07~e.127)))
+
+# ::id sausage_gravy_1_instr9_1
+# ::name sausage_gravy_1_instr9_1
+# ::snt Serve gravy immediately .
+# ::root s
+# ::alignments s
+# ::snt_id sausage_gravy_1_instr9
+(s / serve-02~e.130
+   :mode imperative~e.124
+   :ARG0 (y / you~e.130)
+   :ARG1 (g / gravy~e.125)
+   :time (i / immediate~e.131))
+

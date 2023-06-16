@@ -1,0 +1,106 @@
+# ::id chocolate_glaze_10_instr0_1
+# ::name chocolate_glaze_10_instr0_1
+# ::snt Pour cream into a medium - size heatproof bowl .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_10_instr0
+(p / pour-01~e.7
+   :mode imperative~e.7
+   :ARG1 (c3 / cream~e.2)
+   :ARG3 (b2 / bowl~e.14
+             :purpose (h2 / heat-01~e.13)
+             :mod (s / size~e.12
+                     :mod (m / medium~e.10)))
+   :ARG0 (y / you~e.7))
+
+# ::id chocolate_glaze_10_instr0_2
+# ::name chocolate_glaze_10_instr0_2
+# ::snt Into a medium - size heatproof bowl fill with the chocolate , butter , and corn syrup .
+# ::root f
+# ::alignments f
+# ::snt_id chocolate_glaze_10_instr0
+(f / fill-01~e.15
+   :mode imperative~e.15
+   :ARG1 (b2 / bowl~e.14
+             :purpose (h2 / heat-01~e.13)
+             :mod (s / size~e.12
+                     :mod (m / medium~e.10)))
+   :ARG2 (a2 / and~e.22
+             :op1 (c / chocolate~e.18)
+             :op2 (b3 / butter~e.20)
+             :op3 (s2 / syrup~e.24
+                      :mod (c2 / corn~e.23)))
+   :ARG0 (y / you~e.15))
+
+# ::id chocolate_glaze_10_instr0_0
+# ::name chocolate_glaze_10_instr0_0
+# ::snt Heat cream to a boil .
+# ::root h
+# ::alignments h
+# ::snt_id chocolate_glaze_10_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG1 (c3 / cream~e.2)
+   :degree (b / boil-01~e.5
+              :ARG1 c3)
+   :ARG0 (y / you~e.1))
+
+# ::id chocolate_glaze_10_instr1
+# ::name chocolate_glaze_10_instr1
+# ::snt Let sit for 1 minute and stir until smooth .
+# ::root l
+# ::alignments l, s, s3
+# ::snt_id chocolate_glaze_10_instr1
+(l / let-01~e.26
+   :mode imperative~e.26
+   :ARG0 (y / you~e.32)
+   :ARG1 (a / and~e.31
+            :op1 (s / sit-01~e.27
+                    :ARG1 y
+                    :duration (t / temporal-quantity~e.30
+                                 :unit (m / minute~e.30)
+                                 :quant 1~e.29)
+                    :mode imperative~e.26)
+            :op2 (s3 / stir-01~e.32
+                     :ARG0 y
+                     :time (u / until~e.33
+                              :op1 (s2 / smooth-01~e.34))
+                     :mode imperative~e.26)))
+
+# ::id chocolate_glaze_10_instr2
+# ::name chocolate_glaze_10_instr2
+# ::snt Let cool to thicken slightly .
+# ::root l
+# ::alignments l, c
+# ::snt_id chocolate_glaze_10_instr2
+(l / let-01~e.36
+   :mode imperative~e.36
+   :ARG0 (y / you~e.36)
+   :ARG1 (t / thicken-01~e.39
+            :ARG1 (c / cool-01~e.37)
+            :degree (s / slight~e.40)))
+
+# ::id chocolate_glaze_10_instr3
+# ::name chocolate_glaze_10_instr3
+# ::snt Use immediately to top our Boston Cream Pie or serve over ice cream .
+# ::root u
+# ::alignments u, t, s
+# ::snt_id chocolate_glaze_10_instr3
+(u / use-01~e.42
+   :ARG0 (y / you~e.51)
+   :ARG2 (o / or~e.50
+            :op1 (t / top-01~e.45
+                    :ARG0 y
+                    :ARG1 (p / product~e.49
+                             :name (n / name~e.47
+                                      :op1 "Boston"~e.47
+                                      :op2 "Cream"~e.48
+                                      :op3 "Pie"~e.49)
+                             :poss (w / we~e.46)))
+            :op2 (s / serve-02~e.51
+                    :ARG0 y
+                    :ARG1 p
+                    :manner (o2 / over~e.52
+                                :op1 (i / ice-cream~e.54))))
+   :time (i2 / immediate~e.43))
+

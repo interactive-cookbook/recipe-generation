@@ -1,0 +1,129 @@
+# ::id southern_sweet_tea_5_instr0
+# ::name southern_sweet_tea_5_instr0
+# ::snt Place baking soda into a large heat proof pitcher .
+# ::root p2
+# ::alignments p2, y
+# ::snt_id southern_sweet_tea_5_instr0
+(p2 / place-01~e.1
+    :mode imperative~e.1
+    :ARG0 (y / you~e.1)
+    :ARG1 (s / soda~e.3
+             :instrument-of (b / bake-01~e.2))
+    :ARG2 (p / pitcher~e.9
+             :mod (l / large~e.6)
+             :ARG1-of (p3 / proof-02~e.8
+                          :ARG2 (h / heat-01~e.7))))
+
+# ::id southern_sweet_tea_5_instr1_0
+# ::name southern_sweet_tea_5_instr1_0
+# ::snt Pour in water and tea bags .
+# ::root p
+# ::alignments p
+# ::snt_id southern_sweet_tea_5_instr1
+(p / pour-01~e.11
+   :ARG0 (y / you~e.11)
+   :ARG1 (a2 / and~e.15
+             :op1 (w / water~e.14)
+             :op2 (b / bag~e.17
+                     :mod (t / tea~e.16))))
+
+# ::id southern_sweet_tea_5_instr1_1
+# ::name southern_sweet_tea_5_instr1_1
+# ::snt Boil water .
+# ::root b2
+# ::alignments b2
+# ::snt_id southern_sweet_tea_5_instr1
+(b2 / boil-01~e.13
+    :mode imperative~e.13
+    :ARG1 (w / water~e.14)
+    :ARG0 (y / you~e.13))
+
+# ::id southern_sweet_tea_5_instr1_2
+# ::name southern_sweet_tea_5_instr1_2
+# ::snt Allow water and tea bags , to steep for 15 minutes .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_5_instr1
+(a / allow-01~e.20
+   :mode imperative~e.26
+   :mode imperative~e.26
+   :ARG0 (y / you~e.20)
+   :ARG1 (s / steep-01~e.22
+            :ARG1 (a2 / and~e.15
+                      :op1 (w / water~e.14)
+                      :op2 (b / bag~e.17
+                              :mod (t / tea~e.16))))
+   :duration (t2 / temporal-quantity~e.24
+                 :unit (m / minute~e.25)
+                 :quant 15~e.24))
+
+# ::id southern_sweet_tea_5_instr2_1
+# ::name southern_sweet_tea_5_instr2_1
+# ::snt Discard tea bags .
+# ::root d
+# ::alignments d
+# ::snt_id southern_sweet_tea_5_instr2
+(d / discard-01~e.29
+   :mode imperative~e.32
+   :ARG0 (y / you~e.29)
+   :ARG1 (b / bag~e.31
+            :mod (t / tea~e.30)))
+
+# ::id southern_sweet_tea_5_instr2_0
+# ::name southern_sweet_tea_5_instr2_0
+# ::snt Remove tea bags .
+# ::root r
+# ::alignments r
+# ::snt_id southern_sweet_tea_5_instr2
+(r / remove-01~e.27
+   :mode imperative~e.28
+   :ARG0 (y / you~e.27)
+   :ARG1 (b / bag~e.31
+            :mod (t / tea~e.30)))
+
+# ::id southern_sweet_tea_5_instr3
+# ::name southern_sweet_tea_5_instr3
+# ::snt Stir in sugar until fully dissolved .
+# ::root s
+# ::alignments s, y
+# ::snt_id southern_sweet_tea_5_instr3
+(s / stir-01~e.33
+   :mode imperative~e.33
+   :ARG0 (y / you~e.33)
+   :ARG2 (s2 / sugar~e.35)
+   :time (u / until~e.36
+            :op1 (d / dissolve-01~e.38
+                    :ARG1 s2
+                    :ARG2-of (f / full-09~e.37))))
+
+# ::id southern_sweet_tea_5_instr4_0
+# ::name southern_sweet_tea_5_instr4_0
+# ::snt Pour in cold water .
+# ::root p
+# ::alignments p
+# ::snt_id southern_sweet_tea_5_instr4
+(p / pour-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG2 (w / water~e.43
+            :ARG1-of (c2 / cold-01~e.42)))
+
+# ::id southern_sweet_tea_5_instr4_1
+# ::name southern_sweet_tea_5_instr4_1
+# ::snt Chill .
+# ::root c
+# ::alignments c
+# ::snt_id southern_sweet_tea_5_instr4
+(c / chill-01~e.45
+   :mode imperative~e.48
+   :ARG0 (y / you~e.45))
+
+# ::id southern_sweet_tea_5_instr4_2
+# ::name southern_sweet_tea_5_instr4_2
+# ::snt Serv .
+# ::root s
+# ::alignments s
+# ::snt_id southern_sweet_tea_5_instr4
+(s / serve-02~e.47
+   :ARG0 (y / you~e.47))
+

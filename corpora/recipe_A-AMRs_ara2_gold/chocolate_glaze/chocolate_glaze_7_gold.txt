@@ -1,0 +1,214 @@
+# ::id chocolate_glaze_7_instr0_0
+# ::name chocolate_glaze_7_instr0_0
+# ::snt Place the chocolate and butter together in a heat - proof bowl .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_7_instr0
+(p / place-01~e.1
+   :mode imperative~e.16
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.4
+            :manner (t / together~e.6)
+            :op1 (c / chocolate~e.3)
+            :op2 (b2 / butter~e.5))
+   :ARG2 (b / bowl~e.12
+            :ARG1-of (p2 / proof-02~e.11
+                         :ARG2 (h / heat~e.9))))
+
+# ::id chocolate_glaze_7_instr0_1
+# ::name chocolate_glaze_7_instr0_1
+# ::snt Set aside .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_7_instr0
+(s / set-01~e.14
+   :mode imperative~e.16
+   :ARG0 (y / you~e.14)
+   :ARG2 (a3 / aside~e.15))
+
+# ::id chocolate_glaze_7_instr1_0
+# ::name chocolate_glaze_7_instr1_0
+# ::snt Heat the heavy cream until it just begins to boil .
+# ::root h
+# ::alignments h, b
+# ::snt_id chocolate_glaze_7_instr1
+(h / heat-01~e.17
+   :mode imperative~e.33
+   :ARG0 (y / you~e.17)
+   :ARG1 (c2 / cream~e.20
+             :mod (h2 / heavy~e.19))
+   :time (u / until~e.21
+            :op1 (b / begin-01~e.24
+                    :ARG1 (b2 / boil-01~e.26
+                              :ARG1 c2)
+                    :mod (j / just~e.23))))
+
+# ::id chocolate_glaze_7_instr1_1
+# ::name chocolate_glaze_7_instr1_1
+# ::snt Immediately pour the heavy cream over the chocolate .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_7_instr1
+(p / pour-01~e.29
+   :mode imperative~e.33
+   :ARG0 (y / you~e.29)
+   :ARG1 (c2 / cream~e.20
+             :mod (h2 / heavy~e.19))
+   :ARG2 (o / over~e.30
+            :op1 (c / chocolate~e.32))
+   :time (i / immediate~e.28))
+
+# ::id chocolate_glaze_7_instr2
+# ::name chocolate_glaze_7_instr2
+# ::snt Stir gently until smooth .
+# ::root s2
+# ::alignments s2, y
+# ::snt_id chocolate_glaze_7_instr2
+(s2 / stir-01~e.34
+    :mode imperative~e.34
+    :ARG0 (y / you~e.34)
+    :manner (g / gentle~e.35)
+    :manner (u / until~e.36
+               :op1 (s / smooth-01~e.37)))
+
+# ::id chocolate_glaze_7_instr3_0
+# ::name chocolate_glaze_7_instr3_0
+# ::snt Let sit until slightly thickened , about 3 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id chocolate_glaze_7_instr3
+(l / let-01~e.39
+   :mode imperative~e.39
+   :ARG0 (y / you~e.39)
+   :ARG1 (s / sit-01~e.40
+            :ARG1 y
+            :time (u / until~e.41
+                     :op1 (t2 / thick-03~e.43
+                              :degree (s2 / slight~e.42))))
+   :duration (a / about~e.50
+                :op1 (t / temporal-quantity~e.52
+                        :unit (m / minute~e.52)
+                        :quant 3~e.51)))
+
+# ::id chocolate_glaze_7_instr3_1
+# ::name chocolate_glaze_7_instr3_1
+# ::snt Let use to glaze cakes .
+# ::root u2
+# ::alignments u2, g
+# ::snt_id chocolate_glaze_7_instr3
+(u2 / use-01~e.45
+    :mode imperative~e.45
+    :ARG1 (y / you~e.39)
+    :ARG2 (g / glaze-01~e.47
+             :ARG1 (c / cake~e.48))
+    :ARG0 (y1 / you~e.45))
+
+# ::id chocolate_glaze_7_instr4
+# ::name chocolate_glaze_7_instr4
+# ::snt Place the cake in the refrigerator for 5 to 10 minutes to set the chocolate .
+# ::root p
+# ::alignments p, y
+# ::snt_id chocolate_glaze_7_instr4
+(p / place-01~e.54
+   :purpose (s / set-01~e.66
+               :ARG0 y
+               :ARG1 (c2 / chocolate~e.68))
+   :ARG0 (y / you~e.54)
+   :ARG1 (c / cake~e.56)
+   :ARG2 (r / refrigerator~e.59)
+   :duration (b / between~e.61
+                :op1 (t / temporal-quantity~e.64
+                        :unit (m / minute~e.64)
+                        :quant 5~e.61)
+                :op2 (t2 / temporal-quantity~e.64
+                         :unit (m2 / minute~e.64)
+                         :quant 10~e.63)))
+
+# ::id chocolate_glaze_7_instr5_1
+# ::name chocolate_glaze_7_instr5_1
+# ::snt For filled cakes : Pour chocolate on each filled cake and the cake to .
+# ::root a
+# ::alignments p
+# ::snt_id chocolate_glaze_7_instr5
+(a / and~e.80
+   :op1 (p / pour-01~e.74
+           :ARG0 (y / you~e.74)
+           :ARG1 (c3 / chocolate~e.75)
+           :ARG2 (c / cake~e.79
+                    :mod (e / each~e.77)
+                    :ARG1-of (f2 / fill-01~e.78
+                                 :ARG1 c2))
+           :topic (c2 / cake~e.84)
+           :mode imperative~e.74)
+   :rel (f / fill-01~e.71))
+
+# ::id chocolate_glaze_7_instr5_0
+# ::name chocolate_glaze_7_instr5_0
+# ::snt For filled cakes : on each cake and smooth over to completely coat .
+# ::root a
+# ::alignments s, c4
+# ::snt_id chocolate_glaze_7_instr5
+(a / and~e.80
+   :op2 (s / smooth-01~e.81
+           :purpose (c4 / coat-01~e.87
+                        :ARG0 y
+                        :ARG1-of (c5 / complete-02~e.86))
+           :ARG0 (y / you~e.87)
+           :ARG2 (o / over~e.82
+                    :op1 (c / cake~e.79
+                            :mod (e / each~e.77)))
+           :mode imperative~e.88)
+   :rel (f / fill-01~e.71))
+
+# ::id chocolate_glaze_7_instr6
+# ::name chocolate_glaze_7_instr6
+# ::snt Place the cakes in the freezer until chocolate sets .
+# ::root p
+# ::alignments p, s
+# ::snt_id chocolate_glaze_7_instr6
+(p / place-01~e.89
+   :mode imperative~e.98
+   :ARG0 (y / you~e.89)
+   :ARG1 (c / cake~e.91)
+   :ARG2 (f / freezer~e.94)
+   :time (u / until~e.95
+            :op1 (s / set-02~e.97
+                    :ARG1 (c2 / chocolate~e.96))))
+
+# ::id chocolate_glaze_7_instr7_0
+# ::name chocolate_glaze_7_instr7_0
+# ::snt Remove .
+# ::root r
+# ::alignments r
+# ::snt_id chocolate_glaze_7_instr7
+(r / remove-01~e.99
+   :mode imperative~e.99
+   :ARG0 (y / you~e.99))
+
+# ::id chocolate_glaze_7_instr7_1
+# ::name chocolate_glaze_7_instr7_1
+# ::snt Store in a cool area .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_7_instr7
+(s / store-01~e.101
+   :mode imperative~e.106
+   :ARG0 (y / you~e.101)
+   :location (a2 / area~e.105
+                 :ARG1-of (c / cool-04~e.104)))
+
+# ::id chocolate_glaze_7_instr8
+# ::name chocolate_glaze_7_instr8
+# ::snt Nutritional information is based on a 2-tablespoon serving .
+# ::root b
+# ::alignments
+# ::snt_id chocolate_glaze_7_instr8
+(b / base-02~e.110
+   :rel 1~e.113
+   :ARG1 (i / information~e.108
+            :topic (n / nutrition~e.107))
+   :ARG2 (s / serve-02~e.114
+            :quant (v / volume-quantity~e.115
+                      :quant 2-tablespoon~e.113)
+            :mod 2-tablespoon~e.113))
+

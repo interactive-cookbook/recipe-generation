@@ -1,0 +1,188 @@
+# ::id lavender_lemonade_7_instr0
+# ::name lavender_lemonade_7_instr0
+# ::snt Combine sugar and lavender in a large bowl .
+# ::root c
+# ::alignments c, y
+# ::snt_id lavender_lemonade_7_instr0
+(c / combine-01~e.1
+   :mode imperative~e.9
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.3
+            :op1 (s / sugar~e.2)
+            :op2 (l2 / lavender~e.4))
+   :ARG2 (b / bowl~e.8
+            :mod (l / large~e.7)))
+
+# ::id lavender_lemonade_7_instr1_1
+# ::name lavender_lemonade_7_instr1_1
+# ::snt Boil water .
+# ::root b
+# ::alignments b
+# ::snt_id lavender_lemonade_7_instr1
+(b / boil-01~e.11
+   :mode imperative~e.11
+   :ARG1 (w / water~e.12)
+   :ARG0 (y / you~e.11))
+
+# ::id lavender_lemonade_7_instr1_0
+# ::name lavender_lemonade_7_instr1_0
+# ::snt Pour water over the mixture .
+# ::root p
+# ::alignments p
+# ::snt_id lavender_lemonade_7_instr1
+(p / pour-01~e.10
+   :mode imperative~e.10
+   :ARG0 (y / you~e.10)
+   :ARG1 (w / water~e.12)
+   :ARG2 (m2 / mixture~e.15))
+
+# ::id lavender_lemonade_7_instr1_2
+# ::name lavender_lemonade_7_instr1_2
+# ::snt Water steep for 10 minutes .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_7_instr1
+(s / steep-01~e.17
+   :mode imperative~e.24
+   :ARG0 (y / you~e.17)
+   :ARG1 (w / water~e.12)
+   :duration (t / temporal-quantity~e.20
+                :unit (m / minute~e.20)
+                :quant 10~e.19))
+
+# ::id lavender_lemonade_7_instr1_3
+# ::name lavender_lemonade_7_instr1_3
+# ::snt Stir occasionally .
+# ::root s2
+# ::alignments s2
+# ::snt_id lavender_lemonade_7_instr1
+(s2 / stir-01~e.22
+    :ARG0 (y / you~e.22)
+    :frequency (o / occasional~e.23))
+
+# ::id lavender_lemonade_7_instr2
+# ::name lavender_lemonade_7_instr2
+# ::snt Strain the lavender mixture with a strainer .
+# ::root s
+# ::alignments s, y
+# ::snt_id lavender_lemonade_7_instr2
+(s / strain-01~e.25
+   :mode imperative~e.25
+   :ARG0 (y / you~e.25)
+   :ARG1 (m / mix-01~e.28
+            :ARG1 (l / lavender~e.27))
+   :instrument (t / thing~e.32
+                  :instrument-of (s2 / strain-01~e.31)))
+
+# ::id lavender_lemonade_7_instr3
+# ::name lavender_lemonade_7_instr3
+# ::snt You may want to run the mixture through a cheesecloth if pieces remain .
+# ::root p2
+# ::alignments r2
+# ::snt_id lavender_lemonade_7_instr3
+(p2 / possible-01~e.34
+    :ARG1 (w / want-01~e.35
+             :ARG0 (y / you~e.33)
+             :ARG1 (r2 / run-01~e.37
+                       :ARG0 y
+                       :ARG1 (t / thing~e.39
+                                :ARG1-of (m / mix-01~e.39))
+                       :path (c / cheesecloth~e.42)))
+    :condition (r / remain-01~e.45
+                  :ARG1 (p / piece~e.44)))
+
+# ::id lavender_lemonade_7_instr4
+# ::name lavender_lemonade_7_instr4
+# ::snt Combine the lavender simple syrup with the lemon juice .
+# ::root c
+# ::alignments c, y
+# ::snt_id lavender_lemonade_7_instr4
+(c / combine-01~e.47
+   :mode imperative~e.47
+   :ARG0 (y / you~e.47)
+   :ARG1 (s2 / syrup~e.51
+             :mod (l / lavender~e.49)
+             :ARG1-of (s / simple-02~e.50))
+   :ARG2 (j / juice~e.55
+            :source (l2 / lemon~e.54)))
+
+# ::id lavender_lemonade_7_instr5
+# ::name lavender_lemonade_7_instr5
+# ::snt The mixture will turn a beautiful rose hue .
+# ::root t2
+# ::alignments
+# ::snt_id lavender_lemonade_7_instr5
+(t2 / turn-02~e.60
+    :ARG1 (t / thing~e.58
+             :ARG3-of (m / mix-01~e.58))
+    :ARG2 (c / color-01~e.64
+             :ARG2 (r / rose~e.63)
+             :ARG1-of (b / beautiful-02~e.62)))
+
+# ::id lavender_lemonade_7_instr6_0
+# ::name lavender_lemonade_7_instr6_0
+# ::snt Pour the mix and cold water into a large pitcher .
+# ::root a2
+# ::alignments p2
+# ::snt_id lavender_lemonade_7_instr6
+(a2 / and~e.76
+    :op1 (p2 / pour-01~e.66
+             :ARG0 (y / you~e.66)
+             :ARG3 (p / pitcher~e.75
+                      :mod (l / large~e.74))
+             :mode imperative~e.66)
+    :rel (m / mix-01~e.68
+            :ARG1 a
+            :ARG3 w2)
+    :rel (a / and~e.69
+            :op1 w2
+            :op2 w)
+    :rel (c / cold-01~e.70
+            :ARG1 w)
+    :rel (w / water~e.71)
+    :rel (w2 / water~e.71))
+
+# ::id lavender_lemonade_7_instr6_1
+# ::name lavender_lemonade_7_instr6_1
+# ::snt The mix and cold water and stir .
+# ::root a2
+# ::alignments s
+# ::snt_id lavender_lemonade_7_instr6
+(a2 / and~e.76
+    :op2 (s / stir-01~e.77
+            :ARG0 (y / you~e.77)
+            :mode imperative~e.78)
+    :rel (m / mix-01~e.68
+            :ARG1 a
+            :ARG3 w2)
+    :rel (a / and~e.69
+            :op1 w2
+            :op2 w)
+    :rel (c / cold-01~e.70
+            :ARG1 w)
+    :rel (w / water~e.71)
+    :rel (w2 / water~e.71))
+
+# ::id lavender_lemonade_7_instr7_0
+# ::name lavender_lemonade_7_instr7_0
+# ::snt Chill for at least 2 hours .
+# ::root c
+# ::alignments c
+# ::snt_id lavender_lemonade_7_instr7
+(c / chill-02~e.79
+   :mode imperative~e.79
+   :ARG0 (y / you~e.79)
+   :duration (a / at-least~e.82
+                :op1 (t / temporal-quantity~e.84
+                        :unit (h / hour~e.84)
+                        :quant 2~e.83)))
+
+# ::id lavender_lemonade_7_instr7_1
+# ::name lavender_lemonade_7_instr7_1
+# ::snt Serv .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_7_instr7
+(s / serve-02~e.86
+   :ARG0 (y / you~e.86))
+

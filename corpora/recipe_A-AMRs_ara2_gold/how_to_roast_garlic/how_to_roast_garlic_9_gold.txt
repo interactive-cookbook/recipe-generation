@@ -1,0 +1,100 @@
+# ::id how_to_roast_garlic_9_instr0
+# ::name how_to_roast_garlic_9_instr0
+# ::snt Preheat your oven to 400 degrees F.
+# ::root h
+# ::alignments h, y
+# ::snt_id how_to_roast_garlic_9_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3
+            :poss y)
+   :destination (t / temperature-quantity~e.7
+                   :scale (f / fahrenheit~e.7)
+                   :quant 400~e.5))
+
+# ::id how_to_roast_garlic_9_instr1_0
+# ::name how_to_roast_garlic_9_instr1_0
+# ::snt Remove the paper off of the garlic bulbs .
+# ::root r
+# ::alignments r
+# ::snt_id how_to_roast_garlic_9_instr1
+(r / remove-01~e.8
+   :mode imperative~e.25
+   :ARG0 (y / you~e.8)
+   :ARG1 (p / paper~e.10)
+   :ARG2 (b / bulb~e.15
+            :mod (g / garlic~e.14)))
+
+# ::id how_to_roast_garlic_9_instr1_1
+# ::name how_to_roast_garlic_9_instr1_1
+# ::snt Off of the garlic bulbs then cut the tops .
+# ::root c
+# ::alignments c
+# ::snt_id how_to_roast_garlic_9_instr1
+(c / cut-off-04~e.18
+   :mode imperative~e.25
+   :ARG0 (y / you~e.18)
+   :ARG1 (t2 / top~e.20
+             :part-of (b / bulb~e.15
+                         :mod (g / garlic~e.14)))
+   :time (t / then~e.17))
+
+# ::id how_to_roast_garlic_9_instr2_0
+# ::name how_to_roast_garlic_9_instr2_0
+# ::snt Liberally drizzle your bulbs with Olive Oil .
+# ::root d
+# ::alignments d
+# ::snt_id how_to_roast_garlic_9_instr2
+(d / drip-01~e.27
+   :ARG0 (y / you~e.27)
+   :ARG1 (b2 / bulb~e.29
+             :poss y)
+   :ARG2 (o / oil~e.31)
+   :ARG1-of (l / liberal-02~e.26))
+
+# ::id how_to_roast_garlic_9_instr2_1
+# ::name how_to_roast_garlic_9_instr2_1
+# ::snt Your bulbs cover the tops of the bulbs with aluminum foil .
+# ::root c
+# ::alignments c
+# ::snt_id how_to_roast_garlic_9_instr2
+(c / cover-02~e.34
+   :ARG0 (y / you~e.34)
+   :ARG1 (t / top~e.36
+            :part-of (b2 / bulb~e.29))
+   :ARG2 (f / foil~e.42
+            :mod (a / aluminum~e.41)))
+
+# ::id how_to_roast_garlic_9_instr2_2
+# ::name how_to_roast_garlic_9_instr2_2
+# ::snt Place in your muffin tins .
+# ::root p
+# ::alignments p
+# ::snt_id how_to_roast_garlic_9_instr2
+(p / place-01~e.44
+   :ARG0 (y / you~e.44)
+   :ARG2 (b / box~e.48
+            :mod (m / muffin~e.47)
+            :poss y))
+
+# ::id how_to_roast_garlic_9_instr3
+# ::name how_to_roast_garlic_9_instr3
+# ::snt Bake for 55 - 60 minutes or until tender .
+# ::root b
+# ::alignments b, y
+# ::snt_id how_to_roast_garlic_9_instr3
+(b / bake-01~e.50
+   :mode imperative~e.59
+   :ARG0 (y / you~e.50)
+   :duration (o / or~e.56
+                :op1 (b2 / between~e.52
+                         :op1 (t / temporal-quantity~e.52
+                                 :unit (m / minute~e.55)
+                                 :quant 55~e.52)
+                         :op2 (t2 / temporal-quantity~e.55
+                                  :unit (m2 / minute~e.55)
+                                  :quant 60~e.54))
+                :op2 (u / until~e.57
+                        :op1 (t3 / tender-02~e.58))))
+

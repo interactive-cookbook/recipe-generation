@@ -1,0 +1,189 @@
+# ::id sausage_gravy_4_instr0
+# ::name sausage_gravy_4_instr0
+# ::snt In a large saucepan over medium - high heat , brown sausage .
+# ::root s2
+# ::alignments r
+# ::snt_id sausage_gravy_4_instr0
+(s2 / sausage~e.12
+    :location (s / saucepan~e.4
+                 :location (h / heat~e.9
+                              :ARG1-of (h2 / high-02~e.8
+                                           :ARG2 (m / medium~e.6)))
+                 :mod (l / large~e.3))
+    :mod (r / Brown~e.11))
+
+# ::id sausage_gravy_4_instr1
+# ::name sausage_gravy_4_instr1
+# ::snt Crumble the sausage the best you can so that you have small bits .
+# ::root c
+# ::alignments c, y
+# ::snt_id sausage_gravy_4_instr1
+(c / crumble-01~e.14
+   :mode imperative~e.14
+   :purpose (h / have-03~e.24
+               :ARG0 y
+               :ARG1 (b / bit~e.26
+                        :mod (s2 / small~e.25)))
+   :ARG0 (y / you~e.14)
+   :ARG1 (s / sausage~e.16)
+   :ARG1-of (h2 / have-degree-91~e.18
+                :ARG2 (g / good-03~e.18
+                         :ARG2 c)
+                :ARG3 (m / most~e.18)
+                :ARG5 (p / possible-01~e.20
+                         :ARG1 c)))
+
+# ::id sausage_gravy_4_instr2
+# ::name sausage_gravy_4_instr2
+# ::snt Add bacon grease to total about 1/4 cup cooking fat .
+# ::root a2
+# ::alignments a2, y
+# ::snt_id sausage_gravy_4_instr2
+(a2 / add-02~e.28
+    :mode imperative~e.28
+    :ARG0 (y / you~e.28)
+    :ARG1 (g / grease~e.30
+             :source (b / bacon~e.29))
+    :ARG2 (t / total-01~e.32
+             :ARG1 (a / about~e.33
+                      :op1 (v / volume-quantity~e.35
+                              :unit (c2 / cup~e.35)
+                              :quant "1/4"~e.34)
+                      :quant-of (f / fat~e.37
+                                   :purpose (c / cook-01~e.36)))))
+
+# ::id sausage_gravy_4_instr3_0
+# ::name sausage_gravy_4_instr3_0
+# ::snt Add flour .
+# ::root a2
+# ::alignments a2
+# ::snt_id sausage_gravy_4_instr3
+(a2 / add-02~e.39
+    :mode imperative~e.39
+    :ARG1 (f / flour~e.40)
+    :ARG0 (y / you~e.39))
+
+# ::id sausage_gravy_4_instr3_1
+# ::name sausage_gravy_4_instr3_1
+# ::snt Stir .
+# ::root s
+# ::alignments s
+# ::snt_id sausage_gravy_4_instr3
+(s / stir-01~e.42
+   :mode imperative~e.42
+   :ARG0 (y / you~e.42))
+
+# ::id sausage_gravy_4_instr3_2
+# ::name sausage_gravy_4_instr3_2
+# ::snt Cook over medium heat for about three minutes .
+# ::root c
+# ::alignments c
+# ::snt_id sausage_gravy_4_instr3
+(c / cook-01~e.44
+   :mode imperative~e.44
+   :duration (a / about~e.49
+                :op1 (t / temporal-quantity~e.51
+                        :unit (m2 / minute~e.51)
+                        :quant 3~e.50))
+   :location (h / heat~e.47
+                :mod (m / medium~e.46))
+   :ARG0 (y / you~e.44))
+
+# ::id sausage_gravy_4_instr4
+# ::name sausage_gravy_4_instr4
+# ::snt Slowly add , while whisking , the 2 cups milk .
+# ::root a
+# ::alignments a, w
+# ::snt_id sausage_gravy_4_instr4
+(a / add-02~e.54
+   :mode imperative~e.54
+   :ARG1 (m / milk~e.62
+            :quant (v / volume-quantity~e.61
+                      :unit (c / cup~e.61)
+                      :quant 2~e.60))
+   :time (w / whisk-01~e.57)
+   :ARG0 (y / you~e.54)
+   :ARG1-of (s / slow-01~e.53))
+
+# ::id sausage_gravy_4_instr5
+# ::name sausage_gravy_4_instr5
+# ::snt Continue to cook for about five more minutes or until thickened to desired consistency .
+# ::root c2
+# ::alignments c2, y
+# ::snt_id sausage_gravy_4_instr5
+(c2 / continue-01~e.64
+    :mode imperative~e.78
+    :ARG0 (y / you~e.64)
+    :ARG1 (c3 / cook-01~e.66
+              :ARG0 y)
+    :duration (a / about~e.68
+                 :op1 (t / temporal-quantity~e.71
+                         :mod (m2 / more~e.70)
+                         :unit (m / minute~e.71)
+                         :quant 5~e.69))
+    :time (u / until~e.73
+             :op1 (t2 / thick-03~e.74
+                      :ARG1 c3
+                      :ARG4 (c / consistent-02~e.77
+                               :ARG1-of (d / desire-01~e.76
+                                           :ARG0 y)))))
+
+# ::id sausage_gravy_4_instr6
+# ::name sausage_gravy_4_instr6
+# ::snt You can add more milk to thin .
+# ::root p
+# ::alignments a
+# ::snt_id sausage_gravy_4_instr6
+(p / possible-01~e.80
+   :ARG1 (a / add-02~e.81
+            :purpose (t / thin-03~e.85)
+            :ARG0 (y / you~e.79)
+            :ARG1 (m / milk~e.83
+                     :mod (m2 / more~e.82))))
+
+# ::id sausage_gravy_4_instr7
+# ::name sausage_gravy_4_instr7
+# ::snt If you want it thicker , add a teaspoon of cornstarch to a little bit of cold milk , stir well , and then add to the gravy .
+# ::root a3
+# ::alignments a, s, a2
+# ::snt_id sausage_gravy_4_instr7
+(a3 / and~e.109
+    :condition (w / want-01~e.89
+                  :ARG0 (y / you~e.106)
+                  :ARG1 (h / have-degree-91~e.91
+                           :ARG1 (i / it~e.90)
+                           :ARG2 (t3 / thick-03~e.91
+                                     :ARG1 i)
+                           :ARG3 (m2 / more~e.91)))
+    :op1 (a / add-02~e.93
+            :ARG0 y
+            :ARG1 (c2 / cornstarch~e.97
+                      :quant (t / teaspoon~e.95))
+            :ARG2 (m / milk~e.104
+                     :quant (b / bit~e.101
+                               :mod (l / little~e.100))
+                     :ARG1-of (c / cold-01~e.103))
+            :mode imperative~e.93)
+    :op2 (s / stir-01~e.106
+            :ARG0 y
+            :ARG1-of (w2 / well-09~e.107)
+            :mode imperative~e.115)
+    :op3 (a2 / add-02~e.111
+             :ARG1 y
+             :ARG2 (g / gravy~e.114)
+             :time (t2 / then~e.110)
+             :ARG0 (y1 / you~e.111)
+             :mode imperative~e.111))
+
+# ::id sausage_gravy_4_instr8
+# ::name sausage_gravy_4_instr8
+# ::snt Serve over warm biscuits .
+# ::root s
+# ::alignments s
+# ::snt_id sausage_gravy_4_instr8
+(s / serve-02~e.116
+   :mode imperative~e.116
+   :ARG2 (b / biscuit~e.119
+            :ARG1-of (w / warm-07~e.118))
+   :ARG0 (y / you~e.116))
+

@@ -1,0 +1,173 @@
+# ::id peanut_butter_bars_8_instr0
+# ::name peanut_butter_bars_8_instr0
+# ::snt Combine first four ingredients in a large mixing bowl until well - combined and smooth .
+# ::root c
+# ::alignments c, y
+# ::snt_id peanut_butter_bars_8_instr0
+(c / combine-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (i / ingredient~e.4
+            :ord (o / ordinal-entity~e.2
+                    :value 1~e.2)
+            :quant 4~e.3)
+   :ARG2 (b / bowl~e.9
+            :mod (l / large~e.7)
+            :instrument-of (m / mix-01~e.8))
+   :duration (u / until~e.10
+                :op1 (a / and~e.14
+                        :op1 (c2 / combine-01~e.13
+                                 :ARG1 i
+                                 :ARG1-of (w / well-09~e.11))
+                        :op2 (s / smooth-04~e.15))))
+
+# ::id peanut_butter_bars_8_instr1
+# ::name peanut_butter_bars_8_instr1
+# ::snt Spread evenly into a 9x13 baking dish .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_8_instr1
+(s / spread-02~e.17
+   :rel 9x13~e.21
+   :mode imperative~e.17
+   :ARG2 (d / dish~e.23
+            :purpose (b / bake-01~e.22)
+            :consist-of (d3 / distance-quantity~e.21
+                            :unit (i / inch~e.21)
+                            :quant 9~e.21))
+   :rel (d2 / distance-quantity~e.21
+            :unit (f / foot~e.21)
+            :quant 9~e.21)
+   :ARG0 (y / you~e.17)
+   :ARG1-of (e / even-02~e.18))
+
+# ::id peanut_butter_bars_8_instr2
+# ::name peanut_butter_bars_8_instr2
+# ::snt Combine ingredients for the peanut butter bar chocolate topping in a medium glass bowl .
+# ::root c2
+# ::alignments c2, y
+# ::snt_id peanut_butter_bars_8_instr2
+(c2 / combine-01~e.25
+    :mode imperative~e.39
+    :ARG0 (y / you~e.25)
+    :ARG1 (i / ingredient~e.26
+             :purpose (t / thing~e.33
+                         :mod (b / bar~e.31
+                                 :ARG1-of (b3 / butter-01~e.30
+                                              :mod (p / peanut~e.29)))
+                         :ARG0-of (t2 / top-02~e.33
+                                      :ARG1 (c / chocolate~e.32))))
+    :ARG2 (b2 / bowl~e.38
+              :consist-of (g / glass~e.37
+                             :mod (m / medium~e.36))))
+
+# ::id peanut_butter_bars_8_instr3
+# ::name peanut_butter_bars_8_instr3
+# ::snt Melt in the microwave for 1 minute at a time on 80 % power .
+# ::root m
+# ::alignments m, y
+# ::snt_id peanut_butter_bars_8_instr3
+(m / melt-01~e.40
+   :mode imperative~e.40
+   :ARG0 (y / you~e.40)
+   :ARG1 (m2 / microwave~e.43)
+   :duration (t / temporal-quantity~e.46
+                :unit (m3 / minute~e.46)
+                :quant 1~e.45)
+   :mod (a / at-a-time~e.48)
+   :ARG1-of (p2 / power-01~e.53
+                :ARG2 (p / percentage-entity~e.52
+                         :value 80~e.51)))
+
+# ::id peanut_butter_bars_8_instr4_0
+# ::name peanut_butter_bars_8_instr4_0
+# ::snt Remove from the microwave .
+# ::root r
+# ::alignments r
+# ::snt_id peanut_butter_bars_8_instr4
+(r / remove-01~e.55
+   :mode imperative~e.55
+   :ARG0 (y / you~e.55)
+   :ARG2 (m / microwave~e.58))
+
+# ::id peanut_butter_bars_8_instr4_1
+# ::name peanut_butter_bars_8_instr4_1
+# ::snt Stir until smooth .
+# ::root s2
+# ::alignments s2
+# ::snt_id peanut_butter_bars_8_instr4
+(s2 / stir-01~e.60
+    :mode imperative~e.63
+    :ARG0 (y / you~e.60)
+    :duration (u / until~e.61
+                 :op1 (s / smooth-01~e.62)))
+
+# ::id peanut_butter_bars_8_instr5_0
+# ::name peanut_butter_bars_8_instr5_0
+# ::snt Spread on top of the peanut butter bar base .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_8_instr5
+(s / spread-02~e.64
+   :ARG0 (y / you~e.64)
+   :ARG2 (t2 / top~e.66
+             :op1 (b2 / base~e.72
+                      :mod (b / bar~e.71
+                              :mod (b3 / butter~e.70
+                                       :mod (p / peanut~e.69))))))
+
+# ::id peanut_butter_bars_8_instr5_1
+# ::name peanut_butter_bars_8_instr5_1
+# ::snt Place in the freezer for 15 minutes .
+# ::root p2
+# ::alignments p2
+# ::snt_id peanut_butter_bars_8_instr5
+(p2 / place-01~e.74
+    :ARG0 (y / you~e.74)
+    :ARG2 (f / freezer~e.77)
+    :duration (t / temporal-quantity~e.79
+                 :unit (m / minute~e.80)
+                 :quant 15~e.79))
+
+# ::id peanut_butter_bars_8_instr6_0
+# ::name peanut_butter_bars_8_instr6_0
+# ::snt Remove from the freezer .
+# ::root r
+# ::alignments r
+# ::snt_id peanut_butter_bars_8_instr6
+(r / remove-01~e.82
+   :mode imperative~e.91
+   :ARG1 (y / you~e.82)
+   :ARG2 (f / freezer~e.85)
+   :ARG0 (y1 / you~e.82))
+
+# ::id peanut_butter_bars_8_instr6_1
+# ::name peanut_butter_bars_8_instr6_1
+# ::snt Cut into individual bars .
+# ::root c
+# ::alignments c
+# ::snt_id peanut_butter_bars_8_instr6
+(c / cut-01~e.87
+   :mode imperative~e.91
+   :ARG0 (y / you~e.87)
+   :ARG2 (b / bar~e.90
+            :mod (i / individual~e.89)))
+
+# ::id peanut_butter_bars_8_instr7
+# ::name peanut_butter_bars_8_instr7
+# ::snt The size will depend on the number of bars you 'd like to serve ( 20 - 36 bars )
+# ::root d
+# ::alignments
+# ::snt_id peanut_butter_bars_8_instr7
+(d / depend-01~e.95
+   :ARG0 (s2 / size~e.93)
+   :ARG1 (n / number~e.98
+            :quant-of (b / bar~e.100
+                         :quant (b2 / between~e.107
+                                    :op1 20~e.107
+                                    :op2 36~e.109)
+                         :ARG1-of (s / serve-02~e.105
+                                     :ARG0 (y / you~e.101)
+                                     :ARG1-of (l / like-02~e.103
+                                                 :ARG0 y)))))
+

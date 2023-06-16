@@ -1,0 +1,109 @@
+# ::id chocolate_glaze_1_instr0_1
+# ::name chocolate_glaze_1_instr0_1
+# ::snt Place the bittersweet chocolate and half - and - half in a microwave - safe bowl .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_1_instr0
+(p / place-01~e.1
+   :mode imperative~e.33
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.5
+            :op1 (c / chocolate~e.4
+                    :mod (b / bittersweet~e.3))
+            :op2 (h / half~e.10))
+   :ARG2 (b2 / bowl~e.16
+             :ARG1-of (s / safe-01~e.15
+                         :ARG2 (m / microwave~e.13))))
+
+# ::id chocolate_glaze_1_instr0_0
+# ::name chocolate_glaze_1_instr0_0
+# ::snt Heat on the lowest setting or the defrost setting for 1 minute .
+# ::root h3
+# ::alignments h3, d
+# ::snt_id chocolate_glaze_1_instr0
+(h3 / heat-01~e.18
+    :ARG0 (y / you~e.18)
+    :duration (t / temporal-quantity~e.29
+                 :unit (m2 / minute~e.29)
+                 :quant 1~e.28)
+    :location (o / or~e.23
+                 :op1 (s2 / set-01~e.22
+                          :ARG1-of (h2 / have-degree-91~e.21
+                                       :ARG2 (l / low-04~e.21
+                                                :ARG1 s2)
+                                       :ARG3 (m3 / most~e.21)))
+                 :op2 (s3 / set-01~e.26
+                          :purpose (d / defuse-01~e.25))))
+
+# ::id chocolate_glaze_1_instr0_2
+# ::name chocolate_glaze_1_instr0_2
+# ::snt Stir well .
+# ::root s4
+# ::alignments s4
+# ::snt_id chocolate_glaze_1_instr0
+(s4 / stir-01~e.31
+    :mode imperative~e.33
+    :ARG0 (y / you~e.31)
+    :manner (w / well~e.32))
+
+# ::id chocolate_glaze_1_instr1_0
+# ::name chocolate_glaze_1_instr1_0
+# ::snt Microwave for 30 seconds .
+# ::root m
+# ::alignments m
+# ::snt_id chocolate_glaze_1_instr1
+(m / microwave~e.34
+   :mode imperative~e.34
+   :ARG0 (y / you~e.34)
+   :duration (t / temporal-quantity~e.36
+                :unit (s / second~e.37)
+                :quant 30~e.36))
+
+# ::id chocolate_glaze_1_instr1_1
+# ::name chocolate_glaze_1_instr1_1
+# ::snt Stir again .
+# ::root s2
+# ::alignments s2
+# ::snt_id chocolate_glaze_1_instr1
+(s2 / stir-01~e.39
+    :mode imperative~e.41
+    :ARG0 (y / you~e.39)
+    :mod (a / again~e.40))
+
+# ::id chocolate_glaze_1_instr2
+# ::name chocolate_glaze_1_instr2
+# ::snt Repeat , if necessary , until the mixture is completely melted and smooth .
+# ::root r
+# ::alignments r, y
+# ::snt_id chocolate_glaze_1_instr2
+(r / repeat-01~e.42
+   :mode imperative~e.44
+   :ARG0 (y / you~e.42)
+   :condition (n / need-01~e.45)
+   :time (u / until~e.47
+            :op1 (a / and~e.53
+                    :op1 (m / melt-01~e.52
+                            :ARG1 (m2 / mixture~e.49))
+                    :op2 (s / smooth-04~e.54
+                            :ARG1 m2)
+                    :ARG1-of (c / complete-02~e.51))))
+
+# ::id chocolate_glaze_1_instr3
+# ::name chocolate_glaze_1_instr3
+# ::snt Let cool until tepid ; do not refrigerate .
+# ::root m
+# ::alignments l, c
+# ::snt_id chocolate_glaze_1_instr3
+(m / multi-sentence~e.60
+   :snt1 (l / let-01~e.56
+            :ARG0 (y / you~e.63)
+            :ARG1 (c / cool-01~e.57
+                     :ARG1 y
+                     :time (u / until~e.58
+                              :op1 (t / tepid~e.59)))
+            :mode imperative~e.56)
+   :snt2 (c2 / cool-01~e.63
+             :ARG0 y
+             :mode imperative~e.61
+             :polarity -~e.62))
+

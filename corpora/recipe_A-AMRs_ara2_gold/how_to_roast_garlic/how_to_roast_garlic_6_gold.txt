@@ -1,0 +1,184 @@
+# ::id how_to_roast_garlic_6_instr0
+# ::name how_to_roast_garlic_6_instr0
+# ::snt Preheat your oven to 425 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id how_to_roast_garlic_6_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3
+            :poss y)
+   :destination (t / temperature-quantity~e.5
+                   :quant 425~e.5))
+
+# ::id how_to_roast_garlic_6_instr1
+# ::name how_to_roast_garlic_6_instr1
+# ::snt Do not peel the garlic , simply cut the top off of the head of the garlic .
+# ::root c
+# ::alignments c2
+# ::snt_id how_to_roast_garlic_6_instr1
+(c / contrast-01~e.13
+   :ARG1 (p / peel-off-02~e.10
+            :ARG0 (y / you~e.8)
+            :ARG1 (g / garlic~e.12
+                     :part (h / head~e.21
+                              :part (t / top~e.17)))
+            :mode imperative~e.8
+            :polarity -~e.9)
+   :ARG2 (c2 / cut-01~e.15
+             :ARG0 y
+             :ARG1 t
+             :ARG1-of (s / simple-02~e.14)
+             :mode imperative~e.15))
+
+# ::id how_to_roast_garlic_6_instr2_0
+# ::name how_to_roast_garlic_6_instr2_0
+# ::snt Place in a piece of aluminum foil .
+# ::root p2
+# ::alignments p2
+# ::snt_id how_to_roast_garlic_6_instr2
+(p2 / place-01~e.26
+    :mode imperative~e.26
+    :ARG0 (y / you~e.26)
+    :ARG2 (p / piece~e.29
+             :mod (f / foil~e.32
+                     :mod (a / aluminum~e.31))))
+
+# ::id how_to_roast_garlic_6_instr2_1
+# ::name how_to_roast_garlic_6_instr2_1
+# ::snt Pour olive oil over the top of the garlic .
+# ::root p3
+# ::alignments p3
+# ::snt_id how_to_roast_garlic_6_instr2
+(p3 / pour-01~e.34
+    :mode imperative~e.43
+    :ARG0 (y / you~e.34)
+    :ARG1 (o / oil~e.36
+             :mod (o2 / olive~e.35))
+    :ARG2 (t / top~e.39
+             :mod (g / garlic~e.42)))
+
+# ::id how_to_roast_garlic_6_instr3_1
+# ::name how_to_roast_garlic_6_instr3_1
+# ::snt Pour oil .
+# ::root p
+# ::alignments p
+# ::snt_id how_to_roast_garlic_6_instr3
+(p / pour-01~e.44
+   :mode imperative~e.44
+   :ARG0 (y / you~e.44)
+   :ARG1 (o / oil~e.47))
+
+# ::id how_to_roast_garlic_6_instr3_0
+# ::name how_to_roast_garlic_6_instr3_0
+# ::snt Just enough so that the garlic is full of oil and it spills out and down the sides .
+# ::root s2
+# ::alignments s2, o3
+# ::snt_id how_to_roast_garlic_6_instr3
+(s2 / spill-01~e.58
+    :mode imperative~e.58
+    :ARG1 (g / garlic~e.51)
+    :direction (o3 / out~e.59)
+    :direction (d / down~e.61
+                  :op1 (s / side~e.63))
+    :ARG0 (y / you~e.58)
+    :op2-of (a / and~e.56
+               :op1 (f / fill-01~e.53
+                       :ARG1 g
+                       :ARG2 (o2 / oil~e.55))
+               :ARG6-of (h / have-quant-91~e.46
+                           :ARG3 (e / enough~e.46
+                                    :mod (j / just~e.45)))))
+
+# ::id how_to_roast_garlic_6_instr4_0
+# ::name how_to_roast_garlic_6_instr4_0
+# ::snt Tightly wrap the foil around the bulb of garlic .
+# ::root w
+# ::alignments w
+# ::snt_id how_to_roast_garlic_6_instr4
+(w / wrap-01~e.66
+   :mode imperative~e.80
+   :ARG0 (y / you~e.66)
+   :ARG1 (f / foil~e.68)
+   :manner (a2 / around~e.69
+               :op1 (b2 / bulb~e.71
+                        :consist-of (g / garlic~e.73)))
+   :ARG1-of (t / tight-05~e.65))
+
+# ::id how_to_roast_garlic_6_instr4_1
+# ::name how_to_roast_garlic_6_instr4_1
+# ::snt Place on a baking sheet .
+# ::root p
+# ::alignments p
+# ::snt_id how_to_roast_garlic_6_instr4
+(p / place-01~e.75
+   :mode imperative~e.80
+   :ARG0 (y / you~e.75)
+   :ARG2 (s / sheet~e.79
+            :instrument-of (b / bake-01~e.78)))
+
+# ::id how_to_roast_garlic_6_instr5
+# ::name how_to_roast_garlic_6_instr5
+# ::snt Bake for 35 minutes or until the garlic is fragrant .
+# ::root b
+# ::alignments b, y
+# ::snt_id how_to_roast_garlic_6_instr5
+(b / bake-01~e.81
+   :mode imperative~e.91
+   :ARG0 (y / you~e.81)
+   :duration (o / or~e.85
+                :op1 (t / temporal-quantity~e.84
+                        :unit (m / minute~e.84)
+                        :quant 35~e.83)
+                :op2 (u / until~e.86
+                        :op1 (f / fragrant~e.90
+                                :domain (g / garlic~e.88)))))
+
+# ::id how_to_roast_garlic_6_instr6_0
+# ::name how_to_roast_garlic_6_instr6_0
+# ::snt Let cool .
+# ::root l2
+# ::alignments l2, c
+# ::snt_id how_to_roast_garlic_6_instr6
+(l2 / let-01~e.92
+    :mode imperative~e.92
+    :ARG0 (y / you~e.92)
+    :ARG1 (c / cool-06~e.93))
+
+# ::id how_to_roast_garlic_6_instr6_1
+# ::name how_to_roast_garlic_6_instr6_1
+# ::snt Then peel the outside layers off of the garlic .
+# ::root p
+# ::alignments p
+# ::snt_id how_to_roast_garlic_6_instr6
+(p / peel-off-02~e.95
+   :ARG0 (y / you~e.95)
+   :ARG1 (l / layer~e.98
+            :mod (o / outside~e.97)
+            :mod (g / garlic~e.102))
+   :time (t / then~e.94))
+
+# ::id how_to_roast_garlic_6_instr6_3
+# ::name how_to_roast_garlic_6_instr6_3
+# ::snt Roast garlic .
+# ::root r
+# ::alignments r
+# ::snt_id how_to_roast_garlic_6_instr6
+(r / roast-01~e.107
+   :mode imperative~e.107
+   :ARG1 (g2 / garlic~e.108)
+   :ARG0 (y / you~e.107))
+
+# ::id how_to_roast_garlic_6_instr6_2
+# ::name how_to_roast_garlic_6_instr6_2
+# ::snt Then pop out the garlic .
+# ::root p2
+# ::alignments p2
+# ::snt_id how_to_roast_garlic_6_instr6
+(p2 / pop-04~e.104
+    :mode imperative~e.109
+    :ARG0 (y / you~e.104)
+    :ARG1 (g2 / garlic~e.108)
+    :time (t / then~e.94))
+

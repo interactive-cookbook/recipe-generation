@@ -1,0 +1,165 @@
+# ::id cobb_salad_3_instr0
+# ::name cobb_salad_3_instr0
+# ::snt Cook the bacon until crisp on both sides .
+# ::root c
+# ::alignments c, y
+# ::snt_id cobb_salad_3_instr0
+(c / cook-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (b / bacon~e.3)
+   :manner (u / until~e.4
+              :op1 (b2 / bake-01~e.5
+                       :ARG1 b
+                       :location (s / side~e.8
+                                    :mod (b3 / both~e.7)))))
+
+# ::id cobb_salad_3_instr1_0
+# ::name cobb_salad_3_instr1_0
+# ::snt Remove from skillet .
+# ::root r
+# ::alignments r
+# ::snt_id cobb_salad_3_instr1
+(r / remove-01~e.10
+   :mode imperative~e.10
+   :ARG0 (y / you~e.10)
+   :ARG1 (s / skillet~e.12))
+
+# ::id cobb_salad_3_instr1_1
+# ::name cobb_salad_3_instr1_1
+# ::snt Drain on paper towels .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_3_instr1
+(d / drain-01~e.14
+   :mode imperative~e.18
+   :ARG0 (y / you~e.14)
+   :ARG2 (w / wipe-01~e.17
+            :ARG2 (p / paper~e.16)))
+
+# ::id cobb_salad_3_instr2
+# ::name cobb_salad_3_instr2
+# ::snt Allow bacon to cool .
+# ::root a
+# ::alignments a, c
+# ::snt_id cobb_salad_3_instr2
+(a / allow-01~e.19
+   :mode imperative~e.23
+   :ARG0 (y / you~e.19)
+   :ARG1 (c / cool-01~e.22
+            :ARG1 (b / bacon~e.20)))
+
+# ::id cobb_salad_3_instr3_0
+# ::name cobb_salad_3_instr3_0
+# ::snt Crumble the bacon .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_3_instr3
+(c / crumble-01~e.24
+   :mode imperative~e.24
+   :ARG0 (y / you~e.24)
+   :ARG1 (b / bacon~e.26))
+
+# ::id cobb_salad_3_instr3_1
+# ::name cobb_salad_3_instr3_1
+# ::snt Set aside .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_3_instr3
+(s / set-01~e.28
+   :mode imperative~e.24
+   :ARG0 (y / you~e.28)
+   :ARG2 (a2 / aside~e.29))
+
+# ::id cobb_salad_3_instr4
+# ::name cobb_salad_3_instr4
+# ::snt On a very large platter , arrange fresh salad greens .
+# ::root a
+# ::alignments a, y
+# ::snt_id cobb_salad_3_instr4
+(a / arrange-01~e.37
+   :mode imperative~e.41
+   :ARG0 (y / you~e.37)
+   :ARG1 (r / Greens~e.40
+            :mod (s / salad~e.39)
+            :ARG1-of (f / fresh-04~e.38))
+   :location (p / platter~e.35
+                :mod (l / large~e.34
+                        :degree (v / very~e.33))))
+
+# ::id cobb_salad_3_instr5
+# ::name cobb_salad_3_instr5
+# ::snt Compose the salad .
+# ::root c
+# ::alignments c, y
+# ::snt_id cobb_salad_3_instr5
+(c / compose-01~e.42
+   :mode imperative~e.42
+   :ARG0 (y / you~e.42)
+   :ARG1 (s / salad~e.44))
+
+# ::id cobb_salad_3_instr6
+# ::name cobb_salad_3_instr6
+# ::snt Arrange the ingredients in neat lines across the salad greens as shown in the picture .
+# ::root a2
+# ::alignments a2, y
+# ::snt_id cobb_salad_3_instr6
+(a2 / arrange-01~e.46
+    :ARG0 (y / you~e.46)
+    :ARG1 (i / ingredient~e.48)
+    :ARG2 (a / across~e.52
+             :op1 (r / Greens~e.55
+                     :mod (s / salad~e.54)))
+    :manner (l / line~e.51
+               :mod (n / neat~e.50))
+    :ARG1-of (s2 / show-01~e.57
+                 :ARG0 (p / picture~e.60)))
+
+# ::id cobb_salad_3_instr7_0
+# ::name cobb_salad_3_instr7_0
+# ::snt Traditionally , this salad is served with a French - style vinaigrette , however , … I prefer homemade Ranch dressing .
+# ::root m2
+# ::alignments s2
+# ::snt_id cobb_salad_3_instr7
+(m2 / multi-sentence~e.85
+    :snt1 (c / contrast-01~e.75
+             :ARG1 (s2 / serve-02~e.67
+                       :ARG1 (s / salad~e.65
+                                :mod (t2 / this~e.64))
+                       :accompanier (v / vinaigrette~e.73
+                                       :mod (s3 / style~e.72
+                                                :mod (c2 / country~e.70
+                                                         :name (n / name~e.70
+                                                                  :op1 "France"~e.70))))
+                       :mod (t3 / tradition~e.62)))
+    :snt2 (p2 / prefer-01~e.87
+              :ARG0 (i / i~e.86)
+              :ARG1 (d2 / dressing~e.90
+                        :name (n2 / name~e.89
+                                  :op1 "Ranch"~e.89)
+                        :mod (h / homemade~e.88))))
+
+# ::id cobb_salad_3_instr7_1
+# ::name cobb_salad_3_instr7_1
+# ::snt However , most people use their favorite dressing to taste … I prefer homemade Ranch dressing .
+# ::root m2
+# ::alignments t
+# ::snt_id cobb_salad_3_instr7
+(m2 / multi-sentence~e.85
+    :snt1 (c / contrast-01~e.75
+             :ARG2 (u / use-01~e.79
+                      :ARG0 (p / person~e.78
+                               :mod (m / most~e.77))
+                      :ARG1 (d / dressing~e.82
+                               :mod (f / favorite~e.81)
+                               :poss p)
+                      :ARG2 (t / taste-01~e.84
+                               :ARG0 p
+                               :ARG1 d)))
+    :snt2 (p2 / prefer-01~e.87
+              :ARG0 (i / i~e.86)
+              :ARG1 (d2 / dressing~e.90
+                        :name (n2 / name~e.89
+                                  :op1 "Ranch"~e.89)
+                        :mod (h / homemade~e.88))))
+

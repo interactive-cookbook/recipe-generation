@@ -1,0 +1,123 @@
+# ::id chocolate_glaze_3_instr0
+# ::name chocolate_glaze_3_instr0
+# ::snt Bring heavy cream and corn syrup to a gentle simmer in a small saucepan .
+# ::root b
+# ::alignments b, y
+# ::snt_id chocolate_glaze_3_instr0
+(b / bring-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (a / and~e.4
+            :op1 (c2 / cream~e.3
+                     :mod (h / heavy~e.2))
+            :op2 (s4 / syrup~e.6
+                     :mod (c / corn~e.5)))
+   :ARG2 (s2 / simmer-01~e.10
+             :ARG1 a
+             :location (s / saucepan~e.14
+                          :mod (s3 / small~e.13))
+             :ARG1-of (g / gentle-01~e.9)))
+
+# ::id chocolate_glaze_3_instr1
+# ::name chocolate_glaze_3_instr1
+# ::snt Pour over chocolate in a bowl , and let stand for 1 minute .
+# ::root a
+# ::alignments p, l, s
+# ::snt_id chocolate_glaze_3_instr1
+(a / and~e.23
+   :op1 (p / pour-01~e.16
+           :ARG0 (y / you~e.24)
+           :ARG2 (c / chocolate~e.18)
+           :ARG3 (b / bowl~e.21)
+           :mode imperative~e.16)
+   :op2 (l / let-01~e.24
+           :ARG0 y
+           :ARG1 (s / stand-01~e.25
+                    :ARG1 p
+                    :duration (t / temporal-quantity~e.28
+                                 :unit (m / minute~e.28)
+                                 :quant 1~e.27))
+           :mode imperative~e.24))
+
+# ::id chocolate_glaze_3_instr2
+# ::name chocolate_glaze_3_instr2
+# ::snt Stir until chocolate melts and mixture is shiny and smooth .
+# ::root s3
+# ::alignments s3, m
+# ::snt_id chocolate_glaze_3_instr2
+(s3 / stir-01~e.30
+    :mode imperative~e.30
+    :ARG0 (y / you~e.30)
+    :time (u / until~e.31
+             :op1 (a / and~e.34
+                     :op1 (m / melt-01~e.33
+                             :ARG1 (c / chocolate~e.32))
+                     :op2 (s / shine-01~e.37
+                             :ARG1 (m2 / mixture~e.35))
+                     :op3 (s2 / smooth-04~e.39
+                              :ARG1 m2))))
+
+# ::id chocolate_glaze_3_instr3
+# ::name chocolate_glaze_3_instr3
+# ::snt Let cool slightly , about 10 minutes .
+# ::root l
+# ::alignments l, c
+# ::snt_id chocolate_glaze_3_instr3
+(l / let-01~e.41
+   :mode imperative~e.41
+   :ARG0 (y / you~e.41)
+   :ARG1 (c / cool-01~e.42
+            :ARG1 y
+            :degree (s / slight~e.43))
+   :duration (a / about~e.45
+                :op1 (t / temporal-quantity~e.47
+                        :unit (m / minute~e.47)
+                        :quant 10~e.46)))
+
+# ::id chocolate_glaze_3_instr4
+# ::name chocolate_glaze_3_instr4
+# ::snt Use immediately .
+# ::root u
+# ::alignments u, y
+# ::snt_id chocolate_glaze_3_instr4
+(u / use-01~e.49
+   :mode imperative~e.51
+   :ARG0 (y / you~e.49)
+   :time (i / immediate~e.50))
+
+# ::id chocolate_glaze_3_instr5
+# ::name chocolate_glaze_3_instr5
+# ::snt Looking for more dessert ideas ?
+# ::root l
+# ::alignments
+# ::snt_id chocolate_glaze_3_instr5
+(l / look-01~e.52
+   :ARG1 (i / idea~e.56
+            :mod (d / dessert~e.55)
+            :mod (m / more~e.54))
+   :polarity (a / amr-unknown~e.57))
+
+# ::id chocolate_glaze_3_instr6
+# ::name chocolate_glaze_3_instr6
+# ::snt Check out our homemade chocolate chip cookie recipes , apple pie recipes , and chocolate cake recipes .
+# ::root c2
+# ::alignments
+# ::snt_id chocolate_glaze_3_instr6
+(c2 / check-out-05~e.58
+    :mode imperative~e.58
+    :ARG0 (y / you~e.58)
+    :ARG1 (a / and~e.71
+             :op1 (r / recipe~e.74
+                     :mod (h / homemade~e.61)
+                     :poss (w / we~e.60)
+                     :topic (c6 / cookie~e.64
+                                :mod (c3 / chip~e.63
+                                         :mod (c4 / chocolate~e.62))))
+             :op2 (r2 / recipe~e.74
+                      :purpose (p / pie~e.68
+                                  :mod (a2 / apple~e.67)))
+             :op3 (r3 / recipe~e.74
+                      :poss w
+                      :topic (c / cake~e.73
+                                :mod (c5 / chocolate~e.72)))))
+

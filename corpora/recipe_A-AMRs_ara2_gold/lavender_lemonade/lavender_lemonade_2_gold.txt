@@ -1,0 +1,131 @@
+# ::id lavender_lemonade_2_instr0
+# ::name lavender_lemonade_2_instr0
+# ::snt In a small saucepan over medium heat , combine 1 cup of water with the sugar and lavender .
+# ::root c
+# ::alignments c, y
+# ::snt_id lavender_lemonade_2_instr0
+(c / combine-01~e.9
+   :mode imperative~e.19
+   :ARG0 (y / you~e.9)
+   :ARG1 (w / water~e.13
+            :quant (v / volume-quantity~e.11
+                      :unit (c2 / cup~e.11)
+                      :quant 1~e.10))
+   :ARG2 (a / and~e.17
+            :op1 (s3 / sugar~e.16)
+            :op2 (l / lavender~e.18))
+   :location (s / saucepan~e.4
+                :location (h / heat-01~e.7
+                             :mod (m / medium~e.6))
+                :mod (s2 / small~e.3)))
+
+# ::id lavender_lemonade_2_instr1_1
+# ::name lavender_lemonade_2_instr1_1
+# ::snt Stir occasionally .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_2_instr1
+(s / stir-01~e.25
+   :ARG0 (y / you~e.25)
+   :frequency (o / occasional~e.26))
+
+# ::id lavender_lemonade_2_instr1_0
+# ::name lavender_lemonade_2_instr1_0
+# ::snt Bring to a boil .
+# ::root b2
+# ::alignments b2
+# ::snt_id lavender_lemonade_2_instr1
+(b2 / bring-01~e.20
+    :mode imperative~e.20
+    :ARG0 (y / you~e.20)
+    :ARG2 (b / boil-01~e.23))
+
+# ::id lavender_lemonade_2_instr2_1
+# ::name lavender_lemonade_2_instr2_1
+# ::snt Reduce the heat .
+# ::root r
+# ::alignments r
+# ::snt_id lavender_lemonade_2_instr2
+(r / reduce-01~e.28
+   :mode imperative~e.33
+   :ARG0 (y / you~e.28)
+   :ARG1 (h / heat~e.30))
+
+# ::id lavender_lemonade_2_instr2_0
+# ::name lavender_lemonade_2_instr2_0
+# ::snt Let simmer for 5 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id lavender_lemonade_2_instr2
+(l / let-01~e.33
+   :mode imperative~e.33
+   :ARG0 (y / you~e.33)
+   :ARG1 (s / simmer-01~e.34
+            :duration (t / temporal-quantity~e.37
+                         :unit (m / minute~e.37)
+                         :quant 5~e.36)))
+
+# ::id lavender_lemonade_2_instr3_0
+# ::name lavender_lemonade_2_instr3_0
+# ::snt Remove the pan from the heat .
+# ::root r
+# ::alignments r
+# ::snt_id lavender_lemonade_2_instr3
+(r / remove-01~e.39
+   :mode imperative~e.39
+   :ARG0 (y / you~e.39)
+   :ARG1 (p / pan~e.41)
+   :ARG2 (h / heat-01~e.44))
+
+# ::id lavender_lemonade_2_instr3_1
+# ::name lavender_lemonade_2_instr3_1
+# ::snt Strain out the lavender .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_2_instr3
+(s / strain-01~e.46
+   :mode imperative~e.50
+   :ARG0 (y / you~e.46)
+   :ARG1 (l / lavender~e.49))
+
+# ::id lavender_lemonade_2_instr4
+# ::name lavender_lemonade_2_instr4
+# ::snt Combine the lavender syrup with the lemon juice and 3 cups of water .
+# ::root c
+# ::alignments c, y
+# ::snt_id lavender_lemonade_2_instr4
+(c / combine-01~e.51
+   :mode imperative~e.51
+   :ARG0 (y / you~e.51)
+   :ARG1 (s / syrup~e.54
+            :source (l / lavender~e.53))
+   :ARG2 (a / and~e.59
+            :op1 (j / juice~e.58
+                    :source (l2 / lemon~e.57))
+            :op2 (w / water~e.63
+                    :quant (v / volume-quantity~e.61
+                              :unit (c2 / cup~e.61)
+                              :quant 3~e.60))))
+
+# ::id lavender_lemonade_2_instr5_0
+# ::name lavender_lemonade_2_instr5_0
+# ::snt Chill for one hour .
+# ::root c
+# ::alignments c
+# ::snt_id lavender_lemonade_2_instr5
+(c / chill-02~e.65
+   :mode imperative~e.65
+   :ARG0 (y / you~e.65)
+   :duration (t / temporal-quantity~e.68
+                :unit (h / hour~e.68)
+                :quant 1~e.67))
+
+# ::id lavender_lemonade_2_instr5_1
+# ::name lavender_lemonade_2_instr5_1
+# ::snt Serv .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_2_instr5
+(s / serve-02~e.70
+   :ARG0 (y / you~e.70))
+

@@ -1,0 +1,279 @@
+# ::id cobb_salad_6_instr0_2
+# ::name cobb_salad_6_instr0_2
+# ::snt Salt water to .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_6_instr0
+(s / salt-01~e.10
+   :mode imperative~e.10
+   :ARG1 (w / water~e.11)
+   :ARG0 (y / you~e.10))
+
+# ::id cobb_salad_6_instr0_0
+# ::name cobb_salad_6_instr0_0
+# ::snt Place chicken in a skillet or saucepan .
+# ::root p
+# ::alignments p
+# ::snt_id cobb_salad_6_instr0
+(p / place-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (c / chicken~e.2)
+   :ARG2 (o / or~e.6
+            :op1 (s3 / skillet~e.5)
+            :op2 (s2 / saucepan~e.7)))
+
+# ::id cobb_salad_6_instr0_1
+# ::name cobb_salad_6_instr0_1
+# ::snt Add chicken water to cover .
+# ::root a
+# ::alignments a
+# ::snt_id cobb_salad_6_instr0
+(a / add-02~e.9
+   :mode imperative~e.14
+   :purpose (c2 / cover-02~e.13
+                :ARG1 (c / chicken~e.2))
+   :ARG0 (y / you~e.9)
+   :ARG1 (w / water~e.11))
+
+# ::id cobb_salad_6_instr1
+# ::name cobb_salad_6_instr1
+# ::snt Bring to a simmer over medium heat .
+# ::root b
+# ::alignments b, y
+# ::snt_id cobb_salad_6_instr1
+(b / bring-01~e.15
+   :mode imperative~e.15
+   :ARG0 (y / you~e.15)
+   :ARG2 (s / simmer-01~e.18
+            :condition (h / heat~e.21
+                          :mod (m / medium~e.20))))
+
+# ::id cobb_salad_6_instr2_1
+# ::name cobb_salad_6_instr2_1
+# ::snt Reduce heat to low .
+# ::root r
+# ::alignments r
+# ::snt_id cobb_salad_6_instr2
+(r / reduce-01~e.25
+   :ARG0 (y / you~e.25)
+   :ARG1 (h / heat-01~e.26)
+   :ARG4 (l / low-04~e.28))
+
+# ::id cobb_salad_6_instr2_0
+# ::name cobb_salad_6_instr2_0
+# ::snt Cover .
+# ::root c2
+# ::alignments c2
+# ::snt_id cobb_salad_6_instr2
+(c2 / cover-01~e.23
+    :mode imperative~e.23
+    :ARG0 (y / you~e.23))
+
+# ::id cobb_salad_6_instr2_2
+# ::name cobb_salad_6_instr2_2
+# ::snt Simmer gently until chicken is no longer pink inside , about 10 minutes .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_6_instr2
+(s / simmer-01~e.30
+   :mode imperative~e.43
+   :ARG0 (y / you~e.30)
+   :manner (g / gentle~e.31)
+   :time (u / until~e.32
+            :duration (a / about~e.40
+                         :op1 (t / temporal-quantity~e.42
+                                 :unit (m / minute~e.42)
+                                 :quant 10~e.41))
+            :op1 (p / pink-04~e.37
+                    :ARG1 (c / chicken~e.33)
+                    :location (i / inside~e.38)
+                    :time (n / no-longer~e.36))))
+
+# ::id cobb_salad_6_instr3
+# ::name cobb_salad_6_instr3
+# ::snt Transfer chicken and poaching liquid to a shallow dish .
+# ::root t
+# ::alignments t, y
+# ::snt_id cobb_salad_6_instr3
+(t / transfer-01~e.44
+   :mode imperative~e.53
+   :ARG0 (y / you~e.44)
+   :ARG1 (a / and~e.46
+            :op1 (c / chicken~e.45)
+            :op2 (l / liquid~e.48
+                    :mod (p / poo-poo~e.47)))
+   :ARG2 (d / dish~e.52
+            :mod (s / shallow~e.51)))
+
+# ::id cobb_salad_6_instr4_1
+# ::name cobb_salad_6_instr4_1
+# ::snt Cover .
+# ::root c4
+# ::alignments c4
+# ::snt_id cobb_salad_6_instr4
+(c4 / cover-01~e.54
+    :mode imperative~e.58
+    :ARG0 (y / you~e.54))
+
+# ::id cobb_salad_6_instr4_0
+# ::name cobb_salad_6_instr4_0
+# ::snt Let chicken cool in the liquid .
+# ::root l
+# ::alignments l, c3
+# ::snt_id cobb_salad_6_instr4
+(l / let-01~e.58
+   :ARG0 (y / you~e.58)
+   :ARG1 (c3 / cool-01~e.60
+             :ARG1 (c / chicken~e.59)
+             :source (l2 / liquid~e.63)))
+
+# ::id cobb_salad_6_instr4_2
+# ::name cobb_salad_6_instr4_2
+# ::snt Refrigerate .
+# ::root c2
+# ::alignments c2
+# ::snt_id cobb_salad_6_instr4
+(c2 / cool-01~e.56
+    :ARG0 (y / you~e.56))
+
+# ::id cobb_salad_6_instr5
+# ::name cobb_salad_6_instr5
+# ::snt Meanwhile , cook bacon in a skillet over medium heat until crisp , turning occasionally , about 7 minutes .
+# ::root c
+# ::alignments c, t2
+# ::snt_id cobb_salad_6_instr5
+(c / cook-01~e.67
+   :mode imperative~e.84
+   :ARG0 (y / you~e.78)
+   :ARG1 (b / bacon~e.68)
+   :duration (u / until~e.75
+                :op1 (c2 / crisp-01~e.76
+                         :ARG1 b))
+   :duration (a / about~e.81
+                :op1 (t / temporal-quantity~e.83
+                        :unit (m3 / minute~e.83)
+                        :quant 7~e.82))
+   :instrument (s / skillet~e.71)
+   :time (m / meanwhile~e.65)
+   :ARG1-of (h / heat-01~e.74
+               :degree (m2 / medium~e.73))
+   :ARG1-of (t2 / turn-01~e.78
+                :ARG0 y
+                :frequency (o / occasional~e.79)))
+
+# ::id cobb_salad_6_instr6_0
+# ::name cobb_salad_6_instr6_0
+# ::snt Drain on paper towels .
+# ::root d
+# ::alignments d
+# ::snt_id cobb_salad_6_instr6
+(d / drain-01~e.85
+   :mode imperative~e.85
+   :ARG0 (y / you~e.85)
+   :ARG2 (t / tissue~e.88
+            :mod (p / paper~e.87)))
+
+# ::id cobb_salad_6_instr6_1
+# ::name cobb_salad_6_instr6_1
+# ::snt Drain coarsely crumble .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_6_instr6
+(c / crumble-01~e.91
+   :mode imperative~e.85
+   :ARG1 (y / you~e.85)
+   :manner (h / White~e.90)
+   :ARG0 (y1 / you~e.91))
+
+# ::id cobb_salad_6_instr7
+# ::name cobb_salad_6_instr7
+# ::snt Cut cooled chicken into ½-inch dice .
+# ::root c3
+# ::alignments c3, y
+# ::snt_id cobb_salad_6_instr7
+(c3 / cut-01~e.93
+    :mode imperative~e.93
+    :ARG0 (y / you~e.93)
+    :ARG1 (c / chicken~e.95
+             :ARG1-of (c2 / cool-01~e.94))
+    :ARG2 (d / dice~e.98
+             :mod (d2 / distance-quantity~e.97
+                      :unit (i / inch~e.97)
+                      :quant 1~e.97)))
+
+# ::id cobb_salad_6_instr8
+# ::name cobb_salad_6_instr8
+# ::snt Toss lettuce in a large bowl with ⅓ cup dressing .
+# ::root t
+# ::alignments t, y
+# ::snt_id cobb_salad_6_instr8
+(t / toss-01~e.100
+   :mode imperative~e.100
+   :ARG0 (y / you~e.100)
+   :ARG1 (l2 / lettuce~e.101)
+   :ARG2 (b / bowl~e.105
+            :mod (l / large~e.104))
+   :accompanier (d / dressing~e.109
+                   :quant (v / volume-quantity~e.108
+                             :unit (c / cup~e.108)
+                             :quant 1~e.107)))
+
+# ::id cobb_salad_6_instr9
+# ::name cobb_salad_6_instr9
+# ::snt Divide among 4 plates .
+# ::root d
+# ::alignments
+# ::snt_id cobb_salad_6_instr9
+(d / divide-02~e.111
+   :mode imperative~e.111
+   :ARG0 (y / you~e.111)
+   :ARG1 (p / plate~e.114
+            :quant 4~e.113))
+
+# ::id cobb_salad_6_instr10_0
+# ::name cobb_salad_6_instr10_0
+# ::snt Arrange chicken , bacon and tomatoes over lettuce .
+# ::root a2
+# ::alignments a3
+# ::snt_id cobb_salad_6_instr10
+(a2 / and~e.124
+    :op1 (a3 / arrange-01~e.116
+             :ARG0 (y / you~e.116)
+             :ARG1 (a / and~e.120
+                      :op1 (c / chicken~e.117)
+                      :op2 (b / bacon~e.119)
+                      :op3 (t / tomato~e.121))
+             :ARG2 (o / over~e.122
+                      :op1 (l / lettuce~e.123))
+             :mode imperative~e.116)
+    :rel (n / name~e.121))
+
+# ::id cobb_salad_6_instr10_1
+# ::name cobb_salad_6_instr10_1
+# ::snt Tomatoes and drizzle with remaining ⅓ cup dressing .
+# ::root a2
+# ::alignments d2
+# ::snt_id cobb_salad_6_instr10
+(a2 / and~e.124
+    :op2 (d2 / drip-01~e.125
+             :ARG0 (y / you~e.125)
+             :ARG2 (d / dressing~e.130
+                      :quant (v / volume-quantity~e.129
+                                :unit (c2 / cup~e.129)
+                                :quant 1~e.128)
+                      :ARG1-of (r / remain-01~e.127))
+             :mode imperative~e.131)
+    :rel (n / name~e.121))
+
+# ::id cobb_salad_6_instr11
+# ::name cobb_salad_6_instr11
+# ::snt Serve immediately .
+# ::root s
+# ::alignments s, y
+# ::snt_id cobb_salad_6_instr11
+(s / serve-01~e.132
+   :mode imperative~e.132
+   :ARG0 (y / you~e.132)
+   :time (i / immediate~e.133))
+

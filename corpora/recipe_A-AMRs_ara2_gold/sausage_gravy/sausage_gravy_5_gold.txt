@@ -1,0 +1,120 @@
+# ::id sausage_gravy_5_instr0
+# ::name sausage_gravy_5_instr0
+# ::snt Brown sausage in skillet over medium heat .
+# ::root s
+# ::alignments r
+# ::snt_id sausage_gravy_5_instr0
+(s / sausage~e.2
+   :location (s2 / skillet~e.4)
+   :mod (r / Brown~e.1)
+   :ARG1-of (h / heat-01~e.7
+               :degree (m / medium~e.6)))
+
+# ::id sausage_gravy_5_instr1
+# ::name sausage_gravy_5_instr1
+# ::snt If sausage is lean , add butter to make 2 Tablespoons of fat .
+# ::root a
+# ::alignments a, y
+# ::snt_id sausage_gravy_5_instr1
+(a / add-02~e.14
+   :mode imperative~e.14
+   :purpose (m / make-01~e.17
+               :ARG0 y
+               :ARG1 (f / fat~e.21
+                        :quant (t / teaspoon~e.19
+                                  :quant 2~e.18)))
+   :ARG0 (y / you~e.14)
+   :ARG1 (b / butter~e.15)
+   :condition (l / lean~e.12
+                 :domain (s / sausage~e.10)))
+
+# ::id sausage_gravy_5_instr2_0
+# ::name sausage_gravy_5_instr2_0
+# ::snt Add flour .
+# ::root a
+# ::alignments a
+# ::snt_id sausage_gravy_5_instr2
+(a / add-02~e.23
+   :mode imperative~e.23
+   :ARG0 (y / you~e.23)
+   :ARG1 (f / flour~e.24))
+
+# ::id sausage_gravy_5_instr2_1
+# ::name sausage_gravy_5_instr2_1
+# ::snt Cook until lightly browned .
+# ::root c
+# ::alignments c
+# ::snt_id sausage_gravy_5_instr2
+(c / cook-01~e.26
+   :mode imperative~e.30
+   :ARG0 (y / you~e.26)
+   :time (u / until~e.27
+            :op1 (r / Brown~e.29
+                    :ARG1-of (l / light-06~e.28))))
+
+# ::id sausage_gravy_5_instr3_1
+# ::name sausage_gravy_5_instr3_1
+# ::snt Preheat milk .
+# ::root h
+# ::alignments h
+# ::snt_id sausage_gravy_5_instr3
+(h / heat-01~e.32
+   :mode imperative~e.32
+   :ARG1 (m / milk~e.33)
+   :ARG0 (y / you~e.32))
+
+# ::id sausage_gravy_5_instr3_0
+# ::name sausage_gravy_5_instr3_0
+# ::snt Add milk all at once .
+# ::root a
+# ::alignments a
+# ::snt_id sausage_gravy_5_instr3
+(a / add-02~e.31
+   :mode imperative~e.31
+   :ARG0 (y / you~e.31)
+   :ARG1 (m / milk~e.33)
+   :time (a2 / at-once-01~e.36))
+
+# ::id sausage_gravy_5_instr4
+# ::name sausage_gravy_5_instr4
+# ::snt Increase heat if necessary to boil mixture .
+# ::root i
+# ::alignments i, b
+# ::snt_id sausage_gravy_5_instr4
+(i / increase-01~e.38
+   :mode imperative~e.38
+   :ARG1 (h / heat~e.39)
+   :condition (n / need-01~e.41
+                 :purpose (b / boil-01~e.43
+                             :ARG1 (m / mixture~e.44)))
+   :ARG0 (y / you~e.38))
+
+# ::id sausage_gravy_5_instr5
+# ::name sausage_gravy_5_instr5
+# ::snt Stir regularly with whisk .
+# ::root s
+# ::alignments s, y
+# ::snt_id sausage_gravy_5_instr5
+(s / stir-01~e.46
+   :mode imperative~e.46
+   :ARG0 (y / you~e.46)
+   :instrument (w / whisk~e.49)
+   :ARG1-of (r / regular-02~e.47))
+
+# ::id sausage_gravy_5_instr6
+# ::name sausage_gravy_5_instr6
+# ::snt Continue cooking until desired thickness is reached .
+# ::root c
+# ::alignments c, c2
+# ::snt_id sausage_gravy_5_instr6
+(c / continue-01~e.51
+   :mode imperative~e.58
+   :ARG0 (y / you~e.54)
+   :ARG1 (c2 / cook-01~e.52
+             :ARG0 y)
+   :time (u / until~e.53
+            :op1 (r / reach-01~e.57
+                    :ARG1 (t / thickness~e.55
+                             :ARG1-of (d / desire-01~e.54
+                                         :ARG0 y)))))
+

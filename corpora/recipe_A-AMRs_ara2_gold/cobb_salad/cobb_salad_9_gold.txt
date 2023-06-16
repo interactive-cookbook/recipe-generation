@@ -1,0 +1,191 @@
+# ::id cobb_salad_9_instr0
+# ::name cobb_salad_9_instr0
+# ::snt Instructions
+# ::root i
+# ::alignments
+# ::snt_id cobb_salad_9_instr0
+(i / instruct-01~e.1)
+
+# ::id cobb_salad_9_instr1_0
+# ::name cobb_salad_9_instr1_0
+# ::snt To prepare dressing .
+# ::root p
+# ::alignments p
+# ::snt_id cobb_salad_9_instr1
+(p / prepare-01~e.3
+   :ARG0 (y / you~e.3)
+   :ARG1 (d / dressing~e.4))
+
+# ::id cobb_salad_9_instr1_1
+# ::name cobb_salad_9_instr1_1
+# ::snt Combine all ingredients in a jar .
+# ::root c
+# ::alignments c
+# ::snt_id cobb_salad_9_instr1
+(c / combine-01~e.6
+   :mode imperative~e.13
+   :ARG0 (y / you~e.6)
+   :ARG1 (i / ingredient~e.8
+            :mod (a / all~e.7))
+   :ARG2 (j / jar~e.11))
+
+# ::id cobb_salad_9_instr1_2
+# ::name cobb_salad_9_instr1_2
+# ::snt Cover tightly .
+# ::root c2
+# ::alignments c2
+# ::snt_id cobb_salad_9_instr1
+(c2 / cover-02~e.13
+    :ARG0 (y / you~e.13)
+    :ARG1-of (t / tight-05~e.14))
+
+# ::id cobb_salad_9_instr1_3
+# ::name cobb_salad_9_instr1_3
+# ::snt Shake vigorously .
+# ::root s
+# ::alignments s
+# ::snt_id cobb_salad_9_instr1
+(s / shake-01~e.16
+   :mode imperative~e.18
+   :mode imperative~e.18
+   :ARG0 (y / you~e.16)
+   :manner (v / vigorous~e.17))
+
+# ::id cobb_salad_9_instr2_0
+# ::name cobb_salad_9_instr2_0
+# ::snt To prepare salad , arrange lettuces on a large serving platter .
+# ::root a
+# ::alignments a, p2
+# ::snt_id cobb_salad_9_instr2
+(a / arrange-01~e.23
+   :mode imperative~e.37
+   :purpose (p2 / prepare-01~e.20
+                :ARG0 y
+                :ARG1 (s / salad~e.21))
+   :ARG0 (y / you~e.20)
+   :ARG1 (v / vegetable~e.24)
+   :location (p / platter~e.29
+                :mod (l / large~e.27)
+                :ARG2-of (s2 / serve-02~e.28)))
+
+# ::id cobb_salad_9_instr2_1
+# ::name cobb_salad_9_instr2_1
+# ::snt Lettuces , big enough to toss .
+# ::root t
+# ::alignments t
+# ::snt_id cobb_salad_9_instr2
+(t / toss-01~e.34
+   :mode imperative~e.34
+   :ARG1 (v / vegetable~e.24)
+   :ARG0 (y / you~e.34)
+   :ARG6-of (h / have-degree-91~e.32
+               :ARG2 (b / big~e.31)
+               :ARG3 (e / enough~e.32)))
+
+# ::id cobb_salad_9_instr3_0
+# ::name cobb_salad_9_instr3_0
+# ::snt Arrange tomatoes in a strip down the center .
+# ::root a3
+# ::alignments a3
+# ::snt_id cobb_salad_9_instr3
+(a3 / arrange-01~e.38
+    :mode imperative~e.38
+    :ARG1 (t / tomato~e.39)
+    :prep-in (s2 / strip~e.42
+                 :direction (d / down-03~e.43
+                               :ARG1 (c / center~e.45)))
+    :ARG0 (y / you~e.38))
+
+# ::id cobb_salad_9_instr3_1
+# ::name cobb_salad_9_instr3_1
+# ::snt Arrange tomatoes chicken , bacon , eggs , and cheese in strips on either side .
+# ::root a4
+# ::alignments a4
+# ::snt_id cobb_salad_9_instr3
+(a4 / arrange-01~e.47
+    :mode imperative~e.47
+    :ARG1 (a2 / and~e.54
+              :op1 (c3 / chicken~e.48)
+              :op2 (b / bacon~e.50)
+              :op3 (e / egg~e.52)
+              :op4 (c2 / cheese~e.55))
+    :manner (s3 / strip-01~e.57
+                :location (s / side~e.60
+                             :mod (e2 / either~e.59)
+                             :part-of (t / tomato~e.39)))
+    :ARG0 (y / you~e.47))
+
+# ::id cobb_salad_9_instr4
+# ::name cobb_salad_9_instr4
+# ::snt Scatter avocado around edge .
+# ::root s
+# ::alignments
+# ::snt_id cobb_salad_9_instr4
+(s / scatter-01~e.64
+   :mode imperative~e.64
+   :ARG0 (y / you~e.64)
+   :ARG1 (a2 / avocado~e.65)
+   :ARG2 (a / around~e.66
+            :op1 (e / edge~e.67)))
+
+# ::id cobb_salad_9_instr5_3
+# ::name cobb_salad_9_instr5_3
+# ::snt Serv .
+# ::root s2
+# ::alignments s2
+# ::snt_id cobb_salad_9_instr5
+(s2 / serve-02~e.70
+    :mode imperative~e.70
+    :ARG0 (y / you~e.70))
+
+# ::id cobb_salad_9_instr5_0
+# ::name cobb_salad_9_instr5_0
+# ::snt Slide the salad into a large bowl .
+# ::root s3
+# ::alignments s3
+# ::snt_id cobb_salad_9_instr5
+(s3 / slide-01~e.72
+    :mode imperative~e.79
+    :ARG0 (y / you~e.72)
+    :ARG1 (s / salad~e.74)
+    :ARG3 (b2 / bowl~e.78
+              :mod (l / large~e.77)))
+
+# ::id cobb_salad_9_instr5_1
+# ::name cobb_salad_9_instr5_1
+# ::snt Pour dressing over top .
+# ::root p
+# ::alignments p
+# ::snt_id cobb_salad_9_instr5
+(p / pour-01~e.80
+   :mode imperative~e.89
+   :ARG0 (y / you~e.80)
+   :ARG1 (d / dressing~e.81)
+   :ARG2 (t / top~e.83))
+
+# ::id cobb_salad_9_instr5_2
+# ::name cobb_salad_9_instr5_2
+# ::snt Toss the salad gently to combine .
+# ::root t2
+# ::alignments t2
+# ::snt_id cobb_salad_9_instr5
+(t2 / toss-01~e.85
+    :mode imperative~e.89
+    :purpose (c / combine-01~e.88
+                :ARG2 s)
+    :ARG0 (s / salad~e.74)
+    :manner (g / gentle~e.86))
+
+# ::id cobb_salad_9_instr6
+# ::name cobb_salad_9_instr6
+# ::snt Recipe adapted by Jean Kressy
+# ::root a
+# ::alignments
+# ::snt_id cobb_salad_9_instr6
+(a / adapt-01~e.91
+   :ARG0 (p / person~e.93
+            :name (n / name~e.93
+                     :op1 "Jean"~e.93
+                     :op2 "Kressy"~e.94))
+   :ARG1 (r / recipe~e.90))
+

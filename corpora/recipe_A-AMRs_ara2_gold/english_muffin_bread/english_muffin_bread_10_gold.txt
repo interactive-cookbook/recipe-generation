@@ -1,0 +1,160 @@
+# ::id english_muffin_bread_10_instr0
+# ::name english_muffin_bread_10_instr0
+# ::snt Mix all ingredients , except cornmeal , in the order they are given to form a very sticky dough .
+# ::root m
+# ::alignments m, o, g
+# ::snt_id english_muffin_bread_10_instr0
+(m / mix-01~e.1
+   :mode imperative~e.20
+   :ARG0 (y / you~e.15)
+   :ARG1 (i / ingredient~e.3
+            :mod (a / all~e.2)
+            :ARG2-of (e / except-01~e.5
+                        :ARG1 (c / cornmeal~e.6)))
+   :ARG2-of (o / order-03~e.10
+               :ARG1 (g / give-01~e.13
+                        :purpose (f / form-01~e.15
+                                    :ARG0 y
+                                    :ARG1 (d / dough~e.19
+                                             :mod (s / sticky~e.18
+                                                     :degree (v / very~e.17))))
+                        :ARG1 i
+                        :ARG2 y)))
+
+# ::id english_muffin_bread_10_instr1
+# ::name english_muffin_bread_10_instr1
+# ::snt Grease your loaf pan ( 5x 5 ) Sprinkle with cornmeal to prevent the loaf from sticking to the pan .
+# ::root a
+# ::alignments e, s, e2
+# ::snt_id english_muffin_bread_10_instr1
+(a / and~e.41
+   :op1 (e / enzyme~e.21
+           :manner-of (p / pan~e.24
+                         :purpose (l / loaf~e.23)
+                         :quant (p3 / product-of~e.26
+                                    :op1 5~e.26
+                                    :op2 5~e.27)
+                         :poss (y / you~e.29)))
+   :op2 (s / spray-01~e.29
+           :purpose (p2 / prevent-01~e.33
+                        :ARG0 y
+                        :ARG1 (s2 / stick-01~e.37
+                                  :ARG1 l
+                                  :ARG2 p))
+           :ARG0 y
+           :ARG1 (e2 / enzyme~e.21
+                     :mode imperative~e.29)
+           :ARG2 (c / cornmeal~e.31)
+           :mode imperative~e.21))
+
+# ::id english_muffin_bread_10_instr2_1
+# ::name english_muffin_bread_10_instr2_1
+# ::snt Prepar pan .
+# ::root p2
+# ::alignments p2
+# ::snt_id english_muffin_bread_10_instr2
+(p2 / prepare-01~e.45
+    :mode imperative~e.45
+    :ARG1 (p / pan~e.46)
+    :ARG0 (y / you~e.45))
+
+# ::id english_muffin_bread_10_instr2_0
+# ::name english_muffin_bread_10_instr2_0
+# ::snt Spoon dough into pan .
+# ::root s
+# ::alignments s
+# ::snt_id english_muffin_bread_10_instr2
+(s / spoon~e.42
+   :mode imperative~e.42
+   :ARG0 (y / you~e.42)
+   :ARG1 (d / dough~e.43)
+   :destination (p / pan~e.46))
+
+# ::id english_muffin_bread_10_instr3_0
+# ::name english_muffin_bread_10_instr3_0
+# ::snt Cover .
+# ::root c
+# ::alignments c
+# ::snt_id english_muffin_bread_10_instr3
+(c / cover-02~e.48
+   :mode imperative~e.48
+   :ARG0 (y / you~e.48))
+
+# ::id english_muffin_bread_10_instr3_1
+# ::name english_muffin_bread_10_instr3_1
+# ::snt Let rise in a warm place for 45 min .
+# ::root l
+# ::alignments l
+# ::snt_id english_muffin_bread_10_instr3
+(l / let-01~e.50
+   :mode imperative~e.50
+   :ARG0 (y / you~e.50)
+   :ARG1 (r / rise-01~e.51
+            :ARG1 y
+            :duration (t / temporal-quantity~e.57
+                         :unit (m / minute~e.58)
+                         :quant 45~e.57)
+            :location (p / place~e.55
+                         :ARG1-of (w / warm-07~e.54))))
+
+# ::id english_muffin_bread_10_instr4
+# ::name english_muffin_bread_10_instr4
+# ::snt Preheat oven 400 degrees F.
+# ::root h
+# ::alignments h, y
+# ::snt_id english_muffin_bread_10_instr4
+(h / heat-01~e.60
+   :mode imperative~e.60
+   :ARG0 (y / you~e.60)
+   :ARG1 (o / oven~e.61)
+   :degree (t / temperature-quantity~e.64
+              :scale (f / fahrenheit~e.64)
+              :quant 400~e.62))
+
+# ::id english_muffin_bread_10_instr5
+# ::name english_muffin_bread_10_instr5
+# ::snt Bake for 25 minutes or until the loaf sounds hollow when you tap on the bread top .
+# ::root b
+# ::alignments b, s, t
+# ::snt_id english_muffin_bread_10_instr5
+(b / bake-01~e.65
+   :mode imperative~e.82
+   :ARG0 (y / you~e.77)
+   :duration (o / or~e.69
+                :op1 (t2 / temporal-quantity~e.68
+                         :unit (m / minute~e.68)
+                         :quant 25~e.67)
+                :op2 (u / until~e.70
+                        :op1 (s / sound-01~e.73
+                                :ARG1 (l / loaf~e.72)
+                                :ARG2 (h / hollow~e.74)
+                                :time (t / tap-03~e.77
+                                         :ARG0 y
+                                         :ARG1 (t3 / top~e.81
+                                                   :part-of (b2 / bread~e.80)))))))
+
+# ::id english_muffin_bread_10_instr6_0
+# ::name english_muffin_bread_10_instr6_0
+# ::snt Turn out the loaf onto a baking rack .
+# ::root t
+# ::alignments t
+# ::snt_id english_muffin_bread_10_instr6
+(t / turn-out-17~e.83
+   :mode imperative~e.83
+   :ARG0 (y / you~e.83)
+   :ARG1 (l / loaf~e.86)
+   :destination (r / rack~e.90
+                   :purpose (b / bake-01~e.89)))
+
+# ::id english_muffin_bread_10_instr6_1
+# ::name english_muffin_bread_10_instr6_1
+# ::snt Out the loaf allow to cool .
+# ::root a
+# ::alignments a
+# ::snt_id english_muffin_bread_10_instr6
+(a / allow-01~e.92
+   :mode imperative~e.95
+   :ARG0 (y / you~e.92)
+   :ARG1 (c / cool-01~e.94
+            :ARG1 (l / loaf~e.86)))
+

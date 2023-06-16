@@ -1,0 +1,168 @@
+# ::id lavender_lemonade_6_instr0
+# ::name lavender_lemonade_6_instr0
+# ::snt 1
+# ::root n
+# ::alignments
+# ::snt_id lavender_lemonade_6_instr0
+(n / number~e.1
+   :value 1~e.1)
+
+# ::id lavender_lemonade_6_instr1
+# ::name lavender_lemonade_6_instr1
+# ::snt In small saucepan , stir together 1 cup of the water , the sugar and lavender with whisk .
+# ::root s3
+# ::alignments s3, t
+# ::snt_id lavender_lemonade_6_instr1
+(s3 / stir-01~e.6
+    :mode imperative~e.6
+    :ARG1 (a / and~e.16
+             :op1 (w / water~e.12
+                     :quant (v / volume-quantity~e.9
+                               :unit (c / cup~e.9)
+                               :quant 1~e.8))
+             :op2 (s5 / sugar~e.15)
+             :op3 (l / lavender~e.17))
+    :instrument (s4 / stir-01~e.19)
+    :location (s / saucepan~e.4
+                 :mod (s2 / small~e.3))
+    :manner (t / together~e.7)
+    :ARG0 (y / you~e.6))
+
+# ::id lavender_lemonade_6_instr2_0
+# ::name lavender_lemonade_6_instr2_0
+# ::snt Cook .
+# ::root c
+# ::alignments c
+# ::snt_id lavender_lemonade_6_instr2
+(c / cook-01~e.21
+   :mode imperative~e.30
+   :ARG0 (y / you~e.21))
+
+# ::id lavender_lemonade_6_instr2_2
+# ::name lavender_lemonade_6_instr2_2
+# ::snt Until sugar dissolves .
+# ::root u
+# ::alignments d
+# ::snt_id lavender_lemonade_6_instr2
+(u / until~e.27
+   :op1 (d / dissolve-01~e.29
+           :ARG1 (s2 / sugar~e.28)))
+
+# ::id lavender_lemonade_6_instr2_1
+# ::name lavender_lemonade_6_instr2_1
+# ::snt Stir over medium heat .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_6_instr2
+(s / stir-01~e.23
+   :mode imperative~e.30
+   :ARG0 (y / you~e.23)
+   :location (h / heat~e.26
+                :mod (m / medium~e.25)))
+
+# ::id lavender_lemonade_6_instr3_1
+# ::name lavender_lemonade_6_instr3_1
+# ::snt Remove from heat .
+# ::root r
+# ::alignments r
+# ::snt_id lavender_lemonade_6_instr3
+(r / remove-01~e.31
+   :mode imperative~e.31
+   :ARG0 (y / you~e.31)
+   :ARG2 (h / heat~e.33))
+
+# ::id lavender_lemonade_6_instr3_0
+# ::name lavender_lemonade_6_instr3_0
+# ::snt Let stand 10 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id lavender_lemonade_6_instr3
+(l / let-01~e.35
+   :mode imperative~e.35
+   :ARG0 (y / you~e.35)
+   :ARG1 (s / stand-01~e.36
+            :duration (t / temporal-quantity~e.38
+                         :unit (m / minute~e.38)
+                         :quant 10~e.37)))
+
+# ::id lavender_lemonade_6_instr4
+# ::name lavender_lemonade_6_instr4
+# ::snt 2
+# ::root n
+# ::alignments
+# ::snt_id lavender_lemonade_6_instr4
+(n / number~e.40
+   :value 2~e.40)
+
+# ::id lavender_lemonade_6_instr5
+# ::name lavender_lemonade_6_instr5
+# ::snt Pour lemon juice into pitcher .
+# ::root p2
+# ::alignments p2, y
+# ::snt_id lavender_lemonade_6_instr5
+(p2 / pour-01~e.41
+    :mode imperative~e.41
+    :ARG0 (y / you~e.41)
+    :ARG1 (j / juice~e.43
+             :source (l / lemon~e.42))
+    :ARG2 (p / pitcher~e.45))
+
+# ::id lavender_lemonade_6_instr6
+# ::name lavender_lemonade_6_instr6
+# ::snt Strain sugar syrup into pitcher , discarding lavender .
+# ::root s
+# ::alignments s, d
+# ::snt_id lavender_lemonade_6_instr6
+(s / save-01~e.47
+   :mode imperative~e.47
+   :ARG0 (y / you~e.53)
+   :ARG1 (s3 / syrup~e.49
+             :consist-of (s2 / sugar~e.48))
+   :ARG2 (p / pitcher~e.51)
+   :manner (d / discard-01~e.53
+              :ARG0 y
+              :ARG1 (l / lavender~e.54)))
+
+# ::id lavender_lemonade_6_instr7_0
+# ::name lavender_lemonade_6_instr7_0
+# ::snt Add remaining 4 cups water .
+# ::root a
+# ::alignments a
+# ::snt_id lavender_lemonade_6_instr7
+(a / add-02~e.56
+   :mode imperative~e.56
+   :ARG0 (y / you~e.56)
+   :ARG1 (w / water~e.60
+            :quant (v / volume-quantity~e.59
+                      :unit (c / cup~e.59)
+                      :quant 4~e.58)
+            :ARG1-of (r / remain-01~e.57)))
+
+# ::id lavender_lemonade_6_instr7_1
+# ::name lavender_lemonade_6_instr7_1
+# ::snt Stir well .
+# ::root s
+# ::alignments s
+# ::snt_id lavender_lemonade_6_instr7
+(s / stir-01~e.62
+   :mode imperative~e.64
+   :ARG0 (y / you~e.62)
+   :manner (w2 / well~e.63))
+
+# ::id lavender_lemonade_6_instr8
+# ::name lavender_lemonade_6_instr8
+# ::snt Add ice to pitcher or individual glasses for serving .
+# ::root a
+# ::alignments a, s
+# ::snt_id lavender_lemonade_6_instr8
+(a / add-on-05~e.65
+   :mode imperative~e.65
+   :purpose (s / serve-02~e.73
+               :ARG1 i)
+   :ARG1 (i / ice~e.66)
+   :ARG2 (o / or~e.69
+            :op1 (p / pitcher~e.68)
+            :op2 (g / glass~e.71
+                    :mod (i2 / individual~e.70)))
+   :ARG0 (y / you~e.65))
+

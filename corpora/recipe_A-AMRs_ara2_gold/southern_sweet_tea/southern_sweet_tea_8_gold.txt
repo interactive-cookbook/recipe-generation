@@ -1,0 +1,147 @@
+# ::id southern_sweet_tea_8_instr0
+# ::name southern_sweet_tea_8_instr0
+# ::snt Place one quart of water in a pan and bring to a boil .
+# ::root a
+# ::alignments p2, y
+# ::snt_id southern_sweet_tea_8_instr0
+(a / and~e.9
+   :op1 (p2 / place-01~e.1
+            :ARG0 (y / you~e.1)
+            :ARG1 (w / water~e.5
+                     :quant (v / volume-quantity~e.3
+                               :unit (q / quart~e.3)
+                               :quant 1~e.2))
+            :ARG2 (p / pan~e.8)
+            :mode imperative~e.14)
+   :op2 (b / boil-01~e.13
+           :ARG0 y
+           :ARG1 w
+           :mode imperative~e.14))
+
+# ::id southern_sweet_tea_8_instr1_1
+# ::name southern_sweet_tea_8_instr1_1
+# ::snt Add the tea bags .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_8_instr1
+(a / add-02~e.15
+   :mode imperative~e.15
+   :ARG0 (y / you~e.15)
+   :ARG1 (b / bag~e.18
+            :mod (t / tea~e.17)))
+
+# ::id southern_sweet_tea_8_instr1_2
+# ::name southern_sweet_tea_8_instr1_2
+# ::snt Cover .
+# ::root c
+# ::alignments c
+# ::snt_id southern_sweet_tea_8_instr1
+(c / cover-01~e.20
+   :mode imperative~e.22
+   :ARG0 (y / you~e.20))
+
+# ::id southern_sweet_tea_8_instr1_0
+# ::name southern_sweet_tea_8_instr1_0
+# ::snt Let the tea bags , steep for 10 - 15 minutes .
+# ::root l
+# ::alignments l, s
+# ::snt_id southern_sweet_tea_8_instr1
+(l / let-01~e.22
+   :mode imperative~e.22
+   :ARG0 (y / you~e.22)
+   :ARG1 (s / steep-01~e.23
+            :ARG1 (b / bag~e.18
+                     :mod (t / tea~e.17))
+            :duration (b2 / between~e.25
+                          :op1 (t2 / temporal-quantity~e.28
+                                   :unit (m / minute~e.28)
+                                   :quant 10~e.25)
+                          :op2 (t3 / temporal-quantity~e.28
+                                   :unit (m2 / minute~e.28)
+                                   :quant 15~e.27))))
+
+# ::id southern_sweet_tea_8_instr2_0
+# ::name southern_sweet_tea_8_instr2_0
+# ::snt Remove the tea bags .
+# ::root r
+# ::alignments r
+# ::snt_id southern_sweet_tea_8_instr2
+(r / remove-01~e.30
+   :mode imperative~e.30
+   :ARG0 (y / you~e.30)
+   :ARG1 (b / bag~e.33
+            :mod (t / tea~e.32)))
+
+# ::id southern_sweet_tea_8_instr2_1
+# ::name southern_sweet_tea_8_instr2_1
+# ::snt Add the sugar .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_8_instr2
+(a / add-02~e.35
+   :mode imperative~e.43
+   :ARG0 (y / you~e.35)
+   :ARG1 (s2 / sugar~e.37))
+
+# ::id southern_sweet_tea_8_instr2_2
+# ::name southern_sweet_tea_8_instr2_2
+# ::snt Stir the sugar until completely dissolved .
+# ::root s
+# ::alignments s
+# ::snt_id southern_sweet_tea_8_instr2
+(s / stir-01~e.39
+   :mode imperative~e.43
+   :ARG0 (y / you~e.39)
+   :duration (u / until~e.40
+                :op1 (d / dissolve-01~e.42
+                        :ARG1 (s2 / sugar~e.37)
+                        :ARG1-of (c / complete-02~e.41))))
+
+# ::id southern_sweet_tea_8_instr3_0
+# ::name southern_sweet_tea_8_instr3_0
+# ::snt Add the additional quart of cold water .
+# ::root a
+# ::alignments a
+# ::snt_id southern_sweet_tea_8_instr3
+(a / add-02~e.44
+   :mode imperative~e.44
+   :ARG0 (y / you~e.44)
+   :ARG1 (w / water~e.50
+            :quant (v / volume-quantity~e.47
+                      :mod (a2 / additional~e.46)
+                      :unit (q / quart~e.47)
+                      :quant 1~e.47)
+            :ARG1-of (c / cold-01~e.49)))
+
+# ::id southern_sweet_tea_8_instr3_1
+# ::name southern_sweet_tea_8_instr3_1
+# ::snt Stir .
+# ::root s
+# ::alignments s
+# ::snt_id southern_sweet_tea_8_instr3
+(s / stir-01~e.52
+   :mode imperative~e.53
+   :ARG0 (y / you~e.52))
+
+# ::id southern_sweet_tea_8_instr4
+# ::name southern_sweet_tea_8_instr4
+# ::snt Serve over ice .
+# ::root s
+# ::alignments s, y
+# ::snt_id southern_sweet_tea_8_instr4
+(s / serve-02~e.54
+   :mode imperative~e.54
+   :ARG0 (y / you~e.54)
+   :ARG2 (i / ice~e.56))
+
+# ::id southern_sweet_tea_8_instr5
+# ::name southern_sweet_tea_8_instr5
+# ::snt Lemon and/or mint optional .
+# ::root o
+# ::alignments
+# ::snt_id southern_sweet_tea_8_instr5
+(o / optional~e.61
+   :domain (a / and-or~e.59
+              :op1 (v / vitamin~e.58)
+              :op2 (m / mint~e.60)))
+

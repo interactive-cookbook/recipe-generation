@@ -1,0 +1,236 @@
+# ::id chocolate_glaze_8_instr0
+# ::name chocolate_glaze_8_instr0
+# ::snt Heat a pan of water until simmering .
+# ::root h
+# ::alignments h, y
+# ::snt_id chocolate_glaze_8_instr0
+(h / heat-01~e.1
+   :mode imperative~e.8
+   :ARG0 (y / you~e.1)
+   :ARG1 (p / pan~e.3
+            :consist-of (w / water~e.5))
+   :time (u / until~e.6
+            :op1 (s / simmer-01~e.7
+                    :ARG1 w)))
+
+# ::id chocolate_glaze_8_instr1_0
+# ::name chocolate_glaze_8_instr1_0
+# ::snt Place all ingredients , plus 5 teaspoons water , in a slightly smaller metal or glass mixing bowl .
+# ::root p2
+# ::alignments p2
+# ::snt_id chocolate_glaze_8_instr1
+(p2 / place-01~e.9
+    :mode imperative~e.9
+    :ARG1 (i / ingredient~e.11
+             :mod (a / all~e.10)
+             :op1-of (a3 / and~e.27
+                         :op2 (w / water~e.16
+                                 :quant (t / teaspoon~e.15
+                                           :quant 5~e.14))))
+    :ARG2 (b / bowl~e.26
+             :purpose (m2 / mix-01~e.25)
+             :mod (o / or~e.23
+                     :op1 (m / metal~e.22)
+                     :op2 (g / glass~e.24))
+             :ARG1-of (h / have-degree-91~e.21
+                         :ARG2 (s3 / small~e.21)
+                         :ARG3 (m3 / more~e.21
+                                   :quant (s2 / slight~e.20))))
+    :ARG0 (y / you~e.9))
+
+# ::id chocolate_glaze_8_instr1_1
+# ::name chocolate_glaze_8_instr1_1
+# ::snt Set all ingredients , plus 5 teaspoons water , and over the pan .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_8_instr1
+(s / set-01~e.28
+   :mode imperative~e.28
+   :ARG1 (i / ingredient~e.11
+            :mod (a / all~e.10)
+            :op1-of (a3 / and~e.27
+                        :op2 (w / water~e.16
+                                :quant (t / teaspoon~e.15
+                                          :quant 5~e.14))))
+   :ARG2 (o2 / over~e.29
+             :op1 (p / pan~e.31))
+   :ARG0 (y / you~e.28))
+
+# ::id chocolate_glaze_8_instr2_3
+# ::name chocolate_glaze_8_instr2_3
+# ::snt Nearly all the chocolate has , then stir occasionally until perfectly smooth , about 5 to 10 minutes .
+# ::root s5
+# ::alignments s5
+# ::snt_id chocolate_glaze_8_instr2
+(s5 / stir-01~e.58
+    :ARG0 (y / you~e.58)
+    :duration (u2 / until~e.60
+                  :op1 (s2 / smooth-04~e.62
+                           :ARG1 (c / chocolate~e.42
+                                    :mod (a2 / all~e.40
+                                             :degree (n / near~e.39)))
+                           :ARG1-of (p / perfect-02~e.61)))
+    :frequency (o / occasional~e.59)
+    :duration (a / about~e.64
+                 :op1 (b / between~e.65
+                         :op1 (t / temporal-quantity~e.68
+                                 :unit (m3 / minute~e.68)
+                                 :quant 5~e.65)
+                         :op2 (t2 / temporal-quantity~e.68
+                                  :unit (m4 / minute~e.68)
+                                  :quant 10~e.67)))
+    :time (t3 / then~e.46))
+
+# ::id chocolate_glaze_8_instr2_0
+# ::name chocolate_glaze_8_instr2_0
+# ::snt Stir gently with a spatula until nearly all the chocolate has melted .
+# ::root s4
+# ::alignments s4
+# ::snt_id chocolate_glaze_8_instr2
+(s4 / stir-01~e.33
+    :mode imperative~e.33
+    :ARG0 (y / you~e.33)
+    :instrument (s3 / spatula~e.37)
+    :manner (g / gentle~e.34)
+    :time (u / until~e.38
+             :op1 (m / melt-01~e.44
+                     :ARG1 (c / chocolate~e.42
+                              :mod (a2 / all~e.40
+                                       :degree (n / near~e.39))))))
+
+# ::id chocolate_glaze_8_instr2_1
+# ::name chocolate_glaze_8_instr2_1
+# ::snt Then remove bowl from heat , about 5 to 10 minutes .
+# ::root r
+# ::alignments r
+# ::snt_id chocolate_glaze_8_instr2
+(r / remove-01~e.47
+   :ARG0 (y / you~e.47)
+   :ARG1 (b2 / bowl~e.48)
+   :ARG2 (h / heat~e.50)
+   :duration (a / about~e.64
+                :op1 (b / between~e.65
+                        :op1 (t / temporal-quantity~e.68
+                                :unit (m3 / minute~e.68)
+                                :quant 5~e.65)
+                        :op2 (t2 / temporal-quantity~e.68
+                                 :unit (m4 / minute~e.68)
+                                 :quant 10~e.67)))
+   :time (t3 / then~e.46))
+
+# ::id chocolate_glaze_8_instr2_2
+# ::name chocolate_glaze_8_instr2_2
+# ::snt Nearly all the chocolate has , then bowl set aside to finish melting , about 5 to 10 minutes .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_8_instr2
+(s / set-01~e.52
+   :purpose (f / finish-01~e.55
+               :ARG0 (b2 / bowl~e.48)
+               :ARG1 (m2 / melt-01~e.56
+                         :ARG1 (c / chocolate~e.42
+                                  :mod (a2 / all~e.40
+                                           :degree (n / near~e.39)))))
+   :ARG0 (y / you~e.52)
+   :ARG2 (a5 / aside~e.53)
+   :duration (a / about~e.64
+                :op1 (b / between~e.65
+                        :op1 (t / temporal-quantity~e.68
+                                :unit (m3 / minute~e.68)
+                                :quant 5~e.65)
+                        :op2 (t2 / temporal-quantity~e.68
+                                 :unit (m4 / minute~e.68)
+                                 :quant 10~e.67)))
+   :time (t3 / then~e.46))
+
+# ::id chocolate_glaze_8_instr3
+# ::name chocolate_glaze_8_instr3
+# ::snt The glaze is ready to pour when it is between 88 and 90 degrees .
+# ::root r
+# ::alignments
+# ::snt_id chocolate_glaze_8_instr3
+(r / ready-02~e.73
+   :ARG1 (g / glaze~e.71)
+   :ARG2 (p / pour-01~e.75
+            :ARG1 g)
+   :time (b / between~e.79
+            :op1 (t / temperature-quantity~e.80
+                    :scale (f / fahrenheit~e.80)
+                    :quant 88~e.80)
+            :op2 (t2 / temperature-quantity~e.82
+                     :scale f
+                     :quant 90~e.82)))
+
+# ::id chocolate_glaze_8_instr4_1
+# ::name chocolate_glaze_8_instr4_1
+# ::snt Pour glaze onto center of the cake ’s top .
+# ::root p
+# ::alignments p
+# ::snt_id chocolate_glaze_8_instr4
+(p / pour-01~e.85
+   :mode imperative~e.85
+   :ARG0 (y / you~e.85)
+   :ARG1 (g / glaze~e.86)
+   :ARG2 (c2 / center~e.88
+             :part-of (t / top~e.93
+                         :part-of (c / cake~e.91))))
+
+# ::id chocolate_glaze_8_instr4_0
+# ::name chocolate_glaze_8_instr4_0
+# ::snt Let glaze it run down the sides .
+# ::root l
+# ::alignments l, r
+# ::snt_id chocolate_glaze_8_instr4
+(l / let-01~e.95
+   :mode imperative~e.95
+   :ARG0 (y / you~e.95)
+   :ARG1 (r / run-02~e.97
+            :ARG1 (g / glaze~e.86)
+            :direction (d / down~e.98
+                          :op1 (s / side~e.100))))
+
+# ::id chocolate_glaze_8_instr5
+# ::name chocolate_glaze_8_instr5
+# ::snt Gently tap the cooling rack up and down so the glaze coats the entire cake .
+# ::root t
+# ::alignments t, u, d, c3
+# ::snt_id chocolate_glaze_8_instr5
+(t / tap-02~e.103
+   :mode imperative~e.102
+   :ARG0 (y / you~e.103)
+   :ARG1 (r / rack~e.106
+            :ARG0-of (c4 / cool-01~e.105))
+   :direction (a / and~e.108
+                 :op1 (u / up~e.107)
+                 :op2 (d / down~e.109))
+   :ARG0-of (c2 / cause-01~e.110
+                :ARG1 (c3 / coat-01~e.113
+                          :ARG1 (c / cake~e.116
+                                   :mod (e / entire~e.115))
+                          :ARG2 (g / glaze~e.112))))
+
+# ::id chocolate_glaze_8_instr6_0
+# ::name chocolate_glaze_8_instr6_0
+# ::snt Let set for at least an hour .
+# ::root l
+# ::alignments s2
+# ::snt_id chocolate_glaze_8_instr6
+(l / let-01~e.118
+   :mode imperative~e.118
+   :ARG0 (y / you~e.118)
+   :ARG1 (s2 / set-01~e.119
+             :ARG1 (w / we~e.118)
+             :duration (a / at-least~e.122
+                          :op1 (t / temporal-quantity~e.124
+                                  :unit (h / hour~e.124)
+                                  :quant 1~e.123))))
+
+# ::id chocolate_glaze_8_instr6_1
+# ::name chocolate_glaze_8_instr6_1
+# ::snt Let serv .
+# ::root s
+# ::alignments s
+# ::snt_id chocolate_glaze_8_instr6
+(s / serve-02~e.126
+   :ARG0 (w / we~e.118))
+

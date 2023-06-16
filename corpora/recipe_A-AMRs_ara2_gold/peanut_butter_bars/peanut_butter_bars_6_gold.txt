@@ -1,0 +1,191 @@
+# ::id peanut_butter_bars_6_instr0
+# ::name peanut_butter_bars_6_instr0
+# ::snt CRUSH GRAHAM CRACKERS IN A ZIP LOCK BAG AND MALLET .
+# ::root t
+# ::alignments
+# ::snt_id peanut_butter_bars_6_instr0
+(t / thing~e.11
+   :location (a / and~e.9
+                :op1 (b / bag~e.8
+                        :ARG1-of (l / lock-01~e.7
+                                    :ARG2 (s / shoe~e.7)))
+                :op2 (s2 / shoe~e.10))
+   :mod (c / cut-01~e.3
+           :ARG0 p)
+   :rel (p / person~e.3
+           :name (n / name~e.3
+                    :op1 "Rush"~e.1
+                    :op2 "Gore"~e.2)))
+
+# ::id peanut_butter_bars_6_instr1
+# ::name peanut_butter_bars_6_instr1
+# ::snt IN A BOWL , COMBINE GRAHAM CRACKERS AND MELTED BUTTER .
+# ::root a
+# ::alignments m
+# ::snt_id peanut_butter_bars_6_instr1
+(a / and~e.19
+   :location (b2 / bomb~e.14
+                 :mod (a2 / atom~e.14))
+   :op1 (p / person~e.18
+           :name (n / name~e.18
+                    :op1 "comrade"~e.16
+                    :op2 "Gingrich"~e.17)
+           :mod "comrade"~e.16)
+   :op2 (b3 / butt~e.21
+            :ARG1-of (m / molest-01~e.20))
+   :rel (b / bitch~e.18))
+
+# ::id peanut_butter_bars_6_instr2
+# ::name peanut_butter_bars_6_instr2
+# ::snt ADD POWDERED SUGAR AND ONE CUP PEANUT BUTTER , MIX UNTIL BLENDED .
+# ::root a
+# ::alignments m
+# ::snt_id peanut_butter_bars_6_instr2
+(a / add-02~e.23
+   :mode imperative~e.23
+   :ARG0 (y / you~e.23)
+   :ARG1 (a2 / and~e.26
+             :op1 (w2 / water~e.25
+                      :ARG2-of (w / war-01~e.24))
+             :op2 (b2 / butt~e.30
+                      :mod (p / prime~e.29)
+                      :unit (c / cup~e.28)
+                      :quant 1~e.27)
+             :ARG1-of (m / mix-01~e.32
+                         :time (u / until~e.33
+                                  :op1 (b / blame-01~e.34)))))
+
+# ::id peanut_butter_bars_6_instr3
+# ::name peanut_butter_bars_6_instr3
+# ::snt PLACE CRUST MIXTURE IN AN UNGREASED 9″ X12″ BAKING PAN .
+# ::root m
+# ::alignments
+# ::snt_id peanut_butter_bars_6_instr3
+(m / mix-01~e.38
+   :location (p / place~e.36)
+   :location (a / Pan~e.45
+                :mod (d2 / distance-quantity~e.43
+                         :unit (i3 / inch~e.43)
+                         :quant 8~e.42)
+                :mod (v / variable~e.41
+                        :polarity -~e.41)
+                :instrument-of (b / bake-01~e.44))
+   :mod (i / ice~e.37)
+   :rel (d / distance-quantity~e.43
+           :unit (i2 / inch~e.43)
+           :quant 9~e.42))
+
+# ::id peanut_butter_bars_6_instr4
+# ::name peanut_butter_bars_6_instr4
+# ::snt PRESS INTO PAN EVENLY .
+# ::root p2
+# ::alignments
+# ::snt_id peanut_butter_bars_6_instr4
+(p2 / press-01~e.47
+    :mode imperative~e.47
+    :ARG0 (y / you~e.47)
+    :ARG2 (p / pan-out-02~e.49
+             :ARG0 y)
+    :mod (e / even~e.50))
+
+# ::id peanut_butter_bars_6_instr5_0
+# ::name peanut_butter_bars_6_instr5_0
+# ::snt A MICROWAVE - SAFE BOWL .
+# ::root s
+# ::alignments s
+# ::snt_id peanut_butter_bars_6_instr5
+(s / safe-01~e.56
+   :ARG0 (a / BOWL~e.57
+            :mod (a5 / atom~e.57)
+            :mod (s4 / security~e.54)))
+
+# ::id peanut_butter_bars_6_instr5_1
+# ::name peanut_butter_bars_6_instr5_1
+# ::snt USING A MICROWAVE - BOWL , COMBINE 4 TBSP AND CHOCOLATE CHIPS FOR 30 SECONDS , ADD ANOTHER 30 SECONDS IF NEEDED .
+# ::root a3
+# ::alignments c
+# ::snt_id peanut_butter_bars_6_instr5
+(a3 / and~e.62
+    :rel 30~e.66
+    :op1 (u2 / use-01~e.52
+             :ARG1 (a / BOWL~e.57
+                      :mod (a5 / atom~e.57)
+                      :mod (s4 / security~e.54))
+             :mode imperative~e.54)
+    :op2 (c / coordinate-01~e.59
+            :ARG1 (a4 / and~e.62
+                      :op1 (m / mass-quantity~e.61
+                              :unit (n2 / nucleus~e.61)
+                              :quant 4~e.60))
+            :ARG2 (a6 / award~e.64)
+            :duration (t / temporal-quantity~e.67
+                         :unit (s2 / second~e.67)
+                         :quant 30~e.66)
+            :ARG0 (y / you~e.59)
+            :mode imperative~e.59)
+    :op4 (a2 / add-02~e.73
+             :ARG1 (t2 / temporal-quantity~e.76
+                       :unit s2
+                       :quant 30~e.66)
+             :condition (n / need-01~e.78))
+    :rel (h / China~e.63)
+    :rel (m2 / member~e.64)
+    :rel (s3 / second~e.76))
+
+# ::id peanut_butter_bars_6_instr5_2
+# ::name peanut_butter_bars_6_instr5_2
+# ::snt USING A MICROWAVE - BOWL , AND CHOCOLATE CHIPS FOR 30 SECONDS , STIR UNTIL SMOOTH , ADD ANOTHER 30 SECONDS IF NEEDED .
+# ::root a3
+# ::alignments s6
+# ::snt_id peanut_butter_bars_6_instr5
+(a3 / and~e.62
+    :rel 30~e.66
+    :op1 (u2 / use-01~e.52
+             :ARG1 (a / BOWL~e.57
+                      :mod (a5 / atom~e.57)
+                      :mod (s4 / security~e.54))
+             :mode imperative~e.54)
+    :op3 (s6 / step-01~e.69
+             :time (u / until~e.70
+                      :op1 (s5 / small~e.71))
+             :ARG0 (y / you~e.69)
+             :mode imperative~e.79)
+    :op4 (a2 / add-02~e.73
+             :ARG1 (t2 / temporal-quantity~e.76
+                       :unit (s2 / second~e.67)
+                       :quant 30~e.66)
+             :condition (n / need-01~e.78))
+    :rel (h / China~e.63)
+    :rel (m2 / member~e.64)
+    :rel (s3 / second~e.76))
+
+# ::id peanut_butter_bars_6_instr6
+# ::name peanut_butter_bars_6_instr6
+# ::snt SPREAD CHOCOLATE MIXTURE EVENLY OVER CRUST .
+# ::root s
+# ::alignments
+# ::snt_id peanut_butter_bars_6_instr6
+(s / spread-01~e.80
+   :mode imperative~e.80
+   :ARG0 (y / you~e.80)
+   :ARG1 (c2 / coordinate-01~e.81
+             :ARG2 (c / child~e.81))
+   :location (o / over~e.84
+                :mod (e / even~e.83)
+                :op1 (r / rubble~e.85)))
+
+# ::id peanut_butter_bars_6_instr7
+# ::name peanut_butter_bars_6_instr7
+# ::snt REFRIGERATE FOR 1 HOUR BEFORE CUTTING .
+# ::root f
+# ::alignments
+# ::snt_id peanut_butter_bars_6_instr7
+(f / freeze-01~e.91
+   :mode imperative~e.87
+   :ARG0 (y / you~e.91)
+   :time (b / before~e.91
+            :duration (t / temporal-quantity~e.89
+                         :unit (h / hour~e.90)
+                         :quant 1~e.89)
+            :op1 (c / cut-02~e.92)))
+

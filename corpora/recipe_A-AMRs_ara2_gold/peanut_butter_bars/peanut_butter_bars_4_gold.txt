@@ -1,0 +1,190 @@
+# ::id peanut_butter_bars_4_instr0
+# ::name peanut_butter_bars_4_instr0
+# ::snt Preheat your oven to 350 degrees .
+# ::root h
+# ::alignments h, y
+# ::snt_id peanut_butter_bars_4_instr0
+(h / heat-01~e.1
+   :mode imperative~e.1
+   :ARG0 (y / you~e.1)
+   :ARG1 (o / oven~e.3
+            :poss y)
+   :destination (t / temperature-quantity~e.5
+                   :quant 350~e.5))
+
+# ::id peanut_butter_bars_4_instr1
+# ::name peanut_butter_bars_4_instr1
+# ::snt In your mixing bowl , beat the eggs until airy .
+# ::root b
+# ::alignments b
+# ::snt_id peanut_butter_bars_4_instr1
+(b / beat-01~e.13
+   :mode imperative~e.18
+   :ARG0 (y / you~e.9)
+   :ARG1 (e / egg~e.15)
+   :location (b2 / bowl~e.11
+                 :poss y
+                 :instrument-of (m / mix-01~e.10))
+   :manner (u / until~e.16
+              :op1 (a / airy~e.17)))
+
+# ::id peanut_butter_bars_4_instr2_0
+# ::name peanut_butter_bars_4_instr2_0
+# ::snt Add in the butter and peanut butter .
+# ::root a
+# ::alignments a
+# ::snt_id peanut_butter_bars_4_instr2
+(a / add-02~e.19
+   :mode imperative~e.19
+   :ARG1 (a2 / and~e.23
+             :op1 (b2 / butter~e.22)
+             :op2 (b3 / butter~e.25
+                      :mod (p / peanut~e.24)))
+   :ARG0 (y / you~e.19))
+
+# ::id peanut_butter_bars_4_instr2_1
+# ::name peanut_butter_bars_4_instr2_1
+# ::snt Beat until fluffy .
+# ::root b
+# ::alignments b
+# ::snt_id peanut_butter_bars_4_instr2
+(b / beat-01~e.27
+   :mode imperative~e.27
+   :manner (u / until~e.28
+              :op1 (f / fluffy~e.29))
+   :ARG0 (y / you~e.27))
+
+# ::id peanut_butter_bars_4_instr3_0
+# ::name peanut_butter_bars_4_instr3_0
+# ::snt Add in the brown sugar and vanilla .
+# ::root a
+# ::alignments a
+# ::snt_id peanut_butter_bars_4_instr3
+(a / add-02~e.31
+   :mode imperative~e.40
+   :ARG0 (y / you~e.31)
+   :ARG1 (a3 / and~e.36
+             :op1 (s / sugar~e.35
+                     :mod (b2 / brown~e.34))
+             :op2 (v / vanilla~e.37)))
+
+# ::id peanut_butter_bars_4_instr3_1
+# ::name peanut_butter_bars_4_instr3_1
+# ::snt Again , beat until fluffy .
+# ::root b
+# ::alignments b
+# ::snt_id peanut_butter_bars_4_instr3
+(b / beat-01~e.41
+   :mode imperative~e.44
+   :ARG0 (y / you~e.41)
+   :duration (u / until~e.42
+                :op1 (f / fluffy~e.43))
+   :mod (a2 / again~e.39))
+
+# ::id peanut_butter_bars_4_instr4_0
+# ::name peanut_butter_bars_4_instr4_0
+# ::snt Add in the flour & salt .
+# ::root a
+# ::alignments a
+# ::snt_id peanut_butter_bars_4_instr4
+(a / add-02~e.45
+   :mode imperative~e.45
+   :ARG1 (a2 / and~e.49
+             :op1 (f / flour~e.48)
+             :op2 (s / salt~e.50))
+   :ARG0 (y / you~e.45))
+
+# ::id peanut_butter_bars_4_instr4_1
+# ::name peanut_butter_bars_4_instr4_1
+# ::snt In the flour & salt mix until combined .
+# ::root m
+# ::alignments m
+# ::snt_id peanut_butter_bars_4_instr4
+(m / mix-01~e.52
+   :mode imperative~e.52
+   :duration (u / until~e.53
+                :op1 (c / combine-01~e.54
+                        :ARG1 (a2 / and~e.49
+                                  :op1 (f / flour~e.48)
+                                  :op2 (s / salt~e.50))))
+   :ARG0 (y / you~e.52))
+
+# ::id peanut_butter_bars_4_instr5
+# ::name peanut_butter_bars_4_instr5
+# ::snt Spread the dough into an oiled 9x13 baking dish .
+# ::root s
+# ::alignments s, o
+# ::snt_id peanut_butter_bars_4_instr5
+(s / spread-03~e.56
+   :mode imperative~e.56
+   :rel 13~e.62
+   :ARG0 (y / you~e.56)
+   :ARG1 (d4 / dough~e.58)
+   :ARG3 (d / dish~e.64
+            :extent (d3 / distance-quantity~e.62
+                        :unit (i / inch~e.62)
+                        :unit (i2 / inch~e.62)
+                        :quant 9~e.62)
+            :consist-of (o / oil~e.61)
+            :instrument-of (b / bake-01~e.63))
+   :rel (d2 / distance-quantity~e.62
+            :quant 9~e.62))
+
+# ::id peanut_butter_bars_4_instr6
+# ::name peanut_butter_bars_4_instr6
+# ::snt Bake for 30 - 35 minutes or until they test done in the center with a toothpick .
+# ::root b
+# ::alignments b, t3
+# ::snt_id peanut_butter_bars_4_instr6
+(b / bake-01~e.66
+   :mode imperative~e.83
+   :ARG0 (y / you~e.66)
+   :duration (o / or~e.72
+                :op1 (b2 / between~e.68
+                         :op1 (t / temporal-quantity~e.68
+                                 :unit (m / minute~e.71)
+                                 :quant 30~e.68)
+                         :op2 (t2 / temporal-quantity~e.71
+                                  :unit (m2 / minute~e.71)
+                                  :quant 35~e.70))
+                :op2 (u / until~e.73
+                        :op1 (t3 / test-01~e.75
+                                 :ARG1 (t4 / they~e.74)
+                                 :instrument (t5 / toothpick~e.82)
+                                 :location (c / center~e.79)))))
+
+# ::id peanut_butter_bars_4_instr7
+# ::name peanut_butter_bars_4_instr7
+# ::snt Cool on a rack until room temperature .
+# ::root c
+# ::alignments c
+# ::snt_id peanut_butter_bars_4_instr7
+(c / cool-01~e.84
+   :mode imperative~e.84
+   :location (r / rack~e.87)
+   :time (u / until~e.88
+            :op1 (t / temperature~e.90
+                    :mod (r2 / room~e.89)))
+   :ARG0 (y / you~e.84))
+
+# ::id peanut_butter_bars_4_instr8
+# ::name peanut_butter_bars_4_instr8
+# ::snt Cut into bars .
+# ::root c
+# ::alignments c, y
+# ::snt_id peanut_butter_bars_4_instr8
+(c / cut-01~e.92
+   :mode imperative~e.92
+   :ARG0 (y / you~e.92)
+   :ARG2 (b / bar~e.94))
+
+# ::id peanut_butter_bars_4_instr9
+# ::name peanut_butter_bars_4_instr9
+# ::snt Enjoy !
+# ::root e
+# ::alignments
+# ::snt_id peanut_butter_bars_4_instr9
+(e / enjoy-01~e.96
+   :mode expressive~e.97
+   :ARG0 (y / you~e.96))
+
