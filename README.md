@@ -1,6 +1,6 @@
 # recipe-generation
 
-This repository contains the code for the paper from "From Sentence to Action: Splitting AMR Graphs for Recipe Instructions", DMR 2023.<br>
+This repository contains the code for the paper from [From Sentence to Action: Splitting AMR Graphs for Recipe Instructions](https://aclanthology.org/2023.dmr-1.6/), DMR 2023.<br>
 
 It contains the scripts to separate sentence-level AMR graphs into AMR graphs for individual action events and to generate action-event level recipe instructions for the obtained AMRs. <br>
 The code for training the generation model by fine-tuning a T5-based AMR-to-text model for this task can be found in the [recipe-generation-model](https://github.com/interactive-cookbook/recipe-generation-model) repository.<br>
