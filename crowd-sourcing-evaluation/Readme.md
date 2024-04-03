@@ -26,3 +26,7 @@ The file contains the following columns:
     * no_context: generated using the fine-tuned T5 model without context (GART5-0)
     * original: (human written) recipe from the original dataset
     * coref: was not part of the paper (rough idea: recipes were extended with explicit mentions for zero-anaphoras before running the splitting and generation pipeline)
+* `order`: at which position the recipe was shown to the participant
+* `experience`: response to the final questions about how often participants use to prepare a dish based on a recipe
+* `time.s`: time spent on the page for that instance in seconds (i.e. time for reading + all 6 ratings)
+* `time.min`: same but time in minutes
